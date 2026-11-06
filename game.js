@@ -3383,6 +3383,32 @@ function requestAttackPose(weaponId, actionKind, aim) {
   p.attack_anim_timer = p.attack_anim_duration;
 }
 
+function getPlayerMovementResponse(currentVx, currentVy, desiredVx, desiredVy) {
+  const currentSpeed = Math.hypot(currentVx, currentVy);
+  const desiredSpeed = Math.hypot(desiredVx, desiredVy);
+  if (desiredSpeed < 0.001) return 2400;
+  const reversing = currentSpeed > 0.001
+    && currentVx * desiredVx + currentVy * desiredVy < -0.15 * currentSpeed * desiredSpeed;
+  return reversing ? 1900 : 1450;
+}
+
+function approachPlayerVelocity(player, desiredVx, desiredVy, dt, maxSpeed) {
+  const response = getPlayerMovementResponse(player.vx, player.vy, desiredVx, desiredVy);
+  const deltaVx = desiredVx - player.vx;
+  const deltaVy = desiredVy - player.vy;
+  const maxDelta = response * dt;
+  const deltaLength = Math.hypot(deltaVx, deltaVy);
+  const scale = deltaLength > maxDelta && deltaLength > 0 ? maxDelta / deltaLength : 1;
+  let vx = player.vx + deltaVx * scale;
+  let vy = player.vy + deltaVy * scale;
+  const speed = Math.hypot(vx, vy);
+  if (speed > maxSpeed && maxSpeed > 0) {
+    vx = vx / speed * maxSpeed;
+    vy = vy / speed * maxSpeed;
+  }
+  return { x: vx, y: vy };
+}
+
 function updatePlayer(dt) {
   const p = state.player;
 
@@ -3430,19 +3456,10 @@ function updatePlayer(dt) {
 
     const desiredVx = dx * effectiveSpeed;
     const desiredVy = dy * effectiveSpeed;
-    const response = dx !== 0 || dy !== 0 ? 1050 : 900;
-    const deltaVx = desiredVx - p.vx;
-    const deltaVy = desiredVy - p.vy;
-    const maxDelta = response * dt;
-    const deltaLength = Math.hypot(deltaVx, deltaVy);
-    const scale = deltaLength > maxDelta && deltaLength > 0 ? maxDelta / deltaLength : 1;
-    p.vx += deltaVx * scale;
-    p.vy += deltaVy * scale;
+    const velocity = approachPlayerVelocity(p, desiredVx, desiredVy, dt, effectiveSpeed);
+    p.vx = velocity.x;
+    p.vy = velocity.y;
     const speed = Math.hypot(p.vx, p.vy);
-    if (speed > effectiveSpeed && effectiveSpeed > 0) {
-      p.vx = p.vx / speed * effectiveSpeed;
-      p.vy = p.vy / speed * effectiveSpeed;
-    }
     p.x += p.vx * dt;
     p.y += p.vy * dt;
 
@@ -4414,6 +4431,8 @@ function updateBossHealthBar() {
   const aliveBosses = state.enemies.filter(e => (e.is_boss || e.type === "Red Pen Boss" || e.type === "Lexicon Dragon Boss") && !e.dead);
   if (aliveBosses.length === 0) {
     bar.style.display = "none";
+    const portrait = document.getElementById("boss-hp-portrait");
+    if (portrait) portrait.hidden = true;
     state.active_boss = null;
     return;
   }
@@ -4430,6 +4449,14 @@ function updateBossHealthBar() {
   if (fill) fill.style.width = Math.max(0, Math.min(100, pct)) + "%";
 
   const title = document.getElementById("boss-hp-title");
+  const portrait = document.getElementById("boss-hp-portrait");
+  if (portrait) {
+    const storyBoss = STORY_EXPANSION_DATA?.boss_encounters?.find(boss => boss.wave === state.current_wave);
+    const portraitPath = storyBoss?.portrait_sprite ? `assets/sprites/${storyBoss.portrait_sprite}` : "";
+    portrait.hidden = !portraitPath;
+    if (portraitPath && portrait.getAttribute("src") !== portraitPath) portrait.src = portraitPath;
+    if (storyBoss) portrait.alt = `${storyBoss.title} portresi`;
+  }
   if (title) {
     if (aliveBosses.length === 1) {
       const bossName = aliveBosses[0].label || (aliveBosses[0].type === "Lexicon Dragon Boss" ? "LEKSİKON EJDERHASI" : aliveBosses[0].type.toLocaleUpperCase("tr-TR"));
@@ -6287,6 +6314,12 @@ function updateHUD() {
   const c = CHARACTERS[state.selected_char];
   const d = DIFFICULTIES[state.difficulty];
   setHUDText("char-diff-info", `${c.name} · ${d.name}`);
+  const heroPortrait = document.getElementById("hero-hud-portrait");
+  if (heroPortrait) {
+    const portraitPath = `assets/sprites/${c.sprite}`;
+    if (heroPortrait.getAttribute("src") !== portraitPath) heroPortrait.src = portraitPath;
+    heroPortrait.alt = `${c.name} portresi`;
+  }
 
   // Slotted weapons preview
   const weaponsEl = document.getElementById("weapons-info");
