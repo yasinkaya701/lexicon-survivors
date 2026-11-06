@@ -8,8 +8,8 @@ const ARENA_LAYOUT = Object.freeze({
   innerShelfY: 870,
   playerColliderRadius: 15,
   playerColliderOffsetY: 3,
-  playerVisualHalfWidth: 44,
-  playerVisualHalfHeight: 44,
+  playerVisualHalfWidth: 39.5,
+  playerVisualHalfHeight: 42,
 });
 const PLAYER_CENTER_LIMIT_X = ARENA_LAYOUT.innerShelfX - ARENA_LAYOUT.playerVisualHalfWidth;
 const PLAYER_CENTER_MIN_Y = -ARENA_LAYOUT.innerShelfY + ARENA_LAYOUT.playerVisualHalfHeight;
@@ -167,7 +167,7 @@ function getHorizontalFacing(aimAngle, fallbackLeft = false) {
 
 function getHeroActionDirection(player) {
   if (player.is_dashing && player.dash_dir) return player.dash_dir;
-  if (player.attack_anim_timer > 0 || player.shot_recoil_timer > 0) {
+  if (player.shot_recoil_timer > 0 || getHeroRenderAction(player) === "attack") {
     const aim = player.last_aim || { x: 1, y: 0 };
     const length = Math.hypot(aim.x, aim.y) || 1;
     return { x: aim.x / length, y: aim.y / length };
@@ -183,6 +183,37 @@ function getAttackAnimationFrame(player) {
   if (windup > 0 && elapsed < windup) return elapsed < windup * 0.55 ? 0 : 1;
   if (elapsed < activeEnd) return 2;
   return 3;
+}
+
+function getHeroAnimationFrame(action, player) {
+  if (action === "attack" || action === "ranged") return getAttackAnimationFrame(player);
+  if (action === "run") return getHeroRunFrameIndex(player.run_phase, getHeroRunFrameCount(state.selected_char));
+  return Math.floor(performance.now() / 240) % 4;
+}
+
+function getHeroRenderAction(player) {
+  const moving = player.is_dashing || Math.hypot(player.vx, player.vy) > 30;
+  if (player.is_dashing) return "run";
+  if (player.attack_anim_timer <= 0) return moving ? "run" : "idle";
+  if (player.attack_anim_kind === "ranged") return moving ? "run" : "ranged";
+
+  const elapsed = Math.max(0, player.attack_anim_duration - player.attack_anim_timer);
+  const contactEnd = Math.max(0, player.attack_anim_windup || 0) + Math.max(0, player.attack_anim_active || 0);
+  if (elapsed < contactEnd) return "attack";
+  return moving ? "run" : "attack";
+}
+
+function getHeroRenderLayers(player) {
+  const action = getHeroRenderAction(player);
+  const moving = !player.is_dashing && Math.hypot(player.vx, player.vy) > 30;
+  if (!moving) return { base: action, upperBody: null, baseFrame: getHeroAnimationFrame(action, player), upperBodyFrame: null };
+  if (action === "attack") {
+    return { base: "run", upperBody: "attack", baseFrame: getHeroAnimationFrame("run", player), upperBodyFrame: getAttackAnimationFrame(player) };
+  }
+  if (action === "run" && player.attack_anim_timer > 0 && player.attack_anim_kind === "ranged") {
+    return { base: "run", upperBody: "ranged", baseFrame: getHeroAnimationFrame("run", player), upperBodyFrame: getAttackAnimationFrame(player) };
+  }
+  return { base: action, upperBody: null, baseFrame: getHeroAnimationFrame(action, player), upperBodyFrame: null };
 }
 
 function selectWeaponTarget(weapon, enemies = state.enemies, origin = state.player) {
@@ -478,8 +509,18 @@ function updateHitEffects(dt) {
 }
 
 function clampPlayerToArena(player) {
-  player.x = Math.max(-PLAYER_CENTER_LIMIT_X, Math.min(PLAYER_CENTER_LIMIT_X, player.x));
-  player.y = Math.max(PLAYER_CENTER_MIN_Y, Math.min(PLAYER_CENTER_MAX_Y, player.y));
+  const previousX = player.x;
+  const previousY = player.y;
+  const clampedX = Math.max(-PLAYER_CENTER_LIMIT_X, Math.min(PLAYER_CENTER_LIMIT_X, previousX));
+  const clampedY = Math.max(PLAYER_CENTER_MIN_Y, Math.min(PLAYER_CENTER_MAX_Y, previousY));
+  if (clampedX !== previousX) {
+    if ((previousX - clampedX) * (player.vx || 0) > 0) player.vx = 0;
+    player.x = clampedX;
+  }
+  if (clampedY !== previousY) {
+    if ((previousY - clampedY) * (player.vy || 0) > 0) player.vy = 0;
+    player.y = clampedY;
+  }
 }
 
 function getLocomotionBob(runPhase) {
@@ -518,7 +559,7 @@ function getLocomotionPoseOffset(player) {
   const speed = Math.hypot(player.vx, player.vy);
   let x = 0;
   let y = 0;
-  if (!player.is_dashing && !state.is_inventory_open && player.attack_anim_timer <= 0 && speed > 30) {
+  if (!player.is_dashing && !state.is_inventory_open && speed > 30) {
     const bob = getLocomotionBob(player.run_phase);
     x = player.vx > 20 ? 1 : player.vx < -20 ? -1 : 0;
     y = -bob;
@@ -1014,7 +1055,8 @@ const CHARACTERS = {
   inky: {
     id: "inky",
     name: "Inky",
-    title: "Dengeli Bilgin (The Balanced Scholar)",
+    title: "Mürekkep Kâtibi",
+    selectionHook: "Mira'nın kayıp anısını bul.",
     desc: "Kütüphanenin kadim koruyucusu. Dengeli nitelikler ve kararlı mürekkep akışı.",
     hp: 125,
     speed: 235,
@@ -1031,7 +1073,8 @@ const CHARACTERS = {
   quillmaster: {
     id: "quillmaster",
     name: "Quillmaster",
-    title: "Hızlı Kalemşör (Glass Cannon)",
+    title: "Zaman Kalemşörü",
+    selectionHook: "Ada'nın kendi seçimini bul.",
     desc: "+%35 Saldırı Hızı, +%20 Hasar ve +30 Hareket Hızı! Seri kritik vuruşlar.",
     hp: 95,
     speed: 265,
@@ -1048,7 +1091,8 @@ const CHARACTERS = {
   word_knight: {
     id: "word_knight",
     name: "Word Knight",
-    title: "Sözcük Şövalyesi (The Citadel Tank)",
+    title: "Sözlük Şövalyesi",
+    selectionHook: "Kırık nöbet yeminini çöz.",
     desc: "+55 Maksimum Can (180 HP), +%30 Hasar Direnci (Zırh), sağlam savunma kalkanı.",
     hp: 180,
     speed: 210,
@@ -1065,7 +1109,8 @@ const CHARACTERS = {
   rune_sorceress: {
     id: "rune_sorceress",
     name: "Rune Sorceress",
-    title: "Kadim Rün Büyücüsü (Mystic Archmage)",
+    title: "Rün Büyücüsü",
+    selectionHook: "Lale'nin mühründeki kararı anla.",
     desc: "Büyülü rünlerle geniş alan hasarı, +%30 Hasar ve Rün Küresi ile başlar.",
     hp: 105,
     speed: 245,
@@ -1082,7 +1127,8 @@ const CHARACTERS = {
   lexicon_alchemist: {
     id: "lexicon_alchemist",
     name: "Alchemist",
-    title: "Sözlük Simyacısı (Resource Alchemist)",
+    title: "Arşiv Simyacısı",
+    selectionHook: "Lio'yu tek bir anıya hapsetme.",
     desc: "+%40 Mürekkep Kazanımı, Gramer Mıknatısı ve Mürekkep Alevi ile başlar.",
     hp: 115,
     speed: 240,
@@ -1099,7 +1145,8 @@ const CHARACTERS = {
   shadow_lexicographer: {
     id: "shadow_lexicographer",
     name: "Shadow Scribe",
-    title: "Gölge Hattatı (Critical Assassin)",
+    title: "Gölge Hattatı",
+    selectionHook: "Sana yazılan emrin izini sür.",
     desc: "290 Hız, +%35 Kritik Vuruş Şansı ve Hattat Katanası ile seri ölümcül kesişler.",
     hp: 90,
     speed: 290,
@@ -1369,9 +1416,12 @@ async function loadGameEconomy() {
   if (!response.ok) throw new Error(`Game economy HTTP ${response.status}`);
   const data = await response.json();
   const rewards = data?.enemy_ink_rewards;
+  const bossReward = data?.boss_wave_reward;
   if (data.version !== 1 || !Number.isInteger(data.starting_ink) || data.starting_ink < 0
     || !rewards || Object.keys(rewards).length !== 18
-    || Object.entries(rewards).some(([name, amount]) => !name || !Number.isInteger(amount) || amount <= 0)) {
+    || Object.entries(rewards).some(([name, amount]) => !name || !Number.isInteger(amount) || amount <= 0)
+    || !Number.isFinite(bossReward?.base) || bossReward.base < 0
+    || !Number.isFinite(bossReward?.per_wave) || bossReward.per_wave < 0) {
     throw new Error("Shared game economy data is invalid");
   }
   GAME_ECONOMY = data;
@@ -1381,8 +1431,26 @@ const gameEconomyReady = loadGameEconomy().catch(error => { console.error("Share
 function getEnemyInkReward(enemyType, fallback = 1) {
   return GAME_ECONOMY?.enemy_ink_rewards?.[enemyType] ?? fallback;
 }
+function getBossWaveReward(wave) {
+  const reward = GAME_ECONOMY?.boss_wave_reward;
+  return Math.round((reward?.base ?? 55) + (reward?.per_wave ?? 1) * wave);
+}
 
 let STORY_ARC_DATA = null;
+let STORY_EXPANSION_DATA = null;
+const storyExpansionReady = fetch("assets/data/story_expansion.json", { cache: "no-store" }).then(response => {
+  if (!response.ok) throw new Error(`Story expansion HTTP ${response.status}`);
+  return response.json();
+}).then(data => {
+  if (data.version !== 1 || data.boss_encounters?.length !== 20) throw new Error("Story expansion data is incomplete");
+  for (const [index, boss] of data.boss_encounters.entries()) {
+    if (boss.wave !== (index + 1) * 5 || !boss.id || !boss.title || !boss.dialogue || !boss.portrait_sprite) {
+      throw new Error(`Invalid boss story at wave ${boss.wave}`);
+    }
+  }
+  STORY_EXPANSION_DATA = data;
+  return true;
+}).catch(error => { console.error("Boss story unavailable", error); return false; });
 const storyArcReady = fetch("assets/data/story_arc.json", { cache: "no-store" }).then(response => {
   if (!response.ok) throw new Error(`Story arc HTTP ${response.status}`);
   return response.json();
@@ -2708,9 +2776,9 @@ function initTitleScreen() {
   charGrid.innerHTML = "";
   ["inky", "quillmaster", "word_knight", "rune_sorceress", "lexicon_alchemist", "shadow_lexicographer"].forEach(cid => {
     const c = CHARACTERS[cid];
-    const storyMotive = STORY_ARC_DATA?.characters?.[cid]?.motive || "";
     const card = document.createElement("div");
     card.className = "choice-card" + (cid === state.selected_char ? " selected" : "");
+    card.dataset.hero = cid;
     card.setAttribute("role", "button");
     card.setAttribute("aria-pressed", String(cid === state.selected_char));
     card.setAttribute("aria-label", `${c.name} karakterini seç`);
@@ -2718,7 +2786,7 @@ function initTitleScreen() {
     card.innerHTML = `
       <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
         <div style="display: flex; align-items: center; gap: 8px;">
-          <img src="assets/sprites/${c.sprite}" style="width: 26px; height: 26px; image-rendering: pixelated;" alt="${c.name}">
+          <img src="assets/sprites/${c.sprite}" alt="${c.name}">
           <div>
             <h3 style="margin: 0; font-size: 13.5px;">${c.name}</h3>
             <div class="subtitle" style="margin: 0; font-size: 10px;">${c.title}</div>
@@ -2729,7 +2797,7 @@ function initTitleScreen() {
         </div>
       </div>
       <div class="desc" style="font-size: 10.5px; margin: 3px 0 2px 0;">${c.desc}</div>
-      <div class="story-motive" style="font-size:10px;margin:3px 0;color:#765d39;font-style:italic;">Kişisel arayış · ${storyMotive}</div>
+      <div class="story-motive" aria-label="Hikâye arayışı">${c.selectionHook}</div>
       <div class="passive" style="font-size: 9.5px; padding-top: 2px;">${c.passive}</div>
     `;
 
@@ -2769,6 +2837,16 @@ function initTitleScreen() {
   });
 
   document.getElementById("diff-desc").textContent = DIFFICULTIES[state.difficulty].desc;
+  const featuredHero = CHARACTERS[state.selected_char];
+  const featuredImage = document.getElementById("title-hero-feature");
+  const featuredPanel = document.getElementById("title-feature");
+  if (featuredHero && featuredImage && featuredPanel) {
+    featuredPanel.dataset.hero = state.selected_char;
+    featuredImage.src = `assets/sprites/${featuredHero.sprite}`;
+    featuredImage.alt = `${featuredHero.name} · ${featuredHero.title}`;
+    document.getElementById("title-hero-name").textContent = featuredHero.name;
+    document.getElementById("title-hero-motive").textContent = featuredHero.selectionHook;
+  }
   updateAutoTurUI();
   updateAutoRunUI();
   setGameSpeed(state.game_speed || 1.0);
@@ -2988,42 +3066,51 @@ function renderStoryPanel() {
   const characterArc = STORY_ARC_DATA.characters[state.selected_char];
   const episode = characterArc.episodes[storyEpisodeIndex];
   const beat = episode.beats[storyPanelIndex];
-  const speakerId = beat[0];
+  const bossAtWave = STORY_EXPANSION_DATA?.boss_encounters?.find(boss => boss.wave === episode.wave);
+  let speakerId = beat[0];
+  let dialogueText = beat[1];
+  if (storyPanelIndex === 0 && bossAtWave) {
+    speakerId = bossAtWave.id;
+    dialogueText = bossAtWave.dialogue;
+  }
   const speaker = document.getElementById("story-speaker");
   const portrait = document.getElementById("story-speaker-portrait");
   const sceneImage = document.getElementById("story-scene-image");
   const dialogue = document.querySelector(".story-dialogue-frame");
   const heroSpeakerIds = new Set([state.selected_char, "hero", "rune_sorceress", "lexicon_alchemist", "shadow_lexicographer"]);
-  const bossRosterEntry = MILESTONE_BOSS_ROSTER?.[storyEpisodeIndex];
   const isBossVoice = speakerId.startsWith("boss_");
+  const speakerBoss = isBossVoice
+    ? (bossAtWave?.id === speakerId ? bossAtWave : STORY_EXPANSION_DATA?.boss_encounters?.find(boss => boss.id === speakerId))
+    : null;
+  const resolvePortraitPath = path => path.startsWith("assets/sprites/") ? path : `assets/sprites/${path}`;
   const portraitPaths = {
-    hero: `assets/sprites/${CHARACTERS[state.selected_char].sprite}`,
-    neris: "assets/sprites/story/neris_portrait.png",
-    whisper: "assets/sprites/upgrade_v2/boss_void_curator.png",
+    hero: CHARACTERS[state.selected_char].sprite,
+    neris: "story/neris_portrait.png",
+    whisper: "upgrade_v2/boss_void_curator.png",
     narrator: "",
     mother_echo: "",
     lio_echo: "",
-    shadow_double: `assets/sprites/${CHARACTERS[state.selected_char].sprite}`
+    shadow_double: CHARACTERS[state.selected_char].sprite
   };
   document.getElementById("story-kicker").textContent = `ARŞİV ARASI · DALGA ${String(episode.wave).padStart(2, "0")} · ${String(storyEpisodeIndex + 1).padStart(2, "0")} / 20`;
   document.getElementById("story-title").textContent = episode.title;
   document.getElementById("story-location").textContent = episode.location;
-  document.getElementById("story-copy").textContent = beat[1];
+  document.getElementById("story-copy").textContent = dialogueText;
   document.getElementById("story-scene-caption").textContent = episode.scene;
   document.getElementById("story-counter").textContent = `${storyPanelIndex + 1} / ${STORY_ARC_DATA.panel_count}`;
   sceneImage.src = `assets/sprites/story/${episode.backdrop}`;
   sceneImage.alt = `${episode.scene} · ${episode.location}`;
-  const chosenBossSprite = isBossVoice && bossRosterEntry ? bossRosterEntry[1] : "";
+  const chosenBossSprite = speakerBoss?.portrait_sprite || (isBossVoice ? MILESTONE_BOSS_ROSTER?.[storyEpisodeIndex]?.[1] : "");
   const speakerPath = heroSpeakerIds.has(speakerId) ? portraitPaths.hero
     : (chosenBossSprite || portraitPaths[speakerId] || "");
   const speakerName = heroSpeakerIds.has(speakerId) ? CHARACTERS[state.selected_char].name
     : speakerId === "narrator" ? "SAHNE"
-      : isBossVoice && bossRosterEntry ? bossRosterEntry[2] : storySpeakerNames[speakerId] || speakerId.replaceAll("_", " ").toLocaleUpperCase("tr-TR");
+      : speakerBoss?.title || (isBossVoice ? MILESTONE_BOSS_ROSTER?.[storyEpisodeIndex]?.[2] : "") || storySpeakerNames[speakerId] || speakerId.replaceAll("_", " ").toLocaleUpperCase("tr-TR");
   speaker.textContent = speakerName;
   portrait.hidden = !speakerPath;
   if (speakerPath) {
     portrait.dataset.kind = isBossVoice ? "boss" : speakerId;
-    portrait.src = `assets/sprites/${speakerPath}`;
+    portrait.src = resolvePortraitPath(speakerPath);
     portrait.alt = speakerName;
   }
   const memory = document.getElementById("story-boss-memory");
@@ -3045,8 +3132,9 @@ function renderStoryPanel() {
     : "ENTER · SONRAKİ KARE";
 }
 
-function showStoryIntermission(wave) {
+async function showStoryIntermission(wave) {
   if (!STORY_ARC_DATA) return openShop();
+  await Promise.all([storyArcReady, storyExpansionReady]);
   storyEpisodeIndex = STORY_ARC_DATA.episodes.findIndex(episode => episode.wave === wave);
   if (storyEpisodeIndex < 0) return openShop();
   storyWavePending = wave;
@@ -3265,7 +3353,9 @@ function requestAttackPose(weaponId, actionKind, aim) {
   if (aim && Math.hypot(aim.x, aim.y) > 0.01) {
     const aimLength = Math.hypot(aim.x, aim.y);
     p.last_aim = { x: aim.x / aimLength, y: aim.y / aimLength };
-    p.facing_left = getHorizontalFacing(Math.atan2(aim.y, aim.x), p.facing_left);
+    if (actionKind !== "ranged" || Math.hypot(p.vx, p.vy) <= 30) {
+      p.facing_left = getHorizontalFacing(Math.atan2(aim.y, aim.x), p.facing_left);
+    }
   }
   if (actionKind === "ranged") {
     p.attack_anim_kind = "ranged";
@@ -4515,6 +4605,46 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
   }
 }
 
+function updateCommanderAuras(enemies = state.enemies) {
+  const radius = 160;
+  const radiusSquared = radius * radius;
+  const cellKey = (x, y) => x * 32 + y;
+  const commanders = [];
+  for (const enemy of enemies) {
+    enemy.is_buffed = false;
+    if (!enemy.dead && enemy.affix === "commander") commanders.push(enemy);
+  }
+  if (!commanders.length) return;
+
+  const cells = new Map();
+  for (const enemy of enemies) {
+    if (enemy.dead) continue;
+    const cellX = Math.floor(enemy.x / radius);
+    const cellY = Math.floor(enemy.y / radius);
+    const key = cellKey(cellX, cellY);
+    let bucket = cells.get(key);
+    if (!bucket) cells.set(key, bucket = []);
+    bucket.push(enemy);
+  }
+
+  for (const commander of commanders) {
+    const cellX = Math.floor(commander.x / radius);
+    const cellY = Math.floor(commander.y / radius);
+    for (let offsetX = -1; offsetX <= 1; offsetX++) {
+      for (let offsetY = -1; offsetY <= 1; offsetY++) {
+        const nearby = cells.get(cellKey(cellX + offsetX, cellY + offsetY));
+        if (!nearby) continue;
+        for (const other of nearby) {
+          if (other === commander) continue;
+          const dx = other.x - commander.x;
+          const dy = other.y - commander.y;
+          if (dx * dx + dy * dy < radiusSquared) other.is_buffed = true;
+        }
+      }
+    }
+  }
+}
+
 function updateEnemies(dt) {
   if (!state.is_wave_active) return;
 
@@ -4577,17 +4707,8 @@ function updateEnemies(dt) {
   const p = state.player;
   const chronoMult = state.chrono_timer > 0 ? 0.15 : 1.0;
 
-  // Commander Aura buff reset & calculation
-  state.enemies.forEach(e => { e.is_buffed = false; });
-  state.enemies.forEach(e => {
-    if (e.affix === "commander" && !e.dead) {
-      state.enemies.forEach(other => {
-        if (other !== e && Math.hypot(other.x - e.x, other.y - e.y) < 160) {
-          other.is_buffed = true;
-        }
-      });
-    }
-  });
+  // Commander proximity uses a small spatial grid instead of comparing every pair.
+  updateCommanderAuras();
 
   state.enemies.forEach(e => {
     e.charge_timer = Math.max(0, (e.charge_timer || 0) - dt);
@@ -5184,7 +5305,7 @@ function spawnMilestoneBoss(wave) {
     type, sprite, x: point.x, y: point.y, vx: 0, vy: 0,
     hp, max_hp: hp, speed: (54 + Math.min(28, wave * 0.16)) * difficulty.enemy_speed_mult,
     damage: (26 + wave * 1.15) * difficulty.enemy_damage_mult,
-    ink_reward: Math.round(32 + wave * 1.4), label: name.toUpperCase(),
+    ink_reward: getBossWaveReward(wave), label: name.toUpperCase(),
     size: wave >= 100 ? 108 : (68 + Math.min(20, wave * 0.16)),
     is_elite: true, is_boss: true, boss_color: color, boss_skill: skill,
     boss_skill_cooldown: 4.2, boss_skill_interval: Math.max(4.3, 7.2 - wave * 0.018),
@@ -6230,7 +6351,14 @@ function updateHUD() {
 // =========================================
 // 16. RENDERING
 // =========================================
-function render() {
+function advanceShockwaveParticle(particle, dt) {
+  const elapsed = Math.max(0, Math.min(0.1, Number.isFinite(dt) ? dt : 1 / 60));
+  particle.radius += 330 * elapsed;
+  particle.alpha -= 3 * elapsed;
+  return particle.alpha > 0;
+}
+
+function render(dt = 1 / 60) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.imageSmoothingEnabled = false;
 
@@ -6519,18 +6647,18 @@ function render() {
   });
 
   // Shockwaves
-  state.particles.forEach(pt => {
-    pt.radius += 5.5;
-    pt.alpha -= 0.05;
-    if (pt.alpha > 0) {
-      ctx.save();
-      ctx.strokeStyle = pt.color + Math.max(0, pt.alpha) + ")";
-      ctx.lineWidth = 3;
-      ctx.beginPath(); ctx.arc(pt.x, pt.y, pt.radius, 0, Math.PI * 2); ctx.stroke();
-      ctx.restore();
-    }
-  });
-  state.particles = state.particles.filter(pt => pt.alpha > 0);
+  let activeParticleCount = 0;
+  for (let index = 0; index < state.particles.length; index++) {
+    const particle = state.particles[index];
+    if (!advanceShockwaveParticle(particle, dt)) continue;
+    ctx.save();
+    ctx.strokeStyle = particle.color + Math.max(0, particle.alpha) + ")";
+    ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2); ctx.stroke();
+    ctx.restore();
+    state.particles[activeParticleCount++] = particle;
+  }
+  state.particles.length = activeParticleCount;
 
   // Enemy Projectiles
   state.enemy_projectiles.forEach(ep => {
@@ -6794,30 +6922,37 @@ function render() {
   if (renderFacingLeft) ctx.scale(-1, 1);
 
   const cData = CHARACTERS[state.selected_char];
-  const isMoving = p.is_dashing || Math.hypot(p.vx, p.vy) > 30;
-  const action = p.attack_anim_timer > 0
-    ? (p.attack_anim_kind === "ranged" ? "ranged" : "attack")
-    : isMoving ? "run" : "idle";
+  const renderLayers = getHeroRenderLayers(p);
   const bodyDirection = aimDirection;
   const bodyTilt = Math.max(-0.38, Math.min(0.38, (bodyDirection?.y || 0) * 0.38));
   ctx.rotate(bodyTilt);
-  const frame = action === "attack"
-    ? getAttackAnimationFrame(p)
-    : action === "run" ? getHeroRunFrameIndex(p.run_phase, getHeroRunFrameCount(state.selected_char)) : Math.floor(performance.now() / 240) % 4;
+  const frame = renderLayers.baseFrame;
   const animationKey = state.selected_char === "inky" ? "inky"
     : state.selected_char === "quillmaster" ? "quillmaster"
     : state.selected_char === "word_knight" ? "word_knight"
     : state.selected_char === "rune_sorceress" ? "rune_sorceress"
     : state.selected_char === "lexicon_alchemist" ? "alchemist"
     : state.selected_char === "shadow_lexicographer" ? "shadow_scribe" : null;
-  const actionAsset = action === "run" || action === "ranged" || action === "attack"
-    ? `${animationKey}_${action}_v2_${frame}.png`
-    : `${animationKey}_${action}_${frame}.png`;
+  const actionAsset = renderLayers.base === "run" || renderLayers.base === "ranged" || renderLayers.base === "attack"
+    ? `${animationKey}_${renderLayers.base}_v2_${frame}.png`
+    : `${animationKey}_${renderLayers.base}_${frame}.png`;
   const actionSprite = animationKey
     ? images[`upgrade_v1/animations/${actionAsset}`]
     : null;
   const pSpr = actionSprite || images[cData.sprite] || images["player.png"];
   if (pSpr) ctx.drawImage(pSpr, -44, -44, 88, 88);
+  if (renderLayers.upperBody) {
+    const upperAsset = `${animationKey}_${renderLayers.upperBody}_v2_${renderLayers.upperBodyFrame}.png`;
+    const upperSprite = images[`upgrade_v1/animations/${upperAsset}`];
+    if (upperSprite) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(-44, -44, 88, 62);
+      ctx.clip();
+      ctx.drawImage(upperSprite, -44, -44, 88, 88);
+      ctx.restore();
+    }
+  }
   ctx.restore();
 
   // Floating Slotted Weapons Arsenal
@@ -6931,7 +7066,7 @@ function gameLoop(now) {
   const dt = rawDt * (state.game_speed || 1.0);
 
   updateGame(dt);
-  render();
+  render(rawDt);
   requestAnimationFrame(gameLoop);
 }
 
@@ -7153,7 +7288,7 @@ window.render_game_to_text = () => JSON.stringify({
     x: Math.round(state.player.x), y: Math.round(state.player.y),
     vx: Math.round(state.player.vx), vy: Math.round(state.player.vy),
     hp: Math.round(state.hp), max_hp: Math.round(state.max_hp),
-    animation: state.player.attack_anim_timer > 0 ? (state.player.attack_anim_kind === "ranged" ? "ranged" : "attack") : Math.hypot(state.player.vx, state.player.vy) > 20 ? "run" : "idle",
+    animation: getHeroRenderAction(state.player),
     animation_phase: Number((state.player.run_phase % 8).toFixed(2)),
     body_tilt: Number(Math.max(-0.38, Math.min(0.38, ((state.player.attack_anim_timer > 0 ? state.player.last_aim?.y : state.player.vy) || 0) * 0.38)).toFixed(3)),
     locomotion_pose_offset: getLocomotionPoseOffset(state.player),

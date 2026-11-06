@@ -4,6 +4,7 @@
     <meta name="leaderboard-api" content="https://lexicon-survivors-leaderboard.lexicon-survivors-leaderboard.workers.dev">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <link rel="icon" type="image/svg+xml" href="assets/ui/icons/book.svg">
   <title>Lexicon Survivors: The Word Guardian | Hardcore Roguelite v4.0</title>
   <style>
     @font-face {
@@ -147,7 +148,7 @@
     #archive-intro .archive-intro-kicker { color: #cbb980; font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .2em; }
     #archive-intro h1 { margin: 10px 0 5px; font: 600 clamp(25px, 6vw, 48px) 'IBM Plex Serif', serif; letter-spacing: .08em; text-shadow: 0 3px 24px rgba(0, 0, 0, .9); }
     #archive-intro p { color: #c0c1ae; font: 400 clamp(12px, 2vw, 15px) 'IBM Plex Sans', sans-serif; }
-    #archive-intro .archive-intro-skip { margin-top: 28px; padding: 11px 18px; border: 1px solid rgba(202, 187, 135, .56); border-radius: 3px; color: #f2e8d2; background: rgba(20, 27, 22, .7); font: 500 12px 'IBM Plex Mono', monospace; letter-spacing: .07em; cursor: pointer; }
+    #archive-intro .archive-intro-skip { position: absolute; z-index: 2; left: 50%; bottom: max(18px, env(safe-area-inset-bottom)); transform: translateX(-50%); margin: 0; padding: 11px 18px; min-height: 44px; border: 1px solid rgba(202, 187, 135, .56); border-radius: 3px; color: #f2e8d2; background: rgba(20, 27, 22, .94); font: 500 12px 'IBM Plex Mono', monospace; letter-spacing: .07em; cursor: pointer; touch-action: manipulation; }
     #archive-intro .archive-intro-skip:focus-visible { outline: 2px solid #ffd700; outline-offset: 3px; }
     #archive-intro.is-reduced { transition-duration: 250ms; }
     #archive-intro.is-reduced .archive-intro-content, #archive-intro.is-reduced::before { animation: none; }
@@ -1001,6 +1002,7 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.8);
       cursor: pointer;
     }
+    #orientation-hint[hidden] { display: none !important; }
 
     /* Responsive for small screens & phones & iPads */
     @media (max-width: 1080px), (max-height: 720px), (pointer: coarse), (hover: none) {
@@ -1674,6 +1676,18 @@
     #title-screen .title-header { border-bottom-color: #c3b9a5; }
     #title-screen .title-header h1 { letter-spacing: .015em; }
     #title-screen .title-header p { text-align: left; }
+    .character-select-heading {
+      color: #5c3b1e;
+      font: 800 14px 'IBM Plex Serif', serif;
+      text-align: center;
+    }
+    #character-scroll-hint {
+      display: none;
+      align-items: center;
+      color: #66776c;
+      font: 500 9px 'IBM Plex Mono', monospace;
+      letter-spacing: .06em;
+    }
     #diff-selection-container .btn { min-height: 38px; font: 500 13px 'IBM Plex Mono', monospace; letter-spacing: .04em; }
     #diff-selection-container .btn-seal { background: #33463d; border-color: #687c6d; color: #f1ede2; }
     #start-game-btn { background: #394e43; border-color: #788b75; color: #f0ebdc; }
@@ -1816,14 +1830,242 @@
         white-space: normal;
       }
     }
+    /* Character archive plates: each hero gets a restrained, authored color signal. */
+    #title-screen #char-selection-grid .choice-card {
+      --hero-accent: #617b6d;
+      --hero-wash: #f1f0e5;
+      position: relative;
+      overflow: hidden !important;
+      isolation: isolate;
+      border: 1px solid color-mix(in srgb, var(--hero-accent) 42%, #c8bea8) !important;
+      border-left: 3px solid var(--hero-accent) !important;
+      border-radius: 4px !important;
+      background: linear-gradient(105deg, var(--hero-wash), #f8f4e8 46%, #f8f4e8) !important;
+      box-shadow: inset 0 1px rgba(255,255,255,.76), 0 3px 10px rgba(26, 31, 27, .1) !important;
+      transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease, transform 180ms ease !important;
+    }
+    #title-screen #char-selection-grid .choice-card::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      top: -34px;
+      right: -34px;
+      width: 92px;
+      height: 92px;
+      border: 1px solid color-mix(in srgb, var(--hero-accent) 24%, transparent);
+      border-radius: 50%;
+      box-shadow: 0 0 0 7px color-mix(in srgb, var(--hero-accent) 5%, transparent), 0 0 0 14px color-mix(in srgb, var(--hero-accent) 4%, transparent);
+      pointer-events: none;
+    }
+    #title-screen #char-selection-grid .choice-card[data-hero="inky"] { --hero-accent: #536f5e; --hero-wash: #e9eee5; }
+    #title-screen #char-selection-grid .choice-card[data-hero="quillmaster"] { --hero-accent: #8a6548; --hero-wash: #f1e9db; }
+    #title-screen #char-selection-grid .choice-card[data-hero="word_knight"] { --hero-accent: #607581; --hero-wash: #e8edf0; }
+    #title-screen #char-selection-grid .choice-card[data-hero="rune_sorceress"] { --hero-accent: #77628e; --hero-wash: #eee8f0; }
+    #title-screen #char-selection-grid .choice-card[data-hero="lexicon_alchemist"] { --hero-accent: #9a7844; --hero-wash: #f3ebd9; }
+    #title-screen #char-selection-grid .choice-card[data-hero="shadow_lexicographer"] { --hero-accent: #506d70; --hero-wash: #e5eeec; }
+    #title-screen #char-selection-grid .choice-card.selected {
+      border-color: var(--hero-accent) !important;
+      outline: 0 !important;
+      background: linear-gradient(105deg, color-mix(in srgb, var(--hero-wash) 72%, white), #fbf8ef 58%) !important;
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--hero-accent) 34%, transparent), 0 0 0 2px color-mix(in srgb, var(--hero-accent) 18%, transparent), 0 5px 14px rgba(26,31,27,.13) !important;
+    }
+    #title-screen #char-selection-grid .choice-card img {
+      flex: 0 0 auto;
+      width: 44px !important;
+      height: 44px !important;
+      padding: 3px;
+      border: 1px solid color-mix(in srgb, var(--hero-accent) 46%, #d2c7b2);
+      border-radius: 3px;
+      background: radial-gradient(circle at 50% 42%, rgba(255,255,255,.96), var(--hero-wash) 72%);
+      image-rendering: pixelated;
+      object-fit: contain;
+    }
+    #title-screen #char-selection-grid .choice-card .story-motive {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      padding-left: 2px;
+      border-left: 1px solid color-mix(in srgb, var(--hero-accent) 44%, transparent);
+      color: #66563d !important;
+      font: italic 10px/1.3 'IBM Plex Sans', sans-serif !important;
+    }
+    #title-screen #char-selection-grid .choice-card .passive {
+      border-top: 1px solid color-mix(in srgb, var(--hero-accent) 22%, #ddd4c2) !important;
+      color: #4e6258 !important;
+      font: 500 9.5px/1.28 'IBM Plex Sans', sans-serif !important;
+    }
+    @media (max-width: 700px), (pointer: coarse) {
+      .character-select-heading { display: flex; align-items: baseline; justify-content: space-between; text-align: left; }
+      #character-scroll-hint { display: inline-flex; }
+      #title-screen #char-selection-grid { max-height: min(38vh, 320px) !important; }
+      #title-screen #char-selection-grid .choice-card { min-height: 96px !important; padding: 7px 9px !important; }
+      #title-screen #char-selection-grid .choice-card img { width: 42px !important; height: 42px !important; }
+      #title-screen #char-selection-grid .choice-card .story-motive { -webkit-line-clamp: 1; font-size: 10px !important; }
+      #title-screen #char-selection-grid .choice-card .passive { -webkit-line-clamp: 1; font-size: 10px !important; }
+    }
     @media (max-width: 360px) {
       #kill-count { display: none !important; }
+    }
+    .screen-overlay[hidden] { display: none !important; pointer-events: none !important; }
+
+    /* The entry menu is an illustrated archive record, not a floating settings dialog. */
+    #title-screen { padding: 20px; background: rgba(6, 12, 10, .84); }
+    #title-screen .title-dossier {
+      display: grid !important;
+      grid-template-columns: minmax(265px, .82fr) minmax(0, 1.18fr);
+      grid-template-rows: minmax(0, 1fr) auto;
+      gap: 0;
+      width: min(1080px, calc(100vw - 40px));
+      max-height: min(900px, calc(100dvh - 40px));
+      padding: 0;
+      overflow: hidden;
+      color: #202923;
+      background: #17231e;
+      border: 1px solid #bda873;
+      border-radius: 4px;
+      outline: 1px solid rgba(10, 15, 12, .95);
+      outline-offset: -6px;
+      box-shadow: 0 24px 72px #000b, 0 0 0 1px #44574a, inset 0 0 0 3px rgba(227, 205, 157, .12);
+    }
+    #title-screen .title-cover {
+      position: relative;
+      display: flex;
+      min-height: 565px;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      padding: 23px 22px 15px;
+      color: #f1e8d4;
+      background:
+        radial-gradient(ellipse at 50% 48%, rgba(133, 151, 121, .16), transparent 47%),
+        linear-gradient(152deg, #263a31 0%, #182620 58%, #201d18 100%);
+      border-right: 1px solid rgba(189, 168, 115, .58);
+    }
+    #title-screen .title-cover::before,
+    #title-screen .title-cover::after { content: ""; position: absolute; pointer-events: none; }
+    #title-screen .title-cover::before {
+      inset: 12px;
+      border: 1px solid rgba(207, 184, 128, .23);
+      background: repeating-linear-gradient(135deg, transparent 0 22px, rgba(217, 196, 148, .025) 22px 23px);
+    }
+    #title-screen .title-cover::after {
+      width: 180px; height: 180px; left: 50%; top: 49%; transform: translate(-50%, -50%);
+      border: 1px solid rgba(206, 180, 119, .12); border-radius: 50%;
+      box-shadow: 0 0 0 12px rgba(206, 180, 119, .035), 0 0 0 28px rgba(206, 180, 119, .025);
+    }
+    .title-cover-index, .title-cover-ledger, .title-feature, .title-cover-copy { position: relative; z-index: 1; }
+    .title-cover-index, .title-cover-ledger { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .title-cover-index { padding-bottom: 10px; border-bottom: 1px solid rgba(207, 184, 128, .38); }
+    #title-screen .title-index { display: block; margin: 0; color: #c6b17e; font: 500 9px 'IBM Plex Mono', monospace; letter-spacing: .13em; }
+    .title-volume { color: #d4c9ad; font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .08em; }
+    .title-feature { display: grid; grid-template-columns: 1fr; justify-items: center; gap: 7px; text-align: center; }
+    .title-portrait-well { position: relative; display: grid; place-items: center; width: 204px; height: 215px; }
+    .title-portrait-well::before { content: ""; position: absolute; inset: 21px 25px; border: 1px solid rgba(211, 188, 130, .52); transform: rotate(45deg); }
+    .title-portrait-well::after { content: ""; position: absolute; inset: 31px 34px; border: 1px solid rgba(211, 188, 130, .22); transform: rotate(45deg); }
+    .title-portrait-orbit { position: absolute; width: 152px; height: 152px; border: 1px solid rgba(211, 188, 130, .26); border-radius: 50%; box-shadow: 0 0 0 9px rgba(211, 188, 130, .035); }
+    #title-hero-feature { position: relative; z-index: 2; width: 152px; height: 176px; object-fit: contain; image-rendering: pixelated; filter: drop-shadow(0 10px 11px rgba(0,0,0,.48)); animation: title-hero-arrive .35s ease-out both; }
+    @keyframes title-hero-arrive { from { opacity: .45; transform: translateY(8px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .title-cover-copy { width: 100%; text-align: left; }
+    .title-cover-copy h1 { margin: 0; color: #f3ead7; font: 600 clamp(23px, 3vw, 34px)/.94 'IBM Plex Serif', serif; letter-spacing: .035em; text-shadow: 0 2px 14px rgba(0,0,0,.3); }
+    .title-worldline { margin: 8px 0 0; color: #bac5b6; font: 400 11px 'IBM Plex Sans', sans-serif; }
+    .title-worldline span { color: #c4ad75; padding: 0 3px; }
+    .title-cover-rule { display: flex; align-items: center; gap: 10px; margin: 11px 0 9px; }
+    .title-cover-rule span { height: 1px; flex: 1; background: linear-gradient(90deg, transparent, rgba(203, 177, 119, .7)); }
+    .title-cover-rule span:last-child { transform: scaleX(-1); }
+    .title-cover-rule img { width: 20px; height: 20px; opacity: .75; filter: sepia(.5) brightness(1.25); }
+    .title-feature-label { color: #c5b17c; font: 500 9px 'IBM Plex Mono', monospace; letter-spacing: .13em; }
+    #title-hero-name { display: block; margin-top: 3px; color: #f5eedf; font: 600 19px 'IBM Plex Serif', serif; }
+    #title-hero-motive { margin: 4px 0 0; color: #c8c9bb; font: italic 12px/1.4 'IBM Plex Sans', sans-serif; }
+    .title-cover-ledger { padding-top: 10px; color: #aeb9ac; border-top: 1px solid rgba(207, 184, 128, .3); font: 500 8px 'IBM Plex Mono', monospace; letter-spacing: .045em; }
+    .title-cover-ledger span:first-child { display: flex; align-items: center; gap: 6px; }
+    .title-cover-ledger img { width: 14px; height: 14px; opacity: .76; }
+    #title-screen .title-select-panel {
+      display: flex;
+      min-height: 0;
+      flex-direction: column;
+      gap: 10px;
+      overflow-y: auto;
+      padding: 20px 22px 15px;
+      background:
+        linear-gradient(90deg, rgba(89, 105, 86, .045) 1px, transparent 1px) 0 0 / 24px 24px,
+        linear-gradient(rgba(89, 105, 86, .035) 1px, transparent 1px) 0 0 / 24px 24px,
+        #e8e2d4;
+    }
+    .title-select-kicker, .title-difficulty-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: #627268; font: 500 9px 'IBM Plex Mono', monospace; letter-spacing: .1em; }
+    .title-select-kicker { padding-bottom: 8px; border-bottom: 1px solid #c7bdab; }
+    .title-select-kicker span:last-child { color: #967b4c; }
+    #title-screen .music-choice-row { justify-content: space-between; gap: 12px; color: #4c5e53; font-size: 9px; }
+    #title-screen .music-choice-row select { flex: 1; max-width: 260px; background: #f1ecdf; border-color: #a69c87; }
+    #title-screen .character-select-heading { display: flex; align-items: baseline; justify-content: space-between; color: #38463e; font: 600 12px 'IBM Plex Serif', serif; letter-spacing: .03em; }
+    #title-screen #character-scroll-hint { display: none; }
+    #title-screen #char-selection-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; max-height: 276px; overflow: auto; padding: 2px 3px 5px 2px; }
+    #title-screen #char-selection-grid .choice-card { min-width: 0; min-height: 106px; padding: 7px 8px; }
+    #title-screen #char-selection-grid .choice-card .stats-text { font-size: 8px !important; }
+    #title-screen #char-selection-grid .choice-card .desc { display: none !important; }
+    #title-screen #char-selection-grid .choice-card .story-motive { -webkit-line-clamp: 1; font-size: 9px !important; }
+    #title-screen #char-selection-grid .choice-card .passive { -webkit-line-clamp: 1; overflow: hidden; font-size: 8px !important; }
+    #title-screen .title-difficulty-heading { padding-top: 7px; border-top: 1px solid #c8bdab; color: #38463e; }
+    #title-screen .title-difficulty-choices { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px !important; }
+    #title-screen .title-difficulty-choices .btn { min-height: 38px; padding: 5px 7px; font: 500 10px 'IBM Plex Mono', monospace; }
+    #title-screen .title-difficulty-choices .btn:not(.btn-seal) { background: #ded8ca; border-color: #b6ac97; color: #475249; }
+    #title-screen .title-difficulty-description { min-height: 29px; color: #687267; font: italic 10px/1.4 'IBM Plex Sans', sans-serif; text-align: left; }
+    #title-screen .title-run-options { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 7px; border-top: 1px solid #c8bdab; }
+    #title-screen .title-run-options .btn { min-height: 31px; padding: 4px 8px; background: #ddd7c9; border-color: #b6ac97; color: #465249; font: 500 9px 'IBM Plex Sans', sans-serif; }
+    #title-screen .title-run-options .ui-icon { width: 15px; height: 15px; }
+    #title-screen .title-actions { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 18px 13px; background: #111a16; border-top: 1px solid #81734f; }
+    .title-action-buttons { display: flex; align-items: center; gap: 8px; }
+    #title-screen #start-game-btn, #title-screen #title-leaderboard-btn { min-height: 44px; margin: 0 !important; padding: 8px 16px !important; font: 600 11px 'IBM Plex Sans', sans-serif; letter-spacing: .06em; }
+    #title-screen #start-game-btn { background: #526d5b; border-color: #bba873; color: #f7f0df; }
+    #title-screen #start-game-btn:hover { background: #617d67; }
+    #title-screen #start-game-btn img { width: 21px !important; height: 21px !important; }
+    #title-screen #title-leaderboard-btn { background: transparent; border: 1px solid #58685c; color: #d1d2c5; }
+    #title-screen .title-control-key { color: #8e9a8e; font: 400 9px/1.45 'IBM Plex Mono', monospace; text-align: right; }
+    #title-screen .title-control-key i { padding: 0 3px; color: #bba873; font-style: normal; }
+    @media (max-width: 760px), (pointer: coarse) {
+      #title-screen { justify-content: flex-start; padding: 7px; overflow-y: auto; }
+      #title-screen .title-dossier { display: flex !important; width: 100%; max-width: 540px; max-height: calc(100dvh - 14px); flex-direction: column; overflow-y: auto; }
+      #title-screen .title-cover { min-height: 0; padding: 12px 14px 10px; border-right: 0; border-bottom: 1px solid rgba(189, 168, 115, .58); }
+      #title-screen .title-cover-index { padding-bottom: 5px; }
+      #title-screen .title-feature { grid-template-columns: 88px minmax(0, 1fr); align-items: center; justify-items: stretch; gap: 9px; padding: 8px 0; text-align: left; }
+      #title-screen .title-portrait-well { width: 84px; height: 91px; }
+      #title-screen .title-portrait-well::before { inset: 11px 13px; }
+      #title-screen .title-portrait-well::after { inset: 18px 20px; }
+      #title-screen .title-portrait-orbit { width: 65px; height: 65px; }
+      #title-screen #title-hero-feature { width: 74px; height: 86px; }
+      #title-screen .title-cover-copy h1 { font-size: clamp(19px, 5.8vw, 26px); }
+      #title-screen .title-worldline { margin-top: 5px; font-size: 9px; }
+      #title-screen .title-cover-rule { margin: 5px 0 4px; }
+      #title-screen .title-cover-rule img { width: 16px; height: 16px; }
+      #title-screen #title-hero-name { font-size: 15px; }
+      #title-screen #title-hero-motive { margin-top: 1px; font-size: 10px; }
+      #title-screen .title-cover-ledger { padding-top: 6px; font-size: 7px; }
+      #title-screen .title-cover-ledger img { width: 12px; height: 12px; }
+      #title-screen .title-select-panel { gap: 7px; padding: 12px 13px 10px; overflow: visible; }
+      #title-screen #character-scroll-hint { display: inline-flex; }
+      #title-screen #char-selection-grid { grid-template-columns: minmax(0, 1fr); max-height: min(25dvh, 210px) !important; }
+      #title-screen #char-selection-grid .choice-card { min-height: 74px !important; height: auto; }
+      #title-screen #char-selection-grid .choice-card img { width: 38px !important; height: 38px !important; }
+      #title-screen #char-selection-grid .choice-card .passive { display: none !important; }
+      #title-screen .title-difficulty-description { min-height: 20px; }
+      #title-screen .title-run-options { gap: 4px; }
+      #title-screen .title-run-options .btn { flex: 1 1 auto; }
+      #title-screen .title-actions { flex-direction: column; align-items: stretch; gap: 7px; padding: 9px 12px 10px; }
+      #title-screen .title-action-buttons { display: grid; grid-template-columns: 1.1fr .9fr; }
+      #title-screen #start-game-btn, #title-screen #title-leaderboard-btn { width: 100%; min-height: 42px; padding: 7px 8px !important; font-size: 10px; }
+      #title-screen .title-control-key { text-align: center; font-size: 8px; }
+    }
+    @media (max-height: 690px) and (min-width: 761px) {
+      #title-screen .title-cover { min-height: 0; }
+      #title-screen .title-portrait-well { height: 148px; }
+      #title-screen #title-hero-feature { height: 130px; }
+      #title-screen #char-selection-grid { max-height: 190px; }
     }
   </style>
 </head>
 <body>
   <div id="game-container">
-    <div id="orientation-hint" onclick="this.style.display='none'">
+    <div id="orientation-hint" onclick="this.hidden=true">
       Daha geniş arena görünümü için ekranı <strong>yatay</strong> tutabilirsiniz · Kapat
     </div>
     <!-- SPEED TOAST NOTIFICATION -->
@@ -1924,48 +2166,56 @@
 
     <!-- TITLE / CHARACTER SELECTION OVERLAY -->
     <div class="screen-overlay" id="title-screen">
-      <div class="dialog-panel">
-        <div class="title-header">
-          <span class="title-index">ARŞİV FİŞİ  ·  001</span>
-          <h1>LEXICON SURVIVORS</h1>
-          <p>Karanlık Kütüphane · 100 dalga · Kelimeleri geri kazan</p>
-        </div>
+      <div class="dialog-panel title-dossier">
+        <section class="title-cover" aria-label="Arşiv kapağı ve seçili karakter">
+          <div class="title-cover-index"><span class="title-index">KAYIP KENARLAR  ·  FİŞ 001</span><span class="title-volume">I / IV</span></div>
+          <div class="title-feature" id="title-feature" data-hero="inky">
+            <div class="title-portrait-well"><span class="title-portrait-orbit"></span><img id="title-hero-feature" src="assets/sprites/upgrade_v1/hero_inky.png" alt="Inky"></div>
+            <div class="title-cover-copy">
+              <h1>LEXICON<br>SURVIVORS</h1>
+              <p class="title-worldline">Karanlık Kütüphane <span>·</span> 100 tur <span>·</span> Açık fihrist</p>
+              <div class="title-cover-rule"><span></span><img src="assets/ui/icons/open_archive.svg" alt=""><span></span></div>
+              <div class="title-feature-label">SEÇİLİ KÂTİP</div>
+              <strong id="title-hero-name">Inky</strong>
+              <p id="title-hero-motive">Mira’nın izini sür.</p>
+            </div>
+          </div>
+          <div class="title-cover-ledger"><span><img src="assets/ui/icons/book.svg" alt=""> 6 ayrı anlatı · her beş turda bir boss</span><span>ARŞİV 001</span></div>
+        </section>
 
-        <label class="music-choice-row" for="title-music-select">MÜZİK
-          <select id="title-music-select" aria-label="Müzik seçimi"><option value="auto">Otomatik · dalgaya göre</option><option value="library">Karanlık Kütüphane</option><option value="last_stand">Son Nöbet</option></select>
-        </label>
-        <div style="font-family: 'IBM Plex Serif', serif; font-size: 14px; font-weight: 800; color: #5c3b1e; text-align: center;">
-          KARAKTERİNİ SEÇ
-        </div>
-        <div class="card-grid" id="char-selection-grid"></div>
+        <section class="title-select-panel" aria-label="Run ayarları">
+          <div class="title-select-kicker"><span>YENİ BİR KAYIT AÇ</span><span>100 TUR / 20 BOSS</span></div>
+          <label class="music-choice-row" for="title-music-select"><span>MÜZİK DOSYASI</span>
+            <select id="title-music-select" aria-label="Müzik seçimi"><option value="auto">Otomatik · dalgaya göre</option><option value="library">Karanlık Kütüphane</option><option value="last_stand">Son Nöbet</option></select>
+          </label>
+          <div class="character-select-heading">
+            <span>KARAKTERİNİ SEÇ</span>
+            <span id="character-scroll-hint">KAYDIR ↓</span>
+          </div>
+          <div class="card-grid" id="char-selection-grid"></div>
 
-        <div style="font-family: 'IBM Plex Serif', serif; font-size: 14px; font-weight: 800; color: #5c3b1e; text-align: center; margin-top: 2px;">
-          ZORLUK
-        </div>
-        <div style="display: flex; gap: 10px; justify-content: center;" id="diff-selection-container"></div>
-        <div style="text-align: center; color: #7a481d; font-family: 'IBM Plex Sans', serif; font-style: italic; font-size: 13px;" id="diff-desc"></div>
+          <div class="title-difficulty-heading"><span>ZORLUK MÜHRÜ</span><span>CEFR</span></div>
+          <div class="title-difficulty-choices" id="diff-selection-container"></div>
+          <div class="title-difficulty-description" id="diff-desc"></div>
 
-        <div style="display: flex; gap: 10px; justify-content: center; align-items: center; margin-top: 4px; flex-wrap: wrap;">
-          <button class="btn btn-seal" id="title-speed-btn" style="padding: 6px 14px; font-size: 12.5px;" title="Oyun Simülasyon Hızı">
-            <img class="ui-icon" src="assets/ui/icons/speed.svg" alt="">Hız: 1.0x
-          </button>
-          <button class="btn btn-seal" id="title-auto-tur-btn" style="padding: 6px 14px; font-size: 12.5px;" title="Dalga bitince otomatik yeni tura başla">
-            Otomatik tur: AÇIK
-          </button>
-          <button class="btn btn-seal" id="title-auto-run-btn" style="padding: 6px 14px; font-size: 12.5px;" title="Oyun bittiğinde otomatik yeni run başlat">
-            Otomatik yeni oyun: AÇIK
-          </button>
-        </div>
+          <div class="title-run-options">
+            <button class="btn btn-seal" id="title-speed-btn" title="Oyun simülasyon hızı">
+              <img class="ui-icon" src="assets/ui/icons/speed.svg" alt="">Hız: 1.0x
+            </button>
+            <button class="btn btn-seal" id="title-auto-tur-btn" title="Dalga bitince otomatik yeni tura başla">Otomatik tur: AÇIK</button>
+            <button class="btn btn-seal" id="title-auto-run-btn" title="Oyun bittiğinde otomatik yeni run başlat">Otomatik yeni oyun: AÇIK</button>
+          </div>
+        </section>
 
-        <button class="btn btn-seal" id="start-game-btn" style="margin-top: 4px; font-size: 16px; align-self: center; padding: 10px 32px;">
-          <img src="assets/sprites/wax_seal.png" style="width: 22px; height: 22px;" alt="seal">
-          Kütüphaneye gir
-        </button>
-        <button class="btn btn-seal" id="title-leaderboard-btn" type="button" style="align-self:center;min-height:38px;">KÜRESEL SIRALAMA</button>
-
-        <div style="text-align: center; font-size: 11.5px; color: #6a4a2a; font-family: 'IBM Plex Serif', serif; letter-spacing: 0.5px;">
-          WASD: Hareket · Q/E/1–6: Silah seç · Space: Atılım · I: Envanter · Fare: Dükkân
-        </div>
+        <footer class="title-actions">
+          <div class="title-action-buttons">
+            <button class="btn btn-seal" id="start-game-btn">
+              <img src="assets/ui/icons/open_archive.svg" alt="">Kütüphaneye gir
+            </button>
+            <button class="btn btn-seal" id="title-leaderboard-btn" type="button"><img class="ui-icon" src="assets/ui/icons/kills.svg" alt="">KÜRESEL SIRALAMA</button>
+          </div>
+          <div class="title-control-key">WASD Hareket <i>·</i> Q/E/1–6 Silah <i>·</i> Space Atılım <i>·</i> I Envanter <i>·</i> Fare Dükkân</div>
+        </footer>
       </div>
     </div>
 
@@ -1977,8 +2227,8 @@
         <div class="archive-intro-kicker">ARŞİV AÇILIYOR</div>
         <h1 id="archive-intro-title">LEXICON SURVIVORS</h1>
         <p>Kayıp kelimeleri rafların arasından geri çağır.</p>
-        <button class="archive-intro-skip" id="archive-intro-skip" type="button">GEÇ · SPACE</button>
       </div>
+      <button class="archive-intro-skip" id="archive-intro-skip" type="button">GEÇ · SPACE</button>
     </div>
 
     <!-- SCRIPTORIUM BAZAAR SHOP OVERLAY -->
@@ -2197,7 +2447,7 @@
     <div id="quiz-modal" style="display: none;">
       <div class="quiz-scroll">
         <div class="quiz-scroll-header">
-          <img src="assets/sprites/wax_seal.png" class="quiz-wax-seal" alt="seal">
+          <img src="assets/ui/icons/open_archive.svg" class="quiz-wax-seal" alt="">
           <h3 id="quiz-word-title">Kelime Sınavı</h3>
         </div>
         <p id="quiz-question-text">'Relentless' kelimesinin Türkçe karşılığı nedir?</p>
@@ -2235,7 +2485,7 @@
         <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 6px;">
           <button class="btn btn-seal" id="gameover-leaderboard-btn" type="button" style="font-size:12.5px;padding:8px 14px;">Skorunu gönder · Sıralama</button>
           <button class="btn btn-seal" id="restart-game-btn" style="font-size: 13.5px; padding: 8px 16px;">
-            <img src="assets/sprites/wax_seal.png" style="width: 18px; height: 18px;" alt="seal">
+            <img src="assets/ui/icons/open_archive.svg" style="width: 18px; height: 18px;" alt="">
             Kütüphaneye dön
           </button>
           <button class="btn btn-emerald" id="instant-restart-btn" style="font-size: 13.5px; padding: 8px 16px;">
@@ -2315,6 +2565,6 @@
       window.startArchiveIntro();
     })();
   </script>
-  <script src="game.js?v=gameplay-20261106-3"></script>
+  <script src="game.js?v=archive-story-menu-20261107-07"></script>
 </body>
 </html>

@@ -1,6 +1,10 @@
 {
   "version": 1,
   "starting_ink": 15,
+  "boss_wave_reward": {
+    "base": 55,
+    "per_wave": 1
+  },
   "enemy_ink_rewards": {
     "Typo Slime": 3,
     "Grammar Goblin": 3,
