@@ -24,5 +24,27 @@
     "Double Negative Drake": 8,
     "Palindrome Phantom": 6,
     "Lexicon Dragon Boss": 120
+  },
+  "difficulty_ink_multiplier": {
+    "easy": 1.05,
+    "normal": 1.0,
+    "hard": 1.1,
+    "alchemist_character": 1.15
+  },
+  "shop_pricing": {
+    "card_wave_rate": 0.12,
+    "equipment_wave_rate": 0.1,
+    "upgrade_wave_rate": 0.1,
+    "reroll_wave_rate": 0.15,
+    "repeat_reroll_rate": 0.65
+  },
+  "stat_limits": {
+    "attack_speed_mult": 2.75,
+    "attack_speed_soft_cap": 2.1,
+    "armor": 0.65,
+    "armor_soft_cap": 0.45,
+    "weapon_min_cooldown_seconds": 0.12,
+    "starting_enemy_cap": 32,
+    "hard_spawn_interval_factor": 0.92
   }
 }

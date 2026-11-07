@@ -667,6 +667,8 @@ class SoundManager {
     this.assetVoices = [];
     this.assetVoiceCursor = 0;
     this.lastAssetVariant = Object.create(null);
+    this.lastWeaponCueAt = Object.create(null);
+    this.lastAnyWeaponCueAt = 0;
     this.music = null;
     this.assetPaths = {
       quill_blaster: ["weapon_quill_blaster_v1", "weapon_quill_blaster_v2", "weapon_quill_blaster_v3"],
@@ -746,6 +748,10 @@ class SoundManager {
     } catch (e) {}
   }
   shoot(weaponType = "quill_blaster") {
+    const now = performance.now();
+    if (now - (this.lastWeaponCueAt[weaponType] || -10000) < 120 || now - this.lastAnyWeaponCueAt < 55) return;
+    this.lastWeaponCueAt[weaponType] = now;
+    this.lastAnyWeaponCueAt = now;
     if (this.playAsset(weaponType, 0.58)) return;
     this.init();
     switch (weaponType) {
@@ -1237,7 +1243,7 @@ const CHARACTERS = {
     name: "Alchemist",
     title: "Arşiv Simyacısı",
     selectionHook: "Lio'yu tek bir anıya hapsetme.",
-    desc: "+%40 Mürekkep Kazanımı, Gramer Mıknatısı ve Mürekkep Alevi ile başlar.",
+    desc: "+%15 Mürekkep Çarpanı, Gramer Mıknatısı ve Mürekkep Alevi ile başlar.",
     hp: 115,
     speed: 240,
     damage_mult: 1.10,
@@ -1279,7 +1285,7 @@ const DIFFICULTIES = {
     enemy_hp_mult: 0.65,
     enemy_damage_mult: 0.60,
     player_hp_bonus: 40,
-    ink_bonus_mult: 1.40
+    ink_bonus_mult: 1.05
   },
   normal: {
     id: "normal",
@@ -1289,7 +1295,7 @@ const DIFFICULTIES = {
     enemy_hp_mult: 0.85,
     enemy_damage_mult: 0.80,
     player_hp_bonus: 15,
-    ink_bonus_mult: 1.20
+    ink_bonus_mult: 1.0
   },
   hard: {
     id: "hard",
@@ -1299,7 +1305,7 @@ const DIFFICULTIES = {
     enemy_hp_mult: 1.15,
     enemy_damage_mult: 1.15,
     player_hp_bonus: 0,
-    ink_bonus_mult: 1.35
+    ink_bonus_mult: 1.10
   }
 };
 
@@ -1529,7 +1535,8 @@ async function loadGameEconomy() {
     || !rewards || Object.keys(rewards).length !== 18
     || Object.entries(rewards).some(([name, amount]) => !name || !Number.isInteger(amount) || amount <= 0)
     || !Number.isFinite(bossReward?.base) || bossReward.base < 0
-    || !Number.isFinite(bossReward?.per_wave) || bossReward.per_wave < 0) {
+    || !Number.isFinite(bossReward?.per_wave) || bossReward.per_wave < 0
+    || !data.shop_pricing || !data.stat_limits || !data.difficulty_ink_multiplier) {
     throw new Error("Shared game economy data is invalid");
   }
   GAME_ECONOMY = data;
@@ -1542,6 +1549,30 @@ function getEnemyInkReward(enemyType, fallback = 1) {
 function getBossWaveReward(wave) {
   const reward = GAME_ECONOMY?.boss_wave_reward;
   return Math.round((reward?.base ?? 55) + (reward?.per_wave ?? 1) * wave);
+}
+function getStatLimit(key, fallback) { return Number(GAME_ECONOMY?.stat_limits?.[key] ?? fallback); }
+function addAttackSpeed(value) {
+  const cap = getStatLimit("attack_speed_mult", 2.75);
+  const soft = Math.min(cap, getStatLimit("attack_speed_soft_cap", 2.1));
+  const current = Math.min(cap, Math.max(0, Number(state.attack_speed_mult) || 0));
+  const direct = Math.max(0, Math.min(value, soft - current));
+  state.attack_speed_mult = Math.min(cap, current + direct + Math.max(0, value - direct) * 0.35);
+}
+function addArmor(value) {
+  const cap = getStatLimit("armor", 0.65);
+  const soft = Math.min(cap, getStatLimit("armor_soft_cap", 0.45));
+  const current = Math.min(cap, Math.max(0, Number(state.armor) || 0));
+  const direct = Math.max(0, Math.min(value, soft - current));
+  state.armor = Math.min(cap, current + direct + Math.max(0, value - direct) * 0.35);
+}
+function getShopPrice(base, category = "equipment", wave = state.current_wave) {
+  const rate = Number(GAME_ECONOMY?.shop_pricing?.[`${category}_wave_rate`] ?? 0.1);
+  return Math.max(0, Math.ceil(Number(base) * (1 + rate * Math.max(0, wave - 1))));
+}
+function getRerollCost() {
+  const rates = GAME_ECONOMY?.shop_pricing || {};
+  return Math.ceil(5 * (1 + Number(rates.reroll_wave_rate ?? 0.15) * Math.max(0, state.current_wave - 1))
+    * (1 + Number(rates.repeat_reroll_rate ?? 0.65) * (state.shop_reroll_count || 0)));
 }
 
 let STORY_ARC_DATA = null;
@@ -3004,7 +3035,9 @@ document.getElementById("start-game-btn").onclick = onStartGame;
 
 function getCharacterInkMultiplier(characterId, difficultyId) {
   const difficultyData = DIFFICULTIES[difficultyId] || DIFFICULTIES.normal;
-  return difficultyData.ink_bonus_mult * (characterId === "lexicon_alchemist" ? 1.4 : 1.0);
+  const shared = GAME_ECONOMY?.difficulty_ink_multiplier || {};
+  return Number(shared[difficultyId] ?? difficultyData.ink_bonus_mult)
+    * (characterId === "lexicon_alchemist" ? Number(shared.alchemist_character ?? 1.15) : 1.0);
 }
 
 function resetStats() {
@@ -3784,7 +3817,7 @@ function updatePlayer(dt) {
     if (idx === state.active_weapon_index) effectiveAtkSpd *= 1.25;
 
     const tierCdMult = w.tier_data.cooldown || 1.0;
-    const effectiveCd = Math.max(0.06, (w.data.cooldown * tierCdMult) / effectiveAtkSpd);
+    const effectiveCd = Math.max(getStatLimit("weapon_min_cooldown_seconds", 0.12), (w.data.cooldown * tierCdMult) / effectiveAtkSpd);
 
     if (w.shoot_timer <= 0 && !(w.id === "ink_flamethrower" && w.flame_phase === "vent")
       && !(w.id === "lexicon_beam" && w.beam_ticks_pending > 0)) {
@@ -4543,7 +4576,7 @@ function updateProjectiles(dt) {
 const MAX_ALIVE_ENEMIES = 220;
 
 function getWaveEnemyCap(wave = state.current_wave) {
-  return Math.min(MAX_ALIVE_ENEMIES, 48 + Math.max(0, wave - 1) * 2);
+  return Math.min(MAX_ALIVE_ENEMIES, getStatLimit("starting_enemy_cap", 32) + Math.max(0, wave - 1) * 2);
 }
 
 function addAliveEnemy(enemy) {
@@ -5043,7 +5076,7 @@ function updateEnemies(dt) {
   // Other waves retain the existing survivor horde and pacing.
   if (state.current_wave % 5 !== 0) {
     spawnTimer -= dt;
-    const diffFactor = state.difficulty === "easy" ? 1.15 : (state.difficulty === "hard" ? 0.75 : 1.0);
+    const diffFactor = state.difficulty === "easy" ? 1.15 : (state.difficulty === "hard" ? getStatLimit("hard_spawn_interval_factor", 0.92) : 1.0);
     const interval = Math.max(0.12, (0.60 - state.current_wave * 0.04) * diffFactor);
     if (spawnTimer <= 0) {
       spawnTimer = interval;
@@ -5726,7 +5759,7 @@ function takePlayerDamage(amount) {
     return;
   }
 
-  const reduction = Math.min(0.85, Math.max(0, state.armor));
+  const reduction = Math.min(getStatLimit("armor", 0.65), Math.max(0, state.armor));
   const finalDmg = Math.max(1, amount * (1.0 - reduction));
   state.hp = Math.max(0, state.hp - finalDmg);
   triggerHaptic("heavy");
@@ -5947,8 +5980,10 @@ document.getElementById("restart-game-btn").onclick = onRestart;
 // =========================================
 let currentShopTab = "cards";
 let shopCards = [];
+state.shop_reroll_count = 0;
 
 function openShop() {
+  state.shop_reroll_count = 0;
   document.getElementById("shop-screen").style.display = "flex";
   syncMobileControlsVisibility();
   currentShopTab = "cards";
@@ -6041,7 +6076,7 @@ function refreshShopCards() {
     }
   }
 
-  shopCards = selected;
+  shopCards = selected.map(card => ({ ...card, shop_cost: getShopPrice(card.cost, "card") }));
 }
 
 function highlightShopTabs() {
@@ -6053,6 +6088,7 @@ function highlightShopTabs() {
     button.tabIndex = selected ? 0 : -1;
   });
   document.getElementById("shop-reroll-btn").style.display = currentShopTab === "cards" ? "inline-flex" : "none";
+  document.getElementById("shop-reroll-btn").textContent = `YENİLE · ${getRerollCost()}`;
 }
 
 document.getElementById("tab-cards-btn").onclick = () => { clearShopAutoWaveTimer(); currentShopTab = "cards"; highlightShopTabs(); renderShopView(); };
@@ -6074,11 +6110,14 @@ shopTabIds.forEach((tab, index) => {
 
 document.getElementById("shop-reroll-btn").onclick = () => {
   clearShopAutoWaveTimer();
-  if (state.ink_count >= 5) {
-    state.ink_count -= 5;
+  const cost = getRerollCost();
+  if (state.ink_count >= cost) {
+    state.ink_count -= cost;
+    state.shop_reroll_count += 1;
     refreshShopCards();
     renderShopView();
     updateShopTopBar();
+    document.getElementById("shop-reroll-btn").textContent = `YENİLE · ${getRerollCost()}`;
     updateHUD();
   }
 };
@@ -6106,8 +6145,8 @@ function renderShopView() {
         <div class="shop-description">${c.description}</div>
         <div class="shop-example">“${c.example || ''}”</div>
         <div class="shop-buy-row">
-          <span class="shop-price">${c.cost} <img class="ui-icon" src="assets/ui/icons/ink.svg" alt=""> mürekkep</span>
-          <button class="btn shop-buy" id="card-buy-${idx}" ${state.ink_count < c.cost ? "disabled" : ""}>${state.ink_count < c.cost ? "Mürekkep yetersiz" : "Sınavı başlat"}</button>
+          <span class="shop-price">${c.shop_cost} <img class="ui-icon" src="assets/ui/icons/ink.svg" alt=""> mürekkep</span>
+          <button class="btn shop-buy" id="card-buy-${idx}" ${state.ink_count < c.shop_cost ? "disabled" : ""}>${state.ink_count < c.shop_cost ? "Mürekkep yetersiz" : "Sınavı başlat"}</button>
         </div>
       `;
       const buyBtn = card.querySelector(`#card-buy-${idx}`);
@@ -6123,7 +6162,7 @@ function renderShopView() {
         buyBtn.onclick = handleBuy;
       }
       card.onclick = (e) => {
-        if (e.target !== buyBtn && state.ink_count >= c.cost) {
+        if (e.target !== buyBtn && state.ink_count >= c.shop_cost) {
           handleBuy(e);
         }
       };
@@ -6132,6 +6171,7 @@ function renderShopView() {
   } else if (currentShopTab === "weapons") {
     Object.keys(WEAPONS_CATALOG).forEach(wId => {
       const w = WEAPONS_CATALOG[wId];
+      const cost = getShopPrice(w.cost, "equipment");
       const card = document.createElement("div");
       card.className = "choice-card shop-card";
       card.innerHTML = `
@@ -6144,11 +6184,11 @@ function renderShopView() {
         <div class="shop-data">
           Hasar: ${w.damage} | Atış: ${w.cooldown}s
         </div>
-        <div class="shop-buy-row"><span class="shop-price">${w.cost} <img class="ui-icon" src="assets/ui/icons/ink.svg" alt=""></span><button class="btn shop-buy" id="weap-buy-${wId}" ${state.ink_count < w.cost ? "disabled" : ""}>${state.ink_count < w.cost ? "Mürekkep yetersiz" : "Satın al"}</button></div>
+        <div class="shop-buy-row"><span class="shop-price">${cost} <img class="ui-icon" src="assets/ui/icons/ink.svg" alt=""></span><button class="btn shop-buy" id="weap-buy-${wId}" ${state.ink_count < cost ? "disabled" : ""}>${state.ink_count < cost ? "Mürekkep yetersiz" : "Satın al"}</button></div>
       `;
       card.querySelector(`#weap-buy-${wId}`).onclick = () => {
-        if (state.ink_count >= w.cost) {
-          state.ink_count -= w.cost;
+        if (state.ink_count >= cost) {
+          state.ink_count -= cost;
           if (state.equipped_weapons.length < state.max_weapon_slots) {
             state.equipped_weapons.push({ id: wId, tier: 1 });
           } else {
@@ -6165,6 +6205,7 @@ function renderShopView() {
   } else if (currentShopTab === "gadgets") {
     Object.keys(GADGETS_CATALOG).forEach(gId => {
       const g = GADGETS_CATALOG[gId];
+      const cost = getShopPrice(g.cost, "equipment");
       const isAct = state.active_gadget_id === gId;
       const isOwned = state.owned_gadgets.includes(gId);
       const card = document.createElement("div");
@@ -6179,7 +6220,7 @@ function renderShopView() {
         <div class="shop-data">
           Bekleme Süresi: ${Math.max(1.5, g.cooldown * state.gadget_cooldown_mult).toFixed(1)} sn
         </div>
-        <div class="shop-buy-row"><span class="shop-price">${isAct ? 'Kuşanıldı' : isOwned ? 'Sahip' : (g.cost > 0 ? `${g.cost} mürekkep` : 'Ücretsiz')}</span><button class="btn shop-buy" id="gad-buy-${gId}" ${isAct || (!isOwned && state.ink_count < g.cost) ? 'disabled' : ''}>${isAct ? 'Kuşanıldı' : isOwned ? 'Kuşan' : (state.ink_count < g.cost ? 'Mürekkep yetersiz' : 'Satın al · kuşan')}</button></div>
+        <div class="shop-buy-row"><span class="shop-price">${isAct ? 'Kuşanıldı' : isOwned ? 'Sahip' : (cost > 0 ? `${cost} mürekkep` : 'Ücretsiz')}</span><button class="btn shop-buy" id="gad-buy-${gId}" ${isAct || (!isOwned && state.ink_count < cost) ? 'disabled' : ''}>${isAct ? 'Kuşanıldı' : isOwned ? 'Kuşan' : (state.ink_count < cost ? 'Mürekkep yetersiz' : 'Satın al · kuşan')}</button></div>
       `;
       if (!isAct) {
         card.querySelector(`#gad-buy-${gId}`).onclick = () => {
@@ -6188,8 +6229,8 @@ function renderShopView() {
             renderShopView();
             updateShopTopBar();
             updateHUD();
-          } else if (state.ink_count >= g.cost) {
-            state.ink_count -= g.cost;
+          } else if (state.ink_count >= cost) {
+            state.ink_count -= cost;
             state.owned_gadgets.push(gId);
             state.active_gadget_id = gId;
             renderShopView();
@@ -6203,6 +6244,7 @@ function renderShopView() {
   } else if (currentShopTab === "artifacts") {
     Object.keys(ARTIFACTS_CATALOG).forEach(aId => {
       const a = ARTIFACTS_CATALOG[aId];
+      const cost = getShopPrice(a.cost, "equipment");
       const isOwned = state.artifacts_owned.includes(aId);
       if (a.story_only && !isOwned) return;
       const card = document.createElement("div");
@@ -6214,13 +6256,13 @@ function renderShopView() {
           <h3 class="shop-title" style="min-width:0;overflow-wrap:anywhere;">${a.name}</h3>
         </div>
         <div class="shop-description">${a.desc}</div>
-        <div class="shop-buy-row"><span class="shop-price">${isOwned ? 'Sahip' : `${a.cost} mürekkep <img class="ui-icon" src="assets/ui/icons/ink.svg" alt="">`}</span><button class="btn shop-buy" id="art-buy-${aId}" ${isOwned || state.ink_count < a.cost || (aId === "slot_expansion" && state.max_weapon_slots >= 6) ? "disabled" : ""}>${isOwned ? 'Alındı' : (aId === "slot_expansion" && state.max_weapon_slots >= 6 ? 'Yuvalar dolu' : (state.ink_count < a.cost ? 'Mürekkep yetersiz' : 'Satın al'))}</button></div>
+        <div class="shop-buy-row"><span class="shop-price">${isOwned ? 'Sahip' : `${cost} mürekkep <img class="ui-icon" src="assets/ui/icons/ink.svg" alt="">`}</span><button class="btn shop-buy" id="art-buy-${aId}" ${isOwned || state.ink_count < cost || (aId === "slot_expansion" && state.max_weapon_slots >= 6) ? "disabled" : ""}>${isOwned ? 'Alındı' : (aId === "slot_expansion" && state.max_weapon_slots >= 6 ? 'Yuvalar dolu' : (state.ink_count < cost ? 'Mürekkep yetersiz' : 'Satın al'))}</button></div>
       `;
       if (!isOwned) {
         card.querySelector(`#art-buy-${aId}`).onclick = () => {
           if (aId === "slot_expansion" && state.max_weapon_slots >= 6) return;
-          if (state.ink_count >= a.cost) {
-            state.ink_count -= a.cost;
+          if (state.ink_count >= cost) {
+            state.ink_count -= cost;
             state.artifacts_owned.push(aId);
             applyArtifact(a);
             renderShopView();
@@ -6240,8 +6282,8 @@ function applyArtifact(art) {
     if (k === "max_hp") { state.max_hp += val; state.hp += val; }
     else if (k === "move_speed") state.move_speed += val;
     else if (k === "damage") state.damage_mult += val;
-    else if (k === "attack_speed") state.attack_speed_mult += val;
-    else if (k === "armor") state.armor = Math.min(0.85, state.armor + val);
+    else if (k === "attack_speed") addAttackSpeed(val);
+    else if (k === "armor") addArmor(val);
     else if (k === "crit_chance") state.crit_chance = Math.min(1.0, state.crit_chance + val);
     else if (k === "ink_mult") state.ink_mult += val;
     else if (k === "gadget_cooldown_mult") state.gadget_cooldown_mult = Math.max(0.65, state.gadget_cooldown_mult + val);
@@ -6312,7 +6354,7 @@ function openQuiz(card, cardIndex) {
         triggerHaptic("success");
         addFloatingText(state.player.x, state.player.y - 30, "KÂTİP MÜHRÜ · +%50", "#587767", 15);
 
-        const discCost = Math.ceil(card.cost * 0.5);
+        const discCost = Math.ceil((card.shop_cost ?? card.cost) * 0.5);
         state.ink_count -= discCost;
 
         // Check if this was a mistake redemption from the notebook
@@ -6350,7 +6392,7 @@ function openQuiz(card, cardIndex) {
         triggerHaptic("fail");
         addFloatingText(state.player.x, state.player.y - 30, "YANLIŞ CEVAP", "#c5221f", 15);
 
-        state.ink_count -= card.cost;
+        state.ink_count -= card.shop_cost ?? card.cost;
         resText.textContent = `YANLIŞ CEVAP! Doğru Seçenek: "${card.options[card.correct_index]}"\nKelime Kâtip Hata Defterine eklendi (sonraki turlarda pekiştirilecek)!\nÖdenen: ${card.cost} Mürekkep`;
         resText.style.color = "#8b0000";
         resText.style.background = "rgba(139, 0, 0, 0.12)";
@@ -6413,11 +6455,11 @@ function applyCardUpgrade(card, quizBonus, customMultiplier) {
     case "heal": state.hp = Math.min(state.max_hp, state.hp + val); break;
     case "move_speed": state.move_speed += val; break;
     case "damage": state.damage_mult += val; break;
-    case "attack_speed": state.attack_speed_mult += val; break;
+    case "attack_speed": addAttackSpeed(val); break;
     case "pickup_radius": state.pickup_radius += val; break;
     case "pierce": state.pierce_count += Math.round(val); break;
     case "projectile_count": state.projectile_count += Math.round(val); break;
-    case "armor": state.armor = Math.min(0.85, state.armor + val); break;
+    case "armor": addArmor(val); break;
     case "crit_chance": state.crit_chance = Math.min(1.0, state.crit_chance + val); break;
   }
   checkSynergies();
@@ -6447,7 +6489,7 @@ function checkSynergies() {
   }
   if ((counts["Grammar"] || 0) >= 3 && !state.active_synergies["Syntax Guardian"]) {
     state.active_synergies["Syntax Guardian"] = true;
-    state.armor = Math.min(0.85, state.armor + 0.18);
+    addArmor(0.18);
     triggerSynergyBanner("Syntax Guardian", "+%18 Zırh (3 Dilbilgisi)");
   }
 }
