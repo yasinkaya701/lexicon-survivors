@@ -542,6 +542,44 @@ function getHeroRunFrameCount(characterId) {
   return HERO_RUN_FRAME_COUNTS[characterId] || HERO_RUN_FRAME_COUNTS.inky;
 }
 
+const ARENA_CORNER_PROPS = Object.freeze([[-900, -650], [900, -650], [-900, 650], [900, 650]]);
+const arenaRenderCache = { cornerGlows: new Map(), vignette: null, vignetteWidth: 0, vignetteHeight: 0 };
+
+function getArenaCornerGlow(colorPrefix) {
+  let glow = arenaRenderCache.cornerGlows.get(colorPrefix);
+  if (glow) return glow;
+  glow = document.createElement("canvas");
+  glow.width = glow.height = 192;
+  const glowCtx = glow.getContext("2d");
+  const gradient = glowCtx.createRadialGradient(96, 96, 10, 96, 96, 96);
+  gradient.addColorStop(0, `${colorPrefix}0.20)`);
+  gradient.addColorStop(1, `${colorPrefix}0)`);
+  glowCtx.fillStyle = gradient;
+  glowCtx.fillRect(0, 0, 192, 192);
+  arenaRenderCache.cornerGlows.set(colorPrefix, glow);
+  return glow;
+}
+
+function getArenaVignette(width, height) {
+  if (arenaRenderCache.vignette && arenaRenderCache.vignetteWidth === width && arenaRenderCache.vignetteHeight === height) {
+    return arenaRenderCache.vignette;
+  }
+  const vignette = document.createElement("canvas");
+  vignette.width = width;
+  vignette.height = height;
+  const vignetteCtx = vignette.getContext("2d");
+  const gradient = vignetteCtx.createRadialGradient(width / 2, height / 2, 140, width / 2, height / 2, 680);
+  gradient.addColorStop(0, "rgba(0, 0, 0, 0)");
+  gradient.addColorStop(0.65, "rgba(8, 4, 3, 0.20)");
+  gradient.addColorStop(1, "rgba(4, 2, 2, 0.72)");
+  vignetteCtx.fillStyle = gradient;
+  vignetteCtx.fillRect(0, 0, width, height);
+  arenaRenderCache.vignette = vignette;
+  arenaRenderCache.vignetteWidth = width;
+  arenaRenderCache.vignetteHeight = height;
+  return vignette;
+}
+
 function getShotRecoilOffset(player) {
   const timer = Number(player?.shot_recoil_timer || 0);
   const pixels = Number(player?.shot_recoil_pixels || 0);
@@ -560,9 +598,10 @@ function getLocomotionPoseOffset(player) {
   let x = 0;
   let y = 0;
   if (!player.is_dashing && !state.is_inventory_open && speed > 30) {
-    const bob = getLocomotionBob(player.run_phase);
-    x = player.vx > 20 ? 1 : player.vx < -20 ? -1 : 0;
-    y = -bob;
+    const stride = ((player.run_phase % 8) + 8) % 8 * Math.PI / 4;
+    const travelLean = player.vx > 20 ? 0.75 : player.vx < -20 ? -0.75 : 0;
+    x = Math.round(Math.cos(stride) * 1.2 + travelLean);
+    y = -Math.round(Math.sin(stride) ** 2 * 3);
   }
   const recoil = getShotRecoilOffset(player);
   x += recoil.x;
@@ -572,6 +611,18 @@ function getLocomotionPoseOffset(player) {
   const minY = PLAYER_CENTER_MIN_Y - player.y;
   const maxY = PLAYER_CENTER_MAX_Y - player.y;
   return { x: Math.max(minX, Math.min(maxX, x)), y: Math.max(minY, Math.min(maxY, y)) };
+}
+
+function updateAmbientMotes(dt) {
+  const step = Math.max(0, Number(dt) || 0);
+  for (const mote of state.ambient_motes) {
+    mote.x += Math.cos(mote.angle) * mote.speed * step;
+    mote.y += Math.sin(mote.angle) * mote.speed * step;
+    if (mote.x < -1150) mote.x = 1150;
+    if (mote.x > 1150) mote.x = -1150;
+    if (mote.y < -850) mote.y = 850;
+    if (mote.y > 850) mote.y = -850;
+  }
 }
 
 // =========================================
@@ -1752,7 +1803,8 @@ function loadAssets(callback) {
     "upgrade_v1/monster_red_pen_boss.png": "red_pen_boss.png"
   };
   const aliasTargets = new Set(Object.values(generatedEnemyAliases));
-  const assetsToLoad = spriteList.filter(name => !aliasTargets.has(name));
+  const legacyWalkAndSwingFrame = /^upgrade_v1\/animations\/(?:inky|quillmaster|word_knight|rune_sorceress|alchemist|shadow_scribe)_(?:run|attack)_\d+\.png$/;
+  const assetsToLoad = spriteList.filter(name => !aliasTargets.has(name) && !legacyWalkAndSwingFrame.test(name));
   assetsToLoad.forEach(name => {
     const img = new Image();
     const url = new URL("assets/sprites/" + name, window.location.href);
@@ -6308,6 +6360,13 @@ function updateHUD() {
   setHUDText("timer-badge", compactHud
     ? `TUR ${state.current_wave} / 100 · ${Math.ceil(state.wave_time_left)}s`
     : `${biomeName} · ${state.current_wave} / 100 · ${Math.ceil(state.wave_time_left)}s`);
+  const progressFill = document.getElementById("archive-progress-fill");
+  const archiveVolume = document.getElementById("archive-progress-volume");
+  const progress = Math.max(0, Math.min(1, (state.current_wave - 1) / 99));
+  if (progressFill) progressFill.style.transform = `scaleX(${progress})`;
+  document.getElementById("archive-progress-track")?.setAttribute("aria-valuenow", String(state.current_wave));
+  if (archiveVolume) setHUDText("archive-progress-volume", `CİLT ${["I", "II", "III", "IV"][Math.min(3, Math.floor((state.current_wave - 1) / 25))]}`);
+  setHUDText("archive-progress-value", `${String(state.current_wave).padStart(2, "0")} / 100`);
   setHUDText("ink-value", state.ink_count);
   setHUDText("kill-value", state.kill_count);
 
@@ -6332,29 +6391,25 @@ function updateHUD() {
     const w = WEAPONS_CATALOG[item.id] || { name: item.id };
     const t = TIER_MULTIPLIERS[item.tier] || TIER_MULTIPLIERS[1];
     const badge = document.createElement("span");
+    badge.className = `weapon-token${isAct ? " is-active" : ""}`;
+    badge.title = `${idx + 1}. yuva · ${w.name} · ${t.stars || ""}`;
+    badge.setAttribute("aria-label", badge.title);
     badge.style.cursor = "pointer";
-    badge.style.padding = "2px 6px";
-    badge.style.borderRadius = "3px";
-    badge.style.marginRight = "4px";
-    badge.style.display = "inline-flex";
-    badge.style.alignItems = "center";
-    badge.style.gap = "3px";
     badge.style.pointerEvents = "auto";
-    badge.style.fontFamily = "'IBM Plex Sans', sans-serif";
-    badge.style.fontSize = "11px";
-
-    if (isAct) {
-      badge.style.background = "#263d39";
-      badge.style.border = "1px solid #70988d";
-      badge.style.color = "#f1ead7";
-      badge.style.fontWeight = "bold";
-      badge.textContent = `${idx + 1} · ${w.name.split(" ")[0]} ${t.stars}`;
-    } else {
-      badge.style.background = "rgba(25, 31, 29, 0.82)";
-      badge.style.border = "1px solid rgba(213, 204, 183, 0.25)";
-      badge.style.color = "#d7cfbc";
-      badge.textContent = `${idx + 1} · ${w.name.split(" ")[0]}`;
-    }
+    const weapon = WEAPONS_CATALOG[item.id];
+    const weaponArt = document.createElement("img");
+    weaponArt.className = "weapon-token-art";
+    weaponArt.src = `assets/sprites/${weapon?.sprite || "weapons/quill_blaster.png"}`;
+    weaponArt.alt = "";
+    weaponArt.loading = "lazy";
+    const weaponCopy = document.createElement("span");
+    weaponCopy.className = "weapon-token-copy";
+    const weaponName = document.createElement("small");
+    weaponName.textContent = `${idx + 1} · ${w.name.split(" ")[0]}`;
+    const weaponTier = document.createElement("b");
+    weaponTier.textContent = isAct ? `${t.stars || ""} AKTİF` : (t.stars || "");
+    weaponCopy.append(weaponName, weaponTier);
+    badge.append(weaponArt, weaponCopy);
     badge.onclick = (ev) => {
       ev.stopPropagation();
       selectWeaponIndex(idx);
@@ -6480,16 +6535,9 @@ function render(dt = 1 / 60) {
 
   // Four Corner Environmental Props with Animated Flames & Floor Light Halos
   const now = performance.now();
-  const cornerProps = [[-900, -650], [900, -650], [-900, 650], [900, 650]];
-  cornerProps.forEach(([bx, by], idx) => {
-    // Floor ambient radial glow
-    const bGlow = ctx.createRadialGradient(bx, by - 12, 10, bx, by - 12, 96);
-    bGlow.addColorStop(0, brazierFlameColor + "0.20)");
-    bGlow.addColorStop(1, brazierFlameColor + "0)");
-    ctx.fillStyle = bGlow;
-    ctx.beginPath();
-    ctx.arc(bx, by - 12, 96, 0, Math.PI * 2);
-    ctx.fill();
+  const cornerGlow = getArenaCornerGlow(brazierFlameColor);
+  ARENA_CORNER_PROPS.forEach(([bx, by], idx) => {
+    ctx.drawImage(cornerGlow, bx - 96, by - 108);
 
     // Prop Sprite (Lectern or Brazier Pedestal)
     const pImg = images[propSprite] || images["brazier_pedestal.png"] || images["illuminated_lectern.png"];
@@ -6571,13 +6619,6 @@ function render(dt = 1 / 60) {
 
   // Motes
   state.ambient_motes.forEach(m => {
-    m.x += Math.cos(m.angle) * m.speed * 0.016;
-    m.y += Math.sin(m.angle) * m.speed * 0.016;
-    if (m.x < -1150) m.x = 1150;
-    if (m.x > 1150) m.x = -1150;
-    if (m.y < -850) m.y = 850;
-    if (m.y > 850) m.y = -850;
-
     ctx.save();
     ctx.fillStyle = ambientMoteColor + `${m.alpha})`;
     ctx.beginPath();
@@ -6958,7 +6999,10 @@ function render(dt = 1 / 60) {
   const renderLayers = getHeroRenderLayers(p);
   const bodyDirection = aimDirection;
   const bodyTilt = Math.max(-0.38, Math.min(0.38, (bodyDirection?.y || 0) * 0.38));
-  ctx.rotate(bodyTilt);
+  const strideSway = Math.hypot(p.vx, p.vy) > 30 && !p.is_dashing
+    ? Math.sin(((p.run_phase % 8) + 8) % 8 * Math.PI / 4) * 0.032
+    : 0;
+  ctx.rotate(bodyTilt + strideSway);
   const frame = renderLayers.baseFrame;
   const animationKey = state.selected_char === "inky" ? "inky"
     : state.selected_char === "quillmaster" ? "quillmaster"
@@ -7010,7 +7054,8 @@ function render(dt = 1 / 60) {
     }
     ctx.save();
     const isAct = (idx === state.active_weapon_index);
-    ctx.translate(root.x, root.y);
+    // The hand pose and orbiting weapon must share the same footfall/recoil anchor.
+    ctx.translate(root.x + playerPoseOffset.x, root.y + playerPoseOffset.y);
     ctx.rotate(getWeaponRenderAngle(w.id, w.rotation, swingRotation));
     ctx.imageSmoothingEnabled = false;
 
@@ -7082,12 +7127,7 @@ function render(dt = 1 / 60) {
   ctx.restore();
 
   // Dynamic Atmospheric Player Radial Lighting & Dark Academia Vignette
-  const lightGrad = ctx.createRadialGradient(cx, cy, 140, cx, cy, 680);
-  lightGrad.addColorStop(0, "rgba(0, 0, 0, 0)");
-  lightGrad.addColorStop(0.65, "rgba(8, 4, 3, 0.20)");
-  lightGrad.addColorStop(1, "rgba(4, 2, 2, 0.72)");
-  ctx.fillStyle = lightGrad;
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(getArenaVignette(canvas.width, canvas.height), 0, 0);
 }
 
 // =========================================
@@ -7297,6 +7337,7 @@ window.weaponArchetypeTestApi = Object.freeze({
 });
 
 function updateGame(dt) {
+  updateAmbientMotes(dt / Math.max(0.01, state.game_speed || 1));
   if (state.is_wave_active) {
     if (!state.is_inventory_open) {
       updatePlayer(dt);
