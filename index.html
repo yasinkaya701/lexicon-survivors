@@ -2220,6 +2220,20 @@
       outline-offset:2px;
       box-shadow:0 0 0 1px #111a16,0 0 0 4px rgba(226,196,123,.28) !important;
     }
+    #arena-interaction-prompt {
+      position:absolute; z-index:46; left:50%; bottom:calc(18px + env(safe-area-inset-bottom,0px));
+      transform:translateX(-50%); display:flex; align-items:center; gap:10px; max-width:min(92vw,390px);
+      padding:9px 14px; border:1px solid rgba(220,198,141,.78); border-radius:3px;
+      color:#eee6d4; background:rgba(17,26,22,.95); box-shadow:0 5px 20px rgba(0,0,0,.48), inset 0 0 0 3px rgba(211,186,124,.08);
+      font:500 12px 'IBM Plex Sans',sans-serif; letter-spacing:.025em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+      touch-action:manipulation; cursor:pointer;
+    }
+    #arena-interaction-prompt[hidden] { display:none; }
+    #arena-interaction-prompt kbd { flex:0 0 auto; padding:2px 6px; border:1px solid #a68e5e; color:#e4ce92; background:#202b24; font:600 10px 'IBM Plex Mono',monospace; }
+    #arena-interaction-label { overflow:hidden; text-overflow:ellipsis; }
+    @media (max-width:700px), (pointer:coarse) {
+      #arena-interaction-prompt { bottom:calc(90px + env(safe-area-inset-bottom,0px)); min-height:44px; max-width:68vw; padding:8px 10px; gap:7px; font-size:10px; }
+    }
     /* At common 720 px laptop heights, fit all six archive plates and the
        run controls together instead of hiding the last row below the fold. */
     @media (min-width:701px) and (max-height:760px) {
@@ -2266,6 +2280,9 @@
       OYUN HIZI: 1.0x
     </div>
     <canvas id="game-canvas" width="1280" height="720"></canvas>
+    <button id="arena-interaction-prompt" type="button" hidden aria-label="Arena nesnesini kullan">
+      <kbd>R</kbd><span id="arena-interaction-label">Arena nesnesi</span>
+    </button>
 
     <!-- COMPACT STATUS HUD -->
     <div id="hud">
@@ -2385,7 +2402,7 @@
         <section class="title-select-panel" aria-label="Run ayarları">
           <div class="title-select-kicker"><span>YENİ BİR KAYIT AÇ</span><span>100 TUR / 20 BOSS</span></div>
           <label class="music-choice-row" for="title-music-select"><span>MÜZİK DOSYASI</span>
-            <select id="title-music-select" aria-label="Müzik seçimi"><option value="auto">Otomatik · dalgaya göre</option><option value="library">Karanlık Kütüphane</option><option value="last_stand">Son Nöbet</option></select>
+            <select id="title-music-select" aria-label="Müzik seçimi"><option value="auto">Otomatik · biyoma göre</option><option value="library">Karanlık Kütüphane</option><option value="action">Mürekkep Takibi</option><option value="urgent">Rafların Uyanışı</option><option value="last_stand">Son Nöbet · Boss</option></select>
           </label>
           <div class="character-select-heading">
             <span>KARAKTERİNİ SEÇ</span>
@@ -2413,7 +2430,7 @@
             </button>
             <button class="btn btn-seal" id="title-leaderboard-btn" type="button"><img class="ui-icon" src="assets/ui/icons/kills.svg" alt="">KÜRESEL SIRALAMA</button>
           </div>
-          <div class="title-control-key">WASD Hareket <i>·</i> Q/E/1–6 Silah <i>·</i> Space Atılım <i>·</i> I Envanter <i>·</i> Fare Dükkân</div>
+          <div class="title-control-key">WASD Hareket <i>·</i> Q/E/1–6 Silah <i>·</i> R Etkileşim <i>·</i> Space Atılım <i>·</i> I Envanter</div>
         </footer>
       </div>
     </div>
@@ -2611,7 +2628,7 @@
 
         <div style="display: flex; flex-direction: column; gap: 7px; margin-top: 4px;">
           <label class="music-choice-row" for="mobile-music-select" style="justify-content:space-between;">MÜZİK SEÇ
-            <select id="mobile-music-select" aria-label="Müzik seçimi"><option value="auto">Otomatik</option><option value="library">Karanlık Kütüphane</option><option value="last_stand">Son Nöbet</option></select>
+            <select id="mobile-music-select" aria-label="Müzik seçimi"><option value="auto">Otomatik · biyoma göre</option><option value="library">Karanlık Kütüphane</option><option value="action">Mürekkep Takibi</option><option value="urgent">Rafların Uyanışı</option><option value="last_stand">Son Nöbet · Boss</option></select>
           </label>
           <button class="btn" id="mobile-toggle-autowave-btn" style="width: 100%; min-height: 42px; font-size: 13px;">
             Otomatik yeni tur: açık
@@ -2764,6 +2781,6 @@
       window.startArchiveIntro();
     })();
   </script>
-  <script src="game.js?v=perf-boss-ui-20261107-1"></script>
+  <script src="game.js?v=perf-boss-audio-arena-20261107-2"></script>
 </body>
 </html>

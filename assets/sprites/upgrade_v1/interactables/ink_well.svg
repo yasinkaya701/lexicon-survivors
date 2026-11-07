@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" shape-rendering="crispEdges">
+  <defs>
+    <linearGradient id="bronze" x2="0" y2="1"><stop stop-color="#f1d28a"/><stop offset=".28" stop-color="#9e693d"/><stop offset=".56" stop-color="#e4b767"/><stop offset="1" stop-color="#513929"/></linearGradient>
+    <linearGradient id="ink" x2="0" y2="1"><stop stop-color="#b8fff0"/><stop offset=".4" stop-color="#44c7b2"/><stop offset="1" stop-color="#176f6a"/></linearGradient>
+  </defs>
+  <!-- stepped silhouette and feet -->
+  <path fill="#172522" d="M22 104h8v-7h8V80h4V69h-7v-9h-4V48h8V40h8V30h34v10h8v8h8v12h-4v9h-7v11h4v17h8v7h8v11H22z"/>
+  <path fill="#513a2d" d="M30 103h68v8H30zM39 98V81h50v17z"/>
+  <path fill="url(#bronze)" d="M35 80h58v8H35zM39 72h50v9H39zM42 66h44v8H42z"/>
+  <path fill="#302b22" d="M43 86h42v4H43zM47 91h34v4H47z"/>
+  <path fill="#d7b56e" d="M35 78h58v3H35zM39 70h50v3H39zM43 64h42v3H43z"/>
+  <!-- basin, cut in dark wood with hammered brass lip -->
+  <path fill="#1b2927" d="M27 45h8v-7h8v-7h42v7h8v7h8v16h-8v7h-8v5H43v-5h-8v-7h-8z"/>
+  <path fill="#74462e" d="M34 45h8v-6h44v6h8v15h-8v7H42v-7h-8z"/>
+  <path fill="url(#bronze)" d="M30 43h8v-7h8v-4h36v4h8v7h8v5H30z"/>
+  <path fill="#f4d998" d="M38 40h8v-4h36v4h8v3H38z"/>
+  <path fill="url(#ink)" d="M39 48h50v10H39z"/>
+  <path fill="#d8fff4" d="M45 48h7v3h-7zM58 51h12v2H58zM78 48h5v2h-5z" opacity=".86"/>
+  <!-- rising ink leaf / quill rune -->
+  <path fill="#a4fff0" d="M62 56h4v-7h4v-7h5v-8h5v-8h5v-7h6v8h-4v8h-4v8h-5v7h-5v6z"/>
+  <path fill="#1c766f" d="M67 55h4v-9h4v-8h5v-8h4v-5h3v7h-4v8h-4v8h-5v7z"/>
+  <path fill="#d9fff2" d="M80 35h4v3h-4zM72 45h4v3h-4zM64 55h5v3h-5z"/>
+  <!-- engraved archive marks -->
+  <path fill="#3b2b24" d="M48 75h4v9h-4zM55 75h4v9h-4zM69 75h4v9h-4zM76 75h4v9h-4z"/>
+  <path fill="#f3d18c" d="M50 78h2v3h-2zM57 78h2v3h-2zM71 78h2v3h-2zM78 78h2v3h-2z"/>
+  <!-- cool reflected light -->
+  <path fill="#7df1d9" d="M31 53h4v6h-4zM93 52h4v5h-4zM44 100h7v2h-7z"/>
+</svg>

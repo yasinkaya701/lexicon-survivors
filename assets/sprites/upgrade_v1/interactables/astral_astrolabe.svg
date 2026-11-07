@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" shape-rendering="crispEdges">
+  <defs>
+    <linearGradient id="brass" x2="0" y2="1"><stop stop-color="#fff0bd"/><stop offset=".25" stop-color="#b58b4b"/><stop offset=".52" stop-color="#f1d284"/><stop offset="1" stop-color="#55432d"/></linearGradient>
+    <linearGradient id="violet" x2="0" y2="1"><stop stop-color="#f0dcff"/><stop offset=".48" stop-color="#9a70e1"/><stop offset="1" stop-color="#47317b"/></linearGradient>
+  </defs>
+  <!-- anchored feet and instrument stand -->
+  <path fill="#172421" d="M20 104h15l6-8h10l5-8h16l5 8h10l6 8h15v9H20z"/>
+  <path fill="#593e2d" d="M29 103h70v6H29z"/>
+  <path fill="url(#brass)" d="M43 95h42v7H43zM49 88h30v8H49zM54 79h20v10H54z"/>
+  <path fill="#392e27" d="M59 69h10v12H59z"/>
+  <path fill="#e1be72" d="M61 73h6v11h-6z"/>
+  <!-- distinct gimballed celestial rings -->
+  <path fill="#1b2523" d="M20 53h7V40h7V30h8V20h12V13h20v7h12v10h8v10h7v13h7v18h-7v13h-7v10H87v7H75v7H53v-7H41V94h-8V84h-7V71h-6z"/>
+  <path fill="url(#brass)" d="M25 53h6V41h6V31h8V21h11v-6h18v6h11v10h8v10h6v12h6v18h-6v12h-6v10h-8v10H75v6H53v-6H42V93h-8V83h-6V71h-3z"/>
+  <path fill="#49392b" d="M32 53h5V42h6V32h8V22h10v-5h10v7h10v9h7v10h6v11h7v18h-7v11h-6v10h-7v10H70v6H58v-6h-9v-8h-8V87h-6V76h-7V58h4z"/>
+  <!-- open center and turning cross-rings -->
+  <path fill="#171f22" d="M43 64h5V52h8V44h16v8h8v12h5v8h-5v12h-8v8H56v-8h-8V72h-5z"/>
+  <path fill="#cda65c" d="M49 63h4V52h6v-5h11v6h6v10h4v9h-5v10h-7v5H57v-6h-6V71h-2z"/>
+  <path fill="#362a3f" d="M55 64h4v-6h6v-3h7v5h5v9h4v6h-5v6h-7v5h-7v-5h-5v-6h-3z"/>
+  <path fill="url(#violet)" d="M61 62h5v-4h5v5h5v7h4v5h-5v5h-7v4h-6v-5h-4v-7h-4v-5h6z"/>
+  <path fill="#fff0ff" d="M64 63h4v4h-4zM72 69h3v3h-3z"/>
+  <path fill="#c29aff" d="M57 70h4v6h-4zM69 78h4v3h-4z"/>
+  <!-- etched degree marks and four cardinal pins -->
+  <path fill="#f6dda0" d="M62 22h4v5h-4zM62 100h4v5h-4zM27 62h5v4h-5zM96 62h5v4h-5z"/>
+  <path fill="#fff0be" d="M38 38h4v4h-4zM84 38h4v4h-4zM38 84h4v4h-4zM84 84h4v4h-4z"/>
+  <path fill="#7a5a37" d="M45 26h4v8h-4zM79 94h4v8h-4zM29 75h8v4h-8zM91 47h8v4h-8z"/>
+  <!-- tiny index dial on the base -->
+  <path fill="#18221f" d="M48 93h32v10H48z"/>
+  <path fill="#d9b56c" d="M52 95h24v2H52zM56 99h16v2H56z"/>
+  <path fill="#fff0b5" d="M63 95h3v7h-3z"/>
+</svg>

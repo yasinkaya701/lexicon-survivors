@@ -14,6 +14,12 @@ const ARENA_LAYOUT = Object.freeze({
 const PLAYER_CENTER_LIMIT_X = ARENA_LAYOUT.innerShelfX - ARENA_LAYOUT.playerVisualHalfWidth;
 const PLAYER_CENTER_MIN_Y = -ARENA_LAYOUT.innerShelfY + ARENA_LAYOUT.playerVisualHalfHeight;
 const PLAYER_CENTER_MAX_Y = ARENA_LAYOUT.innerShelfY - ARENA_LAYOUT.playerVisualHalfHeight;
+const ARENA_INTERACTABLE_DEFS = Object.freeze([
+  { id: "ink_well", sprite: "upgrade_v1/interactables/ink_well.svg", name: "Mürekkep Kuyusu", hint: "Canını tazele", x: -420, y: -230 },
+  { id: "resonance_bell", sprite: "upgrade_v1/interactables/archive_bell.svg", name: "Arşiv Çanı", hint: "Yakındakileri savur", x: 420, y: -230 },
+  { id: "astral_astrolabe", sprite: "upgrade_v1/interactables/astral_astrolabe.svg", name: "Yıldız Astrolabı", hint: "Gadget + kalkan", x: 0, y: 420 }
+]);
+const ARENA_INTERACT_RADIUS = 106;
 
 let WEAPON_VISUALS = {};
 let WEAPON_ARCHETYPES = {};
@@ -468,6 +474,11 @@ function applyHitFeedback(target, direction, impactProfile = "ink", isCritical =
     target.vx = dir.x * knockForce;
     target.vy = dir.y * knockForce;
   }
+  if (target.is_boss) {
+    target.hit_recoil_x = dir.x * (isHeavy || isCritical ? 0.16 : 0.09);
+    target.hit_recoil_y = dir.y * (isHeavy || isCritical ? 0.16 : 0.09);
+    target.hit_recoil_timer = Math.max(target.hit_recoil_timer || 0, isHeavy || isCritical ? 0.20 : 0.13);
+  }
   const effectCap = 80;
   if (state.hit_effects.length >= effectCap) state.hit_effects.shift();
   const profile = isCritical ? "critical" : (HIT_SPRITE_PROFILE[impactProfile] === undefined ? "blunt" : impactProfile);
@@ -484,6 +495,17 @@ function applyHitFeedback(target, direction, impactProfile = "ink", isCritical =
     triggerScreenShake(0.055, isCritical ? 1.4 : 0.9);
   }
   return true;
+}
+
+// Compact hot simulation arrays in place to avoid allocating a new array every frame.
+function compactLiveArray(items, keep) {
+  let write = 0;
+  for (let read = 0, length = items.length; read < length; read++) {
+    const item = items[read];
+    if (keep(item)) items[write++] = item;
+  }
+  items.length = write;
+  return items;
 }
 
 function applyUtilityRelicHit(target, baseDamage) {
@@ -515,7 +537,7 @@ function applyUtilityRelicHit(target, baseDamage) {
 
 function updateHitEffects(dt) {
   state.hit_effects.forEach(effect => { effect.lifetime -= dt; });
-  state.hit_effects = state.hit_effects.filter(effect => effect.lifetime > 0);
+  compactLiveArray(state.hit_effects, effect => effect.lifetime > 0);
   state.hit_feedback_shake_cooldown = Math.max(0, state.hit_feedback_shake_cooldown - dt);
 }
 
@@ -643,28 +665,45 @@ class SoundManager {
   constructor() {
     this.ctx = null;
     this.assetVoices = [];
+    this.assetVoiceCursor = 0;
+    this.lastAssetVariant = Object.create(null);
     this.music = null;
     this.assetPaths = {
-      quill_blaster: "weapon_quill_blaster_v1", syllable_shotgun: "weapon_syllable_shotgun_v1",
-      lexicon_beam: "weapon_lexicon_beam_v1", punctuation_bomb: "weapon_punctuation_mine_drop",
-      dictionary_blade: "weapon_dictionary_blade_v1", crossword_crossbow: "weapon_crossword_crossbow_v1",
+      quill_blaster: ["weapon_quill_blaster_v1", "weapon_quill_blaster_v2", "weapon_quill_blaster_v3"],
+      syllable_shotgun: ["weapon_syllable_shotgun_v1", "weapon_syllable_shotgun_v2", "weapon_syllable_shotgun_v3"],
+      lexicon_beam: ["weapon_lexicon_beam_v1", "weapon_lexicon_beam_v2"], punctuation_bomb: "weapon_punctuation_mine_drop",
+      dictionary_blade: ["weapon_dictionary_blade_v1", "weapon_dictionary_blade_v2", "weapon_dictionary_blade_v3"],
+      crossword_crossbow: ["weapon_crossword_crossbow_v1", "weapon_crossword_crossbow_v2", "weapon_crossword_crossbow_v3"],
       hyphen_boomerang: "weapon_hyphen_boomerang", ink_flamethrower: "weapon_ink_flamethrower",
-      thesaurus_rocket: "weapon_thesaurus_rocket_launch", quote_pistols: "weapon_quote_pistols_v1",
-      calligraphy_katana: "weapon_calligraphy_katana_v1", scroll_turret: "weapon_scroll_turret_deploy",
+      thesaurus_rocket: "weapon_thesaurus_rocket_launch", quote_pistols: ["weapon_quote_pistols_v1", "weapon_quote_pistols_v2", "weapon_quote_pistols_v3"],
+      calligraphy_katana: ["weapon_calligraphy_katana_v1", "weapon_calligraphy_katana_v2", "weapon_calligraphy_katana_v3"], scroll_turret: "weapon_scroll_turret_fire",
       rune_orb: "weapon_rune_orb", grammar_sniper: "weapon_grammar_sniper", word_loom: "weapon_rune_orb",
       hit: "enemy_hit_light", death: "enemy_defeat", pickup: "ink_pickup", wave: "wave_start",
-      gadget: "gadget_eraser_dash", mine: "weapon_punctuation_mine_detonation", rocket: "weapon_thesaurus_rocket_impact"
+      gadget: "gadget_eraser_dash", mine: "weapon_punctuation_mine_detonation", rocket: "weapon_thesaurus_rocket_impact",
+      boss_roar: "enemy_hit_heavy", resonance_bell: "chapter_transition"
     };
   }
   playAsset(key, volume = 0.72) {
-    const asset = this.assetPaths[key];
-    if (!asset) return false;
+    const configured = this.assetPaths[key];
+    if (!configured) return false;
     try {
-      const voice = new Audio(`assets/audio/${key === "gadget" ? "abilities" : key === "hit" || key === "death" || key === "pickup" || key === "wave" ? "gameplay" : "weapons"}/${asset}.wav`);
+      const variants = Array.isArray(configured) ? configured : [configured];
+      let asset = variants[0];
+      if (variants.length > 1) {
+        const choices = variants.filter(candidate => candidate !== this.lastAssetVariant[key]);
+        asset = choices[(Math.random() * choices.length) | 0] || variants[0];
+      }
+      this.lastAssetVariant[key] = asset;
+      const category = key === "gadget" ? "abilities"
+        : ["hit", "death", "pickup", "wave", "boss_roar", "resonance_bell"].includes(key) ? "gameplay" : "weapons";
+      const path = `assets/audio/${category}/${asset}.wav`;
+      const poolIndex = this.assetVoiceCursor++ % 12;
+      const voice = this.assetVoices[poolIndex]
+        || (() => { const candidate = new Audio(); this.assetVoices[poolIndex] = candidate; return candidate; })();
+      if (voice.src !== new URL(path, window.location.href).href) voice.src = path;
+      voice.currentTime = 0;
       voice.volume = volume;
       voice.play().catch(() => {});
-      this.assetVoices.push(voice);
-      if (this.assetVoices.length > 24) this.assetVoices.splice(0, this.assetVoices.length - 24);
       return true;
     } catch (_) { return false; }
   }
@@ -785,6 +824,7 @@ class SoundManager {
     this.playTone(90, "sawtooth", 0.15, 0.16);
   }
   bossRoar() {
+    if (this.playAsset("boss_roar", 0.72)) return;
     this.init();
     this.playTone(55, "sawtooth", 0.7, 0.45);
     setTimeout(() => this.playTone(85, "square", 0.5, 0.35), 180);
@@ -882,6 +922,7 @@ class MedievalBGM {
     this.isPlaying = true;
     this.step = 0;
     this.sm.startMusic();
+    this.syncMusicChoice();
   }
 
   stop() {
@@ -900,15 +941,19 @@ class MedievalBGM {
   }
 
   setMusicChoice(choice) {
-    this.musicChoice = ["auto", "library", "last_stand"].includes(choice) ? choice : "auto";
+    this.musicChoice = ["auto", "library", "action", "urgent", "last_stand"].includes(choice) ? choice : "auto";
     localStorage.setItem("lexicon_music_choice", this.musicChoice);
     this.syncMusicChoice();
   }
 
   syncMusicChoice() {
-    const path = this.musicChoice === "last_stand" || (this.musicChoice === "auto" && this.mode === "boss")
-      ? "assets/audio/music/boss_theme_dark_last_stand.wav"
-      : "assets/audio/music/main_theme.mp3";
+    const autoTracks = ["biome_dark_library_theme.mp3", "magical_library_action_b.mp3", "magical_library_urgent_a.mp3", "magical_library_urgent_a.mp3"];
+    const path = this.musicChoice === "last_stand" ? "assets/audio/music/magical_library_extreme_a.mp3"
+      : this.musicChoice === "library" ? "assets/audio/music/biome_dark_library_theme.mp3"
+        : this.musicChoice === "action" ? "assets/audio/music/magical_library_action_b.mp3"
+          : this.musicChoice === "urgent" ? "assets/audio/music/magical_library_urgent_a.mp3"
+            : this.mode === "boss" ? "assets/audio/music/magical_library_extreme_a.mp3"
+              : `assets/audio/music/${autoTracks[Math.max(0, this.biome)] || autoTracks[0]}`;
     this.sm.setMusicSource(path);
   }
 
@@ -916,6 +961,7 @@ class MedievalBGM {
     const nextBiome = wave >= 76 ? 3 : wave >= 51 ? 2 : wave >= 26 ? 1 : 0;
     if (nextBiome === this.biome) return;
     this.biome = nextBiome;
+    this.syncMusicChoice();
     if (this.isPlaying && !this.isMuted) this.playChapterChime();
   }
 
@@ -1603,6 +1649,7 @@ const state = {
   milestone_boss_delay: 0,
   ink_count: 15,
   kill_count: 0,
+  arena_interactables: ARENA_INTERACTABLE_DEFS.map(object => ({ ...object, used: false, pulse: 0 })),
   words_learned: [],
   active_synergies: {},
   artifacts_owned: [],
@@ -1740,6 +1787,8 @@ const spriteList = [
   "upgrade_v2/boss_red_inquisitor.png", "upgrade_v2/boss_lexicon_dragon.png",
   "upgrade_v2/boss_void_curator.png", "upgrade_v2/boss_syntax_titan.png",
   "upgrade_v1/threat_seal.png",
+  "upgrade_v1/interactables/ink_well.svg", "upgrade_v1/interactables/archive_bell.svg",
+  "upgrade_v1/interactables/astral_astrolabe.svg",
   "player.png", "player_quillmaster.png", "player_knight.png",
   "player_sorceress.png", "player_alchemist.png", "player_assassin.png",
   // Weapons
@@ -2258,6 +2307,7 @@ if (shopCancelAutoBtn) {
 document.getElementById("inventory-btn").onclick = () => toggleInventoryModal();
 document.getElementById("close-inventory-btn").onclick = () => toggleInventoryModal(false);
 document.getElementById("gadget-panel").onclick = () => activateActiveGadget();
+document.getElementById("arena-interaction-prompt")?.addEventListener("click", interactWithArenaObject);
 
 // Mobile Quick Menu & Weapon Cycle
 function cycleActiveWeapon(dir = 1) {
@@ -2583,6 +2633,7 @@ window.addEventListener("keydown", e => {
   if (e.key.toLowerCase() === "i") {
     if (state.is_wave_active || state.is_inventory_open) toggleInventoryModal();
   }
+  if (e.key.toLowerCase() === "r" && interactWithArenaObject()) e.preventDefault();
   if (e.key.toLowerCase() === "m") {
     toggleMistakesModal();
   }
@@ -3084,6 +3135,7 @@ function startWave() {
   state.wave_duration = Math.min(42.0, 22.0 + (state.current_wave - 1) * 0.25);
   state.wave_time_left = state.wave_duration;
   state.is_wave_active = true;
+  state.arena_interactables.forEach(object => { object.used = false; });
   state.mnemonic_used_this_wave = false;
   state.milestone_boss_delay = state.current_wave % 5 === 0 ? 1.8 : 0;
   if (state.selected_char === "lexicon_alchemist") state.ink_count += 10;
@@ -3094,6 +3146,7 @@ function startWave() {
   bgm.setMode(state.current_wave % 5 === 0 ? "boss" : "battle");
   bgm.setBiomeForWave(state.current_wave);
   sounds.playAsset("wave", 0.58);
+  updateArenaInteractionPrompt();
 
   // Tactical Alert Announcements on Key Waves
   const w = state.current_wave;
@@ -3119,6 +3172,67 @@ function startWave() {
     triggerTacticalAlert("OMEGA EJDERHA", "Son kuşatma başladı. Cephaneliğinizi ve gereçlerinizi kullanın.");
   }
 
+}
+
+function getNearbyArenaInteractable() {
+  if (!state.is_wave_active || state.is_inventory_open) return null;
+  const p = state.player;
+  let nearest = null, nearestSq = ARENA_INTERACT_RADIUS * ARENA_INTERACT_RADIUS;
+  for (const object of state.arena_interactables) {
+    if (object.used) continue;
+    if (object.id === "ink_well" && state.hp >= state.max_hp - 0.5) continue;
+    if (object.id === "astral_astrolabe" && state.gadget_timer <= 0 && state.shield_charges >= 3) continue;
+    const dx = object.x - p.x, dy = object.y - p.y;
+    const distanceSq = dx * dx + dy * dy;
+    if (distanceSq <= nearestSq) { nearest = object; nearestSq = distanceSq; }
+  }
+  return nearest;
+}
+
+function updateArenaInteractionPrompt() {
+  const prompt = document.getElementById("arena-interaction-prompt");
+  if (!prompt) return;
+  const object = getNearbyArenaInteractable();
+  prompt.hidden = !object;
+  if (!object) return;
+  const label = document.getElementById("arena-interaction-label");
+  if (label) label.textContent = `${object.name} · ${object.hint}`;
+}
+
+function interactWithArenaObject() {
+  const object = getNearbyArenaInteractable();
+  if (!object) return false;
+  const p = state.player;
+  if (object.id === "ink_well") {
+    const healed = Math.min(state.max_hp - state.hp, Math.max(1, Math.round(state.max_hp * 0.18)));
+    if (healed <= 0) return false;
+    state.hp += healed;
+    addFloatingText(p.x, p.y - 48, `+${healed} HP`, "#8ee0b5", 18);
+    sounds.playTone(660, "sine", 0.22, 0.22);
+  } else if (object.id === "resonance_bell") {
+    const targets = state.enemies.filter(enemy => !enemy.dead && Math.hypot(enemy.x - p.x, enemy.y - p.y) <= 360);
+    if (!targets.length) return false;
+    targets.forEach(enemy => {
+      const dx = enemy.x - p.x, dy = enemy.y - p.y;
+      const distance = Math.hypot(dx, dy) || 1;
+      const boss = !!enemy.is_boss;
+      enemy.stun_timer = Math.max(enemy.stun_timer || 0, boss ? 0.42 : 1.15);
+      applyHitFeedback(enemy, { x: dx / distance, y: dy / distance }, "rune", false, true, boss ? 100 : 300);
+    });
+    state.particles.push({ x: p.x, y: p.y, radius: 28, max_radius: 360, alpha: 0.8, color: "rgba(112, 203, 208, " });
+    triggerScreenShake(0.12, 2.2);
+    if (!sounds.playAsset("resonance_bell", 0.68)) sounds.playTone(184, "triangle", 0.48, 0.28);
+  } else if (object.id === "astral_astrolabe") {
+    state.gadget_timer = 0;
+    state.shield_charges = Math.min(3, state.shield_charges + 1);
+    state.shield_timer = Math.max(state.shield_timer, 9);
+    addFloatingText(p.x, p.y - 48, "GADGET + KALKAN", "#c5adff", 15);
+    if (!sounds.playAsset("resonance_bell", 0.46)) sounds.playTone(520, "sine", 0.32, 0.22);
+  }
+  object.used = true;
+  updateArenaInteractionPrompt();
+  updateHUD();
+  return true;
 }
 
 function endWave() {
@@ -3396,7 +3510,7 @@ function updateGadgetEffects(dt) {
     if (state.shield_timer === 0) state.shield_charges = 0;
   }
   state.magnet_timer = Math.max(0, state.magnet_timer - dt);
-  state.gadget_trails = state.gadget_trails.filter(trail => {
+  compactLiveArray(state.gadget_trails, trail => {
     trail.timer -= dt;
     trail.tick -= dt;
     trail.x += trail.dx * 24 * dt;
@@ -3415,7 +3529,7 @@ function updateGadgetEffects(dt) {
     }
     return trail.timer > 0;
   });
-  state.gadget_cards = state.gadget_cards.filter(card => {
+  compactLiveArray(state.gadget_cards, card => {
     card.timer -= dt; card.tick -= dt; card.angle += dt * 4.6;
     if (card.tick <= 0 && card.hitTargets.size < (GADGETS_CATALOG.index_storm.values?.target_cap || 3)) {
       card.tick = 0.62;
@@ -3430,7 +3544,7 @@ function updateGadgetEffects(dt) {
     }
     return card.timer > 0;
   });
-  state.gadget_decoys = state.gadget_decoys.filter(decoy => (decoy.timer -= dt) > 0);
+  compactLiveArray(state.gadget_decoys, decoy => (decoy.timer -= dt) > 0);
 }
 
 // =========================================
@@ -3577,7 +3691,7 @@ function updatePlayer(dt) {
       }
     }
   });
-  state.ink_drops = state.ink_drops.filter(d => !d.collected);
+  compactLiveArray(state.ink_drops, d => !d.collected);
 
   // Health Drops / Şifa Parşömeni (+18 HP)
   state.health_drops.forEach(drop => {
@@ -3609,7 +3723,7 @@ function updatePlayer(dt) {
       }
     }
   });
-  state.health_drops = state.health_drops.filter(d => !d.collected);
+  compactLiveArray(state.health_drops, d => !d.collected);
 
   // Floating Combat Damage Numbers update
   if (state.floating_texts && state.floating_texts.length) {
@@ -3634,7 +3748,7 @@ function updatePlayer(dt) {
       p.slow_timer = 1.0;
     }
   });
-  state.ink_puddles = state.ink_puddles.filter(puddle => puddle.lifetime > 0);
+  compactLiveArray(state.ink_puddles, puddle => puddle.lifetime > 0);
 
   // ALL SLOTTED WEAPONS FIRE SIMULTANEOUSLY (Brotato Mechanic!)
   state.weapons.forEach((w, idx) => {
@@ -3777,7 +3891,7 @@ function updateTurrets(dt) {
       weapon_id: "scroll_turret", impact_profile: "gold"
     });
   });
-  state.turrets = state.turrets.filter(turret => turret.lifetime > 0);
+  compactLiveArray(state.turrets, turret => turret.lifetime > 0);
 }
 
 function updateWeaponFields(dt) {
@@ -3800,7 +3914,7 @@ function updateWeaponFields(dt) {
       }
     });
   });
-  state.weapon_fields = state.weapon_fields.filter(field => field.lifetime > 0);
+  compactLiveArray(state.weapon_fields, field => field.lifetime > 0);
 }
 
 function placeWordLoomField(weapon, target) {
@@ -3908,7 +4022,7 @@ function updatePunctuationMines(dt) {
       });
     }
   });
-  state.punctuation_mines = state.punctuation_mines.filter(m => !m.detonated || m.hazard_seconds > 0);
+  compactLiveArray(state.punctuation_mines, m => !m.detonated || m.hazard_seconds > 0);
 }
 
 function weaponPistolFireNow(weapon) {
@@ -4189,8 +4303,10 @@ function applyWeaponHitSignature(projectile, enemy, effectiveDamage) {
 
 // Broad-phase spatial hash: heavy waves test only enemies near each projectile.
 const COLLISION_CELL_SIZE = 160;
+const collisionBuckets = new Map();
+const collisionCandidateScratch = [];
 function buildEnemyCollisionGrid(enemies) {
-  const buckets = new Map();
+  for (const bucket of collisionBuckets.values()) bucket.length = 0;
   let maxEnemyHalfSize = 0;
   for (let index = 0; index < enemies.length; index++) {
     const enemy = enemies[index];
@@ -4198,23 +4314,24 @@ function buildEnemyCollisionGrid(enemies) {
     maxEnemyHalfSize = Math.max(maxEnemyHalfSize, (enemy.size || 34) / 2);
     const cellX = Math.floor(enemy.x / COLLISION_CELL_SIZE);
     const cellY = Math.floor(enemy.y / COLLISION_CELL_SIZE);
-    const key = `${cellX},${cellY}`;
-    let bucket = buckets.get(key);
-    if (!bucket) { bucket = []; buckets.set(key, bucket); }
+    const key = cellX * 64 + cellY;
+    let bucket = collisionBuckets.get(key);
+    if (!bucket) { bucket = []; collisionBuckets.set(key, bucket); }
     bucket.push(index);
   }
-  return { buckets, maxEnemyHalfSize };
+  return maxEnemyHalfSize;
 }
-function getNearbyEnemyIndices(grid, x, y, projectileHalfSize) {
-  const radius = projectileHalfSize + grid.maxEnemyHalfSize;
+function getNearbyEnemyIndices(maxEnemyHalfSize, x, y, projectileHalfSize) {
+  const radius = projectileHalfSize + maxEnemyHalfSize;
   const minX = Math.floor((x - radius) / COLLISION_CELL_SIZE);
   const maxX = Math.floor((x + radius) / COLLISION_CELL_SIZE);
   const minY = Math.floor((y - radius) / COLLISION_CELL_SIZE);
   const maxY = Math.floor((y + radius) / COLLISION_CELL_SIZE);
-  const result = [];
+  const result = collisionCandidateScratch;
+  result.length = 0;
   for (let cy = minY; cy <= maxY; cy++) {
     for (let cx = minX; cx <= maxX; cx++) {
-      const bucket = grid.buckets.get(`${cx},${cy}`);
+      const bucket = collisionBuckets.get(cx * 64 + cy);
       if (bucket) result.push(...bucket);
     }
   }
@@ -4416,7 +4533,7 @@ function updateProjectiles(dt) {
     });
   });
 
-  state.projectiles = state.projectiles.filter(p => p.lifetime > 0 && p.pierce > 0);
+  compactLiveArray(state.projectiles, p => p.lifetime > 0 && p.pierce > 0);
 }
 
 // =========================================
@@ -4629,15 +4746,19 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
   const targetX = state.player.x + state.player.vx * 0.38;
   const targetY = state.player.y + state.player.vy * 0.38;
   const angle = Math.atan2(targetY - boss.y, targetX - boss.x);
+  boss.attack_anim_phase = "windup";
+  boss.attack_anim_timer = duration;
+  boss.attack_anim_total = duration;
+  boss.attack_anim_angle = angle;
   const telegraphLine = (angleArg = angle, length = 1250) => ({
     is_laser: true, x1: boss.x, y1: boss.y,
     x2: boss.x + Math.cos(angleArg) * length, y2: boss.y + Math.sin(angleArg) * length,
-    timer: duration, max_timer: duration, color: boss.boss_color,
+    timer: duration, max_timer: duration, color: boss.boss_color, owner: boss,
     action: () => {}
   });
   const groundMark = (x, y, radius, action, kind = "boss") => ({
     x, y, radius, timer: duration, max_timer: duration, is_boss_area: true, kind,
-    color: boss.boss_color, action
+    color: boss.boss_color, action, owner: boss
   });
   boss.boss_skill_cooldown = Math.max(2.65, boss.boss_skill_interval || 6.5);
   const fireFan = (count, spread = 0.68, factor = baseDamage) => {
@@ -4900,10 +5021,15 @@ function updateEnemies(dt) {
       tg.timer -= dt;
       if (tg.timer <= 0 && !tg.executed) {
         tg.executed = true;
+        if (tg.owner && !tg.owner.dead) {
+          tg.owner.attack_anim_phase = "release";
+          tg.owner.attack_anim_timer = 0.18;
+          tg.owner.attack_anim_angle = Math.atan2(state.player.y - tg.owner.y, state.player.x - tg.owner.x);
+        }
         if (tg.action) tg.action();
       }
     });
-    state.telegraphs = state.telegraphs.filter(tg => tg.timer > 0);
+    compactLiveArray(state.telegraphs, tg => tg.timer > 0);
   }
 
   // Milestone bosses use the same simulation clock as waves so inventory pauses hold the reveal.
@@ -4938,6 +5064,9 @@ function updateEnemies(dt) {
     e.charge_timer = Math.max(0, (e.charge_timer || 0) - dt);
     if (e.charge_timer === 0) e.charge_damage = 0;
     e.hit_flash_timer = Math.max(0, (e.hit_flash_timer || 0) - dt);
+    e.hit_recoil_timer = Math.max(0, (e.hit_recoil_timer || 0) - dt);
+    e.attack_anim_timer = Math.max(0, (e.attack_anim_timer || 0) - dt);
+    if (e.attack_anim_timer <= 0 && e.attack_anim_phase === "release") e.attack_anim_phase = "idle";
     e.armor_break_timer = Math.max(0, (e.armor_break_timer || 0) - dt);
     e.quill_mark_timer = Math.max(0, (e.quill_mark_timer || 0) - dt);
     e.hyphen_mark_timer = Math.max(0, (e.hyphen_mark_timer || 0) - dt);
@@ -5256,7 +5385,7 @@ function updateEnemies(dt) {
       p.invuln_timer = 0.70;
     }
   });
-  state.enemy_projectiles = state.enemy_projectiles.filter(ep => ep.lifetime > 0 && !ep.dead);
+  compactLiveArray(state.enemy_projectiles, ep => ep.lifetime > 0 && !ep.dead);
 
   // Dead enemies & splitting & health drops & volatile bomb
   const newEnemies = [];
@@ -5343,7 +5472,7 @@ function updateEnemies(dt) {
     }
   });
 
-  state.enemies = state.enemies.filter(e => !e.dead);
+  compactLiveArray(state.enemies, e => !e.dead);
   newEnemies.forEach(addAliveEnemy);
   if (milestoneBossDefeated && state.is_wave_active) endWave();
 }
@@ -6694,8 +6823,36 @@ function render(dt = 1 / 60) {
     ctx.restore();
   }
 
-  // Four Corner Environmental Props with Animated Flames & Floor Light Halos
   const now = performance.now();
+  // Three reusable archive mechanisms sit on the inner aisles and reset once
+  // per wave; hand-drawn SVG sprites keep their silhouettes crisp at any zoom.
+  state.arena_interactables.forEach(object => {
+    if (!isInRenderViewport(object.x, object.y, 90)) return;
+    const color = object.id === "ink_well" ? "#78d6c7" : object.id === "resonance_bell" ? "#e5c477" : "#b9a2fa";
+    const alpha = object.used ? 0.25 : 0.84;
+    const pulse = object.used ? 1 : 1 + Math.sin(now / 240 + object.x) * 0.08;
+    ctx.save();
+    ctx.translate(object.x, object.y);
+    ctx.globalAlpha = object.used ? 0.20 : 0.52;
+    ctx.strokeStyle = color;
+    ctx.fillStyle = `${color}18`;
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.ellipse(0, 22, 49 * pulse, 19 * pulse, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.globalAlpha = 1;
+    ctx.translate(38, 8);
+    ctx.globalAlpha = alpha;
+    ctx.shadowColor = color;
+    ctx.shadowBlur = object.used ? 0 : 8;
+    const sprite = images[object.sprite];
+    if (sprite?.complete && sprite.naturalWidth > 0) ctx.drawImage(sprite, -48, -62, 96, 112);
+    else {
+      ctx.fillStyle = "#29352e"; ctx.strokeStyle = color; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.roundRect(-19, -20, 38, 48, 7); ctx.fill(); ctx.stroke();
+    }
+    ctx.restore();
+  });
+
+  // Four Corner Environmental Props with Animated Flames & Floor Light Halos
   const cornerGlow = getArenaCornerGlow(brazierFlameColor);
   ARENA_CORNER_PROPS.forEach(([bx, by], idx) => {
     if (!isInRenderViewport(bx, by, 132)) return;
@@ -7038,9 +7195,23 @@ function render(dt = 1 / 60) {
     const sz = e.size || 36;
     const spriteSize = sz * 1.55;
     if (spr) {
+      ctx.save();
+      if (e.is_boss) {
+        const phaseProgress = e.attack_anim_total > 0
+          ? Math.max(0, Math.min(1, 1 - (e.attack_anim_timer || 0) / e.attack_anim_total)) : 0;
+        const windup = e.attack_anim_phase === "windup" ? Math.sin(phaseProgress * Math.PI * 0.5) : 0;
+        const release = e.attack_anim_phase === "release" ? Math.max(0, (e.attack_anim_timer || 0) / 0.18) : 0;
+        const recoil = Math.max(0, (e.hit_recoil_timer || 0) / 0.20);
+        const lean = e.attack_anim_phase === "windup" ? -0.13 * windup : (e.attack_anim_phase === "release" ? 0.12 * release : 0);
+        ctx.rotate(lean + (e.hit_recoil_x || 0) * recoil * 0.12);
+        ctx.translate(-(e.hit_recoil_x || 0) * recoil * 24, -(e.hit_recoil_y || 0) * recoil * 17);
+        const compress = Math.max(windup * 0.095, release * 0.055, recoil * 0.10);
+        ctx.scale(1 + compress, 1 - compress * 0.72);
+      }
       if (e.hit_flash_timer > 0) ctx.filter = `brightness(${1 + Math.min(1.6, e.hit_flash_timer * 14)}) saturate(0.72)`;
       ctx.drawImage(spr, -spriteSize / 2, -spriteSize / 2, spriteSize, spriteSize);
       ctx.filter = "none";
+      ctx.restore();
     }
 
     if (e.is_elite && images["elite_crown.png"]) {
@@ -7306,6 +7477,13 @@ function gameLoop(now) {
   requestAnimationFrame(gameLoop);
 }
 
+window.arenaInteractableTestApi = Object.freeze({
+  state: () => state,
+  nearby: getNearbyArenaInteractable,
+  interact: interactWithArenaObject,
+  refreshPrompt: updateArenaInteractionPrompt
+});
+
 window.weaponVisualTestApi = Object.freeze({
   snapshot: () => ({
     visualStatus: weaponVisualsStatus,
@@ -7515,6 +7693,7 @@ function updateGame(dt) {
     gameplayHudRefreshTimer -= dt;
     if (gameplayHudRefreshTimer <= 0) {
       updateHUD();
+      updateArenaInteractionPrompt();
       gameplayHudRefreshTimer = GAMEPLAY_HUD_INTERVAL;
     }
   }
@@ -7529,6 +7708,10 @@ window.render_game_to_text = () => JSON.stringify({
   wave: state.current_wave,
   wave_time_left: Number(state.wave_time_left.toFixed(1)),
   milestone_boss_delay: Number(state.milestone_boss_delay.toFixed(1)),
+  arena_interaction: {
+    nearby: getNearbyArenaInteractable()?.id || null,
+    objects: state.arena_interactables.map(object => ({ id: object.id, x: object.x, y: object.y, used: object.used }))
+  },
   weapon_fields: state.weapon_fields.map(field => ({ weapon_id: field.weapon_id || "", x: Math.round(field.x), y: Math.round(field.y), radius: Math.round(field.radius), lifetime: Number(field.lifetime.toFixed(1)) })),
   inventory_open: state.is_inventory_open,
   character: state.selected_char,
