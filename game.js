@@ -2091,14 +2091,22 @@ function adaptCanvasQuality(framePressureSeconds) {
 }
 
 // Adaptive Responsive Canvas Viewport for Zero-Void Mobile Experience
+let resizeFrame = 0;
 function resizeGameCanvas() {
   const container = document.getElementById("game-container");
   if (!container || !canvas) return;
-  const isMobile = window.innerWidth <= 1080 || ('ontouchstart' in window);
+  const viewport = window.visualViewport;
+  const viewportWidth = Math.max(1, viewport?.width || document.documentElement.clientWidth || window.innerWidth);
+  const viewportHeight = Math.max(1, viewport?.height || document.documentElement.clientHeight || window.innerHeight);
+  const root = document.documentElement;
+  root.style.setProperty("--app-width", `${Math.round(viewportWidth)}px`);
+  root.style.setProperty("--app-height", `${Math.round(viewportHeight)}px`);
+  const isMobile = window.innerWidth <= 1080 || navigator.maxTouchPoints > 0 || ('ontouchstart' in window);
 
   if (isMobile) {
-    const w = container.clientWidth || window.innerWidth;
-    const h = container.clientHeight || window.innerHeight;
+    const bounds = container.getBoundingClientRect();
+    const w = Math.max(1, bounds.width || viewportWidth);
+    const h = Math.max(1, bounds.height || viewportHeight);
     const isPortrait = h > w;
 
     if (isPortrait) {
@@ -2110,8 +2118,22 @@ function resizeGameCanvas() {
     setCanvasResolution(Math.round(DESKTOP_RENDER_HEIGHT * (16 / 9)), DESKTOP_RENDER_HEIGHT);
   }
 }
-window.addEventListener("resize", resizeGameCanvas);
-window.addEventListener("orientationchange", () => setTimeout(resizeGameCanvas, 150));
+function scheduleGameCanvasResize() {
+  if (resizeFrame) cancelAnimationFrame(resizeFrame);
+  resizeFrame = requestAnimationFrame(() => {
+    resizeFrame = 0;
+    resizeGameCanvas();
+  });
+}
+window.addEventListener("resize", scheduleGameCanvasResize, { passive: true });
+window.addEventListener("orientationchange", () => setTimeout(scheduleGameCanvasResize, 250), { passive: true });
+window.addEventListener("fullscreenchange", scheduleGameCanvasResize);
+if (window.visualViewport) {
+  window.visualViewport.addEventListener("resize", scheduleGameCanvasResize, { passive: true });
+}
+if ("ResizeObserver" in window) {
+  new ResizeObserver(scheduleGameCanvasResize).observe(document.getElementById("game-container"));
+}
 resizeGameCanvas();
 
 // Fullscreen

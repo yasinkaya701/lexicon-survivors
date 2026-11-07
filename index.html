@@ -85,6 +85,15 @@
       align-items: center;
     }
 
+    html {
+      --app-height: 100dvh;
+      --app-width: 100vw;
+      --safe-inset-top: env(safe-area-inset-top, 0px);
+      --safe-inset-right: env(safe-area-inset-right, 0px);
+      --safe-inset-bottom: env(safe-area-inset-bottom, 0px);
+      --safe-inset-left: env(safe-area-inset-left, 0px);
+    }
+
     /* Responsive 16:9 Letterbox Container (Zero Clipping) */
     #game-container {
       position: relative;
@@ -886,8 +895,7 @@
     /* Virtual Mobile Controls */
     #mobile-touch-controls {
       position: absolute;
-      bottom: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
       pointer-events: none;
@@ -943,10 +951,10 @@
       z-index: 45;
     }
     .touch-circle-btn {
-      width: 52px;
-      height: 52px;
-      min-width: 48px;
-      min-height: 48px;
+      width: 58px;
+      height: 58px;
+      min-width: 58px;
+      min-height: 58px;
       border-radius: 50%;
       background: radial-gradient(circle, #faf2df 0%, #d8be8d 100%);
       border: 2.5px solid var(--gold-dark);
@@ -1011,19 +1019,26 @@
 
     /* Responsive for small screens & phones & iPads */
     @media (max-width: 1080px), (max-height: 720px), (pointer: coarse), (hover: none) {
+      button, [role="button"], [onclick] {
+        min-height: 44px !important;
+        touch-action: manipulation !important;
+      }
       html, body {
         width: 100% !important;
-        height: 100% !important;
+        height: var(--app-height, 100dvh) !important;
         overflow: hidden !important;
         position: fixed !important;
+        inset: 0 !important;
+        overscroll-behavior: none !important;
       }
 
       #game-container {
-        width: 100vw !important;
-        height: 100% !important;
-        height: 100dvh !important;
-        max-width: 100vw !important;
-        max-height: 100dvh !important;
+        position: fixed !important;
+        inset: 0 !important;
+        width: var(--app-width, 100vw) !important;
+        height: var(--app-height, 100dvh) !important;
+        max-width: none !important;
+        max-height: none !important;
         aspect-ratio: unset !important;
         border: none !important;
         border-radius: 0 !important;
@@ -1037,7 +1052,7 @@
         left: 0 !important;
         width: 100% !important;
         height: 100% !important;
-        object-fit: cover !important;
+        object-fit: fill !important;
         display: block !important;
       }
 
@@ -1088,7 +1103,7 @@
         padding: 4px 8px !important;
         font-size: 11px !important;
         font-weight: 800 !important;
-        min-height: 28px !important;
+        min-height: 44px !important;
         background: linear-gradient(180deg, #4a2815, #221209) !important;
         border: 1.5px solid var(--gold-bright) !important;
         color: var(--gold-bright) !important;
@@ -1119,7 +1134,7 @@
 
       /* Modals Full Screen Adaptability */
       .screen-overlay {
-        padding: 6px !important;
+        padding: max(6px, env(safe-area-inset-top, 0px)) max(6px, env(safe-area-inset-right, 0px)) max(6px, env(safe-area-inset-bottom, 0px)) max(6px, env(safe-area-inset-left, 0px)) !important;
         overflow-y: auto !important;
         -webkit-overflow-scrolling: touch !important;
         align-items: center !important;
@@ -1138,8 +1153,7 @@
       .dialog-panel {
         width: 100% !important;
         max-width: 100% !important;
-        max-height: 94vh !important;
-        max-height: 94dvh !important;
+        max-height: calc(var(--app-height, 100dvh) - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 12px) !important;
         padding: 8px 10px !important;
         gap: 5px !important;
         overflow-y: auto !important;
@@ -1225,7 +1239,7 @@
         flex: 1 1 0 !important;
         font-size: 9.5px !important;
         padding: 6px 2px !important;
-        min-height: 38px !important;
+        min-height: 44px !important;
         text-align: center !important;
         touch-action: manipulation !important;
       }
@@ -1346,13 +1360,15 @@
         height: 44px !important;
       }
       #touch-action-buttons {
-        bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
-        right: calc(16px + env(safe-area-inset-right, 0px)) !important;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 24px) !important;
+        right: calc(env(safe-area-inset-right, 0px) + 18px) !important;
         gap: 8px !important;
       }
       .touch-circle-btn {
-        width: 52px !important;
-        height: 52px !important;
+        width: 58px !important;
+        height: 58px !important;
+        min-width: 58px !important;
+        min-height: 58px !important;
         touch-action: manipulation !important;
       }
       #touch-gadget-btn {
@@ -1777,8 +1793,25 @@
     #auto-run-countdown-bar { width: 100%; height: 100%; background: #82958a; transition: width .1s linear; }
     #game-over-screen .btn { min-height: 38px; }
     @media (max-width: 700px), (pointer: coarse) {
-      #hud { box-sizing: border-box !important; padding: 5px 7px !important; gap: 1px !important; }
-      .hud-row { width: 100% !important; min-width: 0 !important; gap: 4px !important; }
+      button, [role="button"], [onclick] {
+        min-height: 44px !important;
+        touch-action: manipulation !important;
+        -webkit-tap-highlight-color: rgba(90, 112, 97, .22);
+      }
+      #mobile-menu-btn {
+        width: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        padding: 8px !important;
+        font-size: 0 !important;
+      }
+      #mobile-menu-btn .ui-icon { width: 20px !important; height: 20px !important; }
+      #orientation-hint { min-height: 44px !important; }
+      #diff-selection-container .btn { min-height: 44px !important; }
+
+      #hud { box-sizing: border-box !important; padding: calc(env(safe-area-inset-top, 0px) + 5px) calc(env(safe-area-inset-right, 0px) + 7px) 5px calc(env(safe-area-inset-left, 0px) + 7px) !important; gap: 1px !important; }
+      .hud-row { width: 100% !important; min-width: 0 !important; gap: 4px !important; flex-wrap: wrap !important; }
+      .stats-right { margin-left: auto; }
       .hp-container { width: clamp(72px, 24vw, 105px) !important; min-width: 72px !important; height: 20px; flex: 0 1 auto !important; }
       .hp-text { font-size: 9px; }
       .timer-badge { min-width: 0 !important; flex: 1 1 auto !important; overflow: hidden; text-overflow: ellipsis; font-size: 9px !important; padding: 2px 3px !important; white-space: nowrap !important; text-align: center; }
@@ -1789,8 +1822,10 @@
       .ui-icon { width: 14px; height: 14px; }
       .info-subrow { padding: 3px 6px; font-size: 9px; }
       .weapons-info { max-width: 56vw; overflow: hidden; }
-      #orientation-hint { top: 54px; max-width: calc(100% - 24px); padding: 6px 9px; font-size: 10px; }
-      #chapter-transition-card { top: 76px; padding: 11px 43px 12px 15px; }
+      #orientation-hint { top: calc(env(safe-area-inset-top, 0px) + 54px); max-width: calc(100% - 24px); padding: 6px 9px; font-size: 10px; }
+      #speed-toast { top: calc(env(safe-area-inset-top, 0px) + 62px) !important; right: calc(env(safe-area-inset-right, 0px) + 12px) !important; }
+      #chapter-transition-card { top: calc(env(safe-area-inset-top, 0px) + 104px); padding: 11px 43px 12px 15px; }
+      #tactical-alert-banner { top: calc(env(safe-area-inset-top, 0px) + 194px) !important; }
       #chapter-transition-title { font-size: clamp(16px, 4vw, 20px); }
       #chapter-transition-narration { font-size: 11px; }
       #shop-chapter-strip { padding: 7px 48px 8px 12px; }
@@ -1800,13 +1835,14 @@
       #game-over-screen .dialog-panel { padding: 18px 16px; }
       #game-over-title { margin-left: 28px; margin-right: 28px; font-size: 21px; }
       #game-over-summary { padding: 11px 12px; font-size: 11px; }
-      #title-screen .dialog-panel { max-height: calc(100dvh - 20px); padding: 14px; gap: 8px; }
+      #title-screen .dialog-panel { max-height: calc(var(--app-height, 100dvh) - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 12px); padding: 14px; gap: 8px; }
       #title-screen .title-header h1 { font-size: clamp(19px, 6vw, 24px); }
       #char-selection-grid { grid-template-columns: 1fr; gap: 5px; max-height: 250px; }
       #title-screen #char-selection-grid .choice-card { min-height: 78px !important; height: auto; padding: 6px 8px; overflow: hidden; }
       #title-screen #char-selection-grid .choice-card .passive { display: -webkit-box !important; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 10px !important; line-height: 1.22 !important; color: #5e6d61 !important; }
-      #shop-screen .dialog-panel { max-height: calc(100dvh - 20px); padding: 12px; }
+      #shop-screen .dialog-panel { max-height: calc(var(--app-height, 100dvh) - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 12px); padding: 12px; }
       #shop-items-grid { grid-template-columns: 1fr; }
+      #shop-screen .tab-btn, .shop-card .shop-buy { min-height: 44px !important; }
     }
     @media (min-width: 701px) {
       #shop-items-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
@@ -2856,6 +2892,6 @@
       window.startArchiveIntro();
     })();
   </script>
-  <script src="game.js?v=fixed-touch-zoom-framebudget-20261107"></script>
+  <script src="game.js?v=combined-ipad-perf-20261107"></script>
 </body>
 </html>
