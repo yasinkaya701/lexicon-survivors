@@ -122,6 +122,22 @@ function pickRuneChainTargets(origin, targets, maxTargets = 3) {
   return selected;
 }
 
+function pickNearestUnhitEnemy(origin, enemies, excluded, hitEnemies) {
+  let nearest = null;
+  let nearestDistanceSq = Infinity;
+  for (const enemy of enemies) {
+    if (!enemy || enemy === excluded || enemy.dead || enemy.hp <= 0 || hitEnemies.has(enemy)) continue;
+    const dx = enemy.x - origin.x;
+    const dy = enemy.y - origin.y;
+    const distanceSq = dx * dx + dy * dy;
+    if (distanceSq < nearestDistanceSq) {
+      nearest = enemy;
+      nearestDistanceSq = distanceSq;
+    }
+  }
+  return nearest;
+}
+
 function getSniperDamage(weaponId, baseDamage, isElite) {
   const bonus = getWeaponArchetype(weaponId)?.limits?.elite_bonus || 1;
   return baseDamage * (isElite ? bonus : 1);
@@ -219,12 +235,14 @@ function getHeroRenderLayers(player) {
   return { base, upperBody: null, baseFrame: getHeroAnimationFrame(base, player), upperBodyFrame: null };
 }
 
-function selectWeaponTarget(weapon, enemies = state.enemies, origin = state.player) {
+function selectWeaponTarget(weapon, enemies = state.enemies, origin = state.player, excluded = null, hitTargets = null) {
   // Keep the shipped 60fps targeting path: one pass and squared distances.
   const favorElites = weapon?.id === "grammar_sniper" || state.artifacts_owned.includes("archivist_compass");
   let nearest = null, bestDistSq = Infinity, bestIsElite = false;
   for (const enemy of enemies) {
-    if (!enemy || enemy.dead || enemy.hp <= 0) continue;
+    if (!enemy || enemy.dead || enemy.hp <= 0 || enemy === excluded
+      || (excluded && typeof excluded.has === "function" && excluded.has(enemy))
+      || (hitTargets && hitTargets.has(enemy))) continue;
     const elite = favorElites && (enemy.is_boss || enemy.is_elite || /boss/i.test(enemy.type || ""));
     if (bestIsElite && !elite) continue;
     const dx = enemy.x - origin.x, dy = enemy.y - origin.y;
@@ -1921,8 +1939,12 @@ const spriteList = [
   "upgrade_v1/threat_seal.png",
   "upgrade_v1/interactables/ink_well.svg", "upgrade_v1/interactables/archive_bell.svg",
   "upgrade_v1/interactables/astral_astrolabe.svg",
+  "upgrade_v1/boss_eclipse_sigil.svg", "upgrade_v1/boss_void_bloom_sigil.svg",
+  "upgrade_v1/boss_split_sigil.svg", "upgrade_v1/boss_return_sigil.svg",
   "upgrade_v1/word_echo/word_echo_title_frame.svg", "upgrade_v1/word_echo/echo_mark_quill.svg",
   "upgrade_v1/word_echo/echo_mark_mirror.svg", "upgrade_v1/word_echo/echo_mark_splinter.svg",
+  "upgrade_v1/word_echo/echo_mark_line.svg", "upgrade_v1/word_echo/echo_mark_snare.svg",
+  "upgrade_v1/word_echo/echo_return_shard.svg",
   "player.png", "player_quillmaster.png", "player_knight.png",
   "player_sorceress.png", "player_alchemist.png", "player_assassin.png",
   // Weapons
@@ -2037,7 +2059,13 @@ const ctx = canvas.getContext("2d");
 let lastTime = performance.now();
 let adaptiveCanvasScale = 1.0;
 let slowFrameSeconds = 0;
-const MIN_ADAPTIVE_CANVAS_SCALE = 0.42;
+let lastFrameCosts = { updateMs: 0, renderMs: 0, totalMs: 0 };
+// Let slower integrated/mobile GPUs trade a little canvas resolution for a
+// steadier frame rate. Pixel-art sprites keep nearest-neighbour edges crisp;
+// HTML menus and HUD text remain at native resolution.
+const MIN_ADAPTIVE_CANVAS_SCALE = 0.38;
+const MOBILE_RENDER_HEIGHT = 540;
+const DESKTOP_RENDER_HEIGHT = 600;
 
 function setCanvasResolution(width, height) {
   const nextWidth = Math.max(1, Math.round(width * adaptiveCanvasScale));
@@ -2046,16 +2074,18 @@ function setCanvasResolution(width, height) {
   if (canvas.height !== nextHeight) canvas.height = nextHeight;
 }
 
-function adaptCanvasQuality(frameSeconds) {
+function adaptCanvasQuality(framePressureSeconds) {
   if (!state.is_wave_active || document.hidden || adaptiveCanvasScale <= MIN_ADAPTIVE_CANVAS_SCALE) return;
-  if (frameSeconds > 0.024) slowFrameSeconds += frameSeconds;
-  else slowFrameSeconds = Math.max(0, slowFrameSeconds - frameSeconds * 0.75);
-  if (slowFrameSeconds < 0.42) return;
+  // Use both update/render work and RAF spacing. GPU/compositor stalls can
+  // leave JS work timers deceptively low while the player sees dropped frames.
+  if (framePressureSeconds > 0.024) slowFrameSeconds += Math.min(0.05, framePressureSeconds);
+  else slowFrameSeconds = Math.max(0, slowFrameSeconds - Math.max(0.008, framePressureSeconds) * 1.5);
+  if (slowFrameSeconds < 0.12) return;
 
   // The CSS/HTML interface remains at full resolution; only the pixel-art
   // arena render target shrinks when sustained frame times miss the 33 ms
   // budget. Keep the scale for the run to avoid quality oscillation.
-  adaptiveCanvasScale = Math.max(MIN_ADAPTIVE_CANVAS_SCALE, adaptiveCanvasScale - (frameSeconds > 0.045 ? 0.28 : 0.20));
+  adaptiveCanvasScale = Math.max(MIN_ADAPTIVE_CANVAS_SCALE, adaptiveCanvasScale - (framePressureSeconds > 0.032 ? 0.24 : 0.16));
   slowFrameSeconds = 0;
   resizeGameCanvas();
 }
@@ -2072,12 +2102,12 @@ function resizeGameCanvas() {
     const isPortrait = h > w;
 
     if (isPortrait) {
-      setCanvasResolution(720, Math.round(720 * (h / Math.max(1, w))));
+      setCanvasResolution(MOBILE_RENDER_HEIGHT, Math.round(MOBILE_RENDER_HEIGHT * (h / Math.max(1, w))));
     } else {
-      setCanvasResolution(Math.round(720 * (w / Math.max(1, h))), 720);
+      setCanvasResolution(Math.round(MOBILE_RENDER_HEIGHT * (w / Math.max(1, h))), MOBILE_RENDER_HEIGHT);
     }
   } else {
-    setCanvasResolution(1280, 720);
+    setCanvasResolution(Math.round(DESKTOP_RENDER_HEIGHT * (16 / 9)), DESKTOP_RENDER_HEIGHT);
   }
 }
 window.addEventListener("resize", resizeGameCanvas);
@@ -2603,6 +2633,7 @@ function triggerTacticalAlert(title, desc, tone = "threat") {
   descEl.textContent = desc;
   banner.style.display = "block";
   banner.style.opacity = "1";
+  syncTopAlertPositions();
   if (state.alert_timeout) clearTimeout(state.alert_timeout);
   state.alert_timeout = setTimeout(() => {
     banner.style.opacity = "0";
@@ -2643,6 +2674,24 @@ const chapterTransitions = [
 
 let chapterCardTimeout = null;
 
+function syncTopAlertPositions() {
+  const hud = document.getElementById("hud");
+  const card = document.getElementById("chapter-transition-card");
+  const alert = document.getElementById("tactical-alert-banner");
+  if (!hud) return;
+  const compactViewport = window.matchMedia("(max-width: 700px), (pointer: coarse)").matches;
+  if (!compactViewport) {
+    if (card) card.style.removeProperty("top");
+    if (alert) alert.style.top = "68px";
+    return;
+  }
+  const safeTop = `${Math.ceil(hud.getBoundingClientRect().bottom + 8)}px`;
+  if (card && !card.hidden) card.style.top = safeTop;
+  if (alert && alert.style.display !== "none") alert.style.top = safeTop;
+}
+
+window.addEventListener("resize", syncTopAlertPositions, { passive: true });
+
 function showChapterCard(stageIndex) {
   const chapter = chapterTransitions[Math.max(0, Math.min(chapterTransitions.length - 1, stageIndex))];
   const card = document.getElementById("chapter-transition-card");
@@ -2653,6 +2702,7 @@ function showChapterCard(stageIndex) {
   document.getElementById("chapter-transition-title").textContent = chapter.title;
   document.getElementById("chapter-transition-narration").textContent = chapter.narration;
   card.hidden = false;
+  syncTopAlertPositions();
   card.classList.remove("is-leaving");
   if (chapterCardTimeout) clearTimeout(chapterCardTimeout);
   chapterCardTimeout = setTimeout(() => {
@@ -2673,6 +2723,8 @@ function toggleInventoryModal(forcedState) {
   modal.style.display = shouldOpen ? "flex" : "none";
   if (shouldOpen) {
     renderInventoryView();
+  } else {
+    wakeGameLoop();
   }
   syncMobileControlsVisibility();
 }
@@ -2839,7 +2891,6 @@ function initTouchControls() {
   const joystickZone = document.getElementById("joystick-zone");
   const joystickBase = document.getElementById("joystick-base");
   const joystickKnob = document.getElementById("joystick-knob");
-  const touchSurface = document.getElementById("touch-joystick-surface");
   const touchWeaponBtn = document.getElementById("touch-weapon-btn");
   const touchGadgetBtn = document.getElementById("touch-gadget-btn");
   const touchInvBtn = document.getElementById("touch-inv-btn");
@@ -2926,54 +2977,31 @@ function initTouchControls() {
     joystickZone.style.opacity = "0.8";
   }
 
-  const startFloatingAt = (clientX, clientY, identifier) => {
+  const startAtFixedJoystick = (clientX, clientY, identifier) => {
     if (activeTouchId !== null) return;
     activeTouchId = identifier;
-
-    // Dynamically anchor joystick base directly to thumb position
-    const container = document.getElementById("game-container") || document.body;
-    const cRect = container.getBoundingClientRect();
-    const relX = clientX - cRect.left;
-    const relY = clientY - cRect.top;
-
-    joystickZone.style.left = (relX - 60) + "px";
-    joystickZone.style.top = (relY - 60) + "px";
-    joystickZone.style.bottom = "auto";
+    const rect = joystickZone.getBoundingClientRect();
+    centerX = rect.left + rect.width / 2;
+    centerY = rect.top + rect.height / 2;
     joystickZone.style.opacity = "1";
-
-    centerX = clientX;
-    centerY = clientY;
     updateJoystickPosition(clientX, clientY);
   };
 
-  const supportsPointerEvents = "PointerEvent" in window;
-  if (touchSurface) {
-    if (supportsPointerEvents) touchSurface.addEventListener("pointerdown", (e) => {
-      startFloatingAt(e.clientX, e.clientY, e.pointerId);
-      try { touchSurface.setPointerCapture(e.pointerId); } catch(err){}
-      e.preventDefault();
-    });
-    else touchSurface.addEventListener("touchstart", (e) => {
-      const touch = e.changedTouches[0];
-      startFloatingAt(touch.clientX, touch.clientY, touch.identifier);
-      e.preventDefault();
-    }, { passive: false });
-  }
-
   const onJoystickPointerDown = (e) => {
     if (activeTouchId !== null) return;
-    startFloatingAt(e.clientX, e.clientY, e.pointerId);
+    startAtFixedJoystick(e.clientX, e.clientY, e.pointerId);
     try { joystickZone.setPointerCapture(e.pointerId); } catch(err){}
     e.preventDefault();
   };
   const onJoystickTouchStart = (e) => {
     if (activeTouchId !== null || !e.changedTouches.length) return;
     const touch = e.changedTouches[0];
-    startFloatingAt(touch.clientX, touch.clientY, touch.identifier);
+    startAtFixedJoystick(touch.clientX, touch.clientY, touch.identifier);
     e.preventDefault();
   };
-  if (supportsPointerEvents) joystickZone.addEventListener("pointerdown", onJoystickPointerDown);
-  else joystickZone.addEventListener("touchstart", onJoystickTouchStart, { passive: false });
+  joystickZone.addEventListener("pointerdown", onJoystickPointerDown);
+  // Keep native touch events as a fallback for mobile Safari and embedded webviews.
+  joystickZone.addEventListener("touchstart", onJoystickTouchStart, { passive: false });
 
   const onPointerMove = (e) => {
     if (activeTouchId === e.pointerId) {
@@ -2992,18 +3020,16 @@ function initTouchControls() {
       }
     }
   };
-  if (supportsPointerEvents) window.addEventListener("pointermove", onPointerMove);
-  else window.addEventListener("touchmove", onTouchMove, { passive: false });
+  window.addEventListener("pointermove", onPointerMove);
+  window.addEventListener("touchmove", onTouchMove, { passive: false });
 
   const endPointer = (e) => {
     if (activeTouchId === e.pointerId) {
       resetJoystick();
     }
   };
-  if (supportsPointerEvents) {
-    window.addEventListener("pointerup", endPointer);
-    window.addEventListener("pointercancel", endPointer);
-  }
+  window.addEventListener("pointerup", endPointer);
+  window.addEventListener("pointercancel", endPointer);
 
   const endTouch = (e) => {
     if (activeTouchId === null) return;
@@ -3014,10 +3040,8 @@ function initTouchControls() {
       }
     }
   };
-  if (!supportsPointerEvents) {
-    window.addEventListener("touchend", endTouch);
-    window.addEventListener("touchcancel", endTouch);
-  }
+  window.addEventListener("touchend", endTouch);
+  window.addEventListener("touchcancel", endTouch);
 }
 
 // =========================================
@@ -3131,6 +3155,9 @@ function initTitleScreen() {
 
 const onStartGame = async (e) => {
   if (e) e.stopPropagation();
+  // Mobile players can start while the decorative archive reveal is still on
+  // screen; do not let that intro mask the first tap or linger over the run.
+  window.finishArchiveIntro?.(true);
   if (state.is_wave_active) return;
   if (weaponVisualsStatus !== "ready" && !(await ensureWeaponVisuals())) return;
   await utilityCatalogReady;
@@ -3282,6 +3309,7 @@ function startWave() {
   state.wave_duration = Math.min(42.0, 22.0 + (state.current_wave - 1) * 0.25);
   state.wave_time_left = state.wave_duration;
   state.is_wave_active = true;
+  wakeGameLoop();
   state.arena_interactables.forEach(object => { object.used = false; });
   state.mnemonic_used_this_wave = false;
   state.milestone_boss_delay = state.current_wave % 5 === 0 ? 1.8 : 0;
@@ -3686,7 +3714,7 @@ function updateGadgetEffects(dt) {
     card.timer -= dt; card.tick -= dt; card.angle += dt * 4.6;
     if (card.tick <= 0 && card.hitTargets.size < (GADGETS_CATALOG.index_storm.values?.target_cap || 3)) {
       card.tick = 0.62;
-      const target = selectWeaponTarget({ id: "quill_blaster" }, state.enemies.filter(enemy => !card.hitTargets.has(enemy)));
+      const target = selectWeaponTarget({ id: "quill_blaster" }, state.enemies, state.player, null, card.hitTargets);
       if (target) {
         card.hitTargets.add(target);
         target.hp -= card.damage;
@@ -4414,10 +4442,12 @@ function applyWeaponHitSignature(projectile, enemy, effectiveDamage) {
     enemy.quill_mark_hits = (enemy.quill_mark_hits || 0) + 1;
     if (tier >= 3 && enemy.quill_mark_hits >= 2 && (enemy.quill_echo_cooldown || 0) <= 0) {
       enemy.quill_echo_cooldown = 2.2;
-      const next = selectWeaponTarget({ id: "quill_blaster" }, state.enemies.filter(target => target !== enemy && !projectile.hitEnemies.has(target)), enemy);
+      const next = selectWeaponTarget({ id: "quill_blaster" }, state.enemies, enemy, enemy, projectile.hitEnemies);
       if (next) {
         const echoCount = tier >= 4 ? Math.max(1, row?.limits?.echo_targets || 1) : 1;
-        const followups = echoCount > 1 ? selectWeaponTarget({ id: "quill_blaster" }, state.enemies.filter(target => target !== enemy && target !== next && !projectile.hitEnemies.has(target)), enemy) : null;
+        const followups = echoCount > 1
+          ? selectWeaponTarget({ id: "quill_blaster" }, state.enemies, enemy, new Set([enemy, next]), projectile.hitEnemies)
+          : null;
         [next, followups].filter(Boolean).forEach(target => {
           const angle = Math.atan2(target.y - enemy.y, target.x - enemy.x);
           spawnProjectile({ type: "quill_echo", x: enemy.x, y: enemy.y,
@@ -4443,7 +4473,7 @@ function applyWeaponHitSignature(projectile, enemy, effectiveDamage) {
     }
   }
   if (projectile.weapon_id === "quote_pistols" && tier >= 4 && !projectile.ricochet_shot) {
-    const next = selectWeaponTarget({ id: "quote_pistols" }, state.enemies.filter(target => target !== enemy && !projectile.hitEnemies.has(target)), enemy);
+    const next = selectWeaponTarget({ id: "quote_pistols" }, state.enemies, enemy, enemy, projectile.hitEnemies);
     if (next) {
       const angle = Math.atan2(next.y - enemy.y, next.x - enemy.x);
       spawnProjectile({ type: "quote_ricochet", x: enemy.x, y: enemy.y,
@@ -4608,8 +4638,10 @@ function updateProjectiles(dt) {
           if (pr.weapon_id === "rune_orb" && !shieldDeflect) {
             pr.chain_hits = (pr.chain_hits || 0) + 1;
             const maxTargets = (getWeaponArchetype("rune_orb")?.limits?.bounce_targets || 3) + (pr.tier >= 2 ? 1 : 0);
+            // One nearest-target pass avoids allocating/filtering/sorting the
+            // full enemy roster for every bounce in a late-wave rune chain.
             const next = pr.chain_hits < maxTargets
-              ? pickRuneChainTargets({ x: e.x, y: e.y }, state.enemies.filter(target => target !== e && !pr.hitEnemies.has(target)), 1)[0]
+              ? pickNearestUnhitEnemy(e, state.enemies, e, pr.hitEnemies)
               : null;
             if (next) {
               const angle = Math.atan2(next.y - e.y, next.x - e.x);
@@ -4672,7 +4704,7 @@ function updateProjectiles(dt) {
           }
           if (pr.weapon_id === "grammar_sniper" && pr.tier >= 4 && e.hp <= 0
             && (pr.sniper_chain_count || 0) < (getWeaponArchetype("grammar_sniper")?.limits?.continuation_targets || 2)) {
-            const next = selectWeaponTarget({ id: "grammar_sniper" }, state.enemies.filter(target => target !== e && !target.dead && !pr.hitEnemies.has(target)), e);
+            const next = selectWeaponTarget({ id: "grammar_sniper" }, state.enemies, e, e, pr.hitEnemies);
             if (next) {
               const angle = Math.atan2(next.y - e.y, next.x - e.x);
               spawnProjectile({ type: "weakpoint_chain", x: e.x, y: e.y, dx: Math.cos(angle), dy: Math.sin(angle),
@@ -4841,10 +4873,8 @@ function updateBossHealthBar(force = false) {
   }
 }
 
-function fireBossProjectile(boss, angle, speed = 260, damageFactor = 0.55, shape = "orb") {
-  const before = state.enemy_projectiles.length;
-  spawnEnemyProjectile(boss.x, boss.y, Math.cos(angle), Math.sin(angle), boss.damage * damageFactor, speed);
-  const projectile = state.enemy_projectiles[before];
+function fireBossProjectile(boss, angle, speed = 260, damageFactor = 0.55, shape = "orb", originX = boss.x, originY = boss.y) {
+  const projectile = spawnEnemyProjectile(originX, originY, Math.cos(angle), Math.sin(angle), boss.damage * damageFactor, speed);
   if (projectile) {
     projectile.color = boss.boss_color || "#df625d";
     projectile.shape = shape;
@@ -4975,20 +5005,43 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
         }
       };
       state.telegraphs.push(ray);
+      if (boss.boss_skill === "crossfire" || boss.boss_skill === "finale") {
+        // The perpendicular projectiles need their own warning lane; without
+        // this tell the second half of the crossfire arrives unannounced.
+        state.telegraphs.push(telegraphLine(angle + Math.PI / 2, 820));
+      }
       break;
     }
     case "mirror":
-    case "return":
     case "echo": {
       state.telegraphs.push(groundMark(boss.x, boss.y, 128, () => {
         if (boss.dead) return;
         const count = boss.boss_skill === "echo" ? 10 : 8;
         for (let index = 0; index < count; index++) {
-          const a = index * Math.PI * 2 / count + (boss.boss_skill === "return" ? Math.PI / 8 : 0);
+          const a = index * Math.PI * 2 / count;
           fireBossProjectile(boss, a, 220 + phase * 24, phase === 3 ? 0.50 : 0.42, "ink");
         }
         sounds.enemyShoot();
       }, boss.boss_skill));
+      break;
+    }
+    case "return": {
+      state.telegraphs.push(groundMark(boss.x, boss.y, 128, () => {
+        if (boss.dead) return;
+        const count = phase === 3 ? 12 : 8;
+        for (let index = 0; index < count; index++) {
+          const angleOut = index * Math.PI * 2 / count;
+          const projectile = fireBossProjectile(boss, angleOut, 205 + phase * 18, phase === 3 ? 0.44 : 0.36, "ink");
+          if (projectile) {
+            projectile.return_owner = boss;
+            projectile.return_after = 0.62;
+            projectile.return_speed = 275 + phase * 18;
+            projectile.shape = "return";
+            projectile.sprite = "upgrade_v1/word_echo/echo_return_shard.svg";
+          }
+        }
+        sounds.enemyShoot();
+      }, "return"));
       break;
     }
     case "sever": {
@@ -5042,7 +5095,7 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
           const shardAngle = index * Math.PI * 2 / count;
           const difference = Math.atan2(Math.sin(shardAngle - escapeAngle), Math.cos(shardAngle - escapeAngle));
           if (Math.abs(difference) < 0.42) continue;
-          fireBossProjectile(boss, shardAngle, 190 + phase * 22, phase === 3 ? 0.42 : 0.34, "shard");
+          fireBossProjectile(boss, shardAngle, 190 + phase * 22, phase === 3 ? 0.42 : 0.34, "shard", markX, markY);
         }
       }, "eclipse"));
       break;
@@ -5306,6 +5359,85 @@ function updateEnemies(dt) {
     }
 
     switch (e.type) {
+      case "Spelling Spectre": {
+        if (!e.is_mistake_echo || e.echo_mechanic === "chase") {
+          e.x += (dirX * spd + e.vx) * dt;
+          e.y += (dirY * spd + e.vy) * dt;
+          break;
+        }
+        if (e.behavior_phase === "windup") {
+          e.behavior_timer = Math.max(0, (e.behavior_timer || 0) - dt);
+          e.x += dirX * spd * 0.22 * dt;
+          e.y += dirY * spd * 0.22 * dt;
+          break;
+        }
+        if (e.behavior_phase === "recovery") {
+          e.behavior_timer = Math.max(0, (e.behavior_timer || 0) - dt);
+          if (e.behavior_timer > 0) {
+            e.x += -dirY * spd * 0.24 * dt;
+            e.y += dirX * spd * 0.24 * dt;
+            break;
+          }
+          e.behavior_phase = "approach";
+        }
+        e.echo_attack_cooldown = (e.echo_attack_cooldown || 2.2) - dt;
+        if (e.echo_attack_cooldown <= 0 && dist < 520) {
+          e.echo_attack_cooldown = 3.25;
+          e.behavior_phase = "windup";
+          e.behavior_timer = 0.86;
+          const aimX = aiTarget.x + (aiTarget.vx || 0) * 0.24;
+          const aimY = aiTarget.y + (aiTarget.vy || 0) * 0.24;
+          const aimAngle = Math.atan2(aimY - e.y, aimX - e.x);
+          e.attack_anim_angle = aimAngle;
+          const telegraph = (attackAngle, action) => ({
+            is_laser: true, x1: e.x, y1: e.y,
+            x2: e.x + Math.cos(attackAngle) * 620, y2: e.y + Math.sin(attackAngle) * 620,
+            timer: 0.86, max_timer: 0.86, color: "rgba(184, 151, 220, 0.88)", owner: e, action
+          });
+          const finishAttack = () => { e.behavior_phase = "recovery"; e.behavior_timer = 0.52; };
+          if (e.echo_mechanic === "line") {
+            const x1 = e.x, y1 = e.y;
+            const x2 = x1 + Math.cos(aimAngle) * 620, y2 = y1 + Math.sin(aimAngle) * 620;
+            state.telegraphs.push(telegraph(aimAngle, () => {
+              if (!e.dead) resolveBossLine(e, x1, y1, x2, y2, 18, 0.38);
+              finishAttack();
+            }));
+          } else if (e.echo_mechanic === "snare") {
+            const markX = aimX, markY = aimY, radius = 46;
+            state.telegraphs.push({
+              x: markX, y: markY, radius, timer: 0.86, max_timer: 0.86,
+              is_boss_area: true, kind: "echo_snare", color: "#b897dc", owner: e,
+              action: () => {
+                if (!e.dead) {
+                  resolveBossArea(e, markX, markY, radius, 0.34, true);
+                  state.ink_puddles.push({ x: markX, y: markY, radius: 34, lifetime: 2.4, enemy_hazard: true });
+                }
+                finishAttack();
+              }
+            });
+          } else {
+            const angles = [aimAngle - 0.16, aimAngle + 0.16];
+            state.telegraphs.push(telegraph(angles[0], () => {
+              if (!e.dead) angles.forEach(projectileAngle => {
+                const projectile = spawnEnemyProjectile(e.x, e.y, Math.cos(projectileAngle), Math.sin(projectileAngle), e.damage * 0.34, 225);
+                projectile.color = "#b897dc"; projectile.shape = "shard"; projectile.radius = 7;
+              });
+              finishAttack();
+            }));
+            state.telegraphs.push(telegraph(angles[1], () => {}));
+          }
+          sounds.enemyShoot();
+          break;
+        }
+        if (dist < 172) {
+          e.x -= dirX * spd * 0.62 * dt; e.y -= dirY * spd * 0.62 * dt;
+        } else if (dist > 340) {
+          e.x += dirX * spd * 0.72 * dt; e.y += dirY * spd * 0.72 * dt;
+        } else {
+          e.x += -dirY * spd * 0.32 * dt; e.y += dirX * spd * 0.32 * dt;
+        }
+        break;
+      }
       case "Grammar Goblin": {
         e.dash_cooldown = (e.dash_cooldown || 3.0) - dt;
         if (e.dash_cooldown <= 0 && dist < 300) {
@@ -5529,9 +5661,26 @@ function updateEnemies(dt) {
 
   // Enemy projectiles
   state.enemy_projectiles.forEach(ep => {
+    ep.lifetime -= dt;
+    if (ep.return_owner && !ep.return_owner.dead) {
+      ep.return_after = (ep.return_after || 0) - dt;
+      if (ep.return_after <= 0) {
+        ep.returning = true;
+        ep.color = ep.return_owner.boss_color || "#d8c58e";
+        const dx = ep.return_owner.x - ep.x;
+        const dy = ep.return_owner.y - ep.y;
+        const distance = Math.hypot(dx, dy);
+        if (distance <= 24) {
+          ep.dead = true;
+          return;
+        }
+        ep.dx = dx / distance;
+        ep.dy = dy / distance;
+        ep.spd = ep.return_speed || ep.spd;
+      }
+    }
     ep.x += ep.dx * ep.spd * dt;
     ep.y += ep.dy * ep.spd * dt;
-    ep.lifetime -= dt;
 
     const pDist = Math.hypot(p.x - ep.x, p.y - ep.y);
     if (pDist < 20 && p.invuln_timer <= 0 && !p.is_dashing) {
@@ -5805,6 +5954,14 @@ const BOSS_TELEGRAPH_GUIDANCE = {
   eclipse: "Çekim halkası sonrası kırık parça çemberindeki açık aralıktan geç.",
   void_bloom: "Yoluna sırayla açılan üç mürekkep çiçeğinden hareketle sıyrıl."
 };
+const BOSS_AREA_SIGILS = Object.freeze({
+  eclipse: "upgrade_v1/boss_eclipse_sigil.svg",
+  void_bloom: "upgrade_v1/boss_void_bloom_sigil.svg",
+  split: "upgrade_v1/boss_split_sigil.svg",
+  return: "upgrade_v1/boss_return_sigil.svg",
+  snare: "upgrade_v1/word_echo/echo_mark_snare.svg",
+  echo_snare: "upgrade_v1/word_echo/echo_mark_snare.svg"
+});
 const BOSS_SPRITE_FALLBACKS = Object.freeze({
   "upgrade_v2/boss_red_inquisitor.png": "upgrade_v1/monster_red_pen_boss.png",
   "upgrade_v2/boss_lexicon_dragon.png": "upgrade_v1/monster_lexicon_dragon_boss.png",
@@ -5847,6 +6004,14 @@ function spawnMilestoneBoss(wave) {
 }
 
 const BOSS_ECHO_ACTIVE_CAP = 3;
+function getBossEchoMechanic(wordType) {
+  const type = String(wordType || "").toLocaleLowerCase("tr-TR");
+  if (/grammar|pattern|conjunction|preposition/.test(type)) return "line";
+  if (/idiom|phrasal|collocation/.test(type)) return "snare";
+  if (/antonym|synonym|noun\/adj|verb\/noun/.test(type)) return "mirror";
+  return "chase";
+}
+
 function spawnBossMistakeBatch(preferredAngle = null) {
   if (state.current_wave % 5 !== 0 || !Array.isArray(state.boss_mistake_queue)) return 0;
   const livingEchoes = state.enemies.filter(enemy => enemy.is_mistake_echo && !enemy.dead).length;
@@ -5866,7 +6031,8 @@ function spawnBossMistakeBatch(preferredAngle = null) {
       hp, max_hp: hp, speed: (112 + failures * 9) * DIFFICULTIES[state.difficulty].enemy_speed_mult,
       damage: (15 + state.current_wave * 0.16 + failures * 2) * DIFFICULTIES[state.difficulty].enemy_damage_mult,
       ink_reward: 0, size: 32, label: memoryWord, word_type: mistake.type || "", is_elite: true, is_mistake_echo: true,
-      memory_word: memoryWord, fail_count: failures, facing_left: false
+      memory_word: memoryWord, fail_count: failures, echo_mechanic: getBossEchoMechanic(mistake.type),
+      echo_attack_cooldown: 2.2, facing_left: false
     });
     if (!accepted) { state.boss_mistake_queue.unshift(mistake); break; }
     spawned++;
@@ -5876,9 +6042,11 @@ function spawnBossMistakeBatch(preferredAngle = null) {
 
 function spawnEnemyProjectile(x, y, dx, dy, dmg, spd) {
   if (state.enemy_projectiles.length >= 150) state.enemy_projectiles.splice(0, state.enemy_projectiles.length - 149);
-  state.enemy_projectiles.push({
+  const projectile = {
     x, y, dx, dy, damage: dmg, spd: spd, lifetime: 3.2, dead: false, color: null, shape: "orb", radius: 8
-  });
+  };
+  state.enemy_projectiles.push(projectile);
+  return projectile;
 }
 
 function spawnInkDrop(x, y, value) {
@@ -7026,6 +7194,7 @@ function render(dt = 1 / 60) {
   const cx = canvas.width / 2;
   const cy = canvas.height / 2;
   const p = state.player;
+  const reducedEffects = adaptiveCanvasScale < 0.70;
 
   ctx.save();
 
@@ -7037,10 +7206,10 @@ function render(dt = 1 / 60) {
   }
   ctx.translate(cx + shakeX, cy + shakeY);
 
-  // Dynamic Camera Zoom: On mobile/tablets, zoom in so action is big, punchy and clear!
-  const isTouchOrSmall = window.innerWidth <= 1080 || ('ontouchstart' in window);
-  const baseZoom = isTouchOrSmall ? (window.innerWidth < 650 ? 1.08 : 1.04) : 1.0;
-  const zoom = baseZoom * (state.camera_zoom || 1.0);
+  // Keep the camera at a predictable 1:1 scale on every device. Players can
+  // still use the explicit Z/X controls; silently zooming mobile crops the
+  // arena and makes touch movement feel inaccurate.
+  const zoom = state.camera_zoom || 1.0;
   if (zoom !== 1.0) {
     ctx.scale(zoom, zoom);
   }
@@ -7208,6 +7377,16 @@ function render(dt = 1 / 60) {
             ctx.beginPath(); ctx.moveTo(Math.cos(a) * inner, Math.sin(a) * inner);
             ctx.lineTo(Math.cos(a) * outer, Math.sin(a) * outer); ctx.stroke();
           }
+          const sigil = images[BOSS_AREA_SIGILS[tg.kind]];
+          if (sigil?.complete && sigil.naturalWidth > 0) {
+            const now = performance.now();
+            const sigilSize = Math.min(300, Math.max(52, tg.radius * 1.55));
+            ctx.save();
+            ctx.globalAlpha = 0.38 + (1 - pProg) * 0.32;
+            if (tg.kind !== "split") ctx.rotate(now * (tg.kind === "void_bloom" ? 0.00016 : -0.00012));
+            ctx.drawImage(sigil, -sigilSize / 2, -sigilSize / 2, sigilSize, sigilSize);
+            ctx.restore();
+          }
           ctx.restore();
           return;
         }
@@ -7234,7 +7413,9 @@ function render(dt = 1 / 60) {
   }
 
   // Motes
+  let moteIndex = 0;
   state.ambient_motes.forEach(m => {
+    if (reducedEffects && (moteIndex++ % 2) === 1) return;
     if (!isInRenderViewport(m.x, m.y, m.radius)) return;
     ctx.save();
     ctx.fillStyle = ambientMoteColor + `${m.alpha})`;
@@ -7363,9 +7544,14 @@ function render(dt = 1 / 60) {
     if (!isInRenderViewport(ep.x, ep.y, (ep.radius || 10) + 18)) return;
     ctx.save();
     ctx.translate(ep.x, ep.y);
-    if (ep.color) {
+    const projectileSprite = ep.sprite ? images[ep.sprite] : null;
+    if (projectileSprite?.complete && projectileSprite.naturalWidth > 0) {
+      const radius = ep.radius || 10;
+      ctx.rotate(Math.atan2(ep.dy, ep.dx));
+      ctx.drawImage(projectileSprite, -radius * 1.8, -radius * 1.8, radius * 3.6, radius * 3.6);
+    } else if (ep.color) {
       const r = ep.radius || 10;
-      ctx.shadowColor = ep.color; ctx.shadowBlur = 13;
+      ctx.shadowColor = ep.color; ctx.shadowBlur = reducedEffects ? 0 : 13;
       ctx.fillStyle = ep.color;
       ctx.strokeStyle = "rgba(255,244,220,.9)"; ctx.lineWidth = 1.3;
       ctx.beginPath();
@@ -7373,6 +7559,10 @@ function render(dt = 1 / 60) {
         ctx.moveTo(0, -r * 1.5); ctx.lineTo(r * 0.7, 0); ctx.lineTo(0, r * 1.5); ctx.lineTo(-r * 0.7, 0); ctx.closePath();
       } else if (ep.shape === "ink") {
         ctx.ellipse(0, 0, r * 1.25, r * 0.7, Math.atan2(ep.dy, ep.dx), 0, Math.PI * 2);
+      } else if (ep.shape === "return") {
+        ctx.arc(0, 0, r * 1.25, -0.65, Math.PI * 1.35);
+        ctx.lineTo(0, 0);
+        ctx.closePath();
       } else ctx.arc(0, 0, r, 0, Math.PI * 2);
       ctx.fill(); ctx.stroke();
     } else {
@@ -7387,6 +7577,7 @@ function render(dt = 1 / 60) {
   const enemyLabelBoxes = [];
 
   // Enemies
+  let detailedCrowdSprites = 0;
   state.enemies.forEach(e => {
     if (!isInRenderViewport(e.x, e.y, Math.max(64, (e.size || 36) * 0.95 + 18))) return;
     if (e.behavior_phase === "windup" && (e.type === "Homophone Harpy" || e.type === "Run-on Reaper")) {
@@ -7451,6 +7642,22 @@ function render(dt = 1 / 60) {
       ctx.arc(e.x, e.y, 160, 0, Math.PI * 2);
       ctx.stroke();
       ctx.restore();
+    }
+
+    const mustKeepDetailed = e.is_boss || e.is_elite || e.is_mistake_echo
+      || e.affix === "commander" || e.affix === "shielded";
+    const simplifyCrowdSprite = reducedEffects && !mustKeepDetailed && detailedCrowdSprites >= 76;
+    if (!mustKeepDetailed && !simplifyCrowdSprite) detailedCrowdSprites++;
+    if (simplifyCrowdSprite) {
+      // Retain every enemy's position and hitbox while replacing only excess
+      // low-priority crowd art with a sharp, color-coded marker on slow GPUs.
+      const radius = Math.max(4, Math.min(7, (e.size || 36) * 0.15));
+      ctx.fillStyle = e.is_buffed ? "#e4c16f" : "#9ca993";
+      ctx.strokeStyle = "#171c18";
+      ctx.lineWidth = 1.5;
+      ctx.fillRect(e.x - radius, e.y - radius, radius * 2, radius * 2);
+      ctx.strokeRect(e.x - radius, e.y - radius, radius * 2, radius * 2);
+      return;
     }
 
     ctx.save();
@@ -7548,8 +7755,11 @@ function render(dt = 1 / 60) {
       const plateY = e.y - (e.size || 32) * 0.95 - plateHeight;
       if (frame) ctx.drawImage(frame, plateX, plateY, plateWidth, plateHeight);
       const category = String(e.word_type || "").toLocaleLowerCase("tr-TR");
-      const markKey = /grammar|structure|sentence|sözdizim/.test(category) ? "echo_mark_splinter.svg"
-        : /synonym|antonym|anlam|eş|zit/.test(category) ? "echo_mark_mirror.svg" : "echo_mark_quill.svg";
+      const markKey = e.echo_mechanic === "line" ? "echo_mark_line.svg"
+        : e.echo_mechanic === "snare" ? "echo_mark_snare.svg"
+          : e.echo_mechanic === "mirror" ? "echo_mark_mirror.svg"
+            : /grammar|structure|sentence|sözdizim/.test(category) ? "echo_mark_splinter.svg"
+              : /synonym|antonym|anlam|eş|zit/.test(category) ? "echo_mark_mirror.svg" : "echo_mark_quill.svg";
       const mark = images[`upgrade_v1/word_echo/${markKey}`];
       if (mark) ctx.drawImage(mark, e.x - 11, e.y + (e.size || 32) * 0.34, 22, 22);
       const fontSize = Math.max(8, Math.min(11, 145 / Math.max(1, ctx.measureText(text).width) * 11));
@@ -7598,7 +7808,7 @@ function render(dt = 1 / 60) {
     } else {
       ctx.fillStyle = pr.crit ? "#ffd700" : pr.color;
       ctx.shadowColor = pr.color;
-      ctx.shadowBlur = pr.crit ? 14 : 6;
+      ctx.shadowBlur = reducedEffects ? 0 : (pr.crit ? 14 : 6);
       ctx.fillRect(-8, -3, 16, 6);
     }
     ctx.restore();
@@ -7786,16 +7996,56 @@ function render(dt = 1 / 60) {
 // =========================================
 // 17. MAIN GAME LOOP
 // =========================================
-function gameLoop(now) {
-  const rawDt = Math.min(0.1, (now - lastTime) / 1000);
-  lastTime = now;
-  adaptCanvasQuality(rawDt);
-  const dt = rawDt * (state.game_speed || 1.0);
+let idleGameLoopTimer = null;
+function scheduleGameLoop() {
+  if (state.is_wave_active && !state.is_inventory_open && !document.hidden) {
+    requestAnimationFrame(gameLoop);
+    return;
+  }
+  // Menus and inventory cover a frozen arena. Rendering that hidden arena at
+  // 60 FPS was wasting GPU time and making the title/shop feel sluggish.
+  const delay = document.hidden ? 500 : 180;
+  idleGameLoopTimer = setTimeout(() => {
+    idleGameLoopTimer = null;
+    requestAnimationFrame(gameLoop);
+  }, delay);
+}
 
-  updateGame(dt);
-  render(rawDt);
+function wakeGameLoop() {
+  if (idleGameLoopTimer === null) return;
+  clearTimeout(idleGameLoopTimer);
+  idleGameLoopTimer = null;
   requestAnimationFrame(gameLoop);
 }
+
+function gameLoop(now) {
+  if (!state.is_wave_active || state.is_inventory_open || document.hidden) {
+    // Do not let an idle period turn into a huge simulation step on resume.
+    lastTime = now;
+    scheduleGameLoop();
+    return;
+  }
+  const rawDt = Math.min(0.1, (now - lastTime) / 1000);
+  lastTime = now;
+  const dt = rawDt * (state.game_speed || 1.0);
+
+  const frameStarted = performance.now();
+  updateGame(dt);
+  const renderStarted = performance.now();
+  render(rawDt);
+  const frameFinished = performance.now();
+  lastFrameCosts = {
+    updateMs: Number((renderStarted - frameStarted).toFixed(2)),
+    renderMs: Number((frameFinished - renderStarted).toFixed(2)),
+    totalMs: Number((frameFinished - frameStarted).toFixed(2))
+  };
+  adaptCanvasQuality(Math.max(rawDt, lastFrameCosts.totalMs / 1000));
+  scheduleGameLoop();
+}
+
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) wakeGameLoop();
+});
 
 window.arenaInteractableTestApi = Object.freeze({
   state: () => state,
@@ -7970,6 +8220,7 @@ window.weaponArchetypeTestApi = Object.freeze({
   nextPistolSide: getNextPistolSide,
   canPlaceTurret,
   pickRuneChainTargets,
+  selectWeaponTarget,
   runFrameIndex: getHeroRunFrameIndex,
   runFrameCount: getHeroRunFrameCount,
   heroActionDirection: getHeroActionDirection,
@@ -8026,6 +8277,7 @@ window.render_game_to_text = () => JSON.stringify({
   coordinate_system: "arena origin at center; +x right, +y down",
   render_quality: Number(adaptiveCanvasScale.toFixed(2)),
   render_target: { width: canvas.width, height: canvas.height },
+  frame_cost_ms: lastFrameCosts,
   weapon_visuals: { status: weaponVisualsStatus, error: weaponVisualsError, effect_count: state.hit_effects.length },
   mode: state.hp <= 0 ? "gameover" : state.is_wave_active ? "wave" : (getComputedStyle(document.getElementById("shop-screen")).display !== "none" ? "shop" : "title"),
   wave: state.current_wave,
@@ -8080,5 +8332,7 @@ ensureWeaponVisuals();
 loadAssets(() => {
   initTitleScreen();
   initTouchControls();
+  // Paint the static title backdrop once before the idle loop goes to sleep.
+  render(0);
   requestAnimationFrame(gameLoop);
 });

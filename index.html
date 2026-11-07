@@ -136,10 +136,12 @@
       background: radial-gradient(ellipse at 50% 55%, rgba(76, 63, 43, .62), rgba(8, 13, 10, .98) 68%), #080d0a;
       opacity: 1;
       transition: opacity 180ms ease;
+      /* Keep the title and its buttons tappable while the decorative intro plays. */
+      pointer-events: none;
       touch-action: manipulation;
     }
     #archive-intro[hidden] { display: none; }
-    #archive-intro::before { content: ""; position: absolute; inset: -2%; background: url("assets/sprites/upgrade_v1/arena_frame_library.png") center / cover no-repeat; opacity: .2; filter: brightness(.65) saturate(.55); animation: archive-lights 1.45s ease-out both; }
+    #archive-intro::before { content: ""; position: absolute; inset: -2%; background: url("assets/sprites/upgrade_v1/arena_frame_library.png") center / cover no-repeat; opacity: .2; filter: brightness(.65) saturate(.55); animation: archive-lights 1.45s ease-out both; pointer-events: none; }
     #archive-intro::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 12%, rgba(4, 8, 6, .6) 100%); pointer-events: none; }
     #archive-intro.is-leaving { opacity: 0; pointer-events: none; }
     #archive-intro .archive-intro-content { position: relative; z-index: 1; padding: 24px; animation: archive-rise 1.7s ease both; }
@@ -148,7 +150,7 @@
     #archive-intro .archive-intro-kicker { color: #cbb980; font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .2em; }
     #archive-intro h1 { margin: 10px 0 5px; font: 600 clamp(25px, 6vw, 48px) 'IBM Plex Serif', serif; letter-spacing: .08em; text-shadow: 0 3px 24px rgba(0, 0, 0, .9); }
     #archive-intro p { color: #c0c1ae; font: 400 clamp(12px, 2vw, 15px) 'IBM Plex Sans', sans-serif; }
-    #archive-intro .archive-intro-skip { position: absolute; z-index: 2; left: 50%; bottom: max(18px, env(safe-area-inset-bottom)); transform: translateX(-50%); margin: 0; padding: 11px 18px; min-height: 44px; border: 1px solid rgba(202, 187, 135, .56); border-radius: 3px; color: #f2e8d2; background: rgba(20, 27, 22, .94); font: 500 12px 'IBM Plex Mono', monospace; letter-spacing: .07em; cursor: pointer; touch-action: manipulation; }
+    #archive-intro .archive-intro-skip { position: absolute; z-index: 2; left: 50%; bottom: max(18px, env(safe-area-inset-bottom)); transform: translateX(-50%); margin: 0; padding: 11px 18px; min-height: 44px; border: 1px solid rgba(202, 187, 135, .56); border-radius: 3px; color: #f2e8d2; background: rgba(20, 27, 22, .94); font: 500 12px 'IBM Plex Mono', monospace; letter-spacing: .07em; cursor: pointer; pointer-events: auto; touch-action: manipulation; }
     #archive-intro .archive-intro-skip:focus-visible { outline: 2px solid #ffd700; outline-offset: 3px; }
     #archive-intro.is-reduced { transition-duration: 250ms; }
     #archive-intro.is-reduced .archive-intro-content, #archive-intro.is-reduced::before { animation: none; }
@@ -892,17 +894,6 @@
       z-index: 40;
       display: none;
     }
-    #touch-joystick-surface {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 50%;
-      height: 100%;
-      pointer-events: auto;
-      touch-action: none;
-      z-index: 38;
-      -webkit-tap-highlight-color: transparent;
-    }
     #joystick-zone {
       position: absolute;
       bottom: calc(24px + env(safe-area-inset-bottom, 0px));
@@ -1570,9 +1561,9 @@
       animation: chapter-reveal .3s ease-out both;
     }
     #chapter-transition-card[hidden] { display: none !important; }
-    #story-intermission { position: absolute; inset: 0; z-index: 260; display: grid; place-items: center; padding: clamp(8px,2vw,24px); background: radial-gradient(ellipse at 50% 42%, rgba(31,39,34,.76), rgba(7,10,9,.96) 72%); color: #e9e2d2; animation: story-fade-in .65s ease-out both; }
+    #story-intermission { position: absolute; inset: 0; z-index: 260; display: grid; place-items: center; overflow-y: auto; overscroll-behavior: contain; padding: clamp(8px,2vw,24px); background: radial-gradient(ellipse at 50% 42%, rgba(31,39,34,.76), rgba(7,10,9,.96) 72%); color: #e9e2d2; animation: story-fade-in .65s ease-out both; }
     #story-intermission[hidden] { display: none !important; }
-    .story-leaf { position: relative; width: min(960px, 100%); box-sizing: border-box; padding: clamp(10px,1.8vw,20px); overflow: hidden; background: linear-gradient(115deg,rgba(29,37,32,.98),rgba(16,22,20,.98)); border: 1px solid #a78d5c; box-shadow: 0 24px 90px #000a; animation: story-leaf-arrive .8s cubic-bezier(.2,.8,.2,1) both; }
+    .story-leaf { position: relative; width: min(960px, 100%); max-height: calc(100dvh - 32px); box-sizing: border-box; padding: clamp(10px,1.8vw,20px); overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; background: linear-gradient(115deg,rgba(29,37,32,.98),rgba(16,22,20,.98)); border: 1px solid #a78d5c; box-shadow: 0 24px 90px #000a; animation: story-leaf-arrive .8s cubic-bezier(.2,.8,.2,1) both; }
     .story-leaf::before { content:""; position:absolute; inset:12px; border:1px solid #c5aa7244; pointer-events:none; }
     .story-leaf::after { content:""; position:absolute; right:-34px; top:-44px; width:220px; height:280px; opacity:.12; background: repeating-linear-gradient(0deg,transparent 0 18px,#d6c18b 19px 20px); transform:rotate(13deg); pointer-events:none; }
     #story-kicker { color:#c5aa72; font:500 11px 'IBM Plex Mono',monospace; letter-spacing:.16em; text-transform:uppercase; }
@@ -1600,7 +1591,7 @@
     #story-skip { min-height:40px; padding:0 12px; border:1px solid #8c8d77; background:transparent; color:#c8c9bb; font:500 11px 'IBM Plex Sans',sans-serif; cursor:pointer; }
     #story-counter { margin-left:auto; color:#879187; font:11px 'IBM Plex Mono',monospace; }
     #story-enter-hint { color:#8e988c; font:10px 'IBM Plex Mono',monospace; }
-    #story-intermission::before, #story-intermission::after { content:""; position:absolute; left:0; right:0; height:clamp(10px,3vh,28px); background:#050706; box-shadow:0 0 32px #000; }
+    #story-intermission::before, #story-intermission::after { content:""; position:absolute; left:0; right:0; height:clamp(10px,3vh,28px); background:#050706; box-shadow:0 0 32px #000; pointer-events:none; }
     #story-intermission::before { top:0; } #story-intermission::after { bottom:0; }
     @keyframes story-fade-in { from { opacity:0; } to { opacity:1; } }
     @keyframes story-leaf-arrive { from { opacity:0; transform:translateY(14px) scale(.985); } to { opacity:1; transform:translateY(0) scale(1); } }
@@ -1609,6 +1600,14 @@
     @keyframes story-bubble-in { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
     @media(prefers-reduced-motion:reduce) { #story-intermission, .story-leaf,#story-scene-image,#story-speaker-portrait,.story-dialogue-frame { animation-duration:.01ms!important; } }
     @media(max-width:600px) { .story-leaf { padding:8px; } .story-header { align-items:flex-start; } #story-location { max-width:40%; text-align:right; } #story-scene { height:clamp(210px,43vh,360px); } .story-dialogue-frame { max-width:94%; min-height:90px; padding:12px; } #story-speaker-portrait { width:76px; height:76px; right:10px; top:10px; padding:8px; } #story-speaker-portrait[data-kind="boss"] { width:86px; height:86px; } .story-boss-memory { max-width:58%; padding:6px 8px; gap:7px; } .story-boss-memory img { width:32px;height:32px; } .story-boss-memory span { font-size:10px; } .story-controls { flex-wrap:wrap; } #story-next { flex:1 1 100%; order:0; } #story-skip { order:1; } #story-enter-hint { order:2; } #story-counter { order:3; } }
+    @media(max-height:560px) {
+      #story-intermission { place-items:start center; padding:8px; }
+      .story-leaf { max-height:calc(100dvh - 16px); padding:8px; }
+      #story-scene { height:clamp(96px,32vh,180px); min-height:96px; }
+      .story-dialogue-frame { min-height:0; padding:8px 10px; }
+      .story-controls { position:sticky; bottom:-8px; z-index:5; margin:0 -8px -8px; padding:8px; background:linear-gradient(180deg,rgba(16,22,20,.78),rgba(16,22,20,.99) 28%); }
+      #story-next { min-height:38px; min-width:132px; }
+    }
     .music-choice-row { display:flex; align-items:center; justify-content:center; gap:12px; color:#725a3a; font:600 11px 'IBM Plex Mono',monospace; letter-spacing:.08em; }
     .music-choice-row select { min-height:36px; padding:0 32px 0 11px; border:1px solid #a89b82; background:#eee7d9; color:#28302a; font:500 13px 'IBM Plex Sans',sans-serif; }
     #chapter-transition-card::before {
@@ -2069,16 +2068,18 @@
       #title-screen .title-difficulty-description { min-height: 20px; }
       #title-screen .title-run-options { gap: 4px; }
       #title-screen .title-run-options .btn { flex: 1 1 auto; }
-      #title-screen .title-actions { flex-direction: column; align-items: stretch; gap: 7px; padding: 9px 12px 10px; }
+      #title-screen .title-actions { position: sticky; bottom: -1px; z-index: 8; flex-direction: column; align-items: stretch; gap: 7px; padding: 9px 12px max(10px, env(safe-area-inset-bottom)); background: #111a16; border-top: 1px solid #81734f; box-shadow: 0 -12px 28px rgba(17,26,22,.9); }
       #title-screen .title-action-buttons { display: grid; grid-template-columns: 1.1fr .9fr; }
       #title-screen #start-game-btn, #title-screen #title-leaderboard-btn { width: 100%; min-height: 42px; padding: 7px 8px !important; font-size: 10px; }
       #title-screen .title-control-key { text-align: center; font-size: 8px; }
     }
     @media (max-height: 690px) and (min-width: 761px) {
+      #title-screen .title-dossier { max-height: calc(100dvh - 12px); overflow-y: auto; }
       #title-screen .title-cover { min-height: 0; }
       #title-screen .title-portrait-well { height: 148px; }
       #title-screen #title-hero-feature { height: 130px; }
       #title-screen #char-selection-grid { max-height: 190px; }
+      #title-screen .title-actions { position: sticky; bottom: -1px; z-index: 8; }
     }
     /* Hand bound field journal: tiny in play, expressive in the details. */
     #hud {
@@ -2649,10 +2650,7 @@
 
     <!-- VIRTUAL MOBILE TOUCH CONTROLS -->
     <div id="mobile-touch-controls">
-      <!-- Full Left-Half Floating Joystick Touch Surface -->
-      <div id="touch-joystick-surface"></div>
-
-      <!-- Virtual Joystick Base & Knob -->
+      <!-- Fixed lower-left joystick; only this visible control captures movement input. -->
       <div id="joystick-zone">
         <div id="joystick-base">
           <div id="joystick-knob"></div>
@@ -2858,6 +2856,6 @@
       window.startArchiveIntro();
     })();
   </script>
-  <script src="game.js?v=ink-skill-boss-echo-20261107"></script>
+  <script src="game.js?v=fixed-touch-zoom-framebudget-20261107"></script>
 </body>
 </html>
