@@ -4476,7 +4476,15 @@ function getWaveDamageMult(wave) {
   }
 }
 
-function updateBossHealthBar() {
+let bossHealthHudLastUpdate = 0;
+const BOSS_HEALTH_HUD_INTERVAL_MS = 100;
+function updateBossHealthBar(force = false) {
+  // Boss health changes every simulation frame, but repainting several DOM
+  // nodes at 60 Hz adds work during the heaviest encounter. Keep the bar
+  // responsive at 10 Hz and force its important spawn/death transitions.
+  const now = performance.now();
+  if (!force && now - bossHealthHudLastUpdate < BOSS_HEALTH_HUD_INTERVAL_MS) return;
+  bossHealthHudLastUpdate = now;
   const bar = document.getElementById("boss-hp-container");
   if (!bar) return;
   const aliveBosses = state.enemies.filter(e => (e.is_boss || e.type === "Red Pen Boss" || e.type === "Lexicon Dragon Boss") && !e.dead);
@@ -4558,8 +4566,8 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
   if (boss.boss_skill_cooldown > 0) return;
   const phase = boss.boss_phase || 1;
   // Stronger multi-phase pressure, while keeping every dangerous move readable and dodgeable.
-  const duration = phase === 3 ? 0.82 : 0.95;
-  const baseDamage = phase === 3 ? 0.72 : 0.54;
+  const duration = phase === 3 ? 0.78 : (phase === 2 ? 0.90 : 0.95);
+  const baseDamage = phase === 3 ? 0.82 : (phase === 2 ? 0.60 : 0.54);
   const targetX = state.player.x + state.player.vx * 0.38;
   const targetY = state.player.y + state.player.vy * 0.38;
   const angle = Math.atan2(targetY - boss.y, targetX - boss.x);
@@ -4643,7 +4651,7 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
         const count = boss.boss_skill === "echo" ? 10 : 8;
         for (let index = 0; index < count; index++) {
           const a = index * Math.PI * 2 / count + (boss.boss_skill === "return" ? Math.PI / 8 : 0);
-          fireBossProjectile(boss, a, 220 + phase * 24, 0.42, "ink");
+          fireBossProjectile(boss, a, 220 + phase * 24, phase === 3 ? 0.50 : 0.42, "ink");
         }
         sounds.enemyShoot();
       }, boss.boss_skill));
@@ -5193,9 +5201,8 @@ function updateEnemies(dt) {
         state.health_drops.push({ x: e.x, y: e.y, value: 50, collected: false });
         // One concentrated seal replaces the old 18-drop pinata. The duel
         // should pay out, while the story relic remains a deliberate milestone.
-        updateBossHealthBar();
+        updateBossHealthBar(true);
       }
-      updateHUD();
     }
   });
 
@@ -5393,7 +5400,7 @@ function spawnMilestoneBoss(wave) {
   sounds.bossRoar();
   addAliveEnemy(boss);
   triggerTacticalAlert(name.toLocaleUpperCase("tr-TR"), BOSS_TELEGRAPH_GUIDANCE[skill] || "İşaretlere bak, saldırıdan önce güvenli alanı bul.");
-  updateBossHealthBar();
+  updateBossHealthBar(true);
 }
 
 function spawnEnemyProjectile(x, y, dx, dy, dmg, spd) {
@@ -7324,6 +7331,8 @@ window.weaponArchetypeTestApi = Object.freeze({
     && typeof updateProjectiles === "function"
 });
 
+let gameplayHudRefreshTimer = 0;
+const GAMEPLAY_HUD_INTERVAL = 0.1;
 function updateGame(dt) {
   updateAmbientMotes(dt / Math.max(0.01, state.game_speed || 1));
   if (state.is_wave_active) {
@@ -7332,7 +7341,14 @@ function updateGame(dt) {
       updateEnemies(dt);
       updateGadgetEffects(dt);
     }
-    updateHUD();
+    // Keep canvas simulation at full frame rate while limiting repeated DOM
+    // text/style work to 10 Hz. Damage, purchases, and menu actions still call
+    // updateHUD directly for immediate feedback.
+    gameplayHudRefreshTimer -= dt;
+    if (gameplayHudRefreshTimer <= 0) {
+      updateHUD();
+      gameplayHudRefreshTimer = GAMEPLAY_HUD_INTERVAL;
+    }
   }
 }
 
