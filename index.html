@@ -1579,12 +1579,13 @@
     .story-header { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:26px; padding:0 4px 8px; }
     #story-title { margin:0; font:600 clamp(17px,3vw,24px)/1.1 'IBM Plex Serif',serif; color:#f0ede3; }
     #story-location { color:#c5aa72; font:500 10px 'IBM Plex Mono',monospace; text-transform:uppercase; letter-spacing:.12em; }
-    #story-scene { position:relative; height:clamp(190px,49vh,490px); min-height:190px; overflow:hidden; border:1px solid #b79a62; background:#101511; isolation:isolate; }
-    #story-scene-image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; animation:story-pan 16s ease-in-out infinite alternate; }
+    #story-scene { position:relative; height:clamp(190px,49vh,490px); min-height:190px; overflow:hidden; border:1px solid #b79a62; background:radial-gradient(ellipse at 50% 42%,#253027 0,#111814 72%); isolation:isolate; }
+    #story-scene::before { content:""; position:absolute; inset:9px; z-index:1; border:1px solid #d2bd8144; pointer-events:none; }
+    #story-scene-image { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; image-rendering:pixelated; animation:story-pan 24s ease-in-out infinite alternate; }
     #story-scene-caption { position:absolute;z-index:2;left:clamp(10px,2.5vw,26px);top:clamp(10px,2.5vw,22px);max-width:min(460px,68%);padding:7px 10px;border-left:2px solid #cfb779;background:linear-gradient(90deg,#101611dc,#10161177);color:#e3ddc9;font:500 12px 'IBM Plex Serif',serif;line-height:1.45;text-shadow:0 1px 4px #000; }
     #story-scene::after { content:""; position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(0deg,rgba(4,8,6,.84),transparent 62%),linear-gradient(90deg,rgba(5,9,7,.18),transparent 48%,rgba(5,9,7,.18)); }
-    #story-speaker-portrait { position:absolute; z-index:2; right:clamp(8px,5vw,52px); bottom:-4%; width:clamp(108px,20vw,220px); height:86%; object-fit:contain; object-position:bottom; filter:drop-shadow(0 8px 15px #0009); animation:story-actor-in .38s cubic-bezier(.2,.8,.2,1) both; }
-    #story-speaker-portrait[data-kind="hero"],#story-speaker-portrait[data-kind="whisper"] { image-rendering:pixelated; }
+    #story-speaker-portrait { position:absolute; z-index:2; right:clamp(12px,3vw,30px); top:clamp(12px,3vw,26px); width:clamp(92px,13vw,142px); height:clamp(92px,13vw,142px); box-sizing:border-box; padding:12px; object-fit:contain; object-position:center; border:1px solid #d4bc79; border-radius:50%; background:radial-gradient(circle at 50% 38%,#493e2b,#151a16 68%); box-shadow:0 5px 20px #000b, inset 0 0 0 4px #d4bc7926; image-rendering:pixelated; filter:drop-shadow(0 8px 15px #0009); animation:story-actor-in .38s cubic-bezier(.2,.8,.2,1) both; }
+    #story-speaker-portrait[data-kind="boss"] { width:clamp(106px,15vw,164px); height:clamp(106px,15vw,164px); border-radius:12px; background:linear-gradient(145deg,#30291e,#111713 72%); box-shadow:0 8px 24px #000c, inset 0 0 0 4px #d4bc7926; }
     #story-speaker-portrait[hidden] { display:none; }
     .story-dialogue-frame { position:absolute; z-index:3; left:clamp(10px,3vw,34px); right:clamp(10px,3vw,34px); bottom:clamp(10px,2.5vw,26px); max-width:min(720px,86%); min-height:112px; padding:16px 18px; border:1px solid #c8b278; background:rgba(17,24,20,.94); box-shadow:0 8px 28px #0009; animation:story-bubble-in .28s ease-out both; }
     .story-boss-memory { position:absolute; z-index:4; right:clamp(10px,2.5vw,28px); top:clamp(10px,2.5vw,24px); display:flex; align-items:center; gap:10px; max-width:min(350px,48%); padding:8px 11px; border:1px solid #c8b278; background:rgba(17,24,20,.96); box-shadow:0 8px 24px #0009; }
@@ -1603,11 +1604,11 @@
     #story-intermission::before { top:0; } #story-intermission::after { bottom:0; }
     @keyframes story-fade-in { from { opacity:0; } to { opacity:1; } }
     @keyframes story-leaf-arrive { from { opacity:0; transform:translateY(14px) scale(.985); } to { opacity:1; transform:translateY(0) scale(1); } }
-    @keyframes story-pan { from { transform:scale(1.015) translateX(0); } to { transform:scale(1.08) translateX(-1%); } }
+    @keyframes story-pan { from { transform:scale(1) translateX(0); } to { transform:scale(1.012) translateX(-.15%); } }
     @keyframes story-actor-in { from { opacity:0; transform:translateX(22px) translateY(8px); } to { opacity:1; transform:translateX(0) translateY(0); } }
     @keyframes story-bubble-in { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
     @media(prefers-reduced-motion:reduce) { #story-intermission, .story-leaf,#story-scene-image,#story-speaker-portrait,.story-dialogue-frame { animation-duration:.01ms!important; } }
-    @media(max-width:600px) { .story-leaf { padding:8px; } .story-header { align-items:flex-start; } #story-location { max-width:40%; text-align:right; } #story-scene { height:clamp(210px,43vh,360px); } .story-dialogue-frame { max-width:94%; min-height:90px; padding:12px; } #story-speaker-portrait { width:clamp(105px,33vw,160px); height:74%; right:3%; } .story-boss-memory { max-width:58%; padding:6px 8px; gap:7px; } .story-boss-memory img { width:32px;height:32px; } .story-boss-memory span { font-size:10px; } .story-controls { flex-wrap:wrap; } #story-next { flex:1 1 100%; order:0; } #story-skip { order:1; } #story-enter-hint { order:2; } #story-counter { order:3; } }
+    @media(max-width:600px) { .story-leaf { padding:8px; } .story-header { align-items:flex-start; } #story-location { max-width:40%; text-align:right; } #story-scene { height:clamp(210px,43vh,360px); } .story-dialogue-frame { max-width:94%; min-height:90px; padding:12px; } #story-speaker-portrait { width:76px; height:76px; right:10px; top:10px; padding:8px; } #story-speaker-portrait[data-kind="boss"] { width:86px; height:86px; } .story-boss-memory { max-width:58%; padding:6px 8px; gap:7px; } .story-boss-memory img { width:32px;height:32px; } .story-boss-memory span { font-size:10px; } .story-controls { flex-wrap:wrap; } #story-next { flex:1 1 100%; order:0; } #story-skip { order:1; } #story-enter-hint { order:2; } #story-counter { order:3; } }
     .music-choice-row { display:flex; align-items:center; justify-content:center; gap:12px; color:#725a3a; font:600 11px 'IBM Plex Mono',monospace; letter-spacing:.08em; }
     .music-choice-row select { min-height:36px; padding:0 32px 0 11px; border:1px solid #a89b82; background:#eee7d9; color:#28302a; font:500 13px 'IBM Plex Sans',sans-serif; }
     #chapter-transition-card::before {
@@ -2695,6 +2696,6 @@
       window.startArchiveIntro();
     })();
   </script>
-  <script src="game.js?v=field-hud-motion-cache-20261107-12"></script>
+  <script src="game.js?v=story-boss-visual-phase-20261107-13"></script>
 </body>
 </html>

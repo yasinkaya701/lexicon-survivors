@@ -3156,7 +3156,9 @@ function renderStoryPanel() {
     : speakerId === "narrator" ? "SAHNE"
       : speakerBoss?.title || (isBossVoice ? MILESTONE_BOSS_ROSTER?.[storyEpisodeIndex]?.[2] : "") || storySpeakerNames[speakerId] || speakerId.replaceAll("_", " ").toLocaleUpperCase("tr-TR");
   speaker.textContent = speakerName;
-  portrait.hidden = !speakerPath;
+  // Story backdrops already depict the selected hero; compositing a second cutout creates a false, doubled character.
+  const portraitAlreadyInScene = heroSpeakerIds.has(speakerId) || speakerId === "shadow_double";
+  portrait.hidden = !speakerPath || portraitAlreadyInScene;
   if (speakerPath) {
     portrait.dataset.kind = isBossVoice ? "boss" : speakerId;
     portrait.src = resolvePortraitPath(speakerPath);
@@ -4538,25 +4540,26 @@ function resolveBossArea(boss, x, y, radius, damageFactor = 0.82, slow = false) 
 }
 
 function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
-  if (boss.hp <= boss.max_hp * 0.68 && boss.boss_phase < 2) {
+  if (boss.hp <= boss.max_hp * 0.70 && boss.boss_phase < 2) {
     boss.boss_phase = 2;
-    boss.boss_skill_interval *= 0.82;
-    boss.speed *= 1.08;
+    boss.boss_skill_interval *= 0.78;
+    boss.speed *= 1.12;
     sounds.bossRoar();
     triggerScreenShake(0.32, 9);
-  } else if (boss.hp <= boss.max_hp * 0.32 && boss.boss_phase < 3) {
+  } else if (boss.hp <= boss.max_hp * 0.35 && boss.boss_phase < 3) {
     boss.boss_phase = 3;
     boss.enraged = true;
-    boss.boss_skill_interval *= 0.76;
-    boss.speed *= 1.10;
+    boss.boss_skill_interval *= 0.70;
+    boss.speed *= 1.12;
     sounds.bossRoar();
     triggerScreenShake(0.42, 12);
   }
   boss.boss_skill_cooldown = Math.max(0, (boss.boss_skill_cooldown || 0) - dt);
   if (boss.boss_skill_cooldown > 0) return;
   const phase = boss.boss_phase || 1;
-  const duration = phase === 3 ? 0.72 : 0.9;
-  const baseDamage = phase === 3 ? 0.60 : 0.48;
+  // Stronger multi-phase pressure, while keeping every dangerous move readable and dodgeable.
+  const duration = phase === 3 ? 0.82 : 0.95;
+  const baseDamage = phase === 3 ? 0.72 : 0.54;
   const targetX = state.player.x + state.player.vx * 0.38;
   const targetY = state.player.y + state.player.vy * 0.38;
   const angle = Math.atan2(targetY - boss.y, targetX - boss.x);
@@ -4570,7 +4573,7 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
     x, y, radius, timer: duration, max_timer: duration, is_boss_area: true, kind,
     color: boss.boss_color, action
   });
-  boss.boss_skill_cooldown = Math.max(3.2, boss.boss_skill_interval || 6.5);
+  boss.boss_skill_cooldown = Math.max(2.65, boss.boss_skill_interval || 6.5);
   const fireFan = (count, spread = 0.68, factor = baseDamage) => {
     for (let index = 0; index < count; index++) {
       const shotAngle = angle - spread / 2 + spread * index / Math.max(1, count - 1);
@@ -4736,7 +4739,7 @@ function updateEnemies(dt) {
       if (!milestoneBoss.enraged) {
         milestoneBoss.enraged = true;
         milestoneBoss.speed *= 1.12;
-        milestoneBoss.boss_skill_interval = Math.max(3.0, (milestoneBoss.boss_skill_interval || 6.5) * 0.78);
+        milestoneBoss.boss_skill_interval = Math.max(2.65, (milestoneBoss.boss_skill_interval || 6.5) * 0.78);
         triggerTacticalAlert("BOSS ÖFKELENDİ", "Artık her saldırı aralığı kısaldı. Telegraphta güvenli alanı bulun.");
         sounds.bossRoar();
       }
@@ -5374,17 +5377,17 @@ function spawnMilestoneBoss(wave) {
   const difficulty = DIFFICULTIES[state.difficulty];
   const [type, sprite, name, color, skill] = MILESTONE_BOSS_ROSTER[Math.min(19, Math.floor(wave / 5) - 1)];
   const waveScale = getWaveHpMult(wave);
-  const hp = (900 + wave * 80) * Math.pow(waveScale, 0.45) * difficulty.enemy_hp_mult;
+  const hp = (900 + wave * 80) * Math.pow(waveScale, 0.45) * difficulty.enemy_hp_mult * 1.7;
   const angle = Math.random() * Math.PI * 2;
   const point = getArenaSpawnPosition(player, 560, angle);
   const boss = {
     type, sprite, x: point.x, y: point.y, vx: 0, vy: 0,
     hp, max_hp: hp, speed: (54 + Math.min(28, wave * 0.16)) * difficulty.enemy_speed_mult,
-    damage: (26 + wave * 1.15) * difficulty.enemy_damage_mult,
+    damage: (29 + wave * 1.25) * difficulty.enemy_damage_mult,
     ink_reward: getBossWaveReward(wave), label: name.toUpperCase(),
     size: wave >= 100 ? 108 : (68 + Math.min(20, wave * 0.16)),
     is_elite: true, is_boss: true, boss_color: color, boss_skill: skill,
-    boss_skill_cooldown: 4.2, boss_skill_interval: Math.max(4.3, 7.2 - wave * 0.018),
+    boss_skill_cooldown: 3.6, boss_skill_interval: Math.max(3.3, 6.2 - wave * 0.018),
     boss_phase: 1, boss_phase_action: false, facing_left: Math.cos(angle) > 0
   };
   sounds.bossRoar();
