@@ -5996,13 +5996,14 @@ function spawnMilestoneBoss(wave) {
   const difficulty = DIFFICULTIES[state.difficulty];
   const [type, sprite, name, color, skill] = MILESTONE_BOSS_ROSTER[Math.min(19, Math.floor(wave / 5) - 1)];
   const waveScale = getWaveHpMult(wave);
-  const hp = (900 + wave * 80) * Math.pow(waveScale, 0.45) * difficulty.enemy_hp_mult * 1.7;
+  // Milestone bosses should demand a sustained build and hold the wave until defeated.
+  const hp = (900 + wave * 80) * Math.pow(waveScale, 0.45) * difficulty.enemy_hp_mult * 3.0;
   const angle = Math.random() * Math.PI * 2;
   const point = getArenaSpawnPosition(player, 560, angle);
   const boss = {
     type, sprite, x: point.x, y: point.y, vx: 0, vy: 0,
     hp, max_hp: hp, speed: (54 + Math.min(28, wave * 0.16)) * difficulty.enemy_speed_mult,
-    damage: (29 + wave * 1.25) * difficulty.enemy_damage_mult,
+    damage: (29 + wave * 1.25) * difficulty.enemy_damage_mult * 1.35,
     ink_reward: getBossWaveReward(wave), label: name.toUpperCase(),
     size: wave >= 100 ? 108 : (68 + Math.min(20, wave * 0.16)),
     is_elite: true, is_boss: true, boss_color: color, boss_skill: skill,
