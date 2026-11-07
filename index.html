@@ -787,6 +787,20 @@
       padding: 4px 10px;
       border-radius: 2px;
     }
+    #quiz-buff-text {
+      margin: 0;
+      padding: 8px 10px;
+      border: 1px solid rgba(88, 119, 103, .45);
+      border-radius: 4px;
+      background: rgba(89, 125, 106, .12);
+      color: #315545;
+      font: 600 12px/1.4 'IBM Plex Sans', sans-serif;
+    }
+    #quiz-warning-text {
+      margin: 0;
+      color: #8c3a2d;
+      font: 600 11px/1.35 'IBM Plex Sans', sans-serif;
+    }
     .quiz-options {
       display: flex;
       flex-direction: column;
@@ -2522,7 +2536,10 @@
           </div>
           <div class="card-grid" id="char-selection-grid"></div>
 
-          <div class="title-difficulty-heading"><span>ZORLUK MÜHRÜ</span><span>CEFR</span></div>
+          <div class="title-difficulty-heading"><span>İNGİLİZCE BAŞLANGIÇ SEVİYEN</span><span>CEFR</span></div>
+          <div class="title-difficulty-choices" id="learning-level-selection" aria-label="İngilizce başlangıç seviyesi"></div>
+          <div class="title-difficulty-description" id="learning-level-desc"></div>
+          <div class="title-difficulty-heading"><span>RUN ZORLUĞU</span><span>AKSİYON</span></div>
           <div class="title-difficulty-choices" id="diff-selection-container"></div>
           <div class="title-difficulty-description" id="diff-desc"></div>
 
@@ -2778,6 +2795,8 @@
           <h3 id="quiz-word-title">Kelime Sınavı</h3>
         </div>
         <p id="quiz-question-text">'Relentless' kelimesinin Türkçe karşılığı nedir?</p>
+        <p id="quiz-buff-text"></p>
+        <p id="quiz-warning-text">Yanlış bıraktığın kelimeler boss turunda anlamlarına uygun düşman olarak geri döner.</p>
         <p id="quiz-example-text">"He unleashed a relentless barrage."</p>
         <div class="quiz-options" id="quiz-options-container"></div>
         <div class="quiz-result" id="quiz-result-text"></div>
@@ -2892,6 +2911,6 @@
       window.startArchiveIntro();
     })();
   </script>
-  <script src="game.js?v=fixed-canvas-zoom-boss-20261108"></script>
+  <script src="game.js?v=word-boss-power-20261108-2"></script>
 </body>
 </html>
