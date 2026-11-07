@@ -232,6 +232,19 @@ function selectWeaponTarget(weapon, enemies = state.enemies, origin = state.play
   return nearest;
 }
 
+function getCachedWeaponTarget(weapon, enemies, origin, forceRefresh = false, dt = 1 / 60) {
+  if (weapon.target_enemy && (weapon.target_enemy.dead || weapon.target_enemy.hp <= 0)) {
+    weapon.target_enemy = null;
+    forceRefresh = true;
+  }
+  weapon.target_reacquire_timer = Math.max(0, (weapon.target_reacquire_timer || 0) - dt);
+  if (forceRefresh || weapon.target_reacquire_timer <= 0) {
+    weapon.target_enemy = selectWeaponTarget(weapon, enemies, origin);
+    weapon.target_reacquire_timer = 0.10;
+  }
+  return weapon.target_enemy;
+}
+
 function advanceWeaponChannels(weapon, dt) {
   if (weapon.id === "lexicon_beam" && weapon.beam_ticks_pending > 0) {
     weapon.beam_tick_timer -= dt;
@@ -251,7 +264,8 @@ function advanceWeaponChannels(weapon, dt) {
       weapon.beam_tick_timer = limits.tick_seconds || 0.10;
       weapon.beam_charge_remaining = Math.max(0, delay - weapon.beam_tick_timer);
       if (weapon.beam_ticks_pending === 0 && weapon.tier >= 4) {
-        const target = selectWeaponTarget(weapon);
+        const target = weapon.target_enemy && !weapon.target_enemy.dead && weapon.target_enemy.hp > 0
+          ? weapon.target_enemy : selectWeaponTarget(weapon);
         if (target && !target.dead) spawnProjectile({ type: "beam_split", x: target.x, y: target.y,
           dx: Math.cos(weapon.rotation + 0.48), dy: Math.sin(weapon.rotation + 0.48), dmg: weapon.beam_tick_damage * 2,
           pierce: 2, spd: 850, size: 18, lifetime: 0.7, weapon_id: weapon.id, impact_profile: "piercing", tier: weapon.tier });
@@ -1838,6 +1852,30 @@ fetch("questions.json")
 const canvas = document.getElementById("game-canvas");
 const ctx = canvas.getContext("2d");
 let lastTime = performance.now();
+let adaptiveCanvasScale = 1.0;
+let slowFrameSeconds = 0;
+const MIN_ADAPTIVE_CANVAS_SCALE = 0.60;
+
+function setCanvasResolution(width, height) {
+  const nextWidth = Math.max(1, Math.round(width * adaptiveCanvasScale));
+  const nextHeight = Math.max(1, Math.round(height * adaptiveCanvasScale));
+  if (canvas.width !== nextWidth) canvas.width = nextWidth;
+  if (canvas.height !== nextHeight) canvas.height = nextHeight;
+}
+
+function adaptCanvasQuality(frameSeconds) {
+  if (!state.is_wave_active || document.hidden || adaptiveCanvasScale <= MIN_ADAPTIVE_CANVAS_SCALE) return;
+  if (frameSeconds > 0.030) slowFrameSeconds += frameSeconds;
+  else slowFrameSeconds = Math.max(0, slowFrameSeconds - frameSeconds * 0.75);
+  if (slowFrameSeconds < 0.65) return;
+
+  // The CSS/HTML interface remains at full resolution; only the pixel-art
+  // arena render target shrinks when sustained frame times miss the 33 ms
+  // budget. Keep the scale for the run to avoid quality oscillation.
+  adaptiveCanvasScale = Math.max(MIN_ADAPTIVE_CANVAS_SCALE, adaptiveCanvasScale - 0.20);
+  slowFrameSeconds = 0;
+  resizeGameCanvas();
+}
 
 // Adaptive Responsive Canvas Viewport for Zero-Void Mobile Experience
 function resizeGameCanvas() {
@@ -1851,15 +1889,12 @@ function resizeGameCanvas() {
     const isPortrait = h > w;
 
     if (isPortrait) {
-      canvas.width = 720;
-      canvas.height = Math.round(720 * (h / Math.max(1, w)));
+      setCanvasResolution(720, Math.round(720 * (h / Math.max(1, w))));
     } else {
-      canvas.height = 720;
-      canvas.width = Math.round(720 * (w / Math.max(1, h)));
+      setCanvasResolution(Math.round(720 * (w / Math.max(1, h))), 720);
     }
   } else {
-    canvas.width = 1280;
-    canvas.height = 720;
+    setCanvasResolution(1280, 720);
   }
 }
 window.addEventListener("resize", resizeGameCanvas);
@@ -3031,7 +3066,9 @@ function syncWeapons() {
       beam_tick_timer: 0,
       flame_phase: "burst",
       flame_phase_timer: 0,
-      burst_shots: 0
+      burst_shots: 0,
+      target_enemy: null,
+      target_reacquire_timer: 0
     };
     resolveWeaponSignature(weapon);
     state.weapons.push(weapon);
@@ -3617,7 +3654,10 @@ function updatePlayer(dt) {
       }
     }
 
-    const nearest = selectWeaponTarget(w, state.enemies, p);
+    const targetDue = w.shoot_timer <= 0
+      && !(w.id === "ink_flamethrower" && w.flame_phase === "vent")
+      && !(w.id === "lexicon_beam" && w.beam_ticks_pending > 0);
+    const nearest = getCachedWeaponTarget(w, state.enemies, p, targetDue, dt);
     const minDist = nearest ? Math.hypot(nearest.x - p.x, nearest.y - p.y) : Infinity;
 
     if (nearest) {
@@ -3709,14 +3749,17 @@ function updatePlayer(dt) {
 }
 
 function updateTurrets(dt) {
-  const synchronizedTarget = state.turrets.some(turret => turret.synchronized_focus)
-    ? selectWeaponTarget({ id: "scroll_turret" }, state.enemies, state.player) : null;
+  let synchronizedTarget;
   state.turrets.forEach(turret => {
     turret.lifetime -= dt;
     turret.shoot_timer -= dt;
     if (turret.shoot_timer > 0) return;
     turret.shoot_timer = turret.fire_seconds || getWeaponArchetype("scroll_turret")?.limits?.fire_seconds || 0.82;
-    let target = synchronizedTarget;
+    let target = null;
+    if (turret.synchronized_focus) {
+      if (synchronizedTarget === undefined) synchronizedTarget = selectWeaponTarget({ id: "scroll_turret" }, state.enemies, state.player);
+      target = synchronizedTarget;
+    }
     let minDistance = target ? Math.hypot(target.x - turret.x, target.y - turret.y) : 500;
     if (!target) {
       state.enemies.forEach(enemy => {
@@ -4547,6 +4590,21 @@ function resolveBossArea(boss, x, y, radius, damageFactor = 0.82, slow = false) 
   }
 }
 
+function resolveBossLine(boss, x1, y1, x2, y2, halfWidth = 24, damageFactor = 0.78) {
+  const lineX = x2 - x1, lineY = y2 - y1;
+  const lengthSquared = lineX * lineX + lineY * lineY;
+  const progress = lengthSquared > 0
+    ? Math.max(0, Math.min(1, ((state.player.x - x1) * lineX + (state.player.y - y1) * lineY) / lengthSquared))
+    : 0;
+  const nearestX = x1 + lineX * progress, nearestY = y1 + lineY * progress;
+  const gapX = state.player.x - nearestX, gapY = state.player.y - nearestY;
+  if (gapX * gapX + gapY * gapY > halfWidth * halfWidth
+      || state.player.invuln_timer > 0 || state.player.is_dashing) return false;
+  takePlayerDamage(boss.damage * damageFactor);
+  state.player.invuln_timer = 0.7;
+  return true;
+}
+
 function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
   if (boss.hp <= boss.max_hp * 0.70 && boss.boss_phase < 2) {
     boss.boss_phase = 2;
@@ -4655,6 +4713,85 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
         }
         sounds.enemyShoot();
       }, boss.boss_skill));
+      break;
+    }
+    case "sever": {
+      // Two page-cutting rays arrive at different times. The second warning
+      // remains visible after the first hit, so the player can readjust.
+      for (const [offset, delay, width] of [[-0.19, 0, 27], [0.19, 0.34, 31]]) {
+        const slashAngle = angle + offset;
+        const slash = telegraphLine(slashAngle, 1250);
+        slash.timer = duration + delay;
+        slash.max_timer = slash.timer;
+        const x1 = slash.x1, y1 = slash.y1, x2 = slash.x2, y2 = slash.y2;
+        slash.action = () => resolveBossLine(boss, x1, y1, x2, y2, width, phase === 3 ? 0.88 : 0.76);
+        state.telegraphs.push(slash);
+      }
+      break;
+    }
+    case "split": {
+      // Two offset seals leave a deliberate safe seam between them. Later
+      // phases widen the danger circles while preserving the center escape.
+      const perpX = -dirY, perpY = dirX;
+      const offset = phase === 3 ? 116 : 104;
+      const radius = phase === 3 ? 74 : 62;
+      for (const side of [-1, 1]) {
+        const markX = targetX + perpX * offset * side;
+        const markY = targetY + perpY * offset * side;
+        state.telegraphs.push(groundMark(markX, markY, radius, () => {
+          if (!boss.dead) resolveBossArea(boss, markX, markY, radius, baseDamage * 0.92);
+        }, "split"));
+      }
+      break;
+    }
+    case "eclipse": {
+      // The dark seal pulls once, then releases a shard ring with a visible
+      // missing wedge. Staying mobile and taking that opening is the counter.
+      const markX = targetX, markY = targetY;
+      const radius = phase === 3 ? 154 : 132;
+      state.telegraphs.push(groundMark(markX, markY, radius, () => {
+        if (boss.dead) return;
+        const pullX = markX - state.player.x, pullY = markY - state.player.y;
+        const pullDistance = Math.hypot(pullX, pullY);
+        if (pullDistance > 0 && pullDistance < radius + 72) {
+          const pull = Math.min(30, (radius + 72 - pullDistance) * 0.24);
+          state.player.x += pullX / pullDistance * pull;
+          state.player.y += pullY / pullDistance * pull;
+          clampPlayerToArena(state.player);
+        }
+        resolveBossArea(boss, markX, markY, radius * 0.72, baseDamage * 0.62, true);
+        const count = phase === 3 ? 14 : 10;
+        const escapeAngle = Math.atan2(state.player.y - markY, state.player.x - markX);
+        for (let index = 0; index < count; index++) {
+          const shardAngle = index * Math.PI * 2 / count;
+          const difference = Math.atan2(Math.sin(shardAngle - escapeAngle), Math.cos(shardAngle - escapeAngle));
+          if (Math.abs(difference) < 0.42) continue;
+          fireBossProjectile(boss, shardAngle, 190 + phase * 22, phase === 3 ? 0.42 : 0.34, "shard");
+        }
+      }, "eclipse"));
+      break;
+    }
+    case "void_bloom": {
+      // A short chain of delayed blooms paints the predicted path in sequence;
+      // each one is its own dodgeable impact, not a single unavoidable burst.
+      const radius = phase === 3 ? 66 : 54;
+      for (let index = 0; index < 3; index++) {
+        const delay = index * 0.27;
+        const markX = targetX + state.player.vx * delay * 0.34;
+        const markY = targetY + state.player.vy * delay * 0.34;
+        const bloom = groundMark(markX, markY, radius, () => {
+          if (boss.dead) return;
+          resolveBossArea(boss, markX, markY, radius, baseDamage * 0.8);
+          const shardCount = phase === 3 ? 7 : 5;
+          for (let shard = 0; shard < shardCount; shard++) {
+            fireBossProjectile(boss, shard * Math.PI * 2 / shardCount + index * 0.12,
+              180 + phase * 18, 0.24, "ink");
+          }
+        }, "void_bloom");
+        bloom.timer += delay;
+        bloom.max_timer = bloom.timer;
+        state.telegraphs.push(bloom);
+      }
       break;
     }
     case "gravity":
@@ -5356,10 +5493,10 @@ const MILESTONE_BOSS_ROSTER = [
   ["Dangling Modifier", "upgrade_v1/monster_dangling_modifier.png", "The Hanging Sentence", "#5faaa2", "snare"],
   ["Spelling Spectre", "upgrade_v1/monster_spelling_spectre.png", "The Pale Proofreader", "#91a9c4", "shards"],
   ["Idiom Imp", "upgrade_v1/monster_idiom_imp.png", "The Literal Flame", "#dc7450", "embers"],
-  ["Red Pen Boss", "upgrade_v2/boss_red_inquisitor.png", "The Redactor", "#d94841", "judgment"],
-  ["Oxymoron Ogre", "upgrade_v1/monster_oxymoron_ogre.png", "The Split-Truth Ogre", "#f18b43", "quake"],
-  ["Malapropism Mimic", "upgrade_v1/monster_malapropism_mimic.png", "The False Neris", "#8b65c4", "mirror"],
-  ["Vocabulary Void", "upgrade_v2/boss_void_curator.png", "The Unwritten", "#5441b8", "gravity"],
+  ["Red Pen Boss", "upgrade_v2/boss_red_inquisitor.png", "The Redactor", "#d94841", "sever"],
+  ["Oxymoron Ogre", "upgrade_v1/monster_oxymoron_ogre.png", "The Split-Truth Ogre", "#f18b43", "split"],
+  ["Malapropism Mimic", "upgrade_v1/monster_malapropism_mimic.png", "The False Neris", "#8b65c4", "eclipse"],
+  ["Vocabulary Void", "upgrade_v2/boss_void_curator.png", "The Unwritten", "#5441b8", "void_bloom"],
   ["Lexicon Dragon Boss", "upgrade_v2/boss_lexicon_dragon.png", "Omega, Last Word", "#df3d65", "finale"]
 ];
 const BOSS_TELEGRAPH_GUIDANCE = {
@@ -5370,7 +5507,11 @@ const BOSS_TELEGRAPH_GUIDANCE = {
   crossfire: "Çapraz çizgilerde iki saldırı koridoru da tehlikeli.", rift: "Işınlanma mührü güvenli konumunu değiştirir.",
   return: "Geri dönen mürekkep halkasıyla arana mesafe koy.", echo: "Yankı halkaları boşluklu biçimde yayılır.",
   snare: "Zemindeki mühür kısa süreliğine hareketini keser.", shards: "Kristal parçalar açılı bir yay çizer.",
-  embers: "Köz işaretlerinden çık; küçük ama hızlı darbeler gelir.", finale: "Son evrede yatay ve dikey saldırı şeritleri üst üste biner."
+  embers: "Köz işaretlerinden çık; küçük ama hızlı darbeler gelir.", finale: "Son evrede yatay ve dikey saldırı şeritleri üst üste biner.",
+  sever: "İki kesik çizgisi sırayla gelir; ilki geçince ikinci uyarıyı yeniden oku.",
+  split: "İki mühür arasında bırakılan güvenli yarığa kaç.",
+  eclipse: "Çekim halkası sonrası kırık parça çemberindeki açık aralıktan geç.",
+  void_bloom: "Yoluna sırayla açılan üç mürekkep çiçeğinden hareketle sıyrıl."
 };
 const BOSS_SPRITE_FALLBACKS = Object.freeze({
   "upgrade_v2/boss_red_inquisitor.png": "upgrade_v1/monster_red_pen_boss.png",
@@ -6478,6 +6619,19 @@ function render(dt = 1 / 60) {
     ctx.scale(zoom, zoom);
   }
   ctx.translate(-p.x, -p.y);
+  // The camera shows only a small slice of the 2300×1700 arena. Avoid asking
+  // Canvas2D to rasterize sprites and their shadows when their bounds cannot
+  // reach the viewport; movement, collision, and attack logic still run for
+  // every entity off screen.
+  const renderBounds = {
+    left: p.x - cx / zoom,
+    right: p.x + cx / zoom,
+    top: p.y - cy / zoom,
+    bottom: p.y + cy / zoom
+  };
+  const isInRenderViewport = (x, y, margin = 40) =>
+    x + margin >= renderBounds.left && x - margin <= renderBounds.right
+    && y + margin >= renderBounds.top && y - margin <= renderBounds.bottom;
 
   // 4 Dynamic Biomes based on progression across 100 Waves
   let frameSprite = "upgrade_v1/arena_frame_library.png";
@@ -6544,6 +6698,7 @@ function render(dt = 1 / 60) {
   const now = performance.now();
   const cornerGlow = getArenaCornerGlow(brazierFlameColor);
   ARENA_CORNER_PROPS.forEach(([bx, by], idx) => {
+    if (!isInRenderViewport(bx, by, 132)) return;
     ctx.drawImage(cornerGlow, bx - 96, by - 108);
 
     // Prop Sprite (Lectern or Brazier Pedestal)
@@ -6626,6 +6781,7 @@ function render(dt = 1 / 60) {
 
   // Motes
   state.ambient_motes.forEach(m => {
+    if (!isInRenderViewport(m.x, m.y, m.radius)) return;
     ctx.save();
     ctx.fillStyle = ambientMoteColor + `${m.alpha})`;
     ctx.beginPath();
@@ -6636,6 +6792,7 @@ function render(dt = 1 / 60) {
 
   // Ink puddles
   state.ink_puddles.forEach(puddle => {
+    if (!isInRenderViewport(puddle.x, puddle.y, puddle.radius)) return;
     ctx.save();
     ctx.fillStyle = "rgba(20, 10, 40, 0.65)";
     ctx.strokeStyle = "#7c3aed";
@@ -6649,6 +6806,7 @@ function render(dt = 1 / 60) {
 
   // Turrets
   state.turrets.forEach(t => {
+    if (!isInRenderViewport(t.x, t.y, 28)) return;
     ctx.save();
     ctx.translate(t.x, t.y);
     const spr = images["scroll_turret.png"];
@@ -6658,6 +6816,7 @@ function render(dt = 1 / 60) {
 
   // Ink drops
   state.ink_drops.forEach(drop => {
+    if (!isInRenderViewport(drop.x, drop.y, 14)) return;
     if (images["ink_drop.png"]) {
       ctx.drawImage(images["ink_drop.png"], drop.x - 10, drop.y - 10, 20, 20);
     } else {
@@ -6668,6 +6827,7 @@ function render(dt = 1 / 60) {
 
   // Health drops (Şifa Parşömeni)
   state.health_drops.forEach(drop => {
+    if (!isInRenderViewport(drop.x, drop.y, 20)) return;
     ctx.save();
     ctx.translate(drop.x, drop.y);
     const pulse = 1.0 + Math.sin(Date.now() * 0.007) * 0.18;
@@ -6695,6 +6855,7 @@ function render(dt = 1 / 60) {
 
   // Mines
   state.punctuation_mines.forEach(mine => {
+    if (!isInRenderViewport(mine.x, mine.y, 24)) return;
     ctx.save();
     ctx.translate(mine.x, mine.y);
     const s = 1.0 + Math.sin(mine.pulse) * 0.16;
@@ -6712,6 +6873,7 @@ function render(dt = 1 / 60) {
   });
 
   state.weapon_fields.forEach(field => {
+    if (!isInRenderViewport(field.x, field.y, field.radius)) return;
     ctx.save();
     const rune = field.impact === "rune";
     const tether = field.weapon_id === "word_loom";
@@ -6732,17 +6894,19 @@ function render(dt = 1 / 60) {
   for (let index = 0; index < state.particles.length; index++) {
     const particle = state.particles[index];
     if (!advanceShockwaveParticle(particle, dt)) continue;
+    state.particles[activeParticleCount++] = particle;
+    if (!isInRenderViewport(particle.x, particle.y, particle.radius)) continue;
     ctx.save();
     ctx.strokeStyle = particle.color + Math.max(0, particle.alpha) + ")";
     ctx.lineWidth = 3;
     ctx.beginPath(); ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2); ctx.stroke();
     ctx.restore();
-    state.particles[activeParticleCount++] = particle;
   }
   state.particles.length = activeParticleCount;
 
   // Enemy Projectiles
   state.enemy_projectiles.forEach(ep => {
+    if (!isInRenderViewport(ep.x, ep.y, (ep.radius || 10) + 18)) return;
     ctx.save();
     ctx.translate(ep.x, ep.y);
     if (ep.color) {
@@ -6770,6 +6934,7 @@ function render(dt = 1 / 60) {
 
   // Enemies
   state.enemies.forEach(e => {
+    if (!isInRenderViewport(e.x, e.y, Math.max(64, (e.size || 36) * 0.95 + 18))) return;
     if (e.behavior_phase === "windup" && (e.type === "Homophone Harpy" || e.type === "Run-on Reaper")) {
       const length = e.type === "Homophone Harpy" ? 340 : 280;
       const color = e.type === "Homophone Harpy" ? "rgba(255, 191, 71, 0.9)" : "rgba(248, 72, 76, 0.9)";
@@ -6930,6 +7095,7 @@ function render(dt = 1 / 60) {
 
   // Projectiles
   state.projectiles.forEach(pr => {
+    if (!isInRenderViewport(pr.x, pr.y, (pr.size || 18) + 16)) return;
     ctx.save();
     ctx.translate(pr.x, pr.y);
     ctx.rotate(Math.atan2(pr.dy, pr.dx));
@@ -6949,6 +7115,7 @@ function render(dt = 1 / 60) {
 
   // Weapon-aware hit confirmations. The eight generated pixel sprites stay short-lived and capped.
   state.hit_effects.forEach(effect => {
+    if (!isInRenderViewport(effect.x, effect.y, (effect.size || 30) + 16)) return;
     const sprite = images[`effects/combat_hit_${effect.frame}.png`];
     if (!sprite) return;
     const progress = 1 - effect.lifetime / effect.max_lifetime;
@@ -7131,6 +7298,7 @@ function render(dt = 1 / 60) {
 function gameLoop(now) {
   const rawDt = Math.min(0.1, (now - lastTime) / 1000);
   lastTime = now;
+  adaptCanvasQuality(rawDt);
   const dt = rawDt * (state.game_speed || 1.0);
 
   updateGame(dt);
@@ -7354,6 +7522,8 @@ function updateGame(dt) {
 
 window.render_game_to_text = () => JSON.stringify({
   coordinate_system: "arena origin at center; +x right, +y down",
+  render_quality: Number(adaptiveCanvasScale.toFixed(2)),
+  render_target: { width: canvas.width, height: canvas.height },
   weapon_visuals: { status: weaponVisualsStatus, error: weaponVisualsError, effect_count: state.hit_effects.length },
   mode: state.hp <= 0 ? "gameover" : state.is_wave_active ? "wave" : (getComputedStyle(document.getElementById("shop-screen")).display !== "none" ? "shop" : "title"),
   wave: state.current_wave,
