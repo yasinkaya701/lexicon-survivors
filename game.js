@@ -205,15 +205,12 @@ function getHeroRenderAction(player) {
 
 function getHeroRenderLayers(player) {
   const action = getHeroRenderAction(player);
-  const moving = !player.is_dashing && Math.hypot(player.vx, player.vy) > 30;
-  if (!moving) return { base: action, upperBody: null, baseFrame: getHeroAnimationFrame(action, player), upperBodyFrame: null };
-  if (action === "attack") {
-    return { base: "run", upperBody: "attack", baseFrame: getHeroAnimationFrame("run", player), upperBodyFrame: getAttackAnimationFrame(player) };
-  }
-  if (action === "run" && player.attack_anim_timer > 0 && player.attack_anim_kind === "ranged") {
-    return { base: "run", upperBody: "ranged", baseFrame: getHeroAnimationFrame("run", player), upperBodyFrame: getAttackAnimationFrame(player) };
-  }
-  return { base: action, upperBody: null, baseFrame: getHeroAnimationFrame(action, player), upperBodyFrame: null };
+  const moving = player.is_dashing || Math.hypot(player.vx, player.vy) > 30;
+  // Action sheets contain a complete, differently posed character. Stacking one
+  // over a run frame doubles the head/torso. Keep the gait while moving; the
+  // weapon recoil, muzzle flash, and melee sweep carry the attack read instead.
+  const base = moving ? "run" : action;
+  return { base, upperBody: null, baseFrame: getHeroAnimationFrame(base, player), upperBodyFrame: null };
 }
 
 function selectWeaponTarget(weapon, enemies = state.enemies, origin = state.player) {
@@ -7018,18 +7015,6 @@ function render(dt = 1 / 60) {
     : null;
   const pSpr = actionSprite || images[cData.sprite] || images["player.png"];
   if (pSpr) ctx.drawImage(pSpr, -44, -44, 88, 88);
-  if (renderLayers.upperBody) {
-    const upperAsset = `${animationKey}_${renderLayers.upperBody}_v2_${renderLayers.upperBodyFrame}.png`;
-    const upperSprite = images[`upgrade_v1/animations/${upperAsset}`];
-    if (upperSprite) {
-      ctx.save();
-      ctx.beginPath();
-      ctx.rect(-44, -44, 88, 62);
-      ctx.clip();
-      ctx.drawImage(upperSprite, -44, -44, 88, 88);
-      ctx.restore();
-    }
-  }
   ctx.restore();
 
   // Floating Slotted Weapons Arsenal
