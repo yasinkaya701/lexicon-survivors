@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "music": {
+    "main": "assets/audio/music/main_theme.mp3",
+    "boss": "assets/audio/music/boss_theme_dark_last_stand.wav"
+  },
+  "ambience": {
+    "dark_library": "assets/audio/ambience/ambience_dark_library.wav",
+    "astral_observatory": "assets/audio/ambience/ambience_astral_observatory.wav",
+    "dungeon_corridor": "assets/audio/ambience/ambience_dungeon_corridor.wav",
+    "void_sanctum": "assets/audio/ambience/ambience_void_sanctum.wav"
+  },
+  "weapons": {
+    "quill_blaster": ["assets/audio/weapons/weapon_quill_blaster_v1.wav","assets/audio/weapons/weapon_quill_blaster_v2.wav","assets/audio/weapons/weapon_quill_blaster_v3.wav"],
+    "syllable_shotgun": ["assets/audio/weapons/weapon_syllable_shotgun_v1.wav","assets/audio/weapons/weapon_syllable_shotgun_v2.wav","assets/audio/weapons/weapon_syllable_shotgun_v3.wav"],
+    "lexicon_beam": ["assets/audio/weapons/weapon_lexicon_beam_v1.wav","assets/audio/weapons/weapon_lexicon_beam_v2.wav"],
+    "punctuation_bomb": {"launch":"assets/audio/weapons/weapon_punctuation_mine_drop.wav","impact":"assets/audio/weapons/weapon_punctuation_mine_detonation.wav"},
+    "dictionary_blade": ["assets/audio/weapons/weapon_dictionary_blade_v1.wav","assets/audio/weapons/weapon_dictionary_blade_v2.wav","assets/audio/weapons/weapon_dictionary_blade_v3.wav"],
+    "crossword_crossbow": ["assets/audio/weapons/weapon_crossword_crossbow_v1.wav","assets/audio/weapons/weapon_crossword_crossbow_v2.wav","assets/audio/weapons/weapon_crossword_crossbow_v3.wav"],
+    "hyphen_boomerang": "assets/audio/weapons/weapon_hyphen_boomerang.wav",
+    "ink_flamethrower": "assets/audio/weapons/weapon_ink_flamethrower.wav",
+    "thesaurus_rocket": {"launch":"assets/audio/weapons/weapon_thesaurus_rocket_launch.wav","impact":"assets/audio/weapons/weapon_thesaurus_rocket_impact.wav"},
+    "quote_pistols": ["assets/audio/weapons/weapon_quote_pistols_v1.wav","assets/audio/weapons/weapon_quote_pistols_v2.wav","assets/audio/weapons/weapon_quote_pistols_v3.wav"],
+    "calligraphy_katana": ["assets/audio/weapons/weapon_calligraphy_katana_v1.wav","assets/audio/weapons/weapon_calligraphy_katana_v2.wav","assets/audio/weapons/weapon_calligraphy_katana_v3.wav"],
+    "scroll_turret": {"launch":"assets/audio/weapons/weapon_scroll_turret_deploy.wav","fire":"assets/audio/weapons/weapon_scroll_turret_fire.wav"},
+    "rune_orb": "assets/audio/weapons/weapon_rune_orb.wav",
+    "grammar_sniper": "assets/audio/weapons/weapon_grammar_sniper.wav"
+  },
+  "gadgets": {
+    "eraser_dash":"assets/audio/abilities/gadget_eraser_dash.wav",
+    "ink_cataclysm":"assets/audio/abilities/gadget_ink_cataclysm.wav",
+    "chrono_comma":"assets/audio/abilities/gadget_chrono_comma.wav",
+    "lexicon_aegis":"assets/audio/abilities/gadget_lexicon_aegis.wav",
+    "grammar_magnet":"assets/audio/abilities/gadget_grammar_magnet.wav"
+  },
+  "gameplay": {
+    "enemy_hit_light":"assets/audio/gameplay/enemy_hit_light.wav",
+    "enemy_hit_heavy":"assets/audio/gameplay/enemy_hit_heavy.wav",
+    "critical_hit":"assets/audio/gameplay/critical_hit.wav",
+    "enemy_defeat":"assets/audio/gameplay/enemy_defeat.wav",
+    "player_damage":"assets/audio/gameplay/player_damage.wav",
+    "player_defeat":"assets/audio/gameplay/player_defeat.wav",
+    "ink_pickup":"assets/audio/gameplay/ink_pickup.wav",
+    "wave_start":"assets/audio/gameplay/wave_start.wav",
+    "wave_complete":"assets/audio/gameplay/wave_complete.wav",
+    "chapter_transition":"assets/audio/gameplay/chapter_transition.wav"
+  },
+  "ui": {
+    "select":"assets/audio/ui/ui_select.wav",
+    "tab":"assets/audio/ui/ui_tab.wav",
+    "purchase":"assets/audio/ui/ui_purchase.wav",
+    "reroll":"assets/audio/ui/ui_reroll.wav",
+    "start":"assets/audio/ui/ui_start.wav",
+    "pause_resume":"assets/audio/ui/ui_pause_resume.wav",
+    "quiz_correct":"assets/audio/ui/quiz_correct.wav",
+    "quiz_incorrect":"assets/audio/ui/quiz_incorrect.wav"
+  }
+}

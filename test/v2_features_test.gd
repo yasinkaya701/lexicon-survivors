@@ -4,30 +4,33 @@ func _init():
 	print("\n=== BEGIN V2.0 ADVANCED FEATURES TEST ===")
 	
 	var StatsManager = load("res://scripts/stats_manager.gd").new()
+	assert(StatsManager.load_weapon_economy(), "Shared weapon balance data must load in the isolated stats test")
+	assert(StatsManager.load_utility_items(), "Shared gadget and relic data must load in the isolated stats test")
 	
-	# 1. Test 14 Weapons in Catalog
+	# 1. Test 15 Weapons in Catalog
 	var expected_weapons = [
 		"quill_blaster", "syllable_shotgun", "lexicon_beam", "punctuation_bomb", "dictionary_blade",
 		"crossword_crossbow", "hyphen_boomerang", "ink_flamethrower", "thesaurus_rocket", "quote_pistols",
-		"calligraphy_katana", "scroll_turret", "rune_orb", "grammar_sniper"
+		"calligraphy_katana", "scroll_turret", "rune_orb", "grammar_sniper", "word_loom"
 	]
-	print("[V2 TEST 1] Verifying 14 Weapon Arsenal in StatsManager...")
-	assert(StatsManager.weapons_catalog.size() == 14, "Expected 14 weapons in weapons_catalog!")
+	print("[V2 TEST 1] Verifying 15 Weapon Arsenal in StatsManager...")
+	assert(StatsManager.weapons_catalog.size() == 15, "Expected 15 weapons in weapons_catalog!")
 	for w_id in expected_weapons:
 		assert(StatsManager.weapons_catalog.has(w_id), "Missing weapon in catalog: " + w_id)
 		var w = StatsManager.weapons_catalog[w_id]
 		print("  ✓ Weapon: %s | Damage: %.1f | Cooldown: %.2fs" % [w.name, w.damage, w.cooldown])
-	print("✓ [V2 TEST 1 PASSED]: All 14 Weapons verified!\n")
+	print("✓ [V2 TEST 1 PASSED]: All 15 Weapons verified!\n")
 
-	# 1.5 Test 5 Gadgets in Catalog
-	print("[V2 TEST 1.5] Verifying 5 Gadget Arsenal in StatsManager...")
-	var expected_gadgets = ["dash", "ink_bomb", "time_stop", "shield", "magnet"]
-	assert(StatsManager.gadgets_catalog.size() == 5, "Expected 5 gadgets in gadgets_catalog!")
+	# 1.5 Verify the shared gadget and relic catalog
+	print("[V2 TEST 1.5] Verifying 8 Gadget Arsenal in StatsManager...")
+	var expected_gadgets = ["eraser_dash", "ink_cataclysm", "chrono_comma", "lexicon_aegis", "grammar_magnet", "index_storm", "redact_field", "palimpsest_step"]
+	assert(StatsManager.gadgets_catalog.size() == expected_gadgets.size(), "Expected all shared gadgets in gadgets_catalog!")
 	for g_id in expected_gadgets:
 		assert(StatsManager.gadgets_catalog.has(g_id), "Missing gadget in catalog: " + g_id)
 		var g = StatsManager.gadgets_catalog[g_id]
 		print("  ✓ Gadget: %s | Cooldown: %.1fs | Cost: %d" % [g.name, g.cooldown, g.cost])
-	print("✓ [V2 TEST 1.5 PASSED]: All 5 Gadgets verified!\n")
+	print("✓ [V2 TEST 1.5 PASSED]: All %d Gadgets verified!\n" % expected_gadgets.size())
+	assert(StatsManager.artifacts_catalog.size() == 10, "Expected all ten shared relics in artifacts_catalog")
 	
 	# 2. Test Enemy Archetypes & Scaling
 	print("[V2 TEST 2] Verifying Enemy Archetypes & Health Scaling...")

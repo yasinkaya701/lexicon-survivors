@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" shape-rendering="crispEdges">
+  <defs>
+    <linearGradient id="gold" x2="0" y2="1"><stop stop-color="#fff0bd"/><stop offset=".22" stop-color="#c39448"/><stop offset=".5" stop-color="#f1d07e"/><stop offset="1" stop-color="#69502e"/></linearGradient>
+    <linearGradient id="bronze" x2="1" y2="0"><stop stop-color="#4b4031"/><stop offset=".48" stop-color="#bc8d4a"/><stop offset="1" stop-color="#59412c"/></linearGradient>
+  </defs>
+  <!-- small resonance strokes, separated from the bell silhouette -->
+  <path fill="#dfc77f" d="M20 43h5v5h-5zM15 52h4v5h-4zM103 42h5v5h-5zM109 51h4v5h-4z"/>
+  <path fill="#f4d989" d="M24 36h4v4h-4zM101 34h4v4h-4z"/>
+  <!-- carved hanging frame -->
+  <path fill="#1b2622" d="M43 29h5v-7h6v-7h20v7h6v7h5v10H43z"/>
+  <path fill="url(#gold)" d="M48 28h6v-7h20v7h6v10H48z"/>
+  <path fill="#fff0ba" d="M56 24h16v3H56zM52 31h24v3H52z"/>
+  <path fill="#42352a" d="M59 38h10v8H59z"/>
+  <path fill="url(#bronze)" d="M31 84v-9h5V63h5V49h7V42h32v7h7v14h5v12h5v9h-8v7H39v-7z"/>
+  <path fill="#1c2925" d="M36 84v-9h5V63h5V50h7v-7h22v7h7v13h5v12h5v9H36z"/>
+  <!-- broad shoulder and bell flare -->
+  <path fill="url(#gold)" d="M41 77v-8h5V57h6V48h24v9h6v12h5v8h6v6H35v-6z"/>
+  <path fill="#edc96c" d="M46 70V58h6v-9h6v-6h12v6h6v9h6v12h5v8H41v-8z"/>
+  <path fill="#fff0b3" d="M53 55h5v-7h5v-4h4v8h-5v8h-9z"/>
+  <path fill="#825a31" d="M44 75h40v5H44zM39 82h50v6H39z"/>
+  <path fill="#f6dd99" d="M35 84h58v5H35zM42 90h44v5H42z"/>
+  <!-- chime clapper -->
+  <path fill="#292821" d="M61 82h6v11h-6z"/>
+  <path fill="#f6e3ab" d="M58 91h12v9H58zM54 99h20v6H54z"/>
+  <path fill="#8a6336" d="M59 94h10v2H59zM58 102h12v2H58z"/>
+  <!-- etched paired quotation marks -->
+  <path fill="#765331" d="M54 61h4v9h-4zM60 61h4v9h-4zM68 61h4v9h-4zM74 61h4v9h-4z"/>
+  <path fill="#ffe9a8" d="M55 63h2v4h-2zM61 63h2v4h-2zM69 63h2v4h-2zM75 63h2v4h-2z"/>
+  <!-- small dark seams and warm edge glints -->
+  <path fill="#f9e5a8" d="M40 73h4v7h-4zM84 70h4v8h-4zM49 31h3v5h-3zM76 30h3v5h-3z"/>
+  <path fill="#463629" d="M36 88h8v3h-8zM84 88h8v3h-8z"/>
+</svg>

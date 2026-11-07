@@ -1,6 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8m2p9v4y1x7w"]
+[gd_scene load_steps=5 format=3 uid="uid://c8m2p9v4y1x7w"]
 
 [ext_resource type="Script" path="res://scripts/shop_ui.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/book.svg" id="2_book"]
+
+[sub_resource type="StyleBoxFlat" id="ShopArrivalStyle"]
+bg_color = Color(0.11, 0.14, 0.125, 1)
+border_width_left = 3
+border_color = Color(0.72, 0.64, 0.45, 1)
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="ShopPanel"]
+bg_color = Color(0.933, 0.91, 0.85, 1)
+border_color = Color(0.42, 0.35, 0.25, 1)
+border_width_left = 1
+border_width_top = 3
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+content_margin_left = 16.0
+content_margin_top = 14.0
+content_margin_right = 16.0
+content_margin_bottom = 14.0
 
 [node name="ShopUI" type="Control"]
 layout_mode = 3
@@ -33,6 +59,7 @@ offset_right = 600.0
 offset_bottom = 330.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("ShopPanel")
 
 [node name="TopBar" type="HBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -47,31 +74,99 @@ grow_horizontal = 2
 [node name="Title" type="Label" parent="Panel/TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.15, 0.17, 0.15, 1)
 theme_override_font_sizes/font_size = 22
-text = "📚 LEKSİKON DÜKKANI & EKİPMAN MERKEZİ"
+text = "KELİME ARŞİVİ"
 
 [node name="WaveLabel" type="Label" parent="Panel/TopBar"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.8, 1, 1)
+theme_override_colors/font_color = Color(0.42, 0.17, 0.2, 1)
 theme_override_font_sizes/font_size = 17
 text = "Dalga 1 Tamamlandı!"
 
 [node name="InkLabel" type="Label" parent="Panel/TopBar"]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.2, 0.9, 0.9, 1)
+theme_override_colors/font_color = Color(0.42, 0.17, 0.2, 1)
 theme_override_font_sizes/font_size = 20
-text = "💧 Mürekkep: 0"
+text = "MÜREKKEP  0"
 horizontal_alignment = 2
+
+[node name="ChapterStrip" type="Panel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 30.0
+offset_top = 53.0
+offset_right = -30.0
+offset_bottom = 112.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("ShopArrivalStyle")
+
+[node name="ChapterKicker" type="Label" parent="Panel/ChapterStrip"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1.0
+offset_top = 6.0
+offset_right = -1.0
+offset_bottom = 21.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.77, 0.72, 0.59, 1)
+theme_override_font_sizes/font_size = 10
+text = "ARA VERME  ·  DALGA 01 TAMAMLANDI"
+
+[node name="ChapterTitle" type="Label" parent="Panel/ChapterStrip"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1.0
+offset_top = 19.0
+offset_right = -1.0
+offset_bottom = 39.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.94, 0.92, 0.85, 1)
+theme_override_font_sizes/font_size = 16
+text = "KARANLIK KÜTÜPHANE"
+
+[node name="ChapterNarration" type="Label" parent="Panel/ChapterStrip"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 1.0
+offset_top = 39.0
+offset_right = -52.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.78, 0.8, 0.75, 1)
+theme_override_font_sizes/font_size = 12
+text = "Kayıp kelimeleri rafların arasından geri çağır."
+horizontal_alignment = 0
+autowrap_mode = 2
+
+[node name="ChapterMark" type="TextureRect" parent="Panel/ChapterStrip"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -39.0
+offset_top = 11.0
+offset_right = -3.0
+offset_bottom = 47.0
+grow_horizontal = 0
+texture = ExtResource("2_book")
+expand_mode = 1
+stretch_mode = 5
+modulate = Color(0.77, 0.72, 0.59, 0.85)
 
 [node name="SynergyLabel" type="Label" parent="Panel"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 30.0
-offset_top = 52.0
+offset_top = 116.0
 offset_right = -30.0
-offset_bottom = 74.0
+offset_bottom = 136.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
 theme_override_font_sizes/font_size = 13
@@ -82,31 +177,36 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 30.0
-offset_top = 78.0
+offset_top = 140.0
 offset_right = -30.0
-offset_bottom = 114.0
+offset_bottom = 176.0
 grow_horizontal = 2
 theme_override_constants/separation = 12
 
 [node name="CardsTabButton" type="Button" parent="Panel/CategoryBar"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "📖 Kelime Kartları (Quiz İndirimli)"
+text = "Kelime kartları"
 
 [node name="WeaponsTabButton" type="Button" parent="Panel/CategoryBar"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "⚔️ Silah Pazarı (Çoklu Silah)"
+text = "Silahlar"
+
+[node name="GadgetsTabButton" type="Button" parent="Panel/CategoryBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Gereçler"
 
 [node name="ArtifactsTabButton" type="Button" parent="Panel/CategoryBar"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "🔮 Kütüphane Eserleri & Gadget"
+text = "Yadigârlar"
 
 [node name="MistakesTabButton" type="Button" parent="Panel/CategoryBar"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "📖 Hata Defteri"
+text = "Hata Defteri"
 
 [node name="ScrollArea" type="ScrollContainer" parent="Panel"]
 layout_mode = 1
@@ -116,7 +216,7 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -570.0
-offset_top = -200.0
+offset_top = -150.0
 offset_right = 570.0
 offset_bottom = 175.0
 grow_horizontal = 2
@@ -148,7 +248,7 @@ theme_override_constants/separation = 30
 [node name="RerollButton" type="Button" parent="Panel/BottomBar"]
 custom_minimum_size = Vector2(220, 48)
 layout_mode = 2
-text = "🔄 Kartları Yenile (5 💧)"
+text = "Kartları yenile (5)"
 
 [node name="Spacer" type="Control" parent="Panel/BottomBar"]
 layout_mode = 2
@@ -158,7 +258,7 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(260, 48)
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-text = "⚔ Sonraki Dalgaya Başla ▶"
+text = "Sonraki dalgaya geç"
 
 [node name="QuizModal" type="ColorRect" parent="."]
 visible = false
@@ -225,6 +325,7 @@ text = "Tamam / Dükkana Dön"
 
 [connection signal="pressed" from="Panel/CategoryBar/CardsTabButton" to="." method="_on_cards_tab_pressed"]
 [connection signal="pressed" from="Panel/CategoryBar/WeaponsTabButton" to="." method="_on_weapons_tab_pressed"]
+[connection signal="pressed" from="Panel/CategoryBar/GadgetsTabButton" to="." method="_on_gadgets_tab_pressed"]
 [connection signal="pressed" from="Panel/CategoryBar/ArtifactsTabButton" to="." method="_on_artifacts_tab_pressed"]
 [connection signal="pressed" from="Panel/CategoryBar/MistakesTabButton" to="." method="_on_mistakes_tab_pressed"]
 [connection signal="pressed" from="Panel/BottomBar/RerollButton" to="." method="_on_reroll_button_pressed"]

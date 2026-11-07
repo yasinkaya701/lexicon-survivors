@@ -1,6 +1,25 @@
-[gd_scene load_steps=2 format=3 uid="uid://e4v7q2m9k1w8p"]
+[gd_scene load_steps=6 format=3 uid="uid://e4v7q2m9k1w8p"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/upgrade_v1/arena_frame_library.png" id="2_backdrop"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/book.svg" id="3_book"]
+[ext_resource type="Texture2D" path="res://assets/ui/icons/open_archive.svg" id="4_seal"]
+
+[sub_resource type="StyleBoxFlat" id="TitlePanel"]
+bg_color = Color(0.933, 0.91, 0.85, 0.98)
+border_color = Color(0.42, 0.35, 0.25, 1)
+border_width_left = 1
+border_width_top = 3
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+content_margin_left = 16.0
+content_margin_top = 14.0
+content_margin_right = 16.0
+content_margin_bottom = 14.0
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -18,7 +37,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.05, 0.07, 0.12, 0.96)
+color = Color(0.04, 0.06, 0.05, 1)
+
+[node name="LibraryBackdrop" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_backdrop")
+expand_mode = 1
+stretch_mode = 1
+modulate = Color(0.38, 0.43, 0.39, 0.72)
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -27,57 +59,89 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -580.0
-offset_top = -330.0
-offset_right = 580.0
-offset_bottom = 330.0
+offset_left = -610.0
+offset_top = -345.0
+offset_right = 610.0
+offset_bottom = 345.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("TitlePanel")
 
 [node name="VBox" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 25.0
-offset_top = 18.0
-offset_right = -25.0
-offset_bottom = -18.0
+offset_left = 30.0
+offset_top = 22.0
+offset_right = -30.0
+offset_bottom = -22.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 8
 
-[node name="Title" type="Label" parent="Panel/VBox"]
+[node name="Masthead" type="HBoxContainer" parent="Panel/VBox"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.3, 0.85, 1, 1)
-theme_override_font_sizes/font_size = 28
-text = "⚔️ LEXICON SURVIVORS: THE WORD GUARDIAN 📚"
-horizontal_alignment = 1
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="BookMark" type="TextureRect" parent="Panel/VBox/Masthead"]
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+texture = ExtResource("3_book")
+modulate = Color(0.62, 0.3, 0.29, 1)
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MastheadText" type="VBoxContainer" parent="Panel/VBox/Masthead"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="IndexKicker" type="Label" parent="Panel/VBox/Masthead/MastheadText"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.42, 0.19, 0.23, 1)
+theme_override_font_sizes/font_size = 10
+text = "FIELD INDEX  ·  VOL. 01"
+
+[node name="Title" type="Label" parent="Panel/VBox/Masthead/MastheadText"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.14, 0.17, 0.15, 1)
+theme_override_font_sizes/font_size = 30
+theme_type_variation = "Heading"
+text = "LEXICON SURVIVORS"
 
 [node name="Subtitle" type="Label" parent="Panel/VBox"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_colors/font_color = Color(0.34, 0.37, 0.34, 1)
 theme_override_font_sizes/font_size = 14
-text = "Brotato & Vampire Survivors Mekanikleri ile İngilizce Kelime & Dilbilgisi Arenası"
+text = "Kütüphanenin düşmüş raflarında kelimeleri geri kazan."
 horizontal_alignment = 1
+
+[node name="InkRule" type="ColorRect" parent="Panel/VBox"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.42, 0.19, 0.23, 0.82)
+mouse_filter = 2
 
 [node name="SectionChar" type="Label" parent="Panel/VBox"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_colors/font_color = Color(0.42, 0.31, 0.20, 1)
 theme_override_font_sizes/font_size = 16
-text = "▶ 1. Karakterini Seç:"
+text = "KARAKTER SEÇ"
 horizontal_alignment = 1
 
-[node name="CharCardsContainer" type="HBoxContainer" parent="Panel/VBox"]
+[node name="CharCardsContainer" type="GridContainer" parent="Panel/VBox"]
 layout_mode = 2
-theme_override_constants/separation = 16
+columns = 3
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 10
 alignment = 1
 
 [node name="SectionDiff" type="Label" parent="Panel/VBox"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_colors/font_color = Color(0.74, 0.68, 0.52, 1)
 theme_override_font_sizes/font_size = 16
-text = "▶ 2. Zorluk Modunu Seç:"
+text = "SEVİYE İNDEKSİ"
 horizontal_alignment = 1
 
 [node name="DiffContainer" type="HBoxContainer" parent="Panel/VBox"]
@@ -88,35 +152,43 @@ alignment = 1
 [node name="EasyButton" type="Button" parent="Panel/VBox/DiffContainer"]
 custom_minimum_size = Vector2(240, 42)
 layout_mode = 2
-text = "🟢 Kolay (LGS / A1-A2)"
+text = "A1–A2"
 
 [node name="NormalButton" type="Button" parent="Panel/VBox/DiffContainer"]
 custom_minimum_size = Vector2(240, 42)
 layout_mode = 2
-text = "🟡 Orta (YKS-YDT / B1)"
+text = "B1"
 
 [node name="HardButton" type="Button" parent="Panel/VBox/DiffContainer"]
 custom_minimum_size = Vector2(240, 42)
 layout_mode = 2
-text = "🔴 Zor (IELTS-TOEFL / B2-C1)"
+text = "B2–C1"
 
 [node name="DiffDescLabel" type="Label" parent="Panel/VBox"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.4, 0.9, 0.9, 1)
+theme_override_colors/font_color = Color(0.34, 0.37, 0.34, 1)
 theme_override_font_sizes/font_size = 13
 text = "Zorluk açıklaması"
 horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="Panel/VBox"]
-custom_minimum_size = Vector2(320, 52)
+custom_minimum_size = Vector2(320, 46)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 20
-text = "🔥 KELİME ARENASINA BAŞLA ▶"
+text = "Kütüphaneye gir"
+icon = ExtResource("4_seal")
+icon_max_width = 24
+
+[node name="LeaderboardButton" type="Button" parent="Panel/VBox"]
+custom_minimum_size = Vector2(280, 38)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "SIRALAMA  ·  Küresel kayıtlar"
 
 [node name="ControlsInfo" type="Label" parent="Panel/VBox"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.65, 0.65, 0.65, 1)
+theme_override_colors/font_color = Color(0.38, 0.39, 0.35, 1)
 theme_override_font_sizes/font_size = 12
-text = "🎮 Kontroller: [WASD / Oklar]: Hareket | [Space / Shift]: Silgi Atılımı (Eraser Dash Gadget) | [Fare]: Quiz & Dükkan"
+text = "WASD / Oklar: Hareket   ·   R: Etkileşim   ·   Space / Shift: Atılım   ·   Fare: Sözlük ve dükkân"
 horizontal_alignment = 1

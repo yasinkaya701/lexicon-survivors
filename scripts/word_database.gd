@@ -2,7 +2,7 @@ extends Node
 
 
 # 50+ Rich Educational English Vocabulary & Grammar Questions
-# Covering: Türkçe Anlam, Eş Anlam (Synonyms), Zıt Anlam (Antonyms), 
+# Covering: Türkçe Anlam, Eş Anlam (Synonyms), Zıt Anlam (Antonyms),
 # Yazım Yanlışı (Spell Check), Prepositions & Collocations across A1, A2, B1, B2, C1.
 
 var words: Array = [
@@ -780,30 +780,12 @@ func get_random_cards_for_wave(wave: int, count: int = 4) -> Array:
 
 func get_random_cards(wave: int, difficulty: String = "normal", count: int = 4) -> Array:
 	var pool = []
+	var target_level := "A1"
+	if is_inside_tree() and get_tree().root.has_node("StatsManager"):
+		target_level = str(get_tree().root.get_node("StatsManager").learning_level)
 	for w in words:
-		var lvl = w.get("level", "A1")
-		match difficulty:
-			"easy":
-				if wave <= 3:
-					if lvl in ["A1", "A2"]: pool.append(w)
-				elif wave <= 6:
-					if lvl in ["A1", "A2", "B1"]: pool.append(w)
-				else:
-					if lvl in ["A2", "B1"]: pool.append(w)
-			"hard":
-				if wave <= 2:
-					if lvl in ["A2", "B1", "B2"]: pool.append(w)
-				elif wave <= 5:
-					if lvl in ["B1", "B2", "C1"]: pool.append(w)
-				else:
-					if lvl in ["B2", "C1"]: pool.append(w)
-			_: # "normal"
-				if wave <= 3:
-					if lvl in ["A1", "A2"]: pool.append(w)
-				elif wave <= 6:
-					if lvl in ["A2", "B1"]: pool.append(w)
-				else:
-					if lvl in ["B1", "B2", "C1"]: pool.append(w)
+		if str(w.get("level", "A1")) == target_level:
+			pool.append(w)
 
 	# Prioritize unlearned words to keep questions fresh
 	var unlearned = []
@@ -814,7 +796,7 @@ func get_random_cards(wave: int, difficulty: String = "normal", count: int = 4) 
 				unlearned.append(w)
 		else:
 			unlearned.append(w)
-			
+
 	if unlearned.size() >= count:
 		pool = unlearned
 	elif pool.size() < count:
@@ -822,7 +804,7 @@ func get_random_cards(wave: int, difficulty: String = "normal", count: int = 4) 
 
 	pool.shuffle()
 	var result = pool.slice(0, min(count, pool.size()))
-	
+
 	# If player has unredeemed mistake words, guarantee 1 redemption card slot
 	if is_inside_tree() and get_tree().root.has_node("StatsManager"):
 		var sm = get_tree().root.get_node("StatsManager")
@@ -834,7 +816,7 @@ func get_random_cards(wave: int, difficulty: String = "normal", count: int = 4) 
 			m_card["cost"] = max(1, int(ceil(m_card.get("cost", 8) * 0.5)))
 			m_card["description"] = "[★ TELAFİ BONUSU +%75 GÜÇ] " + m_card.get("description", "")
 			result[0] = m_card
-			
+
 	return result
 
 func get_word_info(word_name: String) -> Dictionary:
@@ -855,11 +837,31 @@ func _ready():
 	load_from_json()
 
 func load_from_json():
-	if FileAccess.file_exists("res://build/web/questions.json"):
-		var f = FileAccess.open("res://build/web/questions.json", FileAccess.READ)
+	var question_path := "res://assets/data/questions.json"
+	if not FileAccess.file_exists(question_path):
+		question_path = "res://build/web/questions.json"
+	if FileAccess.file_exists(question_path):
+		var f = FileAccess.open(question_path, FileAccess.READ)
 		if f:
 			var text = f.get_as_text()
 			f.close()
 			var json = JSON.parse_string(text)
 			if json and json is Array and json.size() > 0:
-				words = json
+				if json.size() >= 200:
+					# The complete authored campaign bank is the single source for both runtimes.
+					words = json.duplicate(true)
+				else:
+					# Older exported banks can still be supplemented from the embedded fallback.
+					var fallback_words := words.duplicate(true)
+					var merged_words: Array = json.duplicate(true)
+					var seen_words := {}
+					for card in merged_words:
+						var key := str(card.get("word", "")).strip_edges().to_lower()
+						if not key.is_empty():
+							seen_words[key] = true
+					for card in fallback_words:
+						var key := str(card.get("word", "")).strip_edges().to_lower()
+						if not key.is_empty() and not seen_words.has(key):
+							merged_words.append(card)
+							seen_words[key] = true
+					words = merged_words

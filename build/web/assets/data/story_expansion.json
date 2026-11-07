@@ -1,0 +1,563 @@
+{
+  "version": 1,
+  "story_rules": [
+    "Every fifth wave remains one solo boss fight; the five Enter panels begin only after that boss is defeated.",
+    "Bosses are responsible for harm they caused. Understanding their fear does not erase the harm or require victims to forgive them.",
+    "A boss reward is a witness's chosen keepsake or evidence, never a person captured as loot.",
+    "Supporting characters have goals, boundaries, disagreements and exits of their own; they can refuse the hero and leave without punishment.",
+    "The six playable heroes keep their own first twenty episodes, relationships and endings. Shared events must be reframed through each hero's specific conflict."
+  ],
+  "boss_encounters": [
+    {
+      "wave": 5,
+      "id": "boss_red_pen_boss",
+      "title": "Kırmızı Müfettiş",
+      "skill": "judgment",
+      "location": "Ters Hüküm Salonu",
+      "motive": "Bir zamanlar itiraz kaydını korudu; bir yangında iki çelişkili emir yüzünden arşivciler tahliye olamayınca, bir daha hiçbir kaydın tartışmaya açık kalmamasına yemin etti.",
+      "combat_story": "Yukarıdan inen kırmızı hükümler kaçış yollarını kapatır. İşaretli çizgiyi kesmek yerine aralıktan çıkılır; her hükmün altında kısa bir boşluk vardır.",
+      "reveal": "Müfettiş felaketi durdurduğunu sanırken ilk tanıkların itirazlarını da kesmiştir. İlk kez, kayıp emrin aslında Blank Page tarafından değiştirildiğini itiraf eder.",
+      "keepsake": "İtirazın Kırmızı Kenarı — üzerindeki çizik, kayda sonradan eklenen tek cümleyi gösteren mühür.",
+      "portrait_sprite": "upgrade_v2/boss_red_inquisitor.png",
+      "dialogue": "O kırmızı çizgiyi itirazı susturmak için çektim. Yangının emrini ben yazmadım; ama soruyu da ben kestim."
+    },
+    {
+      "wave": 10,
+      "id": "boss_syntax_titan",
+      "title": "Yarım Kalan Dev",
+      "skill": "quake",
+      "location": "Askıda Cümle Köprüsü",
+      "motive": "Çöken rafları tamamlanmamış cümleleri birbirine dikerek ayakta tuttu; artık hiçbir cümlenin yarım kalmasına izin vermiyor.",
+      "combat_story": "Her yere basışı askıdaki kitapları ve platformları sarsar. Oyuncu, titreşen taşın kenarındaki nefes aralığında güvenli durur.",
+      "reveal": "Dev, tamamladığı emirlerin çoğunun başında birinin itirazı olduğunu fark etmemiştir. Tamamlanmamış bir cümleyi ilk kez olduğu gibi bırakır.",
+      "keepsake": "Nefes Aralığı Pulu — kırık köprünün hangi tahtasının gerçek ağırlık taşıdığını gösterir.",
+      "portrait_sprite": "upgrade_v2/boss_syntax_titan.png",
+      "dialogue": "Cümleleri bitirince raflar ayakta kaldı sandım. Kimin emrini tamamladığımı hiç sormadım."
+    },
+    {
+      "wave": 15,
+      "id": "boss_oxymoron_ogre",
+      "title": "Çelişki",
+      "skill": "nova",
+      "location": "İki Hakikat Avlusu",
+      "motive": "İki kardeş tanığın birbirini suçladığı davada birini kaybetmemek için ikisini tek kayıtta birleştirdi; şimdi ayrı sesleri kendi içinde taşıyor.",
+      "combat_story": "Zıt renkli iki dalga önce birbirini iter, sonra aynı anda patlar. Saldırı aralığı renk seçmekle değil, iki dalga arasındaki ortak boşluğa yerleşmekle bulunur.",
+      "reveal": "İki tanığın söylediği zıt şeylerin ikisi de doğruydu. Ogre birini silerek diğerini koruduğunu sanmış, ikisini de görünmez kılmıştır.",
+      "keepsake": "Çift Tanıklık Camı — aynı olaya bakan iki ayrı çatlağı tek parça içinde korur.",
+      "portrait_sprite": "upgrade_v1/monster_oxymoron_ogre.png",
+      "dialogue": "İki tanığın sözünü tek gövdede tuttum. Birini koruyacağımı sanırken ikisini de görünmez kıldım."
+    },
+    {
+      "wave": 20,
+      "id": "boss_homophone_harpy",
+      "title": "İki Sesli Harpy",
+      "skill": "fan",
+      "location": "Fısıltı Bacağı",
+      "motive": "Yanlış eşleştirilen adlar yüzünden ailesinden koparılan bir arşivciydi; sesleri ayırmak yerine benzer adları aynı kişiye bağlayarak kimseyi tek başına bırakmamaya çalıştı.",
+      "combat_story": "Kanat vuruşu iki sahte ses izi ve bir gerçek ses izi bırakır. Gerçek iz zemindeki gölgeyle aynı yöne düşer.",
+      "reveal": "Harpy'nin bağladığı isimler aynı kişiye ait değildi. Kayıtların bazı sahipleri hâlâ birbirini arıyor; Harpy onların yerine cevap veremez.",
+      "keepsake": "Çift Sesli Düdük — iki sesi ayırmaz; taşıyan kişiye sessiz kalma aralığı verir.",
+      "portrait_sprite": "upgrade_v1/monster_homophone_harpy.png",
+      "dialogue": "Adları karıştırmadım ki yalnız kalmasınlar sandım. Biri hayır dediğinde sesini de ötekinin yankısına kattım."
+    },
+    {
+      "wave": 25,
+      "id": "boss_lexicon_dragon_boss",
+      "title": "Leksikon Ejderhası",
+      "skill": "orbit",
+      "location": "Kayıp Kenarlar Kubbesi",
+      "motive": "Arşivin dağılmaması için her kayıp sözcüğü kendi halkalarında tuttu; zamanla korumayı sahiplik sandı.",
+      "combat_story": "Halkalar birbirine yaklaşınca aralarındaki seyrek aralık güvenli yoldur; ejderha nefesi o aralığın ardından yön değiştirir.",
+      "reveal": "Ejderha halkalardaki kelimelerin sahibini bilmediğini, yalnızca onları kaybetmekten korktuğunu söyler. İlk bölüm değişiminde oyuncuya kendi rotasını seçtiren bir kanıt verir.",
+      "keepsake": "Kenar Yıldızı — her kahramanın kişisel iziyle eşleşen, başkasının kararını göstermeyen işaret.",
+      "portrait_sprite": "upgrade_v2/boss_lexicon_dragon.png",
+      "dialogue": "Halkalarımla kayıp kelimeleri sakladım. Zamanla korumakla sahip olmayı ayıramadım."
+    },
+    {
+      "wave": 30,
+      "id": "boss_run_on_reaper",
+      "title": "Duraksız Orakçı",
+      "skill": "charge",
+      "location": "Sonsuz İstif Koridoru",
+      "motive": "Büyük tahliye sırasında duraklayanların geride kaldığını gördü; o günden beri durmayı ölümle eş tutuyor.",
+      "combat_story": "Uzun hücum çizgisi boyunca toz kalkar; koridorun yan nişleri güvenlidir. Duvara çarpınca orakçı kısa süre yönünü kaybeder.",
+      "reveal": "Hayatta kalanlar onun arkasından koşmadı; bir yan kapıdan çıkmışlardı. Orakçı, hızın tek kurtuluş olduğuna inanarak tanıkları birbirinden ayırmıştır.",
+      "keepsake": "Dinlenme Düdüğü — dinlenmenin bir kaçış yolu olabileceğini kanıtlayan boş bir tahliye işareti.",
+      "portrait_sprite": "upgrade_v1/monster_run_on_reaper.png",
+      "dialogue": "Durursam geride kalanlar ölür sandım. Meğer çıkış, koştuğum koridorun yanındaymış."
+    },
+    {
+      "wave": 35,
+      "id": "boss_malapropism_mimic",
+      "title": "Ödünç Yüz",
+      "skill": "mirror",
+      "location": "Yanlış Portreler Galerisi",
+      "motive": "Kimliği silinen bir ressamın yerine geçici portreler yaptı; insanlar geri dönmeyince geçici kopyaların kalıcı olması gerektiğine inandı.",
+      "combat_story": "Kahramanın siluetini taklit eder ama gölgesi yanlış yönde düşer; aynalı saldırıda gerçek bedenin bakışı hedefi ele verir.",
+      "reveal": "Kopyalar kötü niyetle yapılmadı; fakat kimin geri döneceğini bilmeden hazırlanmış yüzler yaşayanların yerini alamaz. Mimic kendi özgün yüzünün olmadığını itiraf eder.",
+      "keepsake": "Ödünç Çerçeve — boş bırakılmış kenarı, kopya ile sahibi arasındaki farkı işaretler.",
+      "portrait_sprite": "upgrade_v1/monster_malapropism_mimic.png",
+      "dialogue": "Boş çerçeveleri yüzlerle doldurdum. Sahipleri dönmeyince kopyaları onların yerine koymaya kalktım."
+    },
+    {
+      "wave": 40,
+      "id": "boss_vocabulary_void",
+      "title": "Sözcüksüz Ağız",
+      "skill": "gravity",
+      "location": "Adsızlar Çukuru",
+      "motive": "Avlanan tanıkları korumak için adlarını sakladı; sonra güvenlik adına bütün isimleri ve yardım çağrılarını da sildi.",
+      "combat_story": "Çekim alanı yavaşça genişler; çevre halkasında sabit duran mürekkep damlaları güvenli sınırı gösterir.",
+      "reveal": "Adsız kalmayı isteyen bazı tanıklar vardır, ama hepsi değil. Void'in koruması seçim hakkını yok etmiştir; Dilsiz Tamirci eski düzeneklerin onun kadar sorumlu olduğunu gösterir.",
+      "keepsake": "Adsız Tanık Pimi — sahibinin adını değil, tanıklığın izin durumunu kaydeder.",
+      "portrait_sprite": "upgrade_v2/boss_void_curator.png",
+      "dialogue": "Adları saklamak onları koruyordu. Sonra yardım çağrısını da sildim, izinlerini sormadım."
+    },
+    {
+      "wave": 45,
+      "id": "boss_punctuation_phantom",
+      "title": "Son Nokta",
+      "skill": "crossfire",
+      "location": "Kapanmış Cümle Tiyatrosu",
+      "motive": "Bitmeyen bir tanıklığın tekrar tekrar dinletilmesini durdurmak için kaydı erken noktaladı; artık her acının bir kapanış cümlesi olması gerektiğine inanıyor.",
+      "combat_story": "Çapraz çizgiler bir nokta işareti gibi kapanır, fakat bir kenar çizgisi son anda açık kalır ve geçiş sağlar.",
+      "reveal": "Tanık susmayı seçmemiş, yalnızca ara vermişti. Phantom kapanışın bazen rahatlama, bazen de susturma olduğunu ayıramamıştır.",
+      "keepsake": "Açık Uçlu Nokta — sahte kapanışın altından çıkan, devam etmek ya da durmak için boşluk bırakan işaret.",
+      "portrait_sprite": "upgrade_v1/monster_punctuation_phantom.png",
+      "dialogue": "Tanığın susmayı seçtiğini sandım. Oysa yalnızca soluklanıyordu; ben cümlesini noktaladım."
+    },
+    {
+      "wave": 50,
+      "id": "boss_double_negative_drake",
+      "title": "Çifte Yadsıma",
+      "skill": "rift",
+      "location": "İki Yadsıma Yarığı",
+      "motive": "Birbirini suçlayan iki tanığı uzlaştırmak için ifadelerini tek hükme çevirdi; herkesin aynı anda hem haklı hem haksız olduğu bir düzen kurdu.",
+      "combat_story": "İki yarık zıt yönlerden açılır. İlki kapanmadan ikincisinden kaçılmaz; sıra, saldırı öncesi zemindeki ince ışıkla bildirilir.",
+      "reveal": "Uzlaşma, iki ifadenin birleştirilmesi değildir. Drake kendi editör notunun tanıkların gerçek sözlerini değiştirdiğini açığa çıkarır.",
+      "keepsake": "Karşı Not — iki ayrı imzayı ve aralarındaki anlaşmazlığı birlikte saklar.",
+      "portrait_sprite": "upgrade_v1/monster_double_negative_drake.png",
+      "dialogue": "Uzlaşma için iki ifadeyi tek hükme çevirdim. Birleştirdikçe ayrı ayrı ne söylediklerini kaybettim."
+    },
+    {
+      "wave": 55,
+      "id": "boss_palindrome_phantom",
+      "title": "Ters Yansı",
+      "skill": "return",
+      "location": "Geri Dönen Merdiven",
+      "motive": "Kütüphane çöküşünde aynı tahliye yolunu tekrar ederek kaybolanları bulmaya çalıştı; tekrarın değişimi geri alacağına tutundu.",
+      "combat_story": "İlk geçişteki saldırı izi geri döner ama oyuncunun yeni konumu onu boşa çıkarır; eski hamleyi aynen tekrarlamak tuzağa düşürür.",
+      "reveal": "Geri dönmek, önceki anı yeniden yaşamak değildir. Phantom bir kez daha aynı yolu seçmek yerine bir çıkış kapısını açık bırakır.",
+      "keepsake": "İleri Bakan Ayna Kırığı — geçmişi yansıtırken mevcut yolu örtmez.",
+      "portrait_sprite": "upgrade_v1/monster_palindrome_phantom.png",
+      "dialogue": "Aynı yolu geri yürüyünce kaybı düzelteceğimi sandım. Her dönüşte yeni bir kapıyı kaçırdım."
+    },
+    {
+      "wave": 60,
+      "id": "boss_tautology_twin",
+      "title": "Yinelenen İkiz",
+      "skill": "echo",
+      "location": "Tekrar Odası",
+      "motive": "Bir tanığın sözünün duyulmadığını görünce onu tekrar etti; tekrar, arşivde kanıt sayılmaya başlayınca susmayı da ihanet sandı.",
+      "combat_story": "İkizlerden biri gerçek saldırıyı, diğeri bir vuruş gecikmeli yankıyı yapar. Yerdeki işaretler tekrarın geldiği tarafı gösterir.",
+      "reveal": "İkizler aynı şeyi hatırlamıyor; birinin cümlesi, diğerinin sessiz kaldığı anı kapsıyor. İkisi de ayrı adla kalmayı seçer.",
+      "keepsake": "İki Zamanlı Akort — yankının ne zaman tekrar, ne zaman yeni tanıklık olduğunu ayırır.",
+      "portrait_sprite": "upgrade_v1/monster_tautology_twin.png",
+      "dialogue": "Aynı sözün tekrarını kanıt saydım. İkinci kez duymak, yeni bir tanıklık değildi."
+    },
+    {
+      "wave": 65,
+      "id": "boss_dangling_modifier",
+      "title": "Askıda Cümle",
+      "skill": "snare",
+      "location": "Bağsız Bağlaç Salonu",
+      "motive": "Bir tahliye emrinde eylemi kimin yaptığı silinince suç masum bir nöbetçiye kaldı. O günden beri her özneyi bir eyleme zorla bağlar.",
+      "combat_story": "Yukarıdan inen bağlar oyuncuyu kısa süre yavaşlatır; bağlantı düğümü parladığında düğümü kırmak yerine aradan geçilir.",
+      "reveal": "Eski emrin öznesi, kayıtta saklanan komutandı. Askıda Cümle başkasını suçlamamış olsa da doğru kişiye karşı çıkmaya cesaret edememiştir.",
+      "keepsake": "Özne Halkası — eylem ile sorumluluğun aynı kişiye bağlandığını gösteren kayıt halkası.",
+      "portrait_sprite": "upgrade_v1/monster_dangling_modifier.png",
+      "dialogue": "Eylemin öznesini bulamadım; suçu nöbetçiye bağladım. Gerçek emri verenin adını yazmaktan kaçtım."
+    },
+    {
+      "wave": 70,
+      "id": "boss_spelling_spectre",
+      "title": "Soluk Düzeltmen",
+      "skill": "shards",
+      "location": "Tek Harf Mahkemesi",
+      "motive": "Yanlış yazılmış adların yüzünden kayıp düşen kişileri ararken harfleri sessizce düzeltti; arşiv, düzeltmeleri gerçek kimlik sanmaya başladı.",
+      "combat_story": "Kırık harf parçaları tahmin edilen noktaya yönelir; her dalgadan önce güvenli alanın kıyısındaki tek sabit çizgi belirir.",
+      "reveal": "Düzeltmen bir harfi değiştirdiğinde kimi insanların ailesi onları bulabildi, kimileri ise kendi adını tanıyamadı. İyi sonuçlar hatayı haklı çıkarmaz.",
+      "keepsake": "Özgün Harf Levhası — silinmiş imlayı korur; kimin nasıl çağrılacağını kendi seçmesine bırakır.",
+      "portrait_sprite": "upgrade_v1/monster_spelling_spectre.png",
+      "dialogue": "Bir harfi düzelttim, birini ailesine kavuşturdum. Sonra aynı düzeltmenin bir başkasını evinden ettiğini gördüm."
+    },
+    {
+      "wave": 75,
+      "id": "boss_idiom_imp",
+      "title": "Harfî Alev",
+      "skill": "embers",
+      "location": "Deyim Fırını",
+      "motive": "Felaket sırasında korkan arşiv çocuklarını güldürmek için tehditleri şakaya çevirdi; yetişkinler bunu sessizlik ve itaat sağlamak için kullandı.",
+      "combat_story": "Közler güvenli görünen işaretlerin içinden çıkar; sıcaklık dalgası yaklaşmadan önce yerdeki gölgeler ters yöne uzar.",
+      "reveal": "Imp'in şakaları bazı çocukları kurtardı, bazı tanıkları da ciddiye alınmaktan mahrum bıraktı. O, gülmenin rahatlama mı baskı mı olduğunu artık soracağını söyler.",
+      "keepsake": "Sönmüş Köz Düdüğü — alarmı susturmaz; kimin duyuracağına karar vermeyi tanığa bırakır.",
+      "portrait_sprite": "upgrade_v1/monster_idiom_imp.png",
+      "dialogue": "Şakayla korkularını susturdum; yetişkinler bunu itaat için kullandı. Bunu görmezden geldim."
+    },
+    {
+      "wave": 80,
+      "id": "boss_red_pen_boss",
+      "title": "Kırmızı Redaktör",
+      "skill": "sever",
+      "location": "Kesilmiş Tanıklık Arşivi",
+      "motive": "Eski Müfettiş artık Blank Page'in emirlerini uygulamıyor; tanıkları susturan arşivi içeriden keserek durdurmaya çalışıyor. Bu kez kuralı kendisi koyuyor.",
+      "combat_story": "Kesik izleri arenayı bölümlere ayırır; her kesikten sonra değişen güvenli çizgi okunur, aynı eski sığınak ikinci kez güvenli değildir.",
+      "reveal": "İsyanı gerçek olsa da tek taraflı kesme yine tanıkları yaralayabilir. Müfettiş, haklı olmanın yöntemini aklamadığını kabul eder ve kendi hükmüne itiraz kapısı açar.",
+      "keepsake": "İtiraza Açık Jilet Kını — kesme gücünün kendisini sınırlayan bir kayıt.",
+      "portrait_sprite": "upgrade_v2/boss_red_inquisitor.png",
+      "dialogue": "İtirazları kesince arşiv sessizleşti. Bu sessizliği barış diye adlandırdım."
+    },
+    {
+      "wave": 85,
+      "id": "boss_oxymoron_ogre",
+      "title": "İkili Gerçek",
+      "skill": "split",
+      "location": "Yan Yana İki Salon",
+      "motive": "Çelişen tanıklıkları birleştirme hatasını gördü, fakat bu kez iki gerçeği iki ayrı salona kapatıp birbirinden uzak tutuyor.",
+      "combat_story": "Bölünmüş alanlar iki farklı saldırı kuralına uyar; geçiş anında iki desen üst üste gelir, çıkış orta şeritte açılır.",
+      "reveal": "Gerçekleri yan yana tutmak, tanıkların konuşmasını yasaklamak değildir. Ogre iki tanığı aynı masaya davet etmeyi önerir ama cevaplarını beklemeden sonucu yazmaz.",
+      "keepsake": "Yan Yana Kayıt Taşı — iki sütunu tutar, aralarına hüküm cümlesi koymaz.",
+      "portrait_sprite": "upgrade_v1/monster_oxymoron_ogre.png",
+      "dialogue": "İki tanığı ayrı odalara kapadım; ayrı kalırlarsa çelişmeyecekler sandım. Birbirlerini dinleme haklarını da aldım."
+    },
+    {
+      "wave": 90,
+      "id": "boss_malapropism_mimic",
+      "title": "Yanlış Neris",
+      "skill": "eclipse",
+      "location": "Güvenin Kopya Odası",
+      "motive": "Neris'in gizli kaydını taklit ederek onu korumaya çalıştı; Neris adına konuşmanın koruma değil, eski arşiv kuralını yeniden kurmak olduğunu göremedi.",
+      "combat_story": "Kopya Neris kahramanın konumuna aynalanır; gerçek gölge ışığın yönüne uyar, sahte gölge ışığı taklit eder.",
+      "reveal": "Mimic, Neris'in kimliğini kopyalamayı bırakıp kendi hatalı portresini imzalar. Neris onu affetmek zorunda kalmadan kendi adını ve itirazını söyler.",
+      "keepsake": "Kendi İmzasız Çerçevesi — taklidin üzerine yeni isim yazmaz; boşluğu sahibine bırakır.",
+      "portrait_sprite": "upgrade_v1/monster_malapropism_mimic.png",
+      "dialogue": "Neris’in yüzünü taklit edip eski kaydını kullandım. Onun adına konuşurken yaptığımın aynısını tekrarladım."
+    },
+    {
+      "wave": 95,
+      "id": "boss_vocabulary_void",
+      "title": "Yazılmamış",
+      "skill": "void_bloom",
+      "location": "Sessizlikten Önceki Salon",
+      "motive": "Finaldeki silinmeyi durdurmak için kalan bütün sesleri tek bir boşlukta saklamayı planlıyor; tanıkları korumak için son kez onların yerine karar veriyor.",
+      "combat_story": "Boşluk çiçekleri açılmadan önce kenardaki küçük mürekkep halkaları söner; oyuncu sessiz güvenli cepleri takip eder.",
+      "reveal": "Void kendi sessizliğini koruma hakkı ister ve bunun için tanıkların seçim hakkını ellerinden aldığını görür. Oyuncu onu susturmaz; kuralı durdurur.",
+      "keepsake": "Sessizliğe Ayrılan Pay — kayıtta konuşmama seçeneğini de görünür kılan yer imi.",
+      "portrait_sprite": "upgrade_v2/boss_void_curator.png",
+      "dialogue": "Sessiz kalma hakkını herkese uyguladım diye düşündüm; sonunda kimsenin sesini duyamadım."
+    },
+    {
+      "wave": 100,
+      "id": "boss_lexicon_dragon_boss",
+      "title": "Omega · Son Söz",
+      "skill": "finale",
+      "location": "Karşı Kataloğun Kalbi",
+      "motive": "Ejderha tüm arşiv halkalarını tek bir ağızda birleştirerek Blank Page'in acısız ve çelişkisiz sonunu başlatmak üzere. Bir zamanlar koruduğu şeyleri kaybetmekten korkuyor.",
+      "combat_story": "Önceki yörüngeler tek bir halka hâlinde birleşir; saldırının güvenli aralığı her fazda büyür ama kahramanın eski ritmini terk etmesi gerekir.",
+      "reveal": "Ejderha finalin sahibi olmadığını, yalnızca kapıyı tutan son bekçi olduğunu kabul eder. Neris kendisi adına yazılmış emri yırtar; her kahraman karşı kataloğun nasıl açık kalacağını seçer.",
+      "keepsake": "Açık Fihrist Anahtarı — bir sonu değil, yeni tanıkların kendi adlarıyla girebileceği yolu açar.",
+      "portrait_sprite": "upgrade_v2/boss_lexicon_dragon.png",
+      "dialogue": "Tek bir son herkesi acıdan korur sandım. Ama susturduğum herkesin kendi sonunu seçme hakkı var."
+    }
+  ],
+  "supporting_cast": {
+    "neris": {
+      "role": "Eski arşivci ve yol arkadaşı; yetişkin bir kadın, kendi adı ve seçimleri olan karakter.",
+      "desire": "İsmini kendi sesiyle kayda almak, fakat eski arşiv görevine geri dönmemek.",
+      "boundary": "Kahramanlar onun adını, affını veya itirafını talep edemez.",
+      "turning_points": [
+        [
+          5,
+          "Bir haritanın köşesini bilerek boş bırakır; her şeyi bilmediğini gösterir."
+        ],
+        [
+          20,
+          "Kendi kayıtsız kalma kararının başkasının yolunu kapattığını kabul eder."
+        ],
+        [
+          50,
+          "Kahramanların onun adına karar vermesine karşı çıkar."
+        ],
+        [
+          85,
+          "Kendi ismini geri istemekle arşivci rolünü geri almak arasındaki farkı söyler."
+        ],
+        [
+          100,
+          "Neris adını kendisi yazar; ekip onun yerine alkış veya hüküm vermez."
+        ]
+      ]
+    },
+    "mira": {
+      "role": "Inky'nin eski dostu; bağımsız, yetişkin bir harita çizer ve yol seçicisi.",
+      "desire": "Kendi rotasını belirlemek ve Inky'yle ilişkisini yüz yüze, baskısız konuşmak.",
+      "boundary": "Bir izi bırakmış olması, bulunmak veya geri dönmek istediği anlamına gelmez.",
+      "turning_points": [
+        [
+          15,
+          "Inky’nin hatalı çocukluk çizimini düzelten küçük bir işaret bırakır."
+        ],
+        [
+          40,
+          "Yel iki rotanın da gerçek olduğunu doğrular."
+        ],
+        [
+          80,
+          "Mira’nın kendi seçtiği posta rotası görünür; kadrajda kahramana dönük bekleyen ödül gibi durmaz."
+        ],
+        [
+          95,
+          "Kendi rotasından tarihli bir harita notu gönderir; dönüş sözü vermez ve Inky’ye yalnızca bir düzeltme iletir."
+        ]
+      ]
+    },
+    "ada": {
+      "role": "Quillmaster'ın yetişkin kız kardeşi ve bağımsız mektup ustası.",
+      "desire": "Kendi postasını kurmak ve aile bağını sürdürüp sürdürmeyeceğini kendisi seçmek.",
+      "boundary": "Adresinin verilmesine, cevap borcuna veya hemen barışmaya izin vermez.",
+      "turning_points": [
+        [
+          35,
+          "Sera, Ada’nın güvende olduğunu söyler ama adresini paylaşmayı reddeder."
+        ],
+        [
+          55,
+          "Sera, Ada’nın eski adresini yanlış yönlendiren baskı kalıbını gösterir; yeni adresi vermez."
+        ],
+        [
+          80,
+          "Ada’nın iki ayrı alıcıya gönderdiği mektup ulaşır; açıp açmama kararı alıcılara aittir."
+        ],
+        [
+          95,
+          "Kendi cümlesiyle cevap verir: mektubu aldı, fakat şimdilik cevap vermeye hazır değil."
+        ]
+      ]
+    },
+    "lale": {
+      "role": "Rune Sorceress'in annesi ve eski mühür ustası.",
+      "desire": "Kızının mirasını taşıyıp taşımamayı kendi büyüsüyle değil, onun seçimine bırakarak anlatmak.",
+      "boundary": "Anı yankısı yaşayan Lale değildir ve kızının güncel kararını veremez.",
+      "turning_points": [
+        [
+          30,
+          "Yankı sevgi dolu bir cümle söyler ama onu geri dönmeye çağırmaz."
+        ],
+        [
+          55,
+          "Lale'nin mektubu gündelik bir anıyı anlatır, ayrılığın tüm nedenini çözmez."
+        ],
+        [
+          70,
+          "Eski çalışma masasında iki ayrı mühür ve kızının tamamlamadığı bir iş bulunur."
+        ],
+        [
+          100,
+          "Yankı silinmez; Sorceress onu kişiye dönüştürmeye çalışmadan anı olarak taşır."
+        ]
+      ]
+    },
+    "lio": {
+      "role": "Alchemist'in kardeşi; sesi arşiv yankısında korunmuş genç yetişkin laboratuvar çalışanı.",
+      "desire": "Kendi keşiflerini ve hatalarını kardeşinin kurtarma projesinden ayrı bırakmak.",
+      "boundary": "Yankısı donmuş kayıttır; yaşayan Lio gibi yeni kararlar veremez ve yeniden diriltilmez.",
+      "turning_points": [
+        [
+          35,
+          "Aynı kayıt hep aynı espriyi tekrarlar; Alchemist yankının sınırını fark eder."
+        ],
+        [
+          55,
+          "Lio'nun son notu başarıyı değil, deneyi durdurma kararını anlatır."
+        ],
+        [
+          80,
+          "Yanlış çalan melodi Tavi'nin itirazıyla düzeltilir; bu, Lio'yu geri getirmez."
+        ],
+        [
+          100,
+          "Kardeşler arasındaki kayıt, başkalarının düzenleyebildiği ortak formüle dönüşür."
+        ]
+      ]
+    },
+    "shadow_double": {
+      "role": "Shadow Scribe'in gölgesinden ayrılmış, aynı yüz ölçülerine sahip ikinci yetişkin kişi.",
+      "desire": "Ayrı ad, karar ve çalışma alanı; Scribe'le ilişki kurup kurmama seçimi.",
+      "boundary": "Bir kişiye geri emilemez, yönetilemez veya boss ödülüne çevrilemez.",
+      "turning_points": [
+        [
+          35,
+          "İlk kez kendi tanıklığını verir ve Scribe'in hatırlamadığı bir emri açıklar."
+        ],
+        [
+          60,
+          "Kendi adını seçer; adı Scribe'in lakabı olmaz."
+        ],
+        [
+          75,
+          "Aynı karara varmayabileceklerini söyler ve ayrı bir taktik seçer."
+        ],
+        [
+          95,
+          "Dış kapıdan tek başına çıkmayı seçebilir; Scribe onu takip etmeye zorlamaz."
+        ],
+        [
+          100,
+          "İki ayrı imza aynı kitapta kalır, bedenler birleşmez."
+        ]
+      ]
+    },
+    "blank_page": {
+      "role": "Kayıp Kenarlar Arşivi'nin yüzsüz düzenleyicisi; eski koruma algoritmasının yaşayan arayüzü.",
+      "desire": "Acıyı çelişkisiz ve geri alınamaz bir sonla durdurmak.",
+      "boundary": "İyi niyeti, tanıkların seçimlerini silme hakkı vermez; mağdurların temsilcisi değildir.",
+      "turning_points": [
+        [
+          25,
+          "Halkaları kapatmaya değil, kelimeleri kaybetmekten korktuğunu söyler."
+        ],
+        [
+          50,
+          "Bir düzenin kimseye zarar vermediğini iddia etmekten vazgeçer."
+        ],
+        [
+          75,
+          "Kahramanlardan acısız sonu seçmelerini ister; red cevabını duyunca zorlayıcı kuralı devreye alır."
+        ],
+        [
+          100,
+          "Yenilgi ya da affedilme yerine yeni katalogda itiraz kabul eden bir kayıt görevi üstlenmesi teklif edilir; bu teklif kabul edilip edilmeyeceği açık kalır."
+        ]
+      ]
+    },
+    "sera": {
+      "role": "Dolaşım postacısı; iki çentikli makas ve turuncu rota çantası taşır.",
+      "desire": "Güvenli haber ağı kurmak ve teslimat rotalarının sahibi olmaya devam etmek.",
+      "boundary": "Ada'nın adresini vermez; aile üyelerinin talebini Ada'nın izninin üstüne koymaz.",
+      "appearances": [
+        [
+          35,
+          "Quillmaster, Ada’yı eski koğuşta aradığını fark eder; Sera yerine Lira tanıklık eder."
+        ],
+        [
+          55,
+          "Ada’nın adresini eve çeviren baskı kalıbını gösterir, yeni adresi vermeyi reddeder."
+        ],
+        [
+          80,
+          "Ada’nın iki zarfını teslim eder; teslimatın açma izni olmadığını söyler."
+        ]
+      ],
+      "exit": "Ada'nın habercisi olarak tanımlanmayı bırakıp kendi posta halkasını işletir."
+    },
+    "mara": {
+      "role": "Eski geçit tanığı; mismatched camlı, onarılmış el feneri taşır.",
+      "desire": "İnsanların güvenli geçişini tasarlamak ve zarar görenlerin kayıt üzerindeki sözünü korumak.",
+      "boundary": "Knight'ın özrünü kabul etme sözü vermez; onun adına yeni nöbet kuralı yazmaz.",
+      "appearances": [
+        [
+          15,
+          "Knight'ın kapattığı koridordaki ailelerin neden beklediğini anlatır; kahramanı hemen bağışlamaz."
+        ],
+        [
+          30,
+          "Tahliye yolundaki fener ışığı, kalkanın önce kapıya değil sivillere dönmesini sağlar."
+        ],
+        [
+          90,
+          "Yeni geçiş çizelgesinde sivil itiraz yuvasını tasarlar; nöbetten ayrılıp kendi yoluna gider."
+        ]
+      ],
+      "exit": "Yeni kapı düzeninin bekçisi değil, bağımsız tanığı olur."
+    },
+    "yel": {
+      "role": "Harita onarıcısı; ters duran ölçü pergeli ve katlanmış iki rota taşır.",
+      "desire": "Haritaları kesin cevap gibi kullanmadan, insanların seçeneklerini görünür kılmak.",
+      "boundary": "Hangi rotanın Mira'yı getireceğini iddia etmez; haritasını Inky'ye bırakmak zorunda değildir.",
+      "appearances": [
+        [
+          10,
+          "Katalogda olmayan geçidi gösterir ama güvenli olup olmadığını bilmediğini açıklar."
+        ],
+        [
+          55,
+          "İki farklı çıkış verir; Inky'nin kesinlik talebiyle tartışıp haritasını geri alır."
+        ],
+        [
+          80,
+          "Mira'nın kendi seçtiği rota belirir, ancak Yel onu kahramana teslim etmez; haber kanalı önerir."
+        ]
+      ],
+      "exit": "Kendi harita atölyesine döner, grubun sürekli rehberi olmaz."
+    },
+    "tavi": {
+      "role": "Lio'yla çalışmış eski laboratuvar kalfası; çatlak ölçü kabı taşır.",
+      "desire": "Deney kayıtlarında kendi emeğini ve uğradığı zararı görünür kılmak.",
+      "boundary": "Alchemist'i hemen affetmez; final formülüne itiraz yazıp onaysız bırakabilir.",
+      "appearances": [
+        [
+          20,
+          "Kendi notlarının numaralandırılıp silindiğini gösterir."
+        ],
+        [
+          55,
+          "Lio'nun mektubunu başarı öyküsü değil, deneyi durdurma isteği olarak yorumlar."
+        ],
+        [
+          85,
+          "Açık reçeteye itiraz satırı ekler; boş bırakılmış onay alanını kimse doldurmaz."
+        ]
+      ],
+      "exit": "Yeni laboratuvarın ölçü standardını kurar ama Alchemist'in ekibinde kalmaz."
+    },
+    "lira": {
+      "role": "Arması sökülmüş eski nöbetçi; kısa baton ve yıpranmış slate zırh taşır.",
+      "desire": "Eski emirde kendi payını inkâr etmeden yeni nöbetini seçmek.",
+      "boundary": "Ne Knight'ı tek suçlu ilan eder ne de onun adına bağışlanma ister.",
+      "appearances": [
+        [
+          35,
+          "Boş koğuşta kendi nöbet kararını anlatır; Ada adına konuşmaz."
+        ],
+        [
+          90,
+          "Yeni çizelgede kendi bitiş saatini seçer ve nöbeti devreder."
+        ]
+      ],
+      "exit": "Kendi vardiyasını tamamlayıp nöbeti devreder."
+    },
+    "ink_child": {
+      "role": "Genç yetişkin not kuryesi; sade kömür rengi palto ve dikişli not kesesi taşır.",
+      "desire": "Kaydı olmayan tanıkların seçtiği mesajları alıcılarına ulaştırmak.",
+      "boundary": "Not sahibini, izin yoksa açıklamaz; her iz kayıp kişiye ait değildir.",
+      "appearances": [
+        [
+          55,
+          "Inky’ye Mira adına konuşmadığını söyleyerek notun sahibinin sınırını korur."
+        ]
+      ],
+      "exit": "Notları teslim ettikten sonra kendi rotasına çıkar; oyunun maskotu olmaz."
+    },
+    "silent_mechanic": {
+      "role": "Arşiv boss düzeneklerini kurmuş eski mühendis; kaliper ve işaret çubuğu kullanır, konuşmadan anlaşır.",
+      "desire": "Kendi yaptığı düzeneklerin sorumluluğunu kabul ederek tehlikeli sistemleri sökmek.",
+      "boundary": "Oyuncuya çözümü hazır vermez; hangi parçayı sökeceğine oyuncu karar verir.",
+      "appearances": [
+        [
+          40,
+          "Void arenasındaki mekanizmanın nasıl kurulduğunu gösterir, çözümü oyuncuya bırakır."
+        ]
+      ],
+      "exit": "Tehlikeli mekanizmaları kapatır ve katalogdan ayrılır; affedildiği ilan edilmez."
+    }
+  }
+}

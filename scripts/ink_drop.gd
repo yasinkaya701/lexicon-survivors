@@ -7,18 +7,22 @@ var current_speed: float = 80.0
 var max_speed: float = 650.0
 
 func _ready():
+	add_to_group("ink_drops")
+	var players = get_tree().get_nodes_in_group("player")
+	if not players.is_empty():
+		target = players[0]
 	body_entered.connect(_on_body_entered)
 
 func _physics_process(delta: float):
 	if not is_attracted:
-		# Check distance to player
-		var players = get_tree().get_nodes_in_group("player")
-		if players.size() > 0:
-			var p = players[0]
-			var dist = global_position.distance_to(p.global_position)
+		if not is_instance_valid(target):
+			var players = get_tree().get_nodes_in_group("player")
+			if not players.is_empty():
+				target = players[0]
+		if is_instance_valid(target):
+			var dist = global_position.distance_to(target.global_position)
 			if dist <= StatsManager.pickup_radius:
 				is_attracted = true
-				target = p
 	else:
 		if is_instance_valid(target):
 			var dir = (target.global_position - global_position).normalized()

@@ -2,7 +2,8 @@ extends Node
 
 func _ready():
 	print("\n=== BEGIN GODOT NATIVE PORT VERIFICATION TEST ===")
-	
+	assert(WordDatabase.words.size() == 1000, "Godot should use the same complete 1000-card bank as web")
+
 	# TEST 1: Speed Toggles & Engine.time_scale
 	print("[PORT TEST 1] Verifying Game Speed Toggles & Engine.time_scale...")
 	assert(StatsManager.game_speed == 1.0, "Initial speed should be 1.0")
@@ -18,7 +19,7 @@ func _ready():
 	assert(s5 == 1.0 and Engine.time_scale == 1.0, "Speed should cycle back to 1.0")
 	print("  ✓ Game Speed successfully cycles: 1.0x -> 1.5x -> 2.0x -> 3.0x -> 0.5x -> 1.0x (Engine.time_scale verified!)")
 	print("✓ [PORT TEST 1 PASSED]\n")
-	
+
 	# TEST 2: Auto-Tur & Auto-New-Run Settings
 	print("[PORT TEST 2] Verifying Auto-Tur & Auto-New-Run Toggles...")
 	assert(StatsManager.auto_new_tur == true, "Auto-tur default should be true")
@@ -50,7 +51,7 @@ func _ready():
 	StatsManager.record_mistake(dummy_card)
 	assert(StatsManager.mistake_words.size() == 1, "Expected 1 mistake recorded")
 	assert(StatsManager.mistake_words[0]["word"] == "Ephemeral", "Recorded mistake word mismatch")
-	
+
 	# Test redemption upgrade calculation
 	var orig_speed = StatsManager.move_speed
 	var redemption_card = dummy_card.duplicate()
@@ -59,7 +60,7 @@ func _ready():
 	var speed_gain = StatsManager.move_speed - orig_speed
 	# 20.0 * 1.75 = 35.0
 	assert(abs(speed_gain - 35.0) < 0.1, "Redemption bonus should be +%75 (35.0 gain, got: " + str(speed_gain) + ")")
-	
+
 	StatsManager.remove_mistake("Ephemeral")
 	assert(StatsManager.mistake_words.size() == 0, "Mistake should be removed after redemption")
 	print("  ✓ Mistake recorded, redeemed with +%75 bonus stats, and cleaned up successfully!")
@@ -74,14 +75,14 @@ func _ready():
 	enemy.setup_type()
 	assert(enemy.is_boss == true, "Enemy should be identified as boss")
 	assert(enemy.is_enraged == false, "Boss should start in normal phase")
-	
+
 	# Simulate taking damage to trigger Enrage (< 50% HP)
 	var initial_speed = enemy.speed
 	enemy.take_damage(enemy.max_health * 0.55, Vector2.RIGHT)
 	assert(enemy.is_enraged == true, "Boss should be enraged below 50% HP")
 	assert(enemy.speed > initial_speed, "Boss speed should increase during Phase 2")
 	print("  ✓ Boss Enraged Phase 2 verified! Speed scaled from %.1f to %.1f" % [initial_speed, enemy.speed])
-	
+
 	# Test Shielded Affix
 	var shielded_enemy = enemy_scene.instantiate()
 	shielded_enemy.enemy_type = "Grammar Goblin"
@@ -122,4 +123,3 @@ func _ready():
 
 	print("=== ALL GODOT PORT VERIFICATION TESTS PASSED 100%! ===")
 	get_tree().quit()
-

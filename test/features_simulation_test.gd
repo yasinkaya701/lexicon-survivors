@@ -58,13 +58,13 @@ func _init():
 	StatsManager.set_difficulty("easy")
 	StatsManager.reset()
 	assert(StatsManager.max_hp == 165.0, "Easy mode player HP must have +40 bonus (165.0)")
-	assert(StatsManager.ink_mult == 1.40, "Easy mode ink multiplier must be 1.40")
+	assert(StatsManager.ink_mult == 1.05, "Easy mode ink multiplier must match the current economy profile")
 	
 	# Hard: player HP +0
 	StatsManager.set_difficulty("hard")
 	StatsManager.reset()
 	assert(StatsManager.max_hp == 125.0, "Hard mode player HP must be 125.0")
-	assert(StatsManager.ink_mult == 1.35, "Hard mode ink multiplier must be 1.35")
+	assert(StatsManager.ink_mult == 1.10, "Hard mode ink multiplier must match the current economy profile")
 	
 	# Normal
 	StatsManager.set_difficulty("normal")

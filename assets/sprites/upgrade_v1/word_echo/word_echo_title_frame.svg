@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="96" viewBox="0 0 320 96" shape-rendering="crispEdges">
+  <!-- Blank, high-contrast word plate. Runtime owns all vocabulary lettering. -->
+  <path fill="#0b1110" d="M8 0h304v4h8v88h-8v4H8v-4H0V4h8z"/>
+  <path fill="#c6a86a" d="M8 4h304v4h4v80h-4v4H8v-4H4V8h4zm4 4v4H8v72h4v4h296v-4h4V12h-4V8z"/>
+  <path fill="#26342e" d="M12 12h296v72H12z"/>
+  <path fill="#101917" d="M20 18h270v60H20z"/>
+  <path fill="#967c4d" d="M20 18h270v2H20zm0 58h270v2H20z"/>
+  <path fill="#d9c38c" d="M12 8h16v2H14v8h-2zm280 0h16v10h-2v-8h-14zM12 78h2v8h14v2H12zm282 0h2v10h-16v-2h14z"/>
+  <path fill="#e1d0a4" d="M34 27h220v2H34zm0 40h220v2H34z" opacity=".25"/>
+  <path fill="#d9c38c" d="M5 22h3v3H5zm307 0h3v3h-3zM5 71h3v3H5zm307 0h3v3h-3z"/>
+  <path fill="#a54d48" d="M18 4h25v2H18zm259 86h25v2h-25z"/>
+  <path fill="#6d5140" d="M10 46h4v4h-4zm296 0h4v4h-4z"/>
+</svg>

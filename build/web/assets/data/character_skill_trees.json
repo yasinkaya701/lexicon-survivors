@@ -1,0 +1,843 @@
+{
+  "schema_version": 1,
+  "title_tr": "Karakter Yetenek Ağaçları",
+  "max_character_level": 18,
+  "skill_points_per_level": 1,
+  "unlock_rule": "required_level_prerequisites_and_skill_points",
+  "effect_keys": [
+    "damage",
+    "attack_speed",
+    "armor",
+    "move_speed",
+    "max_hp",
+    "crit_chance",
+    "projectile_count",
+    "pierce",
+    "pickup_radius"
+  ],
+  "characters": {
+    "inky": {
+      "display_name_tr": "Inky",
+      "branches": [
+        {
+          "id": "archivist_guard",
+          "name_tr": "Kenar Muhafızı",
+          "description_tr": "Arşivde öğrendiği küçük savunma ritüelleriyle aldığı darbeleri hafifletir.",
+          "nodes": [
+            {
+              "id": "wax_seal",
+              "name_tr": "Mühürlü Manşet",
+              "description_tr": "Kolluğundaki balmumu mührü bir darbeyi sönümlemeyi öğretir.",
+              "required_level": 2,
+              "prerequisites": [],
+              "point_cost": 1,
+              "effects": {
+                "armor": 0.025
+              }
+            },
+            {
+              "id": "bound_ledger",
+              "name_tr": "Ciltli Nöbet",
+              "description_tr": "Ciltli defterinden öğrendiği dayanıklılık, arama boyunca ayakta tutar.",
+              "required_level": 6,
+              "prerequisites": [
+                "wax_seal"
+              ],
+              "point_cost": 2,
+              "effects": {
+                "max_hp": 8
+              }
+            },
+            {
+              "id": "quiet_margin",
+              "name_tr": "Sessiz Kenar",
+              "description_tr": "Kenarda kalmayı değil, doğru anda siper almayı öğrenir.",
+              "required_level": 12,
+              "prerequisites": [
+                "bound_ledger"
+              ],
+              "point_cost": 3,
+              "effects": {
+                "armor": 0.025
+              }
+            }
+          ]
+        },
+        {
+          "id": "lexicon_scholar",
+          "name_tr": "Leksikon Ustası",
+          "description_tr": "Kelimelerin açıklarını bulup her atışı daha etkili hâle getirir.",
+          "nodes": [
+            {
+              "id": "root_reading",
+              "name_tr": "Kök Okuması",
+              "description_tr": "Bir kelimenin kökünü hedefin zayıf noktasına bağlar.",
+              "required_level": 2,
+              "prerequisites": [],
+              "point_cost": 1,
+              "effects": {
+                "damage": 0.04
+              }
+            },
+            {
+              "id": "cross_reference",
+              "name_tr": "Çapraz Başvuru",
+              "description_tr": "Bir kaynağın kenarındaki not, atışın bir hedef daha aşmasını sağlar.",
+              "required_level": 6,
+              "prerequisites": [
+                "root_reading"
+              ],
+              "point_cost": 2,
+              "effects": {
+                "pierce": 1
+              }
+            },
+            {
+              "id": "living_index",
+              "name_tr": "Canlı Fihrist",
+              "description_tr": "Öğrendiği sözcükleri saldırıya dönüştürme ustalığı kazanır.",
+              "required_level": 12,
+              "prerequisites": [
+                "cross_reference"
+              ],
+              "point_cost": 3,
+              "effects": {
+                "damage": 0.05
+              }
+            }
+          ]
+        },
+        {
+          "id": "trail_reader",
+          "name_tr": "İz Sürücü",
+          "description_tr": "Kayıp kayıtların peşinden daha çevik ve dikkatli ilerler.",
+          "nodes": [
+            {
+              "id": "dust_step",
+              "name_tr": "Toz Adımı",
+              "description_tr": "Tozun hareketinden düşmanın yönünü okur.",
+              "required_level": 2,
+              "prerequisites": [],
+              "point_cost": 1,
+              "effects": {
+                "move_speed": 6
+              }
+            },
+            {
+              "id": "ink_scent",
+              "name_tr": "Mürekkep İzi",
+              "description_tr": "Yere düşen damlaların saklı izini uzaktan seçer.",
+              "required_level": 6,
+              "prerequisites": [
+                "dust_step"
+              ],
+              "point_cost": 2,
+              "effects": {
+                "pickup_radius": 15
+              }
+            },
+            {
+              "id": "last_folio",
+              "name_tr": "Son Yaprak",
+              "description_tr": "Arayış uzadıkça adımlarını daha kararlı atar.",
+              "required_level": 12,
+              "prerequisites": [
+                "ink_scent"
+              ],
+              "point_cost": 3,
+              "effects": {
+                "move_speed": 8
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "quillmaster": {
+      "display_name_tr": "Quillmaster",
+      "branches": [
+        {
+          "id": "chrono_draw",
+          "name_tr": "Kronograf Atışı",
+          "description_tr": "Chrono Comma'nın zaman kırılmasını ölçülü, seri atışlara çevirir.",
+          "nodes": [
+            {
+              "id": "split_second",
+              "name_tr": "Bölünmüş Saniye",
+              "description_tr": "Bir sonraki vuruşu hazırlamak için kayıp bir anı geri alır.",
+              "required_level": 2,
+              "prerequisites": [],
+              "point_cost": 1,
+              "effects": {
+                "attack_speed": 0.07
+              }
+            },
+            {
+              "id": "echo_chamber",
+              "name_tr": "Yankı Odası",
+              "description_tr": "Her atışın ardından kalan zaman yankısını yeni bir atışa bağlar.",
+              "required_level": 6,
+              "prerequisites": [
+                "split_second"
+              ],
+              "point_cost": 2,
+              "effects": {
+                "attack_speed": 0.07
+              }
+            },
+            {
+              "id": "fourth_beat",
+              "name_tr": "Dördüncü Vuruş",
+              "description_tr": "Ritmi bozmadan son bir hız ivmesi kazanır.",
+              "required_level": 12,
+              "prerequisites": [
+                "echo_chamber"
+              ],
+              "point_cost": 3,
+              "effects": {
+                "attack_speed": 0.06
+              }
+            }
+          ]
+        },
+        {
+          "id": "futuresight",
+          "name_tr": "Gelecek Görüşü",
+          "description_tr": "Hedefin bir sonraki hareketini okuyup isabetli darbeler indirir.",
+          "nodes": [
+            {
+              "id": "redline_focus",
+              "name_tr": "Kırmızı Çizgi",
+              "description_tr": "Kalemin ucunu hedefin hareket hattına sabitler.",
+              "required_level": 2,
+              "prerequisites": [],
+              "point_cost": 1,
+              "effects": {
+                "crit_chance": 0.035
+              }
+            },
+            {
+              "id": "borrowed_aim",
+              "name_tr": "Ödünç Nişan",
+              "description_tr": "Zamanın küçük bir kesitini kritik vuruşa ayırır.",
+              "required_level": 6,
+              "prerequisites": [
+                "redline_focus"
+              ],
+              "point_cost": 2,
+              "effects": {
+                "damage": 0.04
+              }
+            },
+            {
+              "id": "deadline",
+              "name_tr": "Son An",
+              "description_tr": "Kaçış yolu kapanırken vuruşlarını daha keskinleştirir.",
+              "required_level": 12,
+              "prerequisites": [
+                "borrowed_aim"
+              ],
+              "point_cost": 3,
+              "effects": {
+                "crit_chance": 0.035
+              }
+            }
+          ]
+        },
+        {
+          "id": "chronos_stride",
+          "name_tr": "Zaman Aralığı",
+          "description_tr": "Kısa zaman sıçramalarıyla konumunu ve nefesini korur.",
+          "nodes": [
+            {
+              "id": "backstep",
+              "name_tr": "Geri Adım",
+              "description_tr": "Zamanı geriye katlayıp mesafeyi biraz daha hızlı kapatır.",
+              "required_level": 2,
+              "prerequisites": [],
+              "point_cost": 1,
+              "effects": {
+                "move_speed": 7
+              }
+            },
+            {
+              "id": "stillness",
+              "name_tr": "Durgun Kare",
+              "description_tr": "Bir anlık durgunluk dayanıklılığını artırır.",
+              "required_level": 6,
+              "prerequisites": [
+                "backstep"
+              ],
+              "point_cost": 2,
+              "effects": {
+                "max_hp": 8
+              }
+            },
+            {
+              "id": "quill_rhythm",
+              "name_tr": "Kalem Ritmi",
+              "description_tr": "Nefesini koruyarak atış temposunu sürdürülebilir kılar.",
+              "required_level": 12,
+              "prerequisites": [
+                "stillness"
+              ],
+              "point_cost": 3,
+              "effects": {
+                "attack_speed": 0.05
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "word_knight": {
+      "display_name_tr": "Word Knight",
+      "branches": [
+        {
+          "id": "oath_bastion",
+          "name_tr": "Nöbet Yemini",
+          "description_tr": "Kayıp armayı ararken zırhını ve nöbetçi iradesini güçlendirir.",
+          "nodes": [
+            {
+              "id": "raised_visor",
+              "name_tr": "Kalkık Siperlik",
+              "description_tr": "Eski nöbet alışkanlığı darbeyi karşılamayı öğretir.",
+              "required_level": 2,
+              "prerequisites": [],
+              "point_cost": 1,
+              "effects": {
+                "armor": 0.03
+              }
+            },
+            {
+              "id": "iron_watch",
+              "name_tr": "Demir Nöbet",
+              "description_tr": "Kapı önündeki uzun nöbetler dayanıklılığını artırır.",
+              "required_level": 6,
+              "prerequisites": [
+                "raised_visor"
+              ],
+              "point_cost": 2,
+              "effects": {
+                "max_hp": 10
+              }
+            },
+            {
+              "id": "unbroken_oath",
+              "name_tr": "Bozulmayan Yemin",
+              "description_tr": "Yeminini başkasının emrine değil kendi kararına bağlar.",
+              "required_level": 12,
+              "prerequisites": [
+                "iron_watch"
+              ],
+              "point_cost": 3,
+              "effects": {
+                "armor": 0.03
+              }
+            }
+          ]
+        },
+        {
+          "id": "shielded_verdict",
+          "name_tr": "Kalkan Hükmü",
+          "description_tr": "Sözlük Kalkanı ile açıklık bularak düşman hattını yarar.",
+          "nodes": [
+            {
+              "id": "edge_parry",
+              "name_tr": "Kenar Karşılığı",
+              "description_tr": "Kalkanın kenarıyla ilk darbeyi karşılayıp temiz bir açıklık yaratır.",
+              "required_level": 2,
+              "prerequisites": [],
+              "point_cost": 1,
+              "effects": {
+                "damage": 0.04
+              }
+            },
+            {
+              "id": "split_clause",
+              "name_tr": "Bölünmüş Tümce",
+              "description_tr": "Kılıç çizgisini bir düşman daha boyunca sürdürür.",
+              "required_level": 6,
+              "prerequisites": [
+                "edge_parry"
+              ],
+              "point_cost": 2,
+              "effects": {
+                "pierce": 1
+              }
+            },
+            {
+              "id": "final_clause",
+              "name_tr": "Son Tümce",
+              "description_tr": "Her parry sonrası açılan fırsatı daha güçlü kullanır.",
+              "required_level": 12,
+              "prerequisites": [
+                "split_clause"
+              ],
+              "point_cost": 3,
+              "effects": {
+                "damage": 0.05
+              }
+            }
+          ]
+        },
+        {
+          "id": "pilgrim_step",
+          "name_tr": "Sürgün Yolu",
+          "description_tr": "Saraydan ayrılıp gerçeğin izini sürerken hareket kabiliyeti kazanır.",
+          "nodes": [
+            {
+              "id": "gate_runner",
+              "name_tr": "Kapı Koşucusu",
+              "description_tr": "Nöbet kapılarının dar aralıklarında daha çevik hareket eder.",
+              "required_level": 2,
+              "prerequisites": [],
+              "point_cost": 1,
+              "effects": {
+                "move_speed": 6
+              }
+            },
+            {
+              "id": "supply_cache",
+              "name_tr": "Gizli Erzak",
+              "description_tr": "Yol üzerindeki unutulmuş malzemeleri daha uzaktan bulur.",
+              "required_level": 6,
+              "prerequisites": [
+                "gate_runner"
+              ],
+              "point_cost": 2,
+              "effects": {
+                "pickup_radius": 15
+              }
+            },
+            {
+              "id": "roadwarden",
+              "name_tr": "Yol Muhafızı",
+              "description_tr": "Uzun arayışın sonuna doğru daha dayanıklı adımlar atar.",
+              "required_level": 12,
+              "prerequisites": [
+                "supply_cache"
+              ],
+              "point_cost": 3,
+              "effects": {
+                "max_hp": 8
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "rune_sorceress": {
+      "display_name_tr": "Rün Büyücüsü",
+      "branches": [
+        {
+          "id": "sigil_resonance",
+          "name_tr": "Mühür Rezonansı",
+          "description_tr": "Rün Küresi'nin vuruşlarını daha fazla hedefe taşıyan kadim işaretler öğrenir.",
+          "nodes": [
+            {
+              "id": "first_glyph",
+              "name_tr": "İlk Glif",
+              "description_tr": "İlk rünü hedefin zırhındaki boşluğa yerleştirir.",
+              "required_level": 2,
+              "prerequisites": [],
+              "point_cost": 1,
+              "effects": {
+                "damage": 0.045
+              }
+            },
+            {
+              "id": "orbiting_mark",
+              "name_tr": "Yörünge İşareti",
+              "description_tr": "Küreye bağlanan ikinci bir işaret saldırı hattını genişletir.",
+              "required_level": 6,
+              "prerequisites": [
+                "first_glyph"
+              ],
+              "point_cost": 2,
+              "effects": {
+                "projectile_count": 1
+              }
+            },
+            {
+              "id": "resonant_seal",
+              "name_tr": "Çınlayan Mühür",
+              "description_tr": "Birleşen işaretler kürenin gücünü artırır.",
+              "required_level": 12,
+              "prerequisites": [
+                "orbiting_mark"
+              ],
+              "point_cost": 3,
+              "effects": {
+                "damage": 0.045
+              }
+            }
+          ]
+        },
+        {
+          "id": "astral_reading",
+          "name_tr": "Astral Okuma",
+          "description_tr": "Yıldız haritasının açısını okuyarak daha isabetli kritikler bulur.",
+          "nodes": [
+            {
+              "id": "star_chart",
+              "name_tr": "Yıldız Haritası",
+              "description_tr": "Gökyüzündeki sabit noktalar nişanını keskinleştirir.",
+              "required_level": 2,
+              "prerequisites": [],
+              "point_cost": 1,
+              "effects": {
+                "crit_chance": 0.04
+              }
+            },
+            {
+              "id": "orbit_path",
+              "name_tr": "Yörünge Yolu",
+              "description_tr": "Hedeflerin kaçış yolunu bir rün çemberi gibi hesaplar.",
+              "required_level": 6,
+              "prerequisites": [
+                "star_chart"
+              ],
+              "point_cost": 2,
+              "effects": {
+                "pierce": 1
+              }
+            },
+            {
+              "id": "converging_stars",
+              "name_tr": "Yakınsayan Yıldızlar",
+              "description_tr": "Son mührü atarken yıldızların gücünü darbeye toplar.",
+              "required_level": 12,
+              "prerequisites": [
+                "orbit_path"
+              ],
+              "point_cost": 3,
+              "effects": {
+                "crit_chance": 0.04
+              }
+            }
+          ]
+        },
+        {
+          "id": "sealed_focus",
+          "name_tr": "Mührün Bedeli",
+          "description_tr": "Mührün kararını anlayıp enerjisini daha uzun süre korur.",
+          "nodes": [
+            {
+              "id": "quiet_channel",
+              "name_tr": "Sessiz Kanal",
+              "description_tr": "Rün akışını sakinleştirip hareketini hafifletir.",
+              "required_level": 2,
+              "prerequisites": [],
+              "point_cost": 1,
+              "effects": {
+                "move_speed": 6
+              }
+            },
+            {
+              "id": "deep_reserve",
+              "name_tr": "Derin Hazne",
+              "description_tr": "Saklı büyü rezervi bedenini yıpranmaya karşı korur.",
+              "required_level": 6,
+              "prerequisites": [
+                "quiet_channel"
+              ],
+              "point_cost": 2,
+              "effects": {
+                "max_hp": 8
+              }
+            },
+            {
+              "id": "locked_intent",
+              "name_tr": "Kilitli Niyet",
+              "description_tr": "Kararını verdiğinde darbeyi daha kararlı indirir.",
+              "required_level": 12,
+              "prerequisites": [
+                "deep_reserve"
+              ],
+              "point_cost": 3,
+              "effects": {
+                "damage": 0.045
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "lexicon_alchemist": {
+      "display_name_tr": "Arşiv Simyacısı",
+      "branches": [
+        {
+          "id": "distillation",
+          "name_tr": "İnce Damıtım",
+          "description_tr": "Mürekkep Alevi'ni az ama etkili darbeler için arıtır.",
+          "nodes": [
+            {
+              "id": "clean_flame",
+              "name_tr": "Temiz Alev",
+              "description_tr": "Alevin isini azaltıp her vuruşu güçlendirir.",
+              "required_level": 2,
+              "prerequisites": [],
+              "point_cost": 1,
+              "effects": {
+                "damage": 0.04
+              }
+            },
+            {
+              "id": "glass_nozzle",
+              "name_tr": "Cam Meme",
+              "description_tr": "Daha temiz karışımın alev menzilini ve damla toplama duyusunu geliştirir.",
+              "required_level": 6,
+              "prerequisites": [
+                "clean_flame"
+              ],
+              "point_cost": 2,
+              "effects": {
+                "pickup_radius": 15
+              }
+            },
+            {
+              "id": "blue_distillate",
+              "name_tr": "Mavi Özüt",
+              "description_tr": "Arıtılmış özütü daha yüksek hasar verecek biçimde yoğunlaştırır.",
+              "required_level": 12,
+              "prerequisites": [
+                "glass_nozzle"
+              ],
+              "point_cost": 3,
+              "effects": {
+                "damage": 0.045
+              }
+            }
+          ]
+        },
+        {
+          "id": "field_apothecary",
+          "name_tr": "Saha Eczacısı",
+          "description_tr": "Dalgalar arasında iyileşme fırsatı yaratırken kendini de korur.",
+          "nodes": [
+            {
+              "id": "field_bandage",
+              "name_tr": "Saha Sargısı",
+              "description_tr": "Yanık sargılarına eklediği bitkiler dayanıklılığını artırır.",
+              "required_level": 2,
+              "prerequisites": [],
+              "point_cost": 1,
+              "effects": {
+                "max_hp": 8
+              }
+            },
+            {
+              "id": "bitter_tonic",
+              "name_tr": "Acı Tonik",
+              "description_tr": "Yol iksiri sonrası daha sağlam kalmasını sağlar.",
+              "required_level": 6,
+              "prerequisites": [
+                "field_bandage"
+              ],
+              "point_cost": 2,
+              "effects": {
+                "armor": 0.025
+              }
+            },
+            {
+              "id": "silver_tonic",
+              "name_tr": "Gümüş Tonik",
+              "description_tr": "Zehirli mürekkebin izlerini daha iyi atlatır.",
+              "required_level": 12,
+              "prerequisites": [
+                "bitter_tonic"
+              ],
+              "point_cost": 3,
+              "effects": {
+                "max_hp": 8
+              }
+            }
+          ]
+        },
+        {
+          "id": "volatile_mobility",
+          "name_tr": "Uçucu Karışım",
+          "description_tr": "Hareket ve kritik vuruşlarla karışımın enerjisini savaş alanına taşır.",
+          "nodes": [
+            {
+              "id": "spark_vial",
+              "name_tr": "Kıvılcım Şişesi",
+              "description_tr": "Hafif şişelerle koşarken yön değiştirmeyi kolaylaştırır.",
+              "required_level": 2,
+              "prerequisites": [],
+              "point_cost": 1,
+              "effects": {
+                "move_speed": 6
+              }
+            },
+            {
+              "id": "volatile_drop",
+              "name_tr": "Uçucu Damla",
+              "description_tr": "Karışımın yüzey gerilimi kritik darbeleri keskinleştirir.",
+              "required_level": 6,
+              "prerequisites": [
+                "spark_vial"
+              ],
+              "point_cost": 2,
+              "effects": {
+                "crit_chance": 0.035
+              }
+            },
+            {
+              "id": "distiller_dash",
+              "name_tr": "Damıtıcı Atılım",
+              "description_tr": "Her adımda dökülen son damlaları daha kolay yakalar.",
+              "required_level": 12,
+              "prerequisites": [
+                "volatile_drop"
+              ],
+              "point_cost": 3,
+              "effects": {
+                "pickup_radius": 15
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "shadow_lexicographer": {
+      "display_name_tr": "Gölge Hattatı",
+      "branches": [
+        {
+          "id": "nocturne_ink",
+          "name_tr": "Gece Mürekkebi",
+          "description_tr": "Hattat Katanası'nın izini gölgede saklayıp kritik kesikler açar.",
+          "nodes": [
+            {
+              "id": "black_blade",
+              "name_tr": "Kara Bıçak",
+              "description_tr": "Katananın mürekkep izi hedefin en açık noktasını bulur.",
+              "required_level": 2,
+              "prerequisites": [],
+              "point_cost": 1,
+              "effects": {
+                "crit_chance": 0.04
+              }
+            },
+            {
+              "id": "cut_silence",
+              "name_tr": "Sessiz Kesik",
+              "description_tr": "Sessizce yaklaşırken keskinliğini ve hasarını artırır.",
+              "required_level": 6,
+              "prerequisites": [
+                "black_blade"
+              ],
+              "point_cost": 2,
+              "effects": {
+                "damage": 0.045
+              }
+            },
+            {
+              "id": "night_margin",
+              "name_tr": "Gece Kenarı",
+              "description_tr": "Gölgenin sınırında bir kritik fırsatı daha yaratır.",
+              "required_level": 12,
+              "prerequisites": [
+                "cut_silence"
+              ],
+              "point_cost": 3,
+              "effects": {
+                "crit_chance": 0.04
+              }
+            }
+          ]
+        },
+        {
+          "id": "vanishing_line",
+          "name_tr": "Silinen Hat",
+          "description_tr": "Görünmeden yer değiştirip düşmanların arasındaki boşluklardan geçer.",
+          "nodes": [
+            {
+              "id": "soft_footfall",
+              "name_tr": "Sessiz Taban",
+              "description_tr": "Adımlarının yankısını karanlıkta azaltır.",
+              "required_level": 2,
+              "prerequisites": [],
+              "point_cost": 1,
+              "effects": {
+                "move_speed": 8
+              }
+            },
+            {
+              "id": "empty_stroke",
+              "name_tr": "Boş Vuruş",
+              "description_tr": "Bir anlık boşluk bırakıp düşmanın karşı hamlesini atlatır.",
+              "required_level": 6,
+              "prerequisites": [
+                "soft_footfall"
+              ],
+              "point_cost": 2,
+              "effects": {
+                "armor": 0.025
+              }
+            },
+            {
+              "id": "vanish_into_ink",
+              "name_tr": "Mürekkebe Karış",
+              "description_tr": "Karanlığın içinde ritmini bozmadan ilerler.",
+              "required_level": 12,
+              "prerequisites": [
+                "empty_stroke"
+              ],
+              "point_cost": 3,
+              "effects": {
+                "move_speed": 8
+              }
+            }
+          ]
+        },
+        {
+          "id": "contradiction_hunter",
+          "name_tr": "Çelişki Avcısı",
+          "description_tr": "Yanlış emirlerin arasında zayıf noktayı bulup çoklu hedeflere kesik atar.",
+          "nodes": [
+            {
+              "id": "read_the_gap",
+              "name_tr": "Aradaki Boşluk",
+              "description_tr": "Çelişkili bir emrin bıraktığı aralıktan hedef alır.",
+              "required_level": 2,
+              "prerequisites": [],
+              "point_cost": 1,
+              "effects": {
+                "damage": 0.04
+              }
+            },
+            {
+              "id": "crossed_out",
+              "name_tr": "Üstü Çizili",
+              "description_tr": "Kesik çizgisini bir sonraki rakibe taşır.",
+              "required_level": 6,
+              "prerequisites": [
+                "read_the_gap"
+              ],
+              "point_cost": 2,
+              "effects": {
+                "pierce": 1
+              }
+            },
+            {
+              "id": "authorless",
+              "name_tr": "İmzasız Hüküm",
+              "description_tr": "Kendi seçtiği hedefe çok daha kararlı vurur.",
+              "required_level": 12,
+              "prerequisites": [
+                "crossed_out"
+              ],
+              "point_cost": 3,
+              "effects": {
+                "attack_speed": 0.05
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "skill_point_first_level": 2
+}

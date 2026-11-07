@@ -16,6 +16,12 @@ config/features=PackedStringArray("4.7", "Forward Plus")
 
 StatsManager="*res://scripts/stats_manager.gd"
 WordDatabase="*res://scripts/word_database.gd"
+LeaderboardClient="*res://scripts/leaderboard_client.gd"
+
+[gui]
+
+theme/custom="res://assets/themes/lexicon_theme.tres"
+theme/custom_font="res://assets/fonts/ibm-plex/IBMPlexSans-Variable.ttf"
 
 [display]
 
@@ -63,3 +69,9 @@ dash={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
+
+[accessibility]
+reduced_motion=false
+
+[leaderboard]
+api_base_url="https://lexicon-survivors-leaderboard.lexicon-survivors-leaderboard.workers.dev"

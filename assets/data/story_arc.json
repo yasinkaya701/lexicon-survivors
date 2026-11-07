@@ -1,0 +1,5114 @@
+{
+  "version": 2,
+  "panel_count": 5,
+  "characters": {
+    "inky": {
+      "motive": "Mira’nın adını ve aralarındaki eksik anının gerçek nedenini bulmak.",
+      "name": "Inky",
+      "episodes": [
+        {
+          "wave": 5,
+          "title": "Ters Akan Fiş",
+          "location": "Yağmur Eşiği",
+          "scene": "Yağmur damlaları mermerden yukarı tırmanırken Inky, ıslak fişi cımbızla kaldırır; ters mürekkep Mira’nın yıldız noktasına akar.",
+          "backdrop": "scenes/inky/episode_01.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_red_pen_boss",
+              "Kuralı koruduğumu sanıyordum; itirazı kırmızıya boyayıp kayıttan kesmişim"
+            ],
+            [
+              "hero",
+              "Yıldızını tanıyorum; noktayı hep ters koyardı."
+            ],
+            [
+              "neris",
+              "Kenarı yırtılmamış. Biri saklamış, biri de bulmanı istemiş."
+            ],
+            [
+              "whisper",
+              "Mira seni bekliyor. Fişi yak, eve götüreyim."
+            ],
+            [
+              "hero",
+              "Onu değil, kendi seçtiği yolu arıyorum."
+            ]
+          ],
+          "boss_reward": {
+            "type": "clue",
+            "name": "Ters Mürekkep",
+            "description": "Silinmiş yazı hâlâ iz bırakabiliyor."
+          },
+          "panel_art": [
+            "panels_600/inky/wave_005_panel_01.webp",
+            "panels_600/inky/wave_005_panel_02.webp",
+            "panels_600/inky/wave_005_panel_03.webp",
+            "panels_600/inky/wave_005_panel_04.webp",
+            "panels_600/inky/wave_005_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 10,
+          "title": "Harita Dışı Nokta",
+          "location": "Katalog Koridoru",
+          "scene": "Katalog çekmeceleri açılıp kapanırken iki damla mavi mürekkep, duvardaki haritanın sınırını aşarak zeminde ince bir yol çizer.",
+          "backdrop": "scenes/inky/episode_02.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_syntax_titan",
+              "Emir yarımdı; ben bitirdim ve içindeki “hayır”ı cümlenin dışına ittim"
+            ],
+            [
+              "hero",
+              "Mira yolu hep kenardan başlatırdı."
+            ],
+            [
+              "neris",
+              "Bu çizgi kapıya değil, kayıp kartları ayıran kanala iniyor."
+            ],
+            [
+              "whisper",
+              "Harita dışı, tehlike dışı demektir."
+            ],
+            [
+              "hero",
+              "Haritasız olmak kaybolmakla aynı şey değil."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_010_panel_01.webp",
+            "panels_600/inky/wave_010_panel_02.webp",
+            "panels_600/inky/wave_010_panel_03.webp",
+            "panels_600/inky/wave_010_panel_04.webp",
+            "panels_600/inky/wave_010_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 15,
+          "title": "Yüzü Çizilmeyen Sayfa",
+          "location": "Çocuk Okuma Odası",
+          "scene": "Tozlu masada iki kişinin pastel çizimi durur; Inky’nin parmağındaki kurşun iz hâlâ kâğıtta, silinen yüzde ise taze silgi kırıntısı vardır.",
+          "backdrop": "scenes/inky/episode_03.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_oxymoron_ogre",
+              "İki tanık da doğruyu söylüyordu; birini seçince ötekini yalan yaptım"
+            ],
+            [
+              "hero",
+              "Mira’nın saçını yanlış çizmişim. Bu hatamı hep saklardı."
+            ],
+            [
+              "neris",
+              "Silgi çizgisi senin elinden değil; kâğıt lifleri dışa kalkmış."
+            ],
+            [
+              "whisper",
+              "Yüzünü ben tamamlayabilirim."
+            ],
+            [
+              "hero",
+              "Boşluğu doldurmak, onu tanımak değil."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_015_panel_01.webp",
+            "panels_600/inky/wave_015_panel_02.webp",
+            "panels_600/inky/wave_015_panel_03.webp",
+            "panels_600/inky/wave_015_panel_04.webp",
+            "panels_600/inky/wave_015_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 20,
+          "title": "Kuyu Evindeki İki Kapı",
+          "location": "Dönen Kitap Kuyusu",
+          "scene": "Kitaplar kuyuda dönerken kâğıttan evin iki kapısı açılır; yalnız biri mavi ışık verir, ötekinin eşiğinde küçük ayak izleri durur.",
+          "backdrop": "scenes/inky/episode_04.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_homophone_harpy",
+              "Adları aynı sesle çağırdım; dönüp bakmayanı da kayıp saydım"
+            ],
+            [
+              "hero",
+              "Mira buraya saklanma evi derdi."
+            ],
+            [
+              "neris",
+              "İzler içeri giriyor; dışarı çıkanlar ise başka yöne dönmüş."
+            ],
+            [
+              "whisper",
+              "Mavi kapıdan gir; her şey eskisi gibi olsun."
+            ],
+            [
+              "hero",
+              "Kapıyı açacağım. Kimi götüreceğime karar vermeyeceğim."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_020_panel_01.webp",
+            "panels_600/inky/wave_020_panel_02.webp",
+            "panels_600/inky/wave_020_panel_03.webp",
+            "panels_600/inky/wave_020_panel_04.webp",
+            "panels_600/inky/wave_020_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 25,
+          "title": "Fiş Bekçisinin Eşiği",
+          "location": "Kayıp İsimler Kanadı",
+          "scene": "Leksikon Ejderhası’nın yörüngedeki kelime halkaları mühürlü kapının çevresinde döner; Inky güvenli aralıktan geçip iç halkada Mira’nın yıldızını bulur.",
+          "backdrop": "scenes/inky/episode_05.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_lexicon_dragon_boss",
+              "Halkalarımda kelimeleri sakladım; saklamak, sahip olmak demek değil"
+            ],
+            [
+              "hero",
+              "Mira için benim adımı vereceklerini sanmışlar."
+            ],
+            [
+              "neris",
+              "Bu kapı adını değil, senin rızanı ölçüyor."
+            ],
+            [
+              "echo_lost_receipt_guard",
+              "Mühür bir isim ister; bedeli de isim olabilir."
+            ],
+            [
+              "hero",
+              "Kendi adımla geçiyorum; onun adına söz vermiyorum."
+            ]
+          ],
+          "boss_reward": {
+            "type": "relic",
+            "id": "story_inky_25",
+            "name": "Mira’nın Kenar Yıldızı",
+            "description": "Ejderhanın halkasının içinde bulunan Mira’ya ait yıldız izi; bir yol gösterir, onun bugünkü kararını açıklamaz.",
+            "icon": "assets/sprites/story/relics/inky_25.svg",
+            "stats": {
+              "crit_chance": 0.05
+            }
+          },
+          "panel_art": [
+            "panels_600/inky/wave_025_panel_01.webp",
+            "panels_600/inky/wave_025_panel_02.webp",
+            "panels_600/inky/wave_025_panel_03.webp",
+            "panels_600/inky/wave_025_panel_04.webp",
+            "panels_600/inky/wave_025_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 30,
+          "title": "Ödünç Ses",
+          "location": "Fısıltı Rafları",
+          "scene": "Raflar Inky’nin sesini taklit eder; Neris feneri sağa çevirdiğinde yankının ağzı hareket etmez, ama cam kavanoz titreşir.",
+          "backdrop": "scenes/inky/episode_06.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_run_on_reaper",
+              "Koş dedim; durmanın da bir çıkış olabileceğini hiç öğrenmemiştim"
+            ],
+            [
+              "hero",
+              "Mira adımı çağırırken son heceyi uzatırdı."
+            ],
+            [
+              "neris",
+              "Kavanozun içindeki ses kaydı; konuşan biri yok."
+            ],
+            [
+              "whisper",
+              "Inky, dön. Seni bekliyorum."
+            ],
+            [
+              "hero",
+              "Bekleyen bir anı olabilir; Mira’nın bugünkü kararı değil."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_030_panel_01.webp",
+            "panels_600/inky/wave_030_panel_02.webp",
+            "panels_600/inky/wave_030_panel_03.webp",
+            "panels_600/inky/wave_030_panel_04.webp",
+            "panels_600/inky/wave_030_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 35,
+          "title": "Köprünün Son Kelimesi",
+          "location": "Yırtık Sayfalar Köprüsü",
+          "scene": "Uçurum üzerindeki sayfalar her adımda bir kelime oluşturur; Inky “kal” sözcüğüne basınca köprü çöker, “git”e basınca yeniden kurulur.",
+          "backdrop": "scenes/inky/episode_07.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_malapropism_mimic",
+              "Yüzü tutturdum; bakışını ve kararını kopyalayamadım"
+            ],
+            [
+              "hero",
+              "Son konuşmamızda ona git dedim."
+            ],
+            [
+              "neris",
+              "Bir öfke anı bütün arkadaşlığınızı anlatmaz."
+            ],
+            [
+              "whisper",
+              "Tek bir kelimeyi sil; suçun da yok olur."
+            ],
+            [
+              "hero",
+              "Hatırlayacağım. Onun cevabını kendim yazmayacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_035_panel_01.webp",
+            "panels_600/inky/wave_035_panel_02.webp",
+            "panels_600/inky/wave_035_panel_03.webp",
+            "panels_600/inky/wave_035_panel_04.webp",
+            "panels_600/inky/wave_035_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 40,
+          "title": "Lekeli Kopya",
+          "location": "Kopya Odası",
+          "scene": "Temiz kopyada Mira masada oturur; asıl mektubun kenarında mürekkep sıçraması ve açık pencereye uzanan parmak izi vardır.",
+          "backdrop": "scenes/inky/episode_08.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_vocabulary_void",
+              "Adları silince onları bulamazlar sandım; onlar da birbirini bulamadı"
+            ],
+            [
+              "hero",
+              "Burada gitmemiş gibi yazmışlar."
+            ],
+            [
+              "neris",
+              "Asıl sayfadaki parmak izi dışarı bakıyor."
+            ],
+            [
+              "whisper",
+              "Lekeleri silersem daha güzel olur."
+            ],
+            [
+              "hero",
+              "Lekeler, onun kapıyı kendi açtığını kanıtlıyor."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_040_panel_01.webp",
+            "panels_600/inky/wave_040_panel_02.webp",
+            "panels_600/inky/wave_040_panel_03.webp",
+            "panels_600/inky/wave_040_panel_04.webp",
+            "panels_600/inky/wave_040_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 45,
+          "title": "Cevap İstemeyen Özür",
+          "location": "Sessiz Yemekhane",
+          "scene": "İki çay fincanından biri çatlak, öteki soğuktur; Inky notu boş sandalyeye bırakır ve kapı koluna uzanmadan geri çekilir.",
+          "backdrop": "scenes/inky/episode_09.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_punctuation_phantom",
+              "Noktayı koyunca acı biter sandım; tanıklık benden sonra da sürüyordu"
+            ],
+            [
+              "hero",
+              "O gün onu anlamadım. Bunu yazabilirim."
+            ],
+            [
+              "neris",
+              "Özür, cevap borcu yaratmaz."
+            ],
+            [
+              "whisper",
+              "Sana affettiğini söyleyebilirim."
+            ],
+            [
+              "hero",
+              "Uydurulmuş bir affı kabul etmeyeceğim."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_045_panel_01.webp",
+            "panels_600/inky/wave_045_panel_02.webp",
+            "panels_600/inky/wave_045_panel_03.webp",
+            "panels_600/inky/wave_045_panel_04.webp",
+            "panels_600/inky/wave_045_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 50,
+          "title": "Mira’nın Kenar Cümlesi",
+          "location": "Yıldız Atlası Salonu",
+          "scene": "Çifte Yadsıma Drake’i iki olumsuzluk yarığını kâğıt yıldızların üstüne kapatır; Inky ikisinin de boşa çıkardığı çizgiyi izleyince Mira’nın el yazısı belirir.",
+          "backdrop": "scenes/inky/episode_10.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_double_negative_drake",
+              "İki hayırı tek bir evete çevirdim; hükmü ben verdim, bedelini başkaları taşıdı"
+            ],
+            [
+              "hero",
+              "Bu işaret onun yıldız-nokta imzası."
+            ],
+            [
+              "neris",
+              "Arşiv kopyası yapamaz; yanlış ayı da çizmiş."
+            ],
+            [
+              "echo_mirror_copyist",
+              "Bir yüzü kopyalamak, seçimini de kopyalayabilir."
+            ],
+            [
+              "hero",
+              "Kopya susacak. Mira’nın kendi rotası kalacak."
+            ]
+          ],
+          "boss_reward": {
+            "type": "relic",
+            "id": "story_inky_50",
+            "name": "Çatlak Rota",
+            "description": "Drake’in iki yarığı arasındaki güvenli çizgide bulunan Mira’nın kendi el yazısı.",
+            "icon": "assets/sprites/story/relics/inky_50.svg",
+            "stats": {
+              "damage": 0.08
+            }
+          },
+          "panel_art": [
+            "panels_600/inky/wave_050_panel_01.webp",
+            "panels_600/inky/wave_050_panel_02.webp",
+            "panels_600/inky/wave_050_panel_03.webp",
+            "panels_600/inky/wave_050_panel_04.webp",
+            "panels_600/inky/wave_050_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 55,
+          "title": "Ters Teleskop",
+          "location": "Gözlem Kulesi",
+          "scene": "Teleskop göğü bırakıp aşağı döner; mercekten bakan Inky, gözlem kulesi altında saklı küçük bot izlerini seçer.",
+          "backdrop": "scenes/inky/episode_11.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_palindrome_phantom",
+              "Seni başladığın yere döndürdüm; değişmenden korkuyordum"
+            ],
+            [
+              "hero",
+              "Mira kulesi hiç sevmezdi. Buraya bilerek gelmiş."
+            ],
+            [
+              "neris",
+              "Aşağıdaki merdiven resmi planda yok."
+            ],
+            [
+              "ink_child",
+              "Mira’nın notunu taşıyorum; onun adına konuşmam. Mührü sana vereyim mi?"
+            ],
+            [
+              "hero",
+              "Öyleyse boşluğun kenarını takip ederim."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_055_panel_01.webp",
+            "panels_600/inky/wave_055_panel_02.webp",
+            "panels_600/inky/wave_055_panel_03.webp",
+            "panels_600/inky/wave_055_panel_04.webp",
+            "panels_600/inky/wave_055_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 60,
+          "title": "Gülüşe Benzeyen Yıldızlar",
+          "location": "Cam Kubbe",
+          "scene": "Çatlak camın parçaları farklı açılarda parlayıp bir gülüş oluşturur; bir parça ışığı Inky’nin yüzüne değil, kapalı geçide düşürür.",
+          "backdrop": "scenes/inky/episode_12.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_tautology_twin",
+              "Aynı sözü iki kez söyledim, kanıt sandım; ikizim bile bana inanmadı"
+            ],
+            [
+              "hero",
+              "Gülerken burnunu buruştururdu."
+            ],
+            [
+              "neris",
+              "Bu görüntü, onun şimdi ne istediğini bilmiyor."
+            ],
+            [
+              "whisper",
+              "Hatırayı canlı tutmam için bana bırak."
+            ],
+            [
+              "hero",
+              "Hatırlayacağım; zincire çevirmeyeceğim."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_060_panel_01.webp",
+            "panels_600/inky/wave_060_panel_02.webp",
+            "panels_600/inky/wave_060_panel_03.webp",
+            "panels_600/inky/wave_060_panel_04.webp",
+            "panels_600/inky/wave_060_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 65,
+          "title": "Haritanın Eksik Yarısı",
+          "location": "Mürekkep Bataklığı",
+          "scene": "Siyah bataklıkta haritanın bir yarısı yanar; kalan yarı kendi kendine kıyıya sürüklenir ve boş tarafı tamamlamaz.",
+          "backdrop": "scenes/inky/episode_13.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_dangling_modifier",
+              "Eylemi askıda bıraktım; suç yanlış kişiye düştü"
+            ],
+            [
+              "hero",
+              "Eksik yarıyı tamamlamak zorundaymışım."
+            ],
+            [
+              "neris",
+              "Biri tamamlamanı değil, yönünü seçmeni istemiş olabilir."
+            ],
+            [
+              "whisper",
+              "Bütün harita seni ona götürür."
+            ],
+            [
+              "hero",
+              "Bir işaret yeter; onun hayatının tümüne sahip olmam gerekmiyor."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_065_panel_01.webp",
+            "panels_600/inky/wave_065_panel_02.webp",
+            "panels_600/inky/wave_065_panel_03.webp",
+            "panels_600/inky/wave_065_panel_04.webp",
+            "panels_600/inky/wave_065_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 70,
+          "title": "Ayna Karşısındaki Kapı",
+          "location": "Ayna Arşivi",
+          "scene": "Aynadaki Mira kapıdan yürüyüp çıkar; Inky aynaya dokununca kendi yansıması içeride kalır, gerçek koridor ise açılır.",
+          "backdrop": "scenes/inky/episode_14.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_spelling_spectre",
+              "Bir harfi düzelttim, bir hayatı başka isme bağladım"
+            ],
+            [
+              "hero",
+              "Kapının ardında biri var sandım."
+            ],
+            [
+              "neris",
+              "Ayna seni içeri çağırmıyor; yönünü düzeltiyor."
+            ],
+            [
+              "whisper",
+              "Kapıyı kapat, güvenli anı koru."
+            ],
+            [
+              "hero",
+              "Anıyı saklarım. Kapıyı açık bırakırım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_070_panel_01.webp",
+            "panels_600/inky/wave_070_panel_02.webp",
+            "panels_600/inky/wave_070_panel_03.webp",
+            "panels_600/inky/wave_070_panel_04.webp",
+            "panels_600/inky/wave_070_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 75,
+          "title": "Yön Hırsızının Avlusu",
+          "location": "Yankı Avlusu",
+          "scene": "Idiom Imp avluya közden deyimler saçar; Inky her sahte yönü reddeder ve son külün altında Mira’nın silinmemiş işaretini bulur.",
+          "backdrop": "scenes/inky/episode_15.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_idiom_imp",
+              "Gülmek istedim; şakam birinin yardım çağrısını örttü"
+            ],
+            [
+              "hero",
+              "Eski yolu takip etmek kolaydı."
+            ],
+            [
+              "neris",
+              "Kolay olan, onun bugün seçtiği yol demek değil."
+            ],
+            [
+              "echo_direction_thief",
+              "Her izi sana geri çevirebilirim."
+            ],
+            [
+              "hero",
+              "O zaman yeni bir iz çizeceğim; sen benim haritam değilsin."
+            ]
+          ],
+          "boss_reward": {
+            "type": "relic",
+            "id": "story_inky_75",
+            "name": "Közden Kalan İz",
+            "description": "İdiom Imp’in aldatıcı közleri sönünce açığa çıkan, Mira’nın seçtiği yönü saklayan işaret.",
+            "icon": "assets/sprites/story/relics/inky_75.svg",
+            "stats": {
+              "move_speed": 12
+            }
+          },
+          "panel_art": [
+            "panels_600/inky/wave_075_panel_01.webp",
+            "panels_600/inky/wave_075_panel_02.webp",
+            "panels_600/inky/wave_075_panel_03.webp",
+            "panels_600/inky/wave_075_panel_04.webp",
+            "panels_600/inky/wave_075_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 80,
+          "title": "Yel’in İki Çıkışı",
+          "location": "Köprü Haritacısı’nın Geçidi",
+          "scene": "Yel iki farklı kâğıt köprü açar; birinde şehir dışı posta damgası, diğerinde Kütüphane’ye geri dönen ayak izi vardır.",
+          "backdrop": "scenes/inky/episode_16.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_red_pen_boss",
+              "Bu kez ben kestim; kime zarar vereceğini sormadan eski hükmü uyguladım"
+            ],
+            [
+              "hero",
+              "Hangisinden gittiğini söyleyebilir misin?"
+            ],
+            [
+              "yel",
+              "Hayır. İkisini de gördüm; hangisini seçtiğini bilmiyorum."
+            ],
+            [
+              "neris",
+              "Bilmediğini saklamadı."
+            ],
+            [
+              "hero",
+              "Bu da aradığım cevabın bir parçası."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_080_panel_01.webp",
+            "panels_600/inky/wave_080_panel_02.webp",
+            "panels_600/inky/wave_080_panel_03.webp",
+            "panels_600/inky/wave_080_panel_04.webp",
+            "panels_600/inky/wave_080_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 85,
+          "title": "Neris’in Kayıtsız Gecesi",
+          "location": "Kayıt Dışı Bahçe",
+          "scene": "Neris feneri kapatınca yapraklardaki silinmiş harfler görünür; kendi adının boşluğunu eliyle örtmez.",
+          "backdrop": "scenes/inky/episode_17.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_oxymoron_ogre",
+              "İki gerçeği ayrı odalara koydum; susunca çatışma biter sandım"
+            ],
+            [
+              "hero",
+              "Adını sen mi çıkardın?"
+            ],
+            [
+              "neris",
+              "Bir kapıyı açmak için. Sonra başkaları da kapatıldı."
+            ],
+            [
+              "whisper",
+              "Beni suçla; senin yükün hafifler."
+            ],
+            [
+              "hero",
+              "Seni dinlerim; senin yerine de hüküm vermem."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_085_panel_01.webp",
+            "panels_600/inky/wave_085_panel_02.webp",
+            "panels_600/inky/wave_085_panel_03.webp",
+            "panels_600/inky/wave_085_panel_04.webp",
+            "panels_600/inky/wave_085_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 90,
+          "title": "Dışarı Giden Haber",
+          "location": "Arşiv Dışındaki Posta Eşiği",
+          "scene": "Bir haber kutusuna yeni şehir damgası vurulur; Inky’nin elindeki yıldız işareti kutunun dönüş adresine değil, alıcının seçebileceği boş satıra düşer.",
+          "backdrop": "scenes/inky/episode_18.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_malapropism_mimic",
+              "Yüzünü Neris’ten aldım; onun itirazını taklit edemedim"
+            ],
+            [
+              "hero",
+              "Bu Mira’nın şehir damgası olabilir."
+            ],
+            [
+              "yel",
+              "Olabilir; kesin olduğunu söyleyemem."
+            ],
+            [
+              "neris",
+              "Haberi yollayabilirsin, cevabı zorlayamazsın."
+            ],
+            [
+              "hero",
+              "Yolunu bırakıyorum. Dönüp dönmemek ona ait."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_090_panel_01.webp",
+            "panels_600/inky/wave_090_panel_02.webp",
+            "panels_600/inky/wave_090_panel_03.webp",
+            "panels_600/inky/wave_090_panel_04.webp",
+            "panels_600/inky/wave_090_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 95,
+          "title": "Yarım Çizimin Diğer Eli",
+          "location": "Kenar Atölyesi",
+          "scene": "Dış ışık sayfa kenarlarından içeri düşer; Inky, Mira’nın kendi rotasında bıraktığı tarihli bir harita notunu açar. Not bir davet değil, kendi yolundan gönderilmiş kısa bir düzeltmedir.",
+          "backdrop": "scenes/inky/episode_19.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_vocabulary_void",
+              "Boşlukları korurken yaşayanların adlarını da sildim"
+            ],
+            [
+              "hero",
+              "Bunu birlikte çizerdik."
+            ],
+            [
+              "neris",
+              "Şimdi tek başına çizebilirsin; bu onu silmez."
+            ],
+            [
+              "mira",
+              "Bu not dönüş sözü değil; haritamdaki yanlış kıvrımı düzeltmek istedim."
+            ],
+            [
+              "hero",
+              "Bazen yarım bırakmak, başkasına yer bırakmaktır."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_095_panel_01.webp",
+            "panels_600/inky/wave_095_panel_02.webp",
+            "panels_600/inky/wave_095_panel_03.webp",
+            "panels_600/inky/wave_095_panel_04.webp",
+            "panels_600/inky/wave_095_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 100,
+          "title": "Açık Fihrist",
+          "location": "İsimsiz Salon",
+          "scene": "Omega Leksikon Ejderhası’nın son yörüngesi daralırken Inky bulduğu kanıtı boş bir satırın yanına koyar; halka ancak Mira’nın cevabı yazılmadan bırakıldığında açılır.",
+          "backdrop": "scenes/inky/episode_20.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_lexicon_dragon_boss",
+              "İlk halkada sözlük tuttum; son halkada tek bir ağız olmak istedim"
+            ],
+            [
+              "hero",
+              "Mira’nın cevabını ben yazmayacağım."
+            ],
+            [
+              "neris",
+              "Ben de adımı kendi elimle ekliyorum."
+            ],
+            [
+              "blank_page",
+              "Tek bir mutlu son, kaybı durdurur."
+            ],
+            [
+              "hero",
+              "Mutluluk zorla seçilmez; fihristi açık bırak."
+            ]
+          ],
+          "boss_reward": {
+            "type": "ending",
+            "name": "Karakterin son kararı",
+            "description": "Bu kez tamamlanmamışlık bizim seçimimiz."
+          },
+          "panel_art": [
+            "panels_600/inky/wave_100_panel_01.webp",
+            "panels_600/inky/wave_100_panel_02.webp",
+            "panels_600/inky/wave_100_panel_03.webp",
+            "panels_600/inky/wave_100_panel_04.webp",
+            "panels_600/inky/wave_100_panel_05.webp"
+          ]
+        }
+      ]
+    },
+    "quillmaster": {
+      "motive": "Kız kardeşi Ada’nın kendi seçtiği yolu öğrenmek; onu zorla geri çağırmamak.",
+      "name": "Quillmaster",
+      "episodes": [
+        {
+          "wave": 5,
+          "title": "Kırık Nib’in Mürekkebi",
+          "location": "Eski Scriptorium",
+          "scene": "Kırık kalem ucu Quillmaster’ın eldivenine saplanır; metalde Ada’nın iki vuruş işareti, taze kırmızı mürekkeple kaplıdır.",
+          "backdrop": "scenes/quillmaster/episode_01.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_red_pen_boss",
+              "Kuralı koruduğumu sanıyordum; itirazı kırmızıya boyayıp kayıttan kesmişim"
+            ],
+            [
+              "hero",
+              "Bu nib’i Ada’ya ben vermiştim."
+            ],
+            [
+              "neris",
+              "Uç darbeden değil, aceleyle bükülmüş."
+            ],
+            [
+              "whisper",
+              "Onu sen kırdın; kalanını da silebilirim."
+            ],
+            [
+              "hero",
+              "Kırdığım şeyi saklamayacağım."
+            ]
+          ],
+          "boss_reward": {
+            "type": "clue",
+            "name": "Ada'nın Nibi",
+            "description": "Son mektubun aceleyle yarım bırakıldığı anlaşılır."
+          },
+          "panel_art": [
+            "panels_600/quillmaster/wave_005_panel_01.webp",
+            "panels_600/quillmaster/wave_005_panel_02.webp",
+            "panels_600/quillmaster/wave_005_panel_03.webp",
+            "scenes/quillmaster/episode_01.png",
+            "scenes/quillmaster/episode_01.png"
+          ]
+        },
+        {
+          "wave": 10,
+          "title": "İki Vuruşun Yankısı",
+          "location": "Mürekkep Atölyesi",
+          "scene": "Tahta duvardaki iki vuruş avuç içinde titreşir; Quillmaster üçüncü vuruşu bekler ama atölyedeki saat sessiz kalır.",
+          "backdrop": "scenes/quillmaster/episode_02.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_syntax_titan",
+              "Emir yarımdı; ben bitirdim ve içindeki “hayır”ı cümlenin dışına ittim"
+            ],
+            [
+              "hero",
+              "Bir: buradayım. İki: seni bekliyorum."
+            ],
+            [
+              "neris",
+              "Bu kez karşılık gelmemesi de bir cevap olabilir."
+            ],
+            [
+              "whisper",
+              "Ben üçüncü vuruşu yapabilirim."
+            ],
+            [
+              "hero",
+              "Taklit, bekleyişi bitirmez."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/quillmaster/episode_02.png",
+            "scenes/quillmaster/episode_02.png",
+            "scenes/quillmaster/episode_02.png",
+            "scenes/quillmaster/episode_02.png",
+            "scenes/quillmaster/episode_02.png"
+          ]
+        },
+        {
+          "wave": 15,
+          "title": "Kırmızı Talimat",
+          "location": "Kırmızı Mürekkep Odası",
+          "scene": "Kırmızı kalemle yazılmış talimatın altındaki tarih silinmiştir; Quillmaster kâğıdı ışığa tutunca “eve dön” cümlesinin kendi elinden çıktığını görür.",
+          "backdrop": "scenes/quillmaster/episode_03.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_oxymoron_ogre",
+              "İki tanık da doğruyu söylüyordu; birini seçince ötekini yalan yaptım"
+            ],
+            [
+              "hero",
+              "Bunu Ada’ya ben yazmışım."
+            ],
+            [
+              "neris",
+              "Mektup değil; onun adına yazılmış bir talimat."
+            ],
+            [
+              "whisper",
+              "İyi niyetin yeter."
+            ],
+            [
+              "hero",
+              "Niyetim, onun cevabını geçersiz kılmaz."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/quillmaster/episode_03.png",
+            "scenes/quillmaster/episode_03.png",
+            "scenes/quillmaster/episode_03.png",
+            "scenes/quillmaster/episode_03.png",
+            "scenes/quillmaster/episode_03.png"
+          ]
+        },
+        {
+          "wave": 20,
+          "title": "Mektup Kuyusunun Dibi",
+          "location": "Posta Kuyusu",
+          "scene": "Yüzlerce zarf kuyuya düşer; Ada’nın zarfı dibe varmadan bir yan bacaya takılır, kapak üstünde “alıcı seçer” damgası vardır.",
+          "backdrop": "scenes/quillmaster/episode_04.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_homophone_harpy",
+              "Adları aynı sesle çağırdım; dönüp bakmayanı da kayıp saydım"
+            ],
+            [
+              "hero",
+              "Bu zarf eve dönmemiş."
+            ],
+            [
+              "neris",
+              "Ada kendi adresini değiştirmiş."
+            ],
+            [
+              "whisper",
+              "Onu bulursan her şeyi düzeltebilirsin."
+            ],
+            [
+              "hero",
+              "Bulmakla düzeltmek aynı iş değil."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/quillmaster/episode_04.png",
+            "scenes/quillmaster/episode_04.png",
+            "scenes/quillmaster/episode_04.png",
+            "scenes/quillmaster/episode_04.png",
+            "scenes/quillmaster/episode_04.png"
+          ]
+        },
+        {
+          "wave": 25,
+          "title": "İade Müdürünün Mahkemesi",
+          "location": "Mektup Mahkemesi",
+          "scene": "Leksikon Ejderhası’nın dönen halkaları posta kutusunu daraltır; Quillmaster mühürsüz mektubu Ada’nın adını taşımayan tek açıklıktan geçirir.",
+          "backdrop": "scenes/quillmaster/episode_05.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_lexicon_dragon_boss",
+              "Halkalarımda kelimeleri sakladım; saklamak, sahip olmak demek değil"
+            ],
+            [
+              "hero",
+              "Ada’yı eve çağıran bendim."
+            ],
+            [
+              "neris",
+              "Önce kimin konuştuğunu dinle."
+            ],
+            [
+              "echo_return_clerk",
+              "İade edilirse, hiç gitmemiş sayılır."
+            ],
+            [
+              "hero",
+              "Mektubu geri göndermeyi bırakıyorum; kararı alıcı verecek."
+            ]
+          ],
+          "boss_reward": {
+            "type": "relic",
+            "id": "story_quillmaster_25",
+            "name": "Ada’nın Kalem Ucu",
+            "description": "Ejderhanın halkaları arasından kurtarılan, Ada’nın kendi el yazısını taşıyan kalem ucu.",
+            "icon": "assets/sprites/story/relics/quillmaster_25.svg",
+            "stats": {
+              "attack_speed": 0.1
+            }
+          },
+          "panel_art": [
+            "scenes/quillmaster/episode_05.png",
+            "scenes/quillmaster/episode_05.png",
+            "scenes/quillmaster/episode_05.png",
+            "scenes/quillmaster/episode_05.png",
+            "scenes/quillmaster/episode_05.png"
+          ]
+        },
+        {
+          "wave": 30,
+          "title": "Hızlı Yankı",
+          "location": "Yankı Merdiveni",
+          "scene": "Merdiven boyunca Ada’nın adımları Quillmaster’dan yarım saniye önde duyulur; ses her basamakta başka bir yöne döner.",
+          "backdrop": "scenes/quillmaster/episode_06.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_run_on_reaper",
+              "Koş dedim; durmanın da bir çıkış olabileceğini hiç öğrenmemiştim"
+            ],
+            [
+              "hero",
+              "Onun koşu adımını tanıyorum."
+            ],
+            [
+              "neris",
+              "Ses aynı; tempo eski kayıttan."
+            ],
+            [
+              "whisper",
+              "Hızlan, yetişebilirsin."
+            ],
+            [
+              "hero",
+              "Yetişmek için değil, duymak için yavaşlıyorum."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/quillmaster/episode_06.png",
+            "scenes/quillmaster/episode_06.png",
+            "scenes/quillmaster/episode_06.png",
+            "scenes/quillmaster/episode_06.png",
+            "scenes/quillmaster/episode_06.png"
+          ]
+        },
+        {
+          "wave": 35,
+          "title": "Boş Koğuşta Nöbet",
+          "location": "Muhafız Kışlası",
+          "scene": "Boş ranzanın altına Ada’nın yol haritası sıkıştırılmış; Quillmaster haritayı çekerken iki askerin adını da yanına görür.",
+          "backdrop": "scenes/quillmaster/episode_07.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_malapropism_mimic",
+              "Yüzü tutturdum; bakışını ve kararını kopyalayamadım"
+            ],
+            [
+              "hero",
+              "Burada onu aradım, oysa yolu dışarıdaymış."
+            ],
+            [
+              "lira",
+              "Ben kapıyı tuttum. İçeride kalmayı seçtiğini sandım."
+            ],
+            [
+              "neris",
+              "İkiniz de sormadınız."
+            ],
+            [
+              "hero",
+              "Bir sonraki kapıyı izin almadan kapatmayacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/quillmaster/episode_07.png",
+            "scenes/quillmaster/episode_07.png",
+            "scenes/quillmaster/episode_07.png",
+            "scenes/quillmaster/episode_07.png",
+            "scenes/quillmaster/episode_07.png"
+          ]
+        },
+        {
+          "wave": 40,
+          "title": "İmzasız Cevap",
+          "location": "Kayıt Kulesi",
+          "scene": "Bir yanıt zarfının imza yeri boş; kâğıdın kıvrımı Ada’nın cebinde taşıdığı ölçü cetveline göre katlanmıştır.",
+          "backdrop": "scenes/quillmaster/episode_08.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_vocabulary_void",
+              "Adları silince onları bulamazlar sandım; onlar da birbirini bulamadı"
+            ],
+            [
+              "hero",
+              "Ada’nın elinden geçtiğini biliyorum."
+            ],
+            [
+              "neris",
+              "Bu, sana cevap verdiği anlamına gelmiyor."
+            ],
+            [
+              "whisper",
+              "Boşluğu senin imzanla tamamla."
+            ],
+            [
+              "hero",
+              "Boş kalmasına izin vereceğim."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/quillmaster/episode_08.png",
+            "scenes/quillmaster/episode_08.png",
+            "scenes/quillmaster/episode_08.png",
+            "scenes/quillmaster/episode_08.png",
+            "scenes/quillmaster/episode_08.png"
+          ]
+        },
+        {
+          "wave": 45,
+          "title": "Açılmamış Zarf",
+          "location": "Tozlu Posta Odası",
+          "scene": "Rafın üstündeki zarfın tozu hiç bozulmamış; Quillmaster mührü kırmadan zarfı göğsüne bastırıp geri yerine koyar.",
+          "backdrop": "scenes/quillmaster/episode_09.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_punctuation_phantom",
+              "Noktayı koyunca acı biter sandım; tanıklık benden sonra da sürüyordu"
+            ],
+            [
+              "hero",
+              "Onu açarsam içindekini öğrenirim."
+            ],
+            [
+              "neris",
+              "Ama artık kimin açtığını geri alamazsın."
+            ],
+            [
+              "whisper",
+              "Merakını gider; seni affettiğini yazmış."
+            ],
+            [
+              "hero",
+              "Uydurulmuş bir cevabı istemiyorum."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/quillmaster/episode_09.png",
+            "scenes/quillmaster/episode_09.png",
+            "scenes/quillmaster/episode_09.png",
+            "scenes/quillmaster/episode_09.png",
+            "scenes/quillmaster/episode_09.png"
+          ]
+        },
+        {
+          "wave": 50,
+          "title": "Sessizlik Sansürünün Salonu",
+          "location": "Tanıklık Salonu",
+          "scene": "Çifte Yadsıma Drake’i sessiz salonda iki yarık açar; Quillmaster yankıların geçmesini bekler ve gerçek iki vuruş Ada’nın kendi atölyesinden gelir.",
+          "backdrop": "scenes/quillmaster/episode_10.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_double_negative_drake",
+              "İki hayırı tek bir evete çevirdim; hükmü ben verdim, bedelini başkaları taşıdı"
+            ],
+            [
+              "hero",
+              "Ben doldurmazsam ne söyleyeceksin?"
+            ],
+            [
+              "neris",
+              "Bırak, tanık kendi cümlesini tamamlasın."
+            ],
+            [
+              "echo_silence_censor",
+              "Cevap vermeyen, kayıttan çıkarılır."
+            ],
+            [
+              "hero",
+              "Ada’nın susması da ona ait."
+            ]
+          ],
+          "boss_reward": {
+            "type": "relic",
+            "id": "story_quillmaster_50",
+            "name": "İki Vuruşun Kaydı",
+            "description": "Drake’in yarıkları arasından duyulan Ada’ya ait ritmin tanıklık fişi.",
+            "icon": "assets/sprites/story/relics/quillmaster_50.svg",
+            "stats": {
+              "crit_chance": 0.04
+            }
+          },
+          "panel_art": [
+            "scenes/quillmaster/episode_10.png",
+            "scenes/quillmaster/episode_10.png",
+            "scenes/quillmaster/episode_10.png",
+            "scenes/quillmaster/episode_10.png",
+            "scenes/quillmaster/episode_10.png"
+          ]
+        },
+        {
+          "wave": 55,
+          "title": "Kurşun İzi",
+          "location": "Arşiv Matbaası",
+          "scene": "Matbaa silindirindeki kurşun kalıp her baskıda Ada’nın adresini Quillmaster’ın evine çevirir; Sera eski rotayı işaretler ama yeni adresi vermeyi reddeder.",
+          "backdrop": "scenes/quillmaster/episode_11.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_palindrome_phantom",
+              "Seni başladığın yere döndürdüm; değişmenden korkuyordum"
+            ],
+            [
+              "hero",
+              "Bu yönlendirmeyi benim imzamla onaylamışlar."
+            ],
+            [
+              "neris",
+              "İmzan doğru; bilgin eksikti."
+            ],
+            [
+              "sera",
+              "Bu baskı Ada’nın adresini eve çevirmiş. Yeni adresini vermeyeceğim; itiraz kaydını sana bırakabilirim."
+            ],
+            [
+              "hero",
+              "Kalıbı saklayıp itirazı yanına koyacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/quillmaster/wave_055_panel_01.webp",
+            "panels_600/quillmaster/wave_055_panel_02.webp",
+            "panels_600/quillmaster/wave_055_panel_03.webp",
+            "panels_600/quillmaster/wave_055_panel_04.webp",
+            "panels_600/quillmaster/wave_055_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 60,
+          "title": "Sözsüz Prova",
+          "location": "Kara Sahne",
+          "scene": "Boş sahnede iki vuruşluk ritim yankılanır; Quillmaster rapierini kınında tutar, Ada’nın rolünü oynamak yerine bekler.",
+          "backdrop": "scenes/quillmaster/episode_12.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_tautology_twin",
+              "Aynı sözü iki kez söyledim, kanıt sandım; ikizim bile bana inanmadı"
+            ],
+            [
+              "hero",
+              "Önceden cevabını da ben ezberlemiştim."
+            ],
+            [
+              "neris",
+              "Bir prova, diğer oyuncunun seçimini içermez."
+            ],
+            [
+              "shadow_double",
+              "Susmak istemiş olabilir."
+            ],
+            [
+              "hero",
+              "O zaman cümlesini tamamlamayacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/quillmaster/wave_060_panel_01.webp",
+            "panels_600/quillmaster/wave_060_panel_02.webp",
+            "panels_600/quillmaster/wave_060_panel_03.webp",
+            "panels_600/quillmaster/wave_060_panel_04.webp",
+            "panels_600/quillmaster/wave_060_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 65,
+          "title": "Dönüş Cümlesi",
+          "location": "Mektup Köprüsü",
+          "scene": "Köprünün tahtalarına iki ayrı rota kazınmıştır; Quillmaster eve dönüş çizgisine değil, Ada’nın kendi işine giden kervan izine basar.",
+          "backdrop": "scenes/quillmaster/episode_13.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_dangling_modifier",
+              "Eylemi askıda bıraktım; suç yanlış kişiye düştü"
+            ],
+            [
+              "hero",
+              "Eve dönüşü seçmemiş."
+            ],
+            [
+              "neris",
+              "Seçimini senin beklentinle ölçme."
+            ],
+            [
+              "whisper",
+              "Yanlış yola gidiyor; çek geri."
+            ],
+            [
+              "hero",
+              "Yolunu düzeltmeyeceğim."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/quillmaster/wave_065_panel_01.webp",
+            "panels_600/quillmaster/wave_065_panel_02.webp",
+            "panels_600/quillmaster/wave_065_panel_03.webp",
+            "panels_600/quillmaster/wave_065_panel_04.webp",
+            "panels_600/quillmaster/wave_065_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 70,
+          "title": "Ayna Yüzü Değil, Ritmi",
+          "location": "Ayna Scriptoriumu",
+          "scene": "Aynadaki Ada rapier hamlesini taklit eder ama bileğini bir vuruş geç çevirir; Quillmaster eski düellonun ritminin artık ona ait olmadığını görür.",
+          "backdrop": "scenes/quillmaster/episode_14.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_spelling_spectre",
+              "Bir harfi düzelttim, bir hayatı başka isme bağladım"
+            ],
+            [
+              "hero",
+              "Bu bizim çocukken yaptığımız oyun."
+            ],
+            [
+              "neris",
+              "Ayna bugünkü Ada değil."
+            ],
+            [
+              "whisper",
+              "Aynayı kır; sadece gerçek kalsın."
+            ],
+            [
+              "hero",
+              "Anıyı saklayıp bugünü açık bırakacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/quillmaster/wave_070_panel_01.webp",
+            "panels_600/quillmaster/wave_070_panel_02.webp",
+            "panels_600/quillmaster/wave_070_panel_03.webp",
+            "panels_600/quillmaster/wave_070_panel_04.webp",
+            "panels_600/quillmaster/wave_070_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 75,
+          "title": "Mühürsüz Yargı",
+          "location": "Yemin Ocağı",
+          "scene": "Idiom Imp mektupların üzerine közden şakalar yağdırır; Quillmaster kılıcını indirip cevap vermeyince Ada’nın el yazısını taşıyan yanmamış bir zarf yere düşer.",
+          "backdrop": "scenes/quillmaster/episode_15.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_idiom_imp",
+              "Gülmek istedim; şakam birinin yardım çağrısını örttü"
+            ],
+            [
+              "hero",
+              "Sana emir verdim; özür dilerim."
+            ],
+            [
+              "neris",
+              "Özrü kabul etmeme hakkı da var."
+            ],
+            [
+              "echo_unsealed_judge",
+              "Özür, cevapla mühürlenmeli."
+            ],
+            [
+              "hero",
+              "Hayır. Cevap Ada’nın."
+            ]
+          ],
+          "boss_reward": {
+            "type": "relic",
+            "id": "story_quillmaster_75",
+            "name": "Cevap Hakkı",
+            "description": "İdiom Imp’in közlerinden zarar görmeden çıkarılan; cevabı alıcısına bırakan mühür.",
+            "icon": "assets/sprites/story/relics/quillmaster_75.svg",
+            "stats": {
+              "attack_speed": 0.08
+            }
+          },
+          "panel_art": [
+            "panels_600/quillmaster/wave_075_panel_01.webp",
+            "panels_600/quillmaster/wave_075_panel_02.webp",
+            "panels_600/quillmaster/wave_075_panel_03.webp",
+            "panels_600/quillmaster/wave_075_panel_04.webp",
+            "panels_600/quillmaster/wave_075_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 80,
+          "title": "Kervanın Bıraktığı İki Mektup",
+          "location": "Yankısız Postane",
+          "scene": "Kervan çantasından iki mektup düşer; biri Quillmaster’a, diğeri postacının kendisine aittir, ikisinin adresini yalnız alıcı açabilir.",
+          "backdrop": "scenes/quillmaster/episode_16.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_red_pen_boss",
+              "Bu kez ben kestim; kime zarar vereceğini sormadan eski hükmü uyguladım"
+            ],
+            [
+              "hero",
+              "Bunu Ada mı gönderdi?"
+            ],
+            [
+              "sera",
+              "Evet. Okumanı istediğini söylemedi."
+            ],
+            [
+              "neris",
+              "Teslim etmek, açmak demek değil."
+            ],
+            [
+              "hero",
+              "Zarfı saklayacağım; karar onda kalacak."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/quillmaster/wave_080_panel_01.webp",
+            "panels_600/quillmaster/wave_080_panel_02.webp",
+            "panels_600/quillmaster/wave_080_panel_03.webp",
+            "panels_600/quillmaster/wave_080_panel_04.webp",
+            "panels_600/quillmaster/wave_080_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 85,
+          "title": "Yan Yana Kayıt",
+          "location": "Kayıt Bahçesi",
+          "scene": "Bahçedeki iki levhada Ada ve Quillmaster ayrı ayrı yazılıdır; birinin adı ötekine bağlandığında çiçekler solar.",
+          "backdrop": "scenes/quillmaster/episode_17.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_oxymoron_ogre",
+              "İki gerçeği ayrı odalara koydum; susunca çatışma biter sandım"
+            ],
+            [
+              "hero",
+              "Onu kendi kaydımın altına koymuşum."
+            ],
+            [
+              "neris",
+              "Şimdi iki ayrı satır var."
+            ],
+            [
+              "whisper",
+              "Tek kayıt daha düzenli olur."
+            ],
+            [
+              "hero",
+              "Düzeni değil, iki imzayı koruyacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/quillmaster/wave_085_panel_01.webp",
+            "panels_600/quillmaster/wave_085_panel_02.webp",
+            "panels_600/quillmaster/wave_085_panel_03.webp",
+            "panels_600/quillmaster/wave_085_panel_04.webp",
+            "panels_600/quillmaster/wave_085_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 90,
+          "title": "İki El, Tek Masa",
+          "location": "Açık Mektup Atölyesi",
+          "scene": "Quillmaster masanın bir ucuna özrünü bırakır, öteki ucunu boş tutar; açık pencere zarfı dışarı değil içeri doğru oynatır.",
+          "backdrop": "scenes/quillmaster/episode_18.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_malapropism_mimic",
+              "Yüzünü Neris’ten aldım; onun itirazını taklit edemedim"
+            ],
+            [
+              "hero",
+              "Mektubu göndermiyorum."
+            ],
+            [
+              "neris",
+              "Bir gün göndermek istersen de şart koyma."
+            ],
+            [
+              "whisper",
+              "Boş kâğıt, boşa umut demek."
+            ],
+            [
+              "hero",
+              "Beklemek, sahip olmak değil."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/quillmaster/wave_090_panel_01.webp",
+            "panels_600/quillmaster/wave_090_panel_02.webp",
+            "panels_600/quillmaster/wave_090_panel_03.webp",
+            "panels_600/quillmaster/wave_090_panel_04.webp",
+            "panels_600/quillmaster/wave_090_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 95,
+          "title": "Yanıtsız Son Damga",
+          "location": "Son Kayıt Odası",
+          "scene": "Dış kapının posta gözüne Ada’nın kendi eliyle bıraktığı kısa bir yanıt düşer. Quillmaster zarfı açmadan önce Neris’e bakar; Ada içeride değildir, hayatını sürdürdüğü yerde görünür.",
+          "backdrop": "scenes/quillmaster/episode_19.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_vocabulary_void",
+              "Boşlukları korurken yaşayanların adlarını da sildim"
+            ],
+            [
+              "hero",
+              "Ada’nın nerede olduğunu bilmiyorum."
+            ],
+            [
+              "neris",
+              "Bilmemek onun kararını değiştirmez."
+            ],
+            [
+              "ada",
+              "Mektubunu aldım. Şimdilik cevap vermeye hazır değilim; lütfen bunu da cevabım say."
+            ],
+            [
+              "hero",
+              "Yine de onun adına yazmayacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/quillmaster/wave_095_panel_01.webp",
+            "panels_600/quillmaster/wave_095_panel_02.webp",
+            "panels_600/quillmaster/wave_095_panel_03.webp",
+            "panels_600/quillmaster/wave_095_panel_04.webp",
+            "panels_600/quillmaster/wave_095_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 100,
+          "title": "Gönderildi, Zorlanmadı",
+          "location": "İsimsiz Postane",
+          "scene": "Omega Leksikon Ejderhası son yörüngesini posta bacasına sarar; Quillmaster gönderilmemiş özrü yanına koyar ve Ada’nın seçebilmesi için dönüş yuvasını açık bırakır.",
+          "backdrop": "scenes/quillmaster/episode_20.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_lexicon_dragon_boss",
+              "İlk halkada sözlük tuttum; son halkada tek bir ağız olmak istedim"
+            ],
+            [
+              "hero",
+              "Bunu gönderdim; dönüşünü şart koşmadım."
+            ],
+            [
+              "neris",
+              "Ben de kendi hatamı ayrı sayfaya yazıyorum."
+            ],
+            [
+              "blank_page",
+              "Tek bir barış, bütün yaraları kapatır."
+            ],
+            [
+              "hero",
+              "Barış zorunlu değil. Cevap hakkı onda."
+            ]
+          ],
+          "boss_reward": {
+            "type": "ending",
+            "name": "Karakterin son kararı",
+            "description": "Cevabı zorlamayan söz tamamdır."
+          },
+          "panel_art": [
+            "panels_600/quillmaster/wave_100_panel_01.webp",
+            "panels_600/quillmaster/wave_100_panel_02.webp",
+            "panels_600/quillmaster/wave_100_panel_03.webp",
+            "panels_600/quillmaster/wave_100_panel_04.webp",
+            "scenes/quillmaster/episode_20.png"
+          ]
+        }
+      ]
+    },
+    "word_knight": {
+      "motive": "Kırık nöbet yemininde kimin seçme hakkını korumadığını açığa çıkarmak.",
+      "name": "Word Knight",
+      "episodes": [
+        {
+          "wave": 5,
+          "title": "Kazınmış Arma",
+          "location": "Nöbet Kapısı",
+          "scene": "Şövalyenin zırhında arma yeri boş; kapı ardındaki adlar titrerken parmağı eski nöbet defterinin kendi imzasında durur.",
+          "backdrop": "scenes/word_knight/episode_01.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_red_pen_boss",
+              "Kuralı koruduğumu sanıyordum; itirazı kırmızıya boyayıp kayıttan kesmişim"
+            ],
+            [
+              "hero",
+              "Bu emri ben imzalamışım."
+            ],
+            [
+              "neris",
+              "İmza senin. Değiştirilen satır değil."
+            ],
+            [
+              "whisper",
+              "Emir yoksa suç da yok."
+            ],
+            [
+              "hero",
+              "Emri kimin adına verdiğimi bulacağım."
+            ]
+          ],
+          "boss_reward": {
+            "type": "clue",
+            "name": "Kazınmış Arma",
+            "description": "Eski nöbet emrinin Blank Page tarafından değiştirildiğini gösterir."
+          },
+          "panel_art": [
+            "scenes/word_knight/episode_01.png",
+            "scenes/word_knight/episode_01.png",
+            "scenes/word_knight/episode_01.png",
+            "scenes/word_knight/episode_01.png",
+            "scenes/word_knight/episode_01.png"
+          ]
+        },
+        {
+          "wave": 10,
+          "title": "Tahliye Çizgisi",
+          "location": "Yasak Raf Geçidi",
+          "scene": "Kapı dışındaki tebeşir okları içeridekileri çıkışa değil duvara yönlendirir; Knight kalkanını menteşeden çekince çizgiler açığa çıkar.",
+          "backdrop": "scenes/word_knight/episode_02.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_syntax_titan",
+              "Emir yarımdı; ben bitirdim ve içindeki “hayır”ı cümlenin dışına ittim"
+            ],
+            [
+              "hero",
+              "Kapıyı kapatarak herkesi koruduğumu sanmıştım."
+            ],
+            [
+              "neris",
+              "İçeridekiler kapının kapanmasını istedi mi?"
+            ],
+            [
+              "whisper",
+              "Dışarıda tehlike var. Kapat."
+            ],
+            [
+              "hero",
+              "Onların kararını sormadan nöbet tutmam."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_02.png",
+            "scenes/word_knight/episode_02.png",
+            "scenes/word_knight/episode_02.png",
+            "scenes/word_knight/episode_02.png",
+            "scenes/word_knight/episode_02.png"
+          ]
+        },
+        {
+          "wave": 15,
+          "title": "Yabancı Kanın Tanığı",
+          "location": "Mürekkep Avlusu",
+          "scene": "Kalkanın altına kurumuş kan değil kırmızı mühür boyası yapışmıştır; eski tanık Mara, yağmur oluğunda beklerken konuşmayı seçer.",
+          "backdrop": "scenes/word_knight/episode_03.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_oxymoron_ogre",
+              "İki tanık da doğruyu söylüyordu; birini seçince ötekini yalan yaptım"
+            ],
+            [
+              "hero",
+              "Seni korumak için kapıyı kapatmıştım."
+            ],
+            [
+              "mara",
+              "Ben içeride kalmayı seçmedim."
+            ],
+            [
+              "neris",
+              "Önce anlatmasına izin ver."
+            ],
+            [
+              "hero",
+              "Savunmamı sonra yapacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_03.png",
+            "scenes/word_knight/episode_03.png",
+            "scenes/word_knight/episode_03.png",
+            "scenes/word_knight/episode_03.png",
+            "scenes/word_knight/episode_03.png"
+          ]
+        },
+        {
+          "wave": 20,
+          "title": "Tek İsim Emri",
+          "location": "Emirler Galerisi",
+          "scene": "İki komutanın kopyasında aynı mühür farklı yönü gösterir; Knight ışığa tutunca kendi imzasının altında boş bir itiraz kutusu bulur.",
+          "backdrop": "scenes/word_knight/episode_04.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_homophone_harpy",
+              "Adları aynı sesle çağırdım; dönüp bakmayanı da kayıp saydım"
+            ],
+            [
+              "hero",
+              "Sorgulama hakkım vardı."
+            ],
+            [
+              "neris",
+              "Kullanmamayı seçtin."
+            ],
+            [
+              "whisper",
+              "İtaat, düşünmekten daha güvenlidir."
+            ],
+            [
+              "hero",
+              "Güvenlik bahanemi değil, sonucunu taşıyacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_04.png",
+            "scenes/word_knight/episode_04.png",
+            "scenes/word_knight/episode_04.png",
+            "scenes/word_knight/episode_04.png",
+            "scenes/word_knight/episode_04.png"
+          ]
+        },
+        {
+          "wave": 25,
+          "title": "Kapı Mareşalinin Duvarı",
+          "location": "Kayıtların Eşiği",
+          "scene": "Leksikon Ejderhası’nın halkaları taş kapıyı içeri iter; Knight kalkanını kaçan tanıklara çevirir ve önce onların geçmesine izin verir.",
+          "backdrop": "scenes/word_knight/episode_05.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_lexicon_dragon_boss",
+              "Halkalarımda kelimeleri sakladım; saklamak, sahip olmak demek değil"
+            ],
+            [
+              "hero",
+              "Bu kapı tek kişinin emriyle kapanmayacak."
+            ],
+            [
+              "neris",
+              "Önce kimin geçmek istediğini dinle."
+            ],
+            [
+              "echo_gate_marshal",
+              "Bir açık kapı herkesi tehlikeye atar."
+            ],
+            [
+              "hero",
+              "Kapıyı kapatmak da herkesi tehlikeye attı."
+            ]
+          ],
+          "boss_reward": {
+            "type": "relic",
+            "id": "story_word_knight_25",
+            "name": "Nöbetin İç Mührü",
+            "description": "Ejderha halkasının açtığı geçitten geçen tanıkların ortak nöbet işareti.",
+            "icon": "assets/sprites/story/relics/word_knight_25.svg",
+            "stats": {
+              "armor": 0.04
+            }
+          },
+          "panel_art": [
+            "scenes/word_knight/episode_05.png",
+            "scenes/word_knight/episode_05.png",
+            "scenes/word_knight/episode_05.png",
+            "scenes/word_knight/episode_05.png",
+            "scenes/word_knight/episode_05.png"
+          ]
+        },
+        {
+          "wave": 30,
+          "title": "Dar Yemin",
+          "location": "Yemin Tüneli",
+          "scene": "Duvardaki yemin satırları daralır; şövalye kalkanını indirince yazının arkasında geçmeye çalışanların tırnak izleri belirir.",
+          "backdrop": "scenes/word_knight/episode_06.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_run_on_reaper",
+              "Koş dedim; durmanın da bir çıkış olabileceğini hiç öğrenmemiştim"
+            ],
+            [
+              "hero",
+              "Koruyacağım dedim; kimin kararını sildim?"
+            ],
+            [
+              "neris",
+              "Nöbet, izin istemenin yerini tutmaz."
+            ],
+            [
+              "whisper",
+              "Yeminini tekrarla; şüphe susar."
+            ],
+            [
+              "hero",
+              "Şüpheyi susturmak değil, doğru soruyu taşımak istiyorum."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_06.png",
+            "scenes/word_knight/episode_06.png",
+            "scenes/word_knight/episode_06.png",
+            "scenes/word_knight/episode_06.png",
+            "scenes/word_knight/episode_06.png"
+          ]
+        },
+        {
+          "wave": 35,
+          "title": "Boş Kışlada İki Bot",
+          "location": "Nöbetçi Kışlası",
+          "scene": "Ranzaların altında iki çocuk botu yan yana durur; eski nöbetçi Lira birini alıp diğerini yerinde bırakır.",
+          "backdrop": "scenes/word_knight/episode_07.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_malapropism_mimic",
+              "Yüzü tutturdum; bakışını ve kararını kopyalayamadım"
+            ],
+            [
+              "hero",
+              "Kaç kişiyi görmeden geçirdim?"
+            ],
+            [
+              "lira",
+              "Ben emir bekledim; sen kapıyı tuttun."
+            ],
+            [
+              "neris",
+              "İkiniz de seçiminizi anlatabilirsiniz."
+            ],
+            [
+              "hero",
+              "İlk kez kimin suçlu olduğunu değil, kimin zarar gördüğünü soracağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_07.png",
+            "scenes/word_knight/episode_07.png",
+            "scenes/word_knight/episode_07.png",
+            "scenes/word_knight/episode_07.png",
+            "scenes/word_knight/episode_07.png"
+          ]
+        },
+        {
+          "wave": 40,
+          "title": "Kazınmış Satır",
+          "location": "Taş Yazıt Mahzeni",
+          "scene": "Taş levhada “geçişi koru” sözü kazınmış, “kim için” kısmı çatlakların altında kalmıştır; Knight çatlağı bıçağıyla temizler.",
+          "backdrop": "scenes/word_knight/episode_08.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_vocabulary_void",
+              "Adları silince onları bulamazlar sandım; onlar da birbirini bulamadı"
+            ],
+            [
+              "hero",
+              "Sözün yarısını ben de sorgulamamışım."
+            ],
+            [
+              "neris",
+              "Şimdi kalan yarıyı kimin yazdığını öğren."
+            ],
+            [
+              "whisper",
+              "Eksik kısmı sen doldur."
+            ],
+            [
+              "hero",
+              "Tanıklar konuşmadan doldurmayacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_08.png",
+            "scenes/word_knight/episode_08.png",
+            "scenes/word_knight/episode_08.png",
+            "scenes/word_knight/episode_08.png",
+            "scenes/word_knight/episode_08.png"
+          ]
+        },
+        {
+          "wave": 45,
+          "title": "Kalkanın Öte Yanı",
+          "location": "Yansıtılmış Siper",
+          "scene": "Ayna siper, Knight’ın savunduğu cepheyi göstermez; kalkanın arka yüzünde içeriden açılmış bir kapı çizgisi vardır.",
+          "backdrop": "scenes/word_knight/episode_09.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_punctuation_phantom",
+              "Noktayı koyunca acı biter sandım; tanıklık benden sonra da sürüyordu"
+            ],
+            [
+              "hero",
+              "Ben dışarıyı kolladım."
+            ],
+            [
+              "mara",
+              "Biz içeriden çıkış aradık."
+            ],
+            [
+              "neris",
+              "İkisi de aynı anda doğru olabilir."
+            ],
+            [
+              "hero",
+              "Birini silmeden kayda alacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_09.png",
+            "scenes/word_knight/episode_09.png",
+            "scenes/word_knight/episode_09.png",
+            "scenes/word_knight/episode_09.png",
+            "scenes/word_knight/episode_09.png"
+          ]
+        },
+        {
+          "wave": 50,
+          "title": "Armanın İnfazcısı",
+          "location": "Tanıklık Salonu",
+          "scene": "Çifte Yadsıma Drake’i kırık armanın altında ikiz yarıklar açar; Knight eski sancağı kaldırmadan tanıkların seçtiği güvenli tarafta durur.",
+          "backdrop": "scenes/word_knight/episode_10.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_double_negative_drake",
+              "İki hayırı tek bir evete çevirdim; hükmü ben verdim, bedelini başkaları taşıdı"
+            ],
+            [
+              "hero",
+              "Bu arma bana itibar kazandırdı."
+            ],
+            [
+              "neris",
+              "Onu bırakmak zararı geri almıyor."
+            ],
+            [
+              "echo_crest_enforcer",
+              "Armasızsan emirsizsin."
+            ],
+            [
+              "hero",
+              "Sorumluluk için arma gerekmiyor."
+            ]
+          ],
+          "boss_reward": {
+            "type": "relic",
+            "id": "story_word_knight_50",
+            "name": "Karşı Not",
+            "description": "Drake’in iki yarığı arasında korunan, emri imzalayanla zarar göreni ayrı kaydeden not.",
+            "icon": "assets/sprites/story/relics/word_knight_50.svg",
+            "stats": {
+              "max_hp": 10
+            }
+          },
+          "panel_art": [
+            "scenes/word_knight/episode_10.png",
+            "scenes/word_knight/episode_10.png",
+            "scenes/word_knight/episode_10.png",
+            "scenes/word_knight/episode_10.png",
+            "scenes/word_knight/episode_10.png"
+          ]
+        },
+        {
+          "wave": 55,
+          "title": "Nöbet Çizelgesindeki Boşluk",
+          "location": "Saat Kulesi",
+          "scene": "Saatin her vuruşunda bir nöbetçi silinir; Knight eski çizelgede hep kendi adının yanına başkasının vardiyasını yazdığını fark eder.",
+          "backdrop": "scenes/word_knight/episode_11.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_palindrome_phantom",
+              "Seni başladığın yere döndürdüm; değişmenden korkuyordum"
+            ],
+            [
+              "hero",
+              "Ben herkese emir verdiğimi sanıyordum."
+            ],
+            [
+              "lira",
+              "Ben de nöbeti reddedebilirdim; ama bedelinden korktum."
+            ],
+            [
+              "neris",
+              "Yeni çizelge ortak olmalı."
+            ],
+            [
+              "hero",
+              "İmzaları tek tek soracağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_11.png",
+            "scenes/word_knight/episode_11.png",
+            "scenes/word_knight/episode_11.png",
+            "scenes/word_knight/episode_11.png",
+            "scenes/word_knight/episode_11.png"
+          ]
+        },
+        {
+          "wave": 60,
+          "title": "Kalkanın Arka Yüzü",
+          "location": "Zırh Onarım Odası",
+          "scene": "Demirci kalkanın arkasına çocukların kazıdığı küçük yolları gösterir; Knight çatlakları kapatmaz, kenara dayanıklı bir tutamak ekler.",
+          "backdrop": "scenes/word_knight/episode_12.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_tautology_twin",
+              "Aynı sözü iki kez söyledim, kanıt sandım; ikizim bile bana inanmadı"
+            ],
+            [
+              "hero",
+              "Bu çizikleri saklamak istemiyorum."
+            ],
+            [
+              "neris",
+              "Tanıklar kalkanın üzerinde kalabilir."
+            ],
+            [
+              "whisper",
+              "Parlat; kimse geçmişi görmesin."
+            ],
+            [
+              "hero",
+              "Parlaklık özür değil."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_12.png",
+            "scenes/word_knight/episode_12.png",
+            "scenes/word_knight/episode_12.png",
+            "scenes/word_knight/episode_12.png",
+            "scenes/word_knight/episode_12.png"
+          ]
+        },
+        {
+          "wave": 65,
+          "title": "Yıldız Nöbeti",
+          "location": "Gözlemevi Siperi",
+          "scene": "Gözetleme dürbünü yıldızlara değil aşağıdaki göçmen kampına bakar; şövalye dürbünü çevirip yardım isteyen lambaları görür.",
+          "backdrop": "scenes/word_knight/episode_13.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_dangling_modifier",
+              "Eylemi askıda bıraktım; suç yanlış kişiye düştü"
+            ],
+            [
+              "hero",
+              "Nöbet yerinden ayrılmak ihanet sanılmıştı."
+            ],
+            [
+              "mara",
+              "Bizi görünce ilk kez kapı açıldı."
+            ],
+            [
+              "neris",
+              "Görev kime hizmet ediyor?"
+            ],
+            [
+              "hero",
+              "İnsanlara; duvara değil."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_13.png",
+            "scenes/word_knight/episode_13.png",
+            "scenes/word_knight/episode_13.png",
+            "scenes/word_knight/episode_13.png",
+            "scenes/word_knight/episode_13.png"
+          ]
+        },
+        {
+          "wave": 70,
+          "title": "Gölgeden Çıkmak",
+          "location": "Kara Scriptorium",
+          "scene": "Siyah scriptoriumda şövalyenin gölgesi kalkanı kapı yapar; ışık yan taraftan gelince gölge ikiye ayrılır ve yol açılır.",
+          "backdrop": "scenes/word_knight/episode_14.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_spelling_spectre",
+              "Bir harfi düzelttim, bir hayatı başka isme bağladım"
+            ],
+            [
+              "hero",
+              "Kalkanı hep öne tuttum."
+            ],
+            [
+              "neris",
+              "Şimdi arkandaki kişiye de bak."
+            ],
+            [
+              "whisper",
+              "Gölgeyi kapat, emniyette kal."
+            ],
+            [
+              "hero",
+              "Güvenlik tek kişinin bakışına bağlı olmayacak."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_14.png",
+            "scenes/word_knight/episode_14.png",
+            "scenes/word_knight/episode_14.png",
+            "scenes/word_knight/episode_14.png",
+            "scenes/word_knight/episode_14.png"
+          ]
+        },
+        {
+          "wave": 75,
+          "title": "Yemin Tartıcısının Meydanı",
+          "location": "Sürgün Kapısı",
+          "scene": "Idiom Imp’in közden sözcükleri nöbet tahtasına sahte emirler yazar; Knight her satırı sesli okur, sonra halka hangi geçidin açık kalacağını seçer.",
+          "backdrop": "scenes/word_knight/episode_15.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_idiom_imp",
+              "Gülmek istedim; şakam birinin yardım çağrısını örttü"
+            ],
+            [
+              "hero",
+              "Benim yemnim başkalarını susturdu."
+            ],
+            [
+              "neris",
+              "Zararı adlandır; kendini aklama."
+            ],
+            [
+              "echo_oath_tally",
+              "Biriniz suçlu ilan edilmeli."
+            ],
+            [
+              "hero",
+              "Kuralı yazan da, emri veren de sorumluluk taşıyor."
+            ]
+          ],
+          "boss_reward": {
+            "type": "relic",
+            "id": "story_word_knight_75",
+            "name": "Paylaşılan Nöbet",
+            "description": "İdiom Imp’in sahte emirleri ayıklandıktan sonra halkın seçtiği vardiya çizelgesi.",
+            "icon": "assets/sprites/story/relics/word_knight_75.svg",
+            "stats": {
+              "armor": 0.05
+            }
+          },
+          "panel_art": [
+            "scenes/word_knight/episode_15.png",
+            "scenes/word_knight/episode_15.png",
+            "scenes/word_knight/episode_15.png",
+            "scenes/word_knight/episode_15.png",
+            "scenes/word_knight/episode_15.png"
+          ]
+        },
+        {
+          "wave": 80,
+          "title": "Geçmek ya da Kalmak",
+          "location": "İki Yollu Köprü",
+          "scene": "Köprünün bir ayağı dışarıya, öteki nöbet odasına uzanır; sivil tanık Mara iki tarafta da kendine yer seçer.",
+          "backdrop": "scenes/word_knight/episode_16.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_red_pen_boss",
+              "Bu kez ben kestim; kime zarar vereceğini sormadan eski hükmü uyguladım"
+            ],
+            [
+              "hero",
+              "İstersen geç; istersen kal."
+            ],
+            [
+              "mara",
+              "Bu kez benim kararımı soruyorsun."
+            ],
+            [
+              "neris",
+              "Yanıtı bekle."
+            ],
+            [
+              "hero",
+              "Kapıyı tutmak yerine yolu tutacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_16.png",
+            "scenes/word_knight/episode_16.png",
+            "scenes/word_knight/episode_16.png",
+            "scenes/word_knight/episode_16.png",
+            "scenes/word_knight/episode_16.png"
+          ]
+        },
+        {
+          "wave": 85,
+          "title": "Özrü Duruşmada Bırakmak",
+          "location": "Yemin Duruşma Odası",
+          "scene": "Knight özrünü masaya koyar; tanık kabul etmeyince kâğıdı geri çekmez, jüriye değil tanığa bakar.",
+          "backdrop": "scenes/word_knight/episode_17.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_oxymoron_ogre",
+              "İki gerçeği ayrı odalara koydum; susunca çatışma biter sandım"
+            ],
+            [
+              "hero",
+              "Sana zarar verdim; bunu geri alamam."
+            ],
+            [
+              "mara",
+              "Şimdi affetmiyorum."
+            ],
+            [
+              "neris",
+              "Onun cevabı da kayda girecek."
+            ],
+            [
+              "hero",
+              "Bekleyeceğim; bunu görev diye dayatmayacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_17.png",
+            "scenes/word_knight/episode_17.png",
+            "scenes/word_knight/episode_17.png",
+            "scenes/word_knight/episode_17.png",
+            "scenes/word_knight/episode_17.png"
+          ]
+        },
+        {
+          "wave": 90,
+          "title": "Ortak Nöbet Çizelgesi",
+          "location": "Nöbet Çizelgesi Odası",
+          "scene": "Boş çizelgede siviller, eski nöbetçiler ve şövalye farklı renklerle vardiya yazar; tek bir imza diğerlerini kapatamaz.",
+          "backdrop": "scenes/word_knight/episode_18.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_malapropism_mimic",
+              "Yüzünü Neris’ten aldım; onun itirazını taklit edemedim"
+            ],
+            [
+              "hero",
+              "Bu vardiyayı kabul ediyor musun?"
+            ],
+            [
+              "lira",
+              "Evet; bitiş saatini de ben yazıyorum."
+            ],
+            [
+              "neris",
+              "İtiraz kutusunu açık bırak."
+            ],
+            [
+              "hero",
+              "Yeni kural, değiştirilebilme hakkı içerecek."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_18.png",
+            "scenes/word_knight/episode_18.png",
+            "scenes/word_knight/episode_18.png",
+            "scenes/word_knight/episode_18.png",
+            "scenes/word_knight/episode_18.png"
+          ]
+        },
+        {
+          "wave": 95,
+          "title": "Kalkanı Ödünç Vermek",
+          "location": "Son Siper",
+          "scene": "Bir çocuk kalkanın iç yüzüne kapı resmi çizer; Knight onu elinden almaz, kalkanı çocuğun boyuna göre yere dayar.",
+          "backdrop": "scenes/word_knight/episode_19.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_vocabulary_void",
+              "Boşlukları korurken yaşayanların adlarını da sildim"
+            ],
+            [
+              "hero",
+              "Kalkanım hep engel olmuş."
+            ],
+            [
+              "mara",
+              "Bazen siper; bazen duvar."
+            ],
+            [
+              "whisper",
+              "Onu geri al. Güç sende kalmalı."
+            ],
+            [
+              "hero",
+              "Kimin tuttuğu değil, neyi koruduğu önemli."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_19.png",
+            "scenes/word_knight/episode_19.png",
+            "scenes/word_knight/episode_19.png",
+            "scenes/word_knight/episode_19.png",
+            "scenes/word_knight/episode_19.png"
+          ]
+        },
+        {
+          "wave": 100,
+          "title": "İtiraza Açık Meydan",
+          "location": "İsimsiz Meydan",
+          "scene": "Omega Leksikon Ejderhası’nın son halkası nöbet çizelgesine tek bir doğru son dayatır; Knight mührü kırar, görev, itiraz ve onarım için ayrı satırlar bırakır.",
+          "backdrop": "scenes/word_knight/episode_20.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_lexicon_dragon_boss",
+              "İlk halkada sözlük tuttum; son halkada tek bir ağız olmak istedim"
+            ],
+            [
+              "hero",
+              "Geçmek isteyen geçsin; nöbet tutmak isteyen kalsın."
+            ],
+            [
+              "neris",
+              "Ben Neris’im. Adımı kendim yazıyorum."
+            ],
+            [
+              "blank_page",
+              "Tek kural olmazsa güvenlik dağılır."
+            ],
+            [
+              "hero",
+              "O zaman kural değiştirilebilir olsun; sorumluluk da paylaşılsın."
+            ]
+          ],
+          "boss_reward": {
+            "type": "ending",
+            "name": "Karakterin son kararı",
+            "description": "Güvenlik, seçme hakkının yerini alamaz."
+          },
+          "panel_art": [
+            "scenes/word_knight/episode_20.png",
+            "scenes/word_knight/episode_20.png",
+            "scenes/word_knight/episode_20.png",
+            "scenes/word_knight/episode_20.png",
+            "scenes/word_knight/episode_20.png"
+          ]
+        }
+      ]
+    },
+    "rune_sorceress": {
+      "motive": "Annesi Lale’nin kayboluşunu izleyip onun seçimini anlamak.",
+      "name": "Rune Sorceress",
+      "episodes": [
+        {
+          "wave": 5,
+          "title": "Kül Altındaki Mühür",
+          "location": "Kızıl Giriş",
+          "scene": "Kızıl kül taş zeminde daire oluşturur; Rune Sorceress parmağıyla külü üfleyince altından annesinin mührü değil, iki ayrı yol çıkar.",
+          "backdrop": "scenes/rune_sorceress/episode_01.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_red_pen_boss",
+              "Kuralı koruduğumu sanıyordum; itirazı kırmızıya boyayıp kayıttan kesmişim"
+            ],
+            [
+              "rune_sorceress",
+              "Bu çizgi annemin mührüne benziyor."
+            ],
+            [
+              "neris",
+              "İki yolun ikisi de onun elinden."
+            ],
+            [
+              "whisper",
+              "Birini yak; acı diner."
+            ],
+            [
+              "rune_sorceress",
+              "Acı benim; kararı da ben vereceğim."
+            ]
+          ],
+          "boss_reward": {
+            "type": "clue",
+            "name": "Kül Bekçisi anısı",
+            "description": "İlk kez alınan hasardan sonra kısa süreli ateş direnci."
+          },
+          "panel_art": [
+            "panels_600/rune_sorceress/wave_005_panel_01.webp",
+            "panels_600/rune_sorceress/wave_005_panel_02.webp",
+            "panels_600/rune_sorceress/wave_005_panel_03.webp",
+            "panels_600/rune_sorceress/wave_005_panel_04.webp",
+            "panels_600/rune_sorceress/wave_005_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 10,
+          "title": "Sessiz Harflerin Nefesi",
+          "location": "Fısıltı Galerisi",
+          "scene": "Taş harfler büyü ışığıyla içe kıvrılır; Sorceress avucunu kapatınca fısıltı diner, duvarda kalan ısı izi annesinin sesi değildir.",
+          "backdrop": "scenes/rune_sorceress/episode_02.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_syntax_titan",
+              "Emir yarımdı; ben bitirdim ve içindeki “hayır”ı cümlenin dışına ittim"
+            ],
+            [
+              "rune_sorceress",
+              "Büyüm onları uyandırıyor."
+            ],
+            [
+              "neris",
+              "Ya da senin korkunu tanıyorlar."
+            ],
+            [
+              "mother_echo",
+              "Sesi duydun; kararını duymadın."
+            ],
+            [
+              "rune_sorceress",
+              "Annemin sesiyle onun iradesini karıştırmayacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/rune_sorceress/wave_010_panel_01.webp",
+            "panels_600/rune_sorceress/wave_010_panel_02.webp",
+            "panels_600/rune_sorceress/wave_010_panel_03.webp",
+            "panels_600/rune_sorceress/wave_010_panel_04.webp",
+            "panels_600/rune_sorceress/wave_010_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 15,
+          "title": "Asanın İki Yarısı",
+          "location": "Mürekkep Avlusu",
+          "scene": "Siyah havuzdaki asa parçası ışıldar; ikinci yarısı kıyıda durur, ikisi birleştirilmek için değil iki kapıya işaret etmek için kırılmıştır.",
+          "backdrop": "scenes/rune_sorceress/episode_03.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_oxymoron_ogre",
+              "İki tanık da doğruyu söylüyordu; birini seçince ötekini yalan yaptım"
+            ],
+            [
+              "rune_sorceress",
+              "Bunu annem kırmış."
+            ],
+            [
+              "neris",
+              "Bir parçayı neden geride bıraksın?"
+            ],
+            [
+              "whisper",
+              "Birleştir; onu geri getir."
+            ],
+            [
+              "rune_sorceress",
+              "Belki kırmak, gitmek için gereken seçimdi."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/rune_sorceress/wave_015_panel_01.webp",
+            "panels_600/rune_sorceress/wave_015_panel_02.webp",
+            "panels_600/rune_sorceress/wave_015_panel_03.webp",
+            "panels_600/rune_sorceress/wave_015_panel_04.webp",
+            "panels_600/rune_sorceress/wave_015_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 20,
+          "title": "Külün Merdiven Haritası",
+          "location": "Yanık Harita Odası",
+          "scene": "Harita alev aldıkça merdivenleri belli eder; Sorceress bir büyüyle külü bastırmaz, rüzgârın çizdiği yola göre iner.",
+          "backdrop": "scenes/rune_sorceress/episode_04.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_homophone_harpy",
+              "Adları aynı sesle çağırdım; dönüp bakmayanı da kayıp saydım"
+            ],
+            [
+              "rune_sorceress",
+              "İzini bulacağım; onun yerine yürümeyeceğim."
+            ],
+            [
+              "neris",
+              "Bu merdiven yalnız bir kişiye göre dönüyor."
+            ],
+            [
+              "mother_echo",
+              "Kendi adımınla in."
+            ],
+            [
+              "rune_sorceress",
+              "İlk adım benim."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/rune_sorceress/wave_020_panel_01.webp",
+            "panels_600/rune_sorceress/wave_020_panel_02.webp",
+            "panels_600/rune_sorceress/wave_020_panel_03.webp",
+            "panels_600/rune_sorceress/wave_020_panel_04.webp",
+            "panels_600/rune_sorceress/wave_020_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 25,
+          "title": "Ash Warden’ın Halkası",
+          "location": "Kızıl Kubbe",
+          "scene": "Leksikon Ejderhası’nın yörüngesi Lale’nin kül mührünü harflere ayırır; Sorceress her izi annesinin yankısını yakıt yapmadan toplar.",
+          "backdrop": "scenes/rune_sorceress/episode_05.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_lexicon_dragon_boss",
+              "Halkalarımda kelimeleri sakladım; saklamak, sahip olmak demek değil"
+            ],
+            [
+              "rune_sorceress",
+              "Annem için kendimi feda etmeyeceğim."
+            ],
+            [
+              "neris",
+              "O da senden bunu istemedi."
+            ],
+            [
+              "echo_ash_warden",
+              "İsmi yak, acısı diner."
+            ],
+            [
+              "rune_sorceress",
+              "Mührü kırarım; adı değil."
+            ]
+          ],
+          "boss_reward": {
+            "type": "relic",
+            "id": "story_rune_sorceress_25",
+            "name": "Kül Harflerinin Kaydı",
+            "description": "Ejderha halkasından kurtarılan, Lale’nin mührünü yakıtsız biçimde koruyan kayıt.",
+            "icon": "assets/sprites/story/relics/rune_sorceress_25.svg",
+            "stats": {
+              "damage": 0.06
+            }
+          },
+          "panel_art": [
+            "panels_600/rune_sorceress/wave_025_panel_01.webp",
+            "panels_600/rune_sorceress/wave_025_panel_02.webp",
+            "panels_600/rune_sorceress/wave_025_panel_03.webp",
+            "panels_600/rune_sorceress/wave_025_panel_04.webp",
+            "panels_600/rune_sorceress/wave_025_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 30,
+          "title": "Kül Merdivenindeki Yankı",
+          "location": "Kül Merdiveni",
+          "scene": "Her basamakta bir kadın silueti dağılır; son basamakta ses kaybolur ama Sorceress’in avucunda sıcak mühür izi kalır.",
+          "backdrop": "scenes/rune_sorceress/episode_06.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_run_on_reaper",
+              "Koş dedim; durmanın da bir çıkış olabileceğini hiç öğrenmemiştim"
+            ],
+            [
+              "mother_echo",
+              "Beni bulma, kızım."
+            ],
+            [
+              "rune_sorceress",
+              "Bunu yıllardır duymak istedim."
+            ],
+            [
+              "neris",
+              "Sesi tanıman, cevabın bugünkü olduğunu kanıtlamaz."
+            ],
+            [
+              "rune_sorceress",
+              "Beklemeyi de öğreneceğim."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/rune_sorceress/wave_030_panel_01.webp",
+            "panels_600/rune_sorceress/wave_030_panel_02.webp",
+            "panels_600/rune_sorceress/wave_030_panel_03.webp",
+            "panels_600/rune_sorceress/wave_030_panel_04.webp",
+            "panels_600/rune_sorceress/wave_030_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 35,
+          "title": "Hatırlamadığı Portre",
+          "location": "Kayıp Çocuklar Salonu",
+          "scene": "Boş çerçeve Sorceress’in çocukluğunu gösterirken köşedeki tarih iki kez kazınmıştır; Neris tarihi değil, boya katlarını inceler.",
+          "backdrop": "scenes/rune_sorceress/episode_07.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_malapropism_mimic",
+              "Yüzü tutturdum; bakışını ve kararını kopyalayamadım"
+            ],
+            [
+              "rune_sorceress",
+              "Bu günü hiç hatırlamıyorum."
+            ],
+            [
+              "neris",
+              "Çerçevede annenin değil, senin eski notun var."
+            ],
+            [
+              "whisper",
+              "Anıyı düzeltirim."
+            ],
+            [
+              "rune_sorceress",
+              "Düzeltme değil, tanıklık istiyorum."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/rune_sorceress/wave_035_panel_01.webp",
+            "panels_600/rune_sorceress/wave_035_panel_02.webp",
+            "panels_600/rune_sorceress/wave_035_panel_03.webp",
+            "panels_600/rune_sorceress/wave_035_panel_04.webp",
+            "panels_600/rune_sorceress/wave_035_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 40,
+          "title": "İsimsiz Mezarların Lambası",
+          "location": "Taş Mezarlık",
+          "scene": "Küçük mor alevler mezar taşlarını aydınlatır; Lale’nin adı çıkmaz, fakat kurtardığı üç kişinin aynı sembolü taşıdığı görülür.",
+          "backdrop": "scenes/rune_sorceress/episode_08.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_vocabulary_void",
+              "Adları silince onları bulamazlar sandım; onlar da birbirini bulamadı"
+            ],
+            [
+              "rune_sorceress",
+              "Annem burada yatmıyor."
+            ],
+            [
+              "neris",
+              "Belki onun seçtiği kişiler burada."
+            ],
+            [
+              "mother_echo",
+              "Onları hatırlamayı sürdür."
+            ],
+            [
+              "rune_sorceress",
+              "Onun anısını tek mezara kapatmayacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/rune_sorceress/wave_040_panel_01.webp",
+            "panels_600/rune_sorceress/wave_040_panel_02.webp",
+            "panels_600/rune_sorceress/wave_040_panel_03.webp",
+            "panels_600/rune_sorceress/wave_040_panel_04.webp",
+            "panels_600/rune_sorceress/wave_040_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 45,
+          "title": "Yankının Bedeli",
+          "location": "Ayna Kuyusu",
+          "scene": "Her büyüde kuyudaki Lale’nin yüzü silikleşir; Sorceress büyüyü durdurunca ayna karanlık olur, fakat kendi yansıması kalır.",
+          "backdrop": "scenes/rune_sorceress/episode_09.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_punctuation_phantom",
+              "Noktayı koyunca acı biter sandım; tanıklık benden sonra da sürüyordu"
+            ],
+            [
+              "rune_sorceress",
+              "Seni çağırmak için kendimi eksiltiyorum."
+            ],
+            [
+              "neris",
+              "Yol, senden değerli değil."
+            ],
+            [
+              "mother_echo",
+              "Beni tutma."
+            ],
+            [
+              "rune_sorceress",
+              "Seni özleyebilirim; yine de bırakacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/rune_sorceress/wave_045_panel_01.webp",
+            "panels_600/rune_sorceress/wave_045_panel_02.webp",
+            "scenes/rune_sorceress/episode_09.png",
+            "panels_600/rune_sorceress/wave_045_panel_04.webp",
+            "scenes/rune_sorceress/episode_09.png"
+          ]
+        },
+        {
+          "wave": 50,
+          "title": "Glass Mother’ın İki Anısı",
+          "location": "Cam Arşiv",
+          "scene": "Çifte Yadsıma Drake’i iki yarığında Lale’nin farklı anılarını yansıtır; Sorceress ikisini de ışığa tutar ve hiçbir tanıklığı silmeyi reddeder.",
+          "backdrop": "scenes/rune_sorceress/episode_10.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_double_negative_drake",
+              "İki hayırı tek bir evete çevirdim; hükmü ben verdim, bedelini başkaları taşıdı"
+            ],
+            [
+              "rune_sorceress",
+              "Biri bana ait, biri anneme."
+            ],
+            [
+              "neris",
+              "Hiçbiri tek başına bütün geçmiş değil."
+            ],
+            [
+              "echo_glass_mother",
+              "Onu silersem güvenli kalır."
+            ],
+            [
+              "rune_sorceress",
+              "Güvenlik için anıyı silmeyeceğim."
+            ]
+          ],
+          "boss_reward": {
+            "type": "relic",
+            "id": "story_rune_sorceress_50",
+            "name": "İki Anının Camı",
+            "description": "Drake’in iki yarığına ait çelişkili anıları yan yana saklayan cam parçası.",
+            "icon": "assets/sprites/story/relics/rune_sorceress_50.svg",
+            "stats": {
+              "gadget_cooldown_mult": -0.07
+            }
+          },
+          "panel_art": [
+            "scenes/rune_sorceress/episode_10.png",
+            "scenes/rune_sorceress/episode_10.png",
+            "scenes/rune_sorceress/episode_10.png",
+            "scenes/rune_sorceress/episode_10.png",
+            "scenes/rune_sorceress/episode_10.png"
+          ]
+        },
+        {
+          "wave": 55,
+          "title": "Aşağı Düşen Mektuplar",
+          "location": "Posta Bacası",
+          "scene": "Kül kaplı zarflar bacadan yukarı değil aşağı iner; Sorceress birini açınca talimat değil, annesinin yanlış yaptığı günlük bir tarifi bulur.",
+          "backdrop": "scenes/rune_sorceress/episode_11.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_palindrome_phantom",
+              "Seni başladığın yere döndürdüm; değişmenden korkuyordum"
+            ],
+            [
+              "rune_sorceress",
+              "Bana büyü değil çorba tarifi yazmış."
+            ],
+            [
+              "neris",
+              "Onu yalnızca büyük kararlarından hatırlama."
+            ],
+            [
+              "mother_echo",
+              "Tuzu hep fazla koyardım."
+            ],
+            [
+              "rune_sorceress",
+              "Bu kusuru da anımda kalacak."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/rune_sorceress/episode_11.png",
+            "scenes/rune_sorceress/episode_11.png",
+            "scenes/rune_sorceress/episode_11.png",
+            "scenes/rune_sorceress/episode_11.png",
+            "scenes/rune_sorceress/episode_11.png"
+          ]
+        },
+        {
+          "wave": 60,
+          "title": "İki Ayrı Alev",
+          "location": "Çatlak Şapel",
+          "scene": "Bir kandildeki iki alev birbirine yaklaşır ama birleşmez; Sorceress birini söndürmeden aralarına cam fitil yerleştirir.",
+          "backdrop": "scenes/rune_sorceress/episode_12.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_tautology_twin",
+              "Aynı sözü iki kez söyledim, kanıt sandım; ikizim bile bana inanmadı"
+            ],
+            [
+              "rune_sorceress",
+              "Annemle aynı olmak zorunda değilim."
+            ],
+            [
+              "neris",
+              "Sevgi, benzerlik şartı koymaz."
+            ],
+            [
+              "mother_echo",
+              "Beni özleyebilirsin."
+            ],
+            [
+              "rune_sorceress",
+              "Ve bana bıraktığın sınırı eleştirebilirim."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/rune_sorceress/episode_12.png",
+            "scenes/rune_sorceress/episode_12.png",
+            "scenes/rune_sorceress/episode_12.png",
+            "scenes/rune_sorceress/episode_12.png",
+            "scenes/rune_sorceress/episode_12.png"
+          ]
+        },
+        {
+          "wave": 65,
+          "title": "Donmuş Alev Geçidi",
+          "location": "Donmuş Ateş Koridoru",
+          "scene": "Havadaki alevler her adımda başka yöne döner; Sorceress büyüsünü kapatıp çıplak taş üzerindeki ayak izini izler.",
+          "backdrop": "scenes/rune_sorceress/episode_13.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_dangling_modifier",
+              "Eylemi askıda bıraktım; suç yanlış kişiye düştü"
+            ],
+            [
+              "rune_sorceress",
+              "Büyüsüz yürümekten korkuyorum."
+            ],
+            [
+              "neris",
+              "Korku, kararını geçersiz kılmaz."
+            ],
+            [
+              "whisper",
+              "Tek bir doğru yol var."
+            ],
+            [
+              "rune_sorceress",
+              "Kendi yolumu bulmak zorundayım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/rune_sorceress/episode_13.png",
+            "scenes/rune_sorceress/episode_13.png",
+            "scenes/rune_sorceress/episode_13.png",
+            "scenes/rune_sorceress/episode_13.png",
+            "scenes/rune_sorceress/episode_13.png"
+          ]
+        },
+        {
+          "wave": 70,
+          "title": "Lale’nin Çalışma Masası",
+          "location": "Gizli Çalışma Odası",
+          "scene": "Yarım mühür planında iki ayrı imza ve üstü çizilmiş bir üçüncü ad bulunur; Sorceress çizginin annesinin kararı olduğunu görür.",
+          "backdrop": "scenes/rune_sorceress/episode_14.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_spelling_spectre",
+              "Bir harfi düzelttim, bir hayatı başka isme bağladım"
+            ],
+            [
+              "rune_sorceress",
+              "Annem beni kurtarmadı; kendi korkusuyla karar verdi."
+            ],
+            [
+              "neris",
+              "Sevgi ve hata aynı kişide bulunabilir."
+            ],
+            [
+              "mother_echo",
+              "Beni düzeltmeye çalışma."
+            ],
+            [
+              "rune_sorceress",
+              "Seni değil, seçim hakkını savunacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/rune_sorceress/episode_14.png",
+            "scenes/rune_sorceress/episode_14.png",
+            "scenes/rune_sorceress/episode_14.png",
+            "scenes/rune_sorceress/episode_14.png",
+            "scenes/rune_sorceress/episode_14.png"
+          ]
+        },
+        {
+          "wave": 75,
+          "title": "Namekeeper’ın Kararı",
+          "location": "Alevsiz Kubbe",
+          "scene": "Idiom Imp’in közleri taşlara sahte bir miras yazar; Sorceress kendi adını annesininkinin yanına çizer, iki mühür de birbirini örtmez.",
+          "backdrop": "scenes/rune_sorceress/episode_15.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_idiom_imp",
+              "Gülmek istedim; şakam birinin yardım çağrısını örttü"
+            ],
+            [
+              "rune_sorceress",
+              "Birimiz ötekinin kopyası değil."
+            ],
+            [
+              "neris",
+              "Kuralı kim yazmış?"
+            ],
+            [
+              "echo_namekeeper",
+              "Biriniz silinmeli."
+            ],
+            [
+              "rune_sorceress",
+              "Korku kanun değildir."
+            ]
+          ],
+          "boss_reward": {
+            "type": "relic",
+            "id": "story_rune_sorceress_75",
+            "name": "Çifte İsim Mührü",
+            "description": "İdiom Imp’in sahte miras yazısını bozan, iki ayrı adı koruyan mühür.",
+            "icon": "assets/sprites/story/relics/rune_sorceress_75.svg",
+            "stats": {
+              "crit_chance": 0.04
+            }
+          },
+          "panel_art": [
+            "scenes/rune_sorceress/episode_15.png",
+            "scenes/rune_sorceress/episode_15.png",
+            "scenes/rune_sorceress/episode_15.png",
+            "scenes/rune_sorceress/episode_15.png",
+            "scenes/rune_sorceress/episode_15.png"
+          ]
+        },
+        {
+          "wave": 80,
+          "title": "Küllerin Tanık Çemberi",
+          "location": "Açık Avlu",
+          "scene": "Kül göğe yükselmeden önce her tanık kendi adını bir taşa koyar; Sorceress annesinin taşını boş bırakır.",
+          "backdrop": "scenes/rune_sorceress/episode_16.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_red_pen_boss",
+              "Bu kez ben kestim; kime zarar vereceğini sormadan eski hükmü uyguladım"
+            ],
+            [
+              "rune_sorceress",
+              "Annemin adını ben taşıyamam."
+            ],
+            [
+              "neris",
+              "İstersen taşıyabilirsin; zorunlu değil."
+            ],
+            [
+              "mother_echo",
+              "Beni unutabilirsin."
+            ],
+            [
+              "rune_sorceress",
+              "Unutmakla affetmek ayrı seçimler."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/rune_sorceress/episode_16.png",
+            "scenes/rune_sorceress/episode_16.png",
+            "scenes/rune_sorceress/episode_16.png",
+            "scenes/rune_sorceress/episode_16.png",
+            "scenes/rune_sorceress/episode_16.png"
+          ]
+        },
+        {
+          "wave": 85,
+          "title": "Blank Page’in Sessiz Daveti",
+          "location": "Beyaz Eşik",
+          "scene": "Beyaz boşluk alevlerin yönünü siler; Sorceress elini geri çeker ve Neris’e büyü yapıp yapmamasını sorar.",
+          "backdrop": "scenes/rune_sorceress/episode_17.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_oxymoron_ogre",
+              "İki gerçeği ayrı odalara koydum; susunca çatışma biter sandım"
+            ],
+            [
+              "rune_sorceress",
+              "Tek bir son teklif ediyor."
+            ],
+            [
+              "neris",
+              "Benim yerime de seçme."
+            ],
+            [
+              "blank_page",
+              "Acısızlık için bir son yeter."
+            ],
+            [
+              "rune_sorceress",
+              "Sessizlik, iyileşmek değildir."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/rune_sorceress/episode_17.png",
+            "scenes/rune_sorceress/episode_17.png",
+            "scenes/rune_sorceress/episode_17.png",
+            "scenes/rune_sorceress/episode_17.png",
+            "scenes/rune_sorceress/episode_17.png"
+          ]
+        },
+        {
+          "wave": 90,
+          "title": "İsimler Köprüsünün Yükü",
+          "location": "Adlar Köprüsü",
+          "scene": "Her taş farklı bir adla yanar; köprü çatlayınca Sorceress bir adı Neris’e yüklemez, birlikte geçmek için durur.",
+          "backdrop": "scenes/rune_sorceress/episode_18.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_malapropism_mimic",
+              "Yüzünü Neris’ten aldım; onun itirazını taklit edemedim"
+            ],
+            [
+              "rune_sorceress",
+              "Hepsini ben taşımalıyım sandım."
+            ],
+            [
+              "neris",
+              "Yanında yürüyebilirim; adını üstlenemem."
+            ],
+            [
+              "mother_echo",
+              "Yavaşla."
+            ],
+            [
+              "rune_sorceress",
+              "Birlikte, ama ayrı ayrı geçiyoruz."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/rune_sorceress/episode_18.png",
+            "scenes/rune_sorceress/episode_18.png",
+            "scenes/rune_sorceress/episode_18.png",
+            "scenes/rune_sorceress/episode_18.png",
+            "scenes/rune_sorceress/episode_18.png"
+          ]
+        },
+        {
+          "wave": 95,
+          "title": "Mührün İki Yüzü",
+          "location": "Son Kayıt Odası",
+          "scene": "Eski mühür kapıyı kapatmak yerine iki sayfayı birbirine tutturur; Sorceress onu kilit değil, ayraç olarak çevirir.",
+          "backdrop": "scenes/rune_sorceress/episode_19.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_vocabulary_void",
+              "Boşlukları korurken yaşayanların adlarını da sildim"
+            ],
+            [
+              "rune_sorceress",
+              "Annemin yolu burada bitmiyor; benimki de ona bağlanmıyor."
+            ],
+            [
+              "neris",
+              "İki isim, bir kapı."
+            ],
+            [
+              "mother_echo",
+              "Kendin ol."
+            ],
+            [
+              "rune_sorceress",
+              "Bu kez seçimi birlikte konuşuyoruz."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/rune_sorceress/episode_19.png",
+            "scenes/rune_sorceress/episode_19.png",
+            "scenes/rune_sorceress/episode_19.png",
+            "scenes/rune_sorceress/episode_19.png",
+            "scenes/rune_sorceress/episode_19.png"
+          ]
+        },
+        {
+          "wave": 100,
+          "title": "Yanan İsimler, Açık Sayfa",
+          "location": "Arşivin Kalbi",
+          "scene": "Karşı kataloğun kalbi açılırken Lale’nin kaydı mum ışığında belirir; görüntü bir anı yankısıdır, yaşayan Lale değildir. Sorceress kendi yoluna dönerken anı da silinmez.",
+          "backdrop": "scenes/rune_sorceress/episode_20.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_lexicon_dragon_boss",
+              "İlk halkada sözlük tuttum; son halkada tek bir ağız olmak istedim"
+            ],
+            [
+              "rune_sorceress",
+              "Annemin adını saklayacağım, onun hayatını değil."
+            ],
+            [
+              "neris",
+              "Ben de Neris’im; adımı kendim kayda alıyorum."
+            ],
+            [
+              "mother_echo",
+              "Beni anında taşı; hayatını beni beklemeye bağlama."
+            ],
+            [
+              "rune_sorceress",
+              "Yaşayanlar, kendi sonlarını seçsin."
+            ]
+          ],
+          "boss_reward": {
+            "type": "ending",
+            "name": "Karakterin son kararı",
+            "description": "Ve ben, kendim olarak kalıyorum."
+          },
+          "panel_art": [
+            "scenes/rune_sorceress/episode_20.png",
+            "scenes/rune_sorceress/episode_20.png",
+            "scenes/rune_sorceress/episode_20.png",
+            "scenes/rune_sorceress/episode_20.png",
+            "scenes/rune_sorceress/episode_20.png"
+          ]
+        }
+      ]
+    },
+    "lexicon_alchemist": {
+      "motive": "Kardeşi Lio’nun anısını tek bir şişeye hapsetmeden serbest bırakmak.",
+      "name": "Lexicon Alchemist",
+      "episodes": [
+        {
+          "wave": 5,
+          "title": "Mürekkep Reaktörünün Nabzı",
+          "location": "Alt Laboratuvar",
+          "scene": "Bir beherdeki mürekkep damlaları nabız gibi yükselir; Alchemist maşayla tek damlayı ayırınca içinden harf değil Lio’nun ölçü imzası çıkar.",
+          "backdrop": "scenes/lexicon_alchemist/episode_01.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_red_pen_boss",
+              "Kuralı koruduğumu sanıyordum; itirazı kırmızıya boyayıp kayıttan kesmişim"
+            ],
+            [
+              "neris",
+              "Hareket, yaşam kanıtı değil."
+            ],
+            [
+              "lexicon_alchemist",
+              "Bu ölçü çizgisi Lio’nun."
+            ],
+            [
+              "lio_echo",
+              "Dozu değiştirme."
+            ],
+            [
+              "lexicon_alchemist",
+              "Önce ne olduğunu anlayacağım."
+            ]
+          ],
+          "boss_reward": {
+            "type": "clue",
+            "name": "Mürekkep Sülüğü anısı",
+            "description": "İksir toplama menzilini run boyunca artırır."
+          },
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_01.png",
+            "scenes/lexicon_alchemist/episode_01.png",
+            "scenes/lexicon_alchemist/episode_01.png",
+            "scenes/lexicon_alchemist/episode_01.png",
+            "scenes/lexicon_alchemist/episode_01.png"
+          ]
+        },
+        {
+          "wave": 10,
+          "title": "Yanlış Formülün Gülüşü",
+          "location": "Bakır Tezgâh",
+          "scene": "Formül masadan kıvrılıp küçük bir yaratık olur; Alchemist’in eklediği damlayı görünce zıplar, Lio’nun eski şakasındaki ritmi tekrarlar.",
+          "backdrop": "scenes/lexicon_alchemist/episode_02.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_syntax_titan",
+              "Emir yarımdı; ben bitirdim ve içindeki “hayır”ı cümlenin dışına ittim"
+            ],
+            [
+              "neris",
+              "Sen de her zaman son satırı yazardın."
+            ],
+            [
+              "lexicon_alchemist",
+              "Lio bunu bilerek eksik bırakırdı."
+            ],
+            [
+              "lio_echo",
+              "Bu kez yanlış olan senin ölçün."
+            ],
+            [
+              "lexicon_alchemist",
+              "Bunu duyunca gülüyorduk."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_02.png",
+            "scenes/lexicon_alchemist/episode_02.png",
+            "scenes/lexicon_alchemist/episode_02.png",
+            "scenes/lexicon_alchemist/episode_02.png",
+            "scenes/lexicon_alchemist/episode_02.png"
+          ]
+        },
+        {
+          "wave": 15,
+          "title": "Şişe Kapağındaki Uyarı",
+          "location": "Kırık Sera",
+          "scene": "Boş şişe nefesle buğulanır; kapağın altına kazınmış “açmadan önce sor” notunu Alchemist büyüteçle okur.",
+          "backdrop": "scenes/lexicon_alchemist/episode_03.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_oxymoron_ogre",
+              "İki tanık da doğruyu söylüyordu; birini seçince ötekini yalan yaptım"
+            ],
+            [
+              "lexicon_alchemist",
+              "Lio bu şişeyi kapatmış."
+            ],
+            [
+              "neris",
+              "Sana sormamış olması, şimdi açma izni değil."
+            ],
+            [
+              "lio_echo",
+              "Önce sor."
+            ],
+            [
+              "lexicon_alchemist",
+              "Soracağım; cevap gelmezse zorlamayacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_03.png",
+            "scenes/lexicon_alchemist/episode_03.png",
+            "scenes/lexicon_alchemist/episode_03.png",
+            "scenes/lexicon_alchemist/episode_03.png",
+            "scenes/lexicon_alchemist/episode_03.png"
+          ]
+        },
+        {
+          "wave": 20,
+          "title": "Numaraya Çevrilen Dosya",
+          "location": "Hasta Dosyaları",
+          "scene": "Kesilmiş hasta kartlarının kenarındaki numaralar aynı iplikle dikilmiştir; Alchemist bir kartı çekince Lio’nun el çizimi ortaya çıkar.",
+          "backdrop": "scenes/lexicon_alchemist/episode_04.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_homophone_harpy",
+              "Adları aynı sesle çağırdım; dönüp bakmayanı da kayıp saydım"
+            ],
+            [
+              "neris",
+              "Bir insanı dosya numarası korumaz."
+            ],
+            [
+              "lexicon_alchemist",
+              "Bu çizim Lio’nun eli."
+            ],
+            [
+              "tavi",
+              "Onun çizdiği formülü kurum kopyalamış."
+            ],
+            [
+              "lexicon_alchemist",
+              "Bu kez kimin emeği olduğunu kaydedeceğim."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_04.png",
+            "scenes/lexicon_alchemist/episode_04.png",
+            "scenes/lexicon_alchemist/episode_04.png",
+            "scenes/lexicon_alchemist/episode_04.png",
+            "scenes/lexicon_alchemist/episode_04.png"
+          ]
+        },
+        {
+          "wave": 25,
+          "title": "Şişe Bekçisinin Fırını",
+          "location": "Cam Fırını",
+          "scene": "Leksikon Ejderhası’nın halkaları tanık şişelerini daraltır; Alchemist her geçişi ölçer ve sahibinin işareti olmadan hiçbir tıpayı açmaz.",
+          "backdrop": "scenes/lexicon_alchemist/episode_05.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_lexicon_dragon_boss",
+              "Halkalarımda kelimeleri sakladım; saklamak, sahip olmak demek değil"
+            ],
+            [
+              "lexicon_alchemist",
+              "Şişeyi parçalarsam tanıklığı da kaybederim."
+            ],
+            [
+              "neris",
+              "Kilidi çözmek için acele etme."
+            ],
+            [
+              "echo_vial_warden",
+              "Bir ad, bin acıyı taşır."
+            ],
+            [
+              "lexicon_alchemist",
+              "Öyleyse acıyı da paylaşırız."
+            ]
+          ],
+          "boss_reward": {
+            "type": "relic",
+            "id": "story_lexicon_alchemist_25",
+            "name": "Açık Şişe Kaydı",
+            "description": "Ejderhanın halkaları arasından, sahibinin izniyle çıkarılan tanıklık.",
+            "icon": "assets/sprites/story/relics/lexicon_alchemist_25.svg",
+            "stats": {
+              "ink_mult": 0.1
+            }
+          },
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_05.png",
+            "scenes/lexicon_alchemist/episode_05.png",
+            "scenes/lexicon_alchemist/episode_05.png",
+            "scenes/lexicon_alchemist/episode_05.png",
+            "scenes/lexicon_alchemist/episode_05.png"
+          ]
+        },
+        {
+          "wave": 30,
+          "title": "İki Çocukluk Deneyi",
+          "location": "Deney Odası",
+          "scene": "Tebeşir çemberinde iki farklı el yazısı kesişir; Alchemist yanlış formülü silmek ister, sonra kenarına kendi hatasını not eder.",
+          "backdrop": "scenes/lexicon_alchemist/episode_06.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_run_on_reaper",
+              "Koş dedim; durmanın da bir çıkış olabileceğini hiç öğrenmemiştim"
+            ],
+            [
+              "neris",
+              "Hanginiz neyi seçmişti?"
+            ],
+            [
+              "lexicon_alchemist",
+              "Lio çıkışı, ben saklama kabını çizdim."
+            ],
+            [
+              "lio_echo",
+              "Kabı ben istemedim."
+            ],
+            [
+              "lexicon_alchemist",
+              "Bunu şimdi kabul ediyorum."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_06.png",
+            "scenes/lexicon_alchemist/episode_06.png",
+            "scenes/lexicon_alchemist/episode_06.png",
+            "scenes/lexicon_alchemist/episode_06.png",
+            "scenes/lexicon_alchemist/episode_06.png"
+          ]
+        },
+        {
+          "wave": 35,
+          "title": "Camdaki Kardeş",
+          "location": "Yansıma Laboratuvarı",
+          "scene": "Lio’nun tüpteki yansıması cama elini koyar; buğu her seferinde aynı noktadan başlar ve hiçbir yeni iz bırakmaz.",
+          "backdrop": "scenes/lexicon_alchemist/episode_07.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_malapropism_mimic",
+              "Yüzü tutturdum; bakışını ve kararını kopyalayamadım"
+            ],
+            [
+              "lexicon_alchemist",
+              "Seni çıkarmak istiyorum."
+            ],
+            [
+              "neris",
+              "Bu kayıt yeni bir cevap üretmiyor."
+            ],
+            [
+              "lio_echo",
+              "Beni çıkar."
+            ],
+            [
+              "lexicon_alchemist",
+              "Bu söz kime ait, onu bulacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_07.png",
+            "scenes/lexicon_alchemist/episode_07.png",
+            "scenes/lexicon_alchemist/episode_07.png",
+            "scenes/lexicon_alchemist/episode_07.png",
+            "scenes/lexicon_alchemist/episode_07.png"
+          ]
+        },
+        {
+          "wave": 40,
+          "title": "Üçüncü Bileşen",
+          "location": "Arşiv Eczanesi",
+          "scene": "Reçetede Neris’in adı üçüncü bileşen olarak işaretlenmiştir; Alchemist teraziyi kapatıp kartı masanın ortasına bırakır.",
+          "backdrop": "scenes/lexicon_alchemist/episode_08.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_vocabulary_void",
+              "Adları silince onları bulamazlar sandım; onlar da birbirini bulamadı"
+            ],
+            [
+              "neris",
+              "Bana sormadan beni kurtaramazsın."
+            ],
+            [
+              "tavi",
+              "Lio da bu reçeteyi reddetmişti."
+            ],
+            [
+              "whisper",
+              "Bir damla yeter; kimse bilmez."
+            ],
+            [
+              "lexicon_alchemist",
+              "İzni olmayan hiçbir şeyi kullanmayacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_08.png",
+            "scenes/lexicon_alchemist/episode_08.png",
+            "scenes/lexicon_alchemist/episode_08.png",
+            "scenes/lexicon_alchemist/episode_08.png",
+            "scenes/lexicon_alchemist/episode_08.png"
+          ]
+        },
+        {
+          "wave": 45,
+          "title": "Üç İksirin Tadımı",
+          "location": "Tadım Odası",
+          "scene": "Üç iksir masada farklı geçmişler gösterir; birinde Lio dönmüş, birinde hiç hastalanmamış, birinde Alchemist yalnız değildir.",
+          "backdrop": "scenes/lexicon_alchemist/episode_09.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_punctuation_phantom",
+              "Noktayı koyunca acı biter sandım; tanıklık benden sonra da sürüyordu"
+            ],
+            [
+              "lexicon_alchemist",
+              "Hiçbiri yaşadığımız şey değil."
+            ],
+            [
+              "neris",
+              "En çok hangisini istiyorsun?"
+            ],
+            [
+              "lio_echo",
+              "Sana kolay geleni seçme."
+            ],
+            [
+              "lexicon_alchemist",
+              "Hiçbirini içmeyeceğim."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_09.png",
+            "scenes/lexicon_alchemist/episode_09.png",
+            "scenes/lexicon_alchemist/episode_09.png",
+            "scenes/lexicon_alchemist/episode_09.png",
+            "scenes/lexicon_alchemist/episode_09.png"
+          ]
+        },
+        {
+          "wave": 50,
+          "title": "Reaktif Kralın Terazisi",
+          "location": "Saatli Laboratuvar",
+          "scene": "Çifte Yadsıma Drake’i laboratuvar zeminini iki yarıkla böler; Alchemist çatlak teraziyi sabitler ve iki taraftaki isimleri korur.",
+          "backdrop": "scenes/lexicon_alchemist/episode_10.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_double_negative_drake",
+              "İki hayırı tek bir evete çevirdim; hükmü ben verdim, bedelini başkaları taşıdı"
+            ],
+            [
+              "lexicon_alchemist",
+              "Bağ, çözülecek bir reaktif değil."
+            ],
+            [
+              "neris",
+              "Kimseyi denklemin içine malzeme yapma."
+            ],
+            [
+              "echo_reagent_king",
+              "Yeterli dozda her bağ kopar."
+            ],
+            [
+              "lexicon_alchemist",
+              "Bağı silmeyeceğim; zehirini ayıracağım."
+            ]
+          ],
+          "boss_reward": {
+            "type": "relic",
+            "id": "story_lexicon_alchemist_50",
+            "name": "Dengede Kalan Reaktif",
+            "description": "Drake’in yarıklarının ayırmaya çalıştığı bağları silmeden dengeleyen laboratuvar notu.",
+            "icon": "assets/sprites/story/relics/lexicon_alchemist_50.svg",
+            "stats": {
+              "max_hp": 8
+            }
+          },
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_10.png",
+            "scenes/lexicon_alchemist/episode_10.png",
+            "scenes/lexicon_alchemist/episode_10.png",
+            "scenes/lexicon_alchemist/episode_10.png",
+            "scenes/lexicon_alchemist/episode_10.png"
+          ]
+        },
+        {
+          "wave": 55,
+          "title": "Son Mektubun Tarifi",
+          "location": "Kurutma Odası",
+          "scene": "Kurutulan mektubun ölçü çizgileri bir yemek tarifine benzer; son satırdaki “az tuz” notu Lio’nun hatasını ve kahkahasını taşır.",
+          "backdrop": "scenes/lexicon_alchemist/episode_11.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_palindrome_phantom",
+              "Seni başladığın yere döndürdüm; değişmenden korkuyordum"
+            ],
+            [
+              "lexicon_alchemist",
+              "Seni bulmak istedim."
+            ],
+            [
+              "neris",
+              "Mektup neyi tamamlamanı istiyor?"
+            ],
+            [
+              "lio_echo",
+              "Sana ait olan kısmı."
+            ],
+            [
+              "lexicon_alchemist",
+              "Devamını kendi hayatımla yazacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_055_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_055_panel_02.webp",
+            "panels_600/lexicon_alchemist/wave_055_panel_03.webp",
+            "panels_600/lexicon_alchemist/wave_055_panel_04.webp",
+            "panels_600/lexicon_alchemist/wave_055_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 60,
+          "title": "İsim Damıtıcısı",
+          "location": "İsim Damıtma Odası",
+          "scene": "Makinenin cam borusu Neris’in adını çekmeye başlar; Alchemist acil kapama kolunu iki elle indirip kendi notunu yanına bırakır.",
+          "backdrop": "scenes/lexicon_alchemist/episode_12.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_tautology_twin",
+              "Aynı sözü iki kez söyledim, kanıt sandım; ikizim bile bana inanmadı"
+            ],
+            [
+              "neris",
+              "Kapat onu."
+            ],
+            [
+              "tavi",
+              "Bu düzenek daha önce de çalıştı."
+            ],
+            [
+              "lio_echo",
+              "Bana sormamıştın."
+            ],
+            [
+              "lexicon_alchemist",
+              "Bu kez sordum ve durduruyorum."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_060_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_060_panel_02.webp",
+            "panels_600/lexicon_alchemist/wave_060_panel_03.webp",
+            "panels_600/lexicon_alchemist/wave_060_panel_04.webp",
+            "panels_600/lexicon_alchemist/wave_060_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 65,
+          "title": "İki İmzalı Formül",
+          "location": "Kireç Tahtası",
+          "scene": "Formülün iki yanında farklı el yazıları belirir; Alchemist tebeşiri Lio’nun yankısına uzatmadan önce sorar.",
+          "backdrop": "scenes/lexicon_alchemist/episode_13.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_dangling_modifier",
+              "Eylemi askıda bıraktım; suç yanlış kişiye düştü"
+            ],
+            [
+              "lexicon_alchemist",
+              "Bu bölümü sen tamamlamak ister misin?"
+            ],
+            [
+              "lio_echo",
+              "İstersem yazarım."
+            ],
+            [
+              "neris",
+              "İstememek de bir cevap."
+            ],
+            [
+              "lexicon_alchemist",
+              "Eksik kalmasına izin veriyorum."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_065_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_065_panel_02.webp",
+            "panels_600/lexicon_alchemist/wave_065_panel_03.webp",
+            "panels_600/lexicon_alchemist/wave_065_panel_04.webp",
+            "panels_600/lexicon_alchemist/wave_065_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 70,
+          "title": "Ölümsüzlük Etiketi",
+          "location": "Saklama Mahzeni",
+          "scene": "Cam kavanozlardaki etiketler sonsuz saklama sözü verir; Alchemist birinin kapağını kapatır ve dışındaki adı silmeden geri koyar.",
+          "backdrop": "scenes/lexicon_alchemist/episode_14.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_spelling_spectre",
+              "Bir harfi düzelttim, bir hayatı başka isme bağladım"
+            ],
+            [
+              "lexicon_alchemist",
+              "Ben de Lio’yu böyle tutmak istemişim."
+            ],
+            [
+              "neris",
+              "Farkı şimdi görüyorsun."
+            ],
+            [
+              "lio_echo",
+              "Beni kavanozda tutma."
+            ],
+            [
+              "lexicon_alchemist",
+              "Tutmayacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_070_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_070_panel_02.webp",
+            "panels_600/lexicon_alchemist/wave_070_panel_03.webp",
+            "panels_600/lexicon_alchemist/wave_070_panel_04.webp",
+            "panels_600/lexicon_alchemist/wave_070_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 75,
+          "title": "Ad Yiyenin Korkusu",
+          "location": "Asit Salonu",
+          "scene": "Idiom Imp’in közleri her şişe etiketine yapışır; Alchemist tepkimeyi durdurur, alevi söndürür ve yeniden yazılmamış tek etiketi okur.",
+          "backdrop": "scenes/lexicon_alchemist/episode_15.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_idiom_imp",
+              "Gülmek istedim; şakam birinin yardım çağrısını örttü"
+            ],
+            [
+              "lexicon_alchemist",
+              "İsim, yaradır; ama yalnız yara değil."
+            ],
+            [
+              "neris",
+              "Onu dinle, sonra karar ver."
+            ],
+            [
+              "echo_name_eater",
+              "Ben de silinmekten korkarım."
+            ],
+            [
+              "lexicon_alchemist",
+              "Korkunu kayda alacağım; seni şişeye koymayacağım."
+            ]
+          ],
+          "boss_reward": {
+            "type": "relic",
+            "id": "story_lexicon_alchemist_75",
+            "name": "Sönmüş Köz Örneği",
+            "description": "İdiom Imp’in alevi söndükten sonra alınan; örneğin sahibini değil gözlemi saklayan vial.",
+            "icon": "assets/sprites/story/relics/lexicon_alchemist_75.svg",
+            "stats": {
+              "damage": 0.05
+            }
+          },
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_075_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_075_panel_02.webp",
+            "panels_600/lexicon_alchemist/wave_075_panel_03.webp",
+            "panels_600/lexicon_alchemist/wave_075_panel_04.webp",
+            "panels_600/lexicon_alchemist/wave_075_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 80,
+          "title": "Yanlış Çalan Melodi",
+          "location": "Siyah Dinleme Odası",
+          "scene": "Ses dalgası Lio’nun çocukluk melodisini çizer ama bir nota yanlış çıkar; Alchemist düzeltme kalemini masada bırakır.",
+          "backdrop": "scenes/lexicon_alchemist/episode_16.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_red_pen_boss",
+              "Bu kez ben kestim; kime zarar vereceğini sormadan eski hükmü uyguladım"
+            ],
+            [
+              "lexicon_alchemist",
+              "Bu kez düzeltmeyeceğim."
+            ],
+            [
+              "neris",
+              "İkiniz de güldünüz."
+            ],
+            [
+              "tavi",
+              "Bu, eski kaydın en sevdiğim kısmıydı."
+            ],
+            [
+              "lexicon_alchemist",
+              "Sesini özlemek, onu tutmamı gerektirmiyor."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_080_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_080_panel_02.webp",
+            "panels_600/lexicon_alchemist/wave_080_panel_03.webp",
+            "panels_600/lexicon_alchemist/wave_080_panel_04.webp",
+            "panels_600/lexicon_alchemist/wave_080_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 85,
+          "title": "Ölçülemeyen Son",
+          "location": "Beyaz Denklem Eşiği",
+          "scene": "Denklemin son hanesi sayı kabul etmez; Alchemist cetveli kapatıp tanıkların adlarını masanın kenarına yazar.",
+          "backdrop": "scenes/lexicon_alchemist/episode_17.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_oxymoron_ogre",
+              "İki gerçeği ayrı odalara koydum; susunca çatışma biter sandım"
+            ],
+            [
+              "lexicon_alchemist",
+              "Ölçemediğim şeyi yok saymışım."
+            ],
+            [
+              "neris",
+              "İnsan ölçüm sonucu değil."
+            ],
+            [
+              "blank_page",
+              "Ölçemediğini koruyamazsın."
+            ],
+            [
+              "lexicon_alchemist",
+              "Ölçüyü sınır yapacağım; hüküm değil."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_085_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_085_panel_02.webp",
+            "panels_600/lexicon_alchemist/wave_085_panel_03.webp",
+            "panels_600/lexicon_alchemist/wave_085_panel_04.webp",
+            "panels_600/lexicon_alchemist/wave_085_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 90,
+          "title": "Açık Reçete",
+          "location": "Ortak Çalışma Masası",
+          "scene": "Boş reçeteye Tavi bir itiraz, Neris bir sınır, Alchemist kendi eski hatasını ekler; hiçbir el başkasının yazısını silmez.",
+          "backdrop": "scenes/lexicon_alchemist/episode_18.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_malapropism_mimic",
+              "Yüzünü Neris’ten aldım; onun itirazını taklit edemedim"
+            ],
+            [
+              "tavi",
+              "Ben seni hemen affetmiyorum."
+            ],
+            [
+              "neris",
+              "Bunu da sayfada tut."
+            ],
+            [
+              "lio_echo",
+              "Bana ait olmayan kısmı da yaz."
+            ],
+            [
+              "lexicon_alchemist",
+              "Yazacağım; itirazını da bırakacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_090_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_090_panel_02.webp",
+            "panels_600/lexicon_alchemist/wave_090_panel_03.webp",
+            "panels_600/lexicon_alchemist/wave_090_panel_04.webp",
+            "panels_600/lexicon_alchemist/wave_090_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 95,
+          "title": "Serbest Bırakma Valfi",
+          "location": "Son İmbik",
+          "scene": "İmbiğin içindeki sesler tek boruda sıkışır; Alchemist valfi yavaşça açınca her ses farklı yöne dağılır.",
+          "backdrop": "scenes/lexicon_alchemist/episode_19.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_vocabulary_void",
+              "Boşlukları korurken yaşayanların adlarını da sildim"
+            ],
+            [
+              "lio_echo",
+              "Beni tutman da gerekmiyor."
+            ],
+            [
+              "neris",
+              "Bunu ikiniz seçiyorsunuz."
+            ],
+            [
+              "lio_echo",
+              "Kendi hayatını yaşa."
+            ],
+            [
+              "lexicon_alchemist",
+              "Seni seviyorum; bırakıyorum."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_095_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_095_panel_02.webp",
+            "panels_600/lexicon_alchemist/wave_095_panel_03.webp",
+            "panels_600/lexicon_alchemist/wave_095_panel_04.webp",
+            "panels_600/lexicon_alchemist/wave_095_panel_05.webp"
+          ]
+        },
+        {
+          "wave": 100,
+          "title": "Paylaşılan Formül",
+          "location": "Arşivin Kalbi",
+          "scene": "Omega Leksikon Ejderhası’nın son yörüngesi tamamlanmamış formülü sarar; Alchemist son ölçüyü boş bırakır ki Tavi ile Neris kendi gözlemlerini eklesin.",
+          "backdrop": "scenes/lexicon_alchemist/episode_20.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_lexicon_dragon_boss",
+              "İlk halkada sözlük tuttum; son halkada tek bir ağız olmak istedim"
+            ],
+            [
+              "lexicon_alchemist",
+              "Cevabı birlikte yazacağız."
+            ],
+            [
+              "neris",
+              "Hiçbir adı zorla bağlama."
+            ],
+            [
+              "blank_page",
+              "Bir doğru cevap ver."
+            ],
+            [
+              "lexicon_alchemist",
+              "Doğru cevap, itiraz hakkı olan cevaptır."
+            ]
+          ],
+          "boss_reward": {
+            "type": "ending",
+            "name": "Karakterin son kararı",
+            "description": "Seni seviyorum; bırakıyorum."
+          },
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_100_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_100_panel_02.webp",
+            "scenes/lexicon_alchemist/episode_20.png",
+            "scenes/lexicon_alchemist/episode_20.png",
+            "scenes/lexicon_alchemist/episode_20.png"
+          ]
+        }
+      ]
+    },
+    "shadow_lexicographer": {
+      "motive": "Kendi yazmadığı bir emirden başlayıp Neris’in kaydında kalan izini çözmek.",
+      "name": "Shadow Scribe",
+      "episodes": [
+        {
+          "wave": 5,
+          "title": "Gölgede İkinci El",
+          "location": "Mumlu Koridor",
+          "scene": "Mum ışığı Scribe’den önce duvara uzanır; gölge “dön” yazar, fakat mumun fitili kendi kendine yanmaya devam eder.",
+          "backdrop": "scenes/shadow_lexicographer/episode_01.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_red_pen_boss",
+              "Kuralı koruduğumu sanıyordum; itirazı kırmızıya boyayıp kayıttan kesmişim"
+            ],
+            [
+              "neris",
+              "Baskısı hâlâ duvarda."
+            ],
+            [
+              "shadow_lexicographer",
+              "Bana dön diyor."
+            ],
+            [
+              "shadow_double",
+              "Bunu ben seçmedim."
+            ],
+            [
+              "shadow_lexicographer",
+              "Kimin seçtiğini bulacağım."
+            ]
+          ],
+          "boss_reward": {
+            "type": "clue",
+            "name": "Mum Bekçisi anısı",
+            "description": "Gölge saldırıları run boyunca kısa süreli görünmezlik verir."
+          },
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_01.png",
+            "scenes/shadow_lexicographer/episode_01.png",
+            "scenes/shadow_lexicographer/episode_01.png",
+            "scenes/shadow_lexicographer/episode_01.png",
+            "scenes/shadow_lexicographer/episode_01.png"
+          ]
+        },
+        {
+          "wave": 10,
+          "title": "Yarım İmza",
+          "location": "Yazarlar Locası",
+          "scene": "Gövdesiz el masaya imza atar; Scribe kâğıdı kaldırınca elin gölgesi kendi satırına döner.",
+          "backdrop": "scenes/shadow_lexicographer/episode_02.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_syntax_titan",
+              "Emir yarımdı; ben bitirdim ve içindeki “hayır”ı cümlenin dışına ittim"
+            ],
+            [
+              "neris",
+              "İkisini nasıl ayıracaksın?"
+            ],
+            [
+              "shadow_lexicographer",
+              "Bir gece kayboldum, imzam ertesi gün dönmüş."
+            ],
+            [
+              "shadow_double",
+              "O satırı ben tamamlamadım."
+            ],
+            [
+              "shadow_lexicographer",
+              "Öyleyse ayrı satır bulacağız."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_02.png",
+            "scenes/shadow_lexicographer/episode_02.png",
+            "scenes/shadow_lexicographer/episode_02.png",
+            "scenes/shadow_lexicographer/episode_02.png",
+            "scenes/shadow_lexicographer/episode_02.png"
+          ]
+        },
+        {
+          "wave": 15,
+          "title": "Adın Mürekkep Gölgesi",
+          "location": "Gölge Mücellithanesi",
+          "scene": "Mürekkep kâğıda değmeden bir isim boşluğu bırakır; Scribe elini kaldırınca leke değil, parmak izinin basıncı kalır.",
+          "backdrop": "scenes/shadow_lexicographer/episode_03.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_oxymoron_ogre",
+              "İki tanık da doğruyu söylüyordu; birini seçince ötekini yalan yaptım"
+            ],
+            [
+              "shadow_lexicographer",
+              "Bunu benim elim yazmış."
+            ],
+            [
+              "neris",
+              "El izi, kararın sahibi demek değil."
+            ],
+            [
+              "shadow_double",
+              "Bana ait bir şey var."
+            ],
+            [
+              "shadow_lexicographer",
+              "Önce ne olduğunu soracağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_03.png",
+            "scenes/shadow_lexicographer/episode_03.png",
+            "scenes/shadow_lexicographer/episode_03.png",
+            "scenes/shadow_lexicographer/episode_03.png",
+            "scenes/shadow_lexicographer/episode_03.png"
+          ]
+        },
+        {
+          "wave": 20,
+          "title": "Neris’in Kenar Emri",
+          "location": "Gizli Katalog",
+          "scene": "Neris’in kartındaki koruma emri iki kat kâğıt arasına sıkıştırılmıştır; Scribe onu Neris’in önüne bırakıp geri çekilir.",
+          "backdrop": "scenes/shadow_lexicographer/episode_04.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_homophone_harpy",
+              "Adları aynı sesle çağırdım; dönüp bakmayanı da kayıp saydım"
+            ],
+            [
+              "neris",
+              "Bunu bana sormadın."
+            ],
+            [
+              "shadow_lexicographer",
+              "Seni korumak mı, kullanmak mı bilmiyorum."
+            ],
+            [
+              "whisper",
+              "Emri uygula; cevapları sonra alırsın."
+            ],
+            [
+              "shadow_lexicographer",
+              "Önce soracağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_04.png",
+            "scenes/shadow_lexicographer/episode_04.png",
+            "scenes/shadow_lexicographer/episode_04.png",
+            "scenes/shadow_lexicographer/episode_04.png",
+            "scenes/shadow_lexicographer/episode_04.png"
+          ]
+        },
+        {
+          "wave": 25,
+          "title": "Karanlık Katalogcu",
+          "location": "Kör Raflar",
+          "scene": "Leksikon Ejderhası’nın yörüngesi katalog fişlerini Scribe’in üzerine yağdırır; o birini eliyle açar ve iki kenarda korunmuş iki imza bulur.",
+          "backdrop": "scenes/shadow_lexicographer/episode_05.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_lexicon_dragon_boss",
+              "Halkalarımda kelimeleri sakladım; saklamak, sahip olmak demek değil"
+            ],
+            [
+              "shadow_lexicographer",
+              "Hangisi benim hikâyem?"
+            ],
+            [
+              "neris",
+              "Önce kimin yazdığını öğren."
+            ],
+            [
+              "echo_cataloguer",
+              "Kendi hikâyeni yazmadın."
+            ],
+            [
+              "shadow_lexicographer",
+              "Öyleyse imzamı geri alıyorum."
+            ]
+          ],
+          "boss_reward": {
+            "type": "relic",
+            "id": "story_shadow_lexicographer_25",
+            "name": "Çift Kenar Kataloğu",
+            "description": "Ejderhanın halkalarından kurtarılan, iki ayrı imzayı tek kayda indirmeyen fiş.",
+            "icon": "assets/sprites/story/relics/shadow_lexicographer_25.svg",
+            "stats": {
+              "move_speed": 10
+            }
+          },
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_05.png",
+            "scenes/shadow_lexicographer/episode_05.png",
+            "scenes/shadow_lexicographer/episode_05.png",
+            "scenes/shadow_lexicographer/episode_05.png",
+            "scenes/shadow_lexicographer/episode_05.png"
+          ]
+        },
+        {
+          "wave": 30,
+          "title": "Çalınmış Bölüm",
+          "location": "Yasak Biyografi Rafı",
+          "scene": "Biyografide Scribe’in çocukluğu ayrıntılı yazılmıştır; mürekkep hâlâ ıslakken kenarda başka birinin el izi belirir.",
+          "backdrop": "scenes/shadow_lexicographer/episode_06.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_run_on_reaper",
+              "Koş dedim; durmanın da bir çıkış olabileceğini hiç öğrenmemiştim"
+            ],
+            [
+              "neris",
+              "Ama el yazısı sana ait değil."
+            ],
+            [
+              "shadow_lexicographer",
+              "İmza benim."
+            ],
+            [
+              "shadow_double",
+              "Benim elimdeki anı da gerçek."
+            ],
+            [
+              "shadow_lexicographer",
+              "İki kayıt da sorgulanabilir."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_06.png",
+            "scenes/shadow_lexicographer/episode_06.png",
+            "scenes/shadow_lexicographer/episode_06.png",
+            "scenes/shadow_lexicographer/episode_06.png",
+            "scenes/shadow_lexicographer/episode_06.png"
+          ]
+        },
+        {
+          "wave": 35,
+          "title": "Gölgenin Tanıklığı",
+          "location": "Dilsiz Tiyatro",
+          "scene": "Gölge sahnede yüz göstermeden bir seçimi canlandırır; Scribe kılıcını kaldırınca perde iki ayrı silueti açığa çıkarır.",
+          "backdrop": "scenes/shadow_lexicographer/episode_07.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_malapropism_mimic",
+              "Yüzü tutturdum; bakışını ve kararını kopyalayamadım"
+            ],
+            [
+              "shadow_lexicographer",
+              "Hangi seçimi aldın?"
+            ],
+            [
+              "shadow_double",
+              "Öldürmeyi reddettim."
+            ],
+            [
+              "neris",
+              "Bu ret kimin hayatını değiştirdi?"
+            ],
+            [
+              "shadow_lexicographer",
+              "Önce dinleyeceğim, sonra karar vereceğim."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_07.png",
+            "scenes/shadow_lexicographer/episode_07.png",
+            "scenes/shadow_lexicographer/episode_07.png",
+            "scenes/shadow_lexicographer/episode_07.png",
+            "scenes/shadow_lexicographer/episode_07.png"
+          ]
+        },
+        {
+          "wave": 40,
+          "title": "Ana Metnin Altındaki Not",
+          "location": "Arşiv Altı",
+          "scene": "Kitabın altındaki not ana metinle çelişir; Scribe onu tırnağıyla kazımak yerine yanına kendi itirazını yazar.",
+          "backdrop": "scenes/shadow_lexicographer/episode_08.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_vocabulary_void",
+              "Adları silince onları bulamazlar sandım; onlar da birbirini bulamadı"
+            ],
+            [
+              "neris",
+              "Baskı senin elini gösteriyor."
+            ],
+            [
+              "silent_mechanic",
+              "(İki ayrı sayfayı aralarında boşluk bırakarak yan yana koyar.)"
+            ],
+            [
+              "shadow_double",
+              "Beni de tanık yaz."
+            ],
+            [
+              "shadow_lexicographer",
+              "Ayrı bir satır açıyorum."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_08.png",
+            "scenes/shadow_lexicographer/episode_08.png",
+            "scenes/shadow_lexicographer/episode_08.png",
+            "scenes/shadow_lexicographer/episode_08.png",
+            "scenes/shadow_lexicographer/episode_08.png"
+          ]
+        },
+        {
+          "wave": 45,
+          "title": "İmzasız Portre",
+          "location": "Portre Merdiveni",
+          "scene": "Yüzsüz portrelerin hepsi aynı duvara döner; birinin gölgesi başını çevirince Scribe’inki hareket etmez.",
+          "backdrop": "scenes/shadow_lexicographer/episode_09.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_punctuation_phantom",
+              "Noktayı koyunca acı biter sandım; tanıklık benden sonra da sürüyordu"
+            ],
+            [
+              "shadow_lexicographer",
+              "Bana benziyorsun."
+            ],
+            [
+              "neris",
+              "Benzerlik, sahiplik değil."
+            ],
+            [
+              "shadow_double",
+              "Beni hatırlıyorsun."
+            ],
+            [
+              "shadow_lexicographer",
+              "Seni ilk kez dinliyorum."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_09.png",
+            "scenes/shadow_lexicographer/episode_09.png",
+            "scenes/shadow_lexicographer/episode_09.png",
+            "scenes/shadow_lexicographer/episode_09.png",
+            "scenes/shadow_lexicographer/episode_09.png"
+          ]
+        },
+        {
+          "wave": 50,
+          "title": "Redactor’ın Silgisi",
+          "location": "Yankı Matbaası",
+          "scene": "Çifte Yadsıma Drake’i baskı odasında ikiz yarıklar açar; Scribe ayna darbelerinin arasına üçüncü bir ritim koyup iki imzayı da okunur bırakır.",
+          "backdrop": "scenes/shadow_lexicographer/episode_10.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_double_negative_drake",
+              "İki hayırı tek bir evete çevirdim; hükmü ben verdim, bedelini başkaları taşıdı"
+            ],
+            [
+              "shadow_lexicographer",
+              "Beni bir amaca indirmişsin."
+            ],
+            [
+              "neris",
+              "Bir insanı okunur kılmak, onu tek satır yapmak değil."
+            ],
+            [
+              "echo_redactor",
+              "Sana bir amaç verdim."
+            ],
+            [
+              "shadow_lexicographer",
+              "Ama amacı seçmedim. Bu kez seçiyorum."
+            ]
+          ],
+          "boss_reward": {
+            "type": "relic",
+            "id": "story_shadow_lexicographer_50",
+            "name": "Üçüncü Ritim Notası",
+            "description": "Drake’in çift yarığından sağ çıkan yeni ritmi ve iki ayrı imzayı kaydeden nota.",
+            "icon": "assets/sprites/story/relics/shadow_lexicographer_50.svg",
+            "stats": {
+              "crit_chance": 0.06
+            }
+          },
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_10.png",
+            "scenes/shadow_lexicographer/episode_10.png",
+            "scenes/shadow_lexicographer/episode_10.png",
+            "scenes/shadow_lexicographer/episode_10.png",
+            "scenes/shadow_lexicographer/episode_10.png"
+          ]
+        },
+        {
+          "wave": 55,
+          "title": "Emrin Kenarında",
+          "location": "Kenar Notları Odası",
+          "scene": "Neris’in adı etrafındaki koruma işareti duvar boyunca uzar; Scribe kılıcıyla çizgiyi kesmeden önce Neris’ten onay ister.",
+          "backdrop": "scenes/shadow_lexicographer/episode_11.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_palindrome_phantom",
+              "Seni başladığın yere döndürdüm; değişmenden korkuyordum"
+            ],
+            [
+              "neris",
+              "Benim kararım olmadan."
+            ],
+            [
+              "shadow_lexicographer",
+              "Bunu yerine getirmeyeceğim."
+            ],
+            [
+              "shadow_double",
+              "Sorma hakkın var; cevap hakkı onun."
+            ],
+            [
+              "shadow_lexicographer",
+              "Bu kez okuyacağım, uygulamayacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_11.png",
+            "scenes/shadow_lexicographer/episode_11.png",
+            "scenes/shadow_lexicographer/episode_11.png",
+            "scenes/shadow_lexicographer/episode_11.png",
+            "scenes/shadow_lexicographer/episode_11.png"
+          ]
+        },
+        {
+          "wave": 60,
+          "title": "Gölgenin Seçtiği Ad",
+          "location": "Ayna Matbaası",
+          "scene": "Ayna iki silueti gösterir; Shadow Double boş ad kartını alıp kendi adı için bir işaret çizer, Scribe kalemi bırakır.",
+          "backdrop": "scenes/shadow_lexicographer/episode_12.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_tautology_twin",
+              "Aynı sözü iki kez söyledim, kanıt sandım; ikizim bile bana inanmadı"
+            ],
+            [
+              "shadow_lexicographer",
+              "Sana hangi adı vermeliyim?"
+            ],
+            [
+              "shadow_double",
+              "Ben seçeceğim."
+            ],
+            [
+              "neris",
+              "Bu karar ona ait."
+            ],
+            [
+              "shadow_lexicographer",
+              "Bekliyorum."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_12.png",
+            "scenes/shadow_lexicographer/episode_12.png",
+            "scenes/shadow_lexicographer/episode_12.png",
+            "scenes/shadow_lexicographer/episode_12.png",
+            "scenes/shadow_lexicographer/episode_12.png"
+          ]
+        },
+        {
+          "wave": 65,
+          "title": "Yazar Eli Değil, Eller",
+          "location": "Mürekkep Kulesi",
+          "scene": "Tavandaki dev el emir yazarken alt katta onlarca küçük el kâğıdı tutar; Scribe kulenin aynasını kırıp bütün elleri görünür yapar.",
+          "backdrop": "scenes/shadow_lexicographer/episode_13.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_dangling_modifier",
+              "Eylemi askıda bıraktım; suç yanlış kişiye düştü"
+            ],
+            [
+              "shadow_double",
+              "Korkun da bu hikâyede."
+            ],
+            [
+              "neris",
+              "Ama tek yazar o değil."
+            ],
+            [
+              "shadow_lexicographer",
+              "Kurum da, ben de karar verdik."
+            ],
+            [
+              "shadow_double",
+              "Payı eşit olmak zorunda değil."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_13.png",
+            "scenes/shadow_lexicographer/episode_13.png",
+            "scenes/shadow_lexicographer/episode_13.png",
+            "scenes/shadow_lexicographer/episode_13.png",
+            "scenes/shadow_lexicographer/episode_13.png"
+          ]
+        },
+        {
+          "wave": 70,
+          "title": "Tanıkların Duruşması",
+          "location": "Gizli Duruşma Salonu",
+          "scene": "Boş sandalyelere görünmez tanıkların adları işlenir; Neris ayağa kalkınca hedef tahtası devrilir.",
+          "backdrop": "scenes/shadow_lexicographer/episode_14.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_spelling_spectre",
+              "Bir harfi düzelttim, bir hayatı başka isme bağladım"
+            ],
+            [
+              "shadow_lexicographer",
+              "Seni korumak için emir aldım."
+            ],
+            [
+              "neris",
+              "Ben hedef değilim; karar verenim."
+            ],
+            [
+              "shadow_double",
+              "Bunu ikimiz de duymalıydık."
+            ],
+            [
+              "shadow_lexicographer",
+              "Bu kez söz hakkı sende."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_14.png",
+            "scenes/shadow_lexicographer/episode_14.png",
+            "scenes/shadow_lexicographer/episode_14.png",
+            "scenes/shadow_lexicographer/episode_14.png",
+            "scenes/shadow_lexicographer/episode_14.png"
+          ]
+        },
+        {
+          "wave": 75,
+          "title": "Çift Ritmin Mahkemesi",
+          "location": "Kopyalar Mahkemesi",
+          "scene": "Idiom Imp’in közleri birbirine benzeyen iki gölge arasında sıçrar; Scribe farklı ayak seslerini dinler ve sayfanın iki yanına ayrı adlar yazar.",
+          "backdrop": "scenes/shadow_lexicographer/episode_15.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_idiom_imp",
+              "Gülmek istedim; şakam birinin yardım çağrısını örttü"
+            ],
+            [
+              "shadow_lexicographer",
+              "Birimiz kalmalı sanmışım."
+            ],
+            [
+              "shadow_double",
+              "Bu kuralı sen yazdın."
+            ],
+            [
+              "neris",
+              "İkinizin de sözü var."
+            ],
+            [
+              "shadow_lexicographer",
+              "İkimiz kalacağız; aynı kişi olmayacağız."
+            ]
+          ],
+          "boss_reward": {
+            "type": "relic",
+            "id": "story_shadow_lexicographer_75",
+            "name": "İkili İmza",
+            "description": "İdiom Imp’in közleri arasından çıkarılan, iki ayrı iradeyi görünür tutan işaret.",
+            "icon": "assets/sprites/story/relics/shadow_lexicographer_75.svg",
+            "stats": {
+              "gadget_cooldown_mult": -0.06
+            }
+          },
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_15.png",
+            "scenes/shadow_lexicographer/episode_15.png",
+            "scenes/shadow_lexicographer/episode_15.png",
+            "scenes/shadow_lexicographer/episode_15.png",
+            "scenes/shadow_lexicographer/episode_15.png"
+          ]
+        },
+        {
+          "wave": 80,
+          "title": "Adın Sesi",
+          "location": "Akustik Raf",
+          "scene": "Her fısıltı başka bir harf gibi yankılanır; Double kendi seçtiği adla cevap verince Scribe yankıyı düzeltmez.",
+          "backdrop": "scenes/shadow_lexicographer/episode_16.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_red_pen_boss",
+              "Bu kez ben kestim; kime zarar vereceğini sormadan eski hükmü uyguladım"
+            ],
+            [
+              "shadow_lexicographer",
+              "Öteki."
+            ],
+            [
+              "shadow_double",
+              "Beni gördüğün ilk an buydu."
+            ],
+            [
+              "neris",
+              "Şimdi ne diyeceksin?"
+            ],
+            [
+              "shadow_lexicographer",
+              "Seçtiğin adı kullanacağım."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_16.png",
+            "scenes/shadow_lexicographer/episode_16.png",
+            "scenes/shadow_lexicographer/episode_16.png",
+            "scenes/shadow_lexicographer/episode_16.png",
+            "scenes/shadow_lexicographer/episode_16.png"
+          ]
+        },
+        {
+          "wave": 85,
+          "title": "Tek Siluet Daveti",
+          "location": "Boşluğa Açılan Sayfa",
+          "scene": "Beyaz sayfa iki gölgeyi tek çizgiye bastırır; ikisi ayrı yönlere yürüyünce kâğıt ortadan yırtılır.",
+          "backdrop": "scenes/shadow_lexicographer/episode_17.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_oxymoron_ogre",
+              "İki gerçeği ayrı odalara koydum; susunca çatışma biter sandım"
+            ],
+            [
+              "shadow_lexicographer",
+              "Ben tek kişi değilim."
+            ],
+            [
+              "shadow_double",
+              "Ben de onun eşyası değilim."
+            ],
+            [
+              "neris",
+              "İkiniz de kendi kararınızı verin."
+            ],
+            [
+              "shadow_lexicographer",
+              "Çatışma, silinmekten daha dürüst."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_17.png",
+            "scenes/shadow_lexicographer/episode_17.png",
+            "scenes/shadow_lexicographer/episode_17.png",
+            "scenes/shadow_lexicographer/episode_17.png",
+            "scenes/shadow_lexicographer/episode_17.png"
+          ]
+        },
+        {
+          "wave": 90,
+          "title": "Üç İtirazlı Kalem",
+          "location": "Son Yazı Odası",
+          "scene": "Üç kalem aynı sayfaya farklı çizgiler çizer; Neris kendi satırını Scribe’in imzasının altına değil yanına koyar.",
+          "backdrop": "scenes/shadow_lexicographer/episode_18.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_malapropism_mimic",
+              "Yüzünü Neris’ten aldım; onun itirazını taklit edemedim"
+            ],
+            [
+              "shadow_double",
+              "Beni yönetmeyeceksin."
+            ],
+            [
+              "neris",
+              "Benim hikâyemde de sözüm var."
+            ],
+            [
+              "shadow_lexicographer",
+              "İmzanı ekle."
+            ],
+            [
+              "shadow_double",
+              "Yan yana; üst üste değil."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_18.png",
+            "scenes/shadow_lexicographer/episode_18.png",
+            "scenes/shadow_lexicographer/episode_18.png",
+            "scenes/shadow_lexicographer/episode_18.png",
+            "scenes/shadow_lexicographer/episode_18.png"
+          ]
+        },
+        {
+          "wave": 95,
+          "title": "Kapının Dışındaki Sayfa",
+          "location": "Arşiv Dış Kapısı",
+          "scene": "Dış ışık sayfa kenarlarından içeri düşer; Double eşikte durur, Scribe onu çağırmak yerine seçimini bekler.",
+          "backdrop": "scenes/shadow_lexicographer/episode_19.png",
+          "music": "peaceful",
+          "beats": [
+            [
+              "boss_vocabulary_void",
+              "Boşlukları korurken yaşayanların adlarını da sildim"
+            ],
+            [
+              "shadow_lexicographer",
+              "Bilmiyorum."
+            ],
+            [
+              "neris",
+              "Bilmemen kapıyı kapatmak zorunda bırakmaz."
+            ],
+            [
+              "shadow_lexicographer",
+              "İçeride kalmayı seçebilirsin."
+            ],
+            [
+              "shadow_double",
+              "Bu kez seçim benim."
+            ]
+          ],
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_19.png",
+            "scenes/shadow_lexicographer/episode_19.png",
+            "scenes/shadow_lexicographer/episode_19.png",
+            "scenes/shadow_lexicographer/episode_19.png",
+            "scenes/shadow_lexicographer/episode_19.png"
+          ]
+        },
+        {
+          "wave": 100,
+          "title": "İki Yazarlı Karşı Katalog",
+          "location": "Arşivin Kalbi",
+          "scene": "Omega Leksikon Ejderhası’nın son halkası üç imzayı tek kayda bağlamaya çalışır; Scribe sayfayı açık bırakır ve herkes kendi satırını yazar.",
+          "backdrop": "scenes/shadow_lexicographer/episode_20.png",
+          "music": "boss",
+          "beats": [
+            [
+              "boss_lexicon_dragon_boss",
+              "İlk halkada sözlük tuttum; son halkada tek bir ağız olmak istedim"
+            ],
+            [
+              "shadow_lexicographer",
+              "İki ad da kalacak."
+            ],
+            [
+              "shadow_double",
+              "Ve ikimiz de hikâyeyi yazacağız."
+            ],
+            [
+              "neris",
+              "Benim adım Neris. Kendi sayfama yazıyorum."
+            ],
+            [
+              "narrator",
+              "Üç imza aynı kitapta; hiçbirinin üstünde değil."
+            ]
+          ],
+          "boss_reward": {
+            "type": "ending",
+            "name": "Karakterin son kararı",
+            "description": "Üç imza, ilk kez aynı sayfada durdu."
+          },
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_20.png",
+            "scenes/shadow_lexicographer/episode_20.png",
+            "scenes/shadow_lexicographer/episode_20.png",
+            "scenes/shadow_lexicographer/episode_20.png",
+            "scenes/shadow_lexicographer/episode_20.png"
+          ]
+        }
+      ]
+    }
+  },
+  "episodes": [
+    {
+      "wave": 5,
+      "backdrop": "panels/wave_05.png",
+      "music": "peaceful"
+    },
+    {
+      "wave": 10,
+      "backdrop": "panels/wave_10.png",
+      "music": "peaceful"
+    },
+    {
+      "wave": 15,
+      "backdrop": "panels/wave_15.png",
+      "music": "peaceful"
+    },
+    {
+      "wave": 20,
+      "backdrop": "panels/wave_20.png",
+      "music": "peaceful"
+    },
+    {
+      "wave": 25,
+      "backdrop": "panels/wave_25.png",
+      "music": "boss"
+    },
+    {
+      "wave": 30,
+      "backdrop": "panels/wave_30.png",
+      "music": "peaceful"
+    },
+    {
+      "wave": 35,
+      "backdrop": "panels/wave_35.png",
+      "music": "peaceful"
+    },
+    {
+      "wave": 40,
+      "backdrop": "panels/wave_40.png",
+      "music": "peaceful"
+    },
+    {
+      "wave": 45,
+      "backdrop": "panels/wave_45.png",
+      "music": "peaceful"
+    },
+    {
+      "wave": 50,
+      "backdrop": "panels/wave_50.png",
+      "music": "boss"
+    },
+    {
+      "wave": 55,
+      "backdrop": "panels/wave_55.png",
+      "music": "peaceful"
+    },
+    {
+      "wave": 60,
+      "backdrop": "panels/wave_60.png",
+      "music": "peaceful"
+    },
+    {
+      "wave": 65,
+      "backdrop": "panels/wave_65.png",
+      "music": "peaceful"
+    },
+    {
+      "wave": 70,
+      "backdrop": "panels/wave_70.png",
+      "music": "peaceful"
+    },
+    {
+      "wave": 75,
+      "backdrop": "panels/wave_75.png",
+      "music": "boss"
+    },
+    {
+      "wave": 80,
+      "backdrop": "panels/wave_80.png",
+      "music": "peaceful"
+    },
+    {
+      "wave": 85,
+      "backdrop": "panels/wave_85.png",
+      "music": "peaceful"
+    },
+    {
+      "wave": 90,
+      "backdrop": "panels/wave_90.png",
+      "music": "peaceful"
+    },
+    {
+      "wave": 95,
+      "backdrop": "panels/wave_95.png",
+      "music": "peaceful"
+    },
+    {
+      "wave": 100,
+      "backdrop": "panels/wave_100.png",
+      "music": "boss"
+    }
+  ],
+  "relic_catalog": [
+    {
+      "id": "story_inky_25",
+      "name": "Mira’nın Kenar Yıldızı",
+      "description": "Kritik isabet şansı artar.",
+      "stats": {
+        "crit_chance": 0.05
+      },
+      "icon": "assets/sprites/story/relics/inky_25.svg",
+      "episode_wave": 25,
+      "character_id": "inky"
+    },
+    {
+      "id": "story_inky_50",
+      "name": "Kendi El Yazısı",
+      "description": "Hasarı az miktarda artırır.",
+      "stats": {
+        "damage": 0.08
+      },
+      "icon": "assets/sprites/story/relics/inky_50.svg",
+      "episode_wave": 50,
+      "character_id": "inky"
+    },
+    {
+      "id": "story_inky_75",
+      "name": "İzi Korumak",
+      "description": "Hareket hızı artar.",
+      "stats": {
+        "move_speed": 12
+      },
+      "icon": "assets/sprites/story/relics/inky_75.svg",
+      "episode_wave": 75,
+      "character_id": "inky"
+    },
+    {
+      "id": "story_quillmaster_25",
+      "name": "Ada’nın Kalem Ucu",
+      "description": "Saldırı aralığı kısalır.",
+      "stats": {
+        "attack_speed": 0.1
+      },
+      "icon": "assets/sprites/story/relics/quillmaster_25.svg",
+      "episode_wave": 25,
+      "character_id": "quillmaster"
+    },
+    {
+      "id": "story_quillmaster_50",
+      "name": "Son Mektubun Sesi",
+      "description": "Kritik isabet şansı artar.",
+      "stats": {
+        "crit_chance": 0.04
+      },
+      "icon": "assets/sprites/story/relics/quillmaster_50.svg",
+      "episode_wave": 50,
+      "character_id": "quillmaster"
+    },
+    {
+      "id": "story_quillmaster_75",
+      "name": "Cevap Hakkı",
+      "description": "Saldırı aralığı yeniden kısalır.",
+      "stats": {
+        "attack_speed": 0.08
+      },
+      "icon": "assets/sprites/story/relics/quillmaster_75.svg",
+      "episode_wave": 75,
+      "character_id": "quillmaster"
+    },
+    {
+      "id": "story_word_knight_25",
+      "name": "Nöbetin İç Mührü",
+      "description": "Zırh artar.",
+      "stats": {
+        "armor": 0.04
+      },
+      "icon": "assets/sprites/story/relics/word_knight_25.svg",
+      "episode_wave": 25,
+      "character_id": "word_knight"
+    },
+    {
+      "id": "story_word_knight_50",
+      "name": "Karşı Not",
+      "description": "Azami can ve mevcut can artar.",
+      "stats": {
+        "max_hp": 10
+      },
+      "icon": "assets/sprites/story/relics/word_knight_50.svg",
+      "episode_wave": 50,
+      "character_id": "word_knight"
+    },
+    {
+      "id": "story_word_knight_75",
+      "name": "Paylaşılan Nöbet",
+      "description": "Zırh yeniden artar.",
+      "stats": {
+        "armor": 0.05
+      },
+      "icon": "assets/sprites/story/relics/word_knight_75.svg",
+      "episode_wave": 75,
+      "character_id": "word_knight"
+    },
+    {
+      "id": "story_rune_sorceress_25",
+      "name": "Kül Bekçisi’nin Hatırası",
+      "description": "Hasar az miktarda artar.",
+      "stats": {
+        "damage": 0.06
+      },
+      "icon": "assets/sprites/story/relics/rune_sorceress_25.svg",
+      "episode_wave": 25,
+      "character_id": "rune_sorceress"
+    },
+    {
+      "id": "story_rune_sorceress_50",
+      "name": "Cam Ana’nın Anısı",
+      "description": "Gadget bekleme süresi kısalır.",
+      "stats": {
+        "gadget_cooldown_mult": -0.07
+      },
+      "icon": "assets/sprites/story/relics/rune_sorceress_50.svg",
+      "episode_wave": 50,
+      "character_id": "rune_sorceress"
+    },
+    {
+      "id": "story_rune_sorceress_75",
+      "name": "Ad Bekçisi’nin Hatırası",
+      "description": "Kritik isabet şansı artar.",
+      "stats": {
+        "crit_chance": 0.04
+      },
+      "icon": "assets/sprites/story/relics/rune_sorceress_75.svg",
+      "episode_wave": 75,
+      "character_id": "rune_sorceress"
+    },
+    {
+      "id": "story_lexicon_alchemist_25",
+      "name": "Şişe Bekçisi’nin Anısı",
+      "description": "Mürekkep kazancı artar.",
+      "stats": {
+        "ink_mult": 0.1
+      },
+      "icon": "assets/sprites/story/relics/lexicon_alchemist_25.svg",
+      "episode_wave": 25,
+      "character_id": "lexicon_alchemist"
+    },
+    {
+      "id": "story_lexicon_alchemist_50",
+      "name": "Reaktif Kralı’nın Anısı",
+      "description": "Azami can artar.",
+      "stats": {
+        "max_hp": 8
+      },
+      "icon": "assets/sprites/story/relics/lexicon_alchemist_50.svg",
+      "episode_wave": 50,
+      "character_id": "lexicon_alchemist"
+    },
+    {
+      "id": "story_lexicon_alchemist_75",
+      "name": "Ad Yiyen’in Anısı",
+      "description": "Hasar az miktarda artar.",
+      "stats": {
+        "damage": 0.05
+      },
+      "icon": "assets/sprites/story/relics/lexicon_alchemist_75.svg",
+      "episode_wave": 75,
+      "character_id": "lexicon_alchemist"
+    },
+    {
+      "id": "story_shadow_lexicographer_25",
+      "name": "Karanlık Katalogcu’nun Anısı",
+      "description": "Hareket hızı artar.",
+      "stats": {
+        "move_speed": 10
+      },
+      "icon": "assets/sprites/story/relics/shadow_lexicographer_25.svg",
+      "episode_wave": 25,
+      "character_id": "shadow_lexicographer"
+    },
+    {
+      "id": "story_shadow_lexicographer_50",
+      "name": "Redaktör’ün Anısı",
+      "description": "Kritik isabet şansı artar.",
+      "stats": {
+        "crit_chance": 0.06
+      },
+      "icon": "assets/sprites/story/relics/shadow_lexicographer_50.svg",
+      "episode_wave": 50,
+      "character_id": "shadow_lexicographer"
+    },
+    {
+      "id": "story_shadow_lexicographer_75",
+      "name": "Çift İmza",
+      "description": "Gadget bekleme süresi kısalır.",
+      "stats": {
+        "gadget_cooldown_mult": -0.06
+      },
+      "icon": "assets/sprites/story/relics/shadow_lexicographer_75.svg",
+      "episode_wave": 75,
+      "character_id": "shadow_lexicographer"
+    }
+  ]
+}

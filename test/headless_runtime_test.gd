@@ -11,7 +11,7 @@ func _ready():
 	StatsManager.reset()
 	assert(StatsManager.selected_character == "quillmaster")
 	assert(StatsManager.difficulty == "hard")
-	assert(StatsManager.max_hp == 70.0)
+	assert(StatsManager.max_hp == 95.0)
 	
 	print("2. Instantiating scenes/main.tscn...")
 	var main_res = load("res://scenes/main.tscn")

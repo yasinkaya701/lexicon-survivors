@@ -1,0 +1,89 @@
+[gd_resource type="Theme" load_steps=8 format=3]
+
+[ext_resource type="FontFile" path="res://assets/fonts/ibm-plex/IBMPlexSans-Variable.ttf" id="1_sans"]
+[ext_resource type="FontFile" path="res://assets/fonts/ibm-plex/IBMPlexSerif-SemiBold.ttf" id="2_serif"]
+[ext_resource type="FontFile" path="res://assets/fonts/ibm-plex/IBMPlexMono-Medium.ttf" id="3_mono"]
+
+[sub_resource type="StyleBoxFlat" id="PanelStyle"]
+bg_color = Color(0.09, 0.11, 0.10, 1)
+border_color = Color(0.34, 0.39, 0.35, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxFlat" id="ButtonNormal"]
+bg_color = Color(0.15, 0.20, 0.17, 1)
+border_color = Color(0.32, 0.42, 0.36, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="ButtonHover"]
+bg_color = Color(0.20, 0.27, 0.23, 1)
+border_color = Color(0.55, 0.61, 0.48, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="ButtonPressed"]
+bg_color = Color(0.24, 0.29, 0.25, 1)
+border_color = Color(0.70, 0.62, 0.41, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+
+[resource]
+default_font = ExtResource("1_sans")
+default_font_size = 16
+Label/colors/font_color = Color(0.91, 0.89, 0.83, 1)
+Label/fonts/font = ExtResource("1_sans")
+Panel/styles/panel = SubResource("PanelStyle")
+Button/colors/font_color = Color(0.91, 0.89, 0.83, 1)
+Button/fonts/font = ExtResource("1_sans")
+Button/font_sizes/font_size = 15
+Button/styles/normal = SubResource("ButtonNormal")
+Button/styles/hover = SubResource("ButtonHover")
+Button/styles/pressed = SubResource("ButtonPressed")
+Button/styles/focus = SubResource("ButtonHover")
+Heading/base_type = "Label"
+Heading/fonts/font = ExtResource("2_serif")
+Heading/font_sizes/font_size = 24
+Metric/base_type = "Label"
+Metric/fonts/font = ExtResource("3_mono")
+Metric/font_sizes/font_size = 13

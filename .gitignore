@@ -1,3 +1,6 @@
 .godot/
 *.tmp
-
+.worktrees/
+.playwright-cli/
+output/
+node_modules/

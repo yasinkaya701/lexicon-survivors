@@ -1,0 +1,27 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "lexicon-survivors-leaderboard",
+	"main": "src/index.js",
+	"compatibility_date": "2026-11-05",
+	"observability": {
+		"enabled": true
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "lexicon-survivors-leaderboard",
+			"database_id": "031256df-3e1f-45a3-acbc-87133bd611fa",
+			"migrations_dir": "migrations"
+		}
+	],
+	"ratelimits": [
+		{
+			"name": "RATE_LIMITER",
+			"namespace_id": "681472",
+			"simple": {
+				"limit": 10,
+				"period": 60
+			}
+		}
+	]
+}
