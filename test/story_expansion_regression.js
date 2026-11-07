@@ -39,7 +39,10 @@ for (const requiredVoice of ["mira", "ada", "lale", "sera", "mara", "yel", "tavi
 }
 
 assert.equal(manifest.images.length, 600, "story expansion must preserve the unique 600-panel commission");
-assert.equal(manifest.generated_images, 0, "commission generation must not claim that images were created");
+const stagedPanels = manifest.images.filter((image) => image.status === "awaiting_human_review");
+const approvedPanels = manifest.images.filter((image) => image.status === "approved");
+assert.equal(manifest.generated_images, stagedPanels.length + approvedPanels.length,
+  "generated_images must track actual staged and approved assets");
 assert.equal(runtimeArt.approved_count, 0, "requested or pending assets must not appear in the runtime index");
 assert.deepEqual(runtimeArt.panels, {}, "unreviewed story art must not be wired into gameplay");
 assert.equal(new Set(manifest.images.map((image) => image.id)).size, 600, "every image request needs a unique stable ID");
@@ -50,8 +53,17 @@ for (const image of manifest.images) {
   assert.ok(image.boss_story_canon?.motive, image.id + " must inherit the encounter's boss story context");
   assert.ok(image.prompt.includes("BOSS STORY CANON"), image.id + " prompt must reference the boss story");
   assert.ok(image.prompt.includes(`PANEL COMPOSITION [${image.composition_id}]`), image.id + " prompt must lock its unique composition direction");
-  assert.equal(image.status, "requested_not_generated", image.id + " starts as a request, never as an approved runtime asset");
-  assert.equal(image.human_review, null, image.id + " must wait for human review after upload");
+  assert.ok(["requested_not_generated", "awaiting_human_review", "approved"].includes(image.status),
+    image.id + " must have a valid art-review state");
+  if (image.status === "requested_not_generated") {
+    assert.equal(image.human_review, null, image.id + " has not been reviewed");
+  } else if (image.status === "awaiting_human_review") {
+    assert.equal(image.human_review, null, image.id + " must not claim a human review");
+    assert.ok(Object.values(image.qa).every((status) => status === "pending"),
+      image.id + " draft QA must remain pending");
+    assert.ok(image.source_sha256 && image.source_sha256 === image.web_sha256,
+      image.id + " draft hash must match its mirrored copy");
+  }
 }
 assert.match(webGame, /story_art_600_runtime\.json/, "Web must read the human-approved runtime art index");
 assert.match(webGame, /\$\{state\.selected_char\}:\$\{episode\.wave\}:\$\{storyPanelIndex \+ 1\}/, "Web must choose art for the active character, wave and panel");
