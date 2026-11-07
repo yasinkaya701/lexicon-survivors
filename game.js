@@ -3298,7 +3298,8 @@ function renderStoryPanel() {
   document.getElementById("story-copy").textContent = dialogueText;
   document.getElementById("story-scene-caption").textContent = episode.scene;
   document.getElementById("story-counter").textContent = `${storyPanelIndex + 1} / ${STORY_ARC_DATA.panel_count}`;
-  sceneImage.src = `assets/sprites/story/${episode.backdrop}`;
+  const panelArt = episode.panel_art?.[storyPanelIndex] || episode.backdrop;
+  sceneImage.src = `assets/sprites/story/${panelArt}`;
   sceneImage.alt = `${episode.scene} · ${episode.location}`;
   const chosenBossSprite = speakerBoss?.portrait_sprite || (isBossVoice ? MILESTONE_BOSS_ROSTER?.[storyEpisodeIndex]?.[1] : "");
   const speakerPath = heroSpeakerIds.has(speakerId) ? portraitPaths.hero
@@ -5669,7 +5670,30 @@ function spawnMilestoneBoss(wave) {
   };
   sounds.bossRoar();
   addAliveEnemy(boss);
-  triggerTacticalAlert(name.toLocaleUpperCase("tr-TR"), BOSS_TELEGRAPH_GUIDANCE[skill] || "İşaretlere bak, saldırıdan önce güvenli alanı bul.");
+  const unresolved = [...(state.mistake_words || [])]
+    .sort((a, b) => (b.fail_count || 1) - (a.fail_count || 1))
+    .slice(0, 4);
+  unresolved.forEach((mistake, index) => {
+    const echoAngle = angle + Math.PI + index * Math.PI * 2 / Math.max(1, unresolved.length);
+    const echoPoint = getArenaSpawnPosition({ x: boss.x, y: boss.y }, 115 + index * 18, echoAngle);
+    const memoryWord = String(mistake.word || "?");
+    const failures = Math.max(1, Math.min(5, mistake.fail_count || 1));
+    addAliveEnemy({
+      type: "Spelling Spectre", sprite: "spelling_spectre.png",
+      x: echoPoint.x, y: echoPoint.y, vx: 0, vy: 0,
+      hp: (105 + wave * 8) * (0.72 + failures * 0.16),
+      max_hp: (105 + wave * 8) * (0.72 + failures * 0.16),
+      speed: (112 + failures * 9) * difficulty.enemy_speed_mult,
+      damage: (15 + wave * 0.16 + failures * 2) * difficulty.enemy_damage_mult,
+      ink_reward: 0, size: 32, label: memoryWord,
+      is_elite: true, is_mistake_echo: true, memory_word: memoryWord,
+      fail_count: failures, facing_left: false
+    });
+  });
+  const alert = unresolved.length
+    ? `${name.toLocaleUpperCase("tr-TR")} · HATA DEFTERİNDEKİ ${unresolved.length} KELİME YANKIYA DÖNÜŞTÜ`
+    : name.toLocaleUpperCase("tr-TR");
+  triggerTacticalAlert(alert, BOSS_TELEGRAPH_GUIDANCE[skill] || "İşaretlere bak, saldırıdan önce güvenli alanı bul.");
   updateBossHealthBar(true);
 }
 
@@ -5968,16 +5992,18 @@ function updateShopChapterHeader() {
 function refreshShopCards() {
   let targetLevels = ["A1", "A2"];
   if (state.difficulty === "easy") {
-    if (state.current_wave > 20) targetLevels = ["A1", "A2", "B1"];
-    else if (state.current_wave > 10) targetLevels = ["A1", "A2"];
+    if (state.current_wave > 60) targetLevels = ["B2", "C1", "C2"];
+    else if (state.current_wave > 40) targetLevels = ["B1", "B2", "C1"];
+    else if (state.current_wave > 20) targetLevels = ["A2", "B1", "B2"];
+    else if (state.current_wave > 10) targetLevels = ["A1", "A2", "B1"];
     else targetLevels = ["A1", "A2"];
   } else if (state.difficulty === "hard") {
-    if (state.current_wave > 40) targetLevels = ["B2", "C1"];
-    else if (state.current_wave > 15) targetLevels = ["B1", "B2", "C1"];
+    if (state.current_wave > 30) targetLevels = ["B2", "C1", "C2"];
+    else if (state.current_wave > 12) targetLevels = ["B1", "B2", "C1"];
     else targetLevels = ["A2", "B1", "B2"];
   } else { // normal
-    if (state.current_wave > 45) targetLevels = ["B2", "C1"];
-    else if (state.current_wave > 25) targetLevels = ["B1", "B2"];
+    if (state.current_wave > 40) targetLevels = ["B2", "C1", "C2"];
+    else if (state.current_wave > 24) targetLevels = ["B1", "B2", "C1"];
     else if (state.current_wave > 10) targetLevels = ["A2", "B1"];
     else targetLevels = ["A1", "A2"];
   }

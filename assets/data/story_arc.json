@@ -39,7 +39,14 @@
             "type": "clue",
             "name": "Ters Mürekkep",
             "description": "Silinmiş yazı hâlâ iz bırakabiliyor."
-          }
+          },
+          "panel_art": [
+            "panels_600/inky/wave_005_panel_01.webp",
+            "panels_600/inky/wave_005_panel_02.webp",
+            "panels_600/inky/wave_005_panel_03.webp",
+            "panels_600/inky/wave_005_panel_04.webp",
+            "panels_600/inky/wave_005_panel_05.webp"
+          ]
         },
         {
           "wave": 10,
@@ -70,7 +77,14 @@
               "Haritasız olmak kaybolmakla aynı şey değil."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_010_panel_01.webp",
+            "panels_600/inky/wave_010_panel_02.webp",
+            "panels_600/inky/wave_010_panel_03.webp",
+            "panels_600/inky/wave_010_panel_04.webp",
+            "panels_600/inky/wave_010_panel_05.webp"
+          ]
         },
         {
           "wave": 15,
@@ -101,7 +115,14 @@
               "Boşluğu doldurmak, onu tanımak değil."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_015_panel_01.webp",
+            "panels_600/inky/wave_015_panel_02.webp",
+            "panels_600/inky/wave_015_panel_03.webp",
+            "panels_600/inky/wave_015_panel_04.webp",
+            "panels_600/inky/wave_015_panel_05.webp"
+          ]
         },
         {
           "wave": 20,
@@ -132,7 +153,14 @@
               "Kapıyı açacağım. Kimi götüreceğime karar vermeyeceğim."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_020_panel_01.webp",
+            "panels_600/inky/wave_020_panel_02.webp",
+            "panels_600/inky/wave_020_panel_03.webp",
+            "panels_600/inky/wave_020_panel_04.webp",
+            "panels_600/inky/wave_020_panel_05.webp"
+          ]
         },
         {
           "wave": 25,
@@ -172,7 +200,14 @@
             "stats": {
               "crit_chance": 0.05
             }
-          }
+          },
+          "panel_art": [
+            "panels_600/inky/wave_025_panel_01.webp",
+            "panels_600/inky/wave_025_panel_02.webp",
+            "panels_600/inky/wave_025_panel_03.webp",
+            "panels_600/inky/wave_025_panel_04.webp",
+            "panels_600/inky/wave_025_panel_05.webp"
+          ]
         },
         {
           "wave": 30,
@@ -203,7 +238,14 @@
               "Bekleyen bir anı olabilir; Mira’nın bugünkü kararı değil."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_030_panel_01.webp",
+            "panels_600/inky/wave_030_panel_02.webp",
+            "panels_600/inky/wave_030_panel_03.webp",
+            "panels_600/inky/wave_030_panel_04.webp",
+            "panels_600/inky/wave_030_panel_05.webp"
+          ]
         },
         {
           "wave": 35,
@@ -234,7 +276,14 @@
               "Hatırlayacağım. Onun cevabını kendim yazmayacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_035_panel_01.webp",
+            "panels_600/inky/wave_035_panel_02.webp",
+            "panels_600/inky/wave_035_panel_03.webp",
+            "panels_600/inky/wave_035_panel_04.webp",
+            "panels_600/inky/wave_035_panel_05.webp"
+          ]
         },
         {
           "wave": 40,
@@ -265,7 +314,14 @@
               "Lekeler, onun kapıyı kendi açtığını kanıtlıyor."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_040_panel_01.webp",
+            "panels_600/inky/wave_040_panel_02.webp",
+            "panels_600/inky/wave_040_panel_03.webp",
+            "panels_600/inky/wave_040_panel_04.webp",
+            "panels_600/inky/wave_040_panel_05.webp"
+          ]
         },
         {
           "wave": 45,
@@ -296,7 +352,14 @@
               "Uydurulmuş bir affı kabul etmeyeceğim."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_045_panel_01.webp",
+            "panels_600/inky/wave_045_panel_02.webp",
+            "panels_600/inky/wave_045_panel_03.webp",
+            "panels_600/inky/wave_045_panel_04.webp",
+            "panels_600/inky/wave_045_panel_05.webp"
+          ]
         },
         {
           "wave": 50,
@@ -336,7 +399,14 @@
             "stats": {
               "damage": 0.08
             }
-          }
+          },
+          "panel_art": [
+            "panels_600/inky/wave_050_panel_01.webp",
+            "panels_600/inky/wave_050_panel_02.webp",
+            "panels_600/inky/wave_050_panel_03.webp",
+            "panels_600/inky/wave_050_panel_04.webp",
+            "panels_600/inky/wave_050_panel_05.webp"
+          ]
         },
         {
           "wave": 55,
@@ -367,7 +437,14 @@
               "Öyleyse boşluğun kenarını takip ederim."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_055_panel_01.webp",
+            "panels_600/inky/wave_055_panel_02.webp",
+            "panels_600/inky/wave_055_panel_03.webp",
+            "panels_600/inky/wave_055_panel_04.webp",
+            "panels_600/inky/wave_055_panel_05.webp"
+          ]
         },
         {
           "wave": 60,
@@ -398,7 +475,14 @@
               "Hatırlayacağım; zincire çevirmeyeceğim."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_060_panel_01.webp",
+            "panels_600/inky/wave_060_panel_02.webp",
+            "panels_600/inky/wave_060_panel_03.webp",
+            "panels_600/inky/wave_060_panel_04.webp",
+            "panels_600/inky/wave_060_panel_05.webp"
+          ]
         },
         {
           "wave": 65,
@@ -429,7 +513,14 @@
               "Bir işaret yeter; onun hayatının tümüne sahip olmam gerekmiyor."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_065_panel_01.webp",
+            "panels_600/inky/wave_065_panel_02.webp",
+            "panels_600/inky/wave_065_panel_03.webp",
+            "panels_600/inky/wave_065_panel_04.webp",
+            "panels_600/inky/wave_065_panel_05.webp"
+          ]
         },
         {
           "wave": 70,
@@ -460,7 +551,14 @@
               "Anıyı saklarım. Kapıyı açık bırakırım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_070_panel_01.webp",
+            "panels_600/inky/wave_070_panel_02.webp",
+            "panels_600/inky/wave_070_panel_03.webp",
+            "panels_600/inky/wave_070_panel_04.webp",
+            "panels_600/inky/wave_070_panel_05.webp"
+          ]
         },
         {
           "wave": 75,
@@ -500,7 +598,14 @@
             "stats": {
               "move_speed": 12
             }
-          }
+          },
+          "panel_art": [
+            "panels_600/inky/wave_075_panel_01.webp",
+            "panels_600/inky/wave_075_panel_02.webp",
+            "panels_600/inky/wave_075_panel_03.webp",
+            "panels_600/inky/wave_075_panel_04.webp",
+            "panels_600/inky/wave_075_panel_05.webp"
+          ]
         },
         {
           "wave": 80,
@@ -531,7 +636,14 @@
               "Bu da aradığım cevabın bir parçası."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_080_panel_01.webp",
+            "panels_600/inky/wave_080_panel_02.webp",
+            "panels_600/inky/wave_080_panel_03.webp",
+            "panels_600/inky/wave_080_panel_04.webp",
+            "panels_600/inky/wave_080_panel_05.webp"
+          ]
         },
         {
           "wave": 85,
@@ -562,7 +674,14 @@
               "Seni dinlerim; senin yerine de hüküm vermem."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_085_panel_01.webp",
+            "panels_600/inky/wave_085_panel_02.webp",
+            "panels_600/inky/wave_085_panel_03.webp",
+            "panels_600/inky/wave_085_panel_04.webp",
+            "panels_600/inky/wave_085_panel_05.webp"
+          ]
         },
         {
           "wave": 90,
@@ -593,7 +712,14 @@
               "Yolunu bırakıyorum. Dönüp dönmemek ona ait."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_090_panel_01.webp",
+            "panels_600/inky/wave_090_panel_02.webp",
+            "panels_600/inky/wave_090_panel_03.webp",
+            "panels_600/inky/wave_090_panel_04.webp",
+            "panels_600/inky/wave_090_panel_05.webp"
+          ]
         },
         {
           "wave": 95,
@@ -624,7 +750,14 @@
               "Bazen yarım bırakmak, başkasına yer bırakmaktır."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/inky/wave_095_panel_01.webp",
+            "panels_600/inky/wave_095_panel_02.webp",
+            "panels_600/inky/wave_095_panel_03.webp",
+            "panels_600/inky/wave_095_panel_04.webp",
+            "panels_600/inky/wave_095_panel_05.webp"
+          ]
         },
         {
           "wave": 100,
@@ -659,7 +792,14 @@
             "type": "ending",
             "name": "Karakterin son kararı",
             "description": "Bu kez tamamlanmamışlık bizim seçimimiz."
-          }
+          },
+          "panel_art": [
+            "panels_600/inky/wave_100_panel_01.webp",
+            "panels_600/inky/wave_100_panel_02.webp",
+            "panels_600/inky/wave_100_panel_03.webp",
+            "panels_600/inky/wave_100_panel_04.webp",
+            "panels_600/inky/wave_100_panel_05.webp"
+          ]
         }
       ]
     },
@@ -700,7 +840,14 @@
             "type": "clue",
             "name": "Ada'nın Nibi",
             "description": "Son mektubun aceleyle yarım bırakıldığı anlaşılır."
-          }
+          },
+          "panel_art": [
+            "panels_600/quillmaster/wave_005_panel_01.webp",
+            "panels_600/quillmaster/wave_005_panel_02.webp",
+            "panels_600/quillmaster/wave_005_panel_03.webp",
+            "scenes/quillmaster/episode_01.png",
+            "scenes/quillmaster/episode_01.png"
+          ]
         },
         {
           "wave": 10,
@@ -731,7 +878,14 @@
               "Taklit, bekleyişi bitirmez."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/quillmaster/episode_02.png",
+            "scenes/quillmaster/episode_02.png",
+            "scenes/quillmaster/episode_02.png",
+            "scenes/quillmaster/episode_02.png",
+            "scenes/quillmaster/episode_02.png"
+          ]
         },
         {
           "wave": 15,
@@ -762,7 +916,14 @@
               "Niyetim, onun cevabını geçersiz kılmaz."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/quillmaster/episode_03.png",
+            "scenes/quillmaster/episode_03.png",
+            "scenes/quillmaster/episode_03.png",
+            "scenes/quillmaster/episode_03.png",
+            "scenes/quillmaster/episode_03.png"
+          ]
         },
         {
           "wave": 20,
@@ -793,7 +954,14 @@
               "Bulmakla düzeltmek aynı iş değil."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/quillmaster/episode_04.png",
+            "scenes/quillmaster/episode_04.png",
+            "scenes/quillmaster/episode_04.png",
+            "scenes/quillmaster/episode_04.png",
+            "scenes/quillmaster/episode_04.png"
+          ]
         },
         {
           "wave": 25,
@@ -833,7 +1001,14 @@
             "stats": {
               "attack_speed": 0.1
             }
-          }
+          },
+          "panel_art": [
+            "scenes/quillmaster/episode_05.png",
+            "scenes/quillmaster/episode_05.png",
+            "scenes/quillmaster/episode_05.png",
+            "scenes/quillmaster/episode_05.png",
+            "scenes/quillmaster/episode_05.png"
+          ]
         },
         {
           "wave": 30,
@@ -864,7 +1039,14 @@
               "Yetişmek için değil, duymak için yavaşlıyorum."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/quillmaster/episode_06.png",
+            "scenes/quillmaster/episode_06.png",
+            "scenes/quillmaster/episode_06.png",
+            "scenes/quillmaster/episode_06.png",
+            "scenes/quillmaster/episode_06.png"
+          ]
         },
         {
           "wave": 35,
@@ -895,7 +1077,14 @@
               "Bir sonraki kapıyı izin almadan kapatmayacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/quillmaster/episode_07.png",
+            "scenes/quillmaster/episode_07.png",
+            "scenes/quillmaster/episode_07.png",
+            "scenes/quillmaster/episode_07.png",
+            "scenes/quillmaster/episode_07.png"
+          ]
         },
         {
           "wave": 40,
@@ -926,7 +1115,14 @@
               "Boş kalmasına izin vereceğim."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/quillmaster/episode_08.png",
+            "scenes/quillmaster/episode_08.png",
+            "scenes/quillmaster/episode_08.png",
+            "scenes/quillmaster/episode_08.png",
+            "scenes/quillmaster/episode_08.png"
+          ]
         },
         {
           "wave": 45,
@@ -957,7 +1153,14 @@
               "Uydurulmuş bir cevabı istemiyorum."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/quillmaster/episode_09.png",
+            "scenes/quillmaster/episode_09.png",
+            "scenes/quillmaster/episode_09.png",
+            "scenes/quillmaster/episode_09.png",
+            "scenes/quillmaster/episode_09.png"
+          ]
         },
         {
           "wave": 50,
@@ -997,7 +1200,14 @@
             "stats": {
               "crit_chance": 0.04
             }
-          }
+          },
+          "panel_art": [
+            "scenes/quillmaster/episode_10.png",
+            "scenes/quillmaster/episode_10.png",
+            "scenes/quillmaster/episode_10.png",
+            "scenes/quillmaster/episode_10.png",
+            "scenes/quillmaster/episode_10.png"
+          ]
         },
         {
           "wave": 55,
@@ -1028,7 +1238,14 @@
               "Kalıbı saklayıp itirazı yanına koyacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/quillmaster/wave_055_panel_01.webp",
+            "panels_600/quillmaster/wave_055_panel_02.webp",
+            "panels_600/quillmaster/wave_055_panel_03.webp",
+            "panels_600/quillmaster/wave_055_panel_04.webp",
+            "panels_600/quillmaster/wave_055_panel_05.webp"
+          ]
         },
         {
           "wave": 60,
@@ -1059,7 +1276,14 @@
               "O zaman cümlesini tamamlamayacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/quillmaster/wave_060_panel_01.webp",
+            "panels_600/quillmaster/wave_060_panel_02.webp",
+            "panels_600/quillmaster/wave_060_panel_03.webp",
+            "panels_600/quillmaster/wave_060_panel_04.webp",
+            "panels_600/quillmaster/wave_060_panel_05.webp"
+          ]
         },
         {
           "wave": 65,
@@ -1090,7 +1314,14 @@
               "Yolunu düzeltmeyeceğim."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/quillmaster/wave_065_panel_01.webp",
+            "panels_600/quillmaster/wave_065_panel_02.webp",
+            "panels_600/quillmaster/wave_065_panel_03.webp",
+            "panels_600/quillmaster/wave_065_panel_04.webp",
+            "panels_600/quillmaster/wave_065_panel_05.webp"
+          ]
         },
         {
           "wave": 70,
@@ -1121,7 +1352,14 @@
               "Anıyı saklayıp bugünü açık bırakacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/quillmaster/wave_070_panel_01.webp",
+            "panels_600/quillmaster/wave_070_panel_02.webp",
+            "panels_600/quillmaster/wave_070_panel_03.webp",
+            "panels_600/quillmaster/wave_070_panel_04.webp",
+            "panels_600/quillmaster/wave_070_panel_05.webp"
+          ]
         },
         {
           "wave": 75,
@@ -1161,7 +1399,14 @@
             "stats": {
               "attack_speed": 0.08
             }
-          }
+          },
+          "panel_art": [
+            "panels_600/quillmaster/wave_075_panel_01.webp",
+            "panels_600/quillmaster/wave_075_panel_02.webp",
+            "panels_600/quillmaster/wave_075_panel_03.webp",
+            "panels_600/quillmaster/wave_075_panel_04.webp",
+            "panels_600/quillmaster/wave_075_panel_05.webp"
+          ]
         },
         {
           "wave": 80,
@@ -1192,7 +1437,14 @@
               "Zarfı saklayacağım; karar onda kalacak."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/quillmaster/wave_080_panel_01.webp",
+            "panels_600/quillmaster/wave_080_panel_02.webp",
+            "panels_600/quillmaster/wave_080_panel_03.webp",
+            "panels_600/quillmaster/wave_080_panel_04.webp",
+            "panels_600/quillmaster/wave_080_panel_05.webp"
+          ]
         },
         {
           "wave": 85,
@@ -1223,7 +1475,14 @@
               "Düzeni değil, iki imzayı koruyacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/quillmaster/wave_085_panel_01.webp",
+            "panels_600/quillmaster/wave_085_panel_02.webp",
+            "panels_600/quillmaster/wave_085_panel_03.webp",
+            "panels_600/quillmaster/wave_085_panel_04.webp",
+            "panels_600/quillmaster/wave_085_panel_05.webp"
+          ]
         },
         {
           "wave": 90,
@@ -1254,7 +1513,14 @@
               "Beklemek, sahip olmak değil."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/quillmaster/wave_090_panel_01.webp",
+            "panels_600/quillmaster/wave_090_panel_02.webp",
+            "panels_600/quillmaster/wave_090_panel_03.webp",
+            "panels_600/quillmaster/wave_090_panel_04.webp",
+            "panels_600/quillmaster/wave_090_panel_05.webp"
+          ]
         },
         {
           "wave": 95,
@@ -1285,7 +1551,14 @@
               "Yine de onun adına yazmayacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/quillmaster/wave_095_panel_01.webp",
+            "panels_600/quillmaster/wave_095_panel_02.webp",
+            "panels_600/quillmaster/wave_095_panel_03.webp",
+            "panels_600/quillmaster/wave_095_panel_04.webp",
+            "panels_600/quillmaster/wave_095_panel_05.webp"
+          ]
         },
         {
           "wave": 100,
@@ -1320,7 +1593,14 @@
             "type": "ending",
             "name": "Karakterin son kararı",
             "description": "Cevabı zorlamayan söz tamamdır."
-          }
+          },
+          "panel_art": [
+            "panels_600/quillmaster/wave_100_panel_01.webp",
+            "panels_600/quillmaster/wave_100_panel_02.webp",
+            "panels_600/quillmaster/wave_100_panel_03.webp",
+            "panels_600/quillmaster/wave_100_panel_04.webp",
+            "scenes/quillmaster/episode_20.png"
+          ]
         }
       ]
     },
@@ -1361,7 +1641,14 @@
             "type": "clue",
             "name": "Kazınmış Arma",
             "description": "Eski nöbet emrinin Blank Page tarafından değiştirildiğini gösterir."
-          }
+          },
+          "panel_art": [
+            "scenes/word_knight/episode_01.png",
+            "scenes/word_knight/episode_01.png",
+            "scenes/word_knight/episode_01.png",
+            "scenes/word_knight/episode_01.png",
+            "scenes/word_knight/episode_01.png"
+          ]
         },
         {
           "wave": 10,
@@ -1392,7 +1679,14 @@
               "Onların kararını sormadan nöbet tutmam."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_02.png",
+            "scenes/word_knight/episode_02.png",
+            "scenes/word_knight/episode_02.png",
+            "scenes/word_knight/episode_02.png",
+            "scenes/word_knight/episode_02.png"
+          ]
         },
         {
           "wave": 15,
@@ -1423,7 +1717,14 @@
               "Savunmamı sonra yapacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_03.png",
+            "scenes/word_knight/episode_03.png",
+            "scenes/word_knight/episode_03.png",
+            "scenes/word_knight/episode_03.png",
+            "scenes/word_knight/episode_03.png"
+          ]
         },
         {
           "wave": 20,
@@ -1454,7 +1755,14 @@
               "Güvenlik bahanemi değil, sonucunu taşıyacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_04.png",
+            "scenes/word_knight/episode_04.png",
+            "scenes/word_knight/episode_04.png",
+            "scenes/word_knight/episode_04.png",
+            "scenes/word_knight/episode_04.png"
+          ]
         },
         {
           "wave": 25,
@@ -1494,7 +1802,14 @@
             "stats": {
               "armor": 0.04
             }
-          }
+          },
+          "panel_art": [
+            "scenes/word_knight/episode_05.png",
+            "scenes/word_knight/episode_05.png",
+            "scenes/word_knight/episode_05.png",
+            "scenes/word_knight/episode_05.png",
+            "scenes/word_knight/episode_05.png"
+          ]
         },
         {
           "wave": 30,
@@ -1525,7 +1840,14 @@
               "Şüpheyi susturmak değil, doğru soruyu taşımak istiyorum."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_06.png",
+            "scenes/word_knight/episode_06.png",
+            "scenes/word_knight/episode_06.png",
+            "scenes/word_knight/episode_06.png",
+            "scenes/word_knight/episode_06.png"
+          ]
         },
         {
           "wave": 35,
@@ -1556,7 +1878,14 @@
               "İlk kez kimin suçlu olduğunu değil, kimin zarar gördüğünü soracağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_07.png",
+            "scenes/word_knight/episode_07.png",
+            "scenes/word_knight/episode_07.png",
+            "scenes/word_knight/episode_07.png",
+            "scenes/word_knight/episode_07.png"
+          ]
         },
         {
           "wave": 40,
@@ -1587,7 +1916,14 @@
               "Tanıklar konuşmadan doldurmayacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_08.png",
+            "scenes/word_knight/episode_08.png",
+            "scenes/word_knight/episode_08.png",
+            "scenes/word_knight/episode_08.png",
+            "scenes/word_knight/episode_08.png"
+          ]
         },
         {
           "wave": 45,
@@ -1618,7 +1954,14 @@
               "Birini silmeden kayda alacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_09.png",
+            "scenes/word_knight/episode_09.png",
+            "scenes/word_knight/episode_09.png",
+            "scenes/word_knight/episode_09.png",
+            "scenes/word_knight/episode_09.png"
+          ]
         },
         {
           "wave": 50,
@@ -1658,7 +2001,14 @@
             "stats": {
               "max_hp": 10
             }
-          }
+          },
+          "panel_art": [
+            "scenes/word_knight/episode_10.png",
+            "scenes/word_knight/episode_10.png",
+            "scenes/word_knight/episode_10.png",
+            "scenes/word_knight/episode_10.png",
+            "scenes/word_knight/episode_10.png"
+          ]
         },
         {
           "wave": 55,
@@ -1689,7 +2039,14 @@
               "İmzaları tek tek soracağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_11.png",
+            "scenes/word_knight/episode_11.png",
+            "scenes/word_knight/episode_11.png",
+            "scenes/word_knight/episode_11.png",
+            "scenes/word_knight/episode_11.png"
+          ]
         },
         {
           "wave": 60,
@@ -1720,7 +2077,14 @@
               "Parlaklık özür değil."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_12.png",
+            "scenes/word_knight/episode_12.png",
+            "scenes/word_knight/episode_12.png",
+            "scenes/word_knight/episode_12.png",
+            "scenes/word_knight/episode_12.png"
+          ]
         },
         {
           "wave": 65,
@@ -1751,7 +2115,14 @@
               "İnsanlara; duvara değil."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_13.png",
+            "scenes/word_knight/episode_13.png",
+            "scenes/word_knight/episode_13.png",
+            "scenes/word_knight/episode_13.png",
+            "scenes/word_knight/episode_13.png"
+          ]
         },
         {
           "wave": 70,
@@ -1782,7 +2153,14 @@
               "Güvenlik tek kişinin bakışına bağlı olmayacak."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_14.png",
+            "scenes/word_knight/episode_14.png",
+            "scenes/word_knight/episode_14.png",
+            "scenes/word_knight/episode_14.png",
+            "scenes/word_knight/episode_14.png"
+          ]
         },
         {
           "wave": 75,
@@ -1822,7 +2200,14 @@
             "stats": {
               "armor": 0.05
             }
-          }
+          },
+          "panel_art": [
+            "scenes/word_knight/episode_15.png",
+            "scenes/word_knight/episode_15.png",
+            "scenes/word_knight/episode_15.png",
+            "scenes/word_knight/episode_15.png",
+            "scenes/word_knight/episode_15.png"
+          ]
         },
         {
           "wave": 80,
@@ -1853,7 +2238,14 @@
               "Kapıyı tutmak yerine yolu tutacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_16.png",
+            "scenes/word_knight/episode_16.png",
+            "scenes/word_knight/episode_16.png",
+            "scenes/word_knight/episode_16.png",
+            "scenes/word_knight/episode_16.png"
+          ]
         },
         {
           "wave": 85,
@@ -1884,7 +2276,14 @@
               "Bekleyeceğim; bunu görev diye dayatmayacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_17.png",
+            "scenes/word_knight/episode_17.png",
+            "scenes/word_knight/episode_17.png",
+            "scenes/word_knight/episode_17.png",
+            "scenes/word_knight/episode_17.png"
+          ]
         },
         {
           "wave": 90,
@@ -1915,7 +2314,14 @@
               "Yeni kural, değiştirilebilme hakkı içerecek."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_18.png",
+            "scenes/word_knight/episode_18.png",
+            "scenes/word_knight/episode_18.png",
+            "scenes/word_knight/episode_18.png",
+            "scenes/word_knight/episode_18.png"
+          ]
         },
         {
           "wave": 95,
@@ -1946,7 +2352,14 @@
               "Kimin tuttuğu değil, neyi koruduğu önemli."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/word_knight/episode_19.png",
+            "scenes/word_knight/episode_19.png",
+            "scenes/word_knight/episode_19.png",
+            "scenes/word_knight/episode_19.png",
+            "scenes/word_knight/episode_19.png"
+          ]
         },
         {
           "wave": 100,
@@ -1981,7 +2394,14 @@
             "type": "ending",
             "name": "Karakterin son kararı",
             "description": "Güvenlik, seçme hakkının yerini alamaz."
-          }
+          },
+          "panel_art": [
+            "scenes/word_knight/episode_20.png",
+            "scenes/word_knight/episode_20.png",
+            "scenes/word_knight/episode_20.png",
+            "scenes/word_knight/episode_20.png",
+            "scenes/word_knight/episode_20.png"
+          ]
         }
       ]
     },
@@ -2022,7 +2442,14 @@
             "type": "clue",
             "name": "Kül Bekçisi anısı",
             "description": "İlk kez alınan hasardan sonra kısa süreli ateş direnci."
-          }
+          },
+          "panel_art": [
+            "panels_600/rune_sorceress/wave_005_panel_01.webp",
+            "panels_600/rune_sorceress/wave_005_panel_02.webp",
+            "panels_600/rune_sorceress/wave_005_panel_03.webp",
+            "panels_600/rune_sorceress/wave_005_panel_04.webp",
+            "panels_600/rune_sorceress/wave_005_panel_05.webp"
+          ]
         },
         {
           "wave": 10,
@@ -2053,7 +2480,14 @@
               "Annemin sesiyle onun iradesini karıştırmayacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/rune_sorceress/wave_010_panel_01.webp",
+            "panels_600/rune_sorceress/wave_010_panel_02.webp",
+            "panels_600/rune_sorceress/wave_010_panel_03.webp",
+            "panels_600/rune_sorceress/wave_010_panel_04.webp",
+            "panels_600/rune_sorceress/wave_010_panel_05.webp"
+          ]
         },
         {
           "wave": 15,
@@ -2084,7 +2518,14 @@
               "Belki kırmak, gitmek için gereken seçimdi."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/rune_sorceress/wave_015_panel_01.webp",
+            "panels_600/rune_sorceress/wave_015_panel_02.webp",
+            "panels_600/rune_sorceress/wave_015_panel_03.webp",
+            "panels_600/rune_sorceress/wave_015_panel_04.webp",
+            "panels_600/rune_sorceress/wave_015_panel_05.webp"
+          ]
         },
         {
           "wave": 20,
@@ -2115,7 +2556,14 @@
               "İlk adım benim."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/rune_sorceress/wave_020_panel_01.webp",
+            "panels_600/rune_sorceress/wave_020_panel_02.webp",
+            "panels_600/rune_sorceress/wave_020_panel_03.webp",
+            "panels_600/rune_sorceress/wave_020_panel_04.webp",
+            "panels_600/rune_sorceress/wave_020_panel_05.webp"
+          ]
         },
         {
           "wave": 25,
@@ -2155,7 +2603,14 @@
             "stats": {
               "damage": 0.06
             }
-          }
+          },
+          "panel_art": [
+            "panels_600/rune_sorceress/wave_025_panel_01.webp",
+            "panels_600/rune_sorceress/wave_025_panel_02.webp",
+            "panels_600/rune_sorceress/wave_025_panel_03.webp",
+            "panels_600/rune_sorceress/wave_025_panel_04.webp",
+            "panels_600/rune_sorceress/wave_025_panel_05.webp"
+          ]
         },
         {
           "wave": 30,
@@ -2186,7 +2641,14 @@
               "Beklemeyi de öğreneceğim."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/rune_sorceress/wave_030_panel_01.webp",
+            "panels_600/rune_sorceress/wave_030_panel_02.webp",
+            "panels_600/rune_sorceress/wave_030_panel_03.webp",
+            "panels_600/rune_sorceress/wave_030_panel_04.webp",
+            "panels_600/rune_sorceress/wave_030_panel_05.webp"
+          ]
         },
         {
           "wave": 35,
@@ -2217,7 +2679,14 @@
               "Düzeltme değil, tanıklık istiyorum."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/rune_sorceress/wave_035_panel_01.webp",
+            "panels_600/rune_sorceress/wave_035_panel_02.webp",
+            "panels_600/rune_sorceress/wave_035_panel_03.webp",
+            "panels_600/rune_sorceress/wave_035_panel_04.webp",
+            "panels_600/rune_sorceress/wave_035_panel_05.webp"
+          ]
         },
         {
           "wave": 40,
@@ -2248,7 +2717,14 @@
               "Onun anısını tek mezara kapatmayacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/rune_sorceress/wave_040_panel_01.webp",
+            "panels_600/rune_sorceress/wave_040_panel_02.webp",
+            "panels_600/rune_sorceress/wave_040_panel_03.webp",
+            "panels_600/rune_sorceress/wave_040_panel_04.webp",
+            "panels_600/rune_sorceress/wave_040_panel_05.webp"
+          ]
         },
         {
           "wave": 45,
@@ -2279,7 +2755,14 @@
               "Seni özleyebilirim; yine de bırakacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/rune_sorceress/wave_045_panel_01.webp",
+            "panels_600/rune_sorceress/wave_045_panel_02.webp",
+            "scenes/rune_sorceress/episode_09.png",
+            "panels_600/rune_sorceress/wave_045_panel_04.webp",
+            "scenes/rune_sorceress/episode_09.png"
+          ]
         },
         {
           "wave": 50,
@@ -2319,7 +2802,14 @@
             "stats": {
               "gadget_cooldown_mult": -0.07
             }
-          }
+          },
+          "panel_art": [
+            "scenes/rune_sorceress/episode_10.png",
+            "scenes/rune_sorceress/episode_10.png",
+            "scenes/rune_sorceress/episode_10.png",
+            "scenes/rune_sorceress/episode_10.png",
+            "scenes/rune_sorceress/episode_10.png"
+          ]
         },
         {
           "wave": 55,
@@ -2350,7 +2840,14 @@
               "Bu kusuru da anımda kalacak."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/rune_sorceress/episode_11.png",
+            "scenes/rune_sorceress/episode_11.png",
+            "scenes/rune_sorceress/episode_11.png",
+            "scenes/rune_sorceress/episode_11.png",
+            "scenes/rune_sorceress/episode_11.png"
+          ]
         },
         {
           "wave": 60,
@@ -2381,7 +2878,14 @@
               "Ve bana bıraktığın sınırı eleştirebilirim."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/rune_sorceress/episode_12.png",
+            "scenes/rune_sorceress/episode_12.png",
+            "scenes/rune_sorceress/episode_12.png",
+            "scenes/rune_sorceress/episode_12.png",
+            "scenes/rune_sorceress/episode_12.png"
+          ]
         },
         {
           "wave": 65,
@@ -2412,7 +2916,14 @@
               "Kendi yolumu bulmak zorundayım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/rune_sorceress/episode_13.png",
+            "scenes/rune_sorceress/episode_13.png",
+            "scenes/rune_sorceress/episode_13.png",
+            "scenes/rune_sorceress/episode_13.png",
+            "scenes/rune_sorceress/episode_13.png"
+          ]
         },
         {
           "wave": 70,
@@ -2443,7 +2954,14 @@
               "Seni değil, seçim hakkını savunacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/rune_sorceress/episode_14.png",
+            "scenes/rune_sorceress/episode_14.png",
+            "scenes/rune_sorceress/episode_14.png",
+            "scenes/rune_sorceress/episode_14.png",
+            "scenes/rune_sorceress/episode_14.png"
+          ]
         },
         {
           "wave": 75,
@@ -2483,7 +3001,14 @@
             "stats": {
               "crit_chance": 0.04
             }
-          }
+          },
+          "panel_art": [
+            "scenes/rune_sorceress/episode_15.png",
+            "scenes/rune_sorceress/episode_15.png",
+            "scenes/rune_sorceress/episode_15.png",
+            "scenes/rune_sorceress/episode_15.png",
+            "scenes/rune_sorceress/episode_15.png"
+          ]
         },
         {
           "wave": 80,
@@ -2514,7 +3039,14 @@
               "Unutmakla affetmek ayrı seçimler."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/rune_sorceress/episode_16.png",
+            "scenes/rune_sorceress/episode_16.png",
+            "scenes/rune_sorceress/episode_16.png",
+            "scenes/rune_sorceress/episode_16.png",
+            "scenes/rune_sorceress/episode_16.png"
+          ]
         },
         {
           "wave": 85,
@@ -2545,7 +3077,14 @@
               "Sessizlik, iyileşmek değildir."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/rune_sorceress/episode_17.png",
+            "scenes/rune_sorceress/episode_17.png",
+            "scenes/rune_sorceress/episode_17.png",
+            "scenes/rune_sorceress/episode_17.png",
+            "scenes/rune_sorceress/episode_17.png"
+          ]
         },
         {
           "wave": 90,
@@ -2576,7 +3115,14 @@
               "Birlikte, ama ayrı ayrı geçiyoruz."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/rune_sorceress/episode_18.png",
+            "scenes/rune_sorceress/episode_18.png",
+            "scenes/rune_sorceress/episode_18.png",
+            "scenes/rune_sorceress/episode_18.png",
+            "scenes/rune_sorceress/episode_18.png"
+          ]
         },
         {
           "wave": 95,
@@ -2607,7 +3153,14 @@
               "Bu kez seçimi birlikte konuşuyoruz."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/rune_sorceress/episode_19.png",
+            "scenes/rune_sorceress/episode_19.png",
+            "scenes/rune_sorceress/episode_19.png",
+            "scenes/rune_sorceress/episode_19.png",
+            "scenes/rune_sorceress/episode_19.png"
+          ]
         },
         {
           "wave": 100,
@@ -2642,7 +3195,14 @@
             "type": "ending",
             "name": "Karakterin son kararı",
             "description": "Ve ben, kendim olarak kalıyorum."
-          }
+          },
+          "panel_art": [
+            "scenes/rune_sorceress/episode_20.png",
+            "scenes/rune_sorceress/episode_20.png",
+            "scenes/rune_sorceress/episode_20.png",
+            "scenes/rune_sorceress/episode_20.png",
+            "scenes/rune_sorceress/episode_20.png"
+          ]
         }
       ]
     },
@@ -2683,7 +3243,14 @@
             "type": "clue",
             "name": "Mürekkep Sülüğü anısı",
             "description": "İksir toplama menzilini run boyunca artırır."
-          }
+          },
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_01.png",
+            "scenes/lexicon_alchemist/episode_01.png",
+            "scenes/lexicon_alchemist/episode_01.png",
+            "scenes/lexicon_alchemist/episode_01.png",
+            "scenes/lexicon_alchemist/episode_01.png"
+          ]
         },
         {
           "wave": 10,
@@ -2714,7 +3281,14 @@
               "Bunu duyunca gülüyorduk."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_02.png",
+            "scenes/lexicon_alchemist/episode_02.png",
+            "scenes/lexicon_alchemist/episode_02.png",
+            "scenes/lexicon_alchemist/episode_02.png",
+            "scenes/lexicon_alchemist/episode_02.png"
+          ]
         },
         {
           "wave": 15,
@@ -2745,7 +3319,14 @@
               "Soracağım; cevap gelmezse zorlamayacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_03.png",
+            "scenes/lexicon_alchemist/episode_03.png",
+            "scenes/lexicon_alchemist/episode_03.png",
+            "scenes/lexicon_alchemist/episode_03.png",
+            "scenes/lexicon_alchemist/episode_03.png"
+          ]
         },
         {
           "wave": 20,
@@ -2776,7 +3357,14 @@
               "Bu kez kimin emeği olduğunu kaydedeceğim."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_04.png",
+            "scenes/lexicon_alchemist/episode_04.png",
+            "scenes/lexicon_alchemist/episode_04.png",
+            "scenes/lexicon_alchemist/episode_04.png",
+            "scenes/lexicon_alchemist/episode_04.png"
+          ]
         },
         {
           "wave": 25,
@@ -2816,7 +3404,14 @@
             "stats": {
               "ink_mult": 0.1
             }
-          }
+          },
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_05.png",
+            "scenes/lexicon_alchemist/episode_05.png",
+            "scenes/lexicon_alchemist/episode_05.png",
+            "scenes/lexicon_alchemist/episode_05.png",
+            "scenes/lexicon_alchemist/episode_05.png"
+          ]
         },
         {
           "wave": 30,
@@ -2847,7 +3442,14 @@
               "Bunu şimdi kabul ediyorum."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_06.png",
+            "scenes/lexicon_alchemist/episode_06.png",
+            "scenes/lexicon_alchemist/episode_06.png",
+            "scenes/lexicon_alchemist/episode_06.png",
+            "scenes/lexicon_alchemist/episode_06.png"
+          ]
         },
         {
           "wave": 35,
@@ -2878,7 +3480,14 @@
               "Bu söz kime ait, onu bulacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_07.png",
+            "scenes/lexicon_alchemist/episode_07.png",
+            "scenes/lexicon_alchemist/episode_07.png",
+            "scenes/lexicon_alchemist/episode_07.png",
+            "scenes/lexicon_alchemist/episode_07.png"
+          ]
         },
         {
           "wave": 40,
@@ -2909,7 +3518,14 @@
               "İzni olmayan hiçbir şeyi kullanmayacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_08.png",
+            "scenes/lexicon_alchemist/episode_08.png",
+            "scenes/lexicon_alchemist/episode_08.png",
+            "scenes/lexicon_alchemist/episode_08.png",
+            "scenes/lexicon_alchemist/episode_08.png"
+          ]
         },
         {
           "wave": 45,
@@ -2940,7 +3556,14 @@
               "Hiçbirini içmeyeceğim."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_09.png",
+            "scenes/lexicon_alchemist/episode_09.png",
+            "scenes/lexicon_alchemist/episode_09.png",
+            "scenes/lexicon_alchemist/episode_09.png",
+            "scenes/lexicon_alchemist/episode_09.png"
+          ]
         },
         {
           "wave": 50,
@@ -2980,7 +3603,14 @@
             "stats": {
               "max_hp": 8
             }
-          }
+          },
+          "panel_art": [
+            "scenes/lexicon_alchemist/episode_10.png",
+            "scenes/lexicon_alchemist/episode_10.png",
+            "scenes/lexicon_alchemist/episode_10.png",
+            "scenes/lexicon_alchemist/episode_10.png",
+            "scenes/lexicon_alchemist/episode_10.png"
+          ]
         },
         {
           "wave": 55,
@@ -3011,7 +3641,14 @@
               "Devamını kendi hayatımla yazacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_055_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_055_panel_02.webp",
+            "panels_600/lexicon_alchemist/wave_055_panel_03.webp",
+            "panels_600/lexicon_alchemist/wave_055_panel_04.webp",
+            "panels_600/lexicon_alchemist/wave_055_panel_05.webp"
+          ]
         },
         {
           "wave": 60,
@@ -3042,7 +3679,14 @@
               "Bu kez sordum ve durduruyorum."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_060_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_060_panel_02.webp",
+            "panels_600/lexicon_alchemist/wave_060_panel_03.webp",
+            "panels_600/lexicon_alchemist/wave_060_panel_04.webp",
+            "panels_600/lexicon_alchemist/wave_060_panel_05.webp"
+          ]
         },
         {
           "wave": 65,
@@ -3073,7 +3717,14 @@
               "Eksik kalmasına izin veriyorum."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_065_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_065_panel_02.webp",
+            "panels_600/lexicon_alchemist/wave_065_panel_03.webp",
+            "panels_600/lexicon_alchemist/wave_065_panel_04.webp",
+            "panels_600/lexicon_alchemist/wave_065_panel_05.webp"
+          ]
         },
         {
           "wave": 70,
@@ -3104,7 +3755,14 @@
               "Tutmayacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_070_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_070_panel_02.webp",
+            "panels_600/lexicon_alchemist/wave_070_panel_03.webp",
+            "panels_600/lexicon_alchemist/wave_070_panel_04.webp",
+            "panels_600/lexicon_alchemist/wave_070_panel_05.webp"
+          ]
         },
         {
           "wave": 75,
@@ -3144,7 +3802,14 @@
             "stats": {
               "damage": 0.05
             }
-          }
+          },
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_075_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_075_panel_02.webp",
+            "panels_600/lexicon_alchemist/wave_075_panel_03.webp",
+            "panels_600/lexicon_alchemist/wave_075_panel_04.webp",
+            "panels_600/lexicon_alchemist/wave_075_panel_05.webp"
+          ]
         },
         {
           "wave": 80,
@@ -3175,7 +3840,14 @@
               "Sesini özlemek, onu tutmamı gerektirmiyor."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_080_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_080_panel_02.webp",
+            "panels_600/lexicon_alchemist/wave_080_panel_03.webp",
+            "panels_600/lexicon_alchemist/wave_080_panel_04.webp",
+            "panels_600/lexicon_alchemist/wave_080_panel_05.webp"
+          ]
         },
         {
           "wave": 85,
@@ -3206,7 +3878,14 @@
               "Ölçüyü sınır yapacağım; hüküm değil."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_085_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_085_panel_02.webp",
+            "panels_600/lexicon_alchemist/wave_085_panel_03.webp",
+            "panels_600/lexicon_alchemist/wave_085_panel_04.webp",
+            "panels_600/lexicon_alchemist/wave_085_panel_05.webp"
+          ]
         },
         {
           "wave": 90,
@@ -3237,7 +3916,14 @@
               "Yazacağım; itirazını da bırakacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_090_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_090_panel_02.webp",
+            "panels_600/lexicon_alchemist/wave_090_panel_03.webp",
+            "panels_600/lexicon_alchemist/wave_090_panel_04.webp",
+            "panels_600/lexicon_alchemist/wave_090_panel_05.webp"
+          ]
         },
         {
           "wave": 95,
@@ -3268,7 +3954,14 @@
               "Seni seviyorum; bırakıyorum."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_095_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_095_panel_02.webp",
+            "panels_600/lexicon_alchemist/wave_095_panel_03.webp",
+            "panels_600/lexicon_alchemist/wave_095_panel_04.webp",
+            "panels_600/lexicon_alchemist/wave_095_panel_05.webp"
+          ]
         },
         {
           "wave": 100,
@@ -3303,7 +3996,14 @@
             "type": "ending",
             "name": "Karakterin son kararı",
             "description": "Seni seviyorum; bırakıyorum."
-          }
+          },
+          "panel_art": [
+            "panels_600/lexicon_alchemist/wave_100_panel_01.webp",
+            "panels_600/lexicon_alchemist/wave_100_panel_02.webp",
+            "scenes/lexicon_alchemist/episode_20.png",
+            "scenes/lexicon_alchemist/episode_20.png",
+            "scenes/lexicon_alchemist/episode_20.png"
+          ]
         }
       ]
     },
@@ -3344,7 +4044,14 @@
             "type": "clue",
             "name": "Mum Bekçisi anısı",
             "description": "Gölge saldırıları run boyunca kısa süreli görünmezlik verir."
-          }
+          },
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_01.png",
+            "scenes/shadow_lexicographer/episode_01.png",
+            "scenes/shadow_lexicographer/episode_01.png",
+            "scenes/shadow_lexicographer/episode_01.png",
+            "scenes/shadow_lexicographer/episode_01.png"
+          ]
         },
         {
           "wave": 10,
@@ -3375,7 +4082,14 @@
               "Öyleyse ayrı satır bulacağız."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_02.png",
+            "scenes/shadow_lexicographer/episode_02.png",
+            "scenes/shadow_lexicographer/episode_02.png",
+            "scenes/shadow_lexicographer/episode_02.png",
+            "scenes/shadow_lexicographer/episode_02.png"
+          ]
         },
         {
           "wave": 15,
@@ -3406,7 +4120,14 @@
               "Önce ne olduğunu soracağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_03.png",
+            "scenes/shadow_lexicographer/episode_03.png",
+            "scenes/shadow_lexicographer/episode_03.png",
+            "scenes/shadow_lexicographer/episode_03.png",
+            "scenes/shadow_lexicographer/episode_03.png"
+          ]
         },
         {
           "wave": 20,
@@ -3437,7 +4158,14 @@
               "Önce soracağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_04.png",
+            "scenes/shadow_lexicographer/episode_04.png",
+            "scenes/shadow_lexicographer/episode_04.png",
+            "scenes/shadow_lexicographer/episode_04.png",
+            "scenes/shadow_lexicographer/episode_04.png"
+          ]
         },
         {
           "wave": 25,
@@ -3477,7 +4205,14 @@
             "stats": {
               "move_speed": 10
             }
-          }
+          },
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_05.png",
+            "scenes/shadow_lexicographer/episode_05.png",
+            "scenes/shadow_lexicographer/episode_05.png",
+            "scenes/shadow_lexicographer/episode_05.png",
+            "scenes/shadow_lexicographer/episode_05.png"
+          ]
         },
         {
           "wave": 30,
@@ -3508,7 +4243,14 @@
               "İki kayıt da sorgulanabilir."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_06.png",
+            "scenes/shadow_lexicographer/episode_06.png",
+            "scenes/shadow_lexicographer/episode_06.png",
+            "scenes/shadow_lexicographer/episode_06.png",
+            "scenes/shadow_lexicographer/episode_06.png"
+          ]
         },
         {
           "wave": 35,
@@ -3539,7 +4281,14 @@
               "Önce dinleyeceğim, sonra karar vereceğim."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_07.png",
+            "scenes/shadow_lexicographer/episode_07.png",
+            "scenes/shadow_lexicographer/episode_07.png",
+            "scenes/shadow_lexicographer/episode_07.png",
+            "scenes/shadow_lexicographer/episode_07.png"
+          ]
         },
         {
           "wave": 40,
@@ -3570,7 +4319,14 @@
               "Ayrı bir satır açıyorum."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_08.png",
+            "scenes/shadow_lexicographer/episode_08.png",
+            "scenes/shadow_lexicographer/episode_08.png",
+            "scenes/shadow_lexicographer/episode_08.png",
+            "scenes/shadow_lexicographer/episode_08.png"
+          ]
         },
         {
           "wave": 45,
@@ -3601,7 +4357,14 @@
               "Seni ilk kez dinliyorum."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_09.png",
+            "scenes/shadow_lexicographer/episode_09.png",
+            "scenes/shadow_lexicographer/episode_09.png",
+            "scenes/shadow_lexicographer/episode_09.png",
+            "scenes/shadow_lexicographer/episode_09.png"
+          ]
         },
         {
           "wave": 50,
@@ -3641,7 +4404,14 @@
             "stats": {
               "crit_chance": 0.06
             }
-          }
+          },
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_10.png",
+            "scenes/shadow_lexicographer/episode_10.png",
+            "scenes/shadow_lexicographer/episode_10.png",
+            "scenes/shadow_lexicographer/episode_10.png",
+            "scenes/shadow_lexicographer/episode_10.png"
+          ]
         },
         {
           "wave": 55,
@@ -3672,7 +4442,14 @@
               "Bu kez okuyacağım, uygulamayacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_11.png",
+            "scenes/shadow_lexicographer/episode_11.png",
+            "scenes/shadow_lexicographer/episode_11.png",
+            "scenes/shadow_lexicographer/episode_11.png",
+            "scenes/shadow_lexicographer/episode_11.png"
+          ]
         },
         {
           "wave": 60,
@@ -3703,7 +4480,14 @@
               "Bekliyorum."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_12.png",
+            "scenes/shadow_lexicographer/episode_12.png",
+            "scenes/shadow_lexicographer/episode_12.png",
+            "scenes/shadow_lexicographer/episode_12.png",
+            "scenes/shadow_lexicographer/episode_12.png"
+          ]
         },
         {
           "wave": 65,
@@ -3734,7 +4518,14 @@
               "Payı eşit olmak zorunda değil."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_13.png",
+            "scenes/shadow_lexicographer/episode_13.png",
+            "scenes/shadow_lexicographer/episode_13.png",
+            "scenes/shadow_lexicographer/episode_13.png",
+            "scenes/shadow_lexicographer/episode_13.png"
+          ]
         },
         {
           "wave": 70,
@@ -3765,7 +4556,14 @@
               "Bu kez söz hakkı sende."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_14.png",
+            "scenes/shadow_lexicographer/episode_14.png",
+            "scenes/shadow_lexicographer/episode_14.png",
+            "scenes/shadow_lexicographer/episode_14.png",
+            "scenes/shadow_lexicographer/episode_14.png"
+          ]
         },
         {
           "wave": 75,
@@ -3805,7 +4603,14 @@
             "stats": {
               "gadget_cooldown_mult": -0.06
             }
-          }
+          },
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_15.png",
+            "scenes/shadow_lexicographer/episode_15.png",
+            "scenes/shadow_lexicographer/episode_15.png",
+            "scenes/shadow_lexicographer/episode_15.png",
+            "scenes/shadow_lexicographer/episode_15.png"
+          ]
         },
         {
           "wave": 80,
@@ -3836,7 +4641,14 @@
               "Seçtiğin adı kullanacağım."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_16.png",
+            "scenes/shadow_lexicographer/episode_16.png",
+            "scenes/shadow_lexicographer/episode_16.png",
+            "scenes/shadow_lexicographer/episode_16.png",
+            "scenes/shadow_lexicographer/episode_16.png"
+          ]
         },
         {
           "wave": 85,
@@ -3867,7 +4679,14 @@
               "Çatışma, silinmekten daha dürüst."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_17.png",
+            "scenes/shadow_lexicographer/episode_17.png",
+            "scenes/shadow_lexicographer/episode_17.png",
+            "scenes/shadow_lexicographer/episode_17.png",
+            "scenes/shadow_lexicographer/episode_17.png"
+          ]
         },
         {
           "wave": 90,
@@ -3898,7 +4717,14 @@
               "Yan yana; üst üste değil."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_18.png",
+            "scenes/shadow_lexicographer/episode_18.png",
+            "scenes/shadow_lexicographer/episode_18.png",
+            "scenes/shadow_lexicographer/episode_18.png",
+            "scenes/shadow_lexicographer/episode_18.png"
+          ]
         },
         {
           "wave": 95,
@@ -3929,7 +4755,14 @@
               "Bu kez seçim benim."
             ]
           ],
-          "boss_reward": null
+          "boss_reward": null,
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_19.png",
+            "scenes/shadow_lexicographer/episode_19.png",
+            "scenes/shadow_lexicographer/episode_19.png",
+            "scenes/shadow_lexicographer/episode_19.png",
+            "scenes/shadow_lexicographer/episode_19.png"
+          ]
         },
         {
           "wave": 100,
@@ -3964,7 +4797,14 @@
             "type": "ending",
             "name": "Karakterin son kararı",
             "description": "Üç imza, ilk kez aynı sayfada durdu."
-          }
+          },
+          "panel_art": [
+            "scenes/shadow_lexicographer/episode_20.png",
+            "scenes/shadow_lexicographer/episode_20.png",
+            "scenes/shadow_lexicographer/episode_20.png",
+            "scenes/shadow_lexicographer/episode_20.png",
+            "scenes/shadow_lexicographer/episode_20.png"
+          ]
         }
       ]
     }

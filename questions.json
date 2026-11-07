@@ -1,223 +1,343 @@
 [
   {
-    "id": "q_a1_01",
-    "word": "Fast",
-    "type": "Adjective",
-    "level": "A1",
-    "question_type": "meaning",
-    "stat": "move_speed",
-    "value": 30.0,
-    "cost": 6,
-    "description": "+30 Hareket Hızı",
-    "question": "'Fast' kelimesinin Türkçe karşılığı hangisidir?",
+    "id": "q_b1_39",
+    "word": "By means of",
+    "type": "Collocation",
+    "level": "B2",
+    "question_type": "collocation",
+    "stat": "pierce",
+    "value": 1.0,
+    "cost": 14,
+    "description": "+1 Delme",
+    "question": "'By means of' ifadesinin anlamı nedir?",
     "options": [
-      "Hızlı",
-      "Yavaş",
-      "Zor",
-      "Sessiz"
+      "... vasıtasıyla / yoluyla",
+      "olmadan",
+      "yerine",
+      "aksine"
     ],
     "correct_index": 0,
-    "example": "He runs very fast to dodge incoming enemy attacks."
+    "example": "Knowledge is conveyed by means of clear and concise prose."
   },
   {
-    "id": "q_a1_02",
-    "word": "Strong",
-    "type": "Adjective",
-    "level": "A1",
-    "question_type": "meaning",
-    "stat": "damage",
+    "id": "q_c1_45",
+    "word": "Fall short of",
+    "type": "Idiom",
+    "level": "C1",
+    "question_type": "idiom",
+    "stat": "armor",
     "value": 0.15,
-    "cost": 8,
-    "description": "+%15 Mermi Hasarı",
-    "question": "'Strong' kelimesinin Türkçe anlamı nedir?",
+    "cost": 12,
+    "description": "+%15 Zırh",
+    "question": "'Fall short of' kalıbının anlamı nedir?",
     "options": [
-      "Zayıf",
-      "Güçlü / Kuvvetli",
-      "Huzurlu",
-      "Karanlık"
+      "Boyu kısa kalmak",
+      "Düşmek",
+      "Aşmak",
+      "Beklentiyi karşılayamamak / Gerisinde kalmak"
     ],
-    "correct_index": 1,
-    "example": "Inky became strong enough to banish the slime horde."
+    "correct_index": 3,
+    "example": "The enemy's attack fell short of penetrating the Lexicon Aegis."
   },
   {
-    "id": "q_a1_03",
-    "word": "Heal",
-    "type": "Verb",
-    "level": "A1",
-    "question_type": "meaning",
-    "stat": "heal",
-    "value": 35.0,
-    "cost": 10,
-    "description": "+35 Can Yenile",
-    "question": "'Heal' fiilinin Türkçe anlamı hangisidir?",
-    "options": [
-      "Yaralamak",
-      "İyileştirmek / Şifa Bulmak",
-      "Kaçmak",
-      "Unutmak"
-    ],
-    "correct_index": 1,
-    "example": "The ancient scroll helped heal the wounded scholar."
-  },
-  {
-    "id": "q_a1_04",
-    "word": "Shield",
-    "type": "Noun",
-    "level": "A1",
-    "question_type": "meaning",
-    "stat": "armor",
-    "value": 0.12,
-    "cost": 9,
-    "description": "+%12 Hasar Direnci (Zırh)",
-    "question": "'Shield' sözcüğü Türkçede ne anlama gelir?",
-    "options": [
-      "Kalkan / Koruma",
-      "Kılıç",
-      "Ok",
-      "Miğfer"
-    ],
-    "correct_index": 0,
-    "example": "Use your lexicon shield to deflect enemy bullets."
-  },
-  {
-    "id": "q_a1_05",
-    "word": "Brave",
+    "id": "q_c1_24",
+    "word": "Fastidious",
     "type": "Adjective",
-    "level": "A1",
-    "question_type": "antonym",
+    "level": "C1",
+    "question_type": "meaning",
     "stat": "damage",
-    "value": 0.12,
-    "cost": 7,
-    "description": "+%12 Hasar",
-    "question": "'Brave' sıfatının zıt anlamlısı (antonym) hangisidir?",
+    "value": 0.22,
+    "cost": 13,
+    "description": "+%22 Hasar",
+    "question": "'Fastidious' sıfatı neyi ifade eder?",
     "options": [
-      "Fearful / Cowardly (Korkak)",
-      "Heroic",
-      "Bold",
-      "Courageous"
-    ],
-    "correct_index": 0,
-    "example": "A brave guardian never retreats before difficult questions."
-  },
-  {
-    "id": "q_a1_06",
-    "word": "Cautious",
-    "type": "Adjective",
-    "level": "A2",
-    "question_type": "meaning",
-    "stat": "armor",
-    "value": 0.1,
-    "cost": 8,
-    "description": "+%10 Zırh",
-    "question": "'Cautious' sözcüğü neyi ifade eder?",
-    "options": [
-      "Aceleci",
-      "Dikkatli / Tedbirli",
-      "Öfkeli",
+      "Pasaklı",
+      "Aşırı titiz / Zor beğenen / Müşkülpesent",
+      "Uysal",
       "Cömert"
     ],
     "correct_index": 1,
-    "example": "Be cautious when approaching exploding punctuation mines."
+    "example": "Fastidious scholars detect typos where others see correct syntax."
   },
   {
-    "id": "q_a1_07",
-    "word": "Receive",
-    "type": "Verb",
-    "level": "A2",
-    "question_type": "spelling",
-    "stat": "pickup_radius",
-    "value": 45.0,
-    "cost": 8,
-    "description": "+45 Mürekkep Toplama Menzili",
-    "question": "Hangisinin yazımı (spelling) doğrudur?",
-    "options": [
-      "Recieve",
-      "Receive",
-      "Receeve",
-      "Receve"
-    ],
-    "correct_index": 1,
-    "example": "You receive precious ink drops from defeated typos."
-  },
-  {
-    "id": "q_a1_08",
-    "word": "Separate",
+    "id": "lex-171",
+    "word": "Indeterminate",
     "type": "Adjective",
-    "level": "A2",
-    "question_type": "spelling",
-    "stat": "projectile_count",
-    "value": 1.0,
-    "cost": 15,
-    "description": "+1 İlave Mermi",
-    "question": "'Ayrı / Ayrılmış' anlamına gelen kelimenin doğru yazılışı hangisidir?",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "armor",
+    "value": 0.07,
+    "cost": 13,
+    "description": "+0.07 armor",
+    "question": "'Indeterminate' ifadesi ne anlatır?",
     "options": [
-      "Seperate",
-      "Separate",
-      "Sepparate",
-      "Separite"
+      "Tamamen güvenli",
+      "Kolayca ölçülebilen",
+      "Eski ama değerli",
+      "Birden fazla yoruma açık"
     ],
-    "correct_index": 1,
-    "example": "Keep grammar and vocabulary in separate study files."
+    "correct_index": 3,
+    "example": "The inscription was ambiguous, so we delayed our choice."
   },
   {
-    "id": "q_a1_09",
-    "word": "Tomorrow",
-    "type": "Noun",
-    "level": "A1",
-    "question_type": "spelling",
-    "stat": "move_speed",
-    "value": 25.0,
-    "cost": 6,
-    "description": "+25 Hız",
-    "question": "Hangisinin yazımı doğrudur?",
-    "options": [
-      "Tomorow",
-      "Tomorrow",
-      "Tommorow",
-      "Tommorro"
-    ],
-    "correct_index": 1,
-    "example": "Tomorrow is another day to expand your vocabulary."
-  },
-  {
-    "id": "q_a1_10",
-    "word": "Until",
-    "type": "Preposition",
-    "level": "A1",
-    "question_type": "spelling",
-    "stat": "attack_speed",
-    "value": 0.15,
-    "cost": 7,
-    "description": "+%15 Saldırı Hızı",
-    "question": "'-e kadar' anlamına gelen kelimenin doğru yazılışı hangisidir?",
-    "options": [
-      "Untill",
-      "Until",
-      "Untile",
-      "Unteel"
-    ],
-    "correct_index": 1,
-    "example": "Fight until the 100th wave is conquered!"
-  },
-  {
-    "id": "q_a1_11",
-    "word": "Ancient",
+    "id": "q_b1_46",
+    "word": "Novel",
     "type": "Adjective",
-    "level": "A2",
-    "question_type": "synonym",
+    "level": "B2",
+    "question_type": "meaning",
     "stat": "damage",
     "value": 0.16,
-    "cost": 9,
+    "cost": 10,
     "description": "+%16 Hasar",
-    "question": "'Ancient' kelimesinin eş anlamlısı (synonym) hangisidir?",
+    "question": "'Novel' sözcüğü sıfat olarak kullanıldığında ne anlama gelir?",
     "options": [
-      "Very Old / Antique",
-      "Brand New",
-      "Modern",
-      "Cheap"
+      "Roman",
+      "Yeni / Özgün / Görülmemiş (Original / Innovative)",
+      "Eski",
+      "Sıradan"
+    ],
+    "correct_index": 1,
+    "example": "The researcher proposed a novel approach to learning phrasal verbs."
+  },
+  {
+    "id": "q_b1_31",
+    "word": "Call off",
+    "type": "Phrasal Verb",
+    "level": "B2",
+    "question_type": "phrasal",
+    "stat": "damage",
+    "value": 0.18,
+    "cost": 11,
+    "description": "+%18 Hasar",
+    "question": "'Call off' ifadesi ne anlama gelir?",
+    "options": [
+      "İptal etmek (Cancel)",
+      "Telefon etmek",
+      "Çağırmak",
+      "Ertelemek"
     ],
     "correct_index": 0,
-    "example": "The ancient scriptorium held forbidden grammar knowledge."
+    "example": "The inquisitor had to call off his raid after taking massive damage."
+  },
+  {
+    "id": "q_b1_51",
+    "word": "Scrutinize",
+    "type": "Verb",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "damage",
+    "value": 0.2,
+    "cost": 12,
+    "description": "+%20 Hasar",
+    "question": "'Scrutinize' fiilinin anlamı hangisidir?",
+    "options": [
+      "En ince detayına kadar incelemek",
+      "Göz ucuyla bakmak",
+      "Görmezden gelmek",
+      "Onaylamak"
+    ],
+    "correct_index": 0,
+    "example": "Scrutinize each exam question to detect deceptive trap options."
+  },
+  {
+    "id": "q_b1_07",
+    "word": "Deteriorate",
+    "type": "Verb",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "attack_speed",
+    "value": 0.18,
+    "cost": 11,
+    "description": "+%18 Atış Hızı",
+    "question": "'Deteriorate' fiilinin Türkçe anlamı hangisidir?",
+    "options": [
+      "Kötüleşmek / Bozulmak",
+      "Gelişmek",
+      "Hızlanmak",
+      "Doymak"
+    ],
+    "correct_index": 0,
+    "example": "Paper will deteriorate if exposed to acidic ink."
+  },
+  {
+    "id": "q_b1_06",
+    "word": "Comprehensive",
+    "type": "Adjective",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "max_hp",
+    "value": 30.0,
+    "cost": 12,
+    "description": "+30 Maks Can",
+    "question": "'Comprehensive' sözcüğü neyi belirtir?",
+    "options": [
+      "Kapsamlı / Detaylı ve eksiksiz",
+      "Yüzeysel",
+      "Dar görüşlü",
+      "Önemsiz"
+    ],
+    "correct_index": 0,
+    "example": "The comprehensive dictionary encompasses all historical terms."
+  },
+  {
+    "id": "q_a1_24",
+    "word": "Beautiful",
+    "type": "Adjective",
+    "level": "A1",
+    "question_type": "spelling",
+    "stat": "heal",
+    "value": 25.0,
+    "cost": 7,
+    "description": "+25 Can Yenile",
+    "question": "Doğru yazılmış kelimeyi bulunuz:",
+    "options": [
+      "Beautifull",
+      "Beautifil",
+      "Beautiful",
+      "Beutiful"
+    ],
+    "correct_index": 2,
+    "example": "Calligraphy is the art of beautiful writing."
+  },
+  {
+    "id": "q_c1_39",
+    "word": "Belligerent",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "synonym",
+    "stat": "damage",
+    "value": 0.22,
+    "cost": 14,
+    "description": "+%22 Hasar",
+    "question": "'Belligerent' sözcüğünün eş anlamlısı hangisidir?",
+    "options": [
+      "Hostile / Combative / Aggressive (Saldırgan / Kavgacı)",
+      "Peaceful",
+      "Friendly",
+      "Calm"
+    ],
+    "correct_index": 0,
+    "example": "The belligerent syntax titan stomped furiously across the library floor."
+  },
+  {
+    "id": "q_b1_47",
+    "word": "Obstacle",
+    "type": "Noun",
+    "level": "B1",
+    "question_type": "meaning",
+    "stat": "pierce",
+    "value": 1.0,
+    "cost": 14,
+    "description": "+1 Delme",
+    "question": "'Obstacle' sözcüğü Türkçede ne anlama gelir?",
+    "options": [
+      "Fırsat",
+      "Engel / Güçlük (Barrier / Hurdle)",
+      "Yardım",
+      "Sonuç"
+    ],
+    "correct_index": 1,
+    "example": "Every obstacle on your path can be overcome through study."
+  },
+  {
+    "id": "lex-186",
+    "word": "No sooner ... than",
+    "type": "Grammar Pattern",
+    "level": "C1",
+    "question_type": "grammar",
+    "stat": "attack_speed",
+    "value": 0.1,
+    "cost": 13,
+    "description": "+0.1 attack speed",
+    "question": "'No sooner had we arrived ___ the bell rang.' Boşluk?",
+    "options": [
+      "when",
+      "than",
+      "then",
+      "while"
+    ],
+    "correct_index": 1,
+    "example": "No sooner had we arrived than the bell rang."
+  },
+  {
+    "id": "q_a1_31",
+    "word": "Danger",
+    "type": "Noun",
+    "level": "A1",
+    "question_type": "antonym",
+    "stat": "armor",
+    "value": 0.12,
+    "cost": 7,
+    "description": "+%12 Zırh",
+    "question": "'Danger' (Tehlike) kelimesinin zıt anlamlısı nedir?",
+    "options": [
+      "Hazard",
+      "Peril",
+      "Safety / Security",
+      "Threat"
+    ],
+    "correct_index": 2,
+    "example": "Step into safety after eliminating the wave."
+  },
+  {
+    "id": "q_b1_19",
+    "word": "Ambiguous",
+    "type": "Adjective",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "pierce",
+    "value": 1.0,
+    "cost": 14,
+    "description": "+1 Delme",
+    "question": "'Ambiguous' kelimesi ne anlama gelir?",
+    "options": [
+      "Belirsiz / İki anlamlı / Muğlak",
+      "Açık ve net",
+      "Kesin",
+      "Basit"
+    ],
+    "correct_index": 0,
+    "example": "Ambiguous wording confuses readers and triggers typo monsters."
+  },
+  {
+    "id": "q_b1_57",
+    "word": "Zeal",
+    "type": "Noun",
+    "level": "B2",
+    "question_type": "synonym",
+    "stat": "attack_speed",
+    "value": 0.22,
+    "cost": 12,
+    "description": "+%22 Atış Hızı",
+    "question": "'Zeal' sözcüğünün eş anlamlısı hangisidir?",
+    "options": [
+      "Apathy",
+      "Lethargy",
+      "Enthusiasm / Passion (Şevk / Coşku / Gayret)",
+      "Indifference"
+    ],
+    "correct_index": 2,
+    "example": "He defended the manuscript with intense scholar's zeal."
+  },
+  {
+    "id": "q_c1_54",
+    "word": "Inasmuch as",
+    "type": "Conjunction",
+    "level": "C1",
+    "question_type": "grammar",
+    "stat": "damage",
+    "value": 0.22,
+    "cost": 13,
+    "description": "+%22 Hasar",
+    "question": "'Inasmuch as' bağlacı ne anlama gelir?",
+    "options": [
+      "-dığı ölçüde / Mademki / Çünkü (Since / In view of the fact that)",
+      "Aksine",
+      "Öyleyse",
+      "Sanki"
+    ],
+    "correct_index": 0,
+    "example": "Inasmuch as language is living, new words will always emerge."
   },
   {
     "id": "q_a1_12",
@@ -240,24 +360,524 @@
     "example": "Even a giant boss can be defeated by steady ink strikes."
   },
   {
-    "id": "q_a1_13",
-    "word": "Victory",
-    "type": "Noun",
+    "id": "lex-197",
+    "word": "Enlarge",
+    "type": "Verb",
     "level": "A2",
     "question_type": "antonym",
+    "stat": "damage",
+    "value": 0.09,
+    "cost": 8,
+    "description": "+0.09 damage",
+    "question": "'Expand' kelimesinin zıt anlamlısı nedir?",
+    "options": [
+      "Enlarge",
+      "Shrink",
+      "Stretch",
+      "Develop"
+    ],
+    "correct_index": 1,
+    "example": "The map expands when moonlight touches its edge."
+  },
+  {
+    "id": "lex-182",
+    "word": "Put up with",
+    "type": "Phrasal Verb",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "armor",
+    "value": 0.07,
+    "cost": 13,
+    "description": "+0.07 armor",
+    "question": "'Put up with' ifadesi ne anlama gelir?",
+    "options": [
+      "Yukarı kaldırmak",
+      "Yerine koymak",
+      "Birinden kaçınmak",
+      "Katlanmak"
+    ],
+    "correct_index": 3,
+    "example": "No one should have to put up with the curator’s threats."
+  },
+  {
+    "id": "lex-187",
+    "word": "Neither ... nor",
+    "type": "Grammar Pattern",
+    "level": "B1",
+    "question_type": "grammar",
+    "stat": "crit_chance",
+    "value": 0.05,
+    "cost": 10,
+    "description": "+0.05 crit chance",
+    "question": "'Neither the key ___ the map was missing.' Boşluk?",
+    "options": [
+      "nor",
+      "or",
+      "and",
+      "but"
+    ],
+    "correct_index": 0,
+    "example": "Neither the key nor the map was missing."
+  },
+  {
+    "id": "q_b1_60",
+    "word": "Inquire",
+    "type": "Verb",
+    "level": "B1",
+    "question_type": "meaning",
+    "stat": "pickup_radius",
+    "value": 35.0,
+    "cost": 8,
+    "description": "+35 Toplama Menzili",
+    "question": "'Inquire' sözcüğü ne anlama gelir?",
+    "options": [
+      "Cevaplamak",
+      "Emretmek",
+      "Susturmak",
+      "Sormak / Soruşturmak / Bilgi istemek"
+    ],
+    "correct_index": 3,
+    "example": "Inquire about vocabulary origins to memorize them faster."
+  },
+  {
+    "id": "q_b1_25",
+    "word": "Justify",
+    "type": "Verb",
+    "level": "B1",
+    "question_type": "meaning",
+    "stat": "damage",
+    "value": 0.16,
+    "cost": 10,
+    "description": "+%16 Hasar",
+    "question": "'Justify' fiilinin Türkçe anlamı hangisidir?",
+    "options": [
+      "Haklı çıkarmak / Gerekçelendirmek",
+      "Yalanlamak",
+      "Cezalandırmak",
+      "Gizlemek"
+    ],
+    "correct_index": 0,
+    "example": "Can you justify your thesis statement with solid linguistic evidence?"
+  },
+  {
+    "id": "lex-179",
+    "word": "Back down",
+    "type": "Phrasal Verb",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "damage",
+    "value": 0.11,
+    "cost": 12,
+    "description": "+0.11 damage",
+    "question": "'Back down' ne demektir?",
+    "options": [
+      "Israrından vazgeçmek",
+      "Geriye doğru yazmak",
+      "Bir şeyi büyütmek",
+      "Birine yetişmek"
+    ],
+    "correct_index": 0,
+    "example": "The guardian refused to back down from the duel."
+  },
+  {
+    "id": "q_a1_04",
+    "word": "Shield",
+    "type": "Noun",
+    "level": "A1",
+    "question_type": "meaning",
+    "stat": "armor",
+    "value": 0.12,
+    "cost": 9,
+    "description": "+%12 Hasar Direnci (Zırh)",
+    "question": "'Shield' sözcüğü Türkçede ne anlama gelir?",
+    "options": [
+      "Kalkan / Koruma",
+      "Kılıç",
+      "Ok",
+      "Miğfer"
+    ],
+    "correct_index": 0,
+    "example": "Use your lexicon shield to deflect enemy bullets."
+  },
+  {
+    "id": "q_a1_36",
+    "word": "Horizon",
+    "type": "Noun",
+    "level": "A2",
+    "question_type": "meaning",
+    "stat": "pierce",
+    "value": 1.0,
+    "cost": 12,
+    "description": "+1 Delme",
+    "question": "'Horizon' kelimesinin anlamı hangisidir?",
+    "options": [
+      "Yol Kenarı",
+      "Ufuk Çizgisi",
+      "Gökyüzü",
+      "Zemin"
+    ],
+    "correct_index": 1,
+    "example": "Look toward the horizon to spot incoming elite waves."
+  },
+  {
+    "id": "q_a1_38",
+    "word": "Focus",
+    "type": "Verb/Noun",
+    "level": "A1",
+    "question_type": "meaning",
+    "stat": "damage",
+    "value": 0.14,
+    "cost": 7,
+    "description": "+%14 Hasar",
+    "question": "'Focus' fiili ne anlama gelir?",
+    "options": [
+      "Dağılmak",
+      "Odaklanmak",
+      "Uyumak",
+      "Kaçınmak"
+    ],
+    "correct_index": 1,
+    "example": "Focus your fire on the high-priority phantom casters."
+  },
+  {
+    "id": "q_a1_08",
+    "word": "Separate",
+    "type": "Adjective",
+    "level": "A2",
+    "question_type": "spelling",
+    "stat": "projectile_count",
+    "value": 1.0,
+    "cost": 15,
+    "description": "+1 İlave Mermi",
+    "question": "'Ayrı / Ayrılmış' anlamına gelen kelimenin doğru yazılışı hangisidir?",
+    "options": [
+      "Seperate",
+      "Sepparate",
+      "Separate",
+      "Separite"
+    ],
+    "correct_index": 2,
+    "example": "Keep grammar and vocabulary in separate study files."
+  },
+  {
+    "id": "lex-191",
+    "word": "Make room for",
+    "type": "Grammar",
+    "level": "B1",
+    "question_type": "spelling",
+    "stat": "max_hp",
+    "value": 23,
+    "cost": 10,
+    "description": "+23 max hp",
+    "question": "Accommodate kelimesinin doğru yazımı hangisidir?",
+    "options": [
+      "Acommodate",
+      "Accommodate",
+      "Accomodate",
+      "Acomodate"
+    ],
+    "correct_index": 1,
+    "example": "The hall can accommodate twelve visitors."
+  },
+  {
+    "id": "q_b1_12",
+    "word": "Diminish",
+    "type": "Verb",
+    "level": "B2",
+    "question_type": "antonym",
+    "stat": "pierce",
+    "value": 1.0,
+    "cost": 14,
+    "description": "+1 Delme",
+    "question": "'Diminish' fiilinin zıt anlamlısı hangisidir?",
+    "options": [
+      "Decrease",
+      "Increase / Expand (Artırmak / Genişletmek)",
+      "Shrink",
+      "Lessen"
+    ],
+    "correct_index": 1,
+    "example": "Piercing shots never diminish in power when passing through enemies."
+  },
+  {
+    "id": "q_b1_11",
+    "word": "Crucial",
+    "type": "Adjective",
+    "level": "B1",
+    "question_type": "meaning",
     "stat": "damage",
     "value": 0.18,
     "cost": 10,
     "description": "+%18 Hasar",
-    "question": "'Victory' (Zafer) kelimesinin zıt anlamlısı hangisidir?",
+    "question": "'Crucial' sözcüğü Türkçede ne anlama gelir?",
     "options": [
-      "Defeat / Loss",
-      "Triumph",
-      "Success",
-      "Glory"
+      "Sıradan",
+      "Önemsiz",
+      "İkincil",
+      "Hayati derecede önemli / Kritik"
+    ],
+    "correct_index": 3,
+    "example": "Correct spelling is crucial to unlocking legendary weapon tiers."
+  },
+  {
+    "id": "q_c1_42",
+    "word": "Shed light on",
+    "type": "Idiom",
+    "level": "C1",
+    "question_type": "idiom",
+    "stat": "pickup_radius",
+    "value": 50.0,
+    "cost": 12,
+    "description": "+50 Toplama Menzili",
+    "question": "'Shed light on' deyimi ne anlama gelir?",
+    "options": [
+      "Karanlıkta bırakmak",
+      "Lambayı yakmak",
+      "Korkutmak",
+      "Bir konuya ışık tutmak / Aydınlatmak (Clarify / Explain)"
+    ],
+    "correct_index": 3,
+    "example": "Recent archaeological findings shed light on ancient Latin syntax."
+  },
+  {
+    "id": "q_b1_30",
+    "word": "Put off",
+    "type": "Phrasal Verb",
+    "level": "B2",
+    "question_type": "synonym",
+    "stat": "move_speed",
+    "value": 30.0,
+    "cost": 10,
+    "description": "+30 Hız",
+    "question": "'Put off' kalıbının eş anlamlısı hangisidir?",
+    "options": [
+      "Postpone / Delay (Ertelemek)",
+      "Extinguish",
+      "Wear",
+      "Cancel"
     ],
     "correct_index": 0,
-    "example": "Every answered question brings victory one step closer."
+    "example": "Never put off vocabulary drills until the night before the exam."
+  },
+  {
+    "id": "q_c1_02",
+    "word": "Ubiquitous",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "projectile_count",
+    "value": 1.0,
+    "cost": 18,
+    "description": "+1 Mermi",
+    "question": "'Ubiquitous' sıfatı neyi ifade eder?",
+    "options": [
+      "Nadir bulunan",
+      "Gizli ve saklı",
+      "Her yerde hazır ve nazır / Her yerde bulunan (Omnipresent)",
+      "Değersiz"
+    ],
+    "correct_index": 2,
+    "example": "Smartphones have become ubiquitous across modern classrooms."
+  },
+  {
+    "id": "lex-200",
+    "word": "Elusive",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "move_speed",
+    "value": 34,
+    "cost": 14,
+    "description": "+34 move speed",
+    "question": "'Elusive' hangi anlama gelir?",
+    "options": [
+      "Açıkça görünen",
+      "Son derece nazik",
+      "Bulması / yakalaması güç",
+      "Kolay taklit edilen"
+    ],
+    "correct_index": 2,
+    "example": "The elusive shadow vanished whenever we approached."
+  },
+  {
+    "id": "q_b1_54",
+    "word": "Validate",
+    "type": "Verb",
+    "level": "B1",
+    "question_type": "meaning",
+    "stat": "damage",
+    "value": 0.18,
+    "cost": 11,
+    "description": "+%18 Hasar",
+    "question": "'Validate' fiilinin Türkçe anlamı nedir?",
+    "options": [
+      "İptal etmek",
+      "Şüphelenmek",
+      "Kovmak",
+      "Geçerli kılmak / Onaylamak"
+    ],
+    "correct_index": 3,
+    "example": "The professors validate your academic language proficiency."
+  },
+  {
+    "id": "q_b1_32",
+    "word": "Take over",
+    "type": "Phrasal Verb",
+    "level": "B2",
+    "question_type": "phrasal",
+    "stat": "projectile_count",
+    "value": 1.0,
+    "cost": 17,
+    "description": "+1 Mermi",
+    "question": "'Take over' fiili ne anlama gelir?",
+    "options": [
+      "Teslim etmek",
+      "Devralmak / Kontrolü ele geçirmek",
+      "Ayrılmak",
+      "Unutmak"
+    ],
+    "correct_index": 1,
+    "example": "Grammar goblins attempt to take over the library archives."
+  },
+  {
+    "id": "q_b1_26",
+    "word": "Carry out",
+    "type": "Phrasal Verb",
+    "level": "B2",
+    "question_type": "phrasal",
+    "stat": "projectile_count",
+    "value": 1.0,
+    "cost": 16,
+    "description": "+1 Mermi",
+    "question": "'Carry out' phrasal verb'ünün anlamı nedir?",
+    "options": [
+      "Dışarı taşımak",
+      "Vazgeçmek",
+      "Geciktirmek",
+      "Gerçekleştirmek / Yerine getirmek (Perform / Execute)"
+    ],
+    "correct_index": 3,
+    "example": "The scribes carry out extensive linguistic research."
+  },
+  {
+    "id": "lex-193",
+    "word": "Conscientious",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "spelling",
+    "stat": "armor",
+    "value": 0.08,
+    "cost": 14,
+    "description": "+0.08 armor",
+    "question": "Conscientious kelimesinin doğru yazımı hangisidir?",
+    "options": [
+      "Consciencious",
+      "Conscentious",
+      "Conscientous",
+      "Conscientious"
+    ],
+    "correct_index": 3,
+    "example": "A conscientious keeper records every borrowed book."
+  },
+  {
+    "id": "q_c1_20",
+    "word": "Cacophony",
+    "type": "Noun",
+    "level": "C1",
+    "question_type": "antonym",
+    "stat": "damage",
+    "value": 0.22,
+    "cost": 13,
+    "description": "+%22 Hasar",
+    "question": "'Cacophony' kelimesinin zıt anlamlısı hangisidir?",
+    "options": [
+      "Euphony / Harmony (Hoş ahenk)",
+      "Discord",
+      "Noise",
+      "Clamor"
+    ],
+    "correct_index": 0,
+    "example": "The screeching harpies produced an ear-splitting cacophony."
+  },
+  {
+    "id": "q_a1_22",
+    "word": "Quiet",
+    "type": "Adjective",
+    "level": "A1",
+    "question_type": "antonym",
+    "stat": "move_speed",
+    "value": 20.0,
+    "cost": 5,
+    "description": "+20 Hız",
+    "question": "'Quiet' (Sessiz) kelimesinin zıt anlamlısı nedir?",
+    "options": [
+      "Calm",
+      "Peaceful",
+      "Noisy / Loud",
+      "Tranquil"
+    ],
+    "correct_index": 2,
+    "example": "The quiet library was interrupted by goblin cries."
+  },
+  {
+    "id": "q_b1_10",
+    "word": "Enhance",
+    "type": "Verb",
+    "level": "B1",
+    "question_type": "synonym",
+    "stat": "attack_speed",
+    "value": 0.2,
+    "cost": 10,
+    "description": "+%20 Saldırı Hızı",
+    "question": "'Enhance' fiilinin eş anlamlısı hangisidir?",
+    "options": [
+      "Degrade",
+      "Reduce",
+      "Damage",
+      "Improve / Boost (Geliştirmek / Artırmak)"
+    ],
+    "correct_index": 3,
+    "example": "Upgrading weapons in the shop enhances your rate of fire."
+  },
+  {
+    "id": "q_a1_23",
+    "word": "Definitely",
+    "type": "Adverb",
+    "level": "A2",
+    "question_type": "spelling",
+    "stat": "damage",
+    "value": 0.15,
+    "cost": 8,
+    "description": "+%15 Hasar",
+    "question": "Hangisinin yazımı doğrudur? (Definitely)",
+    "options": [
+      "Definately",
+      "Definitly",
+      "Defenetly",
+      "Definitely"
+    ],
+    "correct_index": 3,
+    "example": "You will definitely upgrade your lexicon arsenal."
+  },
+  {
+    "id": "q_a1_10",
+    "word": "Until",
+    "type": "Preposition",
+    "level": "A1",
+    "question_type": "spelling",
+    "stat": "attack_speed",
+    "value": 0.15,
+    "cost": 7,
+    "description": "+%15 Saldırı Hızı",
+    "question": "'-e kadar' anlamına gelen kelimenin doğru yazılışı hangisidir?",
+    "options": [
+      "Untill",
+      "Until",
+      "Untile",
+      "Unteel"
+    ],
+    "correct_index": 1,
+    "example": "Fight until the 100th wave is conquered!"
   },
   {
     "id": "q_a1_14",
@@ -280,6 +900,206 @@
     "example": "Use your dash gadget to escape enemy ambushes."
   },
   {
+    "id": "q_c1_37",
+    "word": "Vacillate",
+    "type": "Verb",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "move_speed",
+    "value": 35.0,
+    "cost": 12,
+    "description": "+35 Hız",
+    "question": "'Vacillate' fiili ne anlama gelir?",
+    "options": [
+      "Karar vermek",
+      "İkilemde kalmak / Tereddüt etmek / Bocalamak",
+      "Koşmak",
+      "İnat etmek"
+    ],
+    "correct_index": 1,
+    "example": "Do not vacillate between options when exam time is running low."
+  },
+  {
+    "id": "q_c1_29",
+    "word": "Nefarious",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "synonym",
+    "stat": "damage",
+    "value": 0.22,
+    "cost": 13,
+    "description": "+%22 Hasar",
+    "question": "'Nefarious' kelimesinin eş anlamlısı hangisidir?",
+    "options": [
+      "Virtuous",
+      "Benevolent",
+      "Noble",
+      "Wicked / Heinous (Kötü niyetli / Haince)"
+    ],
+    "correct_index": 3,
+    "example": "The dragon hatched a nefarious scheme to burn all grammar books."
+  },
+  {
+    "id": "q_c1_41",
+    "word": "Exacerbate",
+    "type": "Verb",
+    "level": "C1",
+    "question_type": "antonym",
+    "stat": "damage",
+    "value": 0.24,
+    "cost": 15,
+    "description": "+%24 Hasar",
+    "question": "'Exacerbate' fiilinin zıt anlamlısı hangisidir?",
+    "options": [
+      "Worsen",
+      "Aggravate",
+      "Alleviate / Soothe / Mitigate (Hafifletmek / İyileştirmek)",
+      "Intensify"
+    ],
+    "correct_index": 2,
+    "example": "Panic will only exacerbate errors during a high-stakes exam."
+  },
+  {
+    "id": "q_b1_62",
+    "word": "Mourn",
+    "type": "Verb",
+    "level": "B1",
+    "question_type": "meaning",
+    "stat": "max_hp",
+    "value": 25.0,
+    "cost": 9,
+    "description": "+25 Maks Can",
+    "question": "'Mourn' fiili ne anlama gelir?",
+    "options": [
+      "Yas tutmak / Kederlenmek",
+      "Kutlamak",
+      "Gülmek",
+      "Koşmak"
+    ],
+    "correct_index": 0,
+    "example": "The scribes mourn every library burnt in ancient history."
+  },
+  {
+    "id": "q_c1_07",
+    "word": "Esoteric",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "damage",
+    "value": 0.22,
+    "cost": 14,
+    "description": "+%22 Hasar",
+    "question": "'Esoteric' sıfatı hangi bilgileri tanımlar?",
+    "options": [
+      "Herkesin bildiği genel kültür",
+      "Sadece seçkin bir zümrenin anlayabildiği gizli bilgi",
+      "Basit matematik",
+      "Dini vaaz"
+    ],
+    "correct_index": 1,
+    "example": "Ancient Sanskrit manuscripts preserve esoteric grammatical rules."
+  },
+  {
+    "id": "q_c1_26",
+    "word": "Iconoclast",
+    "type": "Noun",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "projectile_count",
+    "value": 1.0,
+    "cost": 18,
+    "description": "+1 Mermi",
+    "question": "'Iconoclast' kime denir?",
+    "options": [
+      "Yerleşik inanç ve gelenekleri yıkan kimse",
+      "Dindar kişi",
+      "Kütüphaneci",
+      "Tarihçi"
+    ],
+    "correct_index": 0,
+    "example": "An iconoclast linguist questioned the traditional grammar rules."
+  },
+  {
+    "id": "q_b1_04",
+    "word": "Scarce",
+    "type": "Adjective",
+    "level": "B2",
+    "question_type": "antonym",
+    "stat": "damage",
+    "value": 0.18,
+    "cost": 12,
+    "description": "+%18 Hasar",
+    "question": "'Scarce' kelimesinin zıt anlamlısı hangisidir?",
+    "options": [
+      "Rare",
+      "Abundant / Plentiful (Bol)",
+      "Limited",
+      "Insufficient"
+    ],
+    "correct_index": 1,
+    "example": "Resources become scarce in the higher floors of the citadel."
+  },
+  {
+    "id": "q_c1_46",
+    "word": "Grapple with",
+    "type": "Phrasal Verb",
+    "level": "C1",
+    "question_type": "phrasal",
+    "stat": "armor",
+    "value": 0.16,
+    "cost": 13,
+    "description": "+%16 Zırh",
+    "question": "'Grapple with' ifadesi ne anlama gelir?",
+    "options": [
+      "Güreşmek",
+      "Pes etmek",
+      "Kaçmak",
+      "Zor bir sorunla boğuşmak / Mücadele etmek"
+    ],
+    "correct_index": 3,
+    "example": "Scholars grapple with nuanced synonyms in academic texts."
+  },
+  {
+    "id": "q_b1_22",
+    "word": "Feasible",
+    "type": "Adjective",
+    "level": "B2",
+    "question_type": "synonym",
+    "stat": "move_speed",
+    "value": 30.0,
+    "cost": 10,
+    "description": "+30 Hız",
+    "question": "'Feasible' kelimesinin eş anlamlısı hangisidir?",
+    "options": [
+      "Impossible",
+      "Practicable / Doable (Uygulanabilir / Yapılabilir)",
+      "Unrealistic",
+      "Futile"
+    ],
+    "correct_index": 1,
+    "example": "Reaching wave 100 is completely feasible with balanced builds."
+  },
+  {
+    "id": "q_b1_43",
+    "word": "So that",
+    "type": "Conjunction",
+    "level": "B1",
+    "question_type": "grammar",
+    "stat": "move_speed",
+    "value": 30.0,
+    "cost": 9,
+    "description": "+30 Hız",
+    "question": "'So that' bağlacı ne amaçla kullanılır?",
+    "options": [
+      "-sın diye / amacıyla (in order that)",
+      "bu yüzden",
+      "çünkü",
+      "-dığı için"
+    ],
+    "correct_index": 0,
+    "example": "Study vocabulary daily so that you can conquer the hardest exam levels."
+  },
+  {
     "id": "q_a1_15",
     "word": "Defend",
     "type": "Verb",
@@ -300,44 +1120,44 @@
     "example": "Defend the library against the horde of typos."
   },
   {
-    "id": "q_a1_16",
-    "word": "Swift",
+    "id": "lex-167",
+    "word": "Subtle",
     "type": "Adjective",
-    "level": "A2",
+    "level": "C1",
     "question_type": "meaning",
-    "stat": "attack_speed",
-    "value": 0.2,
-    "cost": 9,
-    "description": "+%20 Saldırı Hızı",
-    "question": "'Swift' sıfatı ne anlama gelir?",
+    "stat": "crit_chance",
+    "value": 0.06,
+    "cost": 13,
+    "description": "+0.06 crit chance",
+    "question": "'Subtle' için en yakın Türkçe anlam hangisidir?",
     "options": [
-      "Çok Çabuk / Çevik",
-      "Ağır ve Hantal",
-      "Soğuk",
-      "Gürültülü"
+      "Açıkça yanlış",
+      "Son derece ağır",
+      "Gürültülü",
+      "İnce / zor fark edilen"
     ],
-    "correct_index": 0,
-    "example": "His swift quill blunted all punctuation attacks."
+    "correct_index": 3,
+    "example": "A subtle change in the map revealed a second route."
   },
   {
-    "id": "q_a1_17",
-    "word": "Patience",
-    "type": "Noun",
-    "level": "A2",
+    "id": "q_b1_02",
+    "word": "Vulnerable",
+    "type": "Adjective",
+    "level": "B2",
     "question_type": "meaning",
-    "stat": "max_hp",
-    "value": 25.0,
-    "cost": 10,
-    "description": "+25 Maks Can",
-    "question": "'Patience' kelimesinin Türkçe karşılığı nedir?",
+    "stat": "armor",
+    "value": 0.14,
+    "cost": 11,
+    "description": "+%14 Zırh",
+    "question": "'Vulnerable' sıfatı neyi ifade eder?",
     "options": [
-      "Sabır",
-      "Kibir",
-      "Telaş",
-      "Cömertlik"
+      "Yenilmez",
+      "Savunmasız / Kolay incinir",
+      "Büyülü",
+      "Görünmez"
     ],
-    "correct_index": 0,
-    "example": "Patience and endurance are vital to surviving 100 waves."
+    "correct_index": 1,
+    "example": "Without armor, your hero remains vulnerable to phantom spells."
   },
   {
     "id": "q_a1_18",
@@ -351,173 +1171,673 @@
     "description": "+%15 Hasar",
     "question": "'Accurate' kelimesi neyi ifade eder?",
     "options": [
-      "Tam Doğru / İsabetli",
       "Hatalı ve Kusurlu",
       "Bulanık",
-      "Kaba"
+      "Kaba",
+      "Tam Doğru / İsabetli"
     ],
-    "correct_index": 0,
+    "correct_index": 3,
     "example": "Accurate answers award great shop discounts."
   },
   {
-    "id": "q_a1_19",
-    "word": "Bright",
-    "type": "Adjective",
-    "level": "A1",
-    "question_type": "antonym",
-    "stat": "pickup_radius",
-    "value": 35.0,
-    "cost": 6,
-    "description": "+35 Toplama Menzili",
-    "question": "'Bright' (Parlak) sıfatının zıt anlamlısı hangisidir?",
-    "options": [
-      "Dim / Dark (Karanlık)",
-      "Shiny",
-      "Luminous",
-      "Radiant"
-    ],
-    "correct_index": 0,
-    "example": "A bright rune illuminated the dark archives."
-  },
-  {
-    "id": "q_a1_20",
-    "word": "Expand",
-    "type": "Verb",
-    "level": "A2",
-    "question_type": "meaning",
-    "stat": "projectile_count",
-    "value": 1.0,
-    "cost": 16,
-    "description": "+1 Mermi",
-    "question": "'Expand' fiili ne anlama gelir?",
-    "options": [
-      "Genişletmek / Büyütmek",
-      "Daraltmak",
-      "Silmek",
-      "Kilitlemek"
-    ],
-    "correct_index": 0,
-    "example": "Expand your weapon slots to equip more armaments."
-  },
-  {
-    "id": "q_a1_21",
-    "word": "Treasure",
+    "id": "q_a1_29",
+    "word": "Journey",
     "type": "Noun",
     "level": "A1",
     "question_type": "meaning",
-    "stat": "ink_mult",
-    "value": 0.25,
-    "cost": 9,
-    "description": "+%25 Mürekkep Kazanımı",
-    "question": "'Treasure' kelimesinin Türkçe anlamı nedir?",
+    "stat": "move_speed",
+    "value": 25.0,
+    "cost": 6,
+    "description": "+25 Hız",
+    "question": "'Journey' sözcüğü ne anlama gelir?",
     "options": [
-      "Hazine / Kıymetli Şey",
-      "Tehlike",
-      "Harita",
-      "Mektup"
+      "Mola",
+      "Varış",
+      "Korku",
+      "Seyahat / Yolculuk"
     ],
-    "correct_index": 0,
-    "example": "Words are the greatest treasure of civilization."
+    "correct_index": 3,
+    "example": "Your survival journey spans across 100 library waves."
   },
   {
-    "id": "q_a1_22",
-    "word": "Quiet",
+    "id": "q_a1_37",
+    "word": "Harmony",
+    "type": "Noun",
+    "level": "A2",
+    "question_type": "meaning",
+    "stat": "attack_speed",
+    "value": 0.15,
+    "cost": 8,
+    "description": "+%15 Atış Hızı",
+    "question": "'Harmony' kelimesinin anlamı nedir?",
+    "options": [
+      "Çatışma",
+      "Gürültü",
+      "Uyum / Ahenk",
+      "Dağınıklık"
+    ],
+    "correct_index": 2,
+    "example": "Subject and verb must exist in complete harmony."
+  },
+  {
+    "id": "q_b1_55",
+    "word": "Withstand",
+    "type": "Verb",
+    "level": "B2",
+    "question_type": "synonym",
+    "stat": "armor",
+    "value": 0.16,
+    "cost": 12,
+    "description": "+%16 Zırh",
+    "question": "'Withstand' fiilinin eş anlamlısı hangisidir?",
+    "options": [
+      "Surrender",
+      "Succumb",
+      "Resist / Endure (Karşı koymak / Dayanmak)",
+      "Yield"
+    ],
+    "correct_index": 2,
+    "example": "The citadel armor enables the Word Knight to withstand boss slams."
+  },
+  {
+    "id": "lex-163",
+    "word": "Lend",
+    "type": "Verb",
+    "level": "A2",
+    "question_type": "meaning",
+    "stat": "armor",
+    "value": 0.06,
+    "cost": 8,
+    "description": "+0.06 armor",
+    "question": "'Lend' fiili hangisini anlatır?",
+    "options": [
+      "Geri dönmek",
+      "Ödünç vermek",
+      "Bulmak",
+      "Ödünç almak"
+    ],
+    "correct_index": 1,
+    "example": "The archivist will lend us a lantern."
+  },
+  {
+    "id": "q_b1_09",
+    "word": "Substantial",
+    "type": "Adjective",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "damage",
+    "value": 0.22,
+    "cost": 13,
+    "description": "+%22 Mermi Hasarı",
+    "question": "'Substantial' kelimesinin anlamı nedir?",
+    "options": [
+      "Ufak ve önemsiz",
+      "Hayali",
+      "Geçici",
+      "Oldukça büyük / Kayda değer"
+    ],
+    "correct_index": 3,
+    "example": "The laser beam deals a substantial amount of piercing damage."
+  },
+  {
+    "id": "q_c1_43",
+    "word": "Pave the way for",
+    "type": "Idiom",
+    "level": "C1",
+    "question_type": "idiom",
+    "stat": "projectile_count",
+    "value": 1.0,
+    "cost": 18,
+    "description": "+1 Mermi",
+    "question": "'Pave the way for' kalıbının Türkçe karşılığı nedir?",
+    "options": [
+      "Yolu asfaltlamak",
+      "Engellemek",
+      "... için zemin hazırlamak / Önünü açmak",
+      "Kapatmak"
+    ],
+    "correct_index": 2,
+    "example": "Consistent daily practice will pave the way for academic fluency."
+  },
+  {
+    "id": "q_c1_08",
+    "word": "Mitigate",
+    "type": "Verb",
+    "level": "C1",
+    "question_type": "synonym",
+    "stat": "armor",
+    "value": 0.18,
+    "cost": 13,
+    "description": "+%18 Zırh",
+    "question": "'Mitigate' fiilinin eş anlamlısı hangisidir?",
+    "options": [
+      "Worsen",
+      "Lessen / Moderate / Reduce (Hafifletmek / Azaltmak)",
+      "Inflame",
+      "Aggravate"
+    ],
+    "correct_index": 1,
+    "example": "Lexicon Aegis shield will mitigate heavy enemy impact damage."
+  },
+  {
+    "id": "q_c1_35",
+    "word": "Tenacious",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "synonym",
+    "stat": "max_hp",
+    "value": 45.0,
+    "cost": 15,
+    "description": "+45 Maks Can",
+    "question": "'Tenacious' sıfatının eş anlamlısı hangisidir?",
+    "options": [
+      "Weak",
+      "Fickle",
+      "Surrendering",
+      "Persistent / Resolute (Azimli / Kararlı / Sımsıkı yapışan)"
+    ],
+    "correct_index": 3,
+    "example": "A tenacious scholar continues studying despite repeated failures."
+  },
+  {
+    "id": "q_c1_32",
+    "word": "Querulous",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "attack_speed",
+    "value": 0.2,
+    "cost": 11,
+    "description": "+%20 Atış Hızı",
+    "question": "'Querulous' sıfatı ne anlama gelir?",
+    "options": [
+      "Memnun",
+      "Sabırlı",
+      "Sürekli şikayet eden / Sızlanan (Fretful / Whiny)",
+      "Mütevazı"
+    ],
+    "correct_index": 2,
+    "example": "The querulous phantom grumbled whenever its projectiles missed."
+  },
+  {
+    "id": "q_b1_29",
+    "word": "Look forward to",
+    "type": "Phrasal Verb",
+    "level": "B1",
+    "question_type": "phrasal",
+    "stat": "attack_speed",
+    "value": 0.2,
+    "cost": 10,
+    "description": "+%20 Atış Hızı",
+    "question": "'Look forward to' deyimi ne anlama gelir?",
+    "options": [
+      "Geriye bakmak",
+      "Göz ardı etmek",
+      "Utanmak",
+      "Dört gözle beklemek / Sabırsızlanmak"
+    ],
+    "correct_index": 3,
+    "example": "Learners look forward to upgrading their weapons between waves."
+  },
+  {
+    "id": "q_b1_38",
+    "word": "In terms of",
+    "type": "Collocation",
+    "level": "B2",
+    "question_type": "collocation",
+    "stat": "damage",
+    "value": 0.18,
+    "cost": 11,
+    "description": "+%18 Hasar",
+    "question": "'In terms of' kalıbının Türkçe karşılığı nedir?",
+    "options": [
+      "aksine",
+      "rağmen",
+      "yüzünden",
+      "... bakımından / açısından"
+    ],
+    "correct_index": 3,
+    "example": "In terms of raw firepower, the calligraphy katana reigns supreme."
+  },
+  {
+    "id": "lex-199",
+    "word": "Corroborate",
+    "type": "Verb",
+    "level": "C2",
+    "question_type": "meaning",
+    "stat": "crit_chance",
+    "value": 0.08,
+    "cost": 17,
+    "description": "+0.08 crit chance",
+    "question": "'Corroborate the account' ne demektir?",
+    "options": [
+      "Anlatımı ek kanıtla doğrulamak",
+      "Anlatımı gizlemek",
+      "Hikâyeyi kısaltmak",
+      "İfadeyi çürütmek"
+    ],
+    "correct_index": 0,
+    "example": "Two independent notes corroborate the witness’s account."
+  },
+  {
+    "id": "q_b1_59",
+    "word": "Hazardous",
+    "type": "Adjective",
+    "level": "B1",
+    "question_type": "synonym",
+    "stat": "armor",
+    "value": 0.12,
+    "cost": 9,
+    "description": "+%12 Zırh",
+    "question": "'Hazardous' kelimesinin eş anlamlısı hangisidir?",
+    "options": [
+      "Safe",
+      "Secure",
+      "Dangerous / Perilous (Tehlikeli)",
+      "Harmless"
+    ],
+    "correct_index": 2,
+    "example": "Standing in acid puddles is hazardous to your health."
+  },
+  {
+    "id": "q_b1_24",
+    "word": "Imminent",
+    "type": "Adjective",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "armor",
+    "value": 0.14,
+    "cost": 11,
+    "description": "+%14 Zırh",
+    "question": "'Imminent' sözcüğü neyi belirtir?",
+    "options": [
+      "Uzak gelecekte",
+      "Geçmişte kalmış",
+      "Eli kulağında / Gerçekleşmesi an meselesi",
+      "İmkansız"
+    ],
+    "correct_index": 2,
+    "example": "An imminent boss attack requires swift use of your invulnerability dash."
+  },
+  {
+    "id": "q_b1_14",
+    "word": "Neglect",
+    "type": "Verb",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "armor",
+    "value": 0.12,
+    "cost": 9,
+    "description": "+%12 Zırh",
+    "question": "'Neglect' fiili ne anlama gelir?",
+    "options": [
+      "İhmal etmek / Göz ardı etmek",
+      "Özen göstermek",
+      "Korumak",
+      "Geliştirmek"
+    ],
+    "correct_index": 0,
+    "example": "Do not neglect upgrading your armor before facing dragon bosses."
+  },
+  {
+    "id": "q_a1_05",
+    "word": "Brave",
     "type": "Adjective",
     "level": "A1",
     "question_type": "antonym",
-    "stat": "move_speed",
-    "value": 20.0,
-    "cost": 5,
-    "description": "+20 Hız",
-    "question": "'Quiet' (Sessiz) kelimesinin zıt anlamlısı nedir?",
+    "stat": "damage",
+    "value": 0.12,
+    "cost": 7,
+    "description": "+%12 Hasar",
+    "question": "'Brave' sıfatının zıt anlamlısı (antonym) hangisidir?",
     "options": [
-      "Noisy / Loud",
-      "Calm",
-      "Peaceful",
-      "Tranquil"
+      "Heroic",
+      "Bold",
+      "Courageous",
+      "Fearful / Cowardly (Korkak)"
+    ],
+    "correct_index": 3,
+    "example": "A brave guardian never retreats before difficult questions."
+  },
+  {
+    "id": "lex-178",
+    "word": "Misplace",
+    "type": "Prefix",
+    "level": "B1",
+    "question_type": "morphology",
+    "stat": "damage",
+    "value": 0.11,
+    "cost": 12,
+    "description": "+0.11 damage",
+    "question": "'Mis-' öneki 'misplace' sözcüğüne hangi anlamı katar?",
+    "options": [
+      "Yanlış / hatalı",
+      "Yeniden",
+      "Önce",
+      "Altında"
     ],
     "correct_index": 0,
-    "example": "The quiet library was interrupted by goblin cries."
+    "example": "Do not misplace the key to the observatory."
   },
   {
-    "id": "q_a1_23",
-    "word": "Definitely",
-    "type": "Adverb",
-    "level": "A2",
-    "question_type": "spelling",
+    "id": "q_b1_61",
+    "word": "Lucid",
+    "type": "Adjective",
+    "level": "B2",
+    "question_type": "meaning",
     "stat": "damage",
-    "value": 0.15,
-    "cost": 8,
-    "description": "+%15 Hasar",
-    "question": "Hangisinin yazımı doğrudur?",
+    "value": 0.18,
+    "cost": 11,
+    "description": "+%18 Hasar",
+    "question": "'Lucid' sıfatı neyi ifade eder?",
     "options": [
-      "Definately",
-      "Definitely",
-      "Definitly",
-      "Defenetly"
+      "Açık / Berrak / Kolay anlaşılır",
+      "Bulanık ve karmaşık",
+      "Karanlık",
+      "Zayıf"
     ],
-    "correct_index": 1,
-    "example": "You will definitely upgrade your lexicon arsenal."
+    "correct_index": 0,
+    "example": "Write in a lucid style to prevent syntactic misunderstandings."
   },
   {
-    "id": "q_a1_24",
-    "word": "Beautiful",
-    "type": "Adjective",
-    "level": "A1",
-    "question_type": "spelling",
-    "stat": "heal",
-    "value": 25.0,
-    "cost": 7,
-    "description": "+25 Can Yenile",
-    "question": "Doğru yazılmış kelimeyi bulunuz:",
-    "options": [
-      "Beautifull",
-      "Beautiful",
-      "Beautifil",
-      "Beutiful"
-    ],
-    "correct_index": 1,
-    "example": "Calligraphy is the art of beautiful writing."
-  },
-  {
-    "id": "q_a1_25",
-    "word": "Accommodate",
+    "id": "q_b1_49",
+    "word": "Quench",
     "type": "Verb",
-    "level": "A2",
-    "question_type": "spelling",
-    "stat": "max_hp",
-    "value": 25.0,
-    "cost": 9,
-    "description": "+25 Maks Can",
-    "question": "'Barındırmak / Uyum Sağlamak' anlamındaki kelimenin doğru yazılışı hangisidir?",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "heal",
+    "value": 35.0,
+    "cost": 11,
+    "description": "+35 Can Yenile",
+    "question": "'Quench' fiilinin anlamı nedir?",
     "options": [
-      "Acommodate",
-      "Accommodate",
-      "Accomodate",
-      "Acomodate"
+      "Ateşlemek",
+      "Dindirmek / Bastırmak / Susuzluğunu gidermek",
+      "Kızdırmak",
+      "Kaçırmak"
     ],
     "correct_index": 1,
-    "example": "The scriptorium can accommodate up to six active weapons."
+    "example": "Quench your thirst for linguistic knowledge with ancient tomes."
   },
   {
-    "id": "q_a1_26",
-    "word": "Necessary",
-    "type": "Adjective",
-    "level": "A2",
-    "question_type": "spelling",
-    "stat": "armor",
-    "value": 0.1,
-    "cost": 8,
-    "description": "+%10 Zırh",
-    "question": "'Gerekli' anlamına gelen kelimenin doğru yazılışı hangisidir?",
+    "id": "q_b1_65",
+    "word": "Persevere",
+    "type": "Verb",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "max_hp",
+    "value": 40.0,
+    "cost": 14,
+    "description": "+40 Maks Can",
+    "question": "'Persevere' fiilinin anlamı nedir?",
     "options": [
-      "Neccessary",
-      "Necessary",
-      "Necesary",
-      "Neccesary"
+      "Pes etmek",
+      "Yılmadan devam etmek / Direnmek",
+      "Vazgeçmek",
+      "Geri çekilmek"
     ],
     "correct_index": 1,
-    "example": "Quick dodging is necessary against boss volleys."
+    "example": "Persevere through tough exams to earn your scholarship."
+  },
+  {
+    "id": "q_b1_28",
+    "word": "Give up",
+    "type": "Phrasal Verb",
+    "level": "B1",
+    "question_type": "synonym",
+    "stat": "max_hp",
+    "value": 30.0,
+    "cost": 10,
+    "description": "+30 Maks Can",
+    "question": "'Give up' ifadesinin eş anlamlısı hangisidir?",
+    "options": [
+      "Continue",
+      "Pursue",
+      "Start",
+      "Surrender / Quit (Teslim olmak / Bırakmak)"
+    ],
+    "correct_index": 3,
+    "example": "Never give up, even when surrounded by spelling spectres!"
+  },
+  {
+    "id": "q_c1_49",
+    "word": "Hinge upon",
+    "type": "Phrasal Verb",
+    "level": "C1",
+    "question_type": "phrasal",
+    "stat": "max_hp",
+    "value": 40.0,
+    "cost": 14,
+    "description": "+40 Maks Can",
+    "question": "'Hinge upon' ifadesinin Türkçe karşılığı nedir?",
+    "options": [
+      "Kapıyı menteşelemek",
+      "Görmezden gelmek",
+      "Ayrılmak",
+      "-e bağlı olmak / Odak noktası olmak (Depend crucially on)"
+    ],
+    "correct_index": 3,
+    "example": "Your survival on wave 100 hinges upon combining tier-4 weapons."
+  },
+  {
+    "id": "lex-165",
+    "word": "Disagree",
+    "type": "Prefix",
+    "level": "B1",
+    "question_type": "morphology",
+    "stat": "pickup_radius",
+    "value": 46,
+    "cost": 11,
+    "description": "+46 pickup radius",
+    "question": "'Dis-' öneki 'disagree' sözcüğüne hangi anlamı katar?",
+    "options": [
+      "Tekrar",
+      "Aşırı",
+      "Birlikte",
+      "Olumsuzluk / karşıtlık"
+    ],
+    "correct_index": 3,
+    "example": "The two maps disagree about the hidden door."
+  },
+  {
+    "id": "q_c1_25",
+    "word": "Gregarious",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "pickup_radius",
+    "value": 50.0,
+    "cost": 11,
+    "description": "+50 Toplama Menzili",
+    "question": "'Gregarious' kelimesinin anlamı nedir?",
+    "options": [
+      "Yalnızlığı seven",
+      "Vahşi",
+      "Topluluğu seven / Sosyal / Sürü halinde yaşayan",
+      "Düşmanca"
+    ],
+    "correct_index": 2,
+    "example": "Grammar goblins are gregarious pests that always attack in packs."
+  },
+  {
+    "id": "lex-174",
+    "word": "Viable",
+    "type": "Adjective",
+    "level": "C2",
+    "question_type": "meaning",
+    "stat": "damage",
+    "value": 0.14,
+    "cost": 16,
+    "description": "+0.14 damage",
+    "question": "'Feasible' hangi anlama en yakındır?",
+    "options": [
+      "Kusursuz",
+      "Yasak",
+      "Uygulanabilir",
+      "Gizli"
+    ],
+    "correct_index": 2,
+    "example": "A direct assault was not feasible with our remaining supplies."
+  },
+  {
+    "id": "q_b1_01",
+    "word": "Resilient",
+    "type": "Adjective",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "armor",
+    "value": 0.15,
+    "cost": 12,
+    "description": "+%15 Hasar Direnci",
+    "question": "'Resilient' sözcüğünün Türkçe karşılığı hangisidir?",
+    "options": [
+      "Kırılgan ve narin",
+      "Tembel ve hevessiz",
+      "Şüpheci",
+      "Zorluklara karşı dirençli / Çabuk toparlanan"
+    ],
+    "correct_index": 3,
+    "example": "The scholar proved resilient against the harsh linguistic trials."
+  },
+  {
+    "id": "q_b1_52",
+    "word": "Thrive",
+    "type": "Verb",
+    "level": "B2",
+    "question_type": "synonym",
+    "stat": "max_hp",
+    "value": 35.0,
+    "cost": 12,
+    "description": "+35 Maks Can",
+    "question": "'Thrive' fiilinin eş anlamlısı hangisidir?",
+    "options": [
+      "Wither",
+      "Decline",
+      "Flourish / Prosper (Gelişmek / Serpilmek)",
+      "Perish"
+    ],
+    "correct_index": 2,
+    "example": "Your character will thrive once you unlock tier-4 combined weapons."
+  },
+  {
+    "id": "lex-190",
+    "word": "Had been waiting",
+    "type": "Grammar",
+    "level": "B2",
+    "question_type": "grammar",
+    "stat": "attack_speed",
+    "value": 0.1,
+    "cost": 12,
+    "description": "+0.1 attack speed",
+    "question": "'They ___ for an hour before the door opened.'",
+    "options": [
+      "have waited",
+      "are waiting",
+      "had been waiting",
+      "will wait"
+    ],
+    "correct_index": 2,
+    "example": "They had been waiting for an hour before the door opened."
+  },
+  {
+    "id": "q_c1_33",
+    "word": "Rancor",
+    "type": "Noun",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "damage",
+    "value": 0.24,
+    "cost": 14,
+    "description": "+%24 Hasar",
+    "question": "'Rancor' sözcüğünün Türkçe karşılığı nedir?",
+    "options": [
+      "Sevgi",
+      "Derin kin / Düşmanlık / Hınç (Bitterness / Spite)",
+      "Merhamet",
+      "Dostluk"
+    ],
+    "correct_index": 1,
+    "example": "The defeated dragon glared with unrelenting rancor."
+  },
+  {
+    "id": "q_c1_12",
+    "word": "Capitulate",
+    "type": "Verb",
+    "level": "C1",
+    "question_type": "synonym",
+    "stat": "damage",
+    "value": 0.22,
+    "cost": 14,
+    "description": "+%22 Hasar",
+    "question": "'Capitulate' fiilinin eş anlamlısı hangisidir?",
+    "options": [
+      "Conquer",
+      "Surrender / Yield (Teslim olmak / Boyun eğmek)",
+      "Resist",
+      "Triumph"
+    ],
+    "correct_index": 1,
+    "example": "The horde will capitulate before your upgraded ink salvo."
+  },
+  {
+    "id": "q_a1_11",
+    "word": "Ancient",
+    "type": "Adjective",
+    "level": "A2",
+    "question_type": "synonym",
+    "stat": "damage",
+    "value": 0.16,
+    "cost": 9,
+    "description": "+%16 Hasar",
+    "question": "'Ancient' kelimesinin eş anlamlısı (synonym) hangisidir?",
+    "options": [
+      "Very Old / Antique",
+      "Brand New",
+      "Modern",
+      "Cheap"
+    ],
+    "correct_index": 0,
+    "example": "The ancient scriptorium held forbidden grammar knowledge."
+  },
+  {
+    "id": "q_c1_03",
+    "word": "Pernicious",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "damage",
+    "value": 0.24,
+    "cost": 15,
+    "description": "+%24 Mermi Hasarı",
+    "question": "'Pernicious' sözcüğü ne anlama gelir?",
+    "options": [
+      "Yararlı ve şifalı",
+      "Sevimli",
+      "Önemsiz",
+      "Sinsi ve ölümcül zararlar veren (Harmful / Malicious)"
+    ],
+    "correct_index": 3,
+    "example": "Misinformation can exert a pernicious influence on public discourse."
+  },
+  {
+    "id": "q_c1_23",
+    "word": "Equivocal",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "antonym",
+    "stat": "pierce",
+    "value": 1.0,
+    "cost": 14,
+    "description": "+1 Delme",
+    "question": "'Equivocal' sözcüğünün zıt anlamlısı hangisidir?",
+    "options": [
+      "Ambiguous",
+      "Vague",
+      "Unequivocal / Clear (Kesin / Tartışmasız)",
+      "Doubtful"
+    ],
+    "correct_index": 2,
+    "example": "His unequivocal defense silenced all skeptical inquisitors."
   },
   {
     "id": "q_a1_27",
@@ -540,104 +1860,344 @@
     "example": "An error occurred during sentence parsing."
   },
   {
-    "id": "q_a1_28",
-    "word": "Embarrass",
+    "id": "lex-173",
+    "word": "Temper",
     "type": "Verb",
-    "level": "A2",
-    "question_type": "spelling",
-    "stat": "damage",
-    "value": 0.14,
-    "cost": 8,
-    "description": "+%14 Hasar",
-    "question": "'Utandırmak' anlamındaki fiilin doğru yazılışı hangisidir?",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "heal",
+    "value": 34,
+    "cost": 14,
+    "description": "+34 heal",
+    "question": "'Temper' fiili hangi anlama gelir?",
     "options": [
-      "Embarass",
-      "Embarrass",
-      "Embarras",
-      "Emberrass"
+      "Ağırlaştırmak",
+      "Önceden görmek",
+      "Hafifletmek",
+      "Dağıtmak"
+    ],
+    "correct_index": 2,
+    "example": "A short rest can alleviate the poison effect."
+  },
+  {
+    "id": "q_c1_34",
+    "word": "Sanguine",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "heal",
+    "value": 45.0,
+    "cost": 13,
+    "description": "+45 Can Yenile",
+    "question": "'Sanguine' kelimesi neyi ifade eder?",
+    "options": [
+      "Karamsar",
+      "İyimser / Umut dolu (Optimistic / Cheerful)",
+      "Üzgün",
+      "Korkak"
     ],
     "correct_index": 1,
-    "example": "Grammar goblins try to embarrass careless writers."
+    "example": "He remained sanguine about his chances of passing the C1 exam."
   },
   {
-    "id": "q_a1_29",
-    "word": "Journey",
-    "type": "Noun",
-    "level": "A1",
+    "id": "q_c1_11",
+    "word": "Reticent",
+    "type": "Adjective",
+    "level": "C1",
     "question_type": "meaning",
     "stat": "move_speed",
-    "value": 25.0,
-    "cost": 6,
-    "description": "+25 Hız",
-    "question": "'Journey' sözcüğü ne anlama gelir?",
+    "value": 30.0,
+    "cost": 11,
+    "description": "+30 Hız",
+    "question": "'Reticent' kelimesinin anlamı nedir?",
     "options": [
-      "Seyahat / Yolculuk",
-      "Mola",
-      "Varış",
-      "Korku"
+      "Çok konuşan / Geveze",
+      "Saldırgan",
+      "Ağzı sıkı / Ketum / Konuşmaktan kaçınan",
+      "Korkak"
     ],
-    "correct_index": 0,
-    "example": "Your survival journey spans across 100 library waves."
+    "correct_index": 2,
+    "example": "The grandmaster was reticent regarding the location of the lost tome."
   },
   {
-    "id": "q_a1_30",
-    "word": "Guide",
-    "type": "Noun/Verb",
-    "level": "A1",
-    "question_type": "meaning",
-    "stat": "pickup_radius",
-    "value": 35.0,
-    "cost": 6,
-    "description": "+35 Toplama Menzili",
-    "question": "'Guide' kelimesinin anlamı nedir?",
-    "options": [
-      "Rehber / Yol Göstermek",
-      "Engellemek",
-      "Durdurmak",
-      "Cezalandırmak"
-    ],
-    "correct_index": 0,
-    "example": "The grammar handbook will guide your steps."
-  },
-  {
-    "id": "q_a1_31",
-    "word": "Danger",
-    "type": "Noun",
-    "level": "A1",
+    "id": "lex-196",
+    "word": "Obsolete",
+    "type": "Adjective",
+    "level": "B2",
     "question_type": "antonym",
-    "stat": "armor",
-    "value": 0.12,
-    "cost": 7,
-    "description": "+%12 Zırh",
-    "question": "'Danger' (Tehlike) kelimesinin zıt anlamlısı nedir?",
+    "stat": "pickup_radius",
+    "value": 45,
+    "cost": 12,
+    "description": "+45 pickup radius",
+    "question": "'Obsolete' kelimesinin zıt anlamlısı hangisidir?",
     "options": [
-      "Safety / Security",
-      "Hazard",
-      "Peril",
-      "Threat"
+      "Ancient",
+      "Modern / current",
+      "Broken",
+      "Unusual"
     ],
-    "correct_index": 0,
-    "example": "Step into safety after eliminating the wave."
+    "correct_index": 1,
+    "example": "The obsolete cipher was replaced by a clearer code."
   },
   {
-    "id": "q_a1_32",
-    "word": "Gather",
-    "type": "Verb",
-    "level": "A2",
-    "question_type": "meaning",
-    "stat": "pickup_radius",
-    "value": 40.0,
-    "cost": 7,
-    "description": "+40 Toplama Menzili",
-    "question": "'Gather' fiili ne anlama gelir?",
+    "id": "q_b1_37",
+    "word": "Keep up with",
+    "type": "Phrasal Verb",
+    "level": "B2",
+    "question_type": "phrasal",
+    "stat": "move_speed",
+    "value": 35.0,
+    "cost": 11,
+    "description": "+35 Hız",
+    "question": "'Keep up with' ifadesi neyi anlatır?",
     "options": [
-      "Toplamak / Biriktirmek",
-      "Dağıtmak",
-      "Yıkmak",
-      "Unutmak"
+      "Geride kalmak",
+      "Vazgeçmek",
+      "Yorulmak",
+      "Ayak uydurmak / Hızına yetişmek"
+    ],
+    "correct_index": 3,
+    "example": "Upgrade scholar boots to keep up with agile homophone harpies."
+  },
+  {
+    "id": "q_c1_47",
+    "word": "Spark off",
+    "type": "Phrasal Verb",
+    "level": "C1",
+    "question_type": "phrasal",
+    "stat": "attack_speed",
+    "value": 0.24,
+    "cost": 13,
+    "description": "+%24 Atış Hızı",
+    "question": "'Spark off' phrasal verb'ü neyi anlatır?",
+    "options": [
+      "Ateşlemek / Fitilini yakmak / Başlatmak",
+      "Söndürmek",
+      "Kıvılcım saçmak",
+      "Durdurmak"
     ],
     "correct_index": 0,
-    "example": "Gather blue ink drops to buy upgrades in the shop."
+    "example": "A single careless comma can spark off heated editorial debates."
+  },
+  {
+    "id": "lex-189",
+    "word": "Used to",
+    "type": "Grammar Pattern",
+    "level": "A2",
+    "question_type": "grammar",
+    "stat": "move_speed",
+    "value": 26,
+    "cost": 8,
+    "description": "+26 move speed",
+    "question": "'She used to ___ here.' Doğru seçenek?",
+    "options": [
+      "worked",
+      "working",
+      "work",
+      "to work"
+    ],
+    "correct_index": 2,
+    "example": "She used to work in the north tower."
+  },
+  {
+    "id": "q_b1_41",
+    "word": "Neither...nor",
+    "type": "Grammar Pattern",
+    "level": "B1",
+    "question_type": "grammar",
+    "stat": "attack_speed",
+    "value": 0.18,
+    "cost": 10,
+    "description": "+%18 Atış Hızı",
+    "question": "'Neither A nor B' yapısının Türkçe anlamı nedir?",
+    "options": [
+      "Ne A ne de B",
+      "Hem A hem B",
+      "Ya A ya da B",
+      "Sadece A"
+    ],
+    "correct_index": 0,
+    "example": "Neither the ogre nor the harpy could breach the magic aegis."
+  },
+  {
+    "id": "lex-184",
+    "word": "Despite",
+    "type": "Preposition",
+    "level": "B1",
+    "question_type": "collocation",
+    "stat": "armor",
+    "value": 0.05,
+    "cost": 9,
+    "description": "+0.05 armor",
+    "question": "'___ the warning, they entered the archive.' Boşluk?",
+    "options": [
+      "Although",
+      "Despite",
+      "Because",
+      "Unless"
+    ],
+    "correct_index": 1,
+    "example": "Despite the warning, they entered the archive."
+  },
+  {
+    "id": "q_b1_36",
+    "word": "Make up for",
+    "type": "Phrasal Verb",
+    "level": "B2",
+    "question_type": "phrasal",
+    "stat": "heal",
+    "value": 40.0,
+    "cost": 12,
+    "description": "+40 Can Yenile",
+    "question": "'Make up for' ne anlama gelir?",
+    "options": [
+      "Uydurmak",
+      "Barışmak",
+      "Kayıp vermek",
+      "Telafi etmek (Compensate for)"
+    ],
+    "correct_index": 3,
+    "example": "Answering this quiz will make up for the damage taken during the wave."
+  },
+  {
+    "id": "q_c1_22",
+    "word": "Enervate",
+    "type": "Verb",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "move_speed",
+    "value": 35.0,
+    "cost": 12,
+    "description": "+35 Hız",
+    "question": "'Enervate' fiili ne anlama gelir?",
+    "options": [
+      "Enerji vermek",
+      "Güçten düşürmek / Takatini kesmek (Weaken)",
+      "Canlandırmak",
+      "Hızlandırmak"
+    ],
+    "correct_index": 1,
+    "example": "Continuous dodging will enervate careless challengers."
+  },
+  {
+    "id": "lex-166",
+    "word": "Hesitant",
+    "type": "Adjective",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "armor",
+    "value": 0.07,
+    "cost": 11,
+    "description": "+0.07 armor",
+    "question": "'Reluctant' hangi anlama gelir?",
+    "options": [
+      "Dikkatli",
+      "Hevesli",
+      "İsteksiz",
+      "Yetenekli"
+    ],
+    "correct_index": 2,
+    "example": "The witness was reluctant to open the sealed letter."
+  },
+  {
+    "id": "q_c1_52",
+    "word": "Albeit",
+    "type": "Conjunction",
+    "level": "C1",
+    "question_type": "synonym",
+    "stat": "armor",
+    "value": 0.16,
+    "cost": 12,
+    "description": "+%16 Zırh",
+    "question": "'Albeit' bağlacının eş anlamlısı hangisidir?",
+    "options": [
+      "Because",
+      "Although / Even though (-se de / her ne kadar ... olsa da)",
+      "Therefore",
+      "Moreover"
+    ],
+    "correct_index": 1,
+    "example": "The apprentice vanquished the phantom, albeit with significant effort."
+  },
+  {
+    "id": "q_c1_21",
+    "word": "Deleterious",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "synonym",
+    "stat": "armor",
+    "value": 0.16,
+    "cost": 13,
+    "description": "+%16 Zırh",
+    "question": "'Deleterious' sıfatının eş anlamlısı hangisidir?",
+    "options": [
+      "Beneficial",
+      "Detrimental / Injurious (Zararlı / Tahripkar)",
+      "Salubrious",
+      "Healthy"
+    ],
+    "correct_index": 1,
+    "example": "Grammatical confusion can exert deleterious effects on essay grades."
+  },
+  {
+    "id": "lex-198",
+    "word": "Impartial",
+    "type": "Adjective",
+    "level": "C2",
+    "question_type": "meaning",
+    "stat": "armor",
+    "value": 0.09,
+    "cost": 17,
+    "description": "+0.09 armor",
+    "question": "'Impartial' bir yargıcın hangi özelliğidir?",
+    "options": [
+      "Kararını gizlemesi",
+      "Hızlı davranması",
+      "Sert konuşması",
+      "Tarafsız olması"
+    ],
+    "correct_index": 3,
+    "example": "An impartial judge listened to both witnesses."
+  },
+  {
+    "id": "q_c1_44",
+    "word": "Boil down to",
+    "type": "Idiom",
+    "level": "C1",
+    "question_type": "idiom",
+    "stat": "damage",
+    "value": 0.2,
+    "cost": 13,
+    "description": "+%20 Hasar",
+    "question": "'Boil down to' deyimi neyi ifade eder?",
+    "options": [
+      "Kaynamak",
+      "Özetle ... anlamına gelmek / Temelinde ... yatmak",
+      "Buharlaşmak",
+      "Taşmak"
+    ],
+    "correct_index": 1,
+    "example": "Success in Lexicon Survivors boils down to positioning and question accuracy."
+  },
+  {
+    "id": "q_c1_16",
+    "word": "Voracious",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "ink_mult",
+    "value": 0.45,
+    "cost": 15,
+    "description": "+%45 Mürekkep Bonusu",
+    "question": "'Voracious' kelimesi neyi ifade eder?",
+    "options": [
+      "Tok",
+      "İsteksiz",
+      "Doymak bilmez / Aşırı hevesli (Insatiable)",
+      "Tembel"
+    ],
+    "correct_index": 2,
+    "example": "A voracious reader absorbs hundreds of academic publications yearly."
   },
   {
     "id": "q_a1_33",
@@ -651,13 +2211,813 @@
     "description": "+25 Maks Can",
     "question": "'Wisdom' kelimesi neyi ifade eder?",
     "options": [
-      "Bilgelik / İlim",
       "Cehalet",
       "Öfke",
+      "Bilgelik / İlim",
       "Acele"
     ],
-    "correct_index": 0,
+    "correct_index": 2,
     "example": "True wisdom turns enemies into learned vocabulary."
+  },
+  {
+    "id": "q_c1_04",
+    "word": "Serendipity",
+    "type": "Noun",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "ink_mult",
+    "value": 0.4,
+    "cost": 14,
+    "description": "+%40 Mürekkep Kazanımı",
+    "question": "'Serendipity' kavramı neyi anlatır?",
+    "options": [
+      "Büyük felaket",
+      "Kasıtlı plan",
+      "Şans eseri değerli bir şey keşfetme talihi",
+      "Tembellik"
+    ],
+    "correct_index": 2,
+    "example": "Finding an epic weapon scroll in a random wave was pure serendipity."
+  },
+  {
+    "id": "lex-176",
+    "word": "Concede",
+    "type": "Verb",
+    "level": "C2",
+    "question_type": "meaning",
+    "stat": "armor",
+    "value": 0.08,
+    "cost": 16,
+    "description": "+0.08 armor",
+    "question": "'Concede' fiilinin anlamı hangisidir?",
+    "options": [
+      "İddia etmek",
+      "Kabul etmek / ödün vermek",
+      "İptal etmek",
+      "Hatırlatmak"
+    ],
+    "correct_index": 1,
+    "example": "The curator had to concede that the record was altered."
+  },
+  {
+    "id": "q_b1_48",
+    "word": "Predict",
+    "type": "Verb",
+    "level": "B1",
+    "question_type": "synonym",
+    "stat": "attack_speed",
+    "value": 0.16,
+    "cost": 9,
+    "description": "+%16 Atış Hızı",
+    "question": "'Predict' fiilinin eş anlamlısı hangisidir?",
+    "options": [
+      "Forget",
+      "Ignore",
+      "Foresee / Anticipate (Öngörmek / Tahmin etmek)",
+      "Cause"
+    ],
+    "correct_index": 2,
+    "example": "Predicting enemy movement trajectories allows accurate rail-sniper shots."
+  },
+  {
+    "id": "q_c1_18",
+    "word": "Anachronism",
+    "type": "Noun",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "pierce",
+    "value": 1.0,
+    "cost": 15,
+    "description": "+1 Delme",
+    "question": "'Anachronism' terimi ne demektir?",
+    "options": [
+      "Tarihsel yanılgı / Çağ aşımı / Zamana uymama",
+      "Zaman makinesi",
+      "Kronoloji",
+      "Tarihi eser"
+    ],
+    "correct_index": 0,
+    "example": "A laser beam in a medieval library is a deliberate stylistic anachronism."
+  },
+  {
+    "id": "lex-183",
+    "word": "On the verge of",
+    "type": "Idiom",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "move_speed",
+    "value": 29,
+    "cost": 13,
+    "description": "+29 move speed",
+    "question": "'On the verge of collapse' ne demektir?",
+    "options": [
+      "Çöküşün ardından",
+      "Çöküşten habersiz",
+      "Çöküşe karşı",
+      "Çöküşün eşiğinde"
+    ],
+    "correct_index": 3,
+    "example": "The west wing was on the verge of collapse."
+  },
+  {
+    "id": "q_c1_17",
+    "word": "Juxtaposition",
+    "type": "Noun",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "damage",
+    "value": 0.25,
+    "cost": 15,
+    "description": "+%25 Hasar",
+    "question": "'Juxtaposition' edebi sanatı neyi ifade eder?",
+    "options": [
+      "İki zıt şeyi yan yana koyup tezat yaratma",
+      "Aynı kelimeyi tekrarlama",
+      "Kafiye yapma",
+      "Abartma"
+    ],
+    "correct_index": 0,
+    "example": "The juxtaposition of fire and ice created the paradox ogre."
+  },
+  {
+    "id": "q_b1_18",
+    "word": "Significant",
+    "type": "Adjective",
+    "level": "B1",
+    "question_type": "synonym",
+    "stat": "damage",
+    "value": 0.18,
+    "cost": 11,
+    "description": "+%18 Hasar",
+    "question": "'Significant' kelimesinin eş anlamlısı hangisidir?",
+    "options": [
+      "Trivial",
+      "Insignificant",
+      "Minor",
+      "Important / Meaningful"
+    ],
+    "correct_index": 3,
+    "example": "Upgrading weapons delivers a significant power boost."
+  },
+  {
+    "id": "q_a1_21",
+    "word": "Treasure",
+    "type": "Noun",
+    "level": "A1",
+    "question_type": "meaning",
+    "stat": "ink_mult",
+    "value": 0.25,
+    "cost": 9,
+    "description": "+%25 Mürekkep Kazanımı",
+    "question": "'Treasure' kelimesinin Türkçe anlamı nedir?",
+    "options": [
+      "Tehlike",
+      "Harita",
+      "Hazine / Kıymetli Şey",
+      "Mektup"
+    ],
+    "correct_index": 2,
+    "example": "Words are the greatest treasure of civilization."
+  },
+  {
+    "id": "q_b1_44",
+    "word": "Although",
+    "type": "Conjunction",
+    "level": "B1",
+    "question_type": "grammar",
+    "stat": "armor",
+    "value": 0.12,
+    "cost": 9,
+    "description": "+%12 Zırh",
+    "question": "'Although' bağlacı cümleye ne katar?",
+    "options": [
+      "Sebep (çünkü)",
+      "Zıtlık (-e rağmen / -sa da)",
+      "Zaman (iken)",
+      "Sonuç (bu yüzden)"
+    ],
+    "correct_index": 1,
+    "example": "Although the horde was massive, Inky held the line bravely."
+  },
+  {
+    "id": "q_a1_30",
+    "word": "Guide",
+    "type": "Noun/Verb",
+    "level": "A1",
+    "question_type": "meaning",
+    "stat": "pickup_radius",
+    "value": 35.0,
+    "cost": 6,
+    "description": "+35 Toplama Menzili",
+    "question": "'Guide' kelimesinin anlamı nedir?",
+    "options": [
+      "Engellemek",
+      "Durdurmak",
+      "Cezalandırmak",
+      "Rehber / Yol Göstermek"
+    ],
+    "correct_index": 3,
+    "example": "The grammar handbook will guide your steps."
+  },
+  {
+    "id": "q_b1_64",
+    "word": "Oblivious",
+    "type": "Adjective",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "armor",
+    "value": 0.14,
+    "cost": 11,
+    "description": "+%14 Zırh",
+    "question": "'Oblivious' kelimesinin Türkçe karşılığı hangisidir?",
+    "options": [
+      "Farkında olmayan / Habersiz",
+      "Çok dikkatli",
+      "Uyanık",
+      "Bilgili"
+    ],
+    "correct_index": 0,
+    "example": "Never be oblivious to enemy projectiles flying behind you."
+  },
+  {
+    "id": "q_c1_30",
+    "word": "Onerous",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "armor",
+    "value": 0.16,
+    "cost": 12,
+    "description": "+%16 Zırh",
+    "question": "'Onerous' sözcüğü neyi belirtir?",
+    "options": [
+      "Hafif ve kolay",
+      "Eğlenceli",
+      "Bedava",
+      "Ağır / Külfetli / Zahmetli (Burdensome)"
+    ],
+    "correct_index": 3,
+    "example": "Synthesizing dictionary volumes was an onerous responsibility."
+  },
+  {
+    "id": "q_a1_25",
+    "word": "Accommodate",
+    "type": "Verb",
+    "level": "A2",
+    "question_type": "spelling",
+    "stat": "max_hp",
+    "value": 25.0,
+    "cost": 9,
+    "description": "+25 Maks Can",
+    "question": "'Barındırmak / Uyum Sağlamak' anlamındaki kelimenin doğru yazılışı hangisidir?",
+    "options": [
+      "Accommodate",
+      "Acommodate",
+      "Accomodate",
+      "Acomodate"
+    ],
+    "correct_index": 0,
+    "example": "The scriptorium can accommodate up to six active weapons."
+  },
+  {
+    "id": "q_a1_32",
+    "word": "Gather",
+    "type": "Verb",
+    "level": "A2",
+    "question_type": "meaning",
+    "stat": "pickup_radius",
+    "value": 40.0,
+    "cost": 7,
+    "description": "+40 Toplama Menzili",
+    "question": "'Gather' fiili ne anlama gelir?",
+    "options": [
+      "Dağıtmak",
+      "Yıkmak",
+      "Toplamak / Biriktirmek",
+      "Unutmak"
+    ],
+    "correct_index": 2,
+    "example": "Gather blue ink drops to buy upgrades in the shop."
+  },
+  {
+    "id": "q_a1_01",
+    "word": "Fast",
+    "type": "Adjective",
+    "level": "A1",
+    "question_type": "meaning",
+    "stat": "move_speed",
+    "value": 30.0,
+    "cost": 6,
+    "description": "+30 Hareket Hızı",
+    "question": "'Fast' kelimesinin Türkçe karşılığı hangisidir?",
+    "options": [
+      "Yavaş",
+      "Zor",
+      "Hızlı",
+      "Sessiz"
+    ],
+    "correct_index": 2,
+    "example": "He runs very fast to dodge incoming enemy attacks."
+  },
+  {
+    "id": "q_a1_02",
+    "word": "Strong",
+    "type": "Adjective",
+    "level": "A1",
+    "question_type": "meaning",
+    "stat": "damage",
+    "value": 0.15,
+    "cost": 8,
+    "description": "+%15 Mermi Hasarı",
+    "question": "'Strong' kelimesinin Türkçe anlamı nedir?",
+    "options": [
+      "Güçlü / Kuvvetli",
+      "Zayıf",
+      "Huzurlu",
+      "Karanlık"
+    ],
+    "correct_index": 0,
+    "example": "Inky became strong enough to banish the slime horde."
+  },
+  {
+    "id": "lex-180",
+    "word": "Rule out",
+    "type": "Phrasal Verb",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "crit_chance",
+    "value": 0.05,
+    "cost": 13,
+    "description": "+0.05 crit chance",
+    "question": "'Rule out' hangi anlama gelir?",
+    "options": [
+      "Kural koymak",
+      "Dışarı çıkmak",
+      "İhtimal dışı bırakmak",
+      "Yazıyı silmek"
+    ],
+    "correct_index": 2,
+    "example": "We cannot rule out a second entrance beneath the stage."
+  },
+  {
+    "id": "q_b1_56",
+    "word": "Yield",
+    "type": "Verb",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "ink_mult",
+    "value": 0.35,
+    "cost": 12,
+    "description": "+%35 Mürekkep Bonusu",
+    "question": "'Yield' fiilinin ekonomik veya tarımsal anlamı nedir?",
+    "options": [
+      "Tüketmek",
+      "Kaybetmek",
+      "Ürün vermek / Kazanç sağlamak",
+      "Durdurmak"
+    ],
+    "correct_index": 2,
+    "example": "Defeating golden elites will yield extraordinary ink rewards."
+  },
+  {
+    "id": "q_b1_35",
+    "word": "Bring about",
+    "type": "Phrasal Verb",
+    "level": "B2",
+    "question_type": "synonym",
+    "stat": "damage",
+    "value": 0.2,
+    "cost": 12,
+    "description": "+%20 Hasar",
+    "question": "'Bring about' kalıbının eş anlamlısı hangisidir?",
+    "options": [
+      "Prevent",
+      "Cause / Lead to (Neden olmak / Yol açmak)",
+      "Halt",
+      "Destroy"
+    ],
+    "correct_index": 1,
+    "example": "Thorough vocabulary mastery will bring about your exam triumph."
+  },
+  {
+    "id": "q_a1_06",
+    "word": "Cautious",
+    "type": "Adjective",
+    "level": "A2",
+    "question_type": "meaning",
+    "stat": "armor",
+    "value": 0.1,
+    "cost": 8,
+    "description": "+%10 Zırh",
+    "question": "'Cautious' sözcüğü neyi ifade eder?",
+    "options": [
+      "Aceleci",
+      "Öfkeli",
+      "Dikkatli / Tedbirli",
+      "Cömert"
+    ],
+    "correct_index": 2,
+    "example": "Be cautious when approaching exploding punctuation mines."
+  },
+  {
+    "id": "q_c1_15",
+    "word": "Intrepid",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "synonym",
+    "stat": "max_hp",
+    "value": 45.0,
+    "cost": 15,
+    "description": "+45 Maks Can",
+    "question": "'Intrepid' sıfatının eş anlamlısı nedir?",
+    "options": [
+      "Fearless / Dauntless (Korkusuz / Cesur)",
+      "Timid",
+      "Cowardly",
+      "Hesitant"
+    ],
+    "correct_index": 0,
+    "example": "Intrepid scholars venture into the heart of the grammar labyrinth."
+  },
+  {
+    "id": "q_b1_53",
+    "word": "Unveil",
+    "type": "Verb",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "pickup_radius",
+    "value": 45.0,
+    "cost": 10,
+    "description": "+45 Toplama Menzili",
+    "question": "'Unveil' sözcüğü Türkçede ne anlama gelir?",
+    "options": [
+      "Gizlemek",
+      "Yasaklamak",
+      "Açığa çıkarmak / Örtüsünü kaldırmak",
+      "Tahrip etmek"
+    ],
+    "correct_index": 2,
+    "example": "Surviving milestone waves will unveil secret library lore."
+  },
+  {
+    "id": "q_b1_42",
+    "word": "Not only...but also",
+    "type": "Grammar Pattern",
+    "level": "B2",
+    "question_type": "grammar",
+    "stat": "projectile_count",
+    "value": 1.0,
+    "cost": 17,
+    "description": "+1 Mermi",
+    "question": "'Not only...but also' bağlacı ne anlama gelir?",
+    "options": [
+      "Ne o ne de bu",
+      "Sadece ... değil, aynı zamanda ... da",
+      "Eğer olmazsa",
+      "Oysa ki"
+    ],
+    "correct_index": 1,
+    "example": "Lexicon Survivors trains not only your vocabulary, but also your reflexes."
+  },
+  {
+    "id": "q_b1_50",
+    "word": "Reconcile",
+    "type": "Verb",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "armor",
+    "value": 0.14,
+    "cost": 11,
+    "description": "+%14 Zırh",
+    "question": "'Reconcile' sözcüğü ne anlama gelir?",
+    "options": [
+      "Bölmek",
+      "Uzlaştırmak / Barıştırmak / Uyuşmak",
+      "Kışkırtmak",
+      "Savaşmak"
+    ],
+    "correct_index": 1,
+    "example": "The editor helped reconcile differing translations into a single text."
+  },
+  {
+    "id": "q_b1_27",
+    "word": "Cope with",
+    "type": "Phrasal Verb",
+    "level": "B1",
+    "question_type": "phrasal",
+    "stat": "armor",
+    "value": 0.15,
+    "cost": 11,
+    "description": "+%15 Zırh",
+    "question": "'Cope with' kalıbının Türkçe karşılığı hangisidir?",
+    "options": [
+      "Boyun eğmek",
+      "Terk etmek",
+      "Karışmak",
+      "Başa çıkmak / Üstesinden gelmek"
+    ],
+    "correct_index": 3,
+    "example": "You need high armor to cope with relentless horde attacks."
+  },
+  {
+    "id": "q_a1_03",
+    "word": "Heal",
+    "type": "Verb",
+    "level": "A1",
+    "question_type": "meaning",
+    "stat": "heal",
+    "value": 35.0,
+    "cost": 10,
+    "description": "+35 Can Yenile",
+    "question": "'Heal' fiilinin Türkçe anlamı hangisidir?",
+    "options": [
+      "Yaralamak",
+      "Kaçmak",
+      "İyileştirmek / Şifa Bulmak",
+      "Unutmak"
+    ],
+    "correct_index": 2,
+    "example": "The ancient scroll helped heal the wounded scholar."
+  },
+  {
+    "id": "q_a1_28",
+    "word": "Embarrass",
+    "type": "Verb",
+    "level": "A2",
+    "question_type": "spelling",
+    "stat": "damage",
+    "value": 0.14,
+    "cost": 8,
+    "description": "+%14 Hasar",
+    "question": "'Utandırmak' anlamındaki fiilin doğru yazılışı hangisidir?",
+    "options": [
+      "Embarass",
+      "Embarras",
+      "Embarrass",
+      "Emberrass"
+    ],
+    "correct_index": 2,
+    "example": "Grammar goblins try to embarrass careless writers."
+  },
+  {
+    "id": "q_b1_17",
+    "word": "Reluctant",
+    "type": "Adjective",
+    "level": "B2",
+    "question_type": "antonym",
+    "stat": "attack_speed",
+    "value": 0.18,
+    "cost": 11,
+    "description": "+%18 Atış Hızı",
+    "question": "'Reluctant' sözcüğünün zıt anlamlısı hangisidir?",
+    "options": [
+      "Willing / Eager (İstekli / Gönüllü)",
+      "Hesitant",
+      "Unwilling",
+      "Averse"
+    ],
+    "correct_index": 0,
+    "example": "The apprentice was reluctant to face the grammar dragon alone."
+  },
+  {
+    "id": "q_c1_19",
+    "word": "Paradigm",
+    "type": "Noun",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "max_hp",
+    "value": 40.0,
+    "cost": 14,
+    "description": "+40 Maks Can",
+    "question": "'Paradigm' sözcüğü ne anlama gelir?",
+    "options": [
+      "Model / Temel düşünce kalıbı (Archetype / Framework)",
+      "İstisna",
+      "Rastlantı",
+      "Yanılsama"
+    ],
+    "correct_index": 0,
+    "example": "Combining survival roguelite with EdTech represents a novel paradigm."
+  },
+  {
+    "id": "lex-185",
+    "word": "Provided that",
+    "type": "Conjunction",
+    "level": "B2",
+    "question_type": "collocation",
+    "stat": "max_hp",
+    "value": 20,
+    "cost": 11,
+    "description": "+20 max hp",
+    "question": "'Provided that' en yakın hangi anlama gelir?",
+    "options": [
+      "O zamandan beri",
+      "Buna rağmen",
+      "Örneğin",
+      "Şartıyla"
+    ],
+    "correct_index": 3,
+    "example": "You may enter, provided that you leave the seal untouched."
+  },
+  {
+    "id": "q_c1_48",
+    "word": "Stem from",
+    "type": "Phrasal Verb",
+    "level": "C1",
+    "question_type": "phrasal",
+    "stat": "damage",
+    "value": 0.2,
+    "cost": 12,
+    "description": "+%20 Hasar",
+    "question": "'Stem from' kalıbının anlamı nedir?",
+    "options": [
+      "Kök salmak",
+      "-den kaynaklanmak / İleri gelmek (Originate from)",
+      "Durdurmak",
+      "Uzaklaşmak"
+    ],
+    "correct_index": 1,
+    "example": "Many modern English terms stem from ancient Greek and Latin roots."
+  },
+  {
+    "id": "q_b1_13",
+    "word": "Emphasize",
+    "type": "Verb",
+    "level": "B1",
+    "question_type": "meaning",
+    "stat": "damage",
+    "value": 0.16,
+    "cost": 10,
+    "description": "+%16 Hasar",
+    "question": "'Emphasize' fiilinin Türkçe karşılığı nedir?",
+    "options": [
+      "Gizlemek",
+      "Yalanlamak",
+      "Küçümsemek",
+      "Vurgulamak / Dikkat çekmek"
+    ],
+    "correct_index": 3,
+    "example": "Exclamation points emphasize the intensity of punctuation bombs."
+  },
+  {
+    "id": "q_c1_06",
+    "word": "Pragmatic",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "armor",
+    "value": 0.16,
+    "cost": 12,
+    "description": "+%16 Zırh",
+    "question": "'Pragmatic' sözcüğü ne anlama gelir?",
+    "options": [
+      "Uygulamaya ve pratik yarara odaklı",
+      "Hayalperest",
+      "Bağnaz",
+      "Tembel"
+    ],
+    "correct_index": 0,
+    "example": "Taking defensive relics first is a pragmatic survival strategy."
+  },
+  {
+    "id": "q_c1_14",
+    "word": "Taciturn",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "armor",
+    "value": 0.15,
+    "cost": 12,
+    "description": "+%15 Zırh",
+    "question": "'Taciturn' sözcüğü hangi kişilik özelliğini anlatır?",
+    "options": [
+      "Az ve öz konuşan / Sessiz / Suskun",
+      "Neşeli",
+      "Geveze",
+      "Kibirli"
+    ],
+    "correct_index": 0,
+    "example": "The taciturn sentinel guarded the gate without uttering a single syllable."
+  },
+  {
+    "id": "q_a1_26",
+    "word": "Necessary",
+    "type": "Adjective",
+    "level": "A2",
+    "question_type": "spelling",
+    "stat": "armor",
+    "value": 0.1,
+    "cost": 8,
+    "description": "+%10 Zırh",
+    "question": "'Gerekli' anlamına gelen kelimenin doğru yazılışı hangisidir?",
+    "options": [
+      "Neccessary",
+      "Necesary",
+      "Necessary",
+      "Neccesary"
+    ],
+    "correct_index": 2,
+    "example": "Quick dodging is necessary against boss volleys."
+  },
+  {
+    "id": "q_c1_31",
+    "word": "Parsimonious",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "ink_mult",
+    "value": 0.35,
+    "cost": 12,
+    "description": "+%35 Mürekkep Bonusu",
+    "question": "'Parsimonious' kelimesinin anlamı nedir?",
+    "options": [
+      "Müsrif / Savurgan",
+      "Aşırı tutumlu / Hasis / Eli sıkı (Miserly)",
+      "Cömert",
+      "Zengin"
+    ],
+    "correct_index": 1,
+    "example": "Be parsimonious with ink in early waves to afford weapon slots later."
+  },
+  {
+    "id": "q_c1_01",
+    "word": "Ephemeral",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "attack_speed",
+    "value": 0.25,
+    "cost": 14,
+    "description": "+%25 Saldırı Hızı",
+    "question": "'Ephemeral' sözcüğü ne anlama gelir?",
+    "options": [
+      "Ebedi / Sonsuz",
+      "Kalıcı ve sabit",
+      "Kısa ömürlü / Geçici (Transient / Fleeting)",
+      "Ağırbaşlı"
+    ],
+    "correct_index": 2,
+    "example": "Typo splinters have an ephemeral existence on the battlefield."
+  },
+  {
+    "id": "q_c1_13",
+    "word": "Superfluous",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "attack_speed",
+    "value": 0.22,
+    "cost": 13,
+    "description": "+%22 Atış Hızı",
+    "question": "'Superfluous' sıfatı ne anlama gelir?",
+    "options": [
+      "Zorunlu",
+      "Yetersiz",
+      "Değerli",
+      "Gereksiz / Fazlalık / Lüzumsuz (Redundant / Unnecessary)"
+    ],
+    "correct_index": 3,
+    "example": "Eliminate superfluous adverbs to make your sentences concise."
+  },
+  {
+    "id": "lex-194",
+    "word": "Privilege",
+    "type": "Noun",
+    "level": "B2",
+    "question_type": "spelling",
+    "stat": "damage",
+    "value": 0.12,
+    "cost": 12,
+    "description": "+0.12 damage",
+    "question": "Privilege kelimesinin doğru yazımı hangisidir?",
+    "options": [
+      "Priviledge",
+      "Privilege",
+      "Privlege",
+      "Privelege"
+    ],
+    "correct_index": 1,
+    "example": "Reading the restricted ledger was a rare privilege."
+  },
+  {
+    "id": "lex-169",
+    "word": "Degrade",
+    "type": "Verb",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "heal",
+    "value": 26,
+    "cost": 13,
+    "description": "+26 heal",
+    "question": "'Deteriorate' fiilinin karşılığı hangisidir?",
+    "options": [
+      "Onaylamak",
+      "Hızlandırmak",
+      "Açıklamak",
+      "Kötüleşmek"
+    ],
+    "correct_index": 3,
+    "example": "The parchment began to deteriorate in the damp chamber."
   },
   {
     "id": "q_a1_34",
@@ -691,93 +3051,13 @@
     "description": "+%15 Hasar",
     "question": "'Flame' sözcüğünün Türkçe anlamı nedir?",
     "options": [
-      "Alev / Ateş",
       "Buz",
+      "Alev / Ateş",
       "Rüzgar",
       "Mürekkep"
     ],
-    "correct_index": 0,
+    "correct_index": 1,
     "example": "Ink flamethrower sprays a blue arcane flame."
-  },
-  {
-    "id": "q_a1_36",
-    "word": "Horizon",
-    "type": "Noun",
-    "level": "A2",
-    "question_type": "meaning",
-    "stat": "pierce",
-    "value": 1.0,
-    "cost": 12,
-    "description": "+1 Delme",
-    "question": "'Horizon' kelimesinin anlamı hangisidir?",
-    "options": [
-      "Ufuk Çizgisi",
-      "Yol Kenarı",
-      "Gökyüzü",
-      "Zemin"
-    ],
-    "correct_index": 0,
-    "example": "Look toward the horizon to spot incoming elite waves."
-  },
-  {
-    "id": "q_a1_37",
-    "word": "Harmony",
-    "type": "Noun",
-    "level": "A2",
-    "question_type": "meaning",
-    "stat": "attack_speed",
-    "value": 0.15,
-    "cost": 8,
-    "description": "+%15 Atış Hızı",
-    "question": "'Harmony' kelimesinin anlamı nedir?",
-    "options": [
-      "Uyum / Ahenk",
-      "Çatışma",
-      "Gürültü",
-      "Dağınıklık"
-    ],
-    "correct_index": 0,
-    "example": "Subject and verb must exist in complete harmony."
-  },
-  {
-    "id": "q_a1_38",
-    "word": "Focus",
-    "type": "Verb/Noun",
-    "level": "A1",
-    "question_type": "meaning",
-    "stat": "damage",
-    "value": 0.14,
-    "cost": 7,
-    "description": "+%14 Hasar",
-    "question": "'Focus' fiili ne anlama gelir?",
-    "options": [
-      "Odaklanmak",
-      "Dağılmak",
-      "Uyumak",
-      "Kaçınmak"
-    ],
-    "correct_index": 0,
-    "example": "Focus your fire on the high-priority phantom casters."
-  },
-  {
-    "id": "q_a1_39",
-    "word": "Ancient vs Modern",
-    "type": "Antonym Pair",
-    "level": "A2",
-    "question_type": "antonym",
-    "stat": "armor",
-    "value": 0.12,
-    "cost": 8,
-    "description": "+%12 Zırh",
-    "question": "'Modern' kelimesinin zıt anlamlısı hangisidir?",
-    "options": [
-      "Ancient (Kadim / Antik)",
-      "Recent",
-      "Contemporary",
-      "Current"
-    ],
-    "correct_index": 0,
-    "example": "The ancient grimoires hold secrets of modern syntax."
   },
   {
     "id": "q_a1_40",
@@ -791,393 +3071,173 @@
     "description": "+30 Hız",
     "question": "'Sluggish' (Ağır / Uyuşuk) kelimesinin zıt anlamlısı nedir?",
     "options": [
-      "Fast / Rapid",
       "Slow",
       "Heavy",
+      "Fast / Rapid",
       "Idle"
     ],
-    "correct_index": 0,
+    "correct_index": 2,
     "example": "Do not remain sluggish when ogres slam the ground."
   },
   {
-    "id": "q_b1_01",
-    "word": "Resilient",
-    "type": "Adjective",
-    "level": "B2",
-    "question_type": "meaning",
-    "stat": "armor",
-    "value": 0.15,
-    "cost": 12,
-    "description": "+%15 Hasar Direnci",
-    "question": "'Resilient' sözcüğünün Türkçe karşılığı hangisidir?",
-    "options": [
-      "Zorluklara karşı dirençli / Çabuk toparlanan",
-      "Kırılgan ve narin",
-      "Tembel ve hevessiz",
-      "Şüpheci"
-    ],
-    "correct_index": 0,
-    "example": "The scholar proved resilient against the harsh linguistic trials."
-  },
-  {
-    "id": "q_b1_02",
-    "word": "Vulnerable",
-    "type": "Adjective",
-    "level": "B2",
-    "question_type": "meaning",
-    "stat": "armor",
-    "value": 0.14,
-    "cost": 11,
-    "description": "+%14 Zırh",
-    "question": "'Vulnerable' sıfatı neyi ifade eder?",
-    "options": [
-      "Savunmasız / Kolay incinir",
-      "Yenilmez",
-      "Büyülü",
-      "Görünmez"
-    ],
-    "correct_index": 0,
-    "example": "Without armor, your hero remains vulnerable to phantom spells."
-  },
-  {
-    "id": "q_b1_03",
-    "word": "Abundant",
-    "type": "Adjective",
-    "level": "B1",
-    "question_type": "synonym",
-    "stat": "ink_mult",
-    "value": 0.35,
-    "cost": 12,
-    "description": "+%35 Mürekkep Bonusu",
-    "question": "'Abundant' kelimesinin eş anlamlısı hangisidir?",
-    "options": [
-      "Plentiful / Copious (Bol / Bereketli)",
-      "Scarce",
-      "Rare",
-      "Meager"
-    ],
-    "correct_index": 0,
-    "example": "The fallen boss left behind abundant drops of mystical ink."
-  },
-  {
-    "id": "q_b1_04",
-    "word": "Scarce",
-    "type": "Adjective",
-    "level": "B2",
-    "question_type": "antonym",
-    "stat": "damage",
-    "value": 0.18,
-    "cost": 12,
-    "description": "+%18 Hasar",
-    "question": "'Scarce' kelimesinin zıt anlamlısı hangisidir?",
-    "options": [
-      "Abundant / Plentiful (Bol)",
-      "Rare",
-      "Limited",
-      "Insufficient"
-    ],
-    "correct_index": 0,
-    "example": "Resources become scarce in the higher floors of the citadel."
-  },
-  {
-    "id": "q_b1_05",
-    "word": "Meticulous",
-    "type": "Adjective",
-    "level": "B2",
-    "question_type": "meaning",
-    "stat": "damage",
-    "value": 0.2,
-    "cost": 13,
-    "description": "+%20 Hasar & Kritik",
-    "question": "'Meticulous' kelimesi ne anlama gelir?",
-    "options": [
-      "Kılı kırk yaran / Son derece titiz",
-      "Dikkatsiz ve savruk",
-      "Öfkeli",
-      "Kararsız"
-    ],
-    "correct_index": 0,
-    "example": "A meticulous proofreader catches every subtle grammatical error."
-  },
-  {
-    "id": "q_b1_06",
-    "word": "Comprehensive",
-    "type": "Adjective",
-    "level": "B2",
-    "question_type": "meaning",
+    "id": "q_c1_53",
+    "word": "Notwithstanding",
+    "type": "Preposition/Adv",
+    "level": "C1",
+    "question_type": "grammar",
     "stat": "max_hp",
-    "value": 30.0,
-    "cost": 12,
-    "description": "+30 Maks Can",
-    "question": "'Comprehensive' sözcüğü neyi belirtir?",
+    "value": 45.0,
+    "cost": 15,
+    "description": "+45 Maks Can",
+    "question": "'Notwithstanding' sözcüğü Türkçede neye karşılık gelir?",
     "options": [
-      "Kapsamlı / Detaylı ve eksiksiz",
-      "Yüzeysel",
-      "Dar görüşlü",
-      "Önemsiz"
+      "Sayesinde",
+      "-e karşın / -e rağmen (Despite / In spite of)",
+      "Bu sebeple",
+      "Gereğince"
     ],
-    "correct_index": 0,
-    "example": "The comprehensive dictionary encompasses all historical terms."
+    "correct_index": 1,
+    "example": "Notwithstanding the formidable dragon boss, Inky triumphed."
   },
   {
-    "id": "q_b1_07",
-    "word": "Deteriorate",
-    "type": "Verb",
-    "level": "B2",
-    "question_type": "meaning",
-    "stat": "attack_speed",
-    "value": 0.18,
-    "cost": 11,
-    "description": "+%18 Atış Hızı",
-    "question": "'Deteriorate' fiilinin Türkçe anlamı hangisidir?",
-    "options": [
-      "Kötüleşmek / Bozulmak",
-      "Gelişmek",
-      "Hızlanmak",
-      "Doymak"
-    ],
-    "correct_index": 0,
-    "example": "Paper will deteriorate if exposed to acidic ink."
-  },
-  {
-    "id": "q_b1_08",
-    "word": "Alleviate",
-    "type": "Verb",
-    "level": "B2",
-    "question_type": "synonym",
-    "stat": "heal",
-    "value": 40.0,
-    "cost": 12,
-    "description": "+40 Can Yenile",
-    "question": "'Alleviate' fiilinin eş anlamlısı hangisidir?",
-    "options": [
-      "Relieve / Ease (Hafifletmek / Yatıştırmak)",
-      "Worsen",
-      "Intensify",
-      "Aggravate"
-    ],
-    "correct_index": 0,
-    "example": "A healing parchment will alleviate the pain of battle wounds."
-  },
-  {
-    "id": "q_b1_09",
-    "word": "Substantial",
+    "id": "q_c1_10",
+    "word": "Disparate",
     "type": "Adjective",
-    "level": "B2",
+    "level": "C1",
     "question_type": "meaning",
     "stat": "damage",
-    "value": 0.22,
-    "cost": 13,
-    "description": "+%22 Mermi Hasarı",
-    "question": "'Substantial' kelimesinin anlamı nedir?",
-    "options": [
-      "Oldukça büyük / Kayda değer",
-      "Ufak ve önemsiz",
-      "Hayali",
-      "Geçici"
-    ],
-    "correct_index": 0,
-    "example": "The laser beam deals a substantial amount of piercing damage."
-  },
-  {
-    "id": "q_b1_10",
-    "word": "Enhance",
-    "type": "Verb",
-    "level": "B1",
-    "question_type": "synonym",
-    "stat": "attack_speed",
     "value": 0.2,
-    "cost": 10,
-    "description": "+%20 Saldırı Hızı",
-    "question": "'Enhance' fiilinin eş anlamlısı hangisidir?",
+    "cost": 13,
+    "description": "+%20 Hasar",
+    "question": "'Disparate' sözcüğü neyi ifade eder?",
     "options": [
-      "Improve / Boost (Geliştirmek / Artırmak)",
-      "Degrade",
-      "Reduce",
-      "Damage"
+      "Özdeş / Aynı",
+      "Tamamen farklı / Birbiriyle uyuşmayan (Fundamentally different)",
+      "Benzer",
+      "Eşit"
     ],
-    "correct_index": 0,
-    "example": "Upgrading weapons in the shop enhances your rate of fire."
+    "correct_index": 1,
+    "example": "The dictionary draws etymological roots from disparate languages."
   },
   {
-    "id": "q_b1_11",
-    "word": "Crucial",
-    "type": "Adjective",
-    "level": "B1",
-    "question_type": "meaning",
+    "id": "q_a1_13",
+    "word": "Victory",
+    "type": "Noun",
+    "level": "A2",
+    "question_type": "antonym",
     "stat": "damage",
     "value": 0.18,
     "cost": 10,
     "description": "+%18 Hasar",
-    "question": "'Crucial' sözcüğü Türkçede ne anlama gelir?",
+    "question": "'Victory' (Zafer) kelimesinin zıt anlamlısı hangisidir?",
     "options": [
-      "Hayati derecede önemli / Kritik",
-      "Sıradan",
-      "Önemsiz",
-      "İkincil"
+      "Triumph",
+      "Success",
+      "Defeat / Loss",
+      "Glory"
     ],
-    "correct_index": 0,
-    "example": "Correct spelling is crucial to unlocking legendary weapon tiers."
+    "correct_index": 2,
+    "example": "Every answered question brings victory one step closer."
   },
   {
-    "id": "q_b1_12",
-    "word": "Diminish",
-    "type": "Verb",
-    "level": "B2",
-    "question_type": "antonym",
-    "stat": "pierce",
-    "value": 1.0,
-    "cost": 14,
-    "description": "+1 Delme",
-    "question": "'Diminish' fiilinin zıt anlamlısı hangisidir?",
-    "options": [
-      "Increase / Expand (Artırmak / Genişletmek)",
-      "Decrease",
-      "Shrink",
-      "Lessen"
-    ],
-    "correct_index": 0,
-    "example": "Piercing shots never diminish in power when passing through enemies."
-  },
-  {
-    "id": "q_b1_13",
-    "word": "Emphasize",
-    "type": "Verb",
+    "id": "lex-164",
+    "word": "Reread",
+    "type": "Prefix",
     "level": "B1",
-    "question_type": "meaning",
-    "stat": "damage",
-    "value": 0.16,
+    "question_type": "morphology",
+    "stat": "max_hp",
+    "value": 22,
     "cost": 10,
-    "description": "+%16 Hasar",
-    "question": "'Emphasize' fiilinin Türkçe karşılığı nedir?",
+    "description": "+22 max hp",
+    "question": "'Re-' öneki 'reread' sözcüğüne hangi anlamı katar?",
     "options": [
-      "Vurgulamak / Dikkat çekmek",
-      "Gizlemek",
-      "Yalanlamak",
-      "Küçümsemek"
+      "Yanlış",
+      "Önce",
+      "Yeniden",
+      "Karşı"
     ],
-    "correct_index": 0,
-    "example": "Exclamation points emphasize the intensity of punctuation bombs."
+    "correct_index": 2,
+    "example": "Reread the clue before the next attack."
   },
   {
-    "id": "q_b1_14",
-    "word": "Neglect",
+    "id": "lex-172",
+    "word": "Inspect minutely",
     "type": "Verb",
-    "level": "B2",
+    "level": "C1",
     "question_type": "meaning",
-    "stat": "armor",
-    "value": 0.12,
-    "cost": 9,
-    "description": "+%12 Zırh",
-    "question": "'Neglect' fiili ne anlama gelir?",
+    "stat": "pickup_radius",
+    "value": 52,
+    "cost": 14,
+    "description": "+52 pickup radius",
+    "question": "'Inspect minutely' ne demektir?",
     "options": [
-      "İhmal etmek / Göz ardı etmek",
-      "Özen göstermek",
-      "Korumak",
-      "Geliştirmek"
+      "Dikkatle incelemek",
+      "Yok saymak",
+      "Hızla kopyalamak",
+      "Gizlice taşımak"
     ],
     "correct_index": 0,
-    "example": "Do not neglect upgrading your armor before facing dragon bosses."
+    "example": "Scrutinize the symbols before choosing the rune."
   },
   {
-    "id": "q_b1_15",
-    "word": "Pursue",
-    "type": "Verb",
-    "level": "B1",
+    "id": "q_c1_55",
+    "word": "Hitherto",
+    "type": "Adverb",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "attack_speed",
+    "value": 0.24,
+    "cost": 14,
+    "description": "+%24 Atış Hızı",
+    "question": "'Hitherto' zarfı neyi belirtir?",
+    "options": [
+      "Bundan sonra",
+      "Nihayet",
+      "Bazen",
+      "Şimdiye kadar / Bugüne değin (Until now / Up to this point)"
+    ],
+    "correct_index": 3,
+    "example": "Hitherto unknown linguistic relics were discovered in the vault."
+  },
+  {
+    "id": "q_a1_16",
+    "word": "Swift",
+    "type": "Adjective",
+    "level": "A2",
+    "question_type": "meaning",
+    "stat": "attack_speed",
+    "value": 0.2,
+    "cost": 9,
+    "description": "+%20 Saldırı Hızı",
+    "question": "'Swift' sıfatı ne anlama gelir?",
+    "options": [
+      "Ağır ve Hantal",
+      "Soğuk",
+      "Çok Çabuk / Çevik",
+      "Gürültülü"
+    ],
+    "correct_index": 2,
+    "example": "His swift quill blunted all punctuation attacks."
+  },
+  {
+    "id": "lex-175",
+    "word": "Tentative",
+    "type": "Adjective",
+    "level": "C2",
     "question_type": "meaning",
     "stat": "move_speed",
-    "value": 35.0,
-    "cost": 10,
-    "description": "+35 Hız",
-    "question": "'Pursue' fiili ne anlama gelir?",
+    "value": 32,
+    "cost": 16,
+    "description": "+32 move speed",
+    "question": "'Tentative' için doğru karşılık hangisidir?",
     "options": [
-      "Kovalamak / Peşinden koşmak",
-      "Vazgeçmek",
-      "Durdurmak",
-      "Kaçmak"
+      "Son derece açık",
+      "Düşmanca",
+      "Kesinleşmemiş / geçici",
+      "Sınırsız"
     ],
-    "correct_index": 0,
-    "example": "Enemies pursue the player tirelessly across the ancient halls."
-  },
-  {
-    "id": "q_b1_16",
-    "word": "Reinforce",
-    "type": "Verb",
-    "level": "B2",
-    "question_type": "meaning",
-    "stat": "max_hp",
-    "value": 35.0,
-    "cost": 12,
-    "description": "+35 Maks Can",
-    "question": "'Reinforce' fiilinin anlamı hangisidir?",
-    "options": [
-      "Güçlendirmek / Takviye etmek",
-      "Zayıflatmak",
-      "Bölmek",
-      "Terk etmek"
-    ],
-    "correct_index": 0,
-    "example": "Reinforce your defensive perimeter using active barrier gadgets."
-  },
-  {
-    "id": "q_b1_17",
-    "word": "Reluctant",
-    "type": "Adjective",
-    "level": "B2",
-    "question_type": "antonym",
-    "stat": "attack_speed",
-    "value": 0.18,
-    "cost": 11,
-    "description": "+%18 Atış Hızı",
-    "question": "'Reluctant' sözcüğünün zıt anlamlısı hangisidir?",
-    "options": [
-      "Willing / Eager (İstekli / Gönüllü)",
-      "Hesitant",
-      "Unwilling",
-      "Averse"
-    ],
-    "correct_index": 0,
-    "example": "The apprentice was reluctant to face the grammar dragon alone."
-  },
-  {
-    "id": "q_b1_18",
-    "word": "Significant",
-    "type": "Adjective",
-    "level": "B1",
-    "question_type": "synonym",
-    "stat": "damage",
-    "value": 0.18,
-    "cost": 11,
-    "description": "+%18 Hasar",
-    "question": "'Significant' kelimesinin eş anlamlısı hangisidir?",
-    "options": [
-      "Important / Meaningful",
-      "Trivial",
-      "Insignificant",
-      "Minor"
-    ],
-    "correct_index": 0,
-    "example": "Upgrading weapons delivers a significant power boost."
-  },
-  {
-    "id": "q_b1_19",
-    "word": "Ambiguous",
-    "type": "Adjective",
-    "level": "B2",
-    "question_type": "meaning",
-    "stat": "pierce",
-    "value": 1.0,
-    "cost": 14,
-    "description": "+1 Delme",
-    "question": "'Ambiguous' kelimesi ne anlama gelir?",
-    "options": [
-      "Belirsiz / İki anlamlı / Muğlak",
-      "Açık ve net",
-      "Kesin",
-      "Basit"
-    ],
-    "correct_index": 0,
-    "example": "Ambiguous wording confuses readers and triggers typo monsters."
+    "correct_index": 2,
+    "example": "We made a tentative plan and waited for the scout."
   },
   {
     "id": "q_b1_20",
@@ -1200,1446 +3260,6 @@
     "example": "A diligent student masters 50 new vocabulary cards every day."
   },
   {
-    "id": "q_b1_21",
-    "word": "Eloquent",
-    "type": "Adjective",
-    "level": "B2",
-    "question_type": "meaning",
-    "stat": "damage",
-    "value": 0.2,
-    "cost": 12,
-    "description": "+%20 Hasar",
-    "question": "'Eloquent' sözcüğü neyi tanımlar?",
-    "options": [
-      "Güzel ve etkili konuşan / Dili akıcı",
-      "Kekeme",
-      "Sessiz",
-      "Kaba"
-    ],
-    "correct_index": 0,
-    "example": "An eloquent speaker persuades the whole academy with ease."
-  },
-  {
-    "id": "q_b1_22",
-    "word": "Feasible",
-    "type": "Adjective",
-    "level": "B2",
-    "question_type": "synonym",
-    "stat": "move_speed",
-    "value": 30.0,
-    "cost": 10,
-    "description": "+30 Hız",
-    "question": "'Feasible' kelimesinin eş anlamlısı hangisidir?",
-    "options": [
-      "Practicable / Doable (Uygulanabilir / Yapılabilir)",
-      "Impossible",
-      "Unrealistic",
-      "Futile"
-    ],
-    "correct_index": 0,
-    "example": "Reaching wave 100 is completely feasible with balanced builds."
-  },
-  {
-    "id": "q_b1_23",
-    "word": "Grasp",
-    "type": "Verb",
-    "level": "B1",
-    "question_type": "meaning",
-    "stat": "pickup_radius",
-    "value": 45.0,
-    "cost": 9,
-    "description": "+45 Toplama Menzili",
-    "question": "'Grasp' fiilinin mecazi anlamı nedir?",
-    "options": [
-      "Bir fikri kavramak / Anlamak",
-      "Düşürmek",
-      "Unutmak",
-      "Korkmak"
-    ],
-    "correct_index": 0,
-    "example": "Once you grasp English sentence structure, errors disappear."
-  },
-  {
-    "id": "q_b1_24",
-    "word": "Imminent",
-    "type": "Adjective",
-    "level": "B2",
-    "question_type": "meaning",
-    "stat": "armor",
-    "value": 0.14,
-    "cost": 11,
-    "description": "+%14 Zırh",
-    "question": "'Imminent' sözcüğü neyi belirtir?",
-    "options": [
-      "Eli kulağında / Gerçekleşmesi an meselesi",
-      "Uzak gelecekte",
-      "Geçmişte kalmış",
-      "İmkansız"
-    ],
-    "correct_index": 0,
-    "example": "An imminent boss attack requires swift use of your invulnerability dash."
-  },
-  {
-    "id": "q_b1_25",
-    "word": "Justify",
-    "type": "Verb",
-    "level": "B1",
-    "question_type": "meaning",
-    "stat": "damage",
-    "value": 0.16,
-    "cost": 10,
-    "description": "+%16 Hasar",
-    "question": "'Justify' fiilinin Türkçe anlamı hangisidir?",
-    "options": [
-      "Haklı çıkarmak / Gerekçelendirmek",
-      "Yalanlamak",
-      "Cezalandırmak",
-      "Gizlemek"
-    ],
-    "correct_index": 0,
-    "example": "Can you justify your thesis statement with solid linguistic evidence?"
-  },
-  {
-    "id": "q_b1_26",
-    "word": "Carry out",
-    "type": "Phrasal Verb",
-    "level": "B2",
-    "question_type": "phrasal",
-    "stat": "projectile_count",
-    "value": 1.0,
-    "cost": 16,
-    "description": "+1 Mermi",
-    "question": "'Carry out' phrasal verb'ünün anlamı nedir?",
-    "options": [
-      "Gerçekleştirmek / Yerine getirmek (Perform / Execute)",
-      "Dışarı taşımak",
-      "Vazgeçmek",
-      "Geciktirmek"
-    ],
-    "correct_index": 0,
-    "example": "The scribes carry out extensive linguistic research."
-  },
-  {
-    "id": "q_b1_27",
-    "word": "Cope with",
-    "type": "Phrasal Verb",
-    "level": "B1",
-    "question_type": "phrasal",
-    "stat": "armor",
-    "value": 0.15,
-    "cost": 11,
-    "description": "+%15 Zırh",
-    "question": "'Cope with' kalıbının Türkçe karşılığı hangisidir?",
-    "options": [
-      "Başa çıkmak / Üstesinden gelmek",
-      "Boyun eğmek",
-      "Terk etmek",
-      "Karışmak"
-    ],
-    "correct_index": 0,
-    "example": "You need high armor to cope with relentless horde attacks."
-  },
-  {
-    "id": "q_b1_28",
-    "word": "Give up",
-    "type": "Phrasal Verb",
-    "level": "B1",
-    "question_type": "synonym",
-    "stat": "max_hp",
-    "value": 30.0,
-    "cost": 10,
-    "description": "+30 Maks Can",
-    "question": "'Give up' ifadesinin eş anlamlısı hangisidir?",
-    "options": [
-      "Surrender / Quit (Teslim olmak / Bırakmak)",
-      "Continue",
-      "Pursue",
-      "Start"
-    ],
-    "correct_index": 0,
-    "example": "Never give up, even when surrounded by spelling spectres!"
-  },
-  {
-    "id": "q_b1_29",
-    "word": "Look forward to",
-    "type": "Phrasal Verb",
-    "level": "B1",
-    "question_type": "phrasal",
-    "stat": "attack_speed",
-    "value": 0.2,
-    "cost": 10,
-    "description": "+%20 Atış Hızı",
-    "question": "'Look forward to' deyimi ne anlama gelir?",
-    "options": [
-      "Dört gözle beklemek / Sabırsızlanmak",
-      "Geriye bakmak",
-      "Göz ardı etmek",
-      "Utanmak"
-    ],
-    "correct_index": 0,
-    "example": "Learners look forward to upgrading their weapons between waves."
-  },
-  {
-    "id": "q_b1_30",
-    "word": "Put off",
-    "type": "Phrasal Verb",
-    "level": "B2",
-    "question_type": "synonym",
-    "stat": "move_speed",
-    "value": 30.0,
-    "cost": 10,
-    "description": "+30 Hız",
-    "question": "'Put off' kalıbının eş anlamlısı hangisidir?",
-    "options": [
-      "Postpone / Delay (Ertelemek)",
-      "Extinguish",
-      "Wear",
-      "Cancel"
-    ],
-    "correct_index": 0,
-    "example": "Never put off vocabulary drills until the night before the exam."
-  },
-  {
-    "id": "q_b1_31",
-    "word": "Call off",
-    "type": "Phrasal Verb",
-    "level": "B2",
-    "question_type": "phrasal",
-    "stat": "damage",
-    "value": 0.18,
-    "cost": 11,
-    "description": "+%18 Hasar",
-    "question": "'Call off' ifadesi ne anlama gelir?",
-    "options": [
-      "İptal etmek (Cancel)",
-      "Telefon etmek",
-      "Çağırmak",
-      "Ertelemek"
-    ],
-    "correct_index": 0,
-    "example": "The inquisitor had to call off his raid after taking massive damage."
-  },
-  {
-    "id": "q_b1_32",
-    "word": "Take over",
-    "type": "Phrasal Verb",
-    "level": "B2",
-    "question_type": "phrasal",
-    "stat": "projectile_count",
-    "value": 1.0,
-    "cost": 17,
-    "description": "+1 Mermi",
-    "question": "'Take over' fiili ne anlama gelir?",
-    "options": [
-      "Devralmak / Kontrolü ele geçirmek",
-      "Teslim etmek",
-      "Ayrılmak",
-      "Unutmak"
-    ],
-    "correct_index": 0,
-    "example": "Grammar goblins attempt to take over the library archives."
-  },
-  {
-    "id": "q_b1_33",
-    "word": "Turn down",
-    "type": "Phrasal Verb",
-    "level": "B1",
-    "question_type": "phrasal",
-    "stat": "armor",
-    "value": 0.12,
-    "cost": 9,
-    "description": "+%12 Zırh",
-    "question": "'Turn down' ifadesinin anlamı nedir?",
-    "options": [
-      "Reddetmek / Geri çevirmek (Refuse / Reject)",
-      "Kabul etmek",
-      "Açmak",
-      "Hızlandırmak"
-    ],
-    "correct_index": 0,
-    "example": "He had to turn down the suspicious invitation from the mimic book."
-  },
-  {
-    "id": "q_b1_34",
-    "word": "Come across",
-    "type": "Phrasal Verb",
-    "level": "B1",
-    "question_type": "phrasal",
-    "stat": "pickup_radius",
-    "value": 45.0,
-    "cost": 9,
-    "description": "+45 Toplama Menzili",
-    "question": "'Come across' ifadesi ne anlama gelir?",
-    "options": [
-      "Tesadüfen karşılaşmak / Denk gelmek",
-      "Karşıya geçmek",
-      "Tartışmak",
-      "Kaçmak"
-    ],
-    "correct_index": 0,
-    "example": "You will come across rare artifacts while scavenging the library."
-  },
-  {
-    "id": "q_b1_35",
-    "word": "Bring about",
-    "type": "Phrasal Verb",
-    "level": "B2",
-    "question_type": "synonym",
-    "stat": "damage",
-    "value": 0.2,
-    "cost": 12,
-    "description": "+%20 Hasar",
-    "question": "'Bring about' kalıbının eş anlamlısı hangisidir?",
-    "options": [
-      "Cause / Lead to (Neden olmak / Yol açmak)",
-      "Prevent",
-      "Halt",
-      "Destroy"
-    ],
-    "correct_index": 0,
-    "example": "Thorough vocabulary mastery will bring about your exam triumph."
-  },
-  {
-    "id": "q_b1_36",
-    "word": "Make up for",
-    "type": "Phrasal Verb",
-    "level": "B2",
-    "question_type": "phrasal",
-    "stat": "heal",
-    "value": 40.0,
-    "cost": 12,
-    "description": "+40 Can Yenile",
-    "question": "'Make up for' ne anlama gelir?",
-    "options": [
-      "Telafi etmek (Compensate for)",
-      "Uydurmak",
-      "Barışmak",
-      "Kayıp vermek"
-    ],
-    "correct_index": 0,
-    "example": "Answering this quiz will make up for the damage taken during the wave."
-  },
-  {
-    "id": "q_b1_37",
-    "word": "Keep up with",
-    "type": "Phrasal Verb",
-    "level": "B2",
-    "question_type": "phrasal",
-    "stat": "move_speed",
-    "value": 35.0,
-    "cost": 11,
-    "description": "+35 Hız",
-    "question": "'Keep up with' ifadesi neyi anlatır?",
-    "options": [
-      "Ayak uydurmak / Hızına yetişmek",
-      "Geride kalmak",
-      "Vazgeçmek",
-      "Yorulmak"
-    ],
-    "correct_index": 0,
-    "example": "Upgrade scholar boots to keep up with agile homophone harpies."
-  },
-  {
-    "id": "q_b1_38",
-    "word": "In terms of",
-    "type": "Collocation",
-    "level": "B2",
-    "question_type": "collocation",
-    "stat": "damage",
-    "value": 0.18,
-    "cost": 11,
-    "description": "+%18 Hasar",
-    "question": "'In terms of' kalıbının Türkçe karşılığı nedir?",
-    "options": [
-      "... bakımından / açısından",
-      "aksine",
-      "rağmen",
-      "yüzünden"
-    ],
-    "correct_index": 0,
-    "example": "In terms of raw firepower, the calligraphy katana reigns supreme."
-  },
-  {
-    "id": "q_b1_39",
-    "word": "By means of",
-    "type": "Collocation",
-    "level": "B2",
-    "question_type": "collocation",
-    "stat": "pierce",
-    "value": 1.0,
-    "cost": 14,
-    "description": "+1 Delme",
-    "question": "'By means of' ifadesinin anlamı nedir?",
-    "options": [
-      "... vasıtasıyla / yoluyla",
-      "olmadan",
-      "yerine",
-      "aksine"
-    ],
-    "correct_index": 0,
-    "example": "Knowledge is conveyed by means of clear and concise prose."
-  },
-  {
-    "id": "q_b1_40",
-    "word": "In spite of",
-    "type": "Collocation",
-    "level": "B1",
-    "question_type": "collocation",
-    "stat": "armor",
-    "value": 0.14,
-    "cost": 10,
-    "description": "+%14 Zırh",
-    "question": "'In spite of' (Despite) kalıbı cümleye hangi anlamı katar?",
-    "options": [
-      "-e rağmen / karşın",
-      "çünkü",
-      "sayesinde",
-      "bu yüzden"
-    ],
-    "correct_index": 0,
-    "example": "In spite of relentless horde attacks, the scribe defended the library."
-  },
-  {
-    "id": "q_b1_41",
-    "word": "Neither...nor",
-    "type": "Grammar Pattern",
-    "level": "B1",
-    "question_type": "grammar",
-    "stat": "attack_speed",
-    "value": 0.18,
-    "cost": 10,
-    "description": "+%18 Atış Hızı",
-    "question": "'Neither A nor B' yapısının Türkçe anlamı nedir?",
-    "options": [
-      "Ne A ne de B",
-      "Hem A hem B",
-      "Ya A ya da B",
-      "Sadece A"
-    ],
-    "correct_index": 0,
-    "example": "Neither the ogre nor the harpy could breach the magic aegis."
-  },
-  {
-    "id": "q_b1_42",
-    "word": "Not only...but also",
-    "type": "Grammar Pattern",
-    "level": "B2",
-    "question_type": "grammar",
-    "stat": "projectile_count",
-    "value": 1.0,
-    "cost": 17,
-    "description": "+1 Mermi",
-    "question": "'Not only...but also' bağlacı ne anlama gelir?",
-    "options": [
-      "Sadece ... değil, aynı zamanda ... da",
-      "Ne o ne de bu",
-      "Eğer olmazsa",
-      "Oysa ki"
-    ],
-    "correct_index": 0,
-    "example": "Lexicon Survivors trains not only your vocabulary, but also your reflexes."
-  },
-  {
-    "id": "q_b1_43",
-    "word": "So that",
-    "type": "Conjunction",
-    "level": "B1",
-    "question_type": "grammar",
-    "stat": "move_speed",
-    "value": 30.0,
-    "cost": 9,
-    "description": "+30 Hız",
-    "question": "'So that' bağlacı ne amaçla kullanılır?",
-    "options": [
-      "-sın diye / amacıyla (in order that)",
-      "bu yüzden",
-      "çünkü",
-      "-dığı için"
-    ],
-    "correct_index": 0,
-    "example": "Study vocabulary daily so that you can conquer the hardest exam levels."
-  },
-  {
-    "id": "q_b1_44",
-    "word": "Although",
-    "type": "Conjunction",
-    "level": "B1",
-    "question_type": "grammar",
-    "stat": "armor",
-    "value": 0.12,
-    "cost": 9,
-    "description": "+%12 Zırh",
-    "question": "'Although' bağlacı cümleye ne katar?",
-    "options": [
-      "Zıtlık (-e rağmen / -sa da)",
-      "Sebep (çünkü)",
-      "Zaman (iken)",
-      "Sonuç (bu yüzden)"
-    ],
-    "correct_index": 0,
-    "example": "Although the horde was massive, Inky held the line bravely."
-  },
-  {
-    "id": "q_b1_45",
-    "word": "As long as",
-    "type": "Conjunction",
-    "level": "B2",
-    "question_type": "grammar",
-    "stat": "damage",
-    "value": 0.18,
-    "cost": 11,
-    "description": "+%18 Hasar",
-    "question": "'As long as' (Provided that) kalıbı ne anlama gelir?",
-    "options": [
-      "-dığı sürece / şartıyla",
-      "kadar uzun",
-      "çünkü",
-      "-e rağmen"
-    ],
-    "correct_index": 0,
-    "example": "You will survive as long as you keep collecting health parchments."
-  },
-  {
-    "id": "q_b1_46",
-    "word": "Novel",
-    "type": "Adjective",
-    "level": "B2",
-    "question_type": "meaning",
-    "stat": "damage",
-    "value": 0.16,
-    "cost": 10,
-    "description": "+%16 Hasar",
-    "question": "'Novel' sözcüğü sıfat olarak kullanıldığında ne anlama gelir?",
-    "options": [
-      "Yeni / Özgün / Görülmemiş (Original / Innovative)",
-      "Roman",
-      "Eski",
-      "Sıradan"
-    ],
-    "correct_index": 0,
-    "example": "The researcher proposed a novel approach to learning phrasal verbs."
-  },
-  {
-    "id": "q_b1_47",
-    "word": "Obstacle",
-    "type": "Noun",
-    "level": "B1",
-    "question_type": "meaning",
-    "stat": "pierce",
-    "value": 1.0,
-    "cost": 14,
-    "description": "+1 Delme",
-    "question": "'Obstacle' sözcüğü Türkçede ne anlama gelir?",
-    "options": [
-      "Engel / Güçlük (Barrier / Hurdle)",
-      "Fırsat",
-      "Yardım",
-      "Sonuç"
-    ],
-    "correct_index": 0,
-    "example": "Every obstacle on your path can be overcome through study."
-  },
-  {
-    "id": "q_b1_48",
-    "word": "Predict",
-    "type": "Verb",
-    "level": "B1",
-    "question_type": "synonym",
-    "stat": "attack_speed",
-    "value": 0.16,
-    "cost": 9,
-    "description": "+%16 Atış Hızı",
-    "question": "'Predict' fiilinin eş anlamlısı hangisidir?",
-    "options": [
-      "Foresee / Anticipate (Öngörmek / Tahmin etmek)",
-      "Forget",
-      "Ignore",
-      "Cause"
-    ],
-    "correct_index": 0,
-    "example": "Predicting enemy movement trajectories allows accurate rail-sniper shots."
-  },
-  {
-    "id": "q_b1_49",
-    "word": "Quench",
-    "type": "Verb",
-    "level": "B2",
-    "question_type": "meaning",
-    "stat": "heal",
-    "value": 35.0,
-    "cost": 11,
-    "description": "+35 Can Yenile",
-    "question": "'Quench' fiilinin anlamı nedir?",
-    "options": [
-      "Dindirmek / Bastırmak / Susuzluğunu gidermek",
-      "Ateşlemek",
-      "Kızdırmak",
-      "Kaçırmak"
-    ],
-    "correct_index": 0,
-    "example": "Quench your thirst for linguistic knowledge with ancient tomes."
-  },
-  {
-    "id": "q_b1_50",
-    "word": "Reconcile",
-    "type": "Verb",
-    "level": "B2",
-    "question_type": "meaning",
-    "stat": "armor",
-    "value": 0.14,
-    "cost": 11,
-    "description": "+%14 Zırh",
-    "question": "'Reconcile' sözcüğü ne anlama gelir?",
-    "options": [
-      "Uzlaştırmak / Barıştırmak / Uyuşmak",
-      "Bölmek",
-      "Kışkırtmak",
-      "Savaşmak"
-    ],
-    "correct_index": 0,
-    "example": "The editor helped reconcile differing translations into a single text."
-  },
-  {
-    "id": "q_b1_51",
-    "word": "Scrutinize",
-    "type": "Verb",
-    "level": "B2",
-    "question_type": "meaning",
-    "stat": "damage",
-    "value": 0.2,
-    "cost": 12,
-    "description": "+%20 Hasar",
-    "question": "'Scrutinize' fiilinin anlamı hangisidir?",
-    "options": [
-      "En ince detayına kadar incelemek",
-      "Göz ucuyla bakmak",
-      "Görmezden gelmek",
-      "Onaylamak"
-    ],
-    "correct_index": 0,
-    "example": "Scrutinize each exam question to detect deceptive trap options."
-  },
-  {
-    "id": "q_b1_52",
-    "word": "Thrive",
-    "type": "Verb",
-    "level": "B2",
-    "question_type": "synonym",
-    "stat": "max_hp",
-    "value": 35.0,
-    "cost": 12,
-    "description": "+35 Maks Can",
-    "question": "'Thrive' fiilinin eş anlamlısı hangisidir?",
-    "options": [
-      "Flourish / Prosper (Gelişmek / Serpilmek)",
-      "Wither",
-      "Decline",
-      "Perish"
-    ],
-    "correct_index": 0,
-    "example": "Your character will thrive once you unlock tier-4 combined weapons."
-  },
-  {
-    "id": "q_b1_53",
-    "word": "Unveil",
-    "type": "Verb",
-    "level": "B2",
-    "question_type": "meaning",
-    "stat": "pickup_radius",
-    "value": 45.0,
-    "cost": 10,
-    "description": "+45 Toplama Menzili",
-    "question": "'Unveil' sözcüğü Türkçede ne anlama gelir?",
-    "options": [
-      "Açığa çıkarmak / Örtüsünü kaldırmak",
-      "Gizlemek",
-      "Yasaklamak",
-      "Tahrip etmek"
-    ],
-    "correct_index": 0,
-    "example": "Surviving milestone waves will unveil secret library lore."
-  },
-  {
-    "id": "q_b1_54",
-    "word": "Validate",
-    "type": "Verb",
-    "level": "B1",
-    "question_type": "meaning",
-    "stat": "damage",
-    "value": 0.18,
-    "cost": 11,
-    "description": "+%18 Hasar",
-    "question": "'Validate' fiilinin Türkçe anlamı nedir?",
-    "options": [
-      "Geçerli kılmak / Onaylamak",
-      "İptal etmek",
-      "Şüphelenmek",
-      "Kovmak"
-    ],
-    "correct_index": 0,
-    "example": "The professors validate your academic language proficiency."
-  },
-  {
-    "id": "q_b1_55",
-    "word": "Withstand",
-    "type": "Verb",
-    "level": "B2",
-    "question_type": "synonym",
-    "stat": "armor",
-    "value": 0.16,
-    "cost": 12,
-    "description": "+%16 Zırh",
-    "question": "'Withstand' fiilinin eş anlamlısı hangisidir?",
-    "options": [
-      "Resist / Endure (Karşı koymak / Dayanmak)",
-      "Surrender",
-      "Succumb",
-      "Yield"
-    ],
-    "correct_index": 0,
-    "example": "The citadel armor enables the Word Knight to withstand boss slams."
-  },
-  {
-    "id": "q_b1_56",
-    "word": "Yield",
-    "type": "Verb",
-    "level": "B2",
-    "question_type": "meaning",
-    "stat": "ink_mult",
-    "value": 0.35,
-    "cost": 12,
-    "description": "+%35 Mürekkep Bonusu",
-    "question": "'Yield' fiilinin ekonomik veya tarımsal anlamı nedir?",
-    "options": [
-      "Ürün vermek / Kazanç sağlamak",
-      "Tüketmek",
-      "Kaybetmek",
-      "Durdurmak"
-    ],
-    "correct_index": 0,
-    "example": "Defeating golden elites will yield extraordinary ink rewards."
-  },
-  {
-    "id": "q_b1_57",
-    "word": "Zeal",
-    "type": "Noun",
-    "level": "B2",
-    "question_type": "synonym",
-    "stat": "attack_speed",
-    "value": 0.22,
-    "cost": 12,
-    "description": "+%22 Atış Hızı",
-    "question": "'Zeal' sözcüğünün eş anlamlısı hangisidir?",
-    "options": [
-      "Enthusiasm / Passion (Şevk / Coşku / Gayret)",
-      "Apathy",
-      "Lethargy",
-      "Indifference"
-    ],
-    "correct_index": 0,
-    "example": "He defended the manuscript with intense scholar's zeal."
-  },
-  {
-    "id": "q_b1_58",
-    "word": "Conceal",
-    "type": "Verb",
-    "level": "B2",
-    "question_type": "antonym",
-    "stat": "pierce",
-    "value": 1.0,
-    "cost": 13,
-    "description": "+1 Delme",
-    "question": "'Conceal' (Gizlemek) kelimesinin zıt anlamlısı hangisidir?",
-    "options": [
-      "Reveal / Disclose (Açığa çıkarmak)",
-      "Hide",
-      "Cover",
-      "Disguise"
-    ],
-    "correct_index": 0,
-    "example": "Piercing beams reveal the true shape of concealed mimics."
-  },
-  {
-    "id": "q_b1_59",
-    "word": "Hazardous",
-    "type": "Adjective",
-    "level": "B1",
-    "question_type": "synonym",
-    "stat": "armor",
-    "value": 0.12,
-    "cost": 9,
-    "description": "+%12 Zırh",
-    "question": "'Hazardous' kelimesinin eş anlamlısı hangisidir?",
-    "options": [
-      "Dangerous / Perilous (Tehlikeli)",
-      "Safe",
-      "Secure",
-      "Harmless"
-    ],
-    "correct_index": 0,
-    "example": "Standing in acid puddles is hazardous to your health."
-  },
-  {
-    "id": "q_b1_60",
-    "word": "Inquire",
-    "type": "Verb",
-    "level": "B1",
-    "question_type": "meaning",
-    "stat": "pickup_radius",
-    "value": 35.0,
-    "cost": 8,
-    "description": "+35 Toplama Menzili",
-    "question": "'Inquire' sözcüğü ne anlama gelir?",
-    "options": [
-      "Sormak / Soruşturmak / Bilgi istemek",
-      "Cevaplamak",
-      "Emretmek",
-      "Susturmak"
-    ],
-    "correct_index": 0,
-    "example": "Inquire about vocabulary origins to memorize them faster."
-  },
-  {
-    "id": "q_b1_61",
-    "word": "Lucid",
-    "type": "Adjective",
-    "level": "B2",
-    "question_type": "meaning",
-    "stat": "damage",
-    "value": 0.18,
-    "cost": 11,
-    "description": "+%18 Hasar",
-    "question": "'Lucid' sıfatı neyi ifade eder?",
-    "options": [
-      "Açık / Berrak / Kolay anlaşılır",
-      "Bulanık ve karmaşık",
-      "Karanlık",
-      "Zayıf"
-    ],
-    "correct_index": 0,
-    "example": "Write in a lucid style to prevent syntactic misunderstandings."
-  },
-  {
-    "id": "q_b1_62",
-    "word": "Mourn",
-    "type": "Verb",
-    "level": "B1",
-    "question_type": "meaning",
-    "stat": "max_hp",
-    "value": 25.0,
-    "cost": 9,
-    "description": "+25 Maks Can",
-    "question": "'Mourn' fiili ne anlama gelir?",
-    "options": [
-      "Yas tutmak / Kederlenmek",
-      "Kutlamak",
-      "Gülmek",
-      "Koşmak"
-    ],
-    "correct_index": 0,
-    "example": "The scribes mourn every library burnt in ancient history."
-  },
-  {
-    "id": "q_b1_63",
-    "word": "Notorious",
-    "type": "Adjective",
-    "level": "B2",
-    "question_type": "meaning",
-    "stat": "damage",
-    "value": 0.2,
-    "cost": 12,
-    "description": "+%20 Hasar",
-    "question": "'Notorious' kelimesi ne anlama gelir?",
-    "options": [
-      "Adı kötüye çıkmış / Kötü şöhretli",
-      "Herkesçe sevilen",
-      "Gizemli",
-      "Becerikli"
-    ],
-    "correct_index": 0,
-    "example": "The Red Pen Inquisitor is notorious for disqualifying students."
-  },
-  {
-    "id": "q_b1_64",
-    "word": "Oblivious",
-    "type": "Adjective",
-    "level": "B2",
-    "question_type": "meaning",
-    "stat": "armor",
-    "value": 0.14,
-    "cost": 11,
-    "description": "+%14 Zırh",
-    "question": "'Oblivious' kelimesinin Türkçe karşılığı hangisidir?",
-    "options": [
-      "Farkında olmayan / Habersiz",
-      "Çok dikkatli",
-      "Uyanık",
-      "Bilgili"
-    ],
-    "correct_index": 0,
-    "example": "Never be oblivious to enemy projectiles flying behind you."
-  },
-  {
-    "id": "q_b1_65",
-    "word": "Persevere",
-    "type": "Verb",
-    "level": "B2",
-    "question_type": "meaning",
-    "stat": "max_hp",
-    "value": 40.0,
-    "cost": 14,
-    "description": "+40 Maks Can",
-    "question": "'Persevere' fiilinin anlamı nedir?",
-    "options": [
-      "Yılmadan devam etmek / Direnmek",
-      "Pes etmek",
-      "Vazgeçmek",
-      "Geri çekilmek"
-    ],
-    "correct_index": 0,
-    "example": "Persevere through tough exams to earn your scholarship."
-  },
-  {
-    "id": "q_c1_01",
-    "word": "Ephemeral",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "attack_speed",
-    "value": 0.25,
-    "cost": 14,
-    "description": "+%25 Saldırı Hızı",
-    "question": "'Ephemeral' sözcüğü ne anlama gelir?",
-    "options": [
-      "Kısa ömürlü / Geçici (Transient / Fleeting)",
-      "Ebedi / Sonsuz",
-      "Kalıcı ve sabit",
-      "Ağırbaşlı"
-    ],
-    "correct_index": 0,
-    "example": "Typo splinters have an ephemeral existence on the battlefield."
-  },
-  {
-    "id": "q_c1_02",
-    "word": "Ubiquitous",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "projectile_count",
-    "value": 1.0,
-    "cost": 18,
-    "description": "+1 Mermi",
-    "question": "'Ubiquitous' sıfatı neyi ifade eder?",
-    "options": [
-      "Her yerde hazır ve nazır / Her yerde bulunan (Omnipresent)",
-      "Nadir bulunan",
-      "Gizli ve saklı",
-      "Değersiz"
-    ],
-    "correct_index": 0,
-    "example": "Smartphones have become ubiquitous across modern classrooms."
-  },
-  {
-    "id": "q_c1_03",
-    "word": "Pernicious",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "damage",
-    "value": 0.24,
-    "cost": 15,
-    "description": "+%24 Mermi Hasarı",
-    "question": "'Pernicious' sözcüğü ne anlama gelir?",
-    "options": [
-      "Sinsi ve ölümcül zararlar veren (Harmful / Malicious)",
-      "Yararlı ve şifalı",
-      "Sevimli",
-      "Önemsiz"
-    ],
-    "correct_index": 0,
-    "example": "Misinformation can exert a pernicious influence on public discourse."
-  },
-  {
-    "id": "q_c1_04",
-    "word": "Serendipity",
-    "type": "Noun",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "ink_mult",
-    "value": 0.4,
-    "cost": 14,
-    "description": "+%40 Mürekkep Kazanımı",
-    "question": "'Serendipity' kavramı neyi anlatır?",
-    "options": [
-      "Şans eseri değerli bir şey keşfetme talihi",
-      "Büyük felaket",
-      "Kasıtlı plan",
-      "Tembellik"
-    ],
-    "correct_index": 0,
-    "example": "Finding an epic weapon scroll in a random wave was pure serendipity."
-  },
-  {
-    "id": "q_c1_05",
-    "word": "Obfuscate",
-    "type": "Verb",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "pierce",
-    "value": 1.0,
-    "cost": 15,
-    "description": "+1 Delme",
-    "question": "'Obfuscate' fiilinin Türkçe karşılığı nedir?",
-    "options": [
-      "Kasten karmaşıklaştırıp anlaşılmaz kılmak",
-      "Açıklamak",
-      "Aydınlatmak",
-      "Basitleştirmek"
-    ],
-    "correct_index": 0,
-    "example": "Do not obfuscate your thesis with needlessly convoluted jargon."
-  },
-  {
-    "id": "q_c1_06",
-    "word": "Pragmatic",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "armor",
-    "value": 0.16,
-    "cost": 12,
-    "description": "+%16 Zırh",
-    "question": "'Pragmatic' sözcüğü ne anlama gelir?",
-    "options": [
-      "Uygulamaya ve pratik yarara odaklı",
-      "Hayalperest",
-      "Bağnaz",
-      "Tembel"
-    ],
-    "correct_index": 0,
-    "example": "Taking defensive relics first is a pragmatic survival strategy."
-  },
-  {
-    "id": "q_c1_07",
-    "word": "Esoteric",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "damage",
-    "value": 0.22,
-    "cost": 14,
-    "description": "+%22 Hasar",
-    "question": "'Esoteric' sıfatı hangi bilgileri tanımlar?",
-    "options": [
-      "Sadece seçkin bir zümrenin anlayabildiği gizli bilgi",
-      "Herkesin bildiği genel kültür",
-      "Basit matematik",
-      "Dini vaaz"
-    ],
-    "correct_index": 0,
-    "example": "Ancient Sanskrit manuscripts preserve esoteric grammatical rules."
-  },
-  {
-    "id": "q_c1_08",
-    "word": "Mitigate",
-    "type": "Verb",
-    "level": "C1",
-    "question_type": "synonym",
-    "stat": "armor",
-    "value": 0.18,
-    "cost": 13,
-    "description": "+%18 Zırh",
-    "question": "'Mitigate' fiilinin eş anlamlısı hangisidir?",
-    "options": [
-      "Lessen / Moderate / Reduce (Hafifletmek / Azaltmak)",
-      "Worsen",
-      "Inflame",
-      "Aggravate"
-    ],
-    "correct_index": 0,
-    "example": "Lexicon Aegis shield will mitigate heavy enemy impact damage."
-  },
-  {
-    "id": "q_c1_09",
-    "word": "Proliferate",
-    "type": "Verb",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "projectile_count",
-    "value": 1.0,
-    "cost": 18,
-    "description": "+1 Mermi",
-    "question": "'Proliferate' fiili ne anlama gelir?",
-    "options": [
-      "Hızla çoğalmak / Üremek (Multiply rapidly)",
-      "Yok olmak",
-      "Yavaşlamak",
-      "Tükenmek"
-    ],
-    "correct_index": 0,
-    "example": "If left unchecked, typo slimes proliferate across the floor."
-  },
-  {
-    "id": "q_c1_10",
-    "word": "Disparate",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "damage",
-    "value": 0.2,
-    "cost": 13,
-    "description": "+%20 Hasar",
-    "question": "'Disparate' sözcüğü neyi ifade eder?",
-    "options": [
-      "Tamamen farklı / Birbiriyle uyuşmayan (Fundamentally different)",
-      "Özdeş / Aynı",
-      "Benzer",
-      "Eşit"
-    ],
-    "correct_index": 0,
-    "example": "The dictionary draws etymological roots from disparate languages."
-  },
-  {
-    "id": "q_c1_11",
-    "word": "Reticent",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "move_speed",
-    "value": 30.0,
-    "cost": 11,
-    "description": "+30 Hız",
-    "question": "'Reticent' kelimesinin anlamı nedir?",
-    "options": [
-      "Ağzı sıkı / Ketum / Konuşmaktan kaçınan",
-      "Çok konuşan / Geveze",
-      "Saldırgan",
-      "Korkak"
-    ],
-    "correct_index": 0,
-    "example": "The grandmaster was reticent regarding the location of the lost tome."
-  },
-  {
-    "id": "q_c1_12",
-    "word": "Capitulate",
-    "type": "Verb",
-    "level": "C1",
-    "question_type": "synonym",
-    "stat": "damage",
-    "value": 0.22,
-    "cost": 14,
-    "description": "+%22 Hasar",
-    "question": "'Capitulate' fiilinin eş anlamlısı hangisidir?",
-    "options": [
-      "Surrender / Yield (Teslim olmak / Boyun eğmek)",
-      "Conquer",
-      "Resist",
-      "Triumph"
-    ],
-    "correct_index": 0,
-    "example": "The horde will capitulate before your upgraded ink salvo."
-  },
-  {
-    "id": "q_c1_13",
-    "word": "Superfluous",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "attack_speed",
-    "value": 0.22,
-    "cost": 13,
-    "description": "+%22 Atış Hızı",
-    "question": "'Superfluous' sıfatı ne anlama gelir?",
-    "options": [
-      "Gereksiz / Fazlalık / Lüzumsuz (Redundant / Unnecessary)",
-      "Zorunlu",
-      "Yetersiz",
-      "Değerli"
-    ],
-    "correct_index": 0,
-    "example": "Eliminate superfluous adverbs to make your sentences concise."
-  },
-  {
-    "id": "q_c1_14",
-    "word": "Taciturn",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "armor",
-    "value": 0.15,
-    "cost": 12,
-    "description": "+%15 Zırh",
-    "question": "'Taciturn' sözcüğü hangi kişilik özelliğini anlatır?",
-    "options": [
-      "Az ve öz konuşan / Sessiz / Suskun",
-      "Neşeli",
-      "Geveze",
-      "Kibirli"
-    ],
-    "correct_index": 0,
-    "example": "The taciturn sentinel guarded the gate without uttering a single syllable."
-  },
-  {
-    "id": "q_c1_15",
-    "word": "Intrepid",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "synonym",
-    "stat": "max_hp",
-    "value": 45.0,
-    "cost": 15,
-    "description": "+45 Maks Can",
-    "question": "'Intrepid' sıfatının eş anlamlısı nedir?",
-    "options": [
-      "Fearless / Dauntless (Korkusuz / Cesur)",
-      "Timid",
-      "Cowardly",
-      "Hesitant"
-    ],
-    "correct_index": 0,
-    "example": "Intrepid scholars venture into the heart of the grammar labyrinth."
-  },
-  {
-    "id": "q_c1_16",
-    "word": "Voracious",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "ink_mult",
-    "value": 0.45,
-    "cost": 15,
-    "description": "+%45 Mürekkep Bonusu",
-    "question": "'Voracious' kelimesi neyi ifade eder?",
-    "options": [
-      "Doymak bilmez / Aşırı hevesli (Insatiable)",
-      "Tok",
-      "İsteksiz",
-      "Tembel"
-    ],
-    "correct_index": 0,
-    "example": "A voracious reader absorbs hundreds of academic publications yearly."
-  },
-  {
-    "id": "q_c1_17",
-    "word": "Juxtaposition",
-    "type": "Noun",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "damage",
-    "value": 0.25,
-    "cost": 15,
-    "description": "+%25 Hasar",
-    "question": "'Juxtaposition' edebi sanatı neyi ifade eder?",
-    "options": [
-      "İki zıt şeyi yan yana koyup tezat yaratma",
-      "Aynı kelimeyi tekrarlama",
-      "Kafiye yapma",
-      "Abartma"
-    ],
-    "correct_index": 0,
-    "example": "The juxtaposition of fire and ice created the paradox ogre."
-  },
-  {
-    "id": "q_c1_18",
-    "word": "Anachronism",
-    "type": "Noun",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "pierce",
-    "value": 1.0,
-    "cost": 15,
-    "description": "+1 Delme",
-    "question": "'Anachronism' terimi ne demektir?",
-    "options": [
-      "Tarihsel yanılgı / Çağ aşımı / Zamana uymama",
-      "Zaman makinesi",
-      "Kronoloji",
-      "Tarihi eser"
-    ],
-    "correct_index": 0,
-    "example": "A laser beam in a medieval library is a deliberate stylistic anachronism."
-  },
-  {
-    "id": "q_c1_19",
-    "word": "Paradigm",
-    "type": "Noun",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "max_hp",
-    "value": 40.0,
-    "cost": 14,
-    "description": "+40 Maks Can",
-    "question": "'Paradigm' sözcüğü ne anlama gelir?",
-    "options": [
-      "Model / Temel düşünce kalıbı (Archetype / Framework)",
-      "İstisna",
-      "Rastlantı",
-      "Yanılsama"
-    ],
-    "correct_index": 0,
-    "example": "Combining survival roguelite with EdTech represents a novel paradigm."
-  },
-  {
-    "id": "q_c1_20",
-    "word": "Cacophony",
-    "type": "Noun",
-    "level": "C1",
-    "question_type": "antonym",
-    "stat": "damage",
-    "value": 0.22,
-    "cost": 13,
-    "description": "+%22 Hasar",
-    "question": "'Cacophony' kelimesinin zıt anlamlısı hangisidir?",
-    "options": [
-      "Euphony / Harmony (Hoş ahenk)",
-      "Discord",
-      "Noise",
-      "Clamor"
-    ],
-    "correct_index": 0,
-    "example": "The screeching harpies produced an ear-splitting cacophony."
-  },
-  {
-    "id": "q_c1_21",
-    "word": "Deleterious",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "synonym",
-    "stat": "armor",
-    "value": 0.16,
-    "cost": 13,
-    "description": "+%16 Zırh",
-    "question": "'Deleterious' sıfatının eş anlamlısı hangisidir?",
-    "options": [
-      "Detrimental / Injurious (Zararlı / Tahripkar)",
-      "Beneficial",
-      "Salubrious",
-      "Healthy"
-    ],
-    "correct_index": 0,
-    "example": "Grammatical confusion can exert deleterious effects on essay grades."
-  },
-  {
-    "id": "q_c1_22",
-    "word": "Enervate",
-    "type": "Verb",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "move_speed",
-    "value": 35.0,
-    "cost": 12,
-    "description": "+35 Hız",
-    "question": "'Enervate' fiili ne anlama gelir?",
-    "options": [
-      "Güçten düşürmek / Takatini kesmek (Weaken)",
-      "Enerji vermek",
-      "Canlandırmak",
-      "Hızlandırmak"
-    ],
-    "correct_index": 0,
-    "example": "Continuous dodging will enervate careless challengers."
-  },
-  {
-    "id": "q_c1_23",
-    "word": "Equivocal",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "antonym",
-    "stat": "pierce",
-    "value": 1.0,
-    "cost": 14,
-    "description": "+1 Delme",
-    "question": "'Equivocal' sözcüğünün zıt anlamlısı hangisidir?",
-    "options": [
-      "Unequivocal / Clear (Kesin / Tartışmasız)",
-      "Ambiguous",
-      "Vague",
-      "Doubtful"
-    ],
-    "correct_index": 0,
-    "example": "His unequivocal defense silenced all skeptical inquisitors."
-  },
-  {
-    "id": "q_c1_24",
-    "word": "Fastidious",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "damage",
-    "value": 0.22,
-    "cost": 13,
-    "description": "+%22 Hasar",
-    "question": "'Fastidious' sıfatı neyi ifade eder?",
-    "options": [
-      "Aşırı titiz / Zor beğenen / Müşkülpesent",
-      "Pasaklı",
-      "Uysal",
-      "Cömert"
-    ],
-    "correct_index": 0,
-    "example": "Fastidious scholars detect typos where others see correct syntax."
-  },
-  {
-    "id": "q_c1_25",
-    "word": "Gregarious",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "pickup_radius",
-    "value": 50.0,
-    "cost": 11,
-    "description": "+50 Toplama Menzili",
-    "question": "'Gregarious' kelimesinin anlamı nedir?",
-    "options": [
-      "Topluluğu seven / Sosyal / Sürü halinde yaşayan",
-      "Yalnızlığı seven",
-      "Vahşi",
-      "Düşmanca"
-    ],
-    "correct_index": 0,
-    "example": "Grammar goblins are gregarious pests that always attack in packs."
-  },
-  {
-    "id": "q_c1_26",
-    "word": "Iconoclast",
-    "type": "Noun",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "projectile_count",
-    "value": 1.0,
-    "cost": 18,
-    "description": "+1 Mermi",
-    "question": "'Iconoclast' kime denir?",
-    "options": [
-      "Yerleşik inanç ve gelenekleri yıkan kimse",
-      "Dindar kişi",
-      "Kütüphaneci",
-      "Tarihçi"
-    ],
-    "correct_index": 0,
-    "example": "An iconoclast linguist questioned the traditional grammar rules."
-  },
-  {
-    "id": "q_c1_27",
-    "word": "Lucrative",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "ink_mult",
-    "value": 0.4,
-    "cost": 14,
-    "description": "+%40 Mürekkep Bonusu",
-    "question": "'Lucrative' sıfatı ne anlama gelir?",
-    "options": [
-      "Oldukça kârlı / Kazançlı (Profitable)",
-      "Zararlı",
-      "Kayıp veren",
-      "Zahmetsiz"
-    ],
-    "correct_index": 0,
-    "example": "Solving educational quizzes correctly is extremely lucrative in this game."
-  },
-  {
     "id": "q_c1_28",
     "word": "Mellifluous",
     "type": "Adjective",
@@ -2660,424 +3280,84 @@
     "example": "The mellifluous tone of the spell soothed battle exhaustion."
   },
   {
-    "id": "q_c1_29",
-    "word": "Nefarious",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "synonym",
-    "stat": "damage",
-    "value": 0.22,
-    "cost": 13,
-    "description": "+%22 Hasar",
-    "question": "'Nefarious' kelimesinin eş anlamlısı hangisidir?",
-    "options": [
-      "Wicked / Heinous (Kötü niyetli / Haince)",
-      "Virtuous",
-      "Benevolent",
-      "Noble"
-    ],
-    "correct_index": 0,
-    "example": "The dragon hatched a nefarious scheme to burn all grammar books."
-  },
-  {
-    "id": "q_c1_30",
-    "word": "Onerous",
-    "type": "Adjective",
-    "level": "C1",
+    "id": "lex-161",
+    "word": "Observe",
+    "type": "Verb",
+    "level": "A2",
     "question_type": "meaning",
-    "stat": "armor",
-    "value": 0.16,
-    "cost": 12,
-    "description": "+%16 Zırh",
-    "question": "'Onerous' sözcüğü neyi belirtir?",
+    "stat": "pickup_radius",
+    "value": 38,
+    "cost": 8,
+    "description": "+38 pickup radius",
+    "question": "'Observe' ne demektir?",
     "options": [
-      "Ağır / Külfetli / Zahmetli (Burdensome)",
-      "Hafif ve kolay",
-      "Eğlenceli",
-      "Bedava"
+      "Unutmak",
+      "Saklamak",
+      "Gözlemlemek",
+      "Tartışmak"
     ],
-    "correct_index": 0,
-    "example": "Synthesizing dictionary volumes was an onerous responsibility."
+    "correct_index": 2,
+    "example": "Researchers observe how the creature changes after each attack."
   },
   {
-    "id": "q_c1_31",
-    "word": "Parsimonious",
+    "id": "q_c1_27",
+    "word": "Lucrative",
     "type": "Adjective",
     "level": "C1",
     "question_type": "meaning",
     "stat": "ink_mult",
-    "value": 0.35,
-    "cost": 12,
-    "description": "+%35 Mürekkep Bonusu",
-    "question": "'Parsimonious' kelimesinin anlamı nedir?",
-    "options": [
-      "Aşırı tutumlu / Hasis / Eli sıkı (Miserly)",
-      "Müsrif / Savurgan",
-      "Cömert",
-      "Zengin"
-    ],
-    "correct_index": 0,
-    "example": "Be parsimonious with ink in early waves to afford weapon slots later."
-  },
-  {
-    "id": "q_c1_32",
-    "word": "Querulous",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "attack_speed",
-    "value": 0.2,
-    "cost": 11,
-    "description": "+%20 Atış Hızı",
-    "question": "'Querulous' sıfatı ne anlama gelir?",
-    "options": [
-      "Sürekli şikayet eden / Sızlanan (Fretful / Whiny)",
-      "Memnun",
-      "Sabırlı",
-      "Mütevazı"
-    ],
-    "correct_index": 0,
-    "example": "The querulous phantom grumbled whenever its projectiles missed."
-  },
-  {
-    "id": "q_c1_33",
-    "word": "Rancor",
-    "type": "Noun",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "damage",
-    "value": 0.24,
+    "value": 0.4,
     "cost": 14,
-    "description": "+%24 Hasar",
-    "question": "'Rancor' sözcüğünün Türkçe karşılığı nedir?",
+    "description": "+%40 Mürekkep Bonusu",
+    "question": "'Lucrative' sıfatı ne anlama gelir?",
     "options": [
-      "Derin kin / Düşmanlık / Hınç (Bitterness / Spite)",
-      "Sevgi",
-      "Merhamet",
-      "Dostluk"
+      "Zararlı",
+      "Kayıp veren",
+      "Oldukça kârlı / Kazançlı (Profitable)",
+      "Zahmetsiz"
     ],
-    "correct_index": 0,
-    "example": "The defeated dragon glared with unrelenting rancor."
+    "correct_index": 2,
+    "example": "Solving educational quizzes correctly is extremely lucrative in this game."
   },
   {
-    "id": "q_c1_34",
-    "word": "Sanguine",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "heal",
-    "value": 45.0,
-    "cost": 13,
-    "description": "+45 Can Yenile",
-    "question": "'Sanguine' kelimesi neyi ifade eder?",
-    "options": [
-      "İyimser / Umut dolu (Optimistic / Cheerful)",
-      "Karamsar",
-      "Üzgün",
-      "Korkak"
-    ],
-    "correct_index": 0,
-    "example": "He remained sanguine about his chances of passing the C1 exam."
-  },
-  {
-    "id": "q_c1_35",
-    "word": "Tenacious",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "synonym",
-    "stat": "max_hp",
-    "value": 45.0,
-    "cost": 15,
-    "description": "+45 Maks Can",
-    "question": "'Tenacious' sıfatının eş anlamlısı hangisidir?",
-    "options": [
-      "Persistent / Resolute (Azimli / Kararlı / Sımsıkı yapışan)",
-      "Weak",
-      "Fickle",
-      "Surrendering"
-    ],
-    "correct_index": 0,
-    "example": "A tenacious scholar continues studying despite repeated failures."
-  },
-  {
-    "id": "q_c1_36",
-    "word": "Usurp",
-    "type": "Verb",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "damage",
-    "value": 0.25,
-    "cost": 15,
-    "description": "+%25 Hasar",
-    "question": "'Usurp' fiilinin anlamı nedir?",
-    "options": [
-      "Zorla veya haksızca tahtı/yetkiyi ele geçirmek",
-      "Hediye etmek",
-      "İstifa etmek",
-      "Savunmak"
-    ],
-    "correct_index": 0,
-    "example": "The warlord sought to usurp authority over the imperial scriptorium."
-  },
-  {
-    "id": "q_c1_37",
-    "word": "Vacillate",
-    "type": "Verb",
-    "level": "C1",
+    "id": "lex-181",
+    "word": "Execute",
+    "type": "Phrasal Verb",
+    "level": "B2",
     "question_type": "meaning",
     "stat": "move_speed",
-    "value": 35.0,
+    "value": 30,
     "cost": 12,
-    "description": "+35 Hız",
-    "question": "'Vacillate' fiili ne anlama gelir?",
+    "description": "+30 move speed",
+    "question": "'Carry out a plan' ne demektir?",
     "options": [
-      "İkilemde kalmak / Tereddüt etmek / Bocalamak",
-      "Karar vermek",
-      "Koşmak",
-      "İnat etmek"
+      "Planı ertelemek",
+      "Bir planı uygulamak",
+      "Planı taşımak",
+      "Planı bozmak"
     ],
-    "correct_index": 0,
-    "example": "Do not vacillate between options when exam time is running low."
+    "correct_index": 1,
+    "example": "The crew carried out the rescue before dawn."
   },
   {
-    "id": "q_c1_38",
-    "word": "Zephyr",
-    "type": "Noun",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "attack_speed",
-    "value": 0.25,
-    "cost": 13,
-    "description": "+%25 Atış Hızı",
-    "question": "'Zephyr' sözcüğü neyi anlatır?",
-    "options": [
-      "Hafif ve tatlı batı rüzgarı / Esinti (Gentle breeze)",
-      "Fırtına",
-      "Kasırga",
-      "Tipi"
-    ],
-    "correct_index": 0,
-    "example": "A calming zephyr swept away the smoke of spent mines."
-  },
-  {
-    "id": "q_c1_39",
-    "word": "Belligerent",
-    "type": "Adjective",
-    "level": "C1",
-    "question_type": "synonym",
-    "stat": "damage",
-    "value": 0.22,
-    "cost": 14,
-    "description": "+%22 Hasar",
-    "question": "'Belligerent' sözcüğünün eş anlamlısı hangisidir?",
-    "options": [
-      "Hostile / Combative / Aggressive (Saldırgan / Kavgacı)",
-      "Peaceful",
-      "Friendly",
-      "Calm"
-    ],
-    "correct_index": 0,
-    "example": "The belligerent syntax titan stomped furiously across the library floor."
-  },
-  {
-    "id": "q_c1_40",
-    "word": "Conundrum",
-    "type": "Noun",
-    "level": "C1",
-    "question_type": "meaning",
-    "stat": "pierce",
-    "value": 1.0,
-    "cost": 15,
-    "description": "+1 Delme",
-    "question": "'Conundrum' kelimesi neyi ifade eder?",
-    "options": [
-      "Çözülmesi çetrefilli bilmece / Karmaşık problem",
-      "Basit cevap",
-      "Hediye",
-      "Şaka"
-    ],
-    "correct_index": 0,
-    "example": "Disentangling homophones is an enjoyable linguistic conundrum."
-  },
-  {
-    "id": "q_c1_41",
-    "word": "Exacerbate",
+    "id": "q_a1_07",
+    "word": "Receive",
     "type": "Verb",
-    "level": "C1",
-    "question_type": "antonym",
-    "stat": "damage",
-    "value": 0.24,
-    "cost": 15,
-    "description": "+%24 Hasar",
-    "question": "'Exacerbate' fiilinin zıt anlamlısı hangisidir?",
-    "options": [
-      "Alleviate / Soothe / Mitigate (Hafifletmek / İyileştirmek)",
-      "Worsen",
-      "Aggravate",
-      "Intensify"
-    ],
-    "correct_index": 0,
-    "example": "Panic will only exacerbate errors during a high-stakes exam."
-  },
-  {
-    "id": "q_c1_42",
-    "word": "Shed light on",
-    "type": "Idiom",
-    "level": "C1",
-    "question_type": "idiom",
+    "level": "A2",
+    "question_type": "spelling",
     "stat": "pickup_radius",
-    "value": 50.0,
-    "cost": 12,
-    "description": "+50 Toplama Menzili",
-    "question": "'Shed light on' deyimi ne anlama gelir?",
+    "value": 45.0,
+    "cost": 8,
+    "description": "+45 Mürekkep Toplama Menzili",
+    "question": "Hangisinin yazımı (spelling) doğrudur?",
     "options": [
-      "Bir konuya ışık tutmak / Aydınlatmak (Clarify / Explain)",
-      "Karanlıkta bırakmak",
-      "Lambayı yakmak",
-      "Korkutmak"
+      "Recieve",
+      "Receive",
+      "Receeve",
+      "Receve"
     ],
-    "correct_index": 0,
-    "example": "Recent archaeological findings shed light on ancient Latin syntax."
-  },
-  {
-    "id": "q_c1_43",
-    "word": "Pave the way for",
-    "type": "Idiom",
-    "level": "C1",
-    "question_type": "idiom",
-    "stat": "projectile_count",
-    "value": 1.0,
-    "cost": 18,
-    "description": "+1 Mermi",
-    "question": "'Pave the way for' kalıbının Türkçe karşılığı nedir?",
-    "options": [
-      "... için zemin hazırlamak / Önünü açmak",
-      "Yolu asfaltlamak",
-      "Engellemek",
-      "Kapatmak"
-    ],
-    "correct_index": 0,
-    "example": "Consistent daily practice will pave the way for academic fluency."
-  },
-  {
-    "id": "q_c1_44",
-    "word": "Boil down to",
-    "type": "Idiom",
-    "level": "C1",
-    "question_type": "idiom",
-    "stat": "damage",
-    "value": 0.2,
-    "cost": 13,
-    "description": "+%20 Hasar",
-    "question": "'Boil down to' deyimi neyi ifade eder?",
-    "options": [
-      "Özetle ... anlamına gelmek / Temelinde ... yatmak",
-      "Kaynamak",
-      "Buharlaşmak",
-      "Taşmak"
-    ],
-    "correct_index": 0,
-    "example": "Success in Lexicon Survivors boils down to positioning and question accuracy."
-  },
-  {
-    "id": "q_c1_45",
-    "word": "Fall short of",
-    "type": "Idiom",
-    "level": "C1",
-    "question_type": "idiom",
-    "stat": "armor",
-    "value": 0.15,
-    "cost": 12,
-    "description": "+%15 Zırh",
-    "question": "'Fall short of' kalıbının anlamı nedir?",
-    "options": [
-      "Beklentiyi karşılayamamak / Gerisinde kalmak",
-      "Boyu kısa kalmak",
-      "Düşmek",
-      "Aşmak"
-    ],
-    "correct_index": 0,
-    "example": "The enemy's attack fell short of penetrating the Lexicon Aegis."
-  },
-  {
-    "id": "q_c1_46",
-    "word": "Grapple with",
-    "type": "Phrasal Verb",
-    "level": "C1",
-    "question_type": "phrasal",
-    "stat": "armor",
-    "value": 0.16,
-    "cost": 13,
-    "description": "+%16 Zırh",
-    "question": "'Grapple with' ifadesi ne anlama gelir?",
-    "options": [
-      "Zor bir sorunla boğuşmak / Mücadele etmek",
-      "Güreşmek",
-      "Pes etmek",
-      "Kaçmak"
-    ],
-    "correct_index": 0,
-    "example": "Scholars grapple with nuanced synonyms in academic texts."
-  },
-  {
-    "id": "q_c1_47",
-    "word": "Spark off",
-    "type": "Phrasal Verb",
-    "level": "C1",
-    "question_type": "phrasal",
-    "stat": "attack_speed",
-    "value": 0.24,
-    "cost": 13,
-    "description": "+%24 Atış Hızı",
-    "question": "'Spark off' phrasal verb'ü neyi anlatır?",
-    "options": [
-      "Ateşlemek / Fitilini yakmak / Başlatmak",
-      "Söndürmek",
-      "Kıvılcım saçmak",
-      "Durdurmak"
-    ],
-    "correct_index": 0,
-    "example": "A single careless comma can spark off heated editorial debates."
-  },
-  {
-    "id": "q_c1_48",
-    "word": "Stem from",
-    "type": "Phrasal Verb",
-    "level": "C1",
-    "question_type": "phrasal",
-    "stat": "damage",
-    "value": 0.2,
-    "cost": 12,
-    "description": "+%20 Hasar",
-    "question": "'Stem from' kalıbının anlamı nedir?",
-    "options": [
-      "-den kaynaklanmak / İleri gelmek (Originate from)",
-      "Kök salmak",
-      "Durdurmak",
-      "Uzaklaşmak"
-    ],
-    "correct_index": 0,
-    "example": "Many modern English terms stem from ancient Greek and Latin roots."
-  },
-  {
-    "id": "q_c1_49",
-    "word": "Hinge upon",
-    "type": "Phrasal Verb",
-    "level": "C1",
-    "question_type": "phrasal",
-    "stat": "max_hp",
-    "value": 40.0,
-    "cost": 14,
-    "description": "+40 Maks Can",
-    "question": "'Hinge upon' ifadesinin Türkçe karşılığı nedir?",
-    "options": [
-      "-e bağlı olmak / Odak noktası olmak (Depend crucially on)",
-      "Kapıyı menteşelemek",
-      "Görmezden gelmek",
-      "Ayrılmak"
-    ],
-    "correct_index": 0,
-    "example": "Your survival on wave 100 hinges upon combining tier-4 weapons."
+    "correct_index": 1,
+    "example": "You receive precious ink drops from defeated typos."
   },
   {
     "id": "q_c1_50",
@@ -3100,6 +3380,466 @@
     "example": "In the wake of the cataclysm dash, all surrounding enemies were annihilated."
   },
   {
+    "id": "lex-168",
+    "word": "Inevitable",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "damage",
+    "value": 0.12,
+    "cost": 14,
+    "description": "+0.12 damage",
+    "question": "'Inevitable' ne anlama gelir?",
+    "options": [
+      "Tartışmalı",
+      "Tesadüfi",
+      "Kaçınılmaz",
+      "Geçersiz"
+    ],
+    "correct_index": 2,
+    "example": "Once the final seal cracked, the collapse seemed inevitable."
+  },
+  {
+    "id": "lex-162",
+    "word": "Avoid",
+    "type": "Verb",
+    "level": "A2",
+    "question_type": "meaning",
+    "stat": "move_speed",
+    "value": 28,
+    "cost": 8,
+    "description": "+28 move speed",
+    "question": "'Avoid' fiilinin anlamı hangisidir?",
+    "options": [
+      "Kaçınmak",
+      "Yaklaşmak",
+      "Onarmak",
+      "Ödünç vermek"
+    ],
+    "correct_index": 0,
+    "example": "Avoid the marked floor before the ink burst."
+  },
+  {
+    "id": "q_c1_05",
+    "word": "Obfuscate",
+    "type": "Verb",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "pierce",
+    "value": 1.0,
+    "cost": 15,
+    "description": "+1 Delme",
+    "question": "'Obfuscate' fiilinin Türkçe karşılığı nedir?",
+    "options": [
+      "Açıklamak",
+      "Aydınlatmak",
+      "Kasten karmaşıklaştırıp anlaşılmaz kılmak",
+      "Basitleştirmek"
+    ],
+    "correct_index": 2,
+    "example": "Do not obfuscate your thesis with needlessly convoluted jargon."
+  },
+  {
+    "id": "q_b1_05",
+    "word": "Meticulous",
+    "type": "Adjective",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "damage",
+    "value": 0.2,
+    "cost": 13,
+    "description": "+%20 Hasar & Kritik",
+    "question": "'Meticulous' kelimesi ne anlama gelir?",
+    "options": [
+      "Dikkatsiz ve savruk",
+      "Öfkeli",
+      "Kılı kırk yaran / Son derece titiz",
+      "Kararsız"
+    ],
+    "correct_index": 2,
+    "example": "A meticulous proofreader catches every subtle grammatical error."
+  },
+  {
+    "id": "q_b1_34",
+    "word": "Come across",
+    "type": "Phrasal Verb",
+    "level": "B1",
+    "question_type": "phrasal",
+    "stat": "pickup_radius",
+    "value": 45.0,
+    "cost": 9,
+    "description": "+45 Toplama Menzili",
+    "question": "'Come across' ifadesi ne anlama gelir?",
+    "options": [
+      "Tesadüfen karşılaşmak / Denk gelmek",
+      "Karşıya geçmek",
+      "Tartışmak",
+      "Kaçmak"
+    ],
+    "correct_index": 0,
+    "example": "You will come across rare artifacts while scavenging the library."
+  },
+  {
+    "id": "q_b1_21",
+    "word": "Eloquent",
+    "type": "Adjective",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "damage",
+    "value": 0.2,
+    "cost": 12,
+    "description": "+%20 Hasar",
+    "question": "'Eloquent' sözcüğü neyi tanımlar?",
+    "options": [
+      "Kekeme",
+      "Güzel ve etkili konuşan / Dili akıcı",
+      "Sessiz",
+      "Kaba"
+    ],
+    "correct_index": 1,
+    "example": "An eloquent speaker persuades the whole academy with ease."
+  },
+  {
+    "id": "q_c1_36",
+    "word": "Usurp",
+    "type": "Verb",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "damage",
+    "value": 0.25,
+    "cost": 15,
+    "description": "+%25 Hasar",
+    "question": "'Usurp' fiilinin anlamı nedir?",
+    "options": [
+      "Hediye etmek",
+      "İstifa etmek",
+      "Savunmak",
+      "Zorla veya haksızca tahtı/yetkiyi ele geçirmek"
+    ],
+    "correct_index": 3,
+    "example": "The warlord sought to usurp authority over the imperial scriptorium."
+  },
+  {
+    "id": "q_b1_03",
+    "word": "Abundant",
+    "type": "Adjective",
+    "level": "B1",
+    "question_type": "synonym",
+    "stat": "ink_mult",
+    "value": 0.35,
+    "cost": 12,
+    "description": "+%35 Mürekkep Bonusu",
+    "question": "'Abundant' kelimesinin eş anlamlısı hangisidir?",
+    "options": [
+      "Scarce",
+      "Rare",
+      "Meager",
+      "Plentiful / Copious (Bol / Bereketli)"
+    ],
+    "correct_index": 3,
+    "example": "The fallen boss left behind abundant drops of mystical ink."
+  },
+  {
+    "id": "q_b1_45",
+    "word": "As long as",
+    "type": "Conjunction",
+    "level": "B2",
+    "question_type": "grammar",
+    "stat": "damage",
+    "value": 0.18,
+    "cost": 11,
+    "description": "+%18 Hasar",
+    "question": "'As long as' (Provided that) kalıbı ne anlama gelir?",
+    "options": [
+      "kadar uzun",
+      "-dığı sürece / şartıyla",
+      "çünkü",
+      "-e rağmen"
+    ],
+    "correct_index": 1,
+    "example": "You will survive as long as you keep collecting health parchments."
+  },
+  {
+    "id": "q_b1_08",
+    "word": "Alleviate",
+    "type": "Verb",
+    "level": "B2",
+    "question_type": "synonym",
+    "stat": "heal",
+    "value": 40.0,
+    "cost": 12,
+    "description": "+40 Can Yenile",
+    "question": "'Alleviate' fiilinin eş anlamlısı hangisidir?",
+    "options": [
+      "Worsen",
+      "Relieve / Ease (Hafifletmek / Yatıştırmak)",
+      "Intensify",
+      "Aggravate"
+    ],
+    "correct_index": 1,
+    "example": "A healing parchment will alleviate the pain of battle wounds."
+  },
+  {
+    "id": "q_b1_33",
+    "word": "Turn down",
+    "type": "Phrasal Verb",
+    "level": "B1",
+    "question_type": "phrasal",
+    "stat": "armor",
+    "value": 0.12,
+    "cost": 9,
+    "description": "+%12 Zırh",
+    "question": "'Turn down' ifadesinin anlamı nedir?",
+    "options": [
+      "Reddetmek / Geri çevirmek (Refuse / Reject)",
+      "Kabul etmek",
+      "Açmak",
+      "Hızlandırmak"
+    ],
+    "correct_index": 0,
+    "example": "He had to turn down the suspicious invitation from the mimic book."
+  },
+  {
+    "id": "q_a1_20",
+    "word": "Expand",
+    "type": "Verb",
+    "level": "A2",
+    "question_type": "meaning",
+    "stat": "projectile_count",
+    "value": 1.0,
+    "cost": 16,
+    "description": "+1 Mermi",
+    "question": "'Expand' fiili ne anlama gelir?",
+    "options": [
+      "Daraltmak",
+      "Genişletmek / Büyütmek",
+      "Silmek",
+      "Kilitlemek"
+    ],
+    "correct_index": 1,
+    "example": "Expand your weapon slots to equip more armaments."
+  },
+  {
+    "id": "q_b1_63",
+    "word": "Notorious",
+    "type": "Adjective",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "damage",
+    "value": 0.2,
+    "cost": 12,
+    "description": "+%20 Hasar",
+    "question": "'Notorious' kelimesi ne anlama gelir?",
+    "options": [
+      "Herkesçe sevilen",
+      "Gizemli",
+      "Becerikli",
+      "Adı kötüye çıkmış / Kötü şöhretli"
+    ],
+    "correct_index": 3,
+    "example": "The Red Pen Inquisitor is notorious for disqualifying students."
+  },
+  {
+    "id": "q_b1_15",
+    "word": "Pursue",
+    "type": "Verb",
+    "level": "B1",
+    "question_type": "meaning",
+    "stat": "move_speed",
+    "value": 35.0,
+    "cost": 10,
+    "description": "+35 Hız",
+    "question": "'Pursue' fiili ne anlama gelir?",
+    "options": [
+      "Vazgeçmek",
+      "Durdurmak",
+      "Kaçmak",
+      "Kovalamak / Peşinden koşmak"
+    ],
+    "correct_index": 3,
+    "example": "Enemies pursue the player tirelessly across the ancient halls."
+  },
+  {
+    "id": "lex-195",
+    "word": "Benevolent",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "synonym",
+    "stat": "heal",
+    "value": 30,
+    "cost": 13,
+    "description": "+30 heal",
+    "question": "'Benevolent' kelimesine en yakın eş anlamlı hangisidir?",
+    "options": [
+      "Cruel",
+      "Careless",
+      "Suspicious",
+      "Kind / charitable"
+    ],
+    "correct_index": 3,
+    "example": "A benevolent spirit guided lost readers to safety."
+  },
+  {
+    "id": "q_a1_17",
+    "word": "Patience",
+    "type": "Noun",
+    "level": "A2",
+    "question_type": "meaning",
+    "stat": "max_hp",
+    "value": 25.0,
+    "cost": 10,
+    "description": "+25 Maks Can",
+    "question": "'Patience' kelimesinin Türkçe karşılığı nedir?",
+    "options": [
+      "Sabır",
+      "Kibir",
+      "Telaş",
+      "Cömertlik"
+    ],
+    "correct_index": 0,
+    "example": "Patience and endurance are vital to surviving 100 waves."
+  },
+  {
+    "id": "lex-192",
+    "word": "Occurrence",
+    "type": "Grammar",
+    "level": "B2",
+    "question_type": "spelling",
+    "stat": "crit_chance",
+    "value": 0.06,
+    "cost": 11,
+    "description": "+0.06 crit chance",
+    "question": "Occurrence kelimesinin doğru yazımı hangisidir?",
+    "options": [
+      "Occurence",
+      "Ocurrence",
+      "Occurrance",
+      "Occurrence"
+    ],
+    "correct_index": 3,
+    "example": "A second occurrence of the symbol confirmed our theory."
+  },
+  {
+    "id": "q_c1_38",
+    "word": "Zephyr",
+    "type": "Noun",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "attack_speed",
+    "value": 0.25,
+    "cost": 13,
+    "description": "+%25 Atış Hızı",
+    "question": "'Zephyr' sözcüğü neyi anlatır?",
+    "options": [
+      "Fırtına",
+      "Hafif ve tatlı batı rüzgarı / Esinti (Gentle breeze)",
+      "Kasırga",
+      "Tipi"
+    ],
+    "correct_index": 1,
+    "example": "A calming zephyr swept away the smoke of spent mines."
+  },
+  {
+    "id": "q_a1_19",
+    "word": "Bright",
+    "type": "Adjective",
+    "level": "A1",
+    "question_type": "antonym",
+    "stat": "pickup_radius",
+    "value": 35.0,
+    "cost": 6,
+    "description": "+35 Toplama Menzili",
+    "question": "'Bright' (Parlak) sıfatının zıt anlamlısı hangisidir?",
+    "options": [
+      "Dim / Dark (Karanlık)",
+      "Shiny",
+      "Luminous",
+      "Radiant"
+    ],
+    "correct_index": 0,
+    "example": "A bright rune illuminated the dark archives."
+  },
+  {
+    "id": "lex-177",
+    "word": "Precarious",
+    "type": "Adjective",
+    "level": "C2",
+    "question_type": "meaning",
+    "stat": "max_hp",
+    "value": 26,
+    "cost": 17,
+    "description": "+26 max hp",
+    "question": "'Precarious' hangi durumu anlatır?",
+    "options": [
+      "Özenle hazırlanmış",
+      "Tehlikeli ve güvencesiz",
+      "Kolayca tekrarlanan",
+      "Önemsiz"
+    ],
+    "correct_index": 1,
+    "example": "The bridge left our escape in a precarious position."
+  },
+  {
+    "id": "q_b1_16",
+    "word": "Reinforce",
+    "type": "Verb",
+    "level": "B2",
+    "question_type": "meaning",
+    "stat": "max_hp",
+    "value": 35.0,
+    "cost": 12,
+    "description": "+35 Maks Can",
+    "question": "'Reinforce' fiilinin anlamı hangisidir?",
+    "options": [
+      "Zayıflatmak",
+      "Bölmek",
+      "Terk etmek",
+      "Güçlendirmek / Takviye etmek"
+    ],
+    "correct_index": 3,
+    "example": "Reinforce your defensive perimeter using active barrier gadgets."
+  },
+  {
+    "id": "q_b1_23",
+    "word": "Grasp",
+    "type": "Verb",
+    "level": "B1",
+    "question_type": "meaning",
+    "stat": "pickup_radius",
+    "value": 45.0,
+    "cost": 9,
+    "description": "+45 Toplama Menzili",
+    "question": "'Grasp' fiilinin mecazi anlamı nedir?",
+    "options": [
+      "Düşürmek",
+      "Bir fikri kavramak / Anlamak",
+      "Unutmak",
+      "Korkmak"
+    ],
+    "correct_index": 1,
+    "example": "Once you grasp English sentence structure, errors disappear."
+  },
+  {
+    "id": "q_b1_40",
+    "word": "In spite of",
+    "type": "Collocation",
+    "level": "B1",
+    "question_type": "collocation",
+    "stat": "armor",
+    "value": 0.14,
+    "cost": 10,
+    "description": "+%14 Zırh",
+    "question": "'In spite of' (Despite) kalıbı cümleye hangi anlamı katar?",
+    "options": [
+      "-e rağmen / karşın",
+      "çünkü",
+      "sayesinde",
+      "bu yüzden"
+    ],
+    "correct_index": 0,
+    "example": "In spite of relentless horde attacks, the scribe defended the library."
+  },
+  {
     "id": "q_c1_51",
     "word": "At the expense of",
     "type": "Idiom",
@@ -3111,92 +3851,152 @@
     "description": "+%25 Hasar",
     "question": "'At the expense of' ifadesi ne demektir?",
     "options": [
-      "... pahasına / Zararına (To the detriment of)",
       "Masrafıyla",
       "Bedelsiz",
-      "Sayesinde"
+      "Sayesinde",
+      "... pahasına / Zararına (To the detriment of)"
     ],
-    "correct_index": 0,
+    "correct_index": 3,
     "example": "The glass cannon prioritizes damage at the expense of defensive armor."
   },
   {
-    "id": "q_c1_52",
-    "word": "Albeit",
-    "type": "Conjunction",
-    "level": "C1",
-    "question_type": "synonym",
+    "id": "lex-188",
+    "word": "Preview",
+    "type": "Prefix",
+    "level": "B1",
+    "question_type": "morphology",
+    "stat": "move_speed",
+    "value": 26,
+    "cost": 8,
+    "description": "+26 move speed",
+    "question": "'Pre-' öneki 'preview' sözcüğüne hangi anlamı katar?",
+    "options": [
+      "Karşı",
+      "Yanlış",
+      "Önceden",
+      "Birlikte"
+    ],
+    "correct_index": 2,
+    "example": "The preview revealed a hidden page in the book."
+  },
+  {
+    "id": "q_a1_39",
+    "word": "Ancient vs Modern",
+    "type": "Antonym Pair",
+    "level": "A2",
+    "question_type": "antonym",
     "stat": "armor",
-    "value": 0.16,
-    "cost": 12,
-    "description": "+%16 Zırh",
-    "question": "'Albeit' bağlacının eş anlamlısı hangisidir?",
+    "value": 0.12,
+    "cost": 8,
+    "description": "+%12 Zırh",
+    "question": "'Modern' kelimesinin zıt anlamlısı hangisidir?",
     "options": [
-      "Although / Even though (-se de / her ne kadar ... olsa da)",
-      "Because",
-      "Therefore",
-      "Moreover"
+      "Recent",
+      "Contemporary",
+      "Current",
+      "Ancient (Kadim / Antik)"
     ],
-    "correct_index": 0,
-    "example": "The apprentice vanquished the phantom, albeit with significant effort."
+    "correct_index": 3,
+    "example": "The ancient grimoires hold secrets of modern syntax."
   },
   {
-    "id": "q_c1_53",
-    "word": "Notwithstanding",
-    "type": "Preposition/Adv",
-    "level": "C1",
-    "question_type": "grammar",
-    "stat": "max_hp",
-    "value": 45.0,
-    "cost": 15,
-    "description": "+45 Maks Can",
-    "question": "'Notwithstanding' sözcüğü Türkçede neye karşılık gelir?",
+    "id": "q_a1_09",
+    "word": "Tomorrow",
+    "type": "Noun",
+    "level": "A1",
+    "question_type": "spelling",
+    "stat": "move_speed",
+    "value": 25.0,
+    "cost": 6,
+    "description": "+25 Hız",
+    "question": "Hangisinin yazımı doğrudur? (Tomorrow)",
     "options": [
-      "-e karşın / -e rağmen (Despite / In spite of)",
-      "Sayesinde",
-      "Bu sebeple",
-      "Gereğince"
+      "Tomorow",
+      "Tommorow",
+      "Tommorro",
+      "Tomorrow"
     ],
-    "correct_index": 0,
-    "example": "Notwithstanding the formidable dragon boss, Inky triumphed."
+    "correct_index": 3,
+    "example": "Tomorrow is another day to expand your vocabulary."
   },
   {
-    "id": "q_c1_54",
-    "word": "Inasmuch as",
-    "type": "Conjunction",
-    "level": "C1",
-    "question_type": "grammar",
-    "stat": "damage",
-    "value": 0.22,
-    "cost": 13,
-    "description": "+%22 Hasar",
-    "question": "'Inasmuch as' bağlacı ne anlama gelir?",
-    "options": [
-      "-dığı ölçüde / Mademki / Çünkü (Since / In view of the fact that)",
-      "Aksine",
-      "Öyleyse",
-      "Sanki"
-    ],
-    "correct_index": 0,
-    "example": "Inasmuch as language is living, new words will always emerge."
-  },
-  {
-    "id": "q_c1_55",
-    "word": "Hitherto",
-    "type": "Adverb",
+    "id": "q_c1_09",
+    "word": "Proliferate",
+    "type": "Verb",
     "level": "C1",
     "question_type": "meaning",
-    "stat": "attack_speed",
-    "value": 0.24,
-    "cost": 14,
-    "description": "+%24 Atış Hızı",
-    "question": "'Hitherto' zarfı neyi belirtir?",
+    "stat": "projectile_count",
+    "value": 1.0,
+    "cost": 18,
+    "description": "+1 Mermi",
+    "question": "'Proliferate' fiili ne anlama gelir?",
     "options": [
-      "Şimdiye kadar / Bugüne değin (Until now / Up to this point)",
-      "Bundan sonra",
-      "Nihayet",
-      "Bazen"
+      "Yok olmak",
+      "Yavaşlamak",
+      "Hızla çoğalmak / Üremek (Multiply rapidly)",
+      "Tükenmek"
+    ],
+    "correct_index": 2,
+    "example": "If left unchecked, typo slimes proliferate across the floor."
+  },
+  {
+    "id": "q_b1_58",
+    "word": "Conceal",
+    "type": "Verb",
+    "level": "B2",
+    "question_type": "antonym",
+    "stat": "pierce",
+    "value": 1.0,
+    "cost": 13,
+    "description": "+1 Delme",
+    "question": "'Conceal' (Gizlemek) kelimesinin zıt anlamlısı hangisidir?",
+    "options": [
+      "Hide",
+      "Cover",
+      "Disguise",
+      "Reveal / Disclose (Açığa çıkarmak)"
+    ],
+    "correct_index": 3,
+    "example": "Piercing beams reveal the true shape of concealed mimics."
+  },
+  {
+    "id": "lex-170",
+    "word": "Exacting",
+    "type": "Adjective",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "crit_chance",
+    "value": 0.07,
+    "cost": 13,
+    "description": "+0.07 crit chance",
+    "question": "'Meticulous' kişiyi nasıl tanımlar?",
+    "options": [
+      "Titiz / ayrıntıcı",
+      "Dikkatsiz",
+      "Kararsız",
+      "Şakacı"
     ],
     "correct_index": 0,
-    "example": "Hitherto unknown linguistic relics were discovered in the vault."
+    "example": "Her meticulous notes helped us reconstruct the ritual."
+  },
+  {
+    "id": "q_c1_40",
+    "word": "Conundrum",
+    "type": "Noun",
+    "level": "C1",
+    "question_type": "meaning",
+    "stat": "pierce",
+    "value": 1.0,
+    "cost": 15,
+    "description": "+1 Delme",
+    "question": "'Conundrum' kelimesi neyi ifade eder?",
+    "options": [
+      "Çözülmesi çetrefilli bilmece / Karmaşık problem",
+      "Basit cevap",
+      "Hediye",
+      "Şaka"
+    ],
+    "correct_index": 0,
+    "example": "Disentangling homophones is an enjoyable linguistic conundrum."
   }
 ]
