@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "title_tr": "Mürekkep Pazarı · Usta Mühürleri",
+  "currency": "ink",
+  "purchase_limit": "Bir ürün, her dalga arası dükkânda bir kez alınabilir; güçlendirmeler bu koşu boyunca sürer.",
+  "offers": [
+    {
+      "id": "field_medicinal_folio",
+      "name_tr": "Gezginin Sargısı",
+      "category_tr": "SAĞLIK",
+      "description_tr": "Eski bir saha notu yaranı kapatır; yalnızca eksik canı tamamlar.",
+      "ink_cost": 34,
+      "icon": "assets/sprites/relics/mnemonic_thread.png",
+      "effect": { "type": "heal", "value": 42 }
+    },
+    {
+      "id": "waxed_edge",
+      "name_tr": "Mumlu Keskinlik",
+      "category_tr": "SİLAH MÜHRÜ",
+      "description_tr": "Silahının kenarına işlenen ince balmumu çizgisi bu koşudaki hasarını %8 artırır.",
+      "ink_cost": 72,
+      "icon": "assets/sprites/relics/grammar_guide.png",
+      "effect": { "type": "damage", "value": 0.08 }
+    },
+    {
+      "id": "silver_margin",
+      "name_tr": "Gümüş Kenar",
+      "category_tr": "SAVUNMA MÜHRÜ",
+      "description_tr": "Dış kapaktaki gümüş kakma, bu koşu boyunca hasarın küçük bir bölümünü emer.",
+      "ink_cost": 58,
+      "icon": "assets/sprites/relics/archivist_compass.png",
+      "effect": { "type": "armor", "value": 0.045 }
+    },
+    {
+      "id": "study_lamp_oil",
+      "name_tr": "Gece Çalışma Yağı",
+      "category_tr": "KARAKTER XP",
+      "description_tr": "Lambayı sonuna kadar doldur: seçili karakterine 70 XP kazandırır.",
+      "ink_cost": 62,
+      "icon": "assets/sprites/relics/diligence_coffee.png",
+      "effect": { "type": "experience", "value": 70 }
+    },
+    {
+      "id": "magnifier_focus",
+      "name_tr": "Fihrist Merceği",
+      "category_tr": "ODAK",
+      "description_tr": "Zayıf noktaları seçmeyi kolaylaştırır: kritik şansı ve mürekkep toplama alanı artar.",
+      "ink_cost": 68,
+      "icon": "assets/sprites/relics/magnifying_glass.png",
+      "effect": { "type": "focus", "value": 0.045, "secondary": 18 }
+    },
+    {
+      "id": "echo_hunters_ink",
+      "name_tr": "Yankı Avcısının Mürekkebi",
+      "category_tr": "HATA KELİMESİ",
+      "description_tr": "Boss düellosunda hata defterinden gelen kelime yankılarına verilen hasar %25 artar.",
+      "ink_cost": 54,
+      "icon": "assets/sprites/relics/marginalia_prism.png",
+      "effect": { "type": "echo_hunter", "value": 0.25 }
+    }
+  ]
+}

@@ -3,7 +3,7 @@
 <head>
     <meta name="leaderboard-api" content="https://lexicon-survivors-leaderboard.lexicon-survivors-leaderboard.workers.dev">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover, interactive-widget=resizes-content">
   <link rel="icon" type="image/svg+xml" href="assets/ui/icons/book.svg">
   <title>Lexicon Survivors: The Word Guardian | Hardcore Roguelite v4.0</title>
   <style>
@@ -2268,6 +2268,81 @@
       .stats-right .ink-count,.stats-right .kill-count { padding:2px 4px !important; font-size:10px !important; }
       #mobile-menu-btn { flex:0 0 auto !important; padding-left:4px !important; padding-right:4px !important; }
     }
+
+    /* Browser zoom must remain available. Use the visual viewport's live
+       height on mobile and keep the arena inside device safe areas. */
+    :root {
+      --game-viewport-height: 100vh;
+      --game-safe-top: env(safe-area-inset-top, 0px);
+      --game-safe-right: env(safe-area-inset-right, 0px);
+      --game-safe-bottom: env(safe-area-inset-bottom, 0px);
+      --game-safe-left: env(safe-area-inset-left, 0px);
+    }
+    @supports (height: 100dvh) {
+      :root { --game-viewport-height: 100dvh; }
+    }
+    html, body {
+      height: auto;
+      min-height: var(--game-viewport-height);
+      overflow-x: hidden;
+      overflow-y: auto;
+      overscroll-behavior-x: none;
+    }
+    @media (max-width:1080px), (max-height:720px), (pointer:coarse), (hover:none) {
+      html, body {
+        height: auto !important;
+        min-height: var(--game-viewport-height) !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        position: relative !important;
+      }
+      #game-container {
+        width: calc(100vw - var(--game-safe-left) - var(--game-safe-right)) !important;
+        height: calc(var(--game-viewport-height) - var(--game-safe-top) - var(--game-safe-bottom)) !important;
+        max-width: none !important;
+        max-height: none !important;
+        margin: var(--game-safe-top) auto var(--game-safe-bottom) !important;
+      }
+      canvas {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: fill !important;
+      }
+      .screen-overlay {
+        max-height: 100%;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+      }
+      .dialog-panel {
+        max-height: calc(var(--game-viewport-height) - var(--game-safe-top) - var(--game-safe-bottom) - 12px) !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+    #shop-screen .tab-bar {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px !important;
+    }
+    #shop-screen .tab-btn { min-width: 0; white-space: normal; line-height: 1.2; padding: 7px 5px; }
+    #shop-screen .skill-tree-summary,
+    #shop-screen .skill-branch-heading,
+    #shop-screen .premium-store-note {
+      min-height: auto !important;
+      background: #e9e2d2 !important;
+      border-left: 3px solid #b9975e !important;
+    }
+    #shop-screen .skill-branch-heading { padding: 9px 13px !important; }
+    #shop-screen .skill-node { min-height: 190px !important; }
+    #shop-screen .premium-product { border-top: 2px solid #6f7f73; }
+    @media (max-width: 680px) {
+      #shop-screen .tab-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      #shop-screen .tab-btn { min-height: 34px; font-size: 9px !important; }
+    }
   </style>
 </head>
 <body>
@@ -2475,6 +2550,8 @@
           <button class="tab-btn" id="tab-weapons-btn" role="tab" aria-controls="shop-items-grid" aria-selected="false"><img class="ui-icon" src="assets/ui/icons/weapons.svg" alt="">SİLAHLAR · 15</button>
           <button class="tab-btn" id="tab-gadgets-btn" role="tab" aria-controls="shop-items-grid" aria-selected="false"><img class="ui-icon" src="assets/ui/icons/gadget.svg" alt="">GEREÇLER · 8</button>
           <button class="tab-btn" id="tab-artifacts-btn" role="tab" aria-controls="shop-items-grid" aria-selected="false"><img class="ui-icon" src="assets/ui/icons/artifact.svg" alt="">YADİGÂRLAR</button>
+          <button class="tab-btn" id="tab-skills-btn" role="tab" aria-controls="shop-items-grid" aria-selected="false">YETENEK AĞACI</button>
+          <button class="tab-btn" id="tab-premium-btn" role="tab" aria-controls="shop-items-grid" aria-selected="false">MÜREKKEP PAZARI</button>
         </div>
 
         <div class="card-grid-4" id="shop-items-grid" style="min-height: 240px;"></div>
@@ -2781,6 +2858,6 @@
       window.startArchiveIntro();
     })();
   </script>
-  <script src="game.js?v=economy-caps-20261107"></script>
+  <script src="game.js?v=ink-skill-boss-echo-20261107"></script>
 </body>
 </html>

@@ -510,6 +510,7 @@ function compactLiveArray(items, keep) {
 
 function applyUtilityRelicHit(target, baseDamage) {
   let damage = baseDamage;
+  if (target.is_mistake_echo) damage *= state.mistake_echo_damage_mult || 1.0;
   if (state.artifacts_owned.includes("archivist_compass") && (target.is_boss || target.is_elite || /boss/i.test(target.type || ""))) {
     damage *= 1 + (ARTIFACTS_CATALOG.archivist_compass.values?.elite_damage_factor || 0.12);
   }
@@ -1614,6 +1615,26 @@ const storyArcReady = fetch("assets/data/story_arc.json", { cache: "no-store" })
   return true;
 }).catch(error => { console.error("Shared story arc unavailable", error); return false; });
 storyArcReady.then(ready => { if (ready && document.getElementById("title-screen")?.style.display !== "none") initTitleScreen(); });
+let CHARACTER_SKILL_TREES = null;
+const characterSkillTreeReady = fetch("assets/data/character_skill_trees.json", { cache: "no-store" }).then(response => {
+  if (!response.ok) throw new Error(`Skill tree HTTP ${response.status}`);
+  return response.json();
+}).then(data => {
+  const characterIds = ["inky", "quillmaster", "word_knight", "rune_sorceress", "lexicon_alchemist", "shadow_lexicographer"];
+  if (data.schema_version !== 1 || data.max_character_level !== 18 || characterIds.some(id => !data.characters?.[id])) throw new Error("Skill tree data is incomplete");
+  CHARACTER_SKILL_TREES = data;
+  return true;
+}).catch(error => { console.error("Character skill trees unavailable", error); return false; });
+let INK_SHOP_DATA = null;
+const inkShopReady = fetch("assets/data/ink_shop_catalog.json", { cache: "no-store" }).then(response => {
+  if (!response.ok) throw new Error(`Ink shop catalog HTTP ${response.status}`);
+  return response.json();
+}).then(data => {
+  if (data.schema_version !== 1 || !Array.isArray(data.offers) || data.offers.length < 5
+    || data.offers.some(item => !item.id || !Number.isInteger(item.ink_cost) || item.ink_cost <= 0 || !item.effect)) throw new Error("Ink shop catalog is incomplete");
+  INK_SHOP_DATA = data;
+  return true;
+}).catch(error => { console.error("Ink shop catalog unavailable", error); return false; });
 
 // =========================================
 // 5. GAME STATE
@@ -1667,6 +1688,7 @@ const state = {
 
   // Game Speed, Auto New Tur (Wave) & Auto New Run
   game_speed: 1.0,
+  camera_zoom: 1.0,
   auto_new_tur: readStoredBoolean("lexicon_auto_new_tur", false),
   auto_new_run: readStoredBoolean("lexicon_auto_new_run", false),
 
@@ -1690,6 +1712,11 @@ const state = {
   run_result_recorded: false,
   asked_question_ids: [],
   mistake_words: [],
+  boss_mistake_queue: [],
+  boss_defeated: false,
+  character_progress: {},
+  skill_tree_notice: "",
+  ink_shop_purchases: [],
   touch_dir: { x: 0, y: 0 },
 
   // Dynamic entities
@@ -1737,6 +1764,80 @@ const state = {
   rune_rotation: 0,
   questions: []
 };
+
+function getCharacterProgress(characterId = state.selected_char) {
+  if (!state.character_progress[characterId]) {
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem(`lexicon_progress_${characterId}`) || "{}"); } catch (_) {}
+    state.character_progress[characterId] = {
+      xp: Math.max(0, Number(saved.xp) || 0),
+      level: Math.max(1, Math.min(18, Math.floor(Number(saved.level) || 1))),
+      skill_points: Math.max(0, Math.floor(Number(saved.skill_points) || 0)),
+      unlocked_nodes: Array.isArray(saved.unlocked_nodes) ? [...new Set(saved.unlocked_nodes.filter(id => typeof id === "string"))] : []
+    };
+  }
+  return state.character_progress[characterId];
+}
+function persistCharacterProgress(characterId = state.selected_char) {
+  try { localStorage.setItem(`lexicon_progress_${characterId}`, JSON.stringify(getCharacterProgress(characterId))); } catch (_) {}
+}
+function xpForNextCharacterLevel(level) { return 140 + level * 48; }
+function getCharacterSkillNodes(characterId = state.selected_char) {
+  return (CHARACTER_SKILL_TREES?.characters?.[characterId]?.branches || []).flatMap(branch => branch.nodes || []);
+}
+function applySkillEffects(effects = {}) {
+  for (const [key, value] of Object.entries(effects)) {
+    if (key === "damage") state.damage_mult += value;
+    else if (key === "attack_speed") addAttackSpeed(value);
+    else if (key === "armor") addArmor(value);
+    else if (key === "move_speed") state.move_speed += value;
+    else if (key === "max_hp") { state.max_hp += value; state.hp += value; }
+    else if (key === "crit_chance") state.crit_chance = Math.min(0.65, state.crit_chance + value);
+    else if (key === "projectile_count") state.projectile_count += Math.floor(value);
+    else if (key === "pierce") state.pierce_count += Math.floor(value);
+    else if (key === "pickup_radius") state.pickup_radius += value;
+  }
+}
+function grantCharacterXp(amount, reason = "") {
+  const profile = getCharacterProgress();
+  if (profile.level >= 18 || amount <= 0) return;
+  profile.xp += Math.round(amount);
+  let leveled = false;
+  while (profile.level < 18 && profile.xp >= xpForNextCharacterLevel(profile.level)) {
+    profile.xp -= xpForNextCharacterLevel(profile.level);
+    profile.level += 1;
+    profile.skill_points += 1;
+    leveled = true;
+  }
+  if (profile.level >= 18) profile.xp = 0;
+  persistCharacterProgress();
+  if (leveled) {
+    state.skill_tree_notice = `${CHARACTERS[state.selected_char].name} · SEVİYE ${profile.level} · 1 YETENEK PUANI`;
+    addFloatingText(state.player.x, state.player.y - 34, `SEVİYE ${profile.level} · +1 YETENEK`, "#e4c477", 15);
+    sounds.playTone(660, "triangle", 0.16, 0.16);
+  }
+  if (leveled && state.is_wave_active) updateHUD();
+}
+function unlockCharacterSkill(nodeId) {
+  const nodes = getCharacterSkillNodes();
+  const node = nodes.find(item => item.id === nodeId);
+  const profile = getCharacterProgress();
+  if (!node || profile.unlocked_nodes.includes(nodeId) || profile.level < node.required_level || profile.skill_points < node.point_cost
+    || node.prerequisites.some(id => !profile.unlocked_nodes.includes(id))) return false;
+  profile.skill_points -= node.point_cost;
+  profile.unlocked_nodes.push(node.id);
+  persistCharacterProgress();
+  applySkillEffects(node.effects);
+  state.skill_tree_notice = `${node.name_tr} · ÖĞRENİLDİ`;
+  sounds.playTone(760, "sine", 0.12, 0.13);
+  updateHUD();
+  renderShopView();
+  return true;
+}
+function applyUnlockedCharacterSkills() {
+  const profile = getCharacterProgress();
+  for (const node of getCharacterSkillNodes()) if (profile.unlocked_nodes.includes(node.id)) applySkillEffects(node.effects);
+}
 
 // Haptic feedback & Game feel helpers
 function triggerHaptic(type = "light") {
@@ -1820,6 +1921,8 @@ const spriteList = [
   "upgrade_v1/threat_seal.png",
   "upgrade_v1/interactables/ink_well.svg", "upgrade_v1/interactables/archive_bell.svg",
   "upgrade_v1/interactables/astral_astrolabe.svg",
+  "upgrade_v1/word_echo/word_echo_title_frame.svg", "upgrade_v1/word_echo/echo_mark_quill.svg",
+  "upgrade_v1/word_echo/echo_mark_mirror.svg", "upgrade_v1/word_echo/echo_mark_splinter.svg",
   "player.png", "player_quillmaster.png", "player_knight.png",
   "player_sorceress.png", "player_alchemist.png", "player_assassin.png",
   // Weapons
@@ -1934,7 +2037,7 @@ const ctx = canvas.getContext("2d");
 let lastTime = performance.now();
 let adaptiveCanvasScale = 1.0;
 let slowFrameSeconds = 0;
-const MIN_ADAPTIVE_CANVAS_SCALE = 0.60;
+const MIN_ADAPTIVE_CANVAS_SCALE = 0.42;
 
 function setCanvasResolution(width, height) {
   const nextWidth = Math.max(1, Math.round(width * adaptiveCanvasScale));
@@ -1945,14 +2048,14 @@ function setCanvasResolution(width, height) {
 
 function adaptCanvasQuality(frameSeconds) {
   if (!state.is_wave_active || document.hidden || adaptiveCanvasScale <= MIN_ADAPTIVE_CANVAS_SCALE) return;
-  if (frameSeconds > 0.030) slowFrameSeconds += frameSeconds;
+  if (frameSeconds > 0.024) slowFrameSeconds += frameSeconds;
   else slowFrameSeconds = Math.max(0, slowFrameSeconds - frameSeconds * 0.75);
-  if (slowFrameSeconds < 0.65) return;
+  if (slowFrameSeconds < 0.42) return;
 
   // The CSS/HTML interface remains at full resolution; only the pixel-art
   // arena render target shrinks when sustained frame times miss the 33 ms
   // budget. Keep the scale for the run to avoid quality oscillation.
-  adaptiveCanvasScale = Math.max(MIN_ADAPTIVE_CANVAS_SCALE, adaptiveCanvasScale - 0.20);
+  adaptiveCanvasScale = Math.max(MIN_ADAPTIVE_CANVAS_SCALE, adaptiveCanvasScale - (frameSeconds > 0.045 ? 0.28 : 0.20));
   slowFrameSeconds = 0;
   resizeGameCanvas();
 }
@@ -2680,6 +2783,12 @@ window.addEventListener("keydown", e => {
     adjustGameSpeed(1);
   } else if (e.key === "0") {
     setGameSpeed(1.0);
+  } else if (e.key.toLowerCase() === "z") {
+    state.camera_zoom = Math.max(0.72, Number((state.camera_zoom - 0.08).toFixed(2)));
+    addFloatingText(state.player.x, state.player.y - 52, `ZOOM ${Math.round(state.camera_zoom * 100)}%`, "#e4c477", 12);
+  } else if (e.key.toLowerCase() === "x") {
+    state.camera_zoom = Math.min(1.28, Number((state.camera_zoom + 0.08).toFixed(2)));
+    addFloatingText(state.player.x, state.player.y - 52, `ZOOM ${Math.round(state.camera_zoom * 100)}%`, "#e4c477", 12);
   }
 });
 window.addEventListener("keyup", e => {
@@ -2690,6 +2799,7 @@ window.addEventListener("contextmenu", e => {
   activateActiveGadget();
 });
 window.addEventListener("wheel", e => {
+  if (e.ctrlKey || e.metaKey) return;
   if (e.deltaY > 0) switchNextWeapon();
   else if (e.deltaY < 0) switchPrevWeapon();
 }, { passive: true });
@@ -2942,6 +3052,7 @@ function initTitleScreen() {
   charGrid.innerHTML = "";
   ["inky", "quillmaster", "word_knight", "rune_sorceress", "lexicon_alchemist", "shadow_lexicographer"].forEach(cid => {
     const c = CHARACTERS[cid];
+    const profile = getCharacterProgress(cid);
     const card = document.createElement("div");
     card.className = "choice-card" + (cid === state.selected_char ? " selected" : "");
     card.dataset.hero = cid;
@@ -2959,7 +3070,7 @@ function initTitleScreen() {
           </div>
         </div>
         <div class="stats-text" style="font-size: 9.5px; text-align: right; line-height: 1.25;">
-          ${c.hp} HP | ${c.damage_mult}× hasar<br>${c.speed} hız ${c.armor > 0 ? '| %' + Math.round(c.armor*100) + ' zırh' : ''}
+          SEVİYE ${String(profile.level).padStart(2, "0")} · ${profile.skill_points} puan<br>${c.hp} HP | ${c.damage_mult}× hasar
         </div>
       </div>
       <div class="desc" style="font-size: 10.5px; margin: 3px 0 2px 0;">${c.desc}</div>
@@ -3025,6 +3136,7 @@ const onStartGame = async (e) => {
   await utilityCatalogReady;
   if (!(await gameEconomyReady)) return;
   if (!(await storyArcReady)) return;
+  await Promise.all([characterSkillTreeReady, inkShopReady]);
   sounds.init();
   bgm.start();
   bgm.setMode("battle");
@@ -3053,6 +3165,8 @@ function resetStats() {
   state.attack_speed_mult = c.attack_speed_mult;
   state.armor = c.armor;
   state.crit_chance = c.crit_chance;
+  state.mistake_echo_damage_mult = 1.0;
+  applyUnlockedCharacterSkills();
   state.pickup_radius = 150;
   state.projectile_count = 1;
   state.pierce_count = 1;
@@ -3171,6 +3285,9 @@ function startWave() {
   state.arena_interactables.forEach(object => { object.used = false; });
   state.mnemonic_used_this_wave = false;
   state.milestone_boss_delay = state.current_wave % 5 === 0 ? 1.8 : 0;
+  state.boss_mistake_queue = [];
+  state.boss_defeated = false;
+  state.ink_shop_purchases = [];
   if (state.selected_char === "lexicon_alchemist") state.ink_count += 10;
   document.getElementById("shop-screen").style.display = "none";
   updateHUD();
@@ -3270,6 +3387,8 @@ function interactWithArenaObject() {
 
 function endWave() {
   if (!state.is_wave_active) return;
+  if (state.current_wave % 5 === 0 && (!state.boss_defeated || state.boss_mistake_queue.length > 0
+    || state.enemies.some(enemy => enemy.is_mistake_echo && !enemy.dead))) return;
   state.is_wave_active = false;
   state.milestone_boss_delay = 0;
   // Enemies still alive when the timer expires were not defeated by the player.
@@ -4272,7 +4391,7 @@ function resolveMeleeWeaponHit(w, enemies = state.enemies) {
 }
 
 function spawnProjectile(proj) {
-  if (state.projectiles.length >= 600) state.projectiles.shift();
+  if (state.projectiles.length >= 420) state.projectiles.splice(0, state.projectiles.length - 419);
   state.projectiles.push(Object.assign({
     lifetime: 2.2, hitEnemies: new Set(),
     hitEnemiesByPass: { outbound: new Set(), returning: new Set() },
@@ -4573,7 +4692,9 @@ function updateProjectiles(dt) {
 // =========================================
 // 12. HARDCORE 100-WAVE HORDE SYSTEM
 // =========================================
-const MAX_ALIVE_ENEMIES = 220;
+// 150 preserves late-wave pressure while giving collision, enemy AI, effects,
+// and the web UI headroom on mid-range hardware.
+const MAX_ALIVE_ENEMIES = 150;
 
 function getWaveEnemyCap(wave = state.current_wave) {
   return Math.min(MAX_ALIVE_ENEMIES, getStatLimit("starting_enemy_cap", 32) + Math.max(0, wave - 1) * 2);
@@ -5032,11 +5153,12 @@ function updateEnemies(dt) {
     const milestoneBoss = state.current_wave % 5 === 0
       ? state.enemies.find(enemy => enemy.is_boss && !enemy.dead)
       : null;
-    if (milestoneBoss) {
+    const remainingWordEchoes = state.boss_mistake_queue.length > 0 || state.enemies.some(enemy => enemy.is_mistake_echo && !enemy.dead);
+    if (milestoneBoss || (state.current_wave % 5 === 0 && remainingWordEchoes)) {
       // Boss waves are won by defeating the boss, never by running out the clock.
       // Overtime is a clear escalation beat rather than a silent boss despawn.
       state.wave_time_left = 18;
-      if (!milestoneBoss.enraged) {
+      if (milestoneBoss && !milestoneBoss.enraged) {
         milestoneBoss.enraged = true;
         milestoneBoss.speed *= 1.12;
         milestoneBoss.boss_skill_interval = Math.max(2.65, (milestoneBoss.boss_skill_interval || 6.5) * 0.78);
@@ -5430,6 +5552,7 @@ function updateEnemies(dt) {
       sounds.enemyDeath();
       state.kill_count++;
       const isBoss = e.is_boss || e.type === "Red Pen Boss" || e.type === "Lexicon Dragon Boss";
+      grantCharacterXp(e.is_mistake_echo ? 5 + (e.fail_count || 1) : isBoss ? 24 + Math.floor(state.current_wave / 10) : 2 + Math.floor(state.current_wave / 40), e.is_mistake_echo ? "word_echo" : isBoss ? "boss" : "enemy");
       const inkReward = e.is_boss
         ? (e.ink_reward || Math.round(32 + state.current_wave * 1.4))
         : getEnemyInkReward(e.type, e.ink_reward || 1);
@@ -5508,7 +5631,13 @@ function updateEnemies(dt) {
 
   compactLiveArray(state.enemies, e => !e.dead);
   newEnemies.forEach(addAliveEnemy);
-  if (milestoneBossDefeated && state.is_wave_active) endWave();
+  if (milestoneBossDefeated) state.boss_defeated = true;
+  if (state.current_wave % 5 === 0 && state.is_wave_active) {
+    spawnBossMistakeBatch();
+    const livingBoss = state.enemies.some(enemy => enemy.is_boss && !enemy.dead);
+    const livingEcho = state.enemies.some(enemy => enemy.is_mistake_echo && !enemy.dead);
+    if (state.boss_defeated && !livingBoss && !livingEcho && state.boss_mistake_queue.length === 0) endWave();
+  }
 }
 
 function spawnEnemy() {
@@ -5703,34 +5832,50 @@ function spawnMilestoneBoss(wave) {
   };
   sounds.bossRoar();
   addAliveEnemy(boss);
-  const unresolved = [...(state.mistake_words || [])]
-    .sort((a, b) => (b.fail_count || 1) - (a.fail_count || 1))
-    .slice(0, 4);
-  unresolved.forEach((mistake, index) => {
-    const echoAngle = angle + Math.PI + index * Math.PI * 2 / Math.max(1, unresolved.length);
-    const echoPoint = getArenaSpawnPosition({ x: boss.x, y: boss.y }, 115 + index * 18, echoAngle);
-    const memoryWord = String(mistake.word || "?");
-    const failures = Math.max(1, Math.min(5, mistake.fail_count || 1));
-    addAliveEnemy({
-      type: "Spelling Spectre", sprite: "spelling_spectre.png",
-      x: echoPoint.x, y: echoPoint.y, vx: 0, vy: 0,
-      hp: (105 + wave * 8) * (0.72 + failures * 0.16),
-      max_hp: (105 + wave * 8) * (0.72 + failures * 0.16),
-      speed: (112 + failures * 9) * difficulty.enemy_speed_mult,
-      damage: (15 + wave * 0.16 + failures * 2) * difficulty.enemy_damage_mult,
-      ink_reward: 0, size: 32, label: memoryWord,
-      is_elite: true, is_mistake_echo: true, memory_word: memoryWord,
-      fail_count: failures, facing_left: false
-    });
-  });
-  const alert = unresolved.length
-    ? `${name.toLocaleUpperCase("tr-TR")} · HATA DEFTERİNDEKİ ${unresolved.length} KELİME YANKIYA DÖNÜŞTÜ`
+  state.active_boss = boss;
+  state.boss_defeated = false;
+  state.boss_mistake_queue = [...(state.mistake_words || [])]
+    .filter(mistake => String(mistake.word || "").trim())
+    .sort((a, b) => (b.fail_count || 1) - (a.fail_count || 1));
+  spawnBossMistakeBatch(angle);
+  const queuedWords = state.boss_mistake_queue.length + state.enemies.filter(enemy => enemy.is_mistake_echo && !enemy.dead).length;
+  const alert = queuedWords
+    ? `${name.toLocaleUpperCase("tr-TR")} · HATA DEFTERİNDEKİ ${queuedWords} KELİME YANKIYA DÖNÜŞTÜ`
     : name.toLocaleUpperCase("tr-TR");
   triggerTacticalAlert(alert, BOSS_TELEGRAPH_GUIDANCE[skill] || "İşaretlere bak, saldırıdan önce güvenli alanı bul.");
   updateBossHealthBar(true);
 }
 
+const BOSS_ECHO_ACTIVE_CAP = 3;
+function spawnBossMistakeBatch(preferredAngle = null) {
+  if (state.current_wave % 5 !== 0 || !Array.isArray(state.boss_mistake_queue)) return 0;
+  const livingEchoes = state.enemies.filter(enemy => enemy.is_mistake_echo && !enemy.dead).length;
+  const slots = Math.max(0, BOSS_ECHO_ACTIVE_CAP - livingEchoes);
+  const angleBase = preferredAngle ?? Math.atan2(state.player.y - (state.active_boss?.y || 0), state.player.x - (state.active_boss?.x || 0));
+  let spawned = 0;
+  while (spawned < slots && state.boss_mistake_queue.length > 0) {
+    const mistake = state.boss_mistake_queue.shift();
+    const memoryWord = String(mistake.word || "?").trim();
+    const failures = Math.max(1, Math.min(5, Math.floor(mistake.fail_count || 1)));
+    const angle = angleBase + Math.PI + spawned * Math.PI * 2 / Math.max(1, slots);
+    const origin = state.active_boss || state.player;
+    const point = getArenaSpawnPosition(origin, 145 + spawned * 22, angle);
+    const hp = (105 + state.current_wave * 8) * (0.72 + failures * 0.16);
+    const accepted = addAliveEnemy({
+      type: "Spelling Spectre", sprite: "spelling_spectre.png", x: point.x, y: point.y, vx: 0, vy: 0,
+      hp, max_hp: hp, speed: (112 + failures * 9) * DIFFICULTIES[state.difficulty].enemy_speed_mult,
+      damage: (15 + state.current_wave * 0.16 + failures * 2) * DIFFICULTIES[state.difficulty].enemy_damage_mult,
+      ink_reward: 0, size: 32, label: memoryWord, word_type: mistake.type || "", is_elite: true, is_mistake_echo: true,
+      memory_word: memoryWord, fail_count: failures, facing_left: false
+    });
+    if (!accepted) { state.boss_mistake_queue.unshift(mistake); break; }
+    spawned++;
+  }
+  return spawned;
+}
+
 function spawnEnemyProjectile(x, y, dx, dy, dmg, spd) {
+  if (state.enemy_projectiles.length >= 150) state.enemy_projectiles.splice(0, state.enemy_projectiles.length - 149);
   state.enemy_projectiles.push({
     x, y, dx, dy, damage: dmg, spd: spd, lifetime: 3.2, dead: false, color: null, shape: "orb", radius: 8
   });
@@ -6080,7 +6225,7 @@ function refreshShopCards() {
 }
 
 function highlightShopTabs() {
-  ["cards", "weapons", "gadgets", "artifacts"].forEach((tab) => {
+  ["cards", "weapons", "gadgets", "artifacts", "skills", "premium"].forEach((tab) => {
     const button = document.getElementById(`tab-${tab}-btn`);
     const selected = currentShopTab === tab;
     button.className = "tab-btn" + (selected ? " active" : "");
@@ -6095,7 +6240,9 @@ document.getElementById("tab-cards-btn").onclick = () => { clearShopAutoWaveTime
 document.getElementById("tab-weapons-btn").onclick = () => { clearShopAutoWaveTimer(); currentShopTab = "weapons"; highlightShopTabs(); renderShopView(); };
 document.getElementById("tab-gadgets-btn").onclick = () => { clearShopAutoWaveTimer(); currentShopTab = "gadgets"; highlightShopTabs(); renderShopView(); };
 document.getElementById("tab-artifacts-btn").onclick = () => { clearShopAutoWaveTimer(); currentShopTab = "artifacts"; highlightShopTabs(); renderShopView(); };
-const shopTabIds = ["cards", "weapons", "gadgets", "artifacts"];
+document.getElementById("tab-skills-btn").onclick = () => { clearShopAutoWaveTimer(); currentShopTab = "skills"; highlightShopTabs(); renderShopView(); };
+document.getElementById("tab-premium-btn").onclick = () => { clearShopAutoWaveTimer(); currentShopTab = "premium"; highlightShopTabs(); renderShopView(); };
+const shopTabIds = ["cards", "weapons", "gadgets", "artifacts", "skills", "premium"];
 shopTabIds.forEach((tab, index) => {
   document.getElementById(`tab-${tab}-btn`).onkeydown = (event) => {
     if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
@@ -6128,7 +6275,68 @@ function renderShopView() {
   const grid = document.getElementById("shop-items-grid");
   grid.innerHTML = "";
 
-  if (currentShopTab === "cards") {
+  if (currentShopTab === "skills") {
+    const profile = getCharacterProgress();
+    const tree = CHARACTER_SKILL_TREES?.characters?.[state.selected_char];
+    const summary = document.createElement("section");
+    summary.className = "choice-card shop-card skill-tree-summary";
+    summary.style.gridColumn = "1 / -1";
+    summary.innerHTML = `<div class="shop-meta"><span>KARAKTER GELİŞİMİ</span><span>KALICI · ${tree?.display_name_tr || CHARACTERS[state.selected_char].name}</span></div><h3 class="shop-title">Seviye ${profile.level} · ${profile.skill_points} yetenek puanı</h3><div class="shop-description">${profile.level >= 18 ? "Ustalık seviyesi tamamlandı." : `${profile.xp} / ${xpForNextCharacterLevel(profile.level)} XP · Düşmanları yen ve soruları doğru yanıtla.`} Yetenekler bu karaktere özeldir; her dalda uzmanlaşmak zorunda değilsin.</div><div class="shop-example">${state.skill_tree_notice || "Bir sonraki seviyede yeni bir yetenek puanı kazanırsın."}</div>`;
+    grid.appendChild(summary);
+    (tree?.branches || []).forEach(branch => {
+      const heading = document.createElement("section");
+      heading.className = "choice-card shop-card skill-branch-heading";
+      heading.style.gridColumn = "1 / -1";
+      const title = document.createElement("h3"); title.className = "shop-title"; title.textContent = branch.name_tr;
+      const desc = document.createElement("div"); desc.className = "shop-description"; desc.textContent = branch.description_tr;
+      heading.append(title, desc); grid.appendChild(heading);
+      branch.nodes.forEach(node => {
+        const owned = profile.unlocked_nodes.includes(node.id);
+        const missingPrereq = node.prerequisites.some(id => !profile.unlocked_nodes.includes(id));
+        const canBuy = !owned && !missingPrereq && profile.level >= node.required_level && profile.skill_points >= node.point_cost;
+        const card = document.createElement("article"); card.className = "choice-card shop-card skill-node";
+        const meta = document.createElement("div"); meta.className = "shop-meta";
+        const level = document.createElement("span"); level.textContent = `SEVİYE ${node.required_level}+`;
+        const cost = document.createElement("span"); cost.textContent = `${node.point_cost} PUAN`;
+        meta.append(level, cost);
+        const name = document.createElement("h3"); name.className = "shop-title"; name.textContent = node.name_tr;
+        const text = document.createElement("div"); text.className = "shop-description"; text.textContent = node.description_tr;
+        const actionRow = document.createElement("div"); actionRow.className = "shop-buy-row";
+        const status = document.createElement("span"); status.className = "shop-price";
+        status.textContent = owned ? "ÖĞRENİLDİ" : missingPrereq ? "ÖNCEKİ YETENEK GEREKLİ" : profile.level < node.required_level ? "SEVİYE BEKLENİYOR" : `${profile.skill_points} puanın var`;
+        const button = document.createElement("button"); button.className = "btn shop-buy"; button.type = "button";
+        button.textContent = owned ? "Kazanıldı" : "YETENEĞİ ÖĞREN"; button.disabled = !canBuy;
+        button.setAttribute("aria-label", `${node.name_tr}: ${owned ? "öğrenildi" : canBuy ? "öğren" : status.textContent}`);
+        if (canBuy) button.onclick = () => unlockCharacterSkill(node.id);
+        actionRow.append(status, button); card.append(meta, name, text, actionRow); grid.appendChild(card);
+      });
+    });
+  } else if (currentShopTab === "premium") {
+    const offers = INK_SHOP_DATA?.offers || [];
+    const note = document.createElement("section"); note.className = "choice-card shop-card premium-store-note"; note.style.gridColumn = "1 / -1";
+    const noteTitle = document.createElement("h3"); noteTitle.className = "shop-title"; noteTitle.textContent = INK_SHOP_DATA?.title_tr || "Mürekkep Pazarı";
+    const noteCopy = document.createElement("div"); noteCopy.className = "shop-description"; noteCopy.textContent = "Her alışveriş oyun içinde kazandığın mürekkeple yapılır. Bu turda aldığın mühürler yalnızca mevcut koşuda etkilidir.";
+    const noteStatus = document.createElement("div"); noteStatus.className = "shop-example"; noteStatus.textContent = `CÜZDAN · ${state.ink_count} MÜREKKEP`;
+    note.append(noteTitle, noteCopy, noteStatus); grid.appendChild(note);
+    offers.forEach(offer => {
+      const bought = state.ink_shop_purchases.includes(offer.id);
+      const card = document.createElement("article"); card.className = "choice-card shop-card premium-product";
+      const meta = document.createElement("div"); meta.className = "shop-meta";
+      const category = document.createElement("span"); category.textContent = offer.category_tr || "ARŞİV MÜHRÜ";
+      const tag = document.createElement("span"); tag.textContent = "BU KOŞU İÇİN"; meta.append(category, tag);
+      const head = document.createElement("div"); head.style.cssText = "display:flex;align-items:center;gap:10px;min-width:0";
+      const icon = document.createElement("img"); icon.src = offer.icon; icon.alt = ""; icon.width = 42; icon.height = 42; icon.style.objectFit = "contain";
+      const name = document.createElement("h3"); name.className = "shop-title"; name.textContent = offer.name_tr; head.append(icon, name);
+      const desc = document.createElement("div"); desc.className = "shop-description"; desc.textContent = offer.description_tr;
+      const row = document.createElement("div"); row.className = "shop-buy-row";
+      const price = document.createElement("span"); price.className = "shop-price"; price.innerHTML = `${offer.ink_cost} <img class="ui-icon" src="assets/ui/icons/ink.svg" alt=""> mürekkep`;
+      const button = document.createElement("button"); button.className = "btn shop-buy"; button.type = "button";
+      button.disabled = bought || state.ink_count < offer.ink_cost;
+      button.textContent = bought ? "BU TUR ALINDI" : state.ink_count < offer.ink_cost ? "MÜREKKEP BİRİKTİR" : "MÜREKKEPLE AL";
+      if (!button.disabled) button.onclick = () => purchaseInkOffer(offer.id);
+      row.append(price, button); card.append(meta, head, desc, row); grid.appendChild(card);
+    });
+  } else if (currentShopTab === "cards") {
     shopCards.forEach((c, idx) => {
       const isRedemption = !!c.is_review_redemption;
       const card = document.createElement("div");
@@ -6276,6 +6484,24 @@ function renderShopView() {
   }
 }
 
+function purchaseInkOffer(offerId) {
+  const offer = INK_SHOP_DATA?.offers?.find(item => item.id === offerId);
+  if (!offer || state.ink_shop_purchases.includes(offerId) || state.ink_count < offer.ink_cost) return false;
+  state.ink_count -= offer.ink_cost;
+  state.ink_shop_purchases.push(offerId);
+  const { type, value = 0, secondary = 0 } = offer.effect;
+  if (type === "heal") state.hp = Math.min(state.max_hp, state.hp + value);
+  else if (type === "experience") grantCharacterXp(value, "ink_shop");
+  else if (type === "damage") state.damage_mult += value;
+  else if (type === "armor") addArmor(value);
+  else if (type === "focus") { state.crit_chance = Math.min(0.65, state.crit_chance + value); state.pickup_radius += secondary; }
+  else if (type === "echo_hunter") state.mistake_echo_damage_mult = Math.min(1.8, (state.mistake_echo_damage_mult || 1) + value);
+  else return false;
+  sounds.playTone(720, "triangle", 0.11, 0.14);
+  updateHUD(); updateShopTopBar(); renderShopView();
+  return true;
+}
+
 function applyArtifact(art) {
   Object.keys(art.stats || {}).forEach(k => {
     const val = art.stats[k];
@@ -6347,6 +6573,7 @@ function openQuiz(card, cardIndex) {
       }
 
       if (isCorrect) {
+        grantCharacterXp(card.is_review_redemption ? 28 : 18, "quiz_correct");
         btn.style.setProperty("background", "#e6f4ea", "important");
         btn.style.setProperty("border-color", "#2e7d32", "important");
         btn.style.setProperty("color", "#1b4d2e", "important");
@@ -6717,7 +6944,8 @@ function updateHUD() {
 
   const c = CHARACTERS[state.selected_char];
   const d = DIFFICULTIES[state.difficulty];
-  setHUDText("char-diff-info", `${c.name} · ${d.name}`);
+  const profile = getCharacterProgress();
+  setHUDText("char-diff-info", `${c.name} · ${d.name} · LV ${profile.level}${profile.skill_points ? ` · ${profile.skill_points} P` : ""}`);
   const heroPortrait = document.getElementById("hero-hud-portrait");
   if (heroPortrait) {
     const portraitPath = `assets/sprites/${c.sprite}`;
@@ -6811,7 +7039,8 @@ function render(dt = 1 / 60) {
 
   // Dynamic Camera Zoom: On mobile/tablets, zoom in so action is big, punchy and clear!
   const isTouchOrSmall = window.innerWidth <= 1080 || ('ontouchstart' in window);
-  const zoom = isTouchOrSmall ? (window.innerWidth < 650 ? 1.38 : 1.20) : 1.0;
+  const baseZoom = isTouchOrSmall ? (window.innerWidth < 650 ? 1.08 : 1.04) : 1.0;
+  const zoom = baseZoom * (state.camera_zoom || 1.0);
   if (zoom !== 1.0) {
     ctx.scale(zoom, zoom);
   }
@@ -7310,7 +7539,30 @@ function render(dt = 1 / 60) {
       ctx.fillRect(e.x - barW / 2, e.y - (e.size / 2) - 10, barW * pct, 4);
     }
 
-    if ((e.is_boss || e.is_elite) && Math.hypot(e.x - state.player.x, e.y - state.player.y) < 520 && enemyLabelBoxes.length < 5) {
+    if (e.is_mistake_echo) {
+      const frame = images["upgrade_v1/word_echo/word_echo_title_frame.svg"];
+      const text = String(e.memory_word || e.label || "?");
+      const plateWidth = Math.max(122, Math.min(190, ctx.measureText(text).width + 38));
+      const plateHeight = plateWidth * 0.30;
+      const plateX = e.x - plateWidth / 2;
+      const plateY = e.y - (e.size || 32) * 0.95 - plateHeight;
+      if (frame) ctx.drawImage(frame, plateX, plateY, plateWidth, plateHeight);
+      const category = String(e.word_type || "").toLocaleLowerCase("tr-TR");
+      const markKey = /grammar|structure|sentence|sözdizim/.test(category) ? "echo_mark_splinter.svg"
+        : /synonym|antonym|anlam|eş|zit/.test(category) ? "echo_mark_mirror.svg" : "echo_mark_quill.svg";
+      const mark = images[`upgrade_v1/word_echo/${markKey}`];
+      if (mark) ctx.drawImage(mark, e.x - 11, e.y + (e.size || 32) * 0.34, 22, 22);
+      const fontSize = Math.max(8, Math.min(11, 145 / Math.max(1, ctx.measureText(text).width) * 11));
+      ctx.save();
+      ctx.font = `700 ${fontSize}px 'IBM Plex Mono', monospace`;
+      ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.lineJoin = "round";
+      ctx.lineWidth = 3; ctx.strokeStyle = "#111714"; ctx.fillStyle = "#f2e7cf";
+      ctx.strokeText(text, e.x, plateY + plateHeight * 0.51, plateWidth - 28);
+      ctx.fillText(text, e.x, plateY + plateHeight * 0.51, plateWidth - 28);
+      ctx.restore();
+    }
+
+    if ((e.is_boss || e.is_elite) && !e.is_mistake_echo && Math.hypot(e.x - state.player.x, e.y - state.player.y) < 520 && enemyLabelBoxes.length < 5) {
       const label = e.is_boss
         ? (e.type === "Lexicon Dragon Boss" ? "LEKSİKON EJDERHASI" : "KIRMIZI KALEM")
         : (e.label || "ELİT DÜŞMAN");
@@ -7765,6 +8017,9 @@ function updateGame(dt) {
       gameplayHudRefreshTimer = GAMEPLAY_HUD_INTERVAL;
     }
   }
+  if (state.particles.length > 150) state.particles.splice(0, state.particles.length - 150);
+  if (state.floating_texts.length > 42) state.floating_texts.splice(0, state.floating_texts.length - 42);
+  if (state.telegraphs.length > 64) state.telegraphs.splice(0, state.telegraphs.length - 64);
 }
 
 window.render_game_to_text = () => JSON.stringify({
