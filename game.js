@@ -5997,13 +5997,13 @@ function spawnMilestoneBoss(wave) {
   const [type, sprite, name, color, skill] = MILESTONE_BOSS_ROSTER[Math.min(19, Math.floor(wave / 5) - 1)];
   const waveScale = getWaveHpMult(wave);
   // Milestone bosses should demand a sustained build and hold the wave until defeated.
-  const hp = (900 + wave * 80) * Math.pow(waveScale, 0.45) * difficulty.enemy_hp_mult * 3.0;
+  const hp = (900 + wave * 80) * Math.pow(waveScale, 0.45) * difficulty.enemy_hp_mult * 5.0;
   const angle = Math.random() * Math.PI * 2;
   const point = getArenaSpawnPosition(player, 560, angle);
   const boss = {
     type, sprite, x: point.x, y: point.y, vx: 0, vy: 0,
     hp, max_hp: hp, speed: (54 + Math.min(28, wave * 0.16)) * difficulty.enemy_speed_mult,
-    damage: (29 + wave * 1.25) * difficulty.enemy_damage_mult * 1.35,
+    damage: (29 + wave * 1.25) * difficulty.enemy_damage_mult * 2.0,
     ink_reward: getBossWaveReward(wave), label: name.toUpperCase(),
     size: wave >= 100 ? 108 : (68 + Math.min(20, wave * 0.16)),
     is_elite: true, is_boss: true, boss_color: color, boss_skill: skill,
@@ -7233,19 +7233,21 @@ function render(dt = 1 / 60) {
   // still use the explicit Z/X controls; silently zooming mobile crops the
   // arena and makes touch movement feel inaccurate.
   const zoom = state.camera_zoom || 1.0;
-  if (zoom !== 1.0) {
-    ctx.scale(zoom, zoom);
-  }
+  // Lowering the backing canvas resolution for performance must not crop the
+  // world view. Scale game coordinates with that resolution so CSS upscaling
+  // preserves the same camera framing on every device.
+  const renderScale = zoom * adaptiveCanvasScale;
+  ctx.scale(renderScale, renderScale);
   ctx.translate(-p.x, -p.y);
   // The camera shows only a small slice of the 2300×1700 arena. Avoid asking
   // Canvas2D to rasterize sprites and their shadows when their bounds cannot
   // reach the viewport; movement, collision, and attack logic still run for
   // every entity off screen.
   const renderBounds = {
-    left: p.x - cx / zoom,
-    right: p.x + cx / zoom,
-    top: p.y - cy / zoom,
-    bottom: p.y + cy / zoom
+    left: p.x - cx / renderScale,
+    right: p.x + cx / renderScale,
+    top: p.y - cy / renderScale,
+    bottom: p.y + cy / renderScale
   };
   const isInRenderViewport = (x, y, margin = 40) =>
     x + margin >= renderBounds.left && x - margin <= renderBounds.right
