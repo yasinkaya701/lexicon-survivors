@@ -35,10 +35,10 @@ def stamp(match):
 html = re.sub(r'(src|href)="((?:assets/ui/errata/[^"?]+\.(?:js|css)|game\.js)(?:\?[^" ]*)?)"', stamp, html)
 index.write_text(html)
 entrypoints["index.html"] = digest(index)
-for name in ["assets/ui/errata/arena-v3/manifest.json", "assets/ui/errata/title-scene-v6.webp"]:
+for name in ["assets/ui/errata/arena-v3/manifest.json", "assets/ui/errata/title-scene-v6.webp", "assets/ui/errata/portraits/shadow_lexicographer-selection-v3.webp", "assets/data/game_economy.json"]:
     entrypoints[name] = digest(ROOT / name)
 release = {
-    "version": "2026.11.09-last-errata",
+    "version": "2026.11.09-last-errata.2",
     "generatedAt": datetime.now(timezone.utc).isoformat(),
     "baseCommit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
     "sha256": entrypoints,

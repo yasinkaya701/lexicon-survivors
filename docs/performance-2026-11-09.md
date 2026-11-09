@@ -24,3 +24,7 @@ The old hero-animation fallback assets account for 88 startup requests / 469,481
 ## Limitations
 
 The before and after measurements include concurrent root changes to fonts and title artwork; normalized attribution is approximate. Measurements used local Chromium and the local static server, so cold-cache transfer and timing can differ on deployed devices and networks.
+
+## Additional selected-hero loading refinement
+
+The startup filter now excludes all legacy hero PNG animation sheets. A controlled comparison with only that filter changed observed85 legacy image requests /427,819 encoded bytes on the eager path and0 on the selected-hero path. Selected current hero textures and existing WebP/static fallback remain. The observed startup resource count changed250→217; total bytes were not a clean before/after saving because extra current weapon/room/actor assets became ready earlier. No claim of reduced total transfer is made for this small follow-up. The loading regression verifies the absence of legacy requests and still exercises failed-room fallback.

@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const root = document.documentElement;
-  // Notices share a flow below the measured HUD, including expanded loadouts.
+  // Notices share a flow below the measured HUD, the upper instruments; equipment lives in the lower dock.
   const arenaNotices = document.createElement('div');
   arenaNotices.id = 'arena-notices';
   document.getElementById('game-container')?.append(arenaNotices);
@@ -11,7 +11,7 @@
   });
   const hud = document.getElementById('hud');
   if (hud) {
-    const hudParts = [hud,...hud.querySelectorAll('.hud-row,.info-subrow,.weapons-info')];
+    const hudParts = [hud,...hud.querySelectorAll('.hud-row,.info-subrow,.char-info')];
     const measureHud = () => {
       const bottom = `${Math.ceil(Math.max(...hudParts.map(part => part.getBoundingClientRect().bottom)))}px`;
       if (root.style.getPropertyValue('--errata-hud-bottom') !== bottom) root.style.setProperty('--errata-hud-bottom', bottom);
@@ -162,12 +162,14 @@
         previousInventory = state.is_inventory_open;
         state.is_inventory_open = true;
         ownsPauseGate = true;
+        window.syncMobileControlsVisibility?.();
       }
     } catch (_) {}
   }
   function releasePauseGate() {
     try { if (ownsPauseGate && typeof state !== 'undefined') state.is_inventory_open = previousInventory; } catch (_) {}
     ownsPauseGate = false;
+    window.syncMobileControlsVisibility?.();
   }
   function ensureShopCountdownGate() {
     try {
@@ -524,6 +526,32 @@
       try { track.value = bgm.musicChoice; } catch (_) {}
       track.addEventListener('change', () => { try { bgm.setMusicChoice(track.value); } catch (_) {} });
       trackRow.append(trackLabel, track); rows.append(trackRow);
+      if (window.ErrataVoice) {
+        const voiceRow = document.createElement('label'); voiceRow.className = 'settings-row audio-setting-row';
+        const voiceLabel = document.createElement('span'); voiceLabel.textContent = 'Anlatımı kapat';
+        const voiceDetail = document.createElement('small'); voiceDetail.textContent = 'Hikâye, boss replikleri ve kelime telaffuzu.'; voiceLabel.append(voiceDetail);
+        const muted = document.createElement('input'); muted.type = 'checkbox'; muted.dataset.setting = 'voice-muted'; muted.checked = ErrataVoice.muted; muted.setAttribute('aria-label', 'Anlatımı kapat');
+        muted.addEventListener('change', () => ErrataVoice.set({muted: muted.checked})); voiceRow.append(voiceLabel, muted); rows.append(voiceRow);
+        addAudioSlider('voice-volume', 'Anlatım düzeyi', 'Konuşma sesini müzikten bağımsız ayarla.', ErrataVoice.volume, value => ErrataVoice.set({volume:value}));
+        const row = document.createElement('div'); row.className = 'settings-row audio-setting-row';
+        const label = document.createElement('label'); label.htmlFor = 'setting-voice-choice'; label.textContent = 'Anlatıcı sesi';
+        const detail = document.createElement('small'); detail.textContent = 'Anlatım ve telaffuzda konuşulan dile uygun ses kullanılır.'; label.append(detail);
+        const select = document.createElement('select'); select.id = 'setting-voice-choice'; select.dataset.setting = 'voice-choice'; select.setAttribute('aria-label', 'Anlatıcı sesi');
+        const refresh = () => {
+          if (!select.isConnected && select.options.length) return;
+          select.replaceChildren(new Option('Otomatik · dile göre', ''));
+          for (const voice of ErrataVoice.voices) select.append(new Option(`${voice.name} · ${voice.lang}`, voice.voiceURI));
+          select.value = ErrataVoice.voiceChoice; if (select.selectedIndex < 0) select.value = '';
+        };
+        refresh(); select.addEventListener('change', () => ErrataVoice.set({voiceURI:select.value}));
+        window.speechSynthesis?.addEventListener?.('voiceschanged', () => { if (select.isConnected) refresh(); }, {once:true});
+        row.append(label,select); rows.append(row);
+        const previewRow = document.createElement('div'); previewRow.className = 'settings-row';
+        const previewLabel = document.createElement('span'); previewLabel.textContent = 'Ses önizlemesi';
+        const preview = document.createElement('button'); preview.type = 'button'; preview.className = 'btn'; preview.dataset.setting = 'voice-preview'; preview.textContent = 'Anlatımı dinle';
+        preview.addEventListener('click', () => ErrataVoice.speak('Bir sözlük kayboldu. Onu hatırlayan son kişi sensin.', {role:'narrative',lang:'tr-TR'}));
+        previewRow.append(previewLabel,preview); rows.append(previewRow);
+      }
       const runtimeOptions = [
         { key: 'virtual-joystick', label: 'Sanal joystick', stateKey: 'show_touch_controls', buttonId: 'mobile-toggle-joy-btn', fallback: true },
         { key: 'auto-wave', label: 'Dalga bitince otomatik ilerle', stateKey: 'auto_new_tur', buttonId: 'mobile-toggle-autowave-btn', fallback: false },
@@ -565,7 +593,7 @@
       const guideCards = [
         {
           title: 'Hareket sende. Ateş bizde.',
-          visual: '<div class="guide-visual"><img src="assets/sprites/upgrade_v1/hero_inky.png" alt="Inky oyun sprite’ı"><div class="guide-keys" aria-label="Hareket: W A S D"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div><span class="guide-path" aria-hidden="true">→</span><img src="assets/sprites/upgrade_v1/monster_grammar_goblin.png" alt="Grammar Goblin"></div>',
+          visual: '<div class="guide-visual"><img src="assets/ui/errata/arena-v3/inky_idle_0.webp" alt="Inky oyun sprite’ı"><div class="guide-keys" aria-label="Hareket: W A S D"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div><span class="guide-path" aria-hidden="true">→</span><img src="assets/ui/errata/arena-v4/enemies/grammar_goblin_0.webp" alt="Grammar Goblin"></div>',
           copy: 'WASD veya ok tuşlarıyla düşmanlardan uzaklaş. Silahın otomatik ateş eder. Dokunmatik ekranda sol alttaki hareket kolunu kullan.'
         },
         {

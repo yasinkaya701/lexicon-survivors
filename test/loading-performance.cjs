@@ -20,6 +20,7 @@ const GAME_URL = process.env.GAME_URL || 'http://127.0.0.1:8000';
         resources,
         libraryRequests: resources.filter(url => url.includes('/assets/ui/errata/world/library.webp')).length,
         eagerLegacyFrames: resources.filter(url => /arena_frame_(library|dungeon|observatory|void)\.png(?:\?|$)/.test(url)),
+        legacyHeroFrames: resources.filter(url=>/upgrade_v1\/animations\//.test(url)),
         ttfFonts: resources.filter(url => /\.ttf(?:\?|$)/i.test(url)),
         woff2Fonts: resources.filter(url => /\.woff2(?:\?|$)/i.test(url)),
         titleCoverRequests: resources.filter(url => url.includes('/assets/ui/errata/title-scene-v6.webp')).length
@@ -27,6 +28,7 @@ const GAME_URL = process.env.GAME_URL || 'http://127.0.0.1:8000';
     });
     assert.equal(startup.libraryRequests, 1, 'the default room art should be loaded once during startup');
     assert.deepEqual(startup.eagerLegacyFrames, [], 'large fallback arena PNGs must stay lazy on the normal path');
+    assert.deepEqual(startup.legacyHeroFrames, [], 'selected painted hero/fallback frames replace eager legacy PNG animation downloads');
     assert.deepEqual(startup.ttfFonts, [], 'font requests should use WOFF2');
     assert.ok(startup.woff2Fonts.length > 0, 'the page should load WOFF2 font assets');
     assert.equal(startup.titleCoverRequests, 1, 'the title cover preload should be reused by the landing view');

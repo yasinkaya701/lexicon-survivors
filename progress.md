@@ -1,5 +1,22 @@
 Original prompt: Tasarım paketindeki DESIGN.md ve referansları web oyununa uygula; arayüzleri yeniden yaz, mekanikleri, karakter/canavar kimliklerini koru, erişilebilirlik ve akıcılığı geliştir; Luna ajanlarını kullan.
 
+## Combat refinement release2 — 2026-11-09
+
+Latest user steering implemented: battle action sizes/placement redesigned for portrait and landscape; Envanter replaces Çanta; redundant Silah action removed while equipped-slot/Q/E selection remains. Bottom-left joystick, bottom-right primary gadget plus inventory/notebook, bottom equipment rail and quiet upper HUD are separated. All action/equipment targets are at least48px; primary gadget is129×110 portrait/135×80 short landscape. Effective cooldown progress accounts for relic multipliers, with stable accessible labels. HUD HP text reserves icon space. At640×360 the chapter prose is compacted and redundant speed toast suppressed so notices do not cover Envanter/Defter; the layout regression now includes every visible notice in overlap checks.
+
+Actual CDP two-finger regressions reproduce and resolve movement+gadget activation, inventory and notebook taps while joystick remains held, long-press duplicate-release suppression, inventory pause and resume; keyboard D+Space also passes. Shared action binding retains mouse/keyboard fallback and modal gates. New current HUD/decoy/guide art fixes the remaining stale appearances; settings descriptions wrap at844×390 and other large-text sizes.
+
+Normal ordinary enemies now have1.15×HP/1.10×damage/1.04×speed and0.90×spawn interval; hard has1.20/1.15/1.06/0.88. Easy is unchanged. Bosses retain exactly5×HP and3×damage with previous timing, movement and rewards. Shared data controls pressure and missing values default to1.
+
+Free TTS uses only browser SpeechSynthesis: role-aware Turkish/English voice choice, restrained pacing and punctuation pauses, replay/stale-queue cancellation, mute/level/voice selector/preview and persistence. No paid endpoint, key or service. Headless tests verify behavior, not subjective operating-system voice quality. A separate Luna worker built the adapter; independent Luna reviews checked input/layout/difficulty and resolved the48px equipment finding and secondary multi-touch gap.
+
+Shadow Scribe's new masked masculine ninja portrait is shadow_lexicographer-selection-v3.webp, reused by selection/HUD/results/skilltree. Earlier softer candidate is unused. The dossier focal point keeps the eyes below its status ribbon. Story and six character identities remain canonical.
+
+Loading no longer eagerly requests any legacy hero animation PNG; selected current/WebP/static fallback stays available. Controlled old-filter comparison requested85 legacy animation images totaling427,819 encoded bytes; new filter requests0. Total startup transfer is not compared as a simple reduction, because current weapon/room/actor assets also initialize earlier. Detailed local records are output/deploy/animation-loading-details.json. Existing lazy room fallback and WOFF2 are preserved.
+
+Verification: all24 scripts passed in the broad local run; later targeted passes cover the final portrait, cooldown duration and48px correction. Final full run: /tmp/lexicon-refinement-final-suite.txt. Independent review: /tmp/lexicon-refinement-final-review.md (clean). Publication receipts live in output/deploy; source commit and public hashes are verified after push.
+
+
 ## Current release — 2026-11-09 (supersedes historical notes below)
 
 User explicitly authorized optimization and deployment to the existing GitHub Pages site. Latest balance request: bosses have5×HP and3×raw damage; speed, telegraphs, attack intervals and rewards are unchanged. The isolated web worktree preserves the original dirty gameplay/voice changes; the main Godot checkout was not overwritten.

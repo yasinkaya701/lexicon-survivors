@@ -1000,6 +1000,7 @@ function chooseGameSpeechVoice(voices, lang) {
 }
 
 function stopGameSpeech() {
+  window.ErrataVoice?.cancel?.();
   const synthesis = getGameSpeechSynthesis();
   if (synthesis) {
     try { synthesis.cancel(); } catch (error) {}
@@ -1015,6 +1016,12 @@ function speakGameText(text, options = {}) {
   if (!content || !synthesis || !Utterance) return false;
 
   const settings = { lang: "tr-TR", role: "narrator", ...options };
+  gameSpeechState.text = content;
+  gameSpeechState.options = settings;
+  if (window.ErrataVoice?.speak) {
+    const role = settings.role === "word" ? "quiz" : settings.role === "narrator" ? "narrative" : settings.role;
+    return window.ErrataVoice.speak(content, { role, lang: settings.lang, interrupt: true });
+  }
   try { synthesis.cancel(); } catch (error) { return false; }
   const utterance = new Utterance(content);
   utterance.lang = settings.lang;
@@ -1040,8 +1047,6 @@ function speakGameText(text, options = {}) {
       break;
   }
   utterance.volume = 1;
-  gameSpeechState.text = content;
-  gameSpeechState.options = settings;
   try {
     synthesis.speak(utterance);
     return true;
@@ -1503,6 +1508,12 @@ const CHARACTERS = {
   }
 };
 
+function getCharacterPortrait(characterId) {
+  const file = characterId === "shadow_lexicographer"
+    ? "shadow_lexicographer-selection-v3" : `${characterId}-selection`;
+  return `assets/ui/errata/portraits/${file}.webp`;
+}
+
 const DIFFICULTIES = {
   easy: {
     id: "easy",
@@ -1517,7 +1528,7 @@ const DIFFICULTIES = {
   normal: {
     id: "normal",
     name: "Dengeli",
-    desc: "Dengeli arcade deneyimi! Pürüzsüz dalga geçişleri, toplanabilir can parşömenleri ve ödüllendirici sorular.",
+    desc: "Daha dirençli ve hızlı düşmanlar, daha sık akınlar. Pürüzsüz dalga geçişleri, toplanabilir can parşömenleri ve ödüllendirici sorular.",
     enemy_speed_mult: 0.90,
     enemy_hp_mult: 0.85,
     enemy_damage_mult: 0.80,
@@ -1527,7 +1538,7 @@ const DIFFICULTIES = {
   hard: {
     id: "hard",
     name: "Çetin",
-    desc: "Akademik arena! Düşmanlar çevik, canları daha yüksek (%+15), yoğun düşman akını ve sınav tuzakları.",
+    desc: "Akademik arena! Daha çevik ve dayanıklı düşmanlar, daha yüksek hasar ve yoğun akınlar.",
     enemy_speed_mult: 1.08,
     enemy_hp_mult: 1.15,
     enemy_damage_mult: 1.15,
@@ -1778,6 +1789,14 @@ function getBossWaveReward(wave) {
   return Math.round((reward?.base ?? 55) + (reward?.per_wave ?? 1) * wave);
 }
 function getStatLimit(key, fallback) { return Number(GAME_ECONOMY?.stat_limits?.[key] ?? fallback); }
+function getCombatPressure(difficulty = state.difficulty) {
+  const configured = GAME_ECONOMY?.combat_pressure?.[difficulty] || {};
+  const factor = key => {
+    const value = Number(configured[key]);
+    return Number.isFinite(value) && value > 0 ? value : 1;
+  };
+  return { hp: factor("hp"), damage: factor("damage"), speed: factor("speed"), spawn_interval: factor("spawn_interval") };
+}
 function addAttackSpeed(value) {
   const cap = getStatLimit("attack_speed_mult", 2.75);
   const soft = Math.min(cap, getStatLimit("attack_speed_soft_cap", 2.1));
@@ -2268,8 +2287,7 @@ function loadAssets(callback) {
     "upgrade_v1/monster_red_pen_boss.png": "red_pen_boss.png"
   };
   const aliasTargets = new Set(Object.values(generatedEnemyAliases));
-  const legacyWalkAndSwingFrame = /^upgrade_v1\/animations\/(?:inky|quillmaster|word_knight|rune_sorceress|alchemist|shadow_scribe)_(?:run|attack)_\d+\.png$/;
-  const assetsToLoad = spriteList.filter(name => !aliasTargets.has(name) && !legacyWalkAndSwingFrame.test(name));
+  const assetsToLoad = spriteList.filter(name => !aliasTargets.has(name) && !name.startsWith("upgrade_v1/animations/"));
   assetsToLoad.forEach(name => {
     const img = new Image();
     const url = new URL("assets/sprites/" + name, window.location.href);
@@ -3209,35 +3227,45 @@ function initTouchControls() {
     touchWeaponBtn.onclick = cycleWeapon;
   }
 
-  if (touchGadgetBtn) {
-    const fireGadget = (e) => {
+  const bindTouchAction = (button, action, haptic = "light") => {
+    if (!button) return;
+    let touchActivationAt = -Infinity;
+    let touchPointerId = null;
+    const activate = e => {
       e.preventDefault();
       e.stopPropagation();
-      triggerHaptic("medium");
-      activateActiveGadget();
+      triggerHaptic(haptic);
+      action();
     };
-    touchGadgetBtn.onclick = fireGadget;
-  }
-
-  if (touchInvBtn) {
-    const openInv = (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      triggerHaptic("light");
-      toggleInventoryModal();
+    // Fire on touch pointerdown so a second finger can use an action while the
+    // joystick owns capture. Mobile browsers may suppress compatibility clicks.
+    button.addEventListener("pointerdown", e => {
+      if (e.pointerType !== "touch") return;
+      touchActivationAt = performance.now();
+      touchPointerId = e.pointerId;
+      activate(e);
+    });
+    const finishTouchActivation = e => {
+      if (e.pointerType !== "touch" || e.pointerId !== touchPointerId) return;
+      touchActivationAt = performance.now();
+      touchPointerId = null;
     };
-    touchInvBtn.onclick = openInv;
-  }
-
-  if (touchMistakesBtn) {
-    const openMistakes = (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      triggerHaptic("light");
-      toggleMistakesModal();
+    window.addEventListener("pointerup", finishTouchActivation);
+    window.addEventListener("pointercancel", finishTouchActivation);
+    button.onclick = e => {
+      // A browser may still synthesize click after the touch pointer; consume
+      // that click so one physical press cannot activate twice.
+      if (performance.now() - touchActivationAt < 800) {
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+      activate(e);
     };
-    touchMistakesBtn.onclick = openMistakes;
-  }
+  };
+  bindTouchAction(touchGadgetBtn, activateActiveGadget, "medium");
+  bindTouchAction(touchInvBtn, toggleInventoryModal);
+  bindTouchAction(touchMistakesBtn, toggleMistakesModal);
 
   if (!joystickZone || !joystickBase || !joystickKnob) return;
 
@@ -3352,7 +3380,7 @@ function initTouchControls() {
 // =========================================
 function syncMobileControlsVisibility() {
   const controls = document.getElementById("mobile-touch-controls");
-  if (!controls) return;
+  const actionDock = document.getElementById("combat-action-dock");
   const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || window.innerWidth <= 1080;
   const isOverlayOpen =
     (document.getElementById("title-screen") && document.getElementById("title-screen").style.display !== "none") ||
@@ -3361,13 +3389,15 @@ function syncMobileControlsVisibility() {
     (document.getElementById("quiz-modal") && document.getElementById("quiz-modal").style.display === "flex") ||
     (document.getElementById("inventory-modal") && document.getElementById("inventory-modal").style.display === "flex") ||
     (document.getElementById("mistakes-modal") && document.getElementById("mistakes-modal").style.display === "flex") ||
-    (document.getElementById("mobile-quick-menu") && document.getElementById("mobile-quick-menu").style.display !== "none");
+    (document.getElementById("mobile-quick-menu") && document.getElementById("mobile-quick-menu").style.display !== "none") ||
+    (document.getElementById("errata-pause") && !document.getElementById("errata-pause").hidden) ||
+    (document.getElementById("story-intermission") && !document.getElementById("story-intermission").hidden);
 
-  if (state.is_wave_active && !isOverlayOpen && isTouch && state.show_touch_controls !== false) {
-    controls.style.display = "block";
-  } else {
-    controls.style.display = "none";
+  if (controls) {
+    controls.style.display = state.is_wave_active && !isOverlayOpen && !state.is_inventory_open && isTouch && state.show_touch_controls !== false
+      ? "block" : "none";
   }
+  if (actionDock) actionDock.hidden = !state.is_wave_active || isOverlayOpen || state.is_inventory_open;
 }
 
 // =========================================
@@ -3403,7 +3433,7 @@ function initTitleScreen() {
     card.setAttribute("aria-label", `${c.name}, ${c.title}. Can ${c.hp}, hasar ${c.damage_mult} kat, hız ${c.speed}. ${c.passive}. Karakteri seç.`);
     card.tabIndex = 0;
     card.innerHTML = `
-      <span class="dossier-art"><img src="assets/ui/errata/portraits/${cid}-selection.webp" alt="" decoding="async"></span>
+      <span class="dossier-art"><img src="${getCharacterPortrait(cid)}" alt="" decoding="async"></span>
       <div class="dossier-copy">
         <h3>${c.name}</h3>
         <div class="subtitle">${c.title}</div>
@@ -3483,7 +3513,7 @@ function initTitleScreen() {
   const featuredPanel = document.getElementById("title-feature");
   if (featuredHero && featuredImage && featuredPanel) {
     featuredPanel.dataset.hero = state.selected_char;
-    featuredImage.src = `assets/ui/errata/portraits/${state.selected_char}-selection.webp`;
+    featuredImage.src = getCharacterPortrait(state.selected_char);
     featuredImage.alt = `${featuredHero.name} · ${featuredHero.title}`;
     document.getElementById("title-hero-name").textContent = featuredHero.name;
     document.getElementById("title-hero-motive").textContent = featuredHero.selectionHook;
@@ -3956,7 +3986,7 @@ document.getElementById("story-replay")?.addEventListener("click", replayGameSpe
 // 9. GADGET ACTIVATION LOGIC (5 GADGETS)
 // =========================================
 function activateActiveGadget() {
-  if (state.gadget_timer > 0 || !state.is_wave_active) return;
+  if (state.gadget_timer > 0 || !state.is_wave_active || state.is_inventory_open) return;
   const gid = normalizeGadgetId(state.active_gadget_id);
   const gData = GADGETS_CATALOG[gid] || GADGETS_CATALOG["eraser_dash"];
   state.active_gadget_id = gid;
@@ -5634,8 +5664,9 @@ function updateEnemies(dt) {
   // Other waves retain the existing survivor horde and pacing.
   if (state.current_wave % 5 !== 0) {
     spawnTimer -= dt;
-    const diffFactor = state.difficulty === "easy" ? 1.15 : (state.difficulty === "hard" ? getStatLimit("hard_spawn_interval_factor", 0.92) : 1.0);
-    const interval = Math.max(0.12, (0.60 - state.current_wave * 0.04) * diffFactor);
+    const difficultySpawnFactor = state.difficulty === "easy" ? 1.15
+      : (state.difficulty === "hard" ? getStatLimit("hard_spawn_interval_factor", 0.92) : 1.0);
+    const interval = Math.max(0.12, (0.60 - state.current_wave * 0.04) * difficultySpawnFactor * getCombatPressure().spawn_interval);
     if (spawnTimer <= 0) {
       spawnTimer = interval;
       const batchCount = state.current_wave >= 25 ? 3 : (state.current_wave >= 8 ? 2 : 1);
@@ -6208,93 +6239,103 @@ function spawnEnemy() {
   const hpM = getWaveHpMult(wave) * d.enemy_hp_mult;
   const spdM = getWaveSpeedMult(wave) * d.enemy_speed_mult;
   const dmgM = getWaveDamageMult(wave) * d.enemy_damage_mult;
+  const pressure = getCombatPressure();
+  const registerSpawnedEnemy = addAliveEnemy;
+  let spawnedEnemy = null;
+  const addSpawnedEnemy = enemy => {
+    enemy.hp *= pressure.hp;
+    enemy.max_hp *= pressure.hp;
+    enemy.speed *= pressure.speed;
+    enemy.damage *= pressure.damage;
+    if (registerSpawnedEnemy(enemy)) spawnedEnemy = enemy;
+  };
 
   const roll = Math.random();
 
   // 13 Diverse Linguistic Enemies
   if (wave >= 30 && roll < 0.10) {
-    addAliveEnemy({
+    addSpawnedEnemy({
       type: "Oxymoron Ogre", x, y, vx: 0, vy: 0,
       hp: 640 * hpM, max_hp: 640 * hpM, speed: 92 * spdM, damage: 58 * dmgM,
       ink_reward: 12, label: "OXYMORON OGRE", sprite: "oxymoron_ogre.png", size: 58,
       is_elite: wave > 40, facing_left: false
     });
   } else if (wave >= 25 && roll < 0.18) {
-    addAliveEnemy({
+    addSpawnedEnemy({
       type: "Double Negative Drake", x, y, vx: 0, vy: 0,
       hp: 340 * hpM, max_hp: 340 * hpM, speed: 110 * spdM, damage: 42 * dmgM,
       ink_reward: 10, label: doubleNegPhrases[Math.floor(Math.random() * doubleNegPhrases.length)],
       sprite: "double_negative_drake.png", size: 52, is_elite: wave > 45, facing_left: false
     });
   } else if (wave >= 25 && roll < 0.26) {
-    addAliveEnemy({
+    addSpawnedEnemy({
       type: "Vocabulary Void", x, y, vx: 0, vy: 0,
       hp: 360 * hpM, max_hp: 360 * hpM, speed: 82 * spdM, damage: 44 * dmgM,
       ink_reward: 10, label: "VOCAB VOID", sprite: "vocabulary_void.png", size: 50,
       is_elite: wave > 50, facing_left: false
     });
   } else if (wave >= 20 && roll < 0.35) {
-    addAliveEnemy({
+    addSpawnedEnemy({
       type: "Palindrome Phantom", x, y, vx: 0, vy: 0,
       hp: 145 * hpM, max_hp: 145 * hpM, speed: 170 * spdM, damage: 30 * dmgM,
       ink_reward: 8, label: palindromeWords[Math.floor(Math.random() * palindromeWords.length)],
       sprite: "palindrome_phantom.png", size: 44, facing_left: false
     });
   } else if (wave >= 20 && roll < 0.44) {
-    addAliveEnemy({
+    addSpawnedEnemy({
       type: "Homophone Harpy", x, y, vx: 0, vy: 0,
       hp: 150 * hpM, max_hp: 150 * hpM, speed: 180 * spdM, damage: 34 * dmgM,
       ink_reward: 7, label: "HARPY", sprite: "homophone_harpy.png", size: 46, facing_left: false
     });
   } else if (wave >= 15 && roll < 0.52) {
-    addAliveEnemy({
+    addSpawnedEnemy({
       type: "Dangling Modifier", x, y, vx: 0, vy: 0,
       hp: 130 * hpM, max_hp: 130 * hpM, speed: 165 * spdM, damage: 26 * dmgM,
       ink_reward: 6, label: danglingPhrases[Math.floor(Math.random() * danglingPhrases.length)],
       sprite: "dangling_modifier.png", size: 44, facing_left: false
     });
   } else if (wave >= 15 && roll < 0.60) {
-    addAliveEnemy({
+    addSpawnedEnemy({
       type: "Malapropism Mimic", x, y, vx: 0, vy: 0,
       hp: 210 * hpM, max_hp: 210 * hpM, speed: 160 * spdM, damage: 38 * dmgM,
       ink_reward: 7, label: "MIMIC", sprite: "malapropism_mimic.png", size: 42, facing_left: false
     });
   } else if (wave >= 10 && roll < 0.68) {
-    addAliveEnemy({
+    addSpawnedEnemy({
       type: "Run-on Reaper", x, y, vx: 0, vy: 0,
       hp: 180 * hpM, max_hp: 180 * hpM, speed: 195 * spdM, damage: 36 * dmgM,
       ink_reward: 7, label: "RUN-ON REAPER", sprite: "run_on_reaper.png", size: 46,
       facing_left: false
     });
   } else if (wave >= 10 && roll < 0.76) {
-    addAliveEnemy({
+    addSpawnedEnemy({
       type: "Idiom Imp", x, y, vx: 0, vy: 0,
       hp: 110 * hpM, max_hp: 110 * hpM, speed: 185 * spdM, damage: 30 * dmgM,
       ink_reward: 5, label: "IDIOM IMP", sprite: "idiom_imp.png", size: 36, facing_left: false
     });
   } else if (wave >= 5 && roll < 0.83) {
-    addAliveEnemy({
+    addSpawnedEnemy({
       type: "Tautology Twin", x, y, vx: 0, vy: 0,
       hp: 160 * hpM, max_hp: 160 * hpM, speed: 140 * spdM, damage: 32 * dmgM,
       ink_reward: 6, label: tautologyWords[Math.floor(Math.random() * tautologyWords.length)],
       sprite: "tautology_twin.png", size: 44, facing_left: false
     });
   } else if (wave >= 5 && roll < 0.90) {
-    addAliveEnemy({
+    addSpawnedEnemy({
       type: "Punctuation Phantom", x, y, vx: 0, vy: 0,
       hp: 120 * hpM, max_hp: 120 * hpM, speed: 135 * spdM, damage: 28 * dmgM,
       ink_reward: 5, label: phantomPunct[Math.floor(Math.random() * phantomPunct.length)],
       sprite: "punctuation_phantom.png", size: 42, shoot_cooldown: 2.0 + Math.random() * 0.8, facing_left: false
     });
   } else if (roll < 0.95) {
-    addAliveEnemy({
+    addSpawnedEnemy({
       type: "Grammar Goblin", x, y, vx: 0, vy: 0,
       hp: 76 * hpM, max_hp: 76 * hpM, speed: 155 * spdM, damage: 14 * dmgM,
       ink_reward: 4, label: grammarPairs[Math.floor(Math.random() * grammarPairs.length)],
       sprite: "grammar_goblin.png", size: 34, dash_cooldown: 2.5 + Math.random() * 1.0, facing_left: false
     });
   } else {
-    addAliveEnemy({
+    addSpawnedEnemy({
       type: "Typo Slime", x, y, vx: 0, vy: 0,
       hp: 96 * hpM, max_hp: 96 * hpM, speed: 98 * spdM, damage: 18 * dmgM,
       ink_reward: 4, label: typoWords[Math.floor(Math.random() * typoWords.length)],
@@ -6303,7 +6344,7 @@ function spawnEnemy() {
   }
 
   // Tactical Elite Affixes in higher waves (Wave 15+)
-  const newEnemy = state.enemies[state.enemies.length - 1];
+  const newEnemy = spawnedEnemy;
   if (newEnemy && !newEnemy.is_boss && wave >= 15) {
     const affixChance = Math.min(0.50, 0.12 + (wave - 15) * 0.008);
     if (Math.random() < affixChance) {
@@ -6544,7 +6585,7 @@ function renderCharacterEpilogue(victory) {
   document.getElementById("game-over-title").textContent = endings[id]?.[victory ? 1 : 0] || (victory ? "Son sayfa açıldı." : "Gizem henüz çözülmedi.");
   document.getElementById("game-over-kicker").textContent = victory ? "SEFER TAMAMLANDI · SON DÜZELTME" : "SEFER SONA ERDİ · GİZEM SÜRÜYOR";
   const portrait = document.getElementById("result-character-art");
-  portrait.src = `assets/ui/errata/portraits/${id}-selection.webp`;
+  portrait.src = getCharacterPortrait(id);
   portrait.alt = character.name;
   document.getElementById("result-character-name").textContent = character.name;
   document.getElementById("result-file-status").textContent = victory ? "DOSYA TAMAMLANDI" : "DOSYA AÇIK KALDI";
@@ -6969,7 +7010,7 @@ function renderCharacterSkillTree(grid) {
   const profileCard = document.createElement("section");
   profileCard.className = "skill-tree-profile";
   const portrait = document.createElement("img");
-  portrait.src = `assets/ui/errata/portraits/${state.selected_char}-selection.webp`;
+  portrait.src = getCharacterPortrait(state.selected_char);
   portrait.alt = `${character.name} portresi`;
   const profileCopy = document.createElement("div");
   profileCopy.className = "skill-tree-profile-copy";
@@ -7930,7 +7971,7 @@ function updateHUD() {
   setHUDText("char-diff-info", `${c.name} · ${d.name} · ${state.learning_level} · Sv. ${profile.level}${profile.skill_points ? ` · ${profile.skill_points} puan` : ""}`);
   const heroPortrait = document.getElementById("hero-hud-portrait");
   if (heroPortrait) {
-    const portraitPath = `assets/sprites/${c.sprite}`;
+    const portraitPath = getCharacterPortrait(state.selected_char);
     if (heroPortrait.getAttribute("src") !== portraitPath) heroPortrait.src = portraitPath;
     const portraitLabel = `${c.name} portresi`;
     if (heroPortrait.alt !== portraitLabel) heroPortrait.alt = portraitLabel;
@@ -7990,6 +8031,7 @@ function updateHUD() {
     if (gStatus.textContent !== cooldownText) gStatus.textContent = cooldownText;
     gStatus.style.color = "#c89a87";
   }
+  window.ErrataCombat?.update({ gadget: gData, remaining: state.gadget_timer, duration: Math.max(1.5, gData.cooldown * state.gadget_cooldown_mult) });
 }
 
 // =========================================
@@ -8744,7 +8786,10 @@ function render(dt = 1 / 60) {
     ctx.strokeStyle = "#9a7043"; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(-3, -5); ctx.lineTo(3, -5); ctx.moveTo(-3, 0); ctx.lineTo(3, 0); ctx.stroke(); ctx.restore();
   });
   state.gadget_decoys.forEach(decoy => {
-    const sprite = images[CHARACTERS[state.selected_char]?.sprite];
+    const decoyHeroKey = state.selected_char === "lexicon_alchemist" ? "alchemist"
+      : state.selected_char === "shadow_lexicographer" ? "shadow_scribe" : state.selected_char;
+    const sprite = window.ErrataMotion?.heroFrame(decoyHeroKey, "idle", 0)
+      || images[CHARACTERS[state.selected_char]?.sprite];
     ctx.save(); ctx.globalAlpha = Math.min(0.65, decoy.timer / 1.5); ctx.globalCompositeOperation = "screen";
     if (sprite) ctx.drawImage(sprite, decoy.x - 24, decoy.y - 28, 48, 56);
     else { ctx.strokeStyle = "#8de6df"; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(decoy.x, decoy.y, 22, 0, Math.PI * 2); ctx.stroke(); }

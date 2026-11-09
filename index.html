@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover, interactive-widget=resizes-content">
   <link rel="icon" type="image/svg+xml" href="assets/ui/icons/book.svg">
   <title>Lexicon Survivors — Son Düzeltme</title>
-  <meta name="game-release" content="last-errata-20261109">
+  <meta name="game-release" content="last-errata-20261109-2">
   <link rel="preload" as="image" href="assets/ui/errata/title-scene-v6.webp" fetchpriority="high">
   <style>
     @font-face {
@@ -45,11 +45,12 @@
       font-display: swap;
     }
   </style>
-  <link rel="stylesheet" href="assets/ui/errata/theme.css?v=67c54bbcba0e">
+  <link rel="stylesheet" href="assets/ui/errata/theme.css?v=b0f0c5fe6a8c">
   <link rel="stylesheet" href="assets/ui/errata/surfaces.css?v=07812f969926">
   <link rel="stylesheet" href="assets/ui/errata/inventory-forge.css?v=b8bccab86ec6">
   <link rel="stylesheet" href="assets/ui/errata/skill-tree.css?v=18d46c30c334">
   <link rel="stylesheet" href="assets/ui/errata/hud.css?v=181da48d4ee7">
+  <link rel="stylesheet" href="assets/ui/errata/combat-controls.css?v=9e6a6e52c749">
 </head>
 <body>
   <div id="game-container">
@@ -93,7 +94,7 @@
         <span id="archive-progress-value">01 / 100</span>
       </div>
       <div class="info-subrow">
-        <div class="char-info"><img id="hero-hud-portrait" src="assets/sprites/upgrade_v1/hero_inky.png" alt="Inky portresi"><span id="char-diff-info">Inky · Normal</span></div>
+        <div class="char-info"><img id="hero-hud-portrait" src="assets/ui/errata/portraits/inky-selection.webp" alt="Inky portresi"><span id="char-diff-info">Inky · Normal</span></div>
         <div class="weapons-info" id="weapons-info">
           <!-- Populated dynamically with active slot icons -->
         </div>
@@ -220,7 +221,7 @@
     <div id="archive-intro" role="region" aria-label="Lexicon Survivors arşiv açılışı">
       <div class="archive-intro-content">
         <img class="archive-intro-mark" src="assets/ui/icons/book.svg" alt="">
-        <img class="archive-intro-hero" src="assets/sprites/upgrade_v1/hero_inky.png" alt="Inky">
+        <img class="archive-intro-hero" src="assets/ui/errata/arena-v3/inky_idle_0.webp" alt="Inky">
         <div class="archive-intro-kicker">ARŞİV AÇILIYOR</div>
         <h1 id="archive-intro-title"><img src="assets/ui/errata/logo-dark.webp" alt="Lexicon Survivors" class="intro-logo" width="640" height="218"></h1>
         <p>Kayıp kelimeleri rafların arasından geri çağır.</p>
@@ -358,35 +359,17 @@
       </div>
     </div>
 
-    <!-- VIRTUAL MOBILE TOUCH CONTROLS -->
+    <!-- Movement and actions are independent multi-touch hit areas. -->
     <div id="mobile-touch-controls">
-      <!-- Fixed lower-left joystick; only this visible control captures movement input. -->
-      <div id="joystick-zone">
-        <div id="joystick-base">
-          <div id="joystick-knob"></div>
-        </div>
-      </div>
-
-      <!-- Virtual Action Buttons (Bottom Right Cluster) -->
-      <div id="touch-action-buttons">
-        <button id="touch-weapon-btn" class="touch-circle-btn" title="Silah Değiştir [Q/E]">
-          <img class="touch-icon" src="assets/ui/icons/quill.svg" alt="">
-          <span class="touch-label">SİLAH</span>
-        </button>
-        <button id="touch-gadget-btn" class="touch-circle-btn" title="Aktif Gadget">
-          <img class="touch-icon" src="assets/ui/icons/dash.svg" alt="">
-          <span class="touch-label">GADGET</span>
-        </button>
-        <button id="touch-inv-btn" class="touch-circle-btn" title="Envanter">
-          <img class="touch-icon" src="assets/ui/icons/bag.svg" alt="">
-          <span class="touch-label">ÇANTA</span>
-        </button>
-        <button id="touch-mistakes-btn" class="touch-circle-btn" title="Hata Defteri">
-          <img class="touch-icon" src="assets/ui/icons/corrections.svg" alt="">
-          <span class="touch-label">HATA</span>
-        </button>
-      </div>
+      <div id="joystick-zone" aria-label="Hareket kolu"><div id="joystick-base"><div id="joystick-knob"></div></div></div>
     </div>
+    <nav id="combat-action-dock" aria-label="Savaş eylemleri" hidden>
+      <div id="touch-action-buttons">
+        <button id="touch-inv-btn" class="touch-circle-btn" type="button" title="Envanter · I" aria-label="Envanteri aç"><img class="touch-icon" src="assets/ui/errata/icons/inventory.svg" alt=""><span class="touch-label">Envanter</span></button>
+        <button id="touch-mistakes-btn" class="touch-circle-btn" type="button" title="Hata defteri · M" aria-label="Hata defterini aç"><img class="touch-icon" src="assets/ui/errata/icons/notebook.svg" alt=""><span class="touch-label">Defter</span></button>
+        <button id="touch-gadget-btn" class="touch-circle-btn" type="button" title="Gereci kullan · Space / Shift" aria-label="Gereci kullan"><img class="touch-icon" src="assets/sprites/gadgets/eraser_dash.png" alt=""><span id="combat-gadget-name">Silgi Atılımı</span><span id="combat-gadget-status">HAZIR</span></button>
+      </div>
+    </nav>
 
     <!-- MOBILE QUICK SETTINGS MENU -->
     <div id="mobile-quick-menu" class="screen-overlay" style="display: none; z-index: 250;">
@@ -576,10 +559,12 @@
       window.startArchiveIntro();
     })();
   </script>
+  <script src="assets/ui/errata/voice.js?v=0a13ba466486"></script>
+  <script src="assets/ui/errata/combat-controls.js?v=b6900e4a5961"></script>
   <script src="assets/ui/errata/world.js?v=2e38d58501e3"></script>
   <script src="assets/ui/errata/hud.js?v=3e3b72663e02"></script>
   <script src="assets/ui/errata/motion.js?v=d41c69a3e8a5"></script>
-  <script src="game.js?v=a56c121c56af"></script>
-  <script src="assets/ui/errata/interface.js?v=1c5539ae1003"></script>
+  <script src="game.js?v=2d099b7b8afc"></script>
+  <script src="assets/ui/errata/interface.js?v=0c3da48bdef1"></script>
 </body>
 </html>

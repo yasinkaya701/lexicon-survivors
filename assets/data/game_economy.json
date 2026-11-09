@@ -46,5 +46,25 @@
     "weapon_min_cooldown_seconds": 0.12,
     "starting_enemy_cap": 32,
     "hard_spawn_interval_factor": 0.92
+  },
+  "combat_pressure": {
+    "easy": {
+      "hp": 1,
+      "damage": 1,
+      "speed": 1,
+      "spawn_interval": 1
+    },
+    "normal": {
+      "hp": 1.15,
+      "damage": 1.1,
+      "speed": 1.04,
+      "spawn_interval": 0.9
+    },
+    "hard": {
+      "hp": 1.2,
+      "damage": 1.15,
+      "speed": 1.06,
+      "spawn_interval": 0.88
+    }
   }
 }

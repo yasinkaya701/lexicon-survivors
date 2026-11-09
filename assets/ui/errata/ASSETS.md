@@ -45,3 +45,7 @@ Canonical story model sheets: sibling worktree `story-art-600/docs/story-art-600
 ## Final release — 2026-11-09
 
 Active cover is title-scene-v6.webp (1600×900,124KB), with partial canonical bosses and story clues; earlier title candidates remain unused. All six heroes use96 painted frames through arena-v3/manifest.json. Arena-v4/enemies contains120 new frames for18 species, including256px principal bosses; bestiary uses the same identities. See the enemy README and prompt files for generation references. New full-glyph WOFF2 fonts total412,508bytes versus1,137,124bytes for their TTF equivalents. Runtime CSS/JS queries are content hashed by scripts/prepare-release.py.
+
+## Combat refinement2
+
+Active Shadow Scribe portrait: portraits/shadow_lexicographer-selection-v3.webp (720×900,170,754bytes); generation prompt/source notes are adjacent. It preserves canonical dark wraps, burgundy accent and calligraphy katana with a more masculine masked operative design. getCharacterPortrait supplies the same image in all four portrait surfaces. Earlier v2 is an unused candidate. combat-controls.css/js provides responsive battle layout and cached cooldown readout; voice.js is free browser-native speech, with no paid service assets. Guide character/enemy art and gadget decoys use the current painted family.
