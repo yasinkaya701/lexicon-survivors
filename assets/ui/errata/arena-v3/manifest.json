@@ -1,0 +1,245 @@
+{
+  "version": 4,
+  "heroes": {
+    "rune_sorceress": {
+      "prefix": "rune_sorceress",
+      "draw_size": 96
+    },
+    "inky": {
+      "prefix": "inky",
+      "draw_size": 96
+    },
+    "alchemist": {
+      "prefix": "alchemist",
+      "draw_size": 96
+    },
+    "shadow_scribe": {
+      "prefix": "shadow_scribe",
+      "draw_size": 96
+    },
+    "quillmaster": {
+      "prefix": "quillmaster",
+      "draw_size": 96
+    },
+    "word_knight": {
+      "prefix": "word_knight",
+      "draw_size": 96
+    }
+  },
+  "enemies": {
+    "grammar_goblin.png": {
+      "frames": [
+        "../arena-v4/enemies/grammar_goblin_0.webp",
+        "../arena-v4/enemies/grammar_goblin_1.webp",
+        "../arena-v4/enemies/grammar_goblin_2.webp",
+        "../arena-v4/enemies/grammar_goblin_3.webp"
+      ],
+      "fps": 8
+    },
+    "typo_slime.png": {
+      "frames": [
+        "../arena-v4/enemies/typo_slime_0.webp",
+        "../arena-v4/enemies/typo_slime_1.webp",
+        "../arena-v4/enemies/typo_slime_2.webp",
+        "../arena-v4/enemies/typo_slime_3.webp"
+      ],
+      "fps": 8
+    },
+    "punctuation_phantom.png": {
+      "frames": [
+        "../arena-v4/enemies/punctuation_phantom_0.webp",
+        "../arena-v4/enemies/punctuation_phantom_1.webp",
+        "../arena-v4/enemies/punctuation_phantom_2.webp",
+        "../arena-v4/enemies/punctuation_phantom_3.webp"
+      ],
+      "fps": 8
+    },
+    "idiom_imp.png": {
+      "frames": [
+        "../arena-v4/enemies/idiom_imp_0.webp",
+        "../arena-v4/enemies/idiom_imp_1.webp",
+        "../arena-v4/enemies/idiom_imp_2.webp",
+        "../arena-v4/enemies/idiom_imp_3.webp"
+      ],
+      "fps": 8
+    },
+    "homophone_harpy.png": {
+      "frames": [
+        "../arena-v4/enemies/homophone_harpy_0.webp",
+        "../arena-v4/enemies/homophone_harpy_1.webp",
+        "../arena-v4/enemies/homophone_harpy_2.webp",
+        "../arena-v4/enemies/homophone_harpy_3.webp"
+      ],
+      "fps": 8
+    },
+    "tautology_twin.png": {
+      "frames": [
+        "../arena-v4/enemies/tautology_twin_0.webp",
+        "../arena-v4/enemies/tautology_twin_1.webp",
+        "../arena-v4/enemies/tautology_twin_2.webp",
+        "../arena-v4/enemies/tautology_twin_3.webp"
+      ],
+      "fps": 8
+    },
+    "dangling_modifier.png": {
+      "frames": [
+        "../arena-v4/enemies/dangling_modifier_0.webp",
+        "../arena-v4/enemies/dangling_modifier_1.webp",
+        "../arena-v4/enemies/dangling_modifier_2.webp",
+        "../arena-v4/enemies/dangling_modifier_3.webp"
+      ],
+      "fps": 8
+    },
+    "run_on_reaper.png": {
+      "frames": [
+        "../arena-v4/enemies/run_on_reaper_0.webp",
+        "../arena-v4/enemies/run_on_reaper_1.webp",
+        "../arena-v4/enemies/run_on_reaper_2.webp",
+        "../arena-v4/enemies/run_on_reaper_3.webp"
+      ],
+      "fps": 8
+    },
+    "syntax_titan.png": {
+      "frames": [
+        "../arena-v4/enemies/syntax_titan_0.webp",
+        "../arena-v4/enemies/syntax_titan_1.webp",
+        "../arena-v4/enemies/syntax_titan_2.webp",
+        "../arena-v4/enemies/syntax_titan_3.webp"
+      ],
+      "fps": 8
+    },
+    "malapropism_mimic.png": {
+      "frames": [
+        "../arena-v4/enemies/malapropism_mimic_0.webp",
+        "../arena-v4/enemies/malapropism_mimic_1.webp",
+        "../arena-v4/enemies/malapropism_mimic_2.webp",
+        "../arena-v4/enemies/malapropism_mimic_3.webp"
+      ],
+      "fps": 8
+    },
+    "palindrome_phantom.png": {
+      "frames": [
+        "../arena-v4/enemies/palindrome_phantom_0.webp",
+        "../arena-v4/enemies/palindrome_phantom_1.webp",
+        "../arena-v4/enemies/palindrome_phantom_2.webp",
+        "../arena-v4/enemies/palindrome_phantom_3.webp"
+      ],
+      "fps": 8
+    },
+    "oxymoron_ogre.png": {
+      "frames": [
+        "../arena-v4/enemies/oxymoron_ogre_0.webp",
+        "../arena-v4/enemies/oxymoron_ogre_1.webp",
+        "../arena-v4/enemies/oxymoron_ogre_2.webp",
+        "../arena-v4/enemies/oxymoron_ogre_3.webp"
+      ],
+      "fps": 8
+    },
+    "vocabulary_void.png": {
+      "frames": [
+        "../arena-v4/enemies/vocabulary_void_0.webp",
+        "../arena-v4/enemies/vocabulary_void_1.webp",
+        "../arena-v4/enemies/vocabulary_void_2.webp",
+        "../arena-v4/enemies/vocabulary_void_3.webp",
+        "../arena-v4/enemies/vocabulary_void_4.webp",
+        "../arena-v4/enemies/vocabulary_void_5.webp",
+        "../arena-v4/enemies/vocabulary_void_6.webp",
+        "../arena-v4/enemies/vocabulary_void_7.webp",
+        "../arena-v4/enemies/vocabulary_void_8.webp",
+        "../arena-v4/enemies/vocabulary_void_9.webp",
+        "../arena-v4/enemies/vocabulary_void_10.webp",
+        "../arena-v4/enemies/vocabulary_void_11.webp",
+        "../arena-v4/enemies/vocabulary_void_12.webp",
+        "../arena-v4/enemies/vocabulary_void_13.webp",
+        "../arena-v4/enemies/vocabulary_void_14.webp",
+        "../arena-v4/enemies/vocabulary_void_15.webp"
+      ],
+      "fps": 8
+    },
+    "double_negative_drake.png": {
+      "frames": [
+        "../arena-v4/enemies/double_negative_drake_0.webp",
+        "../arena-v4/enemies/double_negative_drake_1.webp",
+        "../arena-v4/enemies/double_negative_drake_2.webp",
+        "../arena-v4/enemies/double_negative_drake_3.webp",
+        "../arena-v4/enemies/double_negative_drake_4.webp",
+        "../arena-v4/enemies/double_negative_drake_5.webp",
+        "../arena-v4/enemies/double_negative_drake_6.webp",
+        "../arena-v4/enemies/double_negative_drake_7.webp",
+        "../arena-v4/enemies/double_negative_drake_8.webp",
+        "../arena-v4/enemies/double_negative_drake_9.webp",
+        "../arena-v4/enemies/double_negative_drake_10.webp",
+        "../arena-v4/enemies/double_negative_drake_11.webp",
+        "../arena-v4/enemies/double_negative_drake_12.webp",
+        "../arena-v4/enemies/double_negative_drake_13.webp",
+        "../arena-v4/enemies/double_negative_drake_14.webp",
+        "../arena-v4/enemies/double_negative_drake_15.webp"
+      ],
+      "fps": 8
+    },
+    "spelling_spectre.png": {
+      "frames": [
+        "../arena-v4/enemies/spelling_spectre_0.webp",
+        "../arena-v4/enemies/spelling_spectre_1.webp",
+        "../arena-v4/enemies/spelling_spectre_2.webp",
+        "../arena-v4/enemies/spelling_spectre_3.webp",
+        "../arena-v4/enemies/spelling_spectre_4.webp",
+        "../arena-v4/enemies/spelling_spectre_5.webp",
+        "../arena-v4/enemies/spelling_spectre_6.webp",
+        "../arena-v4/enemies/spelling_spectre_7.webp",
+        "../arena-v4/enemies/spelling_spectre_8.webp",
+        "../arena-v4/enemies/spelling_spectre_9.webp",
+        "../arena-v4/enemies/spelling_spectre_10.webp",
+        "../arena-v4/enemies/spelling_spectre_11.webp",
+        "../arena-v4/enemies/spelling_spectre_12.webp",
+        "../arena-v4/enemies/spelling_spectre_13.webp",
+        "../arena-v4/enemies/spelling_spectre_14.webp",
+        "../arena-v4/enemies/spelling_spectre_15.webp"
+      ],
+      "fps": 8
+    },
+    "typo_splinter.png": {
+      "frames": [
+        "../arena-v4/enemies/typo_splinter_0.webp",
+        "../arena-v4/enemies/typo_splinter_1.webp",
+        "../arena-v4/enemies/typo_splinter_2.webp",
+        "../arena-v4/enemies/typo_splinter_3.webp",
+        "../arena-v4/enemies/typo_splinter_4.webp",
+        "../arena-v4/enemies/typo_splinter_5.webp",
+        "../arena-v4/enemies/typo_splinter_6.webp",
+        "../arena-v4/enemies/typo_splinter_7.webp",
+        "../arena-v4/enemies/typo_splinter_8.webp",
+        "../arena-v4/enemies/typo_splinter_9.webp",
+        "../arena-v4/enemies/typo_splinter_10.webp",
+        "../arena-v4/enemies/typo_splinter_11.webp",
+        "../arena-v4/enemies/typo_splinter_12.webp",
+        "../arena-v4/enemies/typo_splinter_13.webp",
+        "../arena-v4/enemies/typo_splinter_14.webp",
+        "../arena-v4/enemies/typo_splinter_15.webp"
+      ],
+      "fps": 8
+    },
+    "red_pen_boss.png": {
+      "frames": [
+        "../arena-v4/enemies/red_pen_boss_0.webp",
+        "../arena-v4/enemies/red_pen_boss_1.webp",
+        "../arena-v4/enemies/red_pen_boss_2.webp",
+        "../arena-v4/enemies/red_pen_boss_3.webp"
+      ],
+      "fps": 8
+    },
+    "lexicon_dragon_boss.png": {
+      "frames": [
+        "../arena-v4/enemies/lexicon_dragon_boss_0.webp",
+        "../arena-v4/enemies/lexicon_dragon_boss_1.webp",
+        "../arena-v4/enemies/lexicon_dragon_boss_2.webp",
+        "../arena-v4/enemies/lexicon_dragon_boss_3.webp"
+      ],
+      "fps": 8
+    }
+  },
+  "pickups": {
+    "ink": "../pickups/ink.webp",
+    "health": "../pickups/health.webp"
+  }
+}

@@ -238,19 +238,28 @@ function getHeroRenderLayers(player) {
 function selectWeaponTarget(weapon, enemies = state.enemies, origin = state.player, excluded = null, hitTargets = null) {
   // Keep the shipped 60fps targeting path: one pass and squared distances.
   const favorElites = weapon?.id === "grammar_sniper" || state.artifacts_owned.includes("archivist_compass");
-  let nearest = null, bestDistSq = Infinity, bestIsElite = false;
+  const meleeRange = weapon?.id === "dictionary_blade"
+    ? (getWeaponArchetype(weapon.id)?.limits?.radius || 132) + 18
+    : weapon?.id === "calligraphy_katana"
+      ? (getWeaponArchetype(weapon.id)?.limits?.range || 178) + 40
+      : 0;
+  const meleeRangeSq = meleeRange * meleeRange;
+  let nearest = null, bestDistSq = Infinity, bestPriority = -1;
   for (const enemy of enemies) {
     if (!enemy || enemy.dead || enemy.hp <= 0 || enemy === excluded
       || (excluded && typeof excluded.has === "function" && excluded.has(enemy))
       || (hitTargets && hitTargets.has(enemy))) continue;
-    const elite = favorElites && (enemy.is_boss || enemy.is_elite || /boss/i.test(enemy.type || ""));
-    if (bestIsElite && !elite) continue;
     const dx = enemy.x - origin.x, dy = enemy.y - origin.y;
     const distanceSq = dx * dx + dy * dy;
-    if ((elite && !bestIsElite) || distanceSq < bestDistSq) {
+    const canReach = !meleeRangeSq || distanceSq <= meleeRangeSq;
+    const elite = canReach && favorElites && (enemy.is_boss || enemy.is_elite || /boss/i.test(enemy.type || ""));
+    const rangedThreat = canReach && (enemy.type === "Grammar Goblin" || enemy.type === "Punctuation Phantom");
+    const priority = elite ? 2 : rangedThreat ? 1 : 0;
+    if (priority < bestPriority) continue;
+    if (priority > bestPriority || distanceSq < bestDistSq) {
       nearest = enemy;
       bestDistSq = distanceSq;
-      bestIsElite = !!elite;
+      bestPriority = priority;
     }
   }
   return nearest;
@@ -343,21 +352,43 @@ function getWeaponRootWorld(weapon, weaponIndex = state.weapons.indexOf(weapon))
   const p = state.player;
   const visual = getWeaponVisual(weapon.id);
   const active = weaponIndex === state.active_weapon_index;
-  const mount = active ? visual?.mount_active : visual?.mount_holstered;
-  const facingLeft = active ? getHorizontalFacing(weapon.rotation, p.facing_left) : p.facing_left;
-  const facing = facingLeft ? -1 : 1;
   const pose = getLocomotionPoseOffset(p);
-  const holsterRow = weaponIndex < state.active_weapon_index ? weaponIndex : weaponIndex - 1;
-  const x = (mount?.[0] ?? (active ? 8 : 5)) * facing;
-  const y = (mount?.[1] ?? (active ? 2 : 9)) + (!active ? Math.max(0, holsterRow) * 5 : 0);
+  let x, y;
+  if (state.weapons.length >= 2) {
+    const count = state.weapons.length;
+    const radius = count === 2 ? 44 : count <= 4 ? 48 : 56;
+    const angle = count === 2
+      ? (weaponIndex === 0 ? Math.PI : 0)
+      : -Math.PI / 2 + weaponIndex * Math.PI * 2 / count;
+    x = Math.cos(angle) * radius;
+    y = Math.sin(angle) * radius;
+  } else {
+    const mount = active ? visual?.mount_active : visual?.mount_holstered;
+    const facingLeft = active ? getHorizontalFacing(weapon.rotation, p.facing_left) : p.facing_left;
+    const facing = facingLeft ? -1 : 1;
+    x = (mount?.[0] ?? (active ? 8 : 5)) * facing;
+    y = mount?.[1] ?? (active ? 2 : 9);
+  }
   const recoil = (weapon.recoil || 0) * (visual?.recoil_px || 3.5);
   const root = { x: p.x + pose.x + x - Math.cos(weapon.rotation) * recoil, y: p.y + pose.y + y - Math.sin(weapon.rotation) * recoil };
-  return { ...root, active, sizeScale: 1.0, visual };
+  const sizeScale = state.weapons.length >= 2 && visual ? Math.min(1.5, 42 / visual.draw_size) : 1.0;
+  return { ...root, active, sizeScale, visual };
 }
 
 function weaponMuzzleWorld(weapon, weaponIndex = state.weapons.indexOf(weapon)) {
   const root = getWeaponRootWorld(weapon, weaponIndex);
   return getWeaponMuzzleWorld(weapon.id, root, weapon.rotation, root.sizeScale);
+}
+
+function aimMountedRangedWeapon(weapon, target, weaponIndex) {
+  if (state.weapons.length < 2 || MELEE_TIMINGS[weapon.id]) return;
+  const root = getWeaponRootWorld(weapon, weaponIndex);
+  // Undo axial recoil to aim from the stable socket. Applying recoil along the
+  // new aim axis then leaves the muzzle and projectile on the target ray.
+  const recoil = (weapon.recoil || 0) * (root.visual?.recoil_px || 3.5);
+  const originX = root.x + Math.cos(weapon.rotation) * recoil;
+  const originY = root.y + Math.sin(weapon.rotation) * recoil;
+  weapon.rotation = Math.atan2(target.y - originY, target.x - originX);
 }
 
 function ensureWeaponVisualStatus() {
@@ -685,10 +716,20 @@ class SoundManager {
     this.ctx = null;
     this.assetVoices = [];
     this.assetVoiceCursor = 0;
+    this.oneShotVoices = [];
+    this.synthVoices = new Set();
     this.lastAssetVariant = Object.create(null);
     this.lastWeaponCueAt = Object.create(null);
     this.lastAnyWeaponCueAt = 0;
     this.music = null;
+    const readAudioSetting = key => { try { return localStorage.getItem(key); } catch (_) { return null; } };
+    const storedSfxPreference = readAudioSetting("lexicon_sfx_volume");
+    const storedSfxLevel = Number(storedSfxPreference);
+    this.sfxVolume = storedSfxPreference !== null && Number.isFinite(storedSfxLevel) ? Math.min(1, Math.max(0, storedSfxLevel)) : 1;
+    this.sfxMuted = readAudioSetting("lexicon_sfx_muted") === "true";
+    const storedMusicPreference = readAudioSetting("lexicon_music_volume");
+    const storedMusicLevel = Number(storedMusicPreference);
+    this.musicVolume = storedMusicPreference !== null && Number.isFinite(storedMusicLevel) ? Math.min(1, Math.max(0, storedMusicLevel)) : 1;
     this.assetPaths = {
       quill_blaster: ["weapon_quill_blaster_v1", "weapon_quill_blaster_v2", "weapon_quill_blaster_v3"],
       syllable_shotgun: ["weapon_syllable_shotgun_v1", "weapon_syllable_shotgun_v2", "weapon_syllable_shotgun_v3"],
@@ -704,7 +745,47 @@ class SoundManager {
       boss_roar: "enemy_hit_heavy", resonance_bell: "chapter_transition"
     };
   }
+  setSfxMuted(muted) {
+    this.sfxMuted = Boolean(muted);
+    if (this.sfxMuted) {
+      [...this.assetVoices, ...this.oneShotVoices].forEach(voice => {
+        try { voice.pause(); voice.currentTime = 0; } catch (_) {}
+      });
+      this.synthVoices.forEach(voice => { try { voice.oscillator.stop(); } catch (_) {} });
+      this.synthVoices.clear();
+    }
+    try { localStorage.setItem("lexicon_sfx_muted", String(this.sfxMuted)); } catch (_) {}
+  }
+  setSfxVolume(volume) {
+    const value = Number(volume);
+    this.sfxVolume = Number.isFinite(value) ? Math.min(1, Math.max(0, value)) : 1;
+    [...this.assetVoices, ...this.oneShotVoices].forEach(voice => {
+      if (voice && Number.isFinite(voice.baseSfxVolume)) voice.volume = Math.max(0, Math.min(1, voice.baseSfxVolume * this.sfxVolume));
+    });
+    try { localStorage.setItem("lexicon_sfx_volume", String(this.sfxVolume)); } catch (_) {}
+  }
+  setMusicVolume(volume) {
+    const value = Number(volume);
+    this.musicVolume = Number.isFinite(value) ? Math.min(1, Math.max(0, value)) : 1;
+    if (this.music) this.music.volume = 0.24 * this.musicVolume;
+    try { localStorage.setItem("lexicon_music_volume", String(this.musicVolume)); } catch (_) {}
+  }
+  playOneShot(path, volume = 0.72) {
+    if (this.sfxMuted || this.sfxVolume <= 0) return false;
+    try {
+      const voice = new Audio(path);
+      voice.baseSfxVolume = volume;
+      voice.volume = Math.max(0, Math.min(1, volume * this.sfxVolume));
+      this.oneShotVoices = this.oneShotVoices.filter(item => !item.ended);
+      this.oneShotVoices.push(voice);
+      if (this.oneShotVoices.length > 36) this.oneShotVoices.shift();
+      voice.play().catch(() => {});
+      return true;
+    } catch (_) { return false; }
+  }
+  playUI(file) { return this.playOneShot(`assets/audio/ui/ui_${file}.wav`, 0.42); }
   playAsset(key, volume = 0.72) {
+    if (this.sfxMuted || this.sfxVolume <= 0) return false;
     const configured = this.assetPaths[key];
     if (!configured) return false;
     try {
@@ -723,21 +804,25 @@ class SoundManager {
         || (() => { const candidate = new Audio(); this.assetVoices[poolIndex] = candidate; return candidate; })();
       if (voice.src !== new URL(path, window.location.href).href) voice.src = path;
       voice.currentTime = 0;
-      voice.volume = volume;
+      voice.baseSfxVolume = volume;
+      voice.volume = Math.max(0, Math.min(1, volume * this.sfxVolume));
       voice.play().catch(() => {});
       return true;
     } catch (_) { return false; }
   }
   startMusic() {
-    if (!this.music) { this.music = new Audio("assets/audio/music/main_theme.mp3"); this.music.loop = true; this.music.volume = 0.24; }
+    if (!this.music) { this.music = new Audio("assets/audio/music/main_theme.mp3"); this.music.loop = true; }
+    this.music.volume = 0.24 * this.musicVolume;
+    this.music.muted = Boolean(window.gameMusicMuted);
     this.music.play().catch(() => {});
   }
   setMusicSource(path) {
-    if (!this.music) { this.music = new Audio(); this.music.loop = true; this.music.volume = 0.24; }
+    if (!this.music) { this.music = new Audio(); this.music.loop = true; }
+    this.music.volume = 0.24 * this.musicVolume;
+    this.music.muted = Boolean(window.gameMusicMuted);
     if (!this.music.src.endsWith(path)) {
       this.music.src = path;
       this.music.loop = true;
-      this.music.muted = Boolean(window.gameMusicMuted);
       this.music.play().catch(() => {});
     }
   }
@@ -752,10 +837,14 @@ class SoundManager {
     }
   }
   playTone(freq, type, duration, gainVal = 0.15) {
-    if (!this.ctx) return;
+    if (!this.ctx || this.sfxMuted || this.sfxVolume <= 0) return;
+    gainVal *= this.sfxVolume;
     try {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
+      const synthVoice = { oscillator: osc, gain };
+      this.synthVoices.add(synthVoice);
+      osc.onended = () => this.synthVoices.delete(synthVoice);
       osc.type = type;
       osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
       gain.gain.setValueAtTime(gainVal, this.ctx.currentTime);
@@ -833,7 +922,7 @@ class SoundManager {
   gadget(id = "eraser_dash") {
     const gadgetFiles = { eraser_dash: "gadget_eraser_dash", ink_cataclysm: "gadget_ink_cataclysm", chrono_comma: "gadget_chrono_comma", lexicon_aegis: "gadget_lexicon_aegis", grammar_magnet: "gadget_grammar_magnet" };
     const gadgetAsset = gadgetFiles[id];
-    if (gadgetAsset) { try { const voice = new Audio(`assets/audio/abilities/${gadgetAsset}.wav`); voice.volume = 0.8; voice.play().catch(() => {}); return; } catch (_) {} }
+    if (gadgetAsset && this.playOneShot(`assets/audio/abilities/${gadgetAsset}.wav`, 0.8)) return;
     this.init();
     this.playTone(520, "sine", 0.18, 0.25);
     setTimeout(() => this.playTone(780, "triangle", 0.22, 0.25), 80);
@@ -872,15 +961,121 @@ class SoundManager {
   }
 }
 const sounds = new SoundManager();
+
+const gameSpeechState = { text: "", options: {}, voices: [] };
+let lastBossVoiceEvent = "";
+
+function getGameSpeechSynthesis() {
+  return typeof window !== "undefined" && window.speechSynthesis ? window.speechSynthesis : null;
+}
+
+const gameSpeechSynthesis = getGameSpeechSynthesis();
+if (gameSpeechSynthesis) {
+  try { gameSpeechState.voices = gameSpeechSynthesis.getVoices(); } catch (error) { gameSpeechState.voices = []; }
+  if (typeof gameSpeechSynthesis.addEventListener === "function") {
+    gameSpeechSynthesis.addEventListener("voiceschanged", () => {
+      try { gameSpeechState.voices = gameSpeechSynthesis.getVoices(); } catch (error) { gameSpeechState.voices = []; }
+    });
+  }
+}
+
+function chooseGameSpeechVoice(voices, lang) {
+  if (!voices.length) return null;
+  const requested = String(lang || "en-US").toLowerCase();
+  const baseLanguage = requested.split("-")[0];
+  const matching = voices.filter(voice => String(voice.lang || "").toLowerCase().startsWith(baseLanguage));
+  if (!matching.length) return null;
+  const candidates = matching;
+  const naturalVoicePattern = /natural|neural|premium|enhanced|google|siri|microsoft/i;
+  return candidates.slice().sort((a, b) => {
+    const score = voice => {
+      const voiceLang = String(voice.lang || "").toLowerCase();
+      return (voiceLang === requested ? 8 : voiceLang.startsWith(baseLanguage) ? 3 : 0)
+        + (naturalVoicePattern.test(voice.name || "") ? 2 : 0)
+        + (voice.localService === false ? 1 : 0)
+        + (voice.default ? 0.25 : 0);
+    };
+    return score(b) - score(a);
+  })[0] || null;
+}
+
+function stopGameSpeech() {
+  const synthesis = getGameSpeechSynthesis();
+  if (synthesis) {
+    try { synthesis.cancel(); } catch (error) {}
+  }
+  gameSpeechState.text = "";
+  gameSpeechState.options = {};
+}
+
+function speakGameText(text, options = {}) {
+  const content = String(text || "").trim();
+  const synthesis = getGameSpeechSynthesis();
+  const Utterance = typeof window !== "undefined" ? window.SpeechSynthesisUtterance : null;
+  if (!content || !synthesis || !Utterance) return false;
+
+  const settings = { lang: "tr-TR", role: "narrator", ...options };
+  try { synthesis.cancel(); } catch (error) { return false; }
+  const utterance = new Utterance(content);
+  utterance.lang = settings.lang;
+  try { gameSpeechState.voices = synthesis.getVoices(); } catch (error) { gameSpeechState.voices = []; }
+  utterance.voice = chooseGameSpeechVoice(gameSpeechState.voices, settings.lang);
+
+  switch (settings.role) {
+    case "boss":
+      utterance.rate = 0.78;
+      utterance.pitch = 0.55;
+      break;
+    case "character":
+      utterance.rate = 1.02;
+      utterance.pitch = 1.08;
+      break;
+    case "word":
+      utterance.rate = 0.86;
+      utterance.pitch = 1;
+      break;
+    default:
+      utterance.rate = 0.94;
+      utterance.pitch = 1;
+      break;
+  }
+  utterance.volume = 1;
+  gameSpeechState.text = content;
+  gameSpeechState.options = settings;
+  try {
+    synthesis.speak(utterance);
+    return true;
+  } catch (error) {
+    gameSpeechState.text = "";
+    gameSpeechState.options = {};
+    return false;
+  }
+}
+
+function replayGameSpeech() {
+  if (!gameSpeechState.text) return false;
+  return speakGameText(gameSpeechState.text, gameSpeechState.options);
+}
+
+function speakBossVoiceLine(eventKey, text) {
+  if (lastBossVoiceEvent === eventKey) return false;
+  lastBossVoiceEvent = eventKey;
+  return speakGameText(text, { lang: "en-US", role: "boss" });
+}
+
+function getBossEntranceLine(wave, boss) {
+  if (wave >= 100) return "I am the last word. There is no page after me!";
+  if (boss.type === "Lexicon Dragon Boss") return "The lexicon bends to my will. Face the dragon!";
+  if (boss.type === "Vocabulary Void") return "I will unwrite every word you know!";
+  if (boss.type === "Punctuation Phantom") return "This final mark ends your story!";
+  if (wave % 10 === 0) return "Every page bears my mark. Your words end here!";
+  return "The archive is mine. Your story ends on this page!";
+}
 document.addEventListener("click", (event) => {
   const control = event.target.closest("button,[role=tab]");
   if (!control || control.disabled) return;
   const file = control.classList.contains("shop-buy") ? "purchase" : control.id?.startsWith("tab-") ? "tab" : "select";
-  try {
-    const voice = new Audio(`assets/audio/ui/ui_${file}.wav`);
-    voice.volume = 0.42;
-    voice.play().catch(() => {});
-  } catch (_) {}
+  sounds.playUI(file);
 }, true);
 
 // =========================================
@@ -890,8 +1085,10 @@ class MedievalBGM {
   constructor(soundManager) {
     this.sm = soundManager;
     this.isPlaying = false;
-    this.isMuted = false;
-    this.volume = 0.24;
+    try { this.isMuted = localStorage.getItem("lexicon_music_muted") === "true"; } catch (_) { this.isMuted = false; }
+    this.musicVolume = this.sm.musicVolume;
+    this.volume = 0.24 * this.musicVolume;
+    window.gameMusicMuted = this.isMuted;
     this.mode = "peaceful"; // "peaceful" | "battle" | "boss"
     this.musicChoice = localStorage.getItem("lexicon_music_choice") || "auto";
     this.biome = -1;
@@ -1014,10 +1211,21 @@ class MedievalBGM {
   }
 
   toggleMute() {
-    this.isMuted = !this.isMuted;
+    this.setMuted(!this.isMuted);
+    return !this.isMuted;
+  }
+
+  setMuted(muted) {
+    this.isMuted = Boolean(muted);
     window.gameMusicMuted = this.isMuted;
     this.sm.setMusicMuted(this.isMuted);
-    return !this.isMuted;
+    try { localStorage.setItem("lexicon_music_muted", String(this.isMuted)); } catch (_) {}
+  }
+
+  setVolume(volume) {
+    this.sm.setMusicVolume(volume);
+    this.musicVolume = this.sm.musicVolume;
+    this.volume = 0.24 * this.musicVolume;
   }
 
   tick() {
@@ -1298,7 +1506,7 @@ const CHARACTERS = {
 const DIFFICULTIES = {
   easy: {
     id: "easy",
-    name: "A1–A2",
+    name: "Rahat",
     desc: "Düşmanlar yavaş (%-25), canları az (%-35). Başlangıç canı +40 HP. Rahat öğrenme ortamı.",
     enemy_speed_mult: 0.75,
     enemy_hp_mult: 0.65,
@@ -1308,7 +1516,7 @@ const DIFFICULTIES = {
   },
   normal: {
     id: "normal",
-    name: "B1",
+    name: "Dengeli",
     desc: "Dengeli arcade deneyimi! Pürüzsüz dalga geçişleri, toplanabilir can parşömenleri ve ödüllendirici sorular.",
     enemy_speed_mult: 0.90,
     enemy_hp_mult: 0.85,
@@ -1318,7 +1526,7 @@ const DIFFICULTIES = {
   },
   hard: {
     id: "hard",
-    name: "B2–C1",
+    name: "Çetin",
     desc: "Akademik arena! Düşmanlar çevik, canları daha yüksek (%+15), yoğun düşman akını ve sınav tuzakları.",
     enemy_speed_mult: 1.08,
     enemy_hp_mult: 1.15,
@@ -1973,8 +2181,6 @@ const spriteList = [
   "double_negative_drake.png", "palindrome_phantom.png",
   // Environment & UI
   "upgrade_v1/arena_dungeon.png", "upgrade_v1/arena_observatory.png", "upgrade_v1/arena_void.png",
-  "upgrade_v1/arena_frame_library.png", "upgrade_v1/arena_frame_dungeon.png",
-  "upgrade_v1/arena_frame_observatory.png", "upgrade_v1/arena_frame_void.png",
   "tile_floor.png", "tile_library_parquet.png", "magical_rune_circle.png",
   "tile_dungeon_stone.png", "magical_rune_cyan.png",
   "tile_astral_observatory.png", "magical_rune_astral.png",
@@ -1988,6 +2194,47 @@ spriteList.push(...GENERATED_HERO_ANIMATION_KEYS.flatMap(key => [
   ...Array.from({ length: 4 }, (_, frame) => `upgrade_v1/animations/${key}_ranged_v2_${frame}.png`),
   ...Array.from({ length: 4 }, (_, frame) => `upgrade_v1/animations/${key}_attack_v2_${frame}.png`)
 ]));
+const requestedErrataHeroFrames = new Set();
+let errataHeroRepaintQueued = false;
+const requestedLegacyArenaFrames = new Set();
+function getLegacyArenaFrame(name) {
+  if (images[name]) return images[name];
+  if (requestedLegacyArenaFrames.has(name)) return null;
+  requestedLegacyArenaFrames.add(name);
+  const image = new Image();
+  image.decoding = "async";
+  image.onload = () => {
+    images[name] = image;
+    render(0);
+  };
+  image.onerror = () => {};
+  image.src = new URL("assets/sprites/" + name, window.location.href).href;
+  return null;
+}
+function requestErrataHeroFrames(key) {
+  if (!GENERATED_HERO_ANIMATION_KEYS.includes(key) || requestedErrataHeroFrames.has(key)) return;
+  requestedErrataHeroFrames.add(key);
+  const paths = [
+    ...Array.from({ length: 4 }, (_, frame) => `ui/errata/heroes/${key}_idle_${frame}.webp`),
+    ...Array.from({ length: 8 }, (_, frame) => `ui/errata/heroes/${key}_run_${frame}.webp`),
+    ...Array.from({ length: 4 }, (_, frame) => `ui/errata/heroes/${key}_ranged_${frame}.webp`),
+    ...Array.from({ length: 4 }, (_, frame) => `ui/errata/heroes/${key}_attack_${frame}.webp`)
+  ];
+  paths.forEach(name => {
+    const img = new Image();
+    img.decoding = "async";
+    images[name] = img;
+    img.onload = () => {
+      const selectedCharacter = key === "alchemist" ? "lexicon_alchemist"
+        : key === "shadow_scribe" ? "shadow_lexicographer" : key;
+      if (state.selected_char !== selectedCharacter || errataHeroRepaintQueued) return;
+      errataHeroRepaintQueued = true;
+      requestAnimationFrame(() => { errataHeroRepaintQueued = false; render(0); });
+    };
+    img.onerror = () => { images[name] = null; };
+    img.src = new URL("assets/" + name, window.location.href).href;
+  });
+}
 spriteList.push(...Object.values(WEAPONS_CATALOG).map(weapon => weapon.sprite));
 const ENEMY_SPRITE_VERSION = "monster-refresh-20261106-2";
 const LEGACY_ENEMY_SPRITES = new Set([
@@ -2178,7 +2425,7 @@ const musicBtn = document.getElementById("music-btn");
 function toggleMusic() {
   sounds.init();
   if (!bgm.isPlaying) {
-    bgm.isMuted = false;
+    bgm.setMuted(false);
     bgm.start();
     return true;
   }
@@ -2187,7 +2434,7 @@ function toggleMusic() {
 
 function setMusicChoice(choice) {
   bgm.setMusicChoice(choice);
-  for (const id of ["title-music-select", "mobile-music-select"]) {
+  for (const id of ["title-music-select", "mobile-music-select", "setting-music-track"]) {
     const select = document.getElementById(id);
     if (select) select.value = bgm.musicChoice;
   }
@@ -2265,6 +2512,7 @@ function toggleAutoNewTur() {
 
 function updateAutoTurUI() {
   const isAuto = !!state.auto_new_tur;
+  ["auto-tur-btn", "title-auto-tur-btn", "shop-auto-tur-btn"].forEach(id => { const control=document.getElementById(id); if(control && control.getAttribute("aria-pressed")!==String(isAuto)) control.setAttribute("aria-pressed",String(isAuto)); });
   const btn = document.getElementById("auto-tur-btn");
   if (btn) {
     btn.textContent = isAuto ? "OTO TUR: AÇIK" : "OTO TUR: KAPALI";
@@ -2348,6 +2596,7 @@ function toggleAutoNewRun() {
 
 function updateAutoRunUI() {
   const isAuto = !!state.auto_new_run;
+  ["auto-run-btn", "title-auto-run-btn", "gameover-auto-run-toggle"].forEach(id => { const control=document.getElementById(id); if(control && control.getAttribute("aria-pressed")!==String(isAuto)) control.setAttribute("aria-pressed",String(isAuto)); });
   const btn = document.getElementById("auto-run-btn");
   if (btn) {
     btn.textContent = isAuto ? "OTO RUN: AÇIK" : "OTO RUN: KAPALI";
@@ -2741,6 +2990,7 @@ function showChapterCard(stageIndex) {
   document.getElementById("chapter-transition-number").textContent = chapter.numeral;
   document.getElementById("chapter-transition-title").textContent = chapter.title;
   document.getElementById("chapter-transition-narration").textContent = chapter.narration;
+  speakGameText(chapter.narration, { lang: "tr-TR", role: "narrator" });
   card.hidden = false;
   syncTopAlertPositions();
   card.classList.remove("is-leaving");
@@ -2845,9 +3095,13 @@ const keys = {};
 window.addEventListener("keydown", e => {
   const storyOverlay = document.getElementById("story-intermission");
   if (storyOverlay && !storyOverlay.hidden) {
+    const interactiveTarget = e.target instanceof Element
+      && e.target.closest("button, a, input, select, textarea, [contenteditable='true']");
+    if (e.key === "Tab" || (interactiveTarget && ["Enter", " ", "ArrowRight"].includes(e.key))) return;
     e.preventDefault();
     e.stopImmediatePropagation();
     if (["Enter", " ", "ArrowRight"].includes(e.key)) closeStoryIntermission();
+    else if (e.key === "ArrowLeft") previousStoryPanel();
     else if (e.key === "Escape") skipStoryIntermission();
     return;
   }
@@ -2891,10 +3145,19 @@ window.addEventListener("contextmenu", e => {
   activateActiveGadget();
 });
 window.addEventListener("wheel", e => {
-  if (e.ctrlKey || e.metaKey) return;
+  const modalVisible = ["#shop-screen", "#quiz-modal", "#inventory-modal", "#mistakes-modal", "#story-intermission",
+    "#errata-book", "#errata-pause", "#game-over-screen", "#leaderboard-overlay", "#mobile-quick-menu"]
+    .some(selector => {
+      const node = document.querySelector(selector);
+      if (!node) return false;
+      const style = getComputedStyle(node);
+      return !node.hidden && style.display !== "none" && style.visibility !== "hidden";
+    });
+  if (!state.is_wave_active || state.is_inventory_open || modalVisible || e.target !== canvas || e.ctrlKey || e.metaKey) return;
+  e.preventDefault();
   if (e.deltaY > 0) switchNextWeapon();
   else if (e.deltaY < 0) switchPrevWeapon();
-}, { passive: true });
+}, { passive: false });
 
 function switchNextWeapon() {
   if (state.equipped_weapons.length <= 1) return;
@@ -3110,9 +3373,23 @@ function syncMobileControlsVisibility() {
 // =========================================
 // 8. TITLE & START GAME (6 CHARACTERS)
 // =========================================
+function getDossierStats(character) {
+  const definitions = [
+    ["Can", "hp", `${character.hp} HP`],
+    ["Hasar", "damage_mult", `${character.damage_mult}×`],
+    ["Hız", "speed", String(character.speed)]
+  ];
+  return definitions.map(([label, key, value]) => {
+    const maximum = Math.max(...Object.values(CHARACTERS).map(hero => hero[key]));
+    const segments = Math.max(1, Math.round(character[key] / maximum * 6));
+    return `<div class="dossier-stat" aria-label="${label}: ${value}"><span>${label}</span><span class="stat-segments" aria-hidden="true">${Array.from({length: 6}, (_, index) => `<i${index < segments ? ' class="filled"' : ''}></i>`).join('')}</span><b>${value}</b></div>`;
+  }).join('');
+}
+
 function initTitleScreen() {
   syncMobileControlsVisibility();
   const charGrid = document.getElementById("char-selection-grid");
+  const previousDossierScroll = charGrid.scrollLeft;
   charGrid.innerHTML = "";
   ["inky", "quillmaster", "word_knight", "rune_sorceress", "lexicon_alchemist", "shadow_lexicographer"].forEach(cid => {
     const c = CHARACTERS[cid];
@@ -3120,26 +3397,20 @@ function initTitleScreen() {
     const card = document.createElement("div");
     card.className = "choice-card" + (cid === state.selected_char ? " selected" : "");
     card.dataset.hero = cid;
+    card.title = `${c.desc} ${c.passive}`;
     card.setAttribute("role", "button");
     card.setAttribute("aria-pressed", String(cid === state.selected_char));
-    card.setAttribute("aria-label", `${c.name} karakterini seç`);
+    card.setAttribute("aria-label", `${c.name}, ${c.title}. Can ${c.hp}, hasar ${c.damage_mult} kat, hız ${c.speed}. ${c.passive}. Karakteri seç.`);
     card.tabIndex = 0;
     card.innerHTML = `
-      <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <img src="assets/sprites/${c.sprite}" alt="${c.name}">
-          <div>
-            <h3 style="margin: 0; font-size: 13.5px;">${c.name}</h3>
-            <div class="subtitle" style="margin: 0; font-size: 10px;">${c.title}</div>
-          </div>
-        </div>
-        <div class="stats-text" style="font-size: 9.5px; text-align: right; line-height: 1.25;">
-          SEVİYE ${String(profile.level).padStart(2, "0")} · ${profile.skill_points} puan<br>${c.hp} HP | ${c.damage_mult}× hasar
-        </div>
+      <span class="dossier-art"><img src="assets/ui/errata/portraits/${cid}-selection.webp" alt="" decoding="async"></span>
+      <div class="dossier-copy">
+        <h3>${c.name}</h3>
+        <div class="subtitle">${c.title}</div>
+        <div class="dossier-stats">${getDossierStats(c)}</div><div class="dossier-progress">Seviye ${profile.level} · ${profile.skill_points} yetenek puanı</div>
+        <div class="dossier-story">${STORY_ARC_DATA?.characters?.[cid]?.motive || c.selectionHook}</div>
+        <div class="passive">${c.passive}</div>
       </div>
-      <div class="desc" style="font-size: 10.5px; margin: 3px 0 2px 0;">${c.desc}</div>
-      <div class="story-motive" aria-label="Hikâye arayışı">${c.selectionHook}</div>
-      <div class="passive" style="font-size: 9.5px; padding-top: 2px;">${c.passive}</div>
     `;
 
     const pickChar = (e) => {
@@ -3159,13 +3430,16 @@ function initTitleScreen() {
     charGrid.appendChild(card);
   });
 
+  charGrid.scrollLeft = previousDossierScroll;
+
   const diffContainer = document.getElementById("diff-selection-container");
   diffContainer.innerHTML = "";
   ["easy", "normal", "hard"].forEach(did => {
     const d = DIFFICULTIES[did];
     const btn = document.createElement("button");
     btn.className = "btn" + (did === state.difficulty ? " btn-seal" : "");
-    btn.textContent = d.name;
+    btn.textContent = ({easy:"Rahat",normal:"Dengeli",hard:"Çetin"})[did];
+    btn.setAttribute("aria-pressed", String(did === state.difficulty));
     const pickDiff = (e) => {
       if (e) e.stopPropagation();
       state.difficulty = did;
@@ -3209,7 +3483,7 @@ function initTitleScreen() {
   const featuredPanel = document.getElementById("title-feature");
   if (featuredHero && featuredImage && featuredPanel) {
     featuredPanel.dataset.hero = state.selected_char;
-    featuredImage.src = `assets/sprites/${featuredHero.sprite}`;
+    featuredImage.src = `assets/ui/errata/portraits/${state.selected_char}-selection.webp`;
     featuredImage.alt = `${featuredHero.name} · ${featuredHero.title}`;
     document.getElementById("title-hero-name").textContent = featuredHero.name;
     document.getElementById("title-hero-motive").textContent = featuredHero.selectionHook;
@@ -3246,6 +3520,8 @@ function getCharacterInkMultiplier(characterId, difficultyId) {
 }
 
 function resetStats() {
+  stopGameSpeech();
+  lastBossVoiceEvent = "";
   state.is_inventory_open = false;
   state.milestone_boss_delay = 0;
   const c = CHARACTERS[state.selected_char];
@@ -3526,16 +3802,13 @@ let storyPanelIndex = 0;
 const storySpeakerNames = { caption: "SAHNE", narrator: "SAHNE", hero: "KÂŞİF", neris: "NERİS", whisper: "BOŞ SAYFA", mother_echo: "LALE'NİN YANKISI", lio_echo: "LIO'NUN YANKISI", shadow_double: "GÖLGE", blank_page: "BOŞ SAYFA" };
 function renderStoryPanel() {
   if (!STORY_ARC_DATA || storyEpisodeIndex < 0) return;
+  stopGameSpeech();
   const characterArc = STORY_ARC_DATA.characters[state.selected_char];
   const episode = characterArc.episodes[storyEpisodeIndex];
   const beat = episode.beats[storyPanelIndex];
   const bossAtWave = STORY_EXPANSION_DATA?.boss_encounters?.find(boss => boss.wave === episode.wave);
   let speakerId = beat[0];
   let dialogueText = beat[1];
-  if (storyPanelIndex === 0 && bossAtWave) {
-    speakerId = bossAtWave.id;
-    dialogueText = bossAtWave.dialogue;
-  }
   const speaker = document.getElementById("story-speaker");
   const portrait = document.getElementById("story-speaker-portrait");
   const sceneImage = document.getElementById("story-scene-image");
@@ -3561,8 +3834,19 @@ function renderStoryPanel() {
   document.getElementById("story-copy").textContent = dialogueText;
   document.getElementById("story-scene-caption").textContent = episode.scene;
   document.getElementById("story-counter").textContent = `${storyPanelIndex + 1} / ${STORY_ARC_DATA.panel_count}`;
+  const previous = document.getElementById("story-back");
+  if (previous) previous.disabled = storyPanelIndex === 0;
+  const panelTrack = document.getElementById("story-panel-track");
+  if (panelTrack) {
+    panelTrack.setAttribute("aria-valuenow", String(storyPanelIndex + 1));
+    panelTrack.replaceChildren(...Array.from({length: STORY_ARC_DATA.panel_count}, (_, index) => {
+      const mark = document.createElement("span"); mark.className = index <= storyPanelIndex ? "read" : ""; return mark;
+    }));
+  }
   const panelArt = episode.panel_art?.[storyPanelIndex] || episode.backdrop;
   sceneImage.src = `assets/sprites/story/${panelArt}`;
+  const nextArt = episode.panel_art?.[storyPanelIndex + 1];
+  if (nextArt) { const preload = new Image(); preload.src = `assets/sprites/story/${nextArt}`; }
   sceneImage.alt = `${episode.scene} · ${episode.location}`;
   const chosenBossSprite = speakerBoss?.portrait_sprite || (isBossVoice ? MILESTONE_BOSS_ROSTER?.[storyEpisodeIndex]?.[1] : "");
   const speakerPath = heroSpeakerIds.has(speakerId) ? portraitPaths.hero
@@ -3596,6 +3880,9 @@ function renderStoryPanel() {
   next.textContent = storyPanelIndex === STORY_ARC_DATA.panel_count - 1
     ? (episode.wave >= state.max_waves ? "ENTER · SON SAYFAYI AÇ" : "ENTER · DÜKKÂNA GEÇ")
     : "ENTER · SONRAKİ KARE";
+  const speechRole = isBossVoice || ["whisper", "blank_page", "shadow_double"].includes(speakerId)
+    ? "boss" : ["narrator", "caption"].includes(speakerId) ? "narrator" : "character";
+  speakGameText(dialogueText, { lang: "tr-TR", role: speechRole });
 }
 
 async function showStoryIntermission(wave) {
@@ -3612,8 +3899,14 @@ async function showStoryIntermission(wave) {
   bgm.playChapterChime();
   renderStoryPanel();
 }
+function previousStoryPanel() {
+  if (storyPanelIndex <= 0) return;
+  storyPanelIndex--;
+  renderStoryPanel();
+}
 function closeStoryIntermission() {
   if (storyPanelIndex < STORY_ARC_DATA.panel_count - 1) {
+    stopGameSpeech();
     storyPanelIndex += 1;
     sounds.playTone(540 + storyPanelIndex * 34, "triangle", 0.055, 0.11);
     renderStoryPanel();
@@ -3625,6 +3918,7 @@ function skipStoryIntermission() {
   finishStoryIntermission();
 }
 function finishStoryIntermission() {
+  stopGameSpeech();
   grantStoryIntermissionReward();
   document.getElementById("story-intermission").hidden = true;
   if (storyWavePending >= state.max_waves) victoryScreen();
@@ -3654,7 +3948,9 @@ function grantStoryIntermissionReward() {
   updateHUD();
 }
 document.getElementById("story-next")?.addEventListener("click", closeStoryIntermission);
+document.getElementById("story-back")?.addEventListener("click", previousStoryPanel);
 document.getElementById("story-skip")?.addEventListener("click", skipStoryIntermission);
+document.getElementById("story-replay")?.addEventListener("click", replayGameSpeech);
 
 // =========================================
 // 9. GADGET ACTIVATION LOGIC (5 GADGETS)
@@ -4040,6 +4336,7 @@ function updatePlayer(dt) {
 
     if (nearest) {
       w.rotation = Math.atan2(nearest.y - p.y, nearest.x - p.x);
+      aimMountedRangedWeapon(w, nearest, idx);
     }
 
     let effectiveAtkSpd = Math.max(0.1, state.attack_speed_mult);
@@ -4306,6 +4603,7 @@ function shootWeapon(w, target, weaponIndex = state.weapons.indexOf(w)) {
     : ["rune_orb", "scroll_turret"].includes(w.id) ? "cast"
     : w.id === "calligraphy_katana" ? "melee" : "ranged";
   requestAttackPose(w.id, actionKind, { x: target.x - state.player.x, y: target.y - state.player.y });
+  aimMountedRangedWeapon(w, target, weaponIndex);
   const p = state.player;
   const isCrit = Math.random() < (state.crit_chance + (w.tier_data.crit || 0));
   const critMult = isCrit ? 2.0 : 1.0;
@@ -4996,6 +5294,7 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
     boss.boss_skill_interval *= 0.78;
     boss.speed *= 1.12;
     sounds.bossRoar();
+    speakBossVoiceLine(`wave-${state.current_wave}-phase-2`, "A new line begins. Face my next form!");
     triggerScreenShake(0.32, 9);
   } else if (boss.hp <= boss.max_hp * 0.35 && boss.boss_phase < 3) {
     boss.boss_phase = 3;
@@ -5003,6 +5302,7 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
     boss.boss_skill_interval *= 0.70;
     boss.speed *= 1.12;
     sounds.bossRoar();
+    speakBossVoiceLine(`wave-${state.current_wave}-phase-3`, "Final correction. Your last page closes now!");
     triggerScreenShake(0.42, 12);
   }
   boss.boss_skill_cooldown = Math.max(0, (boss.boss_skill_cooldown || 0) - dt);
@@ -6026,6 +6326,9 @@ function spawnEnemy() {
   }
 }
 
+// User balance update: stronger bosses, with the existing dodge windows.
+const BOSS_HP_MULTIPLIER = 5;
+const BOSS_DAMAGE_MULTIPLIER = 3;
 const MILESTONE_BOSS_ROSTER = [
   ["Red Pen Boss", "upgrade_v2/boss_red_inquisitor.png", "Judgment Warden", "#e45c54", "judgment"],
   ["Syntax Titan", "upgrade_v2/boss_syntax_titan.png", "The Unfinished Titan", "#e2a74b", "quake"],
@@ -6082,13 +6385,13 @@ function spawnMilestoneBoss(wave) {
   const difficulty = DIFFICULTIES[state.difficulty];
   const [type, sprite, name, color, skill] = MILESTONE_BOSS_ROSTER[Math.min(19, Math.floor(wave / 5) - 1)];
   const waveScale = getWaveHpMult(wave);
-  const hp = (900 + wave * 80) * Math.pow(waveScale, 0.45) * difficulty.enemy_hp_mult * 1.7;
+  const hp = (900 + wave * 80) * Math.pow(waveScale, 0.45) * difficulty.enemy_hp_mult * 1.7 * BOSS_HP_MULTIPLIER;
   const angle = Math.random() * Math.PI * 2;
   const point = getArenaSpawnPosition(player, 560, angle);
   const boss = {
     type, sprite, x: point.x, y: point.y, vx: 0, vy: 0,
     hp, max_hp: hp, speed: (54 + Math.min(28, wave * 0.16)) * difficulty.enemy_speed_mult,
-    damage: (29 + wave * 1.25) * difficulty.enemy_damage_mult,
+    damage: (29 + wave * 1.25) * difficulty.enemy_damage_mult * BOSS_DAMAGE_MULTIPLIER,
     ink_reward: getBossWaveReward(wave), label: name.toUpperCase(),
     size: wave >= 100 ? 108 : (68 + Math.min(20, wave * 0.16)),
     is_elite: true, is_boss: true, boss_color: color, boss_skill: skill,
@@ -6098,6 +6401,7 @@ function spawnMilestoneBoss(wave) {
   sounds.bossRoar();
   addAliveEnemy(boss);
   state.active_boss = boss;
+  speakBossVoiceLine(`wave-${wave}-entrance`, getBossEntranceLine(wave, boss));
   state.boss_defeated = false;
   state.boss_mistake_queue = [...(state.mistake_words || [])]
     .filter(mistake => String(mistake.word || "").trim())
@@ -6208,7 +6512,51 @@ function takePlayerDamage(amount) {
   if (state.hp <= 0) gameOver();
 }
 
+function renderRunSummary(summary) {
+  summary.replaceChildren();
+  const identity = document.createElement("p");
+  identity.className = "run-identity";
+  identity.textContent = `${CHARACTERS[state.selected_char].name} · ${DIFFICULTIES[state.difficulty].name} · ${state.learning_level}`;
+  const stats = document.createElement("dl"); stats.className = "run-stats";
+  for (const [label, value] of [["Ulaşılan dalga", `${state.current_wave} / ${state.max_waves}`], ["Yenilen düşman", state.kill_count], ["Mühürlenen kelime", state.words_learned.length], ["Kalan mürekkep", state.ink_count]]) {
+    const row = document.createElement("div");
+    const term = document.createElement("dt"); term.textContent = label;
+    const amount = document.createElement("dd"); amount.textContent = value;
+    row.append(term, amount); stats.append(row);
+  }
+  const words = document.createElement("p"); words.className = "run-words";
+  words.textContent = state.words_learned.length ? state.words_learned.join(" · ") : "Bu seferde henüz kelime mühürlenmedi.";
+  summary.append(identity, stats, words);
+}
+
+function renderCharacterEpilogue(victory) {
+  const id = state.selected_char;
+  const character = CHARACTERS[id];
+  const arc = STORY_ARC_DATA?.characters?.[id];
+  const endings = {
+    inky: ["Mira’nın adı hâlâ eksik.", "Mira’nın izini son sayfaya taşıdın."],
+    quillmaster: ["Ada’nın cevabına ulaşamadın.", "Ada’nın seçimine yer açtın."],
+    word_knight: ["Yeminin sırrı kapalı kaldı.", "Yeminin son satırını yazdın."],
+    rune_sorceress: ["Lale’nin izi karanlıkta kaldı.", "Lale’nin seçimini anladın."],
+    lexicon_alchemist: ["Lio’nun anısı hâlâ mühürlü.", "Lio’nun anısını serbest bıraktın."],
+    shadow_lexicographer: ["Neris’in kaydını çözemedin.", "Neris’in izini son sayfaya taşıdın."]
+  };
+  document.getElementById("game-over-title").textContent = endings[id]?.[victory ? 1 : 0] || (victory ? "Son sayfa açıldı." : "Gizem henüz çözülmedi.");
+  document.getElementById("game-over-kicker").textContent = victory ? "SEFER TAMAMLANDI · SON DÜZELTME" : "SEFER SONA ERDİ · GİZEM SÜRÜYOR";
+  const portrait = document.getElementById("result-character-art");
+  portrait.src = `assets/ui/errata/portraits/${id}-selection.webp`;
+  portrait.alt = character.name;
+  document.getElementById("result-character-name").textContent = character.name;
+  document.getElementById("result-file-status").textContent = victory ? "DOSYA TAMAMLANDI" : "DOSYA AÇIK KALDI";
+  document.getElementById("result-story-label").textContent = victory ? "SON SAYFADAN" : "YANITSIZ KALAN İZ";
+  document.getElementById("instant-restart-btn").textContent = victory ? "Yeni bir sefere başla" : "Bir kez daha dene";
+  const finalBeats = arc?.episodes?.at(-1)?.beats || [];
+  const lastLine = finalBeats.filter(beat => beat[0] === "hero" || beat[0] === id).at(-1)?.[1] || finalBeats.at(-1)?.[1];
+  document.getElementById("result-story-copy").textContent = victory && lastLine ? `“${lastLine}”` : (arc?.motive || character.selectionHook);
+}
+
 function gameOver() {
+  stopGameSpeech();
   finalizeRunResult(false);
   triggerHaptic("fail");
   state.is_wave_active = false;
@@ -6224,12 +6572,8 @@ function gameOver() {
   kicker.textContent = "RUN SONUCU  ·  KAYIT KAPANDI";
   title.textContent = "KİTAP KAPANDI";
 
-  summary.textContent = `Mühürlenen kelimeler (${state.words_learned.length})\n${wordsList}\n\n` +
-    `Kâtip: ${CHARACTERS[state.selected_char].name}\n` +
-    `Seviye: ${DIFFICULTIES[state.difficulty].name}\n` +
-    `Ulaşılan dalga: ${state.current_wave} / 100\n` +
-    `Yok edilen düşman: ${state.kill_count}\n` +
-    `Toplanan mürekkep: ${state.ink_count}`;
+  renderRunSummary(summary);
+  renderCharacterEpilogue(false);
 
   updateAutoRunUI();
   modal.style.display = "flex";
@@ -6242,6 +6586,7 @@ function gameOver() {
 }
 
 function victoryScreen() {
+  stopGameSpeech();
   finalizeRunResult(true);
   state.is_wave_active = false;
   bgm.setMode("peaceful");
@@ -6256,12 +6601,8 @@ function victoryScreen() {
   kicker.textContent = "RUN SONUCU  ·  KAYIT TAMAMLANDI";
   title.textContent = "SÖZLÜK KURTARILDI";
 
-  summary.textContent = `Yüz dalga tamamlandı. Son kayıt alındı.\n\n` +
-    `Kurtarılan kelimeler (${state.words_learned.length})\n${wordsList}\n\n` +
-    `Kâtip: ${CHARACTERS[state.selected_char].name}\n` +
-    `Seviye: ${DIFFICULTIES[state.difficulty].name}\n` +
-    `Yok edilen düşman: ${state.kill_count}\n` +
-    `Toplanan mürekkep: ${state.ink_count}`;
+  renderRunSummary(summary);
+  renderCharacterEpilogue(true);
 
   modal.style.display = "flex";
 }
@@ -6532,6 +6873,209 @@ shopTabIds.forEach((tab, index) => {
   };
 });
 
+function getSkillEffectIcon(node, characterId = state.selected_char) {
+  const effects = node.effects || {};
+  const character = CHARACTERS[characterId];
+  const weapon = WEAPONS_CATALOG[character?.starting_weapon];
+  const gadget = GADGETS_CATALOG[character?.starting_gadget];
+  if (effects.armor || effects.max_hp) return "assets/sprites/relics/grammar_guide.png";
+  if (effects.crit_chance) return "assets/sprites/relics/magnifying_glass.png";
+  if (effects.move_speed) return gadget?.icon || "assets/ui/icons/gadget.svg";
+  if (effects.damage || effects.attack_speed || effects.projectile_count || effects.pierce) {
+    return weapon ? `assets/sprites/${weapon.sprite}` : "assets/ui/icons/weapons.svg";
+  }
+  if (effects.pickup_radius) return gadget?.icon || "assets/ui/icons/gadget.svg";
+  return gadget?.icon || "assets/ui/icons/quill.svg";
+}
+
+function getSkillEffectSummary(node) {
+  const effects = node.effects || {};
+  const number = value => new Intl.NumberFormat("tr-TR", { maximumFractionDigits: 1 }).format(value);
+  return Object.entries(effects).map(([key, value]) => {
+    if (key === "damage") return `+%${number(value * 100)} Hasar`;
+    if (key === "attack_speed") return `+%${number(value * 100)} Saldırı Hızı`;
+    if (key === "armor") return `+%${number(value * 100)} Zırh`;
+    if (key === "move_speed") return `+${number(value)} Hareket Hızı`;
+    if (key === "max_hp") return `+${number(value)} Maksimum Can`;
+    if (key === "crit_chance") return `+%${number(value * 100)} Kritik Şansı`;
+    if (key === "projectile_count") return `+${number(value)} Mermi`;
+    if (key === "pierce") return `+${number(value)} Delme`;
+    if (key === "pickup_radius") return `+${number(value)} Mürekkep Toplama Menzili`;
+    return "";
+  }).filter(Boolean).join(" · ");
+}
+
+function getSkillNodeAvailability(node, profile) {
+  const unlocked = profile.unlocked_nodes.includes(node.id);
+  const nodes = getCharacterSkillNodes();
+  const prerequisites = (node.prerequisites || []).map(id => nodes.find(item => item.id === id)).filter(Boolean);
+  const missingPrerequisites = prerequisites.filter(item => !profile.unlocked_nodes.includes(item.id));
+  const canLearn = !unlocked && !missingPrerequisites.length
+    && profile.level >= node.required_level && profile.skill_points >= node.point_cost;
+  const label = unlocked ? "ÖĞRENİLDİ"
+    : missingPrerequisites.length ? "ÖNCEKİ DÜĞÜM GEREKLİ"
+      : profile.level < node.required_level ? `SEVİYE ${node.required_level} GEREKLİ`
+        : profile.skill_points < node.point_cost ? `${node.point_cost} PUAN GEREKLİ` : "ÖĞRENİLEBİLİR";
+  return { unlocked, prerequisites, missingPrerequisites, canLearn, label,
+    state: unlocked ? "learned" : canLearn ? "available" : "locked" };
+}
+
+function renderSkillDetail(panel, node, profile) {
+  if (!panel || !node) return;
+  const availability = getSkillNodeAvailability(node, profile);
+  panel.replaceChildren();
+  panel.dataset.state = availability.state;
+  const icon = document.createElement("img");
+  icon.className = "skill-detail-icon";
+  icon.src = getSkillEffectIcon(node);
+  icon.alt = "";
+  const copy = document.createElement("div");
+  copy.className = "skill-detail-copy";
+  const kicker = document.createElement("span");
+  kicker.className = "skill-detail-kicker";
+  kicker.textContent = `SEVİYE ${node.required_level}+ · ${node.point_cost} YETENEK PUANI`;
+  const name = document.createElement("h4");
+  name.textContent = node.name_tr;
+  const description = document.createElement("p");
+  description.textContent = node.description_tr;
+  const effect = document.createElement("strong");
+  effect.textContent = getSkillEffectSummary(node);
+  const status = document.createElement("span");
+  status.className = "skill-status";
+  status.textContent = availability.label;
+  copy.append(kicker, name, description, effect, status);
+  if (availability.prerequisites.length) {
+    const prerequisite = document.createElement("small");
+    prerequisite.textContent = `Ön koşul: ${availability.prerequisites.map(item => item.name_tr).join(", ")}`;
+    copy.appendChild(prerequisite);
+  }
+  panel.append(icon, copy);
+}
+
+function renderCharacterSkillTree(grid) {
+  const character = CHARACTERS[state.selected_char];
+  const profile = getCharacterProgress();
+  const tree = CHARACTER_SKILL_TREES?.characters?.[state.selected_char];
+  if (!tree) {
+    const unavailable = document.createElement("p");
+    unavailable.className = "skill-tree-unavailable";
+    unavailable.textContent = "Yetenek ağacı yüklenemedi. Birazdan yeniden dene.";
+    grid.appendChild(unavailable);
+    return;
+  }
+
+  const workspace = document.createElement("div");
+  workspace.className = "skill-tree-workspace";
+  const profileCard = document.createElement("section");
+  profileCard.className = "skill-tree-profile";
+  const portrait = document.createElement("img");
+  portrait.src = `assets/ui/errata/portraits/${state.selected_char}-selection.webp`;
+  portrait.alt = `${character.name} portresi`;
+  const profileCopy = document.createElement("div");
+  profileCopy.className = "skill-tree-profile-copy";
+  const kicker = document.createElement("span");
+  kicker.className = "skill-tree-kicker";
+  kicker.textContent = "KALICI KARAKTER GELİŞİMİ";
+  const title = document.createElement("h2");
+  title.textContent = `${tree.display_name_tr} · Yetenek Ağacı`;
+  const progressCopy = document.createElement("p");
+  const xpGoal = xpForNextCharacterLevel(profile.level);
+  progressCopy.textContent = profile.level >= 18
+    ? "Seviye 18 · Ustalık tamamlandı"
+    : `Seviye ${profile.level} · ${profile.xp} / ${xpGoal} XP · ${profile.skill_points} yetenek puanı`;
+  const progressTrack = document.createElement("div");
+  progressTrack.className = "skill-xp-track";
+  progressTrack.setAttribute("role", "progressbar");
+  progressTrack.setAttribute("aria-label", `${tree.display_name_tr} deneyim ilerlemesi`);
+  progressTrack.setAttribute("aria-valuemin", "0");
+  progressTrack.setAttribute("aria-valuemax", String(profile.level >= 18 ? 1 : xpGoal));
+  progressTrack.setAttribute("aria-valuenow", String(profile.level >= 18 ? 1 : profile.xp));
+  const progressFill = document.createElement("span");
+  progressFill.style.width = `${profile.level >= 18 ? 100 : Math.min(100, profile.xp / xpGoal * 100)}%`;
+  progressTrack.appendChild(progressFill);
+  profileCopy.append(kicker, title, progressCopy, progressTrack);
+  const pointsBadge = document.createElement("strong");
+  pointsBadge.className = "skill-points-badge";
+  pointsBadge.innerHTML = `<img src="assets/ui/icons/quill.svg" alt="">${profile.skill_points} puan`;
+  profileCard.append(portrait, profileCopy, pointsBadge);
+  workspace.appendChild(profileCard);
+
+  const branchGrid = document.createElement("div");
+  branchGrid.className = "skill-tree-branches";
+  const nodes = getCharacterSkillNodes();
+  tree.branches.forEach(branch => {
+    const column = document.createElement("section");
+    column.className = "skill-tree-branch";
+    column.dataset.branchId = branch.id;
+    const heading = document.createElement("header");
+    heading.className = "skill-branch-heading";
+    const branchIcon = document.createElement("img");
+    branchIcon.src = getSkillEffectIcon(branch.nodes[0] || {});
+    branchIcon.alt = "";
+    const branchCopy = document.createElement("div");
+    const branchName = document.createElement("h3");
+    branchName.textContent = branch.name_tr;
+    const branchDescription = document.createElement("p");
+    branchDescription.textContent = branch.description_tr;
+    branchCopy.append(branchName, branchDescription);
+    heading.append(branchIcon, branchCopy);
+    const nodeStack = document.createElement("div");
+    nodeStack.className = "skill-node-stack";
+    branch.nodes.forEach(node => {
+      const availability = getSkillNodeAvailability(node, profile);
+      const prereqNode = (node.prerequisites || []).map(id => nodes.find(item => item.id === id)).find(Boolean);
+      const button = document.createElement("button");
+      button.className = "skill-node-button";
+      button.type = "button";
+      button.dataset.nodeId = node.id;
+      button.dataset.state = availability.state;
+      button.dataset.hasPrerequisite = String(!!prereqNode);
+      button.setAttribute("aria-disabled", String(!availability.canLearn));
+      button.setAttribute("aria-controls", "skill-detail-panel");
+      button.setAttribute("aria-label", `${node.name_tr}. ${node.description_tr} ${availability.label}. Seviye ${node.required_level}, ${node.point_cost} yetenek puanı.`);
+      const icon = document.createElement("img");
+      icon.src = getSkillEffectIcon(node);
+      icon.alt = "";
+      const copy = document.createElement("span");
+      copy.className = "skill-node-copy";
+      const name = document.createElement("strong");
+      name.textContent = node.name_tr;
+      const level = document.createElement("small");
+      level.textContent = `SEV. ${node.required_level} · ${node.point_cost} PUAN`;
+      const effect = document.createElement("em");
+      effect.textContent = getSkillEffectSummary(node);
+      const status = document.createElement("span");
+      status.className = "skill-status";
+      status.textContent = availability.label;
+      copy.append(name, level, effect, status);
+      button.append(icon, copy);
+      const showDetail = () => renderSkillDetail(document.getElementById("skill-detail-panel"), node, profile);
+      button.addEventListener("focus", showDetail);
+      button.addEventListener("pointerenter", showDetail);
+      button.addEventListener("click", () => {
+        const current = getSkillNodeAvailability(node, getCharacterProgress());
+        renderSkillDetail(document.getElementById("skill-detail-panel"), node, getCharacterProgress());
+        if (!current.canLearn) return;
+        if (unlockCharacterSkill(node.id)) {
+          requestAnimationFrame(() => document.querySelector(`.skill-node-button[data-node-id="${node.id}"]`)?.focus({ preventScroll: true }));
+        }
+      });
+      nodeStack.appendChild(button);
+    });
+    column.append(heading, nodeStack);
+    branchGrid.appendChild(column);
+  });
+  workspace.appendChild(branchGrid);
+  const detail = document.createElement("section");
+  detail.className = "skill-detail-panel";
+  detail.id = "skill-detail-panel";
+  detail.setAttribute("aria-live", "polite");
+  workspace.appendChild(detail);
+  grid.appendChild(workspace);
+  const firstNode = tree.branches[0]?.nodes[0];
+  if (firstNode) renderSkillDetail(detail, firstNode, profile);
+}
+
 document.getElementById("shop-reroll-btn").onclick = () => {
   clearShopAutoWaveTimer();
   const cost = getRerollCost();
@@ -6551,43 +7095,11 @@ document.getElementById("shop-next-wave-btn").onclick = advanceNextWave;
 function renderShopView() {
   const grid = document.getElementById("shop-items-grid");
   grid.innerHTML = "";
+  document.getElementById("shop-screen").dataset.tab = currentShopTab;
+  grid.classList.toggle("skill-tree-active", currentShopTab === "skills");
 
   if (currentShopTab === "skills") {
-    const profile = getCharacterProgress();
-    const tree = CHARACTER_SKILL_TREES?.characters?.[state.selected_char];
-    const summary = document.createElement("section");
-    summary.className = "choice-card shop-card skill-tree-summary";
-    summary.style.gridColumn = "1 / -1";
-    summary.innerHTML = `<div class="shop-meta"><span>KARAKTER GELİŞİMİ</span><span>KALICI · ${tree?.display_name_tr || CHARACTERS[state.selected_char].name}</span></div><h3 class="shop-title">Seviye ${profile.level} · ${profile.skill_points} yetenek puanı</h3><div class="shop-description">${profile.level >= 18 ? "Ustalık seviyesi tamamlandı." : `${profile.xp} / ${xpForNextCharacterLevel(profile.level)} XP · Düşmanları yen ve soruları doğru yanıtla.`} Yetenekler bu karaktere özeldir; her dalda uzmanlaşmak zorunda değilsin.</div><div class="shop-example">${state.skill_tree_notice || "Bir sonraki seviyede yeni bir yetenek puanı kazanırsın."}</div>`;
-    grid.appendChild(summary);
-    (tree?.branches || []).forEach(branch => {
-      const heading = document.createElement("section");
-      heading.className = "choice-card shop-card skill-branch-heading";
-      heading.style.gridColumn = "1 / -1";
-      const title = document.createElement("h3"); title.className = "shop-title"; title.textContent = branch.name_tr;
-      const desc = document.createElement("div"); desc.className = "shop-description"; desc.textContent = branch.description_tr;
-      heading.append(title, desc); grid.appendChild(heading);
-      branch.nodes.forEach(node => {
-        const owned = profile.unlocked_nodes.includes(node.id);
-        const missingPrereq = node.prerequisites.some(id => !profile.unlocked_nodes.includes(id));
-        const canBuy = !owned && !missingPrereq && profile.level >= node.required_level && profile.skill_points >= node.point_cost;
-        const card = document.createElement("article"); card.className = "choice-card shop-card skill-node";
-        const meta = document.createElement("div"); meta.className = "shop-meta";
-        const level = document.createElement("span"); level.textContent = `SEVİYE ${node.required_level}+`;
-        const cost = document.createElement("span"); cost.textContent = `${node.point_cost} PUAN`;
-        meta.append(level, cost);
-        const name = document.createElement("h3"); name.className = "shop-title"; name.textContent = node.name_tr;
-        const text = document.createElement("div"); text.className = "shop-description"; text.textContent = node.description_tr;
-        const actionRow = document.createElement("div"); actionRow.className = "shop-buy-row";
-        const status = document.createElement("span"); status.className = "shop-price";
-        status.textContent = owned ? "ÖĞRENİLDİ" : missingPrereq ? "ÖNCEKİ YETENEK GEREKLİ" : profile.level < node.required_level ? "SEVİYE BEKLENİYOR" : `${profile.skill_points} puanın var`;
-        const button = document.createElement("button"); button.className = "btn shop-buy"; button.type = "button";
-        button.textContent = owned ? "Kazanıldı" : "YETENEĞİ ÖĞREN"; button.disabled = !canBuy;
-        button.setAttribute("aria-label", `${node.name_tr}: ${owned ? "öğrenildi" : canBuy ? "öğren" : status.textContent}`);
-        if (canBuy) button.onclick = () => unlockCharacterSkill(node.id);
-        actionRow.append(status, button); card.append(meta, name, text, actionRow); grid.appendChild(card);
-      });
-    });
+    renderCharacterSkillTree(grid);
   } else if (currentShopTab === "premium") {
     const offers = INK_SHOP_DATA?.offers || [];
     const note = document.createElement("section"); note.className = "choice-card shop-card premium-store-note"; note.style.gridColumn = "1 / -1";
@@ -6621,14 +7133,17 @@ function renderShopView() {
       if (isRedemption) {
         card.classList.add("shop-redemption");
       }
+      const effectArt = c.stat === "max_hp" || c.stat === "heal" ? "health" : c.stat === "armor" ? "shield" : c.stat === "move_speed" || c.stat === "speed" || c.stat === "attack_speed" ? "speed" : c.stat === "crit_chance" || c.stat === "pierce" ? "quill" : c.stat === "ink_mult" ? "ink" : "cards";
+      card.dataset.effect = effectArt;
       card.innerHTML = `
         <div class="shop-meta">
           <span>${c.type} · ${c.level}</span>
           ${isRedemption ? '<span class="shop-review-mark">Pekiştirme</span>' : '<span>Kelime kartı</span>'}
         </div>
+        <div class="word-effect-art" aria-hidden="true"><img class="word-emblem" src="assets/ui/errata/shop-word-emblem.webp" alt=""><img class="word-effect-mark" src="assets/ui/icons/${effectArt}.svg" alt=""></div>
         <h3 class="shop-title">${c.word}</h3>
         <div class="shop-description">${c.description}</div>
-        <div class="shop-example">“${c.example || ''}”</div>
+        <div class="shop-example">${quizExampleRevealsTranslation(c) ? "" : `“${c.example || ''}”`}</div>
         <div class="shop-buy-row">
           <span class="shop-price">${c.shop_cost} <img class="ui-icon" src="assets/ui/icons/ink.svg" alt=""> mürekkep</span>
           <button class="btn shop-buy" id="card-buy-${idx}" ${state.ink_count < c.shop_cost ? "disabled" : ""}>${state.ink_count < c.shop_cost ? "Mürekkep yetersiz" : "Sınavı başlat"}</button>
@@ -6662,7 +7177,7 @@ function renderShopView() {
       card.innerHTML = `
         <div class="shop-meta"><span>Silah</span><span>Teçhizat</span></div>
         <div style="display: flex; align-items: center; gap: 8px; margin: 2px 0;">
-          <img src="assets/sprites/${w.sprite}" style="width: 32px; height: 32px; object-fit: contain;" alt="${w.name}">
+          <span class="weapon-illustration" aria-hidden="true" style="--atlas-x:${(Object.keys(WEAPONS_CATALOG).indexOf(wId) % 4) / 3 * 100}%;--atlas-y:${Math.floor(Object.keys(WEAPONS_CATALOG).indexOf(wId) / 4) / 3 * 100}%"></span>
           <h3 class="shop-title" style="min-width:0; overflow-wrap:anywhere;">${w.name}</h3>
         </div>
         <div class="shop-description">${w.desc}</div>
@@ -6681,6 +7196,7 @@ function renderShopView() {
           }
           syncWeapons();
           renderShopView();
+          showWeaponMergeHintOnce();
           updateShopTopBar();
           updateHUD();
         }
@@ -6794,7 +7310,17 @@ function applyArtifact(art) {
   });
 }
 
+function quizExampleRevealsTranslation(card) {
+  const meaning = String(card?.meaning_tr || "").normalize("NFKC").toLocaleLowerCase("tr-TR").replace(/\s+/g, " ").trim();
+  if (!meaning) return false;
+  const example = String(card?.example || "").normalize("NFKC").toLocaleLowerCase("tr-TR").replace(/\s+/g, " ").trim();
+  const escapedMeaning = meaning.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s+");
+  return new RegExp(`(^|[^\\p{L}\\p{N}])${escapedMeaning}(?=$|[^\\p{L}\\p{N}])`, "iu").test(example);
+}
+
 function openQuiz(card, cardIndex) {
+  clearShopAutoWaveTimer();
+
   // Ensure quick menu is closed
   toggleMobileQuickMenu(false);
 
@@ -6804,13 +7330,20 @@ function openQuiz(card, cardIndex) {
   syncMobileControlsVisibility();
 
   document.getElementById("quiz-word-title").textContent = `${card.word} [${card.type} • ${card.level}] · HEDEF ${state.learning_level}`;
+  const pronounceButton = document.getElementById("quiz-pronounce-btn");
+  if (pronounceButton) pronounceButton.onclick = () => speakGameText(card.word, { lang: "en-US", role: "word" });
+  speakGameText(card.word, { lang: "en-US", role: "word" });
   document.getElementById("quiz-question-text").textContent = card.question;
-  document.getElementById("quiz-buff-text").textContent = `${card.buff_name || "Kelime Buff’ı"} · ${card.description}\n${card.buff_meaning_link || `“${card.word}” kelimesinin anlamı buff’ının temasını belirliyor.`}`;
+  const buffText = document.getElementById("quiz-buff-text");
+  const exampleText = document.getElementById("quiz-example-text");
+  const exampleRevealsTranslation = quizExampleRevealsTranslation(card);
+  buffText.textContent = card.description || "Bu kart oyun içi niteliklerini geliştirir.";
   document.getElementById("quiz-warning-text").textContent = "Yanlış bıraktığın kelimeler boss turunda anlamlarına uygun düşman olarak geri döner.";
-  document.getElementById("quiz-example-text").textContent = `Örnek Metin: "${card.example || ''}"`;
+  exampleText.textContent = card.example && !exampleRevealsTranslation ? `Örnek Metin: "${card.example}"` : "";
 
   const resText = document.getElementById("quiz-result-text");
   resText.textContent = "";
+  delete resText.dataset.outcome;
 
   const continueBtn = document.getElementById("quiz-continue-btn");
   continueBtn.style.display = "none";
@@ -6829,7 +7362,12 @@ function openQuiz(card, cardIndex) {
     const btn = document.createElement("button");
     btn.className = "quiz-opt-btn";
     btn.setAttribute("type", "button");
-    btn.textContent = `${['A', 'B', 'C', 'D'][idx] || (idx + 1)}) ${item.text}`;
+    const answerKey = document.createElement("span");
+    answerKey.className = "quiz-answer-key";
+    answerKey.textContent = ['A', 'B', 'C', 'D'][idx] || String(idx + 1);
+    const answerCopy = document.createElement("span");
+    answerCopy.textContent = item.text;
+    btn.append(answerKey, answerCopy);
 
     const handleAnswer = (e) => {
       if (answered) return;
@@ -6838,6 +7376,9 @@ function openQuiz(card, cardIndex) {
         if (e.cancelable) e.preventDefault();
       }
       answered = true;
+      stopGameSpeech();
+      buffText.textContent = `${card.buff_name || "Kelime Buff’ı"} · ${card.description || "Oyun içi nitelik etkisi"}\n${card.buff_meaning_link || `“${card.word}” kelimesinin anlamı buff’ının temasını belirliyor.`}`;
+      if (exampleRevealsTranslation && card.example) exampleText.textContent = `Örnek Metin: "${card.example}"`;
 
       btn.classList.add("active-press");
       optsContainer.querySelectorAll(".quiz-opt-btn").forEach(b => {
@@ -6846,6 +7387,7 @@ function openQuiz(card, cardIndex) {
       });
 
       const isCorrect = item.originalIndex === card.correct_index;
+      resText.dataset.outcome = isCorrect ? "correct" : "incorrect";
       const learningFeedback = recordLearningAnswer(isCorrect);
 
       if (card.id && !state.asked_question_ids.includes(card.id)) {
@@ -6950,6 +7492,7 @@ function openQuiz(card, cardIndex) {
       if (e.cancelable) e.preventDefault();
     }
     triggerHaptic("light");
+    stopGameSpeech();
     modal.style.display = "none";
     modal.classList.add("hidden");
     renderShopView();
@@ -7021,6 +7564,88 @@ function triggerSynergyBanner(name, desc) {
 // =========================================
 // 14. INVENTORY MODAL & COMBINE VIEW
 // =========================================
+let inventoryMergeSelection = [];
+let weaponMergeHintSeenThisPage = false;
+
+function getMaximumWeaponTier() {
+  return Math.max(...Object.keys(TIER_MULTIPLIERS).map(Number).filter(Number.isFinite));
+}
+
+function getInventoryWeaponLocation(item) {
+  const activeIndex = state.equipped_weapons.indexOf(item);
+  if (activeIndex >= 0) return { collection: state.equipped_weapons, kind: "equipped", index: activeIndex };
+  const reserveIndex = state.reserve_weapons.indexOf(item);
+  if (reserveIndex >= 0) return { collection: state.reserve_weapons, kind: "reserve", index: reserveIndex };
+  return null;
+}
+
+function canMergeInventoryWeaponPair(first, second) {
+  const maximumTier = getMaximumWeaponTier();
+  return !!first && !!second && first !== second
+    && !!WEAPONS_CATALOG[first.id]
+    && first.id === second.id
+    && Number.isInteger(first.tier) && first.tier >= 1 && first.tier < maximumTier
+    && first.tier === second.tier
+    && !!getInventoryWeaponLocation(first)
+    && !!getInventoryWeaponLocation(second);
+}
+
+function isInventoryWeaponMergeSelectable(item, allWeapons) {
+  const maximumTier = getMaximumWeaponTier();
+  return !!item && !!WEAPONS_CATALOG[item.id]
+    && Number.isInteger(item.tier) && item.tier >= 1 && item.tier < maximumTier
+    && allWeapons.filter(other => other.id === item.id && other.tier === item.tier).length >= 2;
+}
+
+function mergeInventoryWeaponPair(first, second) {
+  if (!canMergeInventoryWeaponPair(first, second)) return false;
+  const firstLocation = getInventoryWeaponLocation(first);
+  const secondLocation = getInventoryWeaponLocation(second);
+  if (!firstLocation || !secondLocation) return false;
+
+  const activeBefore = state.equipped_weapons[state.active_weapon_index] || null;
+  const target = activeBefore === first || activeBefore === second
+    ? activeBefore
+    : firstLocation.kind === "equipped" ? first
+      : secondLocation.kind === "equipped" ? second : first;
+  const consumed = target === first ? second : first;
+  const consumedLocation = getInventoryWeaponLocation(consumed);
+  if (!consumedLocation) return false;
+
+  // Mutate only the retained entry; this preserves any weapon-specific data.
+  target.tier += 1;
+  consumedLocation.collection.splice(consumedLocation.index, 1);
+
+  // Keep the same active weapon selected, even when removing an earlier slot.
+  const preservedActiveIndex = activeBefore ? state.equipped_weapons.indexOf(activeBefore) : -1;
+  const upgradedIndex = state.equipped_weapons.indexOf(target);
+  if (preservedActiveIndex >= 0) state.active_weapon_index = preservedActiveIndex;
+  else if (upgradedIndex >= 0) state.active_weapon_index = upgradedIndex;
+  else state.active_weapon_index = Math.max(0, Math.min(state.active_weapon_index, state.equipped_weapons.length - 1));
+  if (!state.equipped_weapons.length) state.active_weapon_index = 0;
+  return true;
+}
+
+function showWeaponMergeHintOnce() {
+  const storageKey = "lexicon_weapon_merge_hint_seen_v1";
+  if (weaponMergeHintSeenThisPage) return;
+  try {
+    if (localStorage.getItem(storageKey) === "1") { weaponMergeHintSeenThisPage = true; return; }
+    localStorage.setItem(storageKey, "1");
+  } catch (_) {
+    weaponMergeHintSeenThisPage = true;
+  }
+  weaponMergeHintSeenThisPage = true;
+  const grid = document.getElementById("shop-items-grid");
+  if (!grid || currentShopTab !== "weapons") return;
+  const hint = document.createElement("div");
+  hint.className = "weapon-merge-hint";
+  hint.setAttribute("role", "status");
+  hint.setAttribute("aria-live", "polite");
+  hint.textContent = "Aynı silahın aynı seviyedeki iki kopyasını Envanterde birleştirerek geliştirebilirsin.";
+  grid.prepend(hint);
+}
+
 function renderInventoryView() {
   const weaponsPanel = document.getElementById("inventory-weapons-panel");
   const gadgetsPanel = document.getElementById("inventory-gadgets-panel");
@@ -7071,6 +7696,29 @@ function renderInventoryView() {
   }
   const activeContainer = document.getElementById("inv-active-slots");
   const reserveContainer = document.getElementById("inv-reserve-slots");
+  const allWeapons = state.equipped_weapons.concat(state.reserve_weapons);
+  inventoryMergeSelection = inventoryMergeSelection.filter(item =>
+    getInventoryWeaponLocation(item) && isInventoryWeaponMergeSelectable(item, allWeapons));
+  const createMergePicker = item => {
+    if (!isInventoryWeaponMergeSelectable(item, allWeapons)) return null;
+    const selected = inventoryMergeSelection.includes(item);
+    const weapon = WEAPONS_CATALOG[item.id];
+    const tier = TIER_MULTIPLIERS[item.tier];
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "btn inv-merge-pick";
+    button.textContent = selected ? "Seçildi ✓" : "Birleşim için seç";
+    button.setAttribute("aria-pressed", String(selected));
+    button.setAttribute("aria-label", `${weapon.name}, ${tier.name}. ${selected ? "Seçimi kaldır" : "Birleştirmek için seç"}`);
+    button.addEventListener("click", () => {
+      const selectedIndex = inventoryMergeSelection.indexOf(item);
+      if (selectedIndex >= 0) inventoryMergeSelection.splice(selectedIndex, 1);
+      else if (inventoryMergeSelection.length < 2) inventoryMergeSelection.push(item);
+      else inventoryMergeSelection = [item];
+      renderInventoryView();
+    });
+    return button;
+  };
   activeContainer.innerHTML = "";
   reserveContainer.innerHTML = "";
 
@@ -7098,6 +7746,8 @@ function renderInventoryView() {
           updateHUD();
         }
       };
+      const mergePicker = createMergePicker(item);
+      if (mergePicker) box.appendChild(mergePicker);
     } else {
       box.innerHTML = `<span style="font-size: 11px; color: #78350f;">[BOŞ YUVA ${i + 1}]</span>`;
     }
@@ -7130,63 +7780,102 @@ function renderInventoryView() {
       renderInventoryView();
       updateHUD();
     };
+    const mergePicker = createMergePicker(item);
+    if (mergePicker) box.appendChild(mergePicker);
     reserveContainer.appendChild(box);
   });
 
-  // Check Combinable weapons
-  const allWeapons = state.equipped_weapons.concat(state.reserve_weapons);
+  // Keep the automatic action as a fallback, and let the player choose a pair.
   let canCombine = null;
-  for (let i = 0; i < allWeapons.length; i++) {
+  for (let i = 0; i < allWeapons.length && !canCombine; i++) {
     for (let j = i + 1; j < allWeapons.length; j++) {
-      if (allWeapons[i].id === allWeapons[j].id && allWeapons[i].tier === allWeapons[j].tier && allWeapons[i].tier < 4) {
-        canCombine = { id: allWeapons[i].id, tier: allWeapons[i].tier };
+      if (canMergeInventoryWeaponPair(allWeapons[i], allWeapons[j])) {
+        canCombine = { first: allWeapons[i], second: allWeapons[j] };
         break;
       }
     }
-    if (canCombine) break;
   }
+
+  let forge = document.getElementById("inv-forge-controls");
+  if (!forge) {
+    forge = document.createElement("section");
+    forge.id = "inv-forge-controls";
+    forge.className = "inventory-forge";
+    forge.setAttribute("aria-label", "Silah birleştirme");
+    activeContainer.after(forge);
+  }
+  forge.replaceChildren();
+  const forgeCopy = document.createElement("div");
+  forgeCopy.className = "inventory-forge-copy";
+  const forgeTitle = document.createElement("strong");
+  forgeTitle.textContent = "Silahları elle birleştir";
+  const forgeInstruction = document.createElement("p");
+  forgeInstruction.textContent = "Aynı silah ve seviyedeki iki kopyayı seç.";
+  const forgeStatus = document.createElement("p");
+  forgeStatus.id = "inv-merge-status";
+  forgeStatus.setAttribute("role", "status");
+  forgeStatus.setAttribute("aria-live", "polite");
+  const selectedPair = inventoryMergeSelection.length === 2 ? inventoryMergeSelection : null;
+  const selectedPairValid = !!selectedPair && canMergeInventoryWeaponPair(selectedPair[0], selectedPair[1]);
+  if (selectedPairValid) {
+    const weapon = WEAPONS_CATALOG[selectedPair[0].id];
+    const currentTier = TIER_MULTIPLIERS[selectedPair[0].tier];
+    const nextTier = TIER_MULTIPLIERS[selectedPair[0].tier + 1];
+    forgeStatus.textContent = `2/2 · ${weapon.name} · ${currentTier.name} → ${nextTier.name}`;
+  } else if (inventoryMergeSelection.length === 1) {
+    const selected = inventoryMergeSelection[0];
+    forgeStatus.textContent = `1/2 · ${WEAPONS_CATALOG[selected.id].name} · ${TIER_MULTIPLIERS[selected.tier].name}. Eşleşen ikinci kopyayı seç.`;
+  } else if (inventoryMergeSelection.length === 2) {
+    forgeStatus.textContent = "Seçilen iki kopya aynı silah ve seviyede olmalı.";
+  } else if (canCombine) {
+    forgeStatus.textContent = "Birleştirmek için iki eşleşen silah yuvasını seç.";
+  } else {
+    forgeStatus.textContent = "Birleştirmek için aynı silahın aynı seviyede iki kopyası gerekir.";
+  }
+  forgeCopy.append(forgeTitle, forgeInstruction, forgeStatus);
+  const forgeActions = document.createElement("div");
+  forgeActions.className = "inventory-forge-actions";
+  const manualCombineBtn = document.createElement("button");
+  manualCombineBtn.type = "button";
+  manualCombineBtn.id = "inv-manual-combine-btn";
+  manualCombineBtn.className = "btn btn-seal";
+  manualCombineBtn.disabled = !selectedPairValid;
+  if (selectedPairValid) {
+    const nextTier = TIER_MULTIPLIERS[selectedPair[0].tier + 1];
+    manualCombineBtn.textContent = `2 silah → ${nextTier.name}`;
+    manualCombineBtn.setAttribute("aria-label", `${WEAPONS_CATALOG[selectedPair[0].id].name}: seçili iki silahı ${nextTier.name} seviyesine yükselt`);
+  } else {
+    manualCombineBtn.textContent = "2 eşleşen silah seç";
+    manualCombineBtn.setAttribute("aria-label", "Birleştirmek için aynı silah ve seviyede iki kopya seç");
+  }
+  manualCombineBtn.addEventListener("click", () => {
+    const pair = inventoryMergeSelection.slice(0, 2);
+    if (pair.length !== 2 || !mergeInventoryWeaponPair(pair[0], pair[1])) {
+      const status = document.getElementById("inv-merge-status");
+      if (status) status.textContent = "Birleştirme yapılamadı. İki aynı silahı aynı seviyeden seç.";
+      return;
+    }
+    inventoryMergeSelection = [];
+    sounds.quizSuccess();
+    syncWeapons();
+    renderInventoryView();
+    updateHUD();
+  });
+  forgeActions.appendChild(manualCombineBtn);
+  forge.append(forgeCopy, forgeActions);
 
   const combineBtn = document.getElementById("inv-combine-btn");
   if (canCombine) {
+    const weapon = WEAPONS_CATALOG[canCombine.first.id];
+    const nextTier = TIER_MULTIPLIERS[canCombine.first.tier + 1];
     combineBtn.style.display = "inline-flex";
-    combineBtn.textContent = `[${WEAPONS_CATALOG[canCombine.id].name.split(" ")[0]}] BİRLEŞTİR → ${TIER_MULTIPLIERS[canCombine.tier + 1].name}`;
+    combineBtn.classList.add("inv-auto-combine");
+    combineBtn.textContent = "Otomatik birleştir";
+    combineBtn.setAttribute("aria-label", `Otomatik olarak uygun ${weapon.name} çiftini ${nextTier.name} seviyesine yükselt`);
+    combineBtn.title = `${weapon.name} · ${nextTier.name}`;
     combineBtn.onclick = () => {
-      // Find and merge
-      let foundFirst = false;
-      let targetTier = canCombine.tier;
-      // Search active
-      for (let i = state.equipped_weapons.length - 1; i >= 0; i--) {
-        if (state.equipped_weapons[i].id === canCombine.id && state.equipped_weapons[i].tier === targetTier) {
-          if (!foundFirst) {
-            state.equipped_weapons[i].tier++;
-            foundFirst = true;
-          } else {
-            state.equipped_weapons.splice(i, 1);
-            break;
-          }
-        }
-      }
-      if (!foundFirst) {
-        for (let i = state.reserve_weapons.length - 1; i >= 0; i--) {
-          if (state.reserve_weapons[i].id === canCombine.id && state.reserve_weapons[i].tier === targetTier) {
-            if (!foundFirst) {
-              state.reserve_weapons[i].tier++;
-              foundFirst = true;
-            } else {
-              state.reserve_weapons.splice(i, 1);
-              break;
-            }
-          }
-        }
-      } else {
-        // Also remove second if in reserve
-        for (let i = state.reserve_weapons.length - 1; i >= 0; i--) {
-          if (state.reserve_weapons[i].id === canCombine.id && state.reserve_weapons[i].tier === targetTier) {
-            state.reserve_weapons.splice(i, 1);
-            break;
-          }
-        }
-      }
+      if (!mergeInventoryWeaponPair(canCombine.first, canCombine.second)) return;
+      inventoryMergeSelection = [];
       sounds.quizSuccess();
       syncWeapons();
       renderInventoryView();
@@ -7194,6 +7883,7 @@ function renderInventoryView() {
     };
   } else {
     combineBtn.style.display = "none";
+    combineBtn.onclick = null;
   }
 
   // Summary stats
@@ -7218,14 +7908,17 @@ function updateHUD() {
   setHUDText("hp-text", `${Math.round(state.hp)} / ${Math.round(state.max_hp)} HP`);
   const biomeName = state.current_wave < 26 ? "KÜTÜPHANE" : state.current_wave < 51 ? "DEHLİZ" : state.current_wave < 76 ? "GÖZLEMEVİ" : "SON SAYFA";
   const compactHud = window.innerWidth <= 700;
-  setHUDText("timer-badge", compactHud
-    ? `TUR ${state.current_wave} / 100 · ${Math.ceil(state.wave_time_left)}s`
-    : `${biomeName} · ${state.current_wave} / 100 · ${Math.ceil(state.wave_time_left)}s`);
+  if (window.ErrataHUD) {
+    window.ErrataHUD.updateTimer(biomeName, state.current_wave, Math.ceil(state.wave_time_left));
+    window.ErrataHUD.updateRoute(state.current_wave);
+  } else setHUDText("timer-badge", `${biomeName} · ${state.current_wave} / 100 · ${Math.ceil(state.wave_time_left)}s`);
   const progressFill = document.getElementById("archive-progress-fill");
   const archiveVolume = document.getElementById("archive-progress-volume");
   const progress = Math.max(0, Math.min(1, (state.current_wave - 1) / 99));
   if (progressFill) progressFill.style.transform = `scaleX(${progress})`;
-  document.getElementById("archive-progress-track")?.setAttribute("aria-valuenow", String(state.current_wave));
+  const progressTrack = document.getElementById("archive-progress-track");
+  const progressValue = String(state.current_wave);
+  if (progressTrack && progressTrack.getAttribute("aria-valuenow") !== progressValue) progressTrack.setAttribute("aria-valuenow", progressValue);
   if (archiveVolume) setHUDText("archive-progress-volume", `CİLT ${["I", "II", "III", "IV"][Math.min(3, Math.floor((state.current_wave - 1) / 25))]}`);
   setHUDText("archive-progress-value", `${String(state.current_wave).padStart(2, "0")} / 100`);
   setHUDText("ink-value", state.ink_count);
@@ -7234,12 +7927,13 @@ function updateHUD() {
   const c = CHARACTERS[state.selected_char];
   const d = DIFFICULTIES[state.difficulty];
   const profile = getCharacterProgress();
-  setHUDText("char-diff-info", `${c.name} · ${d.name} · ${state.learning_level} · LV ${profile.level}${profile.skill_points ? ` · ${profile.skill_points} P` : ""}`);
+  setHUDText("char-diff-info", `${c.name} · ${d.name} · ${state.learning_level} · Sv. ${profile.level}${profile.skill_points ? ` · ${profile.skill_points} puan` : ""}`);
   const heroPortrait = document.getElementById("hero-hud-portrait");
   if (heroPortrait) {
     const portraitPath = `assets/sprites/${c.sprite}`;
     if (heroPortrait.getAttribute("src") !== portraitPath) heroPortrait.src = portraitPath;
-    heroPortrait.alt = `${c.name} portresi`;
+    const portraitLabel = `${c.name} portresi`;
+    if (heroPortrait.alt !== portraitLabel) heroPortrait.alt = portraitLabel;
   }
 
   // Slotted weapons preview
@@ -7367,13 +8061,15 @@ function render(dt = 1 / 60) {
   const cx = canvas.width / 2;
   const cy = canvas.height / 2;
   const p = state.player;
-  const reducedEffects = adaptiveCanvasScale <= 0.84;
+  const arenaFlags = window.ErrataArena?.flags || {};
+  const reducedMotion = !!arenaFlags.reducedMotion;
+  const reducedEffects = adaptiveCanvasScale <= 0.84 || !!arenaFlags.lowEffects;
 
   ctx.save();
 
   // Screen shake impact
   let shakeX = 0, shakeY = 0;
-  if (state.screen_shake > 0) {
+  if (state.screen_shake > 0 && !reducedMotion) {
     shakeX = (Math.random() - 0.5) * state.shake_intensity;
     shakeY = (Math.random() - 0.5) * state.shake_intensity;
   }
@@ -7435,28 +8131,32 @@ function render(dt = 1 / 60) {
   // a high-contrast repeating tile beneath the characters.
   ctx.fillStyle = "#0a0e0c";
   ctx.fillRect(-ARENA_LAYOUT.width / 2, -ARENA_LAYOUT.height / 2, ARENA_LAYOUT.width, ARENA_LAYOUT.height);
-  const frameImg = images[frameSprite];
-  if (frameImg) {
+  const hasErrataRoom = window.ErrataArena?.drawRoom?.(ctx, state.current_wave, ARENA_LAYOUT.width, ARENA_LAYOUT.height, ARENA_LAYOUT) || false;
+  const roomArt = window.ErrataArena?.room?.(state.current_wave);
+  const roomFailed = !window.ErrataArena?.drawRoom || !roomArt || (!!roomArt.complete && !roomArt.naturalWidth);
+  const frameImg = hasErrataRoom || !roomFailed ? null : getLegacyArenaFrame(frameSprite);
+  if (!hasErrataRoom && frameImg) {
     // The library is one fixed room in world space; its frame no longer follows
     // the camera, and sprite extents stay inside the visible shelf line.
     ctx.drawImage(frameImg, -ARENA_LAYOUT.width / 2, -ARENA_LAYOUT.height / 2, ARENA_LAYOUT.width, ARENA_LAYOUT.height);
   }
 
   // Central Double-Rotating Magical Rune Circle
-  state.rune_rotation += 0.003;
+  if (!hasErrataRoom && !reducedMotion) state.rune_rotation += 0.003;
+  const runeRotation = reducedMotion ? 0 : state.rune_rotation;
   const runeImg = images[runeSprite] || images["magical_rune_circle.png"];
-  if (runeImg) {
+  if (!hasErrataRoom && runeImg) {
     ctx.save();
     ctx.translate(0, 0);
-    ctx.rotate(state.rune_rotation);
-    ctx.globalAlpha = 0.30 + Math.sin(state.rune_rotation * 4) * 0.05;
+    ctx.rotate(runeRotation);
+    ctx.globalAlpha = reducedMotion ? 0.30 : 0.30 + Math.sin(runeRotation * 4) * 0.05;
     ctx.drawImage(runeImg, -210, -210, 420, 420);
     ctx.restore();
 
     // Inner counter-rotating magical glyph core
     ctx.save();
     ctx.translate(0, 0);
-    ctx.rotate(-state.rune_rotation * 1.5);
+    ctx.rotate(-runeRotation * 1.5);
     ctx.globalAlpha = 0.18;
     ctx.drawImage(runeImg, -110, -110, 220, 220);
     ctx.restore();
@@ -7464,26 +8164,27 @@ function render(dt = 1 / 60) {
 
   const now = performance.now();
   // Three reusable archive mechanisms sit on the inner aisles and reset once
-  // per wave; hand-drawn SVG sprites keep their silhouettes crisp at any zoom.
+  // per wave; the new painted structures share the actual interaction anchor.
   state.arena_interactables.forEach(object => {
     if (!isInRenderViewport(object.x, object.y, 90)) return;
     const color = object.id === "ink_well" ? "#78d6c7" : object.id === "resonance_bell" ? "#e5c477" : "#b9a2fa";
-    const alpha = object.used ? 0.25 : 0.84;
-    const pulse = object.used ? 1 : 1 + Math.sin(now / 240 + object.x) * 0.08;
+    const alpha = object.used ? 0.55 : 1;
+    const pulse = object.used || reducedMotion ? 1 : 1 + Math.sin(now / 240 + object.x) * 0.08;
     ctx.save();
     ctx.translate(object.x, object.y);
     ctx.globalAlpha = object.used ? 0.20 : 0.52;
     ctx.strokeStyle = color;
     ctx.fillStyle = `${color}18`;
     ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.ellipse(0, 22, 49 * pulse, 19 * pulse, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.ellipse(0, 0, 43 * pulse, 14 * pulse, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     ctx.globalAlpha = 1;
-    ctx.translate(38, 8);
     ctx.globalAlpha = alpha;
     ctx.shadowColor = color;
-    ctx.shadowBlur = object.used ? 0 : 8;
+    ctx.shadowBlur = 0;
     const sprite = images[object.sprite];
-    if (sprite?.complete && sprite.naturalWidth > 0) ctx.drawImage(sprite, -48, -62, 96, 112);
+    const painted = window.ErrataArena?.drawStructure?.(ctx,object.id) || false;
+    if (painted) { /* The painted stone foot is anchored at object.x / object.y. */ }
+    else if (sprite?.complete && sprite.naturalWidth > 0) ctx.drawImage(sprite, -48, -100, 96, 112);
     else {
       ctx.fillStyle = "#29352e"; ctx.strokeStyle = color; ctx.lineWidth = 2;
       ctx.beginPath(); ctx.roundRect(-19, -20, 38, 48, 7); ctx.fill(); ctx.stroke();
@@ -7505,7 +8206,7 @@ function render(dt = 1 / 60) {
 
     // Dancing flame particles
     for (let f = 0; f < 2; f++) {
-      const fAngle = now * 0.005 + idx * 1.5 + f * 2.1;
+      const fAngle = reducedMotion ? idx * 1.5 + f * 2.1 : now * 0.005 + idx * 1.5 + f * 2.1;
       const fOffset = Math.sin(fAngle) * 4;
       const fRadius = 4.5 + Math.sin(fAngle * 2) * 2;
       ctx.fillStyle = brazierFlameColor + (0.75 + Math.sin(fAngle) * 0.25) + ")";
@@ -7521,13 +8222,20 @@ function render(dt = 1 / 60) {
       if (tg.is_laser) {
         ctx.save();
         const pProg = Math.max(0, tg.timer / (tg.max_timer || 0.75));
-        ctx.strokeStyle = tg.color || `rgba(255, 40, 40, ${0.45 + (1 - pProg) * 0.5})`;
-        ctx.globalAlpha = 0.4 + (1 - pProg) * 0.55;
-        ctx.lineWidth = 3.5 + (1 - pProg) * 3;
-        ctx.setLineDash([14, 8]);
+        const lineWidth = 3.5 + (1 - pProg) * 3;
+        ctx.globalAlpha = 0.92;
         ctx.beginPath();
         ctx.moveTo(tg.x1, tg.y1);
         ctx.lineTo(tg.x2, tg.y2);
+        ctx.strokeStyle = "#180e12";
+        ctx.lineWidth = lineWidth + 4;
+        ctx.stroke();
+        ctx.setLineDash([14, 8]);
+        ctx.strokeStyle = "#f0d7bd";
+        ctx.lineWidth = lineWidth + 1.5;
+        ctx.stroke();
+        ctx.strokeStyle = tg.color || "#de6157";
+        ctx.lineWidth = Math.max(2, lineWidth - 1.5);
         ctx.stroke();
         ctx.restore();
       } else {
@@ -7545,7 +8253,7 @@ function render(dt = 1 / 60) {
           ctx.beginPath(); ctx.arc(0, 0, tg.radius, 0, Math.PI * 2); ctx.stroke();
           ctx.setLineDash([]);
           for (let mark = 0; mark < 8; mark++) {
-            const a = mark * Math.PI / 4 + performance.now() * 0.0003;
+            const a = mark * Math.PI / 4 + (reducedMotion ? 0 : performance.now() * 0.0003);
             const inner = tg.radius * 0.82, outer = tg.radius * 0.96;
             ctx.beginPath(); ctx.moveTo(Math.cos(a) * inner, Math.sin(a) * inner);
             ctx.lineTo(Math.cos(a) * outer, Math.sin(a) * outer); ctx.stroke();
@@ -7556,7 +8264,7 @@ function render(dt = 1 / 60) {
             const sigilSize = Math.min(300, Math.max(52, tg.radius * 1.55));
             ctx.save();
             ctx.globalAlpha = 0.38 + (1 - pProg) * 0.32;
-            if (tg.kind !== "split") ctx.rotate(now * (tg.kind === "void_bloom" ? 0.00016 : -0.00012));
+            if (tg.kind !== "split" && !reducedMotion) ctx.rotate(now * (tg.kind === "void_bloom" ? 0.00016 : -0.00012));
             ctx.drawImage(sigil, -sigilSize / 2, -sigilSize / 2, sigilSize, sigilSize);
             ctx.restore();
           }
@@ -7587,7 +8295,7 @@ function render(dt = 1 / 60) {
 
   // Motes
   let moteIndex = 0;
-  state.ambient_motes.forEach(m => {
+  if (!reducedMotion && !reducedEffects) state.ambient_motes.forEach(m => {
     if (reducedEffects && (moteIndex++ % 2) === 1) return;
     if (!isInRenderViewport(m.x, m.y, m.radius)) return;
     ctx.save();
@@ -7625,6 +8333,7 @@ function render(dt = 1 / 60) {
   // Ink drops
   state.ink_drops.forEach(drop => {
     if (!isInRenderViewport(drop.x, drop.y, 14)) return;
+    if (window.ErrataMotion?.drawPickup(ctx,"ink",drop,now,reducedEffects || state.ink_drops.length > 100)) return;
     if (images["ink_drop.png"]) {
       ctx.drawImage(images["ink_drop.png"], drop.x - 10, drop.y - 10, 20, 20);
     } else {
@@ -7636,9 +8345,10 @@ function render(dt = 1 / 60) {
   // Health drops (Şifa Parşömeni)
   state.health_drops.forEach(drop => {
     if (!isInRenderViewport(drop.x, drop.y, 20)) return;
+    if (window.ErrataMotion?.drawPickup(ctx,"health",drop,now,reducedEffects)) return;
     ctx.save();
     ctx.translate(drop.x, drop.y);
-    const pulse = 1.0 + Math.sin(Date.now() * 0.007) * 0.18;
+    const pulse = reducedMotion ? 1 : 1.0 + Math.sin(Date.now() * 0.007) * 0.18;
     ctx.scale(pulse, pulse);
     ctx.fillStyle = "rgba(34, 197, 94, 0.35)";
     ctx.beginPath();
@@ -7838,23 +8548,27 @@ function render(dt = 1 / 60) {
       return;
     }
 
+    if (!reducedEffects && window.ErrataArena?.drawShadow) {
+      window.ErrataArena.drawShadow(ctx, e.x, e.y, e.size || 36);
+    }
     ctx.save();
     ctx.translate(e.x, e.y);
 
     if (e.is_boss) {
-      const pulse = 1 + Math.sin(performance.now() * (e.boss_phase === 3 ? 0.009 : 0.005) + (e.boss_phase || 1)) * 0.035;
+      const pulse = reducedMotion ? 1 : 1 + Math.sin(performance.now() * (e.boss_phase === 3 ? 0.009 : 0.005) + (e.boss_phase || 1)) * 0.035;
       const radius = (e.size || 66) * 0.9 * pulse;
       ctx.save();
       ctx.globalAlpha = e.boss_phase === 3 ? 0.72 : 0.45;
       ctx.strokeStyle = e.boss_color || "#d95858";
       ctx.shadowColor = e.boss_color || "#d95858";
-      ctx.shadowBlur = e.boss_phase === 3 ? 22 : 12;
+      ctx.shadowBlur = reducedEffects ? 0 : (e.boss_phase === 3 ? 22 : 12);
       ctx.lineWidth = e.boss_phase === 3 ? 3.5 : 2.3;
       ctx.setLineDash([Math.max(8, radius * 0.25), Math.max(6, radius * 0.14)]);
-      ctx.beginPath(); ctx.arc(0, 0, radius, performance.now() * -0.00042, Math.PI * 2 + performance.now() * -0.00042); ctx.stroke();
+      const sealRotation = reducedMotion ? 0 : performance.now() * -0.00042;
+      ctx.beginPath(); ctx.arc(0, 0, radius, sealRotation, Math.PI * 2 + sealRotation); ctx.stroke();
       ctx.setLineDash([]);
       for (let seal = 0; seal < 3; seal++) {
-        const a = performance.now() * (seal % 2 ? 0.0011 : -0.0014) + seal * Math.PI * 2 / 3;
+        const a = (reducedMotion ? 0 : performance.now() * (seal % 2 ? 0.0011 : -0.0014)) + seal * Math.PI * 2 / 3;
         const sx = Math.cos(a) * radius, sy = Math.sin(a) * radius;
         ctx.fillStyle = "#f2dfb0"; ctx.beginPath(); ctx.arc(sx, sy, e.boss_phase === 3 ? 4.5 : 3.5, 0, Math.PI * 2); ctx.fill();
       }
@@ -7864,7 +8578,7 @@ function render(dt = 1 / 60) {
     // Enraged Boss Aura
     if (e.enraged) {
       ctx.shadowColor = "#ef4444";
-      ctx.shadowBlur = 22;
+      ctx.shadowBlur = reducedEffects ? 0 : 22;
       ctx.fillStyle = "rgba(239, 68, 68, 0.28)";
       ctx.beginPath();
       ctx.arc(0, 0, (e.size || 60) * 0.75, 0, Math.PI * 2);
@@ -7873,7 +8587,8 @@ function render(dt = 1 / 60) {
 
     if (e.facing_left) ctx.scale(-1, 1);
 
-    const spr = images[e.sprite] || images[BOSS_SPRITE_FALLBACKS[e.sprite]] || images[e.type === "Red Pen Boss" ? "red_pen_boss.png" : e.type === "Lexicon Dragon Boss" ? "lexicon_dragon_boss.png" : ""];
+    const paintedEnemy = window.ErrataMotion?.enemyFrame(e.sprite, performance.now(), e.x * 0.013 + e.y * 0.007);
+    const spr = paintedEnemy || images[e.sprite] || images[BOSS_SPRITE_FALLBACKS[e.sprite]] || images[e.type === "Red Pen Boss" ? "red_pen_boss.png" : e.type === "Lexicon Dragon Boss" ? "lexicon_dragon_boss.png" : ""];
     const sz = e.size || 36;
     const spriteSize = sz * 1.55;
     if (spr) {
@@ -7890,7 +8605,8 @@ function render(dt = 1 / 60) {
         const compress = Math.max(windup * 0.095, release * 0.055, recoil * 0.10);
         ctx.scale(1 + compress, 1 - compress * 0.72);
       }
-      if (e.hit_flash_timer > 0) ctx.filter = `brightness(${1 + Math.min(1.6, e.hit_flash_timer * 14)}) saturate(0.72)`;
+      if (e.hit_flash_timer > 0 && !reducedEffects) ctx.filter = `brightness(${1 + Math.min(1.6, e.hit_flash_timer * 14)}) saturate(0.72)`;
+      if (paintedEnemy) ctx.imageSmoothingEnabled = true;
       ctx.drawImage(spr, -spriteSize / 2, -spriteSize / 2, spriteSize, spriteSize);
       ctx.filter = "none";
       ctx.restore();
@@ -7910,7 +8626,7 @@ function render(dt = 1 / 60) {
       ctx.strokeStyle = "#ffd700";
       ctx.lineWidth = 3.5;
       ctx.shadowColor = "#ffd700";
-      ctx.shadowBlur = 8;
+      ctx.shadowBlur = reducedEffects ? 0 : 8;
       ctx.beginPath();
       ctx.arc(0, 0, sz * 0.68, -Math.PI * 0.45, Math.PI * 0.45);
       ctx.stroke();
@@ -7931,7 +8647,9 @@ function render(dt = 1 / 60) {
     if (e.is_mistake_echo) {
       const frame = images["upgrade_v1/word_echo/word_echo_title_frame.svg"];
       const text = String(e.memory_word || e.label || "?");
-      const plateWidth = Math.max(122, Math.min(190, ctx.measureText(text).width + 38));
+      ctx.save();
+      ctx.font = "600 12px 'IBM Plex Sans', sans-serif";
+      const plateWidth = Math.max(140, Math.min(230, ctx.measureText(text).width + 38));
       const plateHeight = plateWidth * 0.30;
       const plateX = e.x - plateWidth / 2;
       const plateY = e.y - (e.size || 32) * 0.95 - plateHeight;
@@ -7944,9 +8662,7 @@ function render(dt = 1 / 60) {
               : /synonym|antonym|anlam|eş|zit/.test(category) ? "echo_mark_mirror.svg" : "echo_mark_quill.svg";
       const mark = images[`upgrade_v1/word_echo/${markKey}`];
       if (mark) ctx.drawImage(mark, e.x - 11, e.y + (e.size || 32) * 0.34, 22, 22);
-      const fontSize = Math.max(8, Math.min(11, 145 / Math.max(1, ctx.measureText(text).width) * 11));
-      ctx.save();
-      ctx.font = `700 ${fontSize}px 'IBM Plex Mono', monospace`;
+      ctx.font = "600 12px 'IBM Plex Sans', sans-serif";
       ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.lineJoin = "round";
       ctx.lineWidth = 3; ctx.strokeStyle = "#111714"; ctx.fillStyle = "#f2e7cf";
       ctx.strokeText(text, e.x, plateY + plateHeight * 0.51, plateWidth - 28);
@@ -7956,21 +8672,21 @@ function render(dt = 1 / 60) {
 
     if ((e.is_boss || e.is_elite) && !e.is_mistake_echo && Math.hypot(e.x - state.player.x, e.y - state.player.y) < 520 && enemyLabelBoxes.length < 5) {
       const label = e.is_boss
-        ? (e.type === "Lexicon Dragon Boss" ? "LEKSİKON EJDERHASI" : "KIRMIZI KALEM")
+        ? (e.label || (e.type === "Lexicon Dragon Boss" ? "LEKSİKON EJDERHASI" : e.type === "Red Pen Boss" ? "KIRMIZI KALEM" : e.type))
         : (e.label || "ELİT DÜŞMAN");
-      ctx.font = "500 9px 'IBM Plex Mono', monospace";
+      ctx.font = "600 12px 'IBM Plex Sans', sans-serif";
       ctx.textAlign = "center";
-      const labelWidth = Math.min(156, ctx.measureText(label).width);
+      const labelWidth = Math.min(178, ctx.measureText(label).width);
       const labelY = e.y - (e.size / 2) - 14;
-      const box = { left: e.x - labelWidth / 2 - 5, right: e.x + labelWidth / 2 + 5, top: labelY - 10, bottom: labelY + 4 };
+      const box = { left: e.x - labelWidth / 2 - 5, right: e.x + labelWidth / 2 + 5, top: labelY - 13, bottom: labelY + 4 };
       const overlapsLabel = enemyLabelBoxes.some(other => box.left < other.right && box.right > other.left && box.top < other.bottom && box.bottom > other.top);
       if (!overlapsLabel) {
         ctx.lineJoin = "round";
         ctx.lineWidth = 3;
         ctx.strokeStyle = "rgba(15, 21, 18, 0.92)";
-        ctx.strokeText(label, e.x, labelY, 156);
+        ctx.strokeText(label, e.x, labelY, 178);
         ctx.fillStyle = e.is_boss ? "#e7dfcd" : "#d6ddd2";
-        ctx.fillText(label, e.x, labelY, 156);
+        ctx.fillText(label, e.x, labelY, 178);
         enemyLabelBoxes.push(box);
       }
     }
@@ -7982,6 +8698,7 @@ function render(dt = 1 / 60) {
     ctx.save();
     ctx.translate(pr.x, pr.y);
     ctx.rotate(Math.atan2(pr.dy, pr.dx));
+    window.ErrataMotion?.drawProjectileTrail(ctx,pr,reducedEffects);
 
     const prSpr = pr.sprite ? images[pr.sprite] : null;
     if (prSpr && !pr.crit) {
@@ -8033,33 +8750,42 @@ function render(dt = 1 / 60) {
     else { ctx.strokeStyle = "#8de6df"; ctx.lineWidth = 3; ctx.beginPath(); ctx.arc(decoy.x, decoy.y, 22, 0, Math.PI * 2); ctx.stroke(); }
     ctx.restore();
   });
-  ctx.save();
+
   const playerPoseOffset = getLocomotionPoseOffset(p);
+  const playerSpeed = Math.hypot(p.vx, p.vy);
+  const aimDirection = getHeroActionDirection(p);
+  const bodyDirection = p.is_dashing && p.dash_dir
+    ? p.dash_dir
+    : playerSpeed > 30 ? { x: p.vx / playerSpeed, y: p.vy / playerSpeed } : aimDirection;
+  const bodyTilt = Math.max(-0.38, Math.min(0.38, (bodyDirection?.y || 0) * 0.38));
+  const strideSway = playerSpeed > 30 && !p.is_dashing
+    ? Math.sin(((p.run_phase % 8) + 8) % 8 * Math.PI / 4) * 0.032
+    : 0;
+  const heroPresentation = window.ErrataMotion?.pose(state.selected_char,p,dt);
+  const heroBodyRotation = heroPresentation?.rotation ?? (bodyTilt + strideSway);
+  const renderFacingLeft = p.is_dashing && p.dash_dir
+    ? getHorizontalFacing(Math.atan2(p.dash_dir.y, p.dash_dir.x), p.facing_left)
+    : p.facing_left;
+
+  ctx.save();
   ctx.translate(p.x + playerPoseOffset.x, p.y + playerPoseOffset.y);
-  if (p.invuln_timer > 0 && Math.floor(performance.now() / 60) % 2 === 0) {
-    ctx.globalAlpha = 0.35;
+  if (!reducedEffects && window.ErrataArena?.drawShadow) window.ErrataArena.drawShadow(ctx, 0, 0, 58, true);
+  if (p.invuln_timer > 0) {
+    ctx.globalAlpha = reducedMotion ? 0.65 : (Math.floor(performance.now() / 60) % 2 === 0 ? 0.35 : 1);
   }
-  if (p.is_dashing) {
+  if (p.is_dashing && !reducedEffects) {
     ctx.shadowColor = "#55efc4"; ctx.shadowBlur = 25;
   }
   if (state.shield_charges > 0) {
     ctx.strokeStyle = "#38bdf8"; ctx.lineWidth = 3;
     ctx.beginPath(); ctx.arc(0, 0, 32, 0, Math.PI * 2); ctx.stroke();
   }
-  const aimDirection = getHeroActionDirection(p);
-  const renderFacingLeft = p.is_dashing || p.shot_recoil_timer > 0
-    ? getHorizontalFacing(Math.atan2(aimDirection.y, aimDirection.x), p.facing_left)
-    : p.facing_left;
   if (renderFacingLeft) ctx.scale(-1, 1);
 
   const cData = CHARACTERS[state.selected_char];
   const renderLayers = getHeroRenderLayers(p);
-  const bodyDirection = aimDirection;
-  const bodyTilt = Math.max(-0.38, Math.min(0.38, (bodyDirection?.y || 0) * 0.38));
-  const strideSway = Math.hypot(p.vx, p.vy) > 30 && !p.is_dashing
-    ? Math.sin(((p.run_phase % 8) + 8) % 8 * Math.PI / 4) * 0.032
-    : 0;
-  ctx.rotate(bodyTilt + strideSway);
+  ctx.rotate(heroBodyRotation);
+  if (heroPresentation) ctx.scale(heroPresentation.scaleX,heroPresentation.scaleY);
   const frame = renderLayers.baseFrame;
   const animationKey = state.selected_char === "inky" ? "inky"
     : state.selected_char === "quillmaster" ? "quillmaster"
@@ -8067,14 +8793,25 @@ function render(dt = 1 / 60) {
     : state.selected_char === "rune_sorceress" ? "rune_sorceress"
     : state.selected_char === "lexicon_alchemist" ? "alchemist"
     : state.selected_char === "shadow_lexicographer" ? "shadow_scribe" : null;
+  requestErrataHeroFrames(animationKey);
   const actionAsset = renderLayers.base === "run" || renderLayers.base === "ranged" || renderLayers.base === "attack"
     ? `${animationKey}_${renderLayers.base}_v2_${frame}.png`
     : `${animationKey}_${renderLayers.base}_${frame}.png`;
   const actionSprite = animationKey
     ? images[`upgrade_v1/animations/${actionAsset}`]
     : null;
-  const pSpr = actionSprite || images[cData.sprite] || images["player.png"];
-  if (pSpr) ctx.drawImage(pSpr, -44, -44, 88, 88);
+  const errataHeroSprite = animationKey
+    ? images[`ui/errata/heroes/${animationKey}_${renderLayers.base}_${frame}.webp`]
+    : null;
+  const paintedHero = window.ErrataMotion?.heroFrame(animationKey,renderLayers.base,frame);
+  const pSpr = paintedHero || (errataHeroSprite?.complete && errataHeroSprite.naturalWidth > 0
+    ? errataHeroSprite
+    : actionSprite || images[cData.sprite] || images["player.png"]);
+  if (pSpr) {
+    const drawSize = paintedHero ? 96 : 88;
+    if (paintedHero) ctx.imageSmoothingEnabled = true;
+    ctx.drawImage(pSpr,-drawSize/2,-drawSize/2,drawSize,drawSize);
+  }
   ctx.restore();
 
   // Floating Slotted Weapons Arsenal
@@ -8082,7 +8819,7 @@ function render(dt = 1 / 60) {
     const root = getWeaponRootWorld(w, idx);
     const visual = root.visual || getWeaponVisual(w.id);
     if (!visual) return;
-    const drawSize = visual.draw_size;
+    const drawSize = visual.draw_size * root.sizeScale;
     const artAngle = visual.art_angle_deg * Math.PI / 180;
     const timing = MELEE_TIMINGS[w.id] ? getMeleeTiming(w.id) : null;
     let swingRotation = 0;
@@ -8099,21 +8836,21 @@ function render(dt = 1 / 60) {
     }
     ctx.save();
     const isAct = (idx === state.active_weapon_index);
-    // The hand pose and orbiting weapon must share the same footfall/recoil anchor.
-    ctx.translate(root.x + playerPoseOffset.x, root.y + playerPoseOffset.y);
+    // Socketed weapons use the same world root for rendering and muzzle math.
+    ctx.translate(root.x, root.y);
     ctx.rotate(getWeaponRenderAngle(w.id, w.rotation, swingRotation));
     ctx.imageSmoothingEnabled = false;
 
     const wSpr = images[w.data.sprite];
-    const weaponInHeroFrame = (state.selected_char === "inky" && w.id === "quill_blaster")
+    const weaponInHeroFrame = state.weapons.length < 2 && ((state.selected_char === "inky" && w.id === "quill_blaster")
       || (state.selected_char === "quillmaster" && w.id === "syllable_shotgun")
       || (state.selected_char === "word_knight" && w.id === "dictionary_blade")
       || (state.selected_char === "rune_sorceress" && w.id === "rune_orb")
-      || (state.selected_char === "shadow_lexicographer" && w.id === "calligraphy_katana");
+      || (state.selected_char === "shadow_lexicographer" && w.id === "calligraphy_katana"));
     if (wSpr && !weaponInHeroFrame) {
       if (isAct) {
         ctx.shadowColor = "rgba(190, 156, 99, 0.45)";
-        ctx.shadowBlur = 5;
+        ctx.shadowBlur = reducedEffects ? 0 : 5;
       }
       ctx.drawImage(wSpr, -visual.grip[0] * drawSize, -visual.grip[1] * drawSize, drawSize, drawSize);
       ctx.shadowBlur = 0;
@@ -8124,9 +8861,10 @@ function render(dt = 1 / 60) {
       const flashAlpha = Math.min(0.9, w.flash_timer * 16) * (isAct ? 1 : 0.72);
       ctx.fillStyle = `rgba(255, 235, 169, ${flashAlpha})`;
       ctx.shadowColor = "#ffd77a";
-      ctx.shadowBlur = 7 + w.flash_timer * 55;
+      ctx.shadowBlur = reducedEffects ? 0 : 7 + w.flash_timer * 55;
       ctx.beginPath();
-      ctx.ellipse(muzzleX, muzzleY, 2.5 + w.flash_timer * 30, 1.8 + w.flash_timer * 13, getWeaponFlashLocalAngle(w.id), 0, Math.PI * 2);
+      ctx.ellipse(muzzleX, muzzleY, (2.5 + w.flash_timer * 30) * root.sizeScale,
+        (1.8 + w.flash_timer * 13) * root.sizeScale, getWeaponFlashLocalAngle(w.id), 0, Math.PI * 2);
       ctx.fill();
       ctx.shadowBlur = 0;
     }
@@ -8140,10 +8878,10 @@ function render(dt = 1 / 60) {
         : inRecovery ? Math.max(0, 0.88 * (1 - recoveryProgress)) : 0.68 + Math.sin(activeProgress * Math.PI) * 0.25;
       const sweepOffset = -0.92 + activeProgress * 1.84;
       ctx.rotate(artAngle);
-      ctx.globalAlpha = alpha;
+      ctx.globalAlpha = isAct ? alpha : alpha * 0.38;
       ctx.strokeStyle = w.id === "calligraphy_katana" ? "#bfeeff" : "#ffe5a6";
       ctx.shadowColor = ctx.strokeStyle;
-      ctx.shadowBlur = 4;
+      ctx.shadowBlur = reducedEffects ? 0 : 4;
       ctx.lineWidth = w.id === "calligraphy_katana" ? 4 : 3;
       ctx.beginPath();
       ctx.arc(5, 0, w.id === "calligraphy_katana" ? 52 : 45, sweepOffset - 1.0, sweepOffset + 0.62);
@@ -8154,7 +8892,9 @@ function render(dt = 1 / 60) {
   });
 
   // Floating Combat Damage Numbers & Pickup Text
-  if (state.floating_texts && state.floating_texts.length) {
+  if (state.floating_texts && state.floating_texts.length && window.ErrataMotion) {
+    window.ErrataMotion.drawCombatText(ctx,state.floating_texts,reducedEffects);
+  } else if (state.floating_texts && state.floating_texts.length) {
     state.floating_texts.forEach(ft => {
       const prog = Math.max(0, ft.lifetime / ft.max_lifetime);
       ctx.save();

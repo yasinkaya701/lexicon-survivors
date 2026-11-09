@@ -1,0 +1,39 @@
+/* Explicit duplicate selection and a clearly secondary automatic merge fallback. */
+.inventory-forge {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px 16px;
+  margin: 10px 0 14px;
+  padding: 12px 14px;
+  border: 1px solid rgba(242, 225, 197, .18);
+  border-left: 3px solid #49766e;
+  background: #171215;
+  color: #eee0cd;
+}
+.inventory-forge-copy { min-width: 0; }
+.inventory-forge-copy strong { display: block; color: #eee0cd; font: 600 15px/1.3 'IBM Plex Serif', serif; }
+.inventory-forge-copy p { margin: 3px 0 0; color: #cbbcaf; font: 400 13px/1.45 'IBM Plex Sans', sans-serif; }
+.inventory-forge-copy #inv-merge-status { color: #e3c8ad; }
+.inventory-forge-actions { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+#inv-manual-combine-btn, #inv-combine-btn, .slot-box .inv-merge-pick {
+  min-width: 44px;
+  min-height: 44px !important;
+  padding: 8px 12px !important;
+  font: 600 12px/1.3 'IBM Plex Sans', sans-serif !important;
+}
+#inv-manual-combine-btn { border-color: #8d4250; background: #742936; color: #f2e1c5; }
+#inv-manual-combine-btn:disabled { border-color: #51454a; background: #242024; color: #a99b93; opacity: 1; }
+#inv-combine-btn { border-color: #746752; background: #211d1a; color: #e5d3ba; }
+.slot-box .inv-merge-pick { border: 1px dashed #6c9a8c; background: rgba(73, 118, 110, .12); color: #d5e7df; }
+.slot-box .inv-merge-pick[aria-pressed='true'] { border-style: solid; border-color: #83b4a4; background: rgba(73, 118, 110, .4); color: #fff; }
+.slot-box .inv-merge-pick:hover, #inv-manual-combine-btn:not(:disabled):hover, #inv-combine-btn:hover { filter: brightness(1.12); }
+.slot-box .inv-merge-pick:focus-visible, #inv-manual-combine-btn:focus-visible, #inv-combine-btn:focus-visible { outline: 3px solid #e3c8ad; outline-offset: 2px; }
+.weapon-merge-hint { grid-column: 1 / -1; display: flex; align-items: flex-start; gap: 10px; margin: 0 4px 4px; padding: 10px 13px; border-left: 3px solid #49766e; background: rgba(73, 118, 110, .12); color: #e7ddd0; font: 500 14px/1.45 'IBM Plex Sans', sans-serif; }
+.weapon-merge-hint::before { content: 'i'; display: grid; place-items: center; flex: 0 0 20px; width: 20px; height: 20px; border: 1px solid #79a494; border-radius: 50%; color: #a6d0c1; font: 600 13px 'IBM Plex Serif', serif; }
+@media (max-width: 650px) {
+  .inventory-forge { grid-template-columns: minmax(0, 1fr); gap: 8px; padding: 11px; }
+  .inventory-forge-actions { justify-content: stretch; }
+  #inv-manual-combine-btn { width: 100%; }
+  .weapon-merge-hint { font-size: 13px; }
+}

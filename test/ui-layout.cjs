@@ -1,0 +1,37 @@
+const assert=require('node:assert/strict');
+const fs=require('node:fs');const path=require('node:path');
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE||path.join(require('node:os').homedir(),'.codex/skills/develop-web-game/node_modules/playwright'));
+const origin=process.env.GAME_URL||'http://127.0.0.1:8000';
+const output=path.join(process.cwd(),'output/errata-verification');fs.mkdirSync(output,{recursive:true});
+(async()=>{const browser=await chromium.launch({headless:true});const failures=[];let checks=0;
+try{for(const [width,height] of [[1280,720],[1024,576],[844,390],[390,844]]){
+ const page=await browser.newPage({viewport:{width,height},hasTouch:width<900});const errors=[];
+ page.on('pageerror',e=>errors.push(e.message));page.on('response',r=>{if(r.status()>=400&&r.url().startsWith(origin))errors.push(r.status()+' '+r.url())});
+ await page.addInitScript(()=>localStorage.setItem('lexicon-survivors-archive-intro-seen-v1','1'));
+ await page.goto(origin);await page.waitForFunction(()=>typeof render_game_to_text==='function');await page.evaluate(()=>document.fonts.ready);
+ const shot=async name=>{await page.waitForTimeout(100);await page.screenshot({path:path.join(output,`${width}-${height}-${name}.png`)});checks++;
+ const wide=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+1);if(wide)failures.push(`${width} ${name}: document overflow`);};
+ const separate=async(a,b,name)=>{const v=await page.evaluate(([aa,bb])=>{const x=document.querySelector(aa)?.getBoundingClientRect(),y=document.querySelector(bb)?.getBoundingClientRect();return x&&y?Math.min(x.right,y.right)-Math.max(x.left,y.left)>2&&Math.min(x.bottom,y.bottom)-Math.max(x.top,y.top)>2:false},[a,b]);if(v)failures.push(`${width} ${name}: ${a} overlaps ${b}`)};
+ await shot('landing');await page.click('#errata-begin');await page.waitForTimeout(250);await shot('character');
+ assert.equal(await page.locator('#char-selection-grid .choice-card').count(),6);const clippedDossiers=await page.locator('#char-selection-grid .choice-card').evaluateAll(cards=>cards.filter(card=>{const copy=card.querySelector('.dossier-copy');return copy&&copy.getBoundingClientRect().bottom>card.getBoundingClientRect().bottom-5}).length);if(clippedDossiers)failures.push(`${width} character: ${clippedDossiers} clipped dossier copies`);assert.equal(await page.locator('#char-selection-grid .dossier-stat').count(),18);
+ await page.locator('#char-selection-grid [data-hero=shadow_lexicographer]').scrollIntoViewIfNeeded();await page.locator('#char-selection-grid [data-hero=shadow_lexicographer]').click();await shot('character-last');
+ await page.click('#errata-character [data-title-step=preparation]');await shot('preparation');
+ await page.click('[data-open-book=settings]');await shot('settings');await page.locator('[data-setting=large-text]').check();await shot('settings-large');await page.keyboard.press('Escape');await shot('preparation-large');
+ await page.click('[data-open-book=settings]');await page.locator('[data-setting=large-text]').uncheck();await page.keyboard.press('Escape');await page.click('[data-open-book=guide]');await shot('guide');assert.equal(await page.locator('.guide-steps li').count(),4);await page.keyboard.press('Escape');
+ await page.click('#start-game-btn');await page.waitForFunction(()=>JSON.parse(render_game_to_text()).mode==='wave');await page.waitForTimeout(200);await shot('gameplay');
+ const move=await page.evaluate(()=>{const old=state.player.x;keys.d=true;advanceTime(120);keys.d=false;return state.player.x-old});assert.ok(move>0,'movement');
+ await page.click('[data-open-pause]');await shot('pause');await page.keyboard.press('Escape');
+ await page.evaluate(()=>{state.auto_new_tur=false;state.is_wave_active=false;state.ink_count=500;openShop()});await shot('shop-cards');
+ await separate('.shop-workspace','#shop-actions','shop');
+ for(const tab of ['weapons','gadgets','artifacts','skills','premium']){await page.click(`#tab-${tab}-btn`);await shot('shop-'+tab);assert.ok(await page.locator(tab==='skills'?'#shop-items-grid .skill-node-button':'#shop-items-grid .shop-card').count()>0,`${tab} offers`);const overflow=await page.locator('#shop-items-grid .shop-card').evaluateAll(cards=>cards.filter(c=>[...c.children].some(n=>{if(getComputedStyle(n).display==='none'||getComputedStyle(n).display==='contents')return false;return n.getBoundingClientRect().bottom>c.getBoundingClientRect().bottom+2})).length);if(overflow)failures.push(`${width} ${tab}: ${overflow} overflowing offer rows`)}
+ await page.click('#tab-cards-btn');await page.click('#card-buy-0');await shot('quiz');
+ await separate('.quiz-options','#quiz-continue-btn','quiz');
+ const quiz=await page.evaluate(()=>({answer:shopCards[0].options[shopCards[0].correct_index],cost:Math.ceil(shopCards[0].shop_cost*.5),ink:state.ink_count}));
+ await page.locator('.quiz-opt-btn').filter({has:page.getByText(quiz.answer,{exact:true})}).click();assert.equal(await page.evaluate(()=>state.ink_count),quiz.ink-quiz.cost);await shot('quiz-correct');const returnBounds=await page.locator('#quiz-continue-btn').boundingBox();if(!returnBounds||returnBounds.y<0||returnBounds.y+returnBounds.height>height)failures.push(`${width}: quiz return requires scrolling`);await page.click('#quiz-continue-btn');
+ await page.evaluate(()=>{document.getElementById('shop-screen').style.display='none';state.is_wave_active=true;toggleInventoryModal()});await shot('inventory');await page.click('#close-inventory-btn');
+ await page.evaluate(()=>toggleMistakesModal());await shot('mistakes');await page.click('#close-mistakes-btn');
+ await page.evaluate(async()=>{await showStoryIntermission(5)});await page.waitForFunction(()=>{const img=document.getElementById('story-scene-image');return img.complete&&img.naturalWidth>0});await shot('story');await separate('#story-scene','.story-reading-rail','story');await page.click('#story-next');await shot('story-next');await page.click('#story-skip');
+ await page.evaluate(()=>{state.auto_new_run=false;gameOver()});await shot('results');
+ failures.push(...errors.map(e=>`${width}: ${e}`));await page.close();
+ }console.log(JSON.stringify({checks,failures},null,2));assert.deepEqual(failures,[]);
+}finally{await browser.close()}})().catch(e=>{console.error(e);process.exitCode=1});

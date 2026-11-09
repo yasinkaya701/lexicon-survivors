@@ -1,0 +1,20 @@
+{
+  "version": "2026.11.09-last-errata",
+  "generatedAt": "2026-11-09T07:30:23.450741+00:00",
+  "baseCommit": "aa76c7ba27f81d957110a7fcb740d19b792b0339",
+  "sha256": {
+    "assets/ui/errata/theme.css": "67c54bbcba0e6ceb01bddbdd700a087c3f2874a3a01e0a056bfd32374594081f",
+    "assets/ui/errata/surfaces.css": "07812f9699264875b7a44ee6210232bed572381d50818e8992e8ec15b203b5d4",
+    "assets/ui/errata/inventory-forge.css": "b8bccab86ec6b97a55b7aa8a07d9ef99c865002baf671af3842e479643d45d5e",
+    "assets/ui/errata/skill-tree.css": "18d46c30c3341cf435986766efb44997cf97a02f3ad0336db4a0ea5307a63cd8",
+    "assets/ui/errata/hud.css": "181da48d4ee7dbd061cfda1e2528a55da662a3d3037df01149fc0977cdd0021a",
+    "assets/ui/errata/world.js": "2e38d58501e3dedf6074191802382ff16235827e141757e11f90533193b0562c",
+    "assets/ui/errata/hud.js": "3e3b72663e02e3bb91db0adc7675d500f14604052d06c28a4f6d60470c5687f0",
+    "assets/ui/errata/motion.js": "d41c69a3e8a55f1bf6eecfde55c633ea454d0b404428a1216bce561470c5b53e",
+    "game.js": "a56c121c56afb12db6d231661bdb40bf496e7929b39f74cae42cbabbb5c51520",
+    "assets/ui/errata/interface.js": "1c5539ae10032f94dba0d20997cb54abed1d11d42503d78d8f85566931c2ab82",
+    "index.html": "bf6e8dd977391a3f245d1a327bd0a3c6cfe1544812baf2bdfcfbe2252a8981f5",
+    "assets/ui/errata/arena-v3/manifest.json": "ca6d7a41fbec37c09b2361452ea43a609decd366428df1d8acd2f2e2f3df0c3d",
+    "assets/ui/errata/title-scene-v6.webp": "c6a1d33783f6aa98e712a070809c373b11ac32f211afadff9c3852e6c94b7a3e"
+  }
+}

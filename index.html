@@ -5,2402 +5,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover, interactive-widget=resizes-content">
   <link rel="icon" type="image/svg+xml" href="assets/ui/icons/book.svg">
-  <title>Lexicon Survivors: The Word Guardian | Hardcore Roguelite v4.0</title>
+  <title>Lexicon Survivors — Son Düzeltme</title>
+  <meta name="game-release" content="last-errata-20261109">
+  <link rel="preload" as="image" href="assets/ui/errata/title-scene-v6.webp" fetchpriority="high">
   <style>
     @font-face {
       font-family: "IBM Plex Sans";
-      src: url("assets/fonts/ibm-plex/IBMPlexSans-Variable.ttf") format("truetype");
+      src: url("assets/fonts/ibm-plex/IBMPlexSans-Variable.woff2") format("woff2");
       font-style: normal;
       font-weight: 100 700;
       font-display: swap;
     }
     @font-face {
       font-family: "IBM Plex Serif";
-      src: url("assets/fonts/ibm-plex/IBMPlexSerif-Regular.ttf") format("truetype");
+      src: url("assets/fonts/ibm-plex/IBMPlexSerif-Regular.woff2") format("woff2");
       font-style: normal;
       font-weight: 400;
       font-display: swap;
     }
     @font-face {
       font-family: "IBM Plex Serif";
-      src: url("assets/fonts/ibm-plex/IBMPlexSerif-SemiBold.ttf") format("truetype");
+      src: url("assets/fonts/ibm-plex/IBMPlexSerif-SemiBold.woff2") format("woff2");
       font-style: normal;
       font-weight: 600 900;
       font-display: swap;
     }
     @font-face {
       font-family: "IBM Plex Mono";
-      src: url("assets/fonts/ibm-plex/IBMPlexMono-Regular.ttf") format("truetype");
+      src: url("assets/fonts/ibm-plex/IBMPlexMono-Regular.woff2") format("woff2");
       font-style: normal;
       font-weight: 400;
       font-display: swap;
     }
     @font-face {
       font-family: "IBM Plex Mono";
-      src: url("assets/fonts/ibm-plex/IBMPlexMono-Medium.ttf") format("truetype");
+      src: url("assets/fonts/ibm-plex/IBMPlexMono-Medium.woff2") format("woff2");
       font-style: normal;
       font-weight: 500 900;
       font-display: swap;
     }
-    :root {
-      --bg-dark: #0c0805;
-      --parchment-base: #f6eedb;
-      --parchment-deep: #e8d9b8;
-      --parchment-border: #b89358;
-      --gold-primary: #d4af37;
-      --gold-bright: #ffd700;
-      --gold-dark: #8c6d23;
-      --ink-primary: #1c130d;
-      --ink-crimson: #8b0000;
-      --ink-emerald: #1b4d2e;
-      --ink-sapphire: #143454;
-      --leather-dark: #22140d;
-      --leather-rim: #442a18;
-      --tier-common: #94a3b8;
-      --tier-rare: #38bdf8;
-      --tier-epic: #c084fc;
-      --tier-legendary: #fbbf24;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      user-select: none;
-      -webkit-user-select: none;
-    }
-
-    html, body {
-      width: 100%;
-      height: 100%;
-      background: var(--bg-dark);
-      background-image: 
-        radial-gradient(circle at 50% 50%, rgba(35, 22, 15, 0.75) 0%, #050302 100%),
-        repeating-linear-gradient(45deg, rgba(25, 15, 10, 0.4) 0px, rgba(25, 15, 10, 0.4) 2px, transparent 2px, transparent 12px);
-      color: var(--ink-primary);
-      font-family: 'IBM Plex Sans', sans-serif;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    html {
-      --app-height: 100dvh;
-      --app-width: 100vw;
-      --safe-inset-top: env(safe-area-inset-top, 0px);
-      --safe-inset-right: env(safe-area-inset-right, 0px);
-      --safe-inset-bottom: env(safe-area-inset-bottom, 0px);
-      --safe-inset-left: env(safe-area-inset-left, 0px);
-    }
-
-    /* Responsive 16:9 Letterbox Container (Zero Clipping) */
-    #game-container {
-      position: relative;
-      width: min(100vw, calc(100vh * (16 / 9)));
-      height: min(100vh, calc(100vw * (9 / 16)));
-      max-width: 1280px;
-      max-height: 720px;
-      aspect-ratio: 16 / 9;
-      background: #000;
-      box-shadow: 0 0 60px rgba(212, 175, 55, 0.25), 0 20px 50px rgba(0, 0, 0, 0.95);
-      border: 3px solid var(--gold-dark);
-      border-radius: 6px;
-      overflow: hidden;
-      margin: auto;
-    }
-
-    canvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-      image-rendering: pixelated;
-    }
-
-    /* Scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: rgba(28, 19, 13, 0.85);
-      border-radius: 3px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--gold-primary);
-      border-radius: 3px;
-      border: 1px solid var(--gold-dark);
-    }
-
-
-    #archive-intro {
-      position: absolute;
-      inset: 0;
-      z-index: 500;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      color: #f2e8d2;
-      text-align: center;
-      background: radial-gradient(ellipse at 50% 55%, rgba(76, 63, 43, .62), rgba(8, 13, 10, .98) 68%), #080d0a;
-      opacity: 1;
-      transition: opacity 180ms ease;
-      /* Keep the title and its buttons tappable while the decorative intro plays. */
-      pointer-events: none;
-      touch-action: manipulation;
-    }
-    #archive-intro[hidden] { display: none; }
-    #archive-intro::before { content: ""; position: absolute; inset: -2%; background: url("assets/sprites/upgrade_v1/arena_frame_library.png") center / cover no-repeat; opacity: .2; filter: brightness(.65) saturate(.55); animation: archive-lights 1.45s ease-out both; pointer-events: none; }
-    #archive-intro::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 12%, rgba(4, 8, 6, .6) 100%); pointer-events: none; }
-    #archive-intro.is-leaving { opacity: 0; pointer-events: none; }
-    #archive-intro .archive-intro-content { position: relative; z-index: 1; padding: 24px; animation: archive-rise 1.7s ease both; }
-    #archive-intro .archive-intro-mark { width: clamp(48px, 9vw, 82px); height: clamp(48px, 9vw, 82px); margin-bottom: 8px; opacity: .92; filter: drop-shadow(0 0 22px rgba(212, 175, 55, .62)); }
-    #archive-intro .archive-intro-hero { display: block; width: 48px; height: 48px; margin: 0 auto 9px; image-rendering: pixelated; filter: drop-shadow(0 0 14px rgba(212, 175, 55, .3)); }
-    #archive-intro .archive-intro-kicker { color: #cbb980; font: 500 11px 'IBM Plex Mono', monospace; letter-spacing: .2em; }
-    #archive-intro h1 { margin: 10px 0 5px; font: 600 clamp(25px, 6vw, 48px) 'IBM Plex Serif', serif; letter-spacing: .08em; text-shadow: 0 3px 24px rgba(0, 0, 0, .9); }
-    #archive-intro p { color: #c0c1ae; font: 400 clamp(12px, 2vw, 15px) 'IBM Plex Sans', sans-serif; }
-    #archive-intro .archive-intro-skip { position: absolute; z-index: 2; left: 50%; bottom: max(18px, env(safe-area-inset-bottom)); transform: translateX(-50%); margin: 0; padding: 11px 18px; min-height: 44px; border: 1px solid rgba(202, 187, 135, .56); border-radius: 3px; color: #f2e8d2; background: rgba(20, 27, 22, .94); font: 500 12px 'IBM Plex Mono', monospace; letter-spacing: .07em; cursor: pointer; pointer-events: auto; touch-action: manipulation; }
-    #archive-intro .archive-intro-skip:focus-visible { outline: 2px solid #ffd700; outline-offset: 3px; }
-    #archive-intro.is-reduced { transition-duration: 250ms; }
-    #archive-intro.is-reduced .archive-intro-content, #archive-intro.is-reduced::before { animation: none; }
-    @keyframes archive-lights { 0% { opacity: .03; filter: brightness(.3) saturate(.35); } 100% { opacity: .34; filter: brightness(.8) saturate(.68); } }
-    @keyframes archive-rise { 0% { opacity: .2; transform: translateY(14px) scale(.98); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
-    @media (prefers-reduced-motion: reduce) {
-      #archive-intro, #archive-intro.is-reduced { transition-duration: 250ms; }
-      #archive-intro .archive-intro-content, #archive-intro::before { animation: none; }
-    }
-
-    /* =========================================
-       GOTHIC DARK ACADEMIA HUD
-       ========================================= */
-    #hud {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 8px 16px;
-      pointer-events: none;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      background: linear-gradient(180deg, rgba(14, 9, 6, 0.92) 0%, rgba(14, 9, 6, 0.5) 75%, transparent 100%);
-      text-shadow: 1px 1px 3px #000;
-      z-index: 100;
-    }
-
-    .hud-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
-
-    .hp-container {
-      width: 230px;
-      height: 24px;
-      background: rgba(28, 19, 13, 0.92);
-      border: 2px solid var(--gold-primary);
-      border-radius: 4px;
-      position: relative;
-      overflow: hidden;
-      box-shadow: inset 0 2px 5px rgba(0,0,0,0.8), 0 0 10px rgba(212, 175, 55, 0.25);
-    }
-
-    .hp-fill {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, #7a0f0f, #c41e1e 60%, #e53935 100%);
-      transition: width 0.15s ease-out;
-      box-shadow: 0 0 12px rgba(229, 57, 53, 0.5);
-    }
-
-    .hp-text {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      box-sizing: border-box;
-      padding-left: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'IBM Plex Serif', serif;
-      font-size: 12px;
-      font-weight: 800;
-      color: #fff8eb;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 4px #000;
-    }
-    .hp-emblem { position: absolute; z-index: 2; left: 6px; width: 14px; height: 14px; filter: drop-shadow(0 1px 2px rgba(0,0,0,.65)); }
-
-    .timer-badge {
-      font-family: 'IBM Plex Serif', serif;
-      font-size: 17px;
-      font-weight: 900;
-      color: var(--gold-bright);
-      text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
-      letter-spacing: 1px;
-      padding: 3px 14px;
-      background: rgba(34, 20, 13, 0.8);
-      border: 1px solid var(--gold-dark);
-      border-radius: 4px;
-    }
-
-    .stats-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: 'IBM Plex Serif', serif;
-      font-size: 16px;
-      font-weight: 800;
-    }
-    .ink-count { color: #5ce1e6; text-shadow: 0 0 8px rgba(92, 225, 230, 0.6); }
-    .kill-count { color: #ff6b6b; text-shadow: 0 0 8px rgba(255, 107, 107, 0.6); }
-
-    .hud-btn {
-      pointer-events: auto;
-      background: rgba(34, 20, 13, 0.88);
-      border: 1.5px solid var(--gold-dark);
-      color: var(--gold-bright);
-      padding: 3px 10px;
-      font-family: 'IBM Plex Serif', serif;
-      font-size: 13px;
-      font-weight: bold;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .hud-btn:hover {
-      border-color: var(--gold-bright);
-      background: #442a18;
-      box-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
-    }
-
-    .info-subrow {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 12px;
-      color: #f1e4ce;
-      font-family: 'IBM Plex Sans', serif;
-    }
-    .char-info { display: inline-flex; align-items: center; gap: 7px; min-width: 0; color: var(--gold-bright); font-weight: 600; }
-    #hero-hud-portrait {
-      width: 28px; height: 28px; padding: 2px; object-fit: contain;
-      image-rendering: pixelated; background: radial-gradient(circle, #34463d, #1a211d 72%);
-      border: 1px solid #8b7953; border-radius: 5px; box-shadow: inset 0 0 0 1px rgba(238,232,217,.14), 0 2px 5px rgba(0,0,0,.35);
-    }
-    .weapons-info { color: #f5eccb; pointer-events: auto; display: flex; align-items: center; gap: 4px; }
-
-    /* Boss HP Bar */
-    #boss-hp-container {
-      position: absolute;
-      top: 66px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 480px;
-      max-width: 80%;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
-      z-index: 12;
-    }
-    #boss-hp-title {
-      font-family: 'IBM Plex Serif', serif;
-      font-size: 14px;
-      font-weight: 900;
-      color: #ff4757;
-      letter-spacing: 1.5px;
-      text-shadow: 0 0 10px rgba(255, 71, 87, 0.8);
-    }
-    .boss-title-row { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 34px; }
-    #boss-hp-portrait {
-      width: 34px; height: 34px; padding: 2px; object-fit: contain; image-rendering: pixelated;
-      background: radial-gradient(circle, #542c2b, #1a1715 72%); border: 1px solid #a65e52;
-      border-radius: 5px; box-shadow: inset 0 0 0 1px rgba(238,232,217,.12), 0 0 10px rgba(180,74,65,.22);
-    }
-    .boss-bar-frame {
-      width: 100%;
-      height: 18px;
-      background: rgba(20, 5, 5, 0.9);
-      border: 2px solid #ff4757;
-      box-shadow: 0 0 16px rgba(255, 71, 87, 0.4);
-      border-radius: 3px;
-      overflow: hidden;
-      position: relative;
-    }
-    #boss-hp-fill {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, #8b0000, #ff4757, #ffa502);
-      transition: width 0.12s linear;
-    }
-
-    /* Gadget Panel */
-    #gadget-panel {
-      position: absolute;
-      bottom: 14px;
-      left: 16px;
-      background: rgba(28, 19, 13, 0.94);
-      border: 1.5px solid var(--gold-primary);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-      border-radius: 4px;
-      padding: 5px 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      font-family: 'IBM Plex Serif', serif;
-      color: #ede1c7;
-      pointer-events: auto;
-      cursor: pointer;
-      z-index: 10;
-    }
-    #gadget-panel:hover {
-      border-color: var(--gold-bright);
-    }
-    .gadget-img {
-      width: 24px;
-      height: 24px;
-    }
-    .gadget-status {
-      font-weight: 900;
-      color: #55efc4;
-      text-shadow: 0 0 8px rgba(85, 239, 196, 0.5);
-    }
-
-    /* Synergy Banner */
-    #synergy-banner {
-      position: absolute;
-      top: 90px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(135deg, #2b180d, #1a0f07);
-      border: 2px double var(--gold-bright);
-      box-shadow: 0 0 25px rgba(212, 175, 55, 0.4), 0 10px 30px rgba(0,0,0,0.8);
-      border-radius: 4px;
-      padding: 8px 26px;
-      text-align: center;
-      display: none;
-      pointer-events: none;
-      animation: illuminatedGlow 2s infinite alternate;
-      z-index: 20;
-    }
-    #synergy-banner h4 {
-      font-family: 'IBM Plex Serif', serif;
-      color: var(--gold-bright);
-      font-size: 15px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      margin-bottom: 2px;
-    }
-    #synergy-banner p {
-      font-family: 'IBM Plex Sans', serif;
-      color: #f6eedb;
-      font-size: 12.5px;
-    }
-
-    /* =========================================
-       RESPONSIVE DARK ACADEMIA OVERLAYS
-       ========================================= */
-    .screen-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(10, 6, 4, 0.88);
-      backdrop-filter: blur(4px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 12px;
-      z-index: 150;
-      overflow: hidden;
-    }
-
-    .dialog-panel {
-      position: relative;
-      background: var(--parchment-base);
-      background-image: 
-        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.45) 0%, rgba(220, 200, 160, 0.25) 100%),
-        repeating-linear-gradient(0deg, rgba(184, 147, 88, 0.04) 0px, rgba(184, 147, 88, 0.04) 2px, transparent 2px, transparent 22px);
-      border: 3px double var(--gold-dark);
-      outline: 4px solid #281910;
-      outline-offset: -8px;
-      border-radius: 6px;
-      width: 100%;
-      max-width: 1120px;
-      max-height: 94%;
-      overflow-y: auto;
-      overflow-x: hidden;
-      padding: 14px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 9px;
-      box-shadow: 0 15px 50px rgba(0,0,0,0.9), inset 0 0 60px rgba(120, 80, 40, 0.25);
-      color: var(--ink-primary);
-    }
-
-    .title-header {
-      text-align: center;
-      border-bottom: 1.5px solid rgba(140, 109, 35, 0.35);
-      padding-bottom: 6px;
-    }
-    .title-header h1 {
-      font-family: 'IBM Plex Serif', serif;
-      font-size: 24px;
-      font-weight: 900;
-      color: #2b170c;
-      letter-spacing: 1.5px;
-      text-shadow: 1px 1px 0px rgba(255,255,255,0.7);
-    }
-    .title-header p {
-      font-family: 'IBM Plex Sans', serif;
-      font-size: 13px;
-      font-style: italic;
-      color: #5c3b1e;
-    }
-
-    /* Cards & Grids */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-    .card-grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-    }
-
-    .choice-card {
-      background: #faf4e8;
-      border: 1.5px solid var(--parchment-border);
-      border-radius: 4px;
-      padding: 8px 10px;
-      display: flex;
-      flex-direction: column;
-      cursor: pointer;
-      transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
-      box-shadow: 0 3px 8px rgba(44, 24, 16, 0.08);
-      text-align: center;
-      position: relative;
-    }
-    .choice-card:hover {
-      border-color: var(--gold-primary);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(44, 24, 16, 0.16);
-      background: #fffdfa;
-    }
-    .choice-card.selected {
-      border: 2px solid var(--gold-dark);
-      background: #fffbe9;
-      box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
-      outline: 2px dashed var(--gold-primary);
-      outline-offset: -3px;
-    }
-
-    .choice-card h3 {
-      font-family: 'IBM Plex Serif', serif;
-      font-size: 15px;
-      font-weight: 800;
-      margin-bottom: 2px;
-      color: #2b170c;
-    }
-    .choice-card .subtitle {
-      font-size: 11px;
-      font-family: 'IBM Plex Sans', serif;
-      font-style: italic;
-      color: #8c5d2b;
-      margin-bottom: 3px;
-    }
-    .choice-card .stats-text {
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--ink-crimson);
-      margin-bottom: 3px;
-      line-height: 1.3;
-      font-family: 'IBM Plex Serif', serif;
-    }
-    .choice-card .desc {
-      font-size: 11px;
-      color: #3b281b;
-      margin-bottom: 5px;
-      flex-grow: 1;
-      line-height: 1.3;
-    }
-    .choice-card .passive {
-      font-size: 10.5px;
-      color: #6a4417;
-      font-style: italic;
-      border-top: 1px dashed rgba(184, 147, 88, 0.4);
-      padding-top: 3px;
-    }
-
-    /* Tabs */
-    .tab-bar {
-      display: flex;
-      gap: 8px;
-      border-bottom: 1.5px solid var(--parchment-border);
-      padding-bottom: 5px;
-    }
-    .tab-btn {
-      flex: 1;
-      background: #ede1c7;
-      border: 1.5px solid var(--parchment-border);
-      color: #5c3e21;
-      padding: 7px 10px;
-      font-family: 'IBM Plex Serif', serif;
-      font-size: 11.5px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      transition: all 0.15s ease;
-    }
-    .tab-btn:hover {
-      background: #fbf6ec;
-      color: #2b170c;
-      border-color: var(--gold-primary);
-    }
-    .tab-btn.active {
-      background: var(--leather-dark);
-      color: var(--gold-bright);
-      border-color: var(--gold-primary);
-      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-    }
-
-    /* Buttons */
-    .btn {
-      background: linear-gradient(180deg, #382417, #22140d);
-      color: var(--gold-bright);
-      border: 1.5px solid var(--gold-dark);
-      padding: 7px 16px;
-      font-family: 'IBM Plex Serif', serif;
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.4);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-    }
-    .btn:hover:not(:disabled) {
-      background: linear-gradient(180deg, #4d3322, #331f13);
-      border-color: var(--gold-bright);
-      box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
-      transform: translateY(-1px);
-    }
-    .btn:disabled {
-      background: #b5a995;
-      color: #7d7260;
-      border-color: #9e9380;
-      cursor: not-allowed;
-      box-shadow: none;
-      transform: none;
-    }
-
-    .btn-seal {
-      background: linear-gradient(180deg, #9b1c1c, #630c0c);
-      color: #fff6e5;
-      border: 1.5px solid #b83838;
-      box-shadow: 0 4px 10px rgba(139, 0, 0, 0.4);
-    }
-    .btn-seal:hover:not(:disabled) {
-      background: linear-gradient(180deg, #b32424, #7a1212);
-      border-color: #ff6b6b;
-      box-shadow: 0 0 14px rgba(229, 57, 53, 0.6);
-    }
-
-    .btn-emerald {
-      background: linear-gradient(180deg, #1b4d2e, #0e2e1a);
-      color: #e8f5e9;
-      border: 1.5px solid #2e7d32;
-    }
-    .btn-emerald:hover:not(:disabled) {
-      background: linear-gradient(180deg, #25663d, #144024);
-      border-color: #4caf50;
-      box-shadow: 0 0 12px rgba(76, 175, 80, 0.4);
-    }
-
-    /* =========================================
-       INVENTORY MODAL & SLOTS STYLING
-       ========================================= */
-    #inventory-modal {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(12, 8, 5, 0.88);
-      backdrop-filter: blur(5px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 180;
-      padding: 12px;
-    }
-
-    .slots-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 8px;
-      margin: 6px 0;
-    }
-    .inventory-tabs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; border:0; margin:2px 0; }
-    .inventory-tabs .tab-btn { min-height:40px; }
-    .inventory-gadget-note { margin:2px 0 8px; color:#59625b; font-size:12px; line-height:1.45; }
-    .inventory-gadgets-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; max-height:min(52vh,420px); overflow:auto; padding:2px; }
-    .inventory-gadget-card { display:flex; align-items:center; gap:10px; min-height:76px; padding:10px; text-align:left; border:1px solid #b6aa91; border-radius:5px; background:#f5f1e7; color:#292b25; cursor:pointer; }
-    .inventory-gadget-card[aria-pressed="true"] { border-color:#7d4547; box-shadow:inset 3px 0 0 #7d4547; background:#eee5d6; }
-    .inventory-gadget-card img { width:40px; height:40px; flex:0 0 40px; object-fit:contain; }
-    .inventory-gadget-card strong { display:block; font:600 13px 'IBM Plex Serif',serif; }
-    .inventory-gadget-card small { display:block; margin-top:3px; color:#617064; font:400 10px 'IBM Plex Sans',sans-serif; line-height:1.35; }
-    @media (max-width:600px) { .slots-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } .inventory-gadgets-grid { grid-template-columns:1fr; max-height:50vh; } }
-    .slot-box {
-      background: #faf4e8;
-      border: 2px solid var(--parchment-border);
-      border-radius: 4px;
-      padding: 8px;
-      min-height: 110px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      text-align: center;
-      position: relative;
-    }
-    .slot-box.locked {
-      background: rgba(40, 25, 16, 0.15);
-      border: 2px dashed #8c6d23;
-      color: #78350f;
-      justify-content: center;
-    }
-    .slot-box.active-weapon {
-      border-color: var(--gold-bright);
-      box-shadow: 0 0 12px rgba(255, 215, 0, 0.45);
-      background: #fffdf5;
-    }
-    .tier-badge {
-      font-size: 10px;
-      font-weight: 900;
-      font-family: 'IBM Plex Serif', serif;
-      padding: 1px 5px;
-      border-radius: 3px;
-    }
-    .tier-1 { background: #64748b; color: #fff; }
-    .tier-2 { background: #0284c7; color: #fff; }
-    .tier-3 { background: #9333ea; color: #fff; }
-    .tier-4 { background: #d97706; color: #fff; box-shadow: 0 0 8px rgba(217, 119, 6, 0.6); }
-
-    /* Quiz Modal */
-    #quiz-modal {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(10, 6, 4, 0.92);
-      backdrop-filter: blur(6px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999 !important;
-      padding: 12px;
-      pointer-events: auto !important;
-      touch-action: manipulation !important;
-    }
-    #quiz-modal[style*="none"],
-    #quiz-modal.hidden {
-      display: none !important;
-      pointer-events: none !important;
-    }
-    .quiz-scroll {
-      position: relative;
-      z-index: 10000 !important;
-      background: #faf2df;
-      background-image: 
-        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.5) 0%, rgba(220, 200, 160, 0.3) 100%),
-        repeating-linear-gradient(0deg, rgba(184, 147, 88, 0.05) 0px, rgba(184, 147, 88, 0.05) 2px, transparent 2px, transparent 20px);
-      border: 3px double var(--gold-dark);
-      outline: 4px solid #331f13;
-      outline-offset: -8px;
-      border-radius: 6px;
-      width: 620px;
-      max-width: 96vw;
-      max-height: 92vh;
-      max-height: 92dvh;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      touch-action: pan-y !important;
-      padding: 20px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      text-align: center;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.95), inset 0 0 45px rgba(140, 109, 35, 0.2);
-    }
-    .quiz-scroll-header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      border-bottom: 1.5px solid rgba(140, 109, 35, 0.3);
-      padding-bottom: 6px;
-    }
-    .quiz-wax-seal {
-      width: 32px;
-      height: 32px;
-    }
-    .quiz-scroll-header h3 {
-      font-family: 'IBM Plex Serif', serif;
-      font-size: 19px;
-      font-weight: 900;
-      color: #2b170c;
-    }
-    #quiz-question-text {
-      font-family: 'IBM Plex Sans', serif;
-      font-size: 16px;
-      font-weight: 600;
-      color: #1c130d;
-      margin: 2px 0;
-      line-height: 1.35;
-    }
-    #quiz-example-text {
-      font-family: 'IBM Plex Sans', serif;
-      font-size: 13px;
-      color: #634325;
-      font-style: italic;
-      background: rgba(220, 200, 160, 0.35);
-      border-left: 3px solid var(--gold-dark);
-      padding: 4px 10px;
-      border-radius: 2px;
-    }
-    #quiz-buff-text {
-      margin: 0;
-      padding: 8px 10px;
-      border: 1px solid rgba(88, 119, 103, .45);
-      border-radius: 4px;
-      background: rgba(89, 125, 106, .12);
-      color: #315545;
-      font: 600 12px/1.4 'IBM Plex Sans', sans-serif;
-    }
-    #quiz-warning-text {
-      margin: 0;
-      color: #8c3a2d;
-      font: 600 11px/1.35 'IBM Plex Sans', sans-serif;
-    }
-    .quiz-options {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 4px;
-    }
-    .quiz-opt-btn {
-      display: flex !important;
-      align-items: center !important;
-      background: #fdfaf2 !important;
-      border: 2px solid var(--parchment-border) !important;
-      color: #23160e !important;
-      padding: 11px 16px !important;
-      font-family: 'IBM Plex Sans', serif !important;
-      font-size: 14.5px !important;
-      font-weight: 700 !important;
-      line-height: 1.35 !important;
-      border-radius: 6px !important;
-      cursor: pointer !important;
-      text-align: left !important;
-      pointer-events: auto !important;
-      touch-action: manipulation !important;
-      user-select: none !important;
-      -webkit-user-select: none !important;
-      -webkit-tap-highlight-color: rgba(212, 175, 55, 0.4) !important;
-      transition: transform 0.08s ease, background 0.12s ease, border-color 0.12s ease !important;
-    }
-    .quiz-opt-btn:hover:not(:disabled) {
-      border-color: var(--gold-primary) !important;
-      background: #ffffff !important;
-      transform: translateX(4px) !important;
-    }
-    .quiz-opt-btn:active:not(:disabled),
-    .quiz-opt-btn.active-press {
-      transform: scale(0.97) !important;
-      background: #f0e6cf !important;
-      border-color: var(--gold-dark) !important;
-    }
-
-    .quiz-result {
-      font-family: 'IBM Plex Serif', serif;
-      font-size: 14px;
-      font-weight: 800;
-      line-height: 1.4;
-      white-space: pre-line;
-      padding: 5px;
-      border-radius: 4px;
-    }
-
-    /* Mistakes Modal */
-    #mistakes-modal {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(12, 8, 5, 0.88);
-      backdrop-filter: blur(5px);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 220;
-      padding: 12px;
-    }
-    .mistake-card {
-      background: #fffcf5;
-      border: 1.5px solid #d4af37;
-      border-left: 5px solid #8b0000;
-      border-radius: 4px;
-      padding: 8px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-      text-align: left;
-    }
-    .mistake-card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .mistake-word {
-      font-family: 'IBM Plex Serif', serif;
-      font-size: 16px;
-      font-weight: 800;
-      color: #8b0000;
-    }
-    .mistake-badge {
-      font-size: 11px;
-      font-weight: bold;
-      background: rgba(139, 0, 0, 0.12);
-      color: #8b0000;
-      padding: 2px 6px;
-      border-radius: 3px;
-    }
-    .mistake-desc {
-      font-size: 13px;
-      color: #2b170c;
-    }
-    .mistake-ex {
-      font-size: 12px;
-      color: #634325;
-      font-style: italic;
-    }
-
-    /* Virtual Mobile Controls */
-    #mobile-touch-controls {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 40;
-      display: none;
-    }
-    #joystick-zone {
-      position: absolute;
-      bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-      left: calc(24px + env(safe-area-inset-left, 0px));
-      width: 120px;
-      height: 120px;
-      pointer-events: auto;
-      touch-action: none;
-      z-index: 42;
-      transition: opacity 0.2s ease;
-      opacity: 0.85;
-    }
-    #joystick-base {
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, rgba(20, 10, 5, 0.7) 100%);
-      border: 2px solid var(--gold-primary);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-      position: relative;
-    }
-    #joystick-knob {
-      width: 48px;
-      height: 48px;
-      background: radial-gradient(circle, #f5d77f 0%, #a17822 100%);
-      border: 2px solid #fff;
-      border-radius: 50%;
-      position: absolute;
-      box-shadow: 0 0 12px rgba(255, 215, 0, 0.7);
-      transform: translate(0px, 0px);
-      transition: transform 0.04s ease-out;
-    }
-    #touch-action-buttons {
-      position: absolute;
-      bottom: calc(20px + env(safe-area-inset-bottom, 0px));
-      right: calc(20px + env(safe-area-inset-right, 0px));
-      display: grid;
-      grid-template-columns: repeat(2, auto);
-      gap: 10px;
-      align-items: center;
-      justify-items: center;
-      pointer-events: auto;
-      touch-action: none;
-      z-index: 45;
-    }
-    .touch-circle-btn {
-      width: 58px;
-      height: 58px;
-      min-width: 58px;
-      min-height: 58px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #faf2df 0%, #d8be8d 100%);
-      border: 2.5px solid var(--gold-dark);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.6), inset 0 0 6px rgba(255,255,255,0.5);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      color: #2b170c;
-      outline: none;
-      user-select: none;
-      -webkit-user-select: none;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-    }
-    .touch-circle-btn:active {
-      transform: scale(0.92);
-      background: #e2cfa2;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.8);
-    }
-    #touch-gadget-btn {
-      width: 58px;
-      height: 58px;
-      border-color: var(--gold-bright);
-      box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
-    }
-    .touch-icon {
-      font-size: 19px;
-      line-height: 1;
-    }
-    .touch-label {
-      font-size: 7.5px;
-      font-weight: 900;
-      font-family: 'IBM Plex Serif', serif;
-      margin-top: 1px;
-    }
-
-    #orientation-hint {
-      display: none;
-      position: absolute;
-      top: 56px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      max-width: 380px;
-      background: rgba(45, 20, 10, 0.94);
-      color: #fff9e6;
-      font-size: 11px;
-      font-family: 'IBM Plex Serif', serif;
-      font-weight: 700;
-      text-align: center;
-      padding: 6px 12px;
-      z-index: 90;
-      pointer-events: auto;
-      border: 1.5px solid var(--gold-bright);
-      border-radius: 6px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.8);
-      cursor: pointer;
-    }
-    #orientation-hint[hidden] { display: none !important; }
-
-    /* Responsive for small screens & phones & iPads */
-    @media (max-width: 1080px), (max-height: 720px), (pointer: coarse), (hover: none) {
-      button, [role="button"], [onclick] {
-        min-height: 44px !important;
-        touch-action: manipulation !important;
-      }
-      html, body {
-        width: 100% !important;
-        height: var(--app-height, 100dvh) !important;
-        overflow: hidden !important;
-        position: fixed !important;
-        inset: 0 !important;
-        overscroll-behavior: none !important;
-      }
-
-      #game-container {
-        position: fixed !important;
-        inset: 0 !important;
-        width: var(--app-width, 100vw) !important;
-        height: var(--app-height, 100dvh) !important;
-        max-width: none !important;
-        max-height: none !important;
-        aspect-ratio: unset !important;
-        border: none !important;
-        border-radius: 0 !important;
-        margin: 0 !important;
-        box-shadow: none !important;
-      }
-
-      canvas {
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: fill !important;
-        display: block !important;
-      }
-
-      @media (orientation: portrait) {
-        #orientation-hint {
-          display: block !important;
-        }
-      }
-
-      /* HUD Responsive Layout - Streamlined Single Row + Weapon Pills */
-      #hud {
-        padding: 4px 8px !important;
-        gap: 2px !important;
-      }
-      .hud-row {
-        flex-wrap: nowrap !important;
-        gap: 6px !important;
-        align-items: center !important;
-        justify-content: space-between !important;
-      }
-      .hp-container {
-        width: 105px !important;
-        height: 18px !important;
-        flex-shrink: 0 !important;
-      }
-      .hp-text {
-        font-size: 8.5px !important;
-      }
-      .timer-badge {
-        font-size: 9.5px !important;
-        padding: 2px 6px !important;
-        flex-shrink: 0 !important;
-        white-space: nowrap !important;
-      }
-      .stats-right {
-        display: flex !important;
-        align-items: center !important;
-        gap: 4px !important;
-        flex-shrink: 0 !important;
-      }
-      .stats-right .ink-count, .stats-right .kill-count {
-        font-size: 11px !important;
-      }
-      #mobile-menu-btn {
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        padding: 4px 8px !important;
-        font-size: 11px !important;
-        font-weight: 800 !important;
-        min-height: 44px !important;
-        background: linear-gradient(180deg, #4a2815, #221209) !important;
-        border: 1.5px solid var(--gold-bright) !important;
-        color: var(--gold-bright) !important;
-        border-radius: 4px !important;
-        cursor: pointer !important;
-        touch-action: manipulation !important;
-        pointer-events: auto !important;
-      }
-      /* Hide dense desktop button row on small mobile screens */
-      #speed-btn, #auto-tur-btn, #auto-run-btn, #music-btn, #mistakes-btn, #inventory-btn, #touch-toggle-btn, #fullscreen-btn {
-        display: none !important;
-      }
-      .info-subrow {
-        font-size: 9px !important;
-        padding-top: 1px !important;
-      }
-      .char-info {
-        font-size: 9px !important;
-        gap: 5px !important;
-      }
-      #hero-hud-portrait { width: 23px; height: 23px; }
-      .boss-title-row { min-height: 27px; gap: 6px; }
-      #boss-hp-portrait { width: 28px; height: 28px; }
-      .slot-pill {
-        padding: 1px 3px !important;
-        font-size: 8px !important;
-      }
-
-      /* Modals Full Screen Adaptability */
-      .screen-overlay {
-        padding: max(6px, env(safe-area-inset-top, 0px)) max(6px, env(safe-area-inset-right, 0px)) max(6px, env(safe-area-inset-bottom, 0px)) max(6px, env(safe-area-inset-left, 0px)) !important;
-        overflow-y: auto !important;
-        -webkit-overflow-scrolling: touch !important;
-        align-items: center !important;
-        justify-content: center !important;
-      }
-      .screen-overlay[style*="none"],
-      .screen-overlay.hidden,
-      [hidden] {
-        display: none !important;
-        pointer-events: none !important;
-      }
-      .screen-overlay[style*="flex"] {
-        display: flex !important;
-      }
-
-      .dialog-panel {
-        width: 100% !important;
-        max-width: 100% !important;
-        max-height: calc(var(--app-height, 100dvh) - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 12px) !important;
-        padding: 8px 10px !important;
-        gap: 5px !important;
-        overflow-y: auto !important;
-        -webkit-overflow-scrolling: touch !important;
-        touch-action: pan-y !important;
-      }
-
-      .title-header h1 {
-        font-size: 14px !important;
-        letter-spacing: 0.5px !important;
-        line-height: 1.2 !important;
-      }
-      .title-header p {
-        font-size: 9.5px !important;
-        margin-top: 1px !important;
-      }
-
-      /* Character Selection Mobile Grid */
-      .card-grid {
-        grid-template-columns: 1fr !important;
-        gap: 5px !important;
-        max-height: 210px !important;
-        overflow-y: auto !important;
-        -webkit-overflow-scrolling: touch !important;
-        padding: 2px !important;
-      }
-
-      .choice-card {
-        padding: 6px 8px !important;
-        min-height: 44px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        text-align: left !important;
-        cursor: pointer !important;
-        touch-action: manipulation !important;
-        -webkit-tap-highlight-color: rgba(212, 175, 55, 0.4) !important;
-      }
-      .choice-card h3 {
-        font-size: 13px !important;
-        margin: 0 !important;
-      }
-      .choice-card .subtitle {
-        font-size: 9.5px !important;
-        margin: 0 !important;
-      }
-      .choice-card .stats-text {
-        font-size: 9px !important;
-        margin: 1px 0 !important;
-        line-height: 1.2 !important;
-      }
-      .choice-card .desc {
-        display: none !important;
-      }
-      .choice-card .passive {
-        font-size: 9px !important;
-        padding-top: 1px !important;
-      }
-      #title-screen #char-selection-grid .choice-card {
-        min-height: 78px !important;
-        height: auto !important;
-        overflow: hidden !important;
-      }
-      #title-screen #char-selection-grid .choice-card .passive {
-        display: -webkit-box !important;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        overflow: hidden;
-        font-size: 10px !important;
-        line-height: 1.22 !important;
-        color: #5e6d61 !important;
-      }
-      #title-screen #char-selection-grid .choice-card .desc {
-        display: none !important;
-      }
-
-      /* Difficulty Buttons */
-      #diff-selection-container {
-        display: flex !important;
-        gap: 4px !important;
-        width: 100% !important;
-      }
-      #diff-selection-container .btn {
-        flex: 1 1 0 !important;
-        font-size: 9.5px !important;
-        padding: 6px 2px !important;
-        min-height: 44px !important;
-        text-align: center !important;
-        touch-action: manipulation !important;
-      }
-      #diff-desc {
-        font-size: 10px !important;
-      }
-
-      /* Start Button */
-      #start-game-btn {
-        width: 100% !important;
-        min-height: 48px !important;
-        font-size: 14px !important;
-        padding: 10px 14px !important;
-        margin-top: 2px !important;
-        touch-action: manipulation !important;
-        cursor: pointer !important;
-      }
-
-      /* Shop Tabs & Items Grid */
-      .tab-bar {
-        overflow-x: auto !important;
-        white-space: nowrap !important;
-        flex-wrap: nowrap !important;
-        gap: 4px !important;
-        padding-bottom: 4px !important;
-        -webkit-overflow-scrolling: touch !important;
-      }
-      .tab-btn {
-        flex: 0 0 auto !important;
-        padding: 5px 8px !important;
-        font-size: 9.5px !important;
-        min-height: 34px !important;
-        touch-action: manipulation !important;
-      }
-
-      .card-grid-4 {
-        grid-template-columns: 1fr !important;
-        gap: 6px !important;
-        max-height: 46vh !important;
-        max-height: 46dvh !important;
-        overflow-y: auto !important;
-        -webkit-overflow-scrolling: touch !important;
-        padding: 2px !important;
-      }
-
-      #shop-next-wave-btn {
-        min-height: 44px !important;
-        font-size: 13px !important;
-        padding: 8px 12px !important;
-        touch-action: manipulation !important;
-      }
-      #shop-reroll-btn {
-        min-height: 40px !important;
-        padding: 6px 8px !important;
-        font-size: 10.5px !important;
-        touch-action: manipulation !important;
-      }
-
-      /* Quiz Modal Responsive */
-      #quiz-modal {
-        padding: 8px !important;
-        z-index: 9999 !important;
-        pointer-events: auto !important;
-      }
-      .quiz-scroll {
-        width: 95vw !important;
-        max-width: 95vw !important;
-        max-height: 92vh !important;
-        max-height: 92dvh !important;
-        padding: 12px 14px !important;
-        gap: 6px !important;
-        touch-action: pan-y !important;
-      }
-      .quiz-scroll-header h3 {
-        font-size: 16px !important;
-      }
-      #quiz-question-text {
-        font-size: 14px !important;
-      }
-      #quiz-example-text {
-        font-size: 11.5px !important;
-      }
-      .quiz-options {
-        display: grid !important;
-        grid-template-columns: 1fr !important;
-        gap: 8px !important;
-      }
-      .quiz-opt-btn {
-        width: 100% !important;
-        min-height: 48px !important;
-        font-size: 14px !important;
-        font-weight: 700 !important;
-        padding: 10px 14px !important;
-        touch-action: manipulation !important;
-        pointer-events: auto !important;
-        cursor: pointer !important;
-        -webkit-tap-highlight-color: rgba(212, 175, 55, 0.4) !important;
-      }
-      #quiz-continue-btn {
-        min-height: 48px !important;
-        width: 100% !important;
-        font-size: 14px !important;
-        font-weight: 800 !important;
-        touch-action: manipulation !important;
-        pointer-events: auto !important;
-        cursor: pointer !important;
-      }
-
-      /* Touch Joystick Zone & Buttons during active wave */
-      #joystick-zone {
-        width: 110px !important;
-        height: 110px !important;
-        left: calc(24px + env(safe-area-inset-left, 0px));
-        bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-      }
-      #joystick-knob {
-        width: 44px !important;
-        height: 44px !important;
-      }
-      #touch-action-buttons {
-        bottom: calc(env(safe-area-inset-bottom, 0px) + 24px) !important;
-        right: calc(env(safe-area-inset-right, 0px) + 18px) !important;
-        gap: 8px !important;
-      }
-      .touch-circle-btn {
-        width: 58px !important;
-        height: 58px !important;
-        min-width: 58px !important;
-        min-height: 58px !important;
-        touch-action: manipulation !important;
-      }
-      #touch-gadget-btn {
-        width: 62px !important;
-        height: 62px !important;
-      }
-      .touch-icon {
-        font-size: 20px !important;
-      }
-      .touch-label {
-        font-size: 8px !important;
-      }
-      }
-    }
-
-    @keyframes illuminatedGlow {
-      0% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.3); transform: translateX(-50%) scale(1); }
-      100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.6); transform: translateX(-50%) scale(1.02); }
-    }
-
-    /* Lexicon visual system: editorial, quiet, legible. */
-    :root {
-      --bg-dark: #101714;
-      --parchment-base: #eee8d9;
-      --parchment-deep: #e2dac8;
-      --parchment-border: #b6aa91;
-      --gold-primary: #b9975e;
-      --gold-bright: #ddc897;
-      --gold-dark: #655a43;
-      --ink-primary: #202622;
-      --ink-crimson: #b45d51;
-      --ink-emerald: #2d6b5d;
-      --leather-dark: #1a221f;
-      --leather-rim: #303a35;
-    }
-    html, body { background: #101714; background-image: none; }
-    #game-container { border: 1px solid #39423d; border-radius: 2px; box-shadow: 0 8px 32px rgba(0,0,0,.38); }
-    #hud {
-      background: rgba(16, 23, 20, .94);
-      border-bottom: 1px solid rgba(225, 215, 190, .18);
-      border-left: 3px solid #526c5b;
-      text-shadow: none;
-    }
-    .hp-container {
-      border: 1px solid rgba(225, 215, 190, .34);
-      border-radius: 5px;
-      background: #222a26;
-      box-shadow: none;
-    }
-    .hp-fill { background: #c96e5a; box-shadow: none; }
-    .hp-text { font-family: 'IBM Plex Mono', monospace; font-size: 11px; letter-spacing: 0; text-shadow: none; }
-    .timer-badge { color: #e7dfcd; font: 500 13px 'IBM Plex Mono', monospace; letter-spacing: 0; text-shadow: none; border: 0; background: transparent; padding: 4px 8px; }
-    .stats-right { gap: 9px; color: #e7dfcd; font: 500 13px 'IBM Plex Mono', monospace; }
-    .ink-count, .kill-count { display: inline-flex; align-items: center; gap: 5px; color: #e7dfcd; text-shadow: none; }
-    .ui-icon { width: 16px; height: 16px; object-fit: contain; vertical-align: middle; flex: 0 0 auto; }
-    .hud-btn {
-      background: #202925;
-      border: 1px solid rgba(225, 215, 190, .22);
-      color: #e7dfcd;
-      padding: 4px 8px;
-      font: 500 11px 'IBM Plex Sans', sans-serif;
-      letter-spacing: .02em;
-      border-radius: 5px;
-      box-shadow: none;
-    }
-    .hud-btn:hover { background: #2c3933; border-color: #71958b; box-shadow: none; }
-    .info-subrow {
-      border: 0;
-      border-top: 1px solid rgba(225, 215, 190, .14);
-      border-radius: 0;
-      box-shadow: none;
-      background: rgba(16, 23, 20, .68);
-      color: #d8d1c1;
-      padding: 5px 8px;
-      text-align: left;
-      font: 400 11px 'IBM Plex Sans', sans-serif;
-    }
-    .char-info::before { content: "KÂTİP · "; color: #8b9a8e; font: 500 9px 'IBM Plex Mono', monospace; letter-spacing: .06em; }
-    .weapons-info span { box-shadow: none !important; font: 500 10px 'IBM Plex Mono', monospace !important; }
-    .screen-overlay { background: rgba(8, 12, 10, .78); backdrop-filter: blur(2px); }
-    .dialog-panel {
-      background: #eee8d9;
-      background-image: none;
-      border: 1px solid #b6aa91;
-      outline: 0;
-      border-radius: 9px;
-      box-shadow: 0 18px 44px rgba(0,0,0,.34);
-    }
-    .title-header { text-align: left; border-bottom: 1px solid #c9bea8; }
-    .title-header h1 { color: #202622; font: 600 24px 'IBM Plex Serif', serif; letter-spacing: -.02em; text-shadow: none; }
-    .title-header p { color: #59625b; font: 400 13px 'IBM Plex Sans', sans-serif; font-style: normal; }
-    .choice-card { background: #f5f1e7; border: 1px solid #c8bea8; border-radius: 7px; box-shadow: none; }
-    .choice-card:hover { background: #faf8f2; border-color: #8ca49a; transform: none; box-shadow: none; }
-    .choice-card.selected { background: #f2f5ef; border: 2px solid #55796d; outline: 0; box-shadow: none; }
-    .choice-card h3 { color: #202622; font: 600 15px 'IBM Plex Serif', serif; }
-    .choice-card .subtitle, .choice-card .desc { color: #59625b; font: 400 11px 'IBM Plex Sans', sans-serif; font-style: normal; }
-    .choice-card .stats-text { color: #455a51; font: 500 10px 'IBM Plex Mono', monospace; }
-    .choice-card .passive { color: #77694f; border-top: 1px solid #ddd4c2; font: 400 10px 'IBM Plex Sans', sans-serif; font-style: normal; }
-    .tab-bar { border-bottom: 1px solid #c8bea8; }
-    .tab-btn { background: #e6e0d3; border: 1px solid #c8bea8; border-radius: 6px; color: #38413c; font: 500 11px 'IBM Plex Sans', sans-serif; letter-spacing: 0; }
-    .tab-btn:hover { background: #f5f1e7; border-color: #8ca49a; color: #202622; }
-    .tab-btn.active { background: #273630; color: #f2eee3; border-color: #526c60; box-shadow: none; }
-    .btn { background: #263630; color: #f2eee3; border: 1px solid #536e61; border-radius: 6px; box-shadow: none; font: 500 13px 'IBM Plex Sans', sans-serif; letter-spacing: 0; }
-    .btn:hover:not(:disabled) { background: #34483f; border-color: #789287; box-shadow: none; transform: none; }
-    .btn-seal, .btn-crimson, .btn-emerald { background: #263630; color: #f2eee3; border-color: #536e61; }
-    .btn-seal:hover:not(:disabled), .btn-crimson:hover:not(:disabled), .btn-emerald:hover:not(:disabled) { background: #34483f; border-color: #789287; }
-    /* Shop inventory: clear folio, category, offer, and action hierarchy. */
-    #shop-screen .dialog-panel { gap: 12px; padding: 18px 22px; border-top: 3px solid #7d2b32; }
-    #shop-header { min-height: 48px; border-bottom: 1px solid #c8bea8; padding-bottom: 10px; }
-    #shop-title { margin: 0; color: #252923; font: 600 22px 'IBM Plex Serif', serif; letter-spacing: -.02em; }
-    #shop-ink-display { display: inline-flex; align-items: center; gap: 7px; padding: 7px 11px; border: 1px solid #b9975e; border-radius: 5px; background: #e8dfca; color: #6a2630 !important; font: 600 13px 'IBM Plex Mono', monospace !important; white-space: nowrap; }
-    #shop-ink-display::before { content: ""; width: 16px; height: 16px; flex: 0 0 16px; background: url("assets/ui/icons/ink.svg") center / contain no-repeat; }
-    #shop-synergy-text { padding: 8px 10px; border-left: 3px solid #b9975e; background: #e9e2d2; color: #59625b !important; font: 400 12px 'IBM Plex Sans', sans-serif !important; font-style: normal !important; }
-    #shop-screen .tab-bar { gap: 6px; border: 0; padding: 0; }
-    #shop-screen .tab-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 38px; background: #e5dece; color: #50594f; border: 1px solid #c8bea8; border-radius: 4px; font: 500 11px 'IBM Plex Sans', sans-serif; letter-spacing: .025em; }
-    #shop-screen .tab-btn.active { background: #642b32; border-color: #7c4643; color: #f2e7d2; box-shadow: inset 0 -2px 0 #b9975e; }
-    #shop-screen .tab-btn:hover { border-color: #9d7950; }
-    #shop-items-grid { min-height: 230px !important; max-height: min(54vh, 500px); overflow: auto; align-content: start; gap: 10px; padding: 2px; }
-    #shop-items-grid .shop-card { min-height: 220px !important; height: auto !important; flex: 0 0 auto; padding: 13px 14px; gap: 7px; text-align: left; background: #f5f1e7; border-color: #c8bea8; border-radius: 5px; }
-    .shop-card:hover { background: #faf8f2; border-color: #9d7950; }
-    .shop-card .shop-meta { display: flex; align-items: center; justify-content: space-between; gap: 8px; color: #76694f; font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .035em; text-transform: uppercase; }
-    .shop-card .shop-review-mark { color: #792f38; font-weight: 600; }
-    .shop-card .shop-title { margin: 1px 0 0; color: #292b25; font: 600 17px 'IBM Plex Serif', serif; line-height: 1.18; }
-    .shop-card .shop-description { margin: 0; color: #4f5e54; font: 400 12px 'IBM Plex Sans', sans-serif; line-height: 1.4; flex: 1; }
-    .shop-card .shop-example { margin: 0; padding-top: 6px; border-top: 1px solid #dfd6c5; color: #736c5d; font: 400 11px 'IBM Plex Sans', sans-serif; line-height: 1.35; }
-    .shop-card .shop-data { color: #5d5140; font: 500 10px 'IBM Plex Mono', monospace; }
-    .shop-card .shop-buy-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: auto; padding-top: 8px; border-top: 1px solid #d9cdb7; }
-    .shop-card .shop-price { color: #672b34; font: 600 11px 'IBM Plex Mono', monospace; white-space: nowrap; }
-    .shop-card .shop-buy { min-height: 34px; padding: 6px 10px; background: #672b34; color: #f5eddd; border: 1px solid #87484a; border-radius: 4px; box-shadow: none; font: 500 11px 'IBM Plex Sans', sans-serif; }
-    .shop-card .shop-buy:hover:not(:disabled) { background: #7b3740; border-color: #a06e58; box-shadow: none; }
-    .shop-card .shop-buy:disabled { background: #dfd9cc; color: #847e72; border-color: #c9c1b3; }
-    .shop-card.shop-redemption { background: #f7efec; border-color: #9a5755; box-shadow: inset 3px 0 0 #8a3b42; }
-    #shop-actions { border-top: 1px solid #c8bea8; padding-top: 10px; }
-    #shop-reroll-btn { color: #632c34; background: transparent; border: 1px solid #a88664; }
-    #shop-next-wave-btn { background: #263630; border-color: #536e61; }
-    #shop-auto-wave-container { background: #29312c !important; border-color: #78694f !important; }
-    @media (max-width: 700px), (pointer: coarse) {
-      #shop-screen .dialog-panel { gap: 9px; padding: 12px; }
-      #shop-title { font-size: 17px; }
-      #shop-header { gap: 8px; }
-      #shop-synergy-text { font-size: 10px !important; }
-      #shop-screen .tab-bar {
-        display: grid !important;
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-        gap: 6px !important;
-        overflow: visible !important;
-      }
-      #shop-screen .tab-btn { min-width: 0; justify-content: center; white-space: nowrap; padding: 7px 5px; }
-      #shop-screen .tab-btn[aria-selected="true"],
-      #shop-screen .tab-btn[aria-selected="true"]:hover {
-        background: #642b32 !important;
-        border-color: #7c4643 !important;
-        color: #f2e7d2 !important;
-        box-shadow: inset 0 -2px 0 #b9975e !important;
-      }
-      #shop-items-grid { max-height: 48vh; }
-      #shop-items-grid .shop-card { min-height: 196px !important; }
-      .shop-card .shop-buy-row { align-items: stretch; flex-direction: column; }
-      .shop-card .shop-buy { width: 100%; }
-      #title-screen #char-selection-grid, #shop-items-grid {
-        scrollbar-width: thin;
-        scrollbar-color: #77877a #ded7c8;
-      }
-      #title-screen #char-selection-grid { max-height: min(34vh, 300px) !important; }
-      #title-screen #char-selection-grid::-webkit-scrollbar, #shop-items-grid::-webkit-scrollbar { width: 6px; height: 6px; }
-      #title-screen #char-selection-grid::-webkit-scrollbar-thumb, #shop-items-grid::-webkit-scrollbar-thumb { background: #77877a; border-radius: 3px; }
-      #title-screen #char-selection-grid::-webkit-scrollbar-track, #shop-items-grid::-webkit-scrollbar-track { background: #ded7c8; }
-    }
-    #orientation-hint {
-      background: rgba(25, 33, 29, .94);
-      border: 1px solid rgba(225, 215, 190, .32);
-      border-radius: 6px;
-      box-shadow: none;
-      color: #e9e2d2;
-      font: 400 11px 'IBM Plex Sans', sans-serif;
-      letter-spacing: 0;
-      text-shadow: none;
-    }
-    #gadget-panel { background: rgba(25, 33, 29, .9); border: 1px solid rgba(225, 215, 190, .24); border-radius: 7px; box-shadow: none; color: #e9e2d2; text-shadow: none; }
-    #synergy-banner { animation: none; box-shadow: none; border: 1px solid #83978a; border-radius: 7px; }
-    #synergy-banner h4 { color: #e7dfcd; font: 600 14px 'IBM Plex Serif', serif; letter-spacing: 0; }
-    #synergy-banner p { color: #d8d1c1; font: 400 12px 'IBM Plex Sans', sans-serif; }
-    #boss-hp-title { font: 600 12px 'IBM Plex Sans', sans-serif; letter-spacing: .06em; text-shadow: none; }
-    .touch-circle-btn { background: rgba(29, 39, 34, .96); border: 1px solid rgba(225, 215, 190, .55); box-shadow: none; }
-    .touch-circle-btn:active { transform: scale(.96); box-shadow: none; }
-    .touch-icon { width: 20px; height: 20px; object-fit: contain; font-size: 0; }
-    .touch-label { color: #e7dfcd; font: 500 8px 'IBM Plex Sans', sans-serif; letter-spacing: .04em; }
-    #chapter-transition-card {
-      --chapter-accent: #c5aa72;
-      position: absolute;
-      z-index: 125;
-      top: 92px;
-      left: 50%;
-      width: min(620px, calc(100% - 28px));
-      box-sizing: border-box;
-      padding: 14px 56px 15px 21px;
-      transform: translateX(-50%);
-      color: #e9e5d9;
-      background: rgba(19, 26, 22, .96);
-      border: 1px solid var(--chapter-accent);
-      border-radius: 3px;
-      box-shadow: 0 12px 30px rgba(0,0,0,.28);
-      pointer-events: none;
-      opacity: 1;
-      transition: opacity .35s ease, transform .35s ease;
-      animation: chapter-reveal .3s ease-out both;
-    }
-    #chapter-transition-card[hidden] { display: none !important; }
-    #story-intermission { position: absolute; inset: 0; z-index: 260; display: grid; place-items: center; overflow-y: auto; overscroll-behavior: contain; padding: clamp(8px,2vw,24px); background: radial-gradient(ellipse at 50% 42%, rgba(31,39,34,.76), rgba(7,10,9,.96) 72%); color: #e9e2d2; animation: story-fade-in .65s ease-out both; }
-    #story-intermission[hidden] { display: none !important; }
-    .story-leaf { position: relative; width: min(960px, 100%); max-height: calc(100dvh - 32px); box-sizing: border-box; padding: clamp(10px,1.8vw,20px); overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; background: linear-gradient(115deg,rgba(29,37,32,.98),rgba(16,22,20,.98)); border: 1px solid #a78d5c; box-shadow: 0 24px 90px #000a; animation: story-leaf-arrive .8s cubic-bezier(.2,.8,.2,1) both; }
-    .story-leaf::before { content:""; position:absolute; inset:12px; border:1px solid #c5aa7244; pointer-events:none; }
-    .story-leaf::after { content:""; position:absolute; right:-34px; top:-44px; width:220px; height:280px; opacity:.12; background: repeating-linear-gradient(0deg,transparent 0 18px,#d6c18b 19px 20px); transform:rotate(13deg); pointer-events:none; }
-    #story-kicker { color:#c5aa72; font:500 11px 'IBM Plex Mono',monospace; letter-spacing:.16em; text-transform:uppercase; }
-    .story-header { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:26px; padding:0 4px 8px; }
-    #story-title { margin:0; font:600 clamp(17px,3vw,24px)/1.1 'IBM Plex Serif',serif; color:#f0ede3; }
-    #story-location { color:#c5aa72; font:500 10px 'IBM Plex Mono',monospace; text-transform:uppercase; letter-spacing:.12em; }
-    #story-scene { position:relative; height:clamp(190px,49vh,490px); min-height:190px; overflow:hidden; border:1px solid #b79a62; background:radial-gradient(ellipse at 50% 42%,#253027 0,#111814 72%); isolation:isolate; }
-    #story-scene::before { content:""; position:absolute; inset:9px; z-index:1; border:1px solid #d2bd8144; pointer-events:none; }
-    #story-scene-image { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; image-rendering:pixelated; animation:story-pan 24s ease-in-out infinite alternate; }
-    #story-scene-caption { position:absolute;z-index:2;left:clamp(10px,2.5vw,26px);top:clamp(10px,2.5vw,22px);max-width:min(460px,68%);padding:7px 10px;border-left:2px solid #cfb779;background:linear-gradient(90deg,#101611dc,#10161177);color:#e3ddc9;font:500 12px 'IBM Plex Serif',serif;line-height:1.45;text-shadow:0 1px 4px #000; }
-    #story-scene::after { content:""; position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(0deg,rgba(4,8,6,.84),transparent 62%),linear-gradient(90deg,rgba(5,9,7,.18),transparent 48%,rgba(5,9,7,.18)); }
-    #story-speaker-portrait { position:absolute; z-index:2; right:clamp(12px,3vw,30px); top:clamp(12px,3vw,26px); width:clamp(92px,13vw,142px); height:clamp(92px,13vw,142px); box-sizing:border-box; padding:12px; object-fit:contain; object-position:center; border:1px solid #d4bc79; border-radius:50%; background:radial-gradient(circle at 50% 38%,#493e2b,#151a16 68%); box-shadow:0 5px 20px #000b, inset 0 0 0 4px #d4bc7926; image-rendering:pixelated; filter:drop-shadow(0 8px 15px #0009); animation:story-actor-in .38s cubic-bezier(.2,.8,.2,1) both; }
-    #story-speaker-portrait[data-kind="boss"] { width:clamp(106px,15vw,164px); height:clamp(106px,15vw,164px); border-radius:12px; background:linear-gradient(145deg,#30291e,#111713 72%); box-shadow:0 8px 24px #000c, inset 0 0 0 4px #d4bc7926; }
-    #story-speaker-portrait[hidden] { display:none; }
-    .story-dialogue-frame { position:absolute; z-index:3; left:clamp(10px,3vw,34px); right:clamp(10px,3vw,34px); bottom:clamp(10px,2.5vw,26px); max-width:min(720px,86%); min-height:112px; padding:16px 18px; border:1px solid #c8b278; background:rgba(17,24,20,.94); box-shadow:0 8px 28px #0009; animation:story-bubble-in .28s ease-out both; }
-    .story-boss-memory { position:absolute; z-index:4; right:clamp(10px,2.5vw,28px); top:clamp(10px,2.5vw,24px); display:flex; align-items:center; gap:10px; max-width:min(350px,48%); padding:8px 11px; border:1px solid #c8b278; background:rgba(17,24,20,.96); box-shadow:0 8px 24px #0009; }
-    .story-boss-memory[hidden] { display:none!important; }
-    .story-boss-memory img { width:42px; height:42px; object-fit:contain; flex:0 0 auto; }
-    .story-boss-memory strong { display:block; color:#e8d6a8; font:600 11px 'IBM Plex Sans',sans-serif; letter-spacing:.05em; text-transform:uppercase; }
-    .story-boss-memory span { display:block; margin-top:3px; color:#d0d0c5; font:400 11px 'IBM Plex Sans',sans-serif; line-height:1.35; }
-    #story-speaker { display:block; margin-bottom:7px; color:#d6bd7e; font:600 10px 'IBM Plex Mono',monospace; letter-spacing:.15em; text-transform:uppercase; }
-    #story-copy { display:block; margin:0; color:#f0ede3; font:400 clamp(14px,2vw,19px)/1.5 'IBM Plex Sans',sans-serif; }
-    .story-controls { display:flex; align-items:center; gap:8px; padding:10px 2px 0; }
-    #story-next { min-height:42px; min-width:190px; padding:0 20px; background:#d0bd91; border:0; color:#20251f; font:600 13px 'IBM Plex Sans',sans-serif; cursor:pointer; }
-    #story-skip { min-height:40px; padding:0 12px; border:1px solid #8c8d77; background:transparent; color:#c8c9bb; font:500 11px 'IBM Plex Sans',sans-serif; cursor:pointer; }
-    #story-counter { margin-left:auto; color:#879187; font:11px 'IBM Plex Mono',monospace; }
-    #story-enter-hint { color:#8e988c; font:10px 'IBM Plex Mono',monospace; }
-    #story-intermission::before, #story-intermission::after { content:""; position:absolute; left:0; right:0; height:clamp(10px,3vh,28px); background:#050706; box-shadow:0 0 32px #000; pointer-events:none; }
-    #story-intermission::before { top:0; } #story-intermission::after { bottom:0; }
-    @keyframes story-fade-in { from { opacity:0; } to { opacity:1; } }
-    @keyframes story-leaf-arrive { from { opacity:0; transform:translateY(14px) scale(.985); } to { opacity:1; transform:translateY(0) scale(1); } }
-    @keyframes story-pan { from { transform:scale(1) translateX(0); } to { transform:scale(1.012) translateX(-.15%); } }
-    @keyframes story-actor-in { from { opacity:0; transform:translateX(22px) translateY(8px); } to { opacity:1; transform:translateX(0) translateY(0); } }
-    @keyframes story-bubble-in { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
-    @media(prefers-reduced-motion:reduce) { #story-intermission, .story-leaf,#story-scene-image,#story-speaker-portrait,.story-dialogue-frame { animation-duration:.01ms!important; } }
-    @media(max-width:600px) { .story-leaf { padding:8px; } .story-header { align-items:flex-start; } #story-location { max-width:40%; text-align:right; } #story-scene { height:clamp(210px,43vh,360px); } .story-dialogue-frame { max-width:94%; min-height:90px; padding:12px; } #story-speaker-portrait { width:76px; height:76px; right:10px; top:10px; padding:8px; } #story-speaker-portrait[data-kind="boss"] { width:86px; height:86px; } .story-boss-memory { max-width:58%; padding:6px 8px; gap:7px; } .story-boss-memory img { width:32px;height:32px; } .story-boss-memory span { font-size:10px; } .story-controls { flex-wrap:wrap; } #story-next { flex:1 1 100%; order:0; } #story-skip { order:1; } #story-enter-hint { order:2; } #story-counter { order:3; } }
-    @media(max-height:560px) {
-      #story-intermission { place-items:start center; padding:8px; }
-      .story-leaf { max-height:calc(100dvh - 16px); padding:8px; }
-      #story-scene { height:clamp(96px,32vh,180px); min-height:96px; }
-      .story-dialogue-frame { min-height:0; padding:8px 10px; }
-      .story-controls { position:sticky; bottom:-8px; z-index:5; margin:0 -8px -8px; padding:8px; background:linear-gradient(180deg,rgba(16,22,20,.78),rgba(16,22,20,.99) 28%); }
-      #story-next { min-height:38px; min-width:132px; }
-    }
-    .music-choice-row { display:flex; align-items:center; justify-content:center; gap:12px; color:#725a3a; font:600 11px 'IBM Plex Mono',monospace; letter-spacing:.08em; }
-    .music-choice-row select { min-height:36px; padding:0 32px 0 11px; border:1px solid #a89b82; background:#eee7d9; color:#28302a; font:500 13px 'IBM Plex Sans',sans-serif; }
-    #chapter-transition-card::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: var(--chapter-accent);
-    }
-    #chapter-transition-card.is-leaving { opacity: 0; transform: translate(-50%, -7px); }
-    #chapter-transition-kicker, #shop-chapter-kicker {
-      display: block;
-      color: var(--chapter-accent);
-      font: 500 10px 'IBM Plex Mono', monospace;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-    #chapter-transition-number {
-      position: absolute;
-      top: 13px;
-      right: 17px;
-      color: var(--chapter-accent);
-      opacity: .52;
-      font: 500 25px 'IBM Plex Serif', serif;
-    }
-    #chapter-transition-title {
-      margin: 7px 0 3px;
-      color: #f0ede3;
-      font: 600 22px 'IBM Plex Serif', serif;
-      letter-spacing: .015em;
-    }
-    #chapter-transition-narration {
-      margin: 0;
-      color: #c7cec5;
-      font: 400 13px/1.45 'IBM Plex Sans', sans-serif;
-    }
-    @keyframes chapter-reveal {
-      from { opacity: 0; transform: translate(-50%, -8px); }
-      to { opacity: 1; transform: translate(-50%, 0); }
-    }
-    #shop-chapter-strip {
-      --chapter-accent: #c5aa72;
-      position: relative;
-      margin: 7px 0 5px;
-      padding: 9px 62px 10px 16px;
-      background: #e5dfd1;
-      border: 1px solid #c9bea8;
-      border-left: 3px solid var(--chapter-accent);
-    }
-    #shop-chapter-title { margin: 3px 0 1px; color: #26302a; font: 600 16px 'IBM Plex Serif', serif; }
-    #shop-chapter-narration { margin: 0; color: #5c665e; font: 400 11px/1.4 'IBM Plex Sans', sans-serif; }
-    #shop-chapter-kicker { color: #6d6c59; }
-    #shop-chapter-mark { position: absolute; top: 50%; right: 15px; width: 32px; height: 32px; transform: translateY(-50%); opacity: .76; }
-    /* Library entry folio: the game art frames the catalog without competing with it. */
-    #title-screen { background: rgba(10, 16, 13, .82); backdrop-filter: none; }
-    #title-screen::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: url("assets/sprites/upgrade_v1/arena_frame_library.png") center / cover no-repeat;
-      filter: brightness(.48) saturate(.62);
-      opacity: .38;
-      pointer-events: none;
-    }
-    #title-screen .dialog-panel {
-      z-index: 1;
-      border: 1px solid #b6aa91;
-      border-top: 3px solid #586e60;
-      border-left: 3px solid #586e60;
-      outline: 0;
-      border-radius: 3px;
-      box-shadow: 0 20px 48px rgba(0,0,0,.36);
-    }
-    .title-index {
-      display: block;
-      margin-bottom: 4px;
-      color: #6f7669;
-      font: 500 10px 'IBM Plex Mono', monospace;
-      letter-spacing: .12em;
-      text-align: left;
-    }
-    #title-screen .title-header { border-bottom-color: #c3b9a5; }
-    #title-screen .title-header h1 { letter-spacing: .015em; }
-    #title-screen .title-header p { text-align: left; }
-    .character-select-heading {
-      color: #5c3b1e;
-      font: 800 14px 'IBM Plex Serif', serif;
-      text-align: center;
-    }
-    #character-scroll-hint {
-      display: none;
-      align-items: center;
-      color: #66776c;
-      font: 500 9px 'IBM Plex Mono', monospace;
-      letter-spacing: .06em;
-    }
-    #diff-selection-container .btn { min-height: 38px; font: 500 13px 'IBM Plex Mono', monospace; letter-spacing: .04em; }
-    #diff-selection-container .btn-seal { background: #33463d; border-color: #687c6d; color: #f1ede2; }
-    #start-game-btn { background: #394e43; border-color: #788b75; color: #f0ebdc; }
-    #start-game-btn:hover { background: #465d50; }
-    #speed-toast {
-      background: #202925 !important;
-      border: 1px solid #64756a !important;
-      color: #e7dfcd !important;
-      box-shadow: none !important;
-      font: 500 11px 'IBM Plex Mono', monospace !important;
-    }
-    #tactical-alert-banner { border-color: #8b6259 !important; border-radius: 3px !important; box-shadow: none !important; }
-    #tactical-alert-title { color: #d6a89c !important; font: 600 11px 'IBM Plex Mono', monospace !important; }
-    #tactical-alert-desc { color: #d4d0c5 !important; font: 400 11px 'IBM Plex Sans', sans-serif !important; }
-    #boss-hp-container { box-shadow: none !important; }
-    #boss-hp-title { color: #e7dfcd !important; font: 500 10px 'IBM Plex Mono', monospace !important; }
-    #shop-screen .dialog-panel { border-top-color: #7d4547; }
-    #shop-auto-wave-bar { background: #82958a !important; }
-    #game-over-screen { background: rgba(9, 14, 11, .82); backdrop-filter: none; }
-    #game-over-screen .dialog-panel {
-      position: relative;
-      overflow: hidden;
-      gap: 8px;
-      padding: 24px 28px 22px;
-      background: #eee8d9;
-      border: 1px solid #b6aa91;
-      border-top: 3px solid #8c514d;
-      outline: 0;
-      border-radius: 3px;
-      box-shadow: 0 20px 48px rgba(0,0,0,.36);
-    }
-    #game-over-screen .dialog-panel::after {
-      content: "";
-      position: absolute;
-      top: 17px;
-      right: 20px;
-      width: 38px;
-      height: 38px;
-      background: url("assets/ui/icons/book.svg") center / contain no-repeat;
-      opacity: .20;
-      pointer-events: none;
-    }
-    .game-over-kicker { color: #716d5f; font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .12em; }
-    #game-over-title { margin: 0 42px 4px; color: #3e2c2e; font: 600 24px 'IBM Plex Serif', serif; letter-spacing: .01em; }
-    #game-over-summary {
-      margin: 4px 0 8px;
-      padding: 14px 16px;
-      color: #303a35;
-      background: #e5dfd1;
-      border: 1px solid #c9bea8;
-      border-left: 3px solid #8c514d;
-      border-radius: 2px;
-      font: 400 12px/1.55 'IBM Plex Sans', sans-serif;
-      text-align: left;
-      white-space: pre-line;
-    }
-    #game-over-screen[data-result="victory"] .dialog-panel { border-top-color: #637b6b; }
-    #game-over-screen[data-result="victory"] #game-over-summary { border-left-color: #637b6b; }
-    #game-over-screen[data-result="victory"] #game-over-title { color: #334a3d; }
-    #auto-run-countdown-container {
-      padding: 10px 12px;
-      background: #e4dfd2;
-      border: 1px solid #c9bea8;
-      border-radius: 2px;
-      color: #3c443e;
-    }
-    #auto-run-countdown-text { margin-bottom: 6px; color: #4f6356; font: 500 12px 'IBM Plex Mono', monospace; }
-    .countdown-track { width: 100%; height: 5px; margin-bottom: 8px; overflow: hidden; background: #d1cbbb; }
-    #auto-run-countdown-bar { width: 100%; height: 100%; background: #82958a; transition: width .1s linear; }
-    #game-over-screen .btn { min-height: 38px; }
-    @media (max-width: 700px), (pointer: coarse) {
-      button, [role="button"], [onclick] {
-        min-height: 44px !important;
-        touch-action: manipulation !important;
-        -webkit-tap-highlight-color: rgba(90, 112, 97, .22);
-      }
-      #mobile-menu-btn {
-        width: 44px !important;
-        min-width: 44px !important;
-        min-height: 44px !important;
-        padding: 8px !important;
-        font-size: 0 !important;
-      }
-      #mobile-menu-btn .ui-icon { width: 20px !important; height: 20px !important; }
-      #orientation-hint { min-height: 44px !important; }
-      #diff-selection-container .btn { min-height: 44px !important; }
-
-      #hud { box-sizing: border-box !important; padding: calc(env(safe-area-inset-top, 0px) + 5px) calc(env(safe-area-inset-right, 0px) + 7px) 5px calc(env(safe-area-inset-left, 0px) + 7px) !important; gap: 1px !important; }
-      .hud-row { width: 100% !important; min-width: 0 !important; gap: 4px !important; flex-wrap: wrap !important; }
-      .stats-right { margin-left: auto; }
-      .hp-container { width: clamp(72px, 24vw, 105px) !important; min-width: 72px !important; height: 20px; flex: 0 1 auto !important; }
-      .hp-text { font-size: 9px; }
-      .timer-badge { min-width: 0 !important; flex: 1 1 auto !important; overflow: hidden; text-overflow: ellipsis; font-size: 9px !important; padding: 2px 3px !important; white-space: nowrap !important; text-align: center; }
-      .stats-right { min-width: 0 !important; flex: 0 1 auto !important; gap: 4px !important; font-size: 10px; }
-      .stats-right .hud-btn:not(#mobile-menu-btn):not(#fullscreen-btn) { display: none !important; }
-      .hud-btn { padding: 3px 6px; font-size: 10px; }
-      #mobile-menu-btn { flex: 0 0 auto !important; gap: 3px !important; padding: 3px 5px !important; font-size: 9px !important; }
-      .ui-icon { width: 14px; height: 14px; }
-      .info-subrow { padding: 3px 6px; font-size: 9px; }
-      .weapons-info { max-width: 56vw; overflow: hidden; }
-      #orientation-hint { top: calc(env(safe-area-inset-top, 0px) + 54px); max-width: calc(100% - 24px); padding: 6px 9px; font-size: 10px; }
-      #speed-toast { top: calc(env(safe-area-inset-top, 0px) + 62px) !important; right: calc(env(safe-area-inset-right, 0px) + 12px) !important; }
-      #chapter-transition-card { top: calc(env(safe-area-inset-top, 0px) + 104px); padding: 11px 43px 12px 15px; }
-      #tactical-alert-banner { top: calc(env(safe-area-inset-top, 0px) + 194px) !important; }
-      #chapter-transition-title { font-size: clamp(16px, 4vw, 20px); }
-      #chapter-transition-narration { font-size: 11px; }
-      #shop-chapter-strip { padding: 7px 48px 8px 12px; }
-      #shop-chapter-mark { right: 11px; width: 28px; height: 28px; }
-      #shop-chapter-title { font-size: 14px; }
-      #shop-chapter-narration { font-size: 10px; }
-      #game-over-screen .dialog-panel { padding: 18px 16px; }
-      #game-over-title { margin-left: 28px; margin-right: 28px; font-size: 21px; }
-      #game-over-summary { padding: 11px 12px; font-size: 11px; }
-      #title-screen .dialog-panel { max-height: calc(var(--app-height, 100dvh) - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 12px); padding: 14px; gap: 8px; }
-      #title-screen .title-header h1 { font-size: clamp(19px, 6vw, 24px); }
-      #char-selection-grid { grid-template-columns: 1fr; gap: 5px; max-height: 250px; }
-      #title-screen #char-selection-grid .choice-card { min-height: 78px !important; height: auto; padding: 6px 8px; overflow: hidden; }
-      #title-screen #char-selection-grid .choice-card .passive { display: -webkit-box !important; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 10px !important; line-height: 1.22 !important; color: #5e6d61 !important; }
-      #shop-screen .dialog-panel { max-height: calc(var(--app-height, 100dvh) - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 12px); padding: 12px; }
-      #shop-items-grid { grid-template-columns: 1fr; }
-      #shop-screen .tab-btn, .shop-card .shop-buy { min-height: 44px !important; }
-    }
-    @media (min-width: 701px) {
-      #shop-items-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-      #shop-items-grid { max-height: 55vh !important; }
-      #shop-items-grid .shop-card { min-height: 166px !important; padding: 10px 12px; gap: 5px; }
-      #title-screen .dialog-panel {
-        width: min(100%, 1040px) !important;
-        max-height: calc(100dvh - 28px) !important;
-        padding: 15px 20px !important;
-        gap: 7px !important;
-      }
-      #title-screen .title-header h1 { font-size: 24px !important; }
-      #title-screen .title-header p { font-size: 12px !important; }
-      #title-screen #char-selection-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-        gap: 7px !important;
-        max-height: none !important;
-        overflow: visible !important;
-      }
-      #title-screen #char-selection-grid .choice-card {
-        min-height: 96px !important;
-        padding: 8px 10px !important;
-        text-align: left !important;
-        justify-content: center;
-      }
-      #title-screen #char-selection-grid .choice-card:focus-visible {
-        outline: 3px solid #315d50 !important;
-        outline-offset: 2px;
-      }
-      #title-screen #char-selection-grid .choice-card img { width: 40px !important; height: 40px !important; }
-      #title-screen #char-selection-grid .choice-card h3 { font-size: 15px !important; }
-      #title-screen #char-selection-grid .choice-card .subtitle { font-size: 10.5px !important; }
-      #title-screen #char-selection-grid .choice-card .stats-text { font-size: 10px !important; }
-      #title-screen #char-selection-grid .choice-card .desc { display: block !important; font-size: 10.5px !important; }
-      #title-screen #char-selection-grid .choice-card .passive {
-        display: block !important;
-        font-size: 10px !important;
-        line-height: 1.25 !important;
-        white-space: normal;
-      }
-    }
-    /* Character archive plates: each hero gets a restrained, authored color signal. */
-    #title-screen #char-selection-grid .choice-card {
-      --hero-accent: #617b6d;
-      --hero-wash: #f1f0e5;
-      position: relative;
-      overflow: hidden !important;
-      isolation: isolate;
-      border: 1px solid color-mix(in srgb, var(--hero-accent) 42%, #c8bea8) !important;
-      border-left: 3px solid var(--hero-accent) !important;
-      border-radius: 4px !important;
-      background: linear-gradient(105deg, var(--hero-wash), #f8f4e8 46%, #f8f4e8) !important;
-      box-shadow: inset 0 1px rgba(255,255,255,.76), 0 3px 10px rgba(26, 31, 27, .1) !important;
-      transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease, transform 180ms ease !important;
-    }
-    #title-screen #char-selection-grid .choice-card::after {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      top: -34px;
-      right: -34px;
-      width: 92px;
-      height: 92px;
-      border: 1px solid color-mix(in srgb, var(--hero-accent) 24%, transparent);
-      border-radius: 50%;
-      box-shadow: 0 0 0 7px color-mix(in srgb, var(--hero-accent) 5%, transparent), 0 0 0 14px color-mix(in srgb, var(--hero-accent) 4%, transparent);
-      pointer-events: none;
-    }
-    #title-screen #char-selection-grid .choice-card[data-hero="inky"] { --hero-accent: #536f5e; --hero-wash: #e9eee5; }
-    #title-screen #char-selection-grid .choice-card[data-hero="quillmaster"] { --hero-accent: #8a6548; --hero-wash: #f1e9db; }
-    #title-screen #char-selection-grid .choice-card[data-hero="word_knight"] { --hero-accent: #607581; --hero-wash: #e8edf0; }
-    #title-screen #char-selection-grid .choice-card[data-hero="rune_sorceress"] { --hero-accent: #77628e; --hero-wash: #eee8f0; }
-    #title-screen #char-selection-grid .choice-card[data-hero="lexicon_alchemist"] { --hero-accent: #9a7844; --hero-wash: #f3ebd9; }
-    #title-screen #char-selection-grid .choice-card[data-hero="shadow_lexicographer"] { --hero-accent: #506d70; --hero-wash: #e5eeec; }
-    #title-screen #char-selection-grid .choice-card.selected {
-      border-color: var(--hero-accent) !important;
-      outline: 0 !important;
-      background: linear-gradient(105deg, color-mix(in srgb, var(--hero-wash) 72%, white), #fbf8ef 58%) !important;
-      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--hero-accent) 34%, transparent), 0 0 0 2px color-mix(in srgb, var(--hero-accent) 18%, transparent), 0 5px 14px rgba(26,31,27,.13) !important;
-    }
-    #title-screen #char-selection-grid .choice-card img {
-      flex: 0 0 auto;
-      width: 44px !important;
-      height: 44px !important;
-      padding: 3px;
-      border: 1px solid color-mix(in srgb, var(--hero-accent) 46%, #d2c7b2);
-      border-radius: 3px;
-      background: radial-gradient(circle at 50% 42%, rgba(255,255,255,.96), var(--hero-wash) 72%);
-      image-rendering: pixelated;
-      object-fit: contain;
-    }
-    #title-screen #char-selection-grid .choice-card .story-motive {
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      overflow: hidden;
-      padding-left: 2px;
-      border-left: 1px solid color-mix(in srgb, var(--hero-accent) 44%, transparent);
-      color: #66563d !important;
-      font: italic 10px/1.3 'IBM Plex Sans', sans-serif !important;
-    }
-    #title-screen #char-selection-grid .choice-card .passive {
-      border-top: 1px solid color-mix(in srgb, var(--hero-accent) 22%, #ddd4c2) !important;
-      color: #4e6258 !important;
-      font: 500 9.5px/1.28 'IBM Plex Sans', sans-serif !important;
-    }
-    @media (max-width: 700px), (pointer: coarse) {
-      .character-select-heading { display: flex; align-items: baseline; justify-content: space-between; text-align: left; }
-      #character-scroll-hint { display: inline-flex; }
-      #title-screen #char-selection-grid { max-height: min(38vh, 320px) !important; }
-      #title-screen #char-selection-grid .choice-card { min-height: 96px !important; padding: 7px 9px !important; }
-      #title-screen #char-selection-grid .choice-card img { width: 42px !important; height: 42px !important; }
-      #title-screen #char-selection-grid .choice-card .story-motive { -webkit-line-clamp: 1; font-size: 10px !important; }
-      #title-screen #char-selection-grid .choice-card .passive { -webkit-line-clamp: 1; font-size: 10px !important; }
-    }
-    @media (max-width: 360px) {
-      #kill-count { display: none !important; }
-    }
-    .screen-overlay[hidden] { display: none !important; pointer-events: none !important; }
-
-    /* The entry menu is an illustrated archive record, not a floating settings dialog. */
-    #title-screen { padding: 20px; background: rgba(6, 12, 10, .84); }
-    #title-screen .title-dossier {
-      display: grid !important;
-      grid-template-columns: minmax(265px, .82fr) minmax(0, 1.18fr);
-      grid-template-rows: minmax(0, 1fr) auto;
-      gap: 0;
-      width: min(1080px, calc(100vw - 40px));
-      max-height: min(900px, calc(100dvh - 40px));
-      padding: 0;
-      overflow: hidden;
-      color: #202923;
-      background: #17231e;
-      border: 1px solid #bda873;
-      border-radius: 4px;
-      outline: 1px solid rgba(10, 15, 12, .95);
-      outline-offset: -6px;
-      box-shadow: 0 24px 72px #000b, 0 0 0 1px #44574a, inset 0 0 0 3px rgba(227, 205, 157, .12);
-    }
-    #title-screen .title-cover {
-      position: relative;
-      display: flex;
-      min-height: 565px;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
-      padding: 23px 22px 15px;
-      color: #f1e8d4;
-      background:
-        radial-gradient(ellipse at 50% 48%, rgba(133, 151, 121, .16), transparent 47%),
-        linear-gradient(152deg, #263a31 0%, #182620 58%, #201d18 100%);
-      border-right: 1px solid rgba(189, 168, 115, .58);
-    }
-    #title-screen .title-cover::before,
-    #title-screen .title-cover::after { content: ""; position: absolute; pointer-events: none; }
-    #title-screen .title-cover::before {
-      inset: 12px;
-      border: 1px solid rgba(207, 184, 128, .23);
-      background: repeating-linear-gradient(135deg, transparent 0 22px, rgba(217, 196, 148, .025) 22px 23px);
-    }
-    #title-screen .title-cover::after {
-      width: 180px; height: 180px; left: 50%; top: 49%; transform: translate(-50%, -50%);
-      border: 1px solid rgba(206, 180, 119, .12); border-radius: 50%;
-      box-shadow: 0 0 0 12px rgba(206, 180, 119, .035), 0 0 0 28px rgba(206, 180, 119, .025);
-    }
-    .title-cover-index, .title-cover-ledger, .title-feature, .title-cover-copy { position: relative; z-index: 1; }
-    .title-cover-index, .title-cover-ledger { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-    .title-cover-index { padding-bottom: 10px; border-bottom: 1px solid rgba(207, 184, 128, .38); }
-    #title-screen .title-index { display: block; margin: 0; color: #c6b17e; font: 500 9px 'IBM Plex Mono', monospace; letter-spacing: .13em; }
-    .title-volume { color: #d4c9ad; font: 500 10px 'IBM Plex Mono', monospace; letter-spacing: .08em; }
-    .title-feature { display: grid; grid-template-columns: 1fr; justify-items: center; gap: 7px; text-align: center; }
-    .title-portrait-well { position: relative; display: grid; place-items: center; width: 204px; height: 215px; }
-    .title-portrait-well::before { content: ""; position: absolute; inset: 21px 25px; border: 1px solid rgba(211, 188, 130, .52); transform: rotate(45deg); }
-    .title-portrait-well::after { content: ""; position: absolute; inset: 31px 34px; border: 1px solid rgba(211, 188, 130, .22); transform: rotate(45deg); }
-    .title-portrait-orbit { position: absolute; width: 152px; height: 152px; border: 1px solid rgba(211, 188, 130, .26); border-radius: 50%; box-shadow: 0 0 0 9px rgba(211, 188, 130, .035); }
-    #title-hero-feature { position: relative; z-index: 2; width: 152px; height: 176px; object-fit: contain; image-rendering: pixelated; filter: drop-shadow(0 10px 11px rgba(0,0,0,.48)); animation: title-hero-arrive .35s ease-out both; }
-    @keyframes title-hero-arrive { from { opacity: .45; transform: translateY(8px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
-    .title-cover-copy { width: 100%; text-align: left; }
-    .title-cover-copy h1 { margin: 0; color: #f3ead7; font: 600 clamp(23px, 3vw, 34px)/.94 'IBM Plex Serif', serif; letter-spacing: .035em; text-shadow: 0 2px 14px rgba(0,0,0,.3); }
-    .title-worldline { margin: 8px 0 0; color: #bac5b6; font: 400 11px 'IBM Plex Sans', sans-serif; }
-    .title-worldline span { color: #c4ad75; padding: 0 3px; }
-    .title-cover-rule { display: flex; align-items: center; gap: 10px; margin: 11px 0 9px; }
-    .title-cover-rule span { height: 1px; flex: 1; background: linear-gradient(90deg, transparent, rgba(203, 177, 119, .7)); }
-    .title-cover-rule span:last-child { transform: scaleX(-1); }
-    .title-cover-rule img { width: 20px; height: 20px; opacity: .75; filter: sepia(.5) brightness(1.25); }
-    .title-feature-label { color: #c5b17c; font: 500 9px 'IBM Plex Mono', monospace; letter-spacing: .13em; }
-    #title-hero-name { display: block; margin-top: 3px; color: #f5eedf; font: 600 19px 'IBM Plex Serif', serif; }
-    #title-hero-motive { margin: 4px 0 0; color: #c8c9bb; font: italic 12px/1.4 'IBM Plex Sans', sans-serif; }
-    .title-cover-ledger { padding-top: 10px; color: #aeb9ac; border-top: 1px solid rgba(207, 184, 128, .3); font: 500 8px 'IBM Plex Mono', monospace; letter-spacing: .045em; }
-    .title-cover-ledger span:first-child { display: flex; align-items: center; gap: 6px; }
-    .title-cover-ledger img { width: 14px; height: 14px; opacity: .76; }
-    #title-screen .title-select-panel {
-      display: flex;
-      min-height: 0;
-      flex-direction: column;
-      gap: 10px;
-      overflow-y: auto;
-      padding: 20px 22px 15px;
-      background:
-        linear-gradient(90deg, rgba(89, 105, 86, .045) 1px, transparent 1px) 0 0 / 24px 24px,
-        linear-gradient(rgba(89, 105, 86, .035) 1px, transparent 1px) 0 0 / 24px 24px,
-        #e8e2d4;
-    }
-    .title-select-kicker, .title-difficulty-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: #627268; font: 500 9px 'IBM Plex Mono', monospace; letter-spacing: .1em; }
-    .title-select-kicker { padding-bottom: 8px; border-bottom: 1px solid #c7bdab; }
-    .title-select-kicker span:last-child { color: #967b4c; }
-    #title-screen .music-choice-row { justify-content: space-between; gap: 12px; color: #4c5e53; font-size: 9px; }
-    #title-screen .music-choice-row select { flex: 1; max-width: 260px; background: #f1ecdf; border-color: #a69c87; }
-    #title-screen .character-select-heading { display: flex; align-items: baseline; justify-content: space-between; color: #38463e; font: 600 12px 'IBM Plex Serif', serif; letter-spacing: .03em; }
-    #title-screen #character-scroll-hint { display: none; }
-    #title-screen #char-selection-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; max-height: 276px; overflow: auto; padding: 2px 3px 5px 2px; }
-    #title-screen #char-selection-grid .choice-card { min-width: 0; min-height: 106px; padding: 7px 8px; }
-    #title-screen #char-selection-grid .choice-card .stats-text { font-size: 8px !important; }
-    #title-screen #char-selection-grid .choice-card .desc { display: none !important; }
-    #title-screen #char-selection-grid .choice-card .story-motive { -webkit-line-clamp: 1; font-size: 9px !important; }
-    #title-screen #char-selection-grid .choice-card .passive { -webkit-line-clamp: 1; overflow: hidden; font-size: 8px !important; }
-    #title-screen .title-difficulty-heading { padding-top: 7px; border-top: 1px solid #c8bdab; color: #38463e; }
-    #title-screen .title-difficulty-choices { display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px !important; }
-    #title-screen .title-difficulty-choices .btn { min-height: 38px; padding: 5px 7px; font: 500 10px 'IBM Plex Mono', monospace; }
-    #title-screen .title-difficulty-choices .btn:not(.btn-seal) { background: #ded8ca; border-color: #b6ac97; color: #475249; }
-    #title-screen .title-difficulty-description { min-height: 29px; color: #687267; font: italic 10px/1.4 'IBM Plex Sans', sans-serif; text-align: left; }
-    #title-screen .title-run-options { display: flex; flex-wrap: wrap; gap: 6px; padding-top: 7px; border-top: 1px solid #c8bdab; }
-    #title-screen .title-run-options .btn { min-height: 31px; padding: 4px 8px; background: #ddd7c9; border-color: #b6ac97; color: #465249; font: 500 9px 'IBM Plex Sans', sans-serif; }
-    #title-screen .title-run-options .ui-icon { width: 15px; height: 15px; }
-    #title-screen .title-actions { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 18px 13px; background: #111a16; border-top: 1px solid #81734f; }
-    .title-action-buttons { display: flex; align-items: center; gap: 8px; }
-    #title-screen #start-game-btn, #title-screen #title-leaderboard-btn { min-height: 44px; margin: 0 !important; padding: 8px 16px !important; font: 600 11px 'IBM Plex Sans', sans-serif; letter-spacing: .06em; }
-    #title-screen #start-game-btn { background: #526d5b; border-color: #bba873; color: #f7f0df; }
-    #title-screen #start-game-btn:hover { background: #617d67; }
-    #title-screen #start-game-btn img { width: 21px !important; height: 21px !important; }
-    #title-screen #title-leaderboard-btn { background: transparent; border: 1px solid #58685c; color: #d1d2c5; }
-    #title-screen .title-control-key { color: #8e9a8e; font: 400 9px/1.45 'IBM Plex Mono', monospace; text-align: right; }
-    #title-screen .title-control-key i { padding: 0 3px; color: #bba873; font-style: normal; }
-    @media (max-width: 760px), (pointer: coarse) {
-      #title-screen { justify-content: flex-start; padding: 7px; overflow-y: auto; }
-      #title-screen .title-dossier { display: flex !important; width: 100%; max-width: 540px; max-height: calc(100dvh - 14px); flex-direction: column; overflow-y: auto; }
-      #title-screen .title-cover { min-height: 0; padding: 12px 14px 10px; border-right: 0; border-bottom: 1px solid rgba(189, 168, 115, .58); }
-      #title-screen .title-cover-index { padding-bottom: 5px; }
-      #title-screen .title-feature { grid-template-columns: 88px minmax(0, 1fr); align-items: center; justify-items: stretch; gap: 9px; padding: 8px 0; text-align: left; }
-      #title-screen .title-portrait-well { width: 84px; height: 91px; }
-      #title-screen .title-portrait-well::before { inset: 11px 13px; }
-      #title-screen .title-portrait-well::after { inset: 18px 20px; }
-      #title-screen .title-portrait-orbit { width: 65px; height: 65px; }
-      #title-screen #title-hero-feature { width: 74px; height: 86px; }
-      #title-screen .title-cover-copy h1 { font-size: clamp(19px, 5.8vw, 26px); }
-      #title-screen .title-worldline { margin-top: 5px; font-size: 9px; }
-      #title-screen .title-cover-rule { margin: 5px 0 4px; }
-      #title-screen .title-cover-rule img { width: 16px; height: 16px; }
-      #title-screen #title-hero-name { font-size: 15px; }
-      #title-screen #title-hero-motive { margin-top: 1px; font-size: 10px; }
-      #title-screen .title-cover-ledger { padding-top: 6px; font-size: 7px; }
-      #title-screen .title-cover-ledger img { width: 12px; height: 12px; }
-      #title-screen .title-select-panel { gap: 7px; padding: 12px 13px 10px; overflow: visible; }
-      #title-screen #character-scroll-hint { display: inline-flex; }
-      #title-screen #char-selection-grid { grid-template-columns: minmax(0, 1fr); max-height: min(25dvh, 210px) !important; }
-      #title-screen #char-selection-grid .choice-card { min-height: 74px !important; height: auto; }
-      #title-screen #char-selection-grid .choice-card img { width: 38px !important; height: 38px !important; }
-      #title-screen #char-selection-grid .choice-card .passive { display: none !important; }
-      #title-screen .title-difficulty-description { min-height: 20px; }
-      #title-screen .title-run-options { gap: 4px; }
-      #title-screen .title-run-options .btn { flex: 1 1 auto; }
-      #title-screen .title-actions { position: sticky; bottom: -1px; z-index: 8; flex-direction: column; align-items: stretch; gap: 7px; padding: 9px 12px max(10px, env(safe-area-inset-bottom)); background: #111a16; border-top: 1px solid #81734f; box-shadow: 0 -12px 28px rgba(17,26,22,.9); }
-      #title-screen .title-action-buttons { display: grid; grid-template-columns: 1.1fr .9fr; }
-      #title-screen #start-game-btn, #title-screen #title-leaderboard-btn { width: 100%; min-height: 42px; padding: 7px 8px !important; font-size: 10px; }
-      #title-screen .title-control-key { text-align: center; font-size: 8px; }
-    }
-    @media (max-height: 690px) and (min-width: 761px) {
-      #title-screen .title-dossier { max-height: calc(100dvh - 12px); overflow-y: auto; }
-      #title-screen .title-cover { min-height: 0; }
-      #title-screen .title-portrait-well { height: 148px; }
-      #title-screen #title-hero-feature { height: 130px; }
-      #title-screen #char-selection-grid { max-height: 190px; }
-      #title-screen .title-actions { position: sticky; bottom: -1px; z-index: 8; }
-    }
-    /* Hand bound field journal: tiny in play, expressive in the details. */
-    #hud {
-      padding: 7px 16px 6px;
-      gap: 5px;
-      background:
-        linear-gradient(90deg, transparent 0 12px, rgba(185,157,98,.66) 12px 13px, transparent 13px calc(100% - 13px), rgba(185,157,98,.66) calc(100% - 13px) calc(100% - 12px), transparent calc(100% - 12px)),
-        linear-gradient(180deg, rgba(13,19,16,.98), rgba(20,26,22,.96));
-      border-top: 1px solid rgba(221,196,135,.78);
-      border-bottom: 1px solid rgba(221,196,135,.52);
-      box-shadow: 0 7px 24px rgba(0,0,0,.34), inset 0 1px rgba(255,255,255,.04);
-    }
-    #hud .hud-row { flex-wrap:nowrap; gap:8px; }
-    #hud::before, #hud::after { content:""; position:absolute; top:6px; width:8px; height:8px; border:1px solid #bd9d60; transform:rotate(45deg); opacity:.78; }
-    #hud::before { left:8px; } #hud::after { right:8px; }
-    .hp-container {
-      width:242px; height:26px; padding:2px; box-sizing:border-box;
-      flex:0 0 242px;
-      border:1px solid #ae925f; border-radius:3px;
-      background:linear-gradient(180deg,#101512,#25231b);
-      box-shadow:inset 0 0 0 1px rgba(231,213,167,.16),0 2px 8px rgba(0,0,0,.32);
-    }
-    .hp-fill { border-radius:1px; background:linear-gradient(180deg,#da9270 0%,#a3453b 48%,#762f30 100%); box-shadow:inset 0 1px rgba(255,225,188,.25); }
-    .hp-emblem { left:8px; width:15px; height:15px; }
-    .hp-text { font-size:11px; letter-spacing:.045em; }
-    .timer-badge {
-      min-height:26px; display:inline-flex; align-items:center; justify-content:center; gap:7px;
-      flex:0 0 auto; white-space:nowrap;
-      padding:3px 12px; border:1px solid rgba(184,156,99,.65); border-radius:2px;
-      background:linear-gradient(180deg,#252b24,#151b17); color:#e8d7aa;
-      box-shadow:inset 0 0 0 1px rgba(255,255,255,.035),0 2px 7px rgba(0,0,0,.22);
-    }
-    .timer-badge::before { content:""; display:inline-block; width:14px; height:14px; opacity:.88; background:url("assets/ui/icons/book.svg") center/contain no-repeat; }
-    .stats-right { flex:0 0 auto; gap:5px; font-size:11px; white-space:nowrap; }
-    .ink-count,.kill-count { padding:3px 6px; border:1px solid rgba(201,181,133,.18); background:rgba(255,255,255,.025); }
-    .hud-btn { min-height:27px; padding:3px 6px; border-radius:2px; font-size:10px; white-space:nowrap; }
-    .info-subrow {
-      min-height:35px; padding:3px 7px 3px 4px;
-      border:1px solid rgba(188,160,105,.28); border-radius:2px;
-      background:linear-gradient(90deg,rgba(255,255,255,.035),rgba(255,255,255,.012));
-    }
-    #hero-hud-portrait { width:31px; height:31px; border-radius:2px; border-color:#a98e5c; }
-    .char-info { color:#ddc78e; letter-spacing:.015em; }
-    .weapons-info { gap:5px; }
-    .weapon-token {
-      position:relative; display:inline-flex; align-items:center; gap:5px; min-height:32px;
-      padding:2px 7px 2px 3px; border:1px solid rgba(205,190,159,.3);
-      background:linear-gradient(135deg,rgba(40,48,42,.98),rgba(19,25,21,.98));
-      color:#d7d0bd; box-shadow:inset 0 1px rgba(255,255,255,.05);
-      transition:border-color .14s ease,background-color .14s ease;
-    }
-    .weapon-token.is-active { border-color:#c5a45f; background:linear-gradient(135deg,#3c4030,#20271f); box-shadow:inset 0 0 0 1px rgba(219,186,110,.18),0 0 8px rgba(198,158,79,.12); }
-    .weapon-token-art { width:27px; height:27px; object-fit:contain; image-rendering:pixelated; filter:drop-shadow(0 1px 2px rgba(0,0,0,.42)); }
-    .weapon-token-copy { display:flex; flex-direction:column; gap:1px; min-width:30px; }
-    .weapon-token-copy small { color:#e5deca; font:500 9px/1.1 'IBM Plex Mono',monospace; text-transform:uppercase; }
-    .weapon-token-copy b { color:#bba66e; font:500 8px/1 'IBM Plex Mono',monospace; letter-spacing:.02em; }
-    .weapon-token.is-active .weapon-token-copy b { color:#f0d38d; }
-    #archive-progress-row { display:grid; grid-template-columns:auto minmax(80px,1fr) auto; align-items:center; gap:9px; min-height:10px; padding:0 4px; }
-    #archive-progress-volume,#archive-progress-value { color:#a9a58f; font:500 8px/1 'IBM Plex Mono',monospace; letter-spacing:.11em; white-space:nowrap; }
-    #archive-progress-volume { min-width:47px; color:#d1b976; }
-    #archive-progress-value { min-width:48px; text-align:right; }
-    #archive-progress-track {
-      position:relative; height:5px; overflow:hidden; border:1px solid rgba(183,156,100,.56);
-      background:repeating-linear-gradient(90deg,rgba(212,197,158,.12) 0 1px,transparent 1px calc(1% - 1px),rgba(212,197,158,.34) calc(1% - 1px) 1%),#101612;
-      box-shadow:inset 0 1px 2px #0009;
-    }
-    #archive-progress-track::before { content:""; position:absolute; z-index:1; inset:-1px 0; background:repeating-linear-gradient(90deg,transparent 0 calc(25% - .5px),rgba(231,207,151,.85) calc(25% - .5px) calc(25% + .5px),transparent calc(25% + .5px) 25%); pointer-events:none; }
-    #archive-progress-fill { position:absolute; inset:0; transform:scaleX(0); transform-origin:left center; background:linear-gradient(90deg,#718273,#c4a35f); box-shadow:0 0 7px rgba(199,167,96,.45); transition:transform .45s ease; }
-    #boss-hp-container {
-      top:72px; gap:4px; padding:7px 11px 9px;
-      border:1px solid #b79a61;
-      background:linear-gradient(180deg,rgba(27,24,20,.96),rgba(12,15,13,.95));
-      box-shadow:0 8px 26px rgba(0,0,0,.44),inset 0 0 0 2px rgba(215,192,141,.09);
-    }
-    #boss-hp-container::before { content:""; position:absolute; inset:4px; border:1px solid rgba(210,184,125,.25); pointer-events:none; }
-    .boss-title-row { position:relative; z-index:1; min-height:38px; gap:9px; }
-    #boss-hp-portrait { width:40px; height:40px; border-radius:2px; border-color:#c29162; background:#211b19; box-shadow:0 0 14px rgba(183,79,66,.23); }
-    #boss-hp-title { color:#eadbbd; font:600 12px 'IBM Plex Serif',serif; letter-spacing:.12em; text-shadow:0 1px 8px rgba(204,73,67,.62); }
-    .boss-bar-frame { height:13px; border:1px solid #b9955b; border-radius:1px; background:repeating-linear-gradient(90deg,transparent 0 calc(10% - 1px),rgba(239,205,145,.5) calc(10% - 1px) 10%),#180f0f; box-shadow:inset 0 1px 3px #000; }
-    #boss-hp-fill { background:linear-gradient(180deg,#ed8d68,#b33c3f 52%,#701d2c); box-shadow:inset 0 1px rgba(255,226,187,.25),0 0 10px rgba(195,61,57,.4); }
-    #title-screen .title-portrait-well { isolation:isolate; }
-    #title-hero-feature { animation:title-hero-arrive .35s ease-out both,title-hero-breathe 3.8s ease-in-out .4s infinite; }
-    @keyframes title-hero-breathe { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-4px); } }
-    @media (max-width:1080px),(pointer:coarse) {
-      #hud { padding:4px 8px 5px !important; gap:3px !important; }
-      #hud::before,#hud::after { top:4px; width:6px; height:6px; }
-      #hud .hud-row { gap:4px; }
-      .hp-container { width:112px !important; height:19px !important; padding:1px; flex:0 0 112px; }
-      .timer-badge { flex:0 1 auto; min-width:0; }
-      .stats-right { flex:0 0 auto; }
-      .hp-emblem { width:12px; height:12px; }
-      .hp-text { font-size:8.5px !important; }
-      #hero-hud-portrait { width:25px; height:25px; }
-      .info-subrow { min-height:29px; }
-      #archive-progress-row { min-height:8px; gap:6px; }
-      #archive-progress-volume,#archive-progress-value { font-size:8px; }
-      #archive-progress-volume { min-width:39px; }
-      #archive-progress-value { min-width:42px; }
-      .weapon-token { min-height:27px; gap:3px; padding:1px 4px 1px 2px; }
-      .weapon-token-art { width:22px; height:22px; }
-      .weapon-token-copy small { font-size:8px; }
-      .weapon-token-copy b { font-size:7px; }
-      #boss-hp-container { top:56px; padding:5px 8px 7px; }
-      #boss-hp-title { font-size:10px; }
-      #boss-hp-portrait { width:32px; height:32px; }
-    }
-    @media(prefers-reduced-motion:reduce) { #title-hero-feature { animation:none; } }
-    /* A discreet brass rule makes the HUD read like one bound instrument. */
-    #hud {
-      background-image:
-        url("assets/ui/archive-rule.svg"),
-        linear-gradient(90deg, transparent 0 12px, rgba(185,157,98,.66) 12px 13px, transparent 13px calc(100% - 13px), rgba(185,157,98,.66) calc(100% - 13px) calc(100% - 12px), transparent calc(100% - 12px)),
-        linear-gradient(180deg, rgba(13,19,16,.98), rgba(20,26,22,.96));
-      background-repeat:no-repeat, no-repeat, no-repeat;
-      background-position:center bottom, center, center;
-      background-size:100% 10px, 100% 100%, 100% 100%;
-    }
-    .timer-badge::before { background-image:url("assets/ui/round-hourglass.svg"); }
-    #title-screen .title-cover::after {
-      z-index:0;
-      width:212px;
-      height:212px;
-      border:0;
-      border-radius:0;
-      background:url("assets/ui/archive-seal.svg") center/contain no-repeat;
-      box-shadow:none;
-      opacity:.42;
-    }
-    #title-screen .title-select-panel {
-      overflow-x:hidden;
-      scrollbar-width:thin;
-      scrollbar-color:#9a8357 #d8d0c0;
-    }
-    #title-screen .title-select-panel::-webkit-scrollbar { width:7px; }
-    #title-screen .title-select-panel::-webkit-scrollbar-track { background:rgba(88,79,62,.11); }
-    #title-screen .title-select-panel::-webkit-scrollbar-thumb { border:2px solid #e8e2d4; border-radius:3px; background:#9a8357; }
-    #title-screen :is(button,select):focus-visible {
-      outline:2px solid #e2c47b !important;
-      outline-offset:2px;
-      box-shadow:0 0 0 1px #111a16,0 0 0 4px rgba(226,196,123,.28) !important;
-    }
-    #arena-interaction-prompt {
-      position:absolute; z-index:46; left:50%; bottom:calc(18px + env(safe-area-inset-bottom,0px));
-      transform:translateX(-50%); display:flex; align-items:center; gap:10px; max-width:min(92vw,390px);
-      padding:9px 14px; border:1px solid rgba(220,198,141,.78); border-radius:3px;
-      color:#eee6d4; background:rgba(17,26,22,.95); box-shadow:0 5px 20px rgba(0,0,0,.48), inset 0 0 0 3px rgba(211,186,124,.08);
-      font:500 12px 'IBM Plex Sans',sans-serif; letter-spacing:.025em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-      touch-action:manipulation; cursor:pointer;
-    }
-    #arena-interaction-prompt[hidden] { display:none; }
-    #arena-interaction-prompt kbd { flex:0 0 auto; padding:2px 6px; border:1px solid #a68e5e; color:#e4ce92; background:#202b24; font:600 10px 'IBM Plex Mono',monospace; }
-    #arena-interaction-label { overflow:hidden; text-overflow:ellipsis; }
-    @media (max-width:700px), (pointer:coarse) {
-      #arena-interaction-prompt { bottom:calc(90px + env(safe-area-inset-bottom,0px)); min-height:44px; max-width:68vw; padding:8px 10px; gap:7px; font-size:10px; }
-    }
-    /* At common 720 px laptop heights, fit all six archive plates and the
-       run controls together instead of hiding the last row below the fold. */
-    @media (min-width:701px) and (max-height:760px) {
-      #title-screen .title-select-panel { gap:5px; padding-top:15px; padding-bottom:12px; }
-      #title-screen #char-selection-grid { gap:5px !important; }
-      #title-screen #char-selection-grid .choice-card { min-height:100px !important; padding:6px 8px !important; }
-    }
-    @media (max-width:700px), (pointer:coarse) {
-      #hud {
-        left:0 !important;
-        right:0 !important;
-        width:auto !important;
-        max-width:100% !important;
-        box-sizing:border-box !important;
-        padding-left:7px !important;
-        padding-right:7px !important;
-      }
-      #hud .hud-row {
-        width:100% !important;
-        min-width:0 !important;
-        max-width:100% !important;
-        box-sizing:border-box !important;
-        gap:3px !important;
-      }
-      .hp-container {
-        width:clamp(74px,23vw,90px) !important;
-        min-width:74px !important;
-        flex:0 1 clamp(74px,23vw,90px) !important;
-      }
-      .timer-badge { min-width:0 !important; flex:1 1 0 !important; padding-left:3px !important; padding-right:3px !important; }
-      .stats-right { min-width:0 !important; max-width:48%; flex:0 1 auto !important; gap:2px !important; }
-      .stats-right .ink-count,.stats-right .kill-count { padding:2px 4px !important; font-size:10px !important; }
-      #mobile-menu-btn { flex:0 0 auto !important; padding-left:4px !important; padding-right:4px !important; }
-    }
-
-    /* Browser zoom must remain available. Use the visual viewport's live
-       height on mobile and keep the arena inside device safe areas. */
-    :root {
-      --game-viewport-height: 100vh;
-      --game-safe-top: env(safe-area-inset-top, 0px);
-      --game-safe-right: env(safe-area-inset-right, 0px);
-      --game-safe-bottom: env(safe-area-inset-bottom, 0px);
-      --game-safe-left: env(safe-area-inset-left, 0px);
-    }
-    @supports (height: 100dvh) {
-      :root { --game-viewport-height: 100dvh; }
-    }
-    html, body {
-      height: auto;
-      min-height: var(--game-viewport-height);
-      overflow-x: hidden;
-      overflow-y: auto;
-      overscroll-behavior-x: none;
-    }
-    @media (max-width:1080px), (max-height:720px), (pointer:coarse), (hover:none) {
-      html, body {
-        height: auto !important;
-        min-height: var(--game-viewport-height) !important;
-        overflow-x: hidden !important;
-        overflow-y: auto !important;
-        position: relative !important;
-      }
-      #game-container {
-        width: calc(100vw - var(--game-safe-left) - var(--game-safe-right)) !important;
-        height: calc(var(--game-viewport-height) - var(--game-safe-top) - var(--game-safe-bottom)) !important;
-        max-width: none !important;
-        max-height: none !important;
-        margin: var(--game-safe-top) auto var(--game-safe-bottom) !important;
-      }
-      canvas {
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: fill !important;
-      }
-      .screen-overlay {
-        max-height: 100%;
-        overflow-x: hidden !important;
-        overflow-y: auto !important;
-        overscroll-behavior: contain;
-        -webkit-overflow-scrolling: touch;
-      }
-      .dialog-panel {
-        max-height: calc(var(--game-viewport-height) - var(--game-safe-top) - var(--game-safe-bottom) - 12px) !important;
-        overflow-x: hidden !important;
-        overflow-y: auto !important;
-        overscroll-behavior: contain;
-        -webkit-overflow-scrolling: touch;
-      }
-    }
-    #shop-screen .tab-bar {
-      display: grid !important;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 6px !important;
-    }
-    #shop-screen .tab-btn { min-width: 0; white-space: normal; line-height: 1.2; padding: 7px 5px; }
-    #shop-screen .skill-tree-summary,
-    #shop-screen .skill-branch-heading,
-    #shop-screen .premium-store-note {
-      min-height: auto !important;
-      background: #e9e2d2 !important;
-      border-left: 3px solid #b9975e !important;
-    }
-    #shop-screen .skill-branch-heading { padding: 9px 13px !important; }
-    #shop-screen .skill-node { min-height: 190px !important; }
-    #shop-screen .premium-product { border-top: 2px solid #6f7f73; }
-    @media (max-width: 680px) {
-      #shop-screen .tab-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      #shop-screen .tab-btn { min-height: 34px; font-size: 9px !important; }
-    }
   </style>
+  <link rel="stylesheet" href="assets/ui/errata/theme.css?v=67c54bbcba0e">
+  <link rel="stylesheet" href="assets/ui/errata/surfaces.css?v=07812f969926">
+  <link rel="stylesheet" href="assets/ui/errata/inventory-forge.css?v=b8bccab86ec6">
+  <link rel="stylesheet" href="assets/ui/errata/skill-tree.css?v=18d46c30c334">
+  <link rel="stylesheet" href="assets/ui/errata/hud.css?v=181da48d4ee7">
 </head>
 <body>
   <div id="game-container">
-    <div id="orientation-hint" onclick="this.hidden=true">
-      Daha geniş arena görünümü için ekranı <strong>yatay</strong> tutabilirsiniz · Kapat
-    </div>
+    <div id="orientation-hint" hidden><span>Daha geniş arena için ekranı yatay tutabilirsin.</span><button type="button" onclick="this.parentElement.hidden=true" aria-label="Ekran yönü ipucunu kapat">Kapat</button></div>
     <!-- SPEED TOAST NOTIFICATION -->
     <div id="speed-toast" style="position: absolute; top: 62px; right: 24px; z-index: 120; display: none; background: rgba(28, 16, 10, 0.92); border: 1.5px solid var(--gold-bright); color: var(--gold-bright); font-family: 'IBM Plex Serif', serif; font-size: 13px; font-weight: bold; padding: 6px 14px; border-radius: 4px; pointer-events: none; box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);">
       OYUN HIZI: 1.0x
@@ -2415,20 +68,21 @@
       <div class="hud-row">
         <div class="hp-container">
           <div class="hp-fill" id="hp-fill"></div>
-          <img class="hp-emblem ui-icon" src="assets/ui/icons/health.svg" alt="Can">
+          <img class="hp-emblem ui-icon" src="assets/ui/errata/icons/vitality.svg" alt="Can">
           <div class="hp-text" id="hp-text">120 / 120 HP</div>
         </div>
         <div class="timer-badge" id="timer-badge">DALGA 1 / 100 · 25s</div>
         <div class="stats-right">
-          <span class="ink-count" id="ink-count"><img class="ui-icon" src="assets/ui/icons/ink.svg" alt=""><span id="ink-value">0</span></span>
-          <span class="kill-count" id="kill-count"><img class="ui-icon" src="assets/ui/icons/kills.svg" alt=""><span id="kill-value">0</span></span>
+          <button class="hud-btn errata-pause-trigger" data-open-pause type="button" aria-label="Oyunu duraklat"><img class="ui-icon" src="assets/ui/errata/icons/pause.svg" alt=""> <span>Menü</span></button>
+          <span class="ink-count" id="ink-count"><img class="ui-icon" src="assets/ui/errata/icons/ink.svg" alt=""><span id="ink-value">0</span></span>
+          <span class="kill-count" id="kill-count"><img class="ui-icon" src="assets/ui/errata/icons/kills.svg" alt=""><span id="kill-value">0</span></span>
           <button id="mobile-menu-btn" class="hud-btn" style="display: none;" title="Hızlı Menü"><img class="ui-icon" src="assets/ui/icons/gear.svg" alt="">MENÜ</button>
           <button id="speed-btn" class="hud-btn" title="Oyun Hızı (0.5x, 1x, 1.5x, 2x, 3x) - Kısayol: [ ve ]">HIZ 1.0x</button>
           <button id="auto-tur-btn" class="hud-btn" title="Otomatik Yeni Tur / Dalga (Açık/Kapalı)">OTO TUR: AÇIK</button>
           <button id="auto-run-btn" class="hud-btn" title="Otomatik Yeni Run (Açık/Kapalı)">OTO RUN: AÇIK</button>
           <button id="music-btn" class="hud-btn" title="Müzik Aç / Kapat">MÜZİK</button>
-          <button id="mistakes-btn" class="hud-btn" title="Kâtip Hata Defteri (Pekiştirme)"><img class="ui-icon" src="assets/ui/icons/book.svg" alt="">HATA (<span id="mistakes-count">0</span>)</button>
-          <button id="inventory-btn" class="hud-btn" title="Envanter yuvalarını aç (I)"><img class="ui-icon" src="assets/ui/icons/bag.svg" alt="">ENVANTER</button>
+          <button id="mistakes-btn" class="hud-btn" title="Kâtip Hata Defteri (Pekiştirme)"><img class="ui-icon" src="assets/ui/errata/icons/notebook.svg" alt="">HATA (<span id="mistakes-count">0</span>)</button>
+          <button id="inventory-btn" class="hud-btn" title="Envanter yuvalarını aç (I)"><img class="ui-icon" src="assets/ui/errata/icons/inventory.svg" alt="">ENVANTER</button>
           <button id="touch-toggle-btn" class="hud-btn" title="Mobil Sanal Joystick Göster / Gizle">JOY</button>
           <button id="fullscreen-btn" class="hud-btn" title="Tam ekran aç / kapat">TAM EKRAN</button>
         </div>
@@ -2487,17 +141,26 @@
           <span id="story-location">KAYIP İSİMLER DİZİNİ</span>
         </div>
         <h2 id="story-title">Boş fiş</h2>
+        <div class="story-spread">
         <div id="story-scene">
           <img id="story-scene-image" src="assets/sprites/story/panels/wave_05.png" alt="Karanlık kütüphanede açılan boş fiş">
-          <div id="story-scene-caption" aria-live="polite"></div>
+
           <img id="story-speaker-portrait" alt="">
           <div id="story-boss-memory" class="story-boss-memory" hidden><img id="story-memory-icon" alt=""><div><strong id="story-memory-title"></strong><span id="story-memory-copy"></span></div></div>
+
+        </div>
+          <aside class="story-reading-rail">
+          <div id="story-scene-caption" aria-live="polite"></div>
           <div class="story-dialogue-frame" aria-live="polite" aria-atomic="true">
             <span id="story-speaker">ANLATICI</span>
             <p id="story-copy"></p>
           </div>
+          </aside>
         </div>
         <div class="story-controls">
+          <button class="speech-replay-btn" id="story-replay" type="button" aria-label="Bu hikâye repliğini tekrar dinle" title="Repliği tekrar dinle"><img class="ui-icon" src="assets/ui/errata/voice.svg" alt=""></button>
+          <div id="story-panel-track" role="progressbar" aria-label="Hikâye kareleri" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1"></div>
+          <button id="story-back" type="button" aria-label="Önceki hikâye karesi">← Önceki</button>
           <button id="story-next" type="button">Enter · Sonraki kare</button>
           <button id="story-skip" type="button">HİKÂYEYİ ATLA</button>
           <span id="story-enter-hint">ENTER / → · İLERLE</span>
@@ -2506,71 +169,60 @@
       </div>
     </section>
 
-    <!-- TITLE / CHARACTER SELECTION OVERLAY -->
-    <div class="screen-overlay" id="title-screen">
-      <div class="dialog-panel title-dossier">
-        <section class="title-cover" aria-label="Arşiv kapağı ve seçili karakter">
-          <div class="title-cover-index"><span class="title-index">KAYIP KENARLAR  ·  FİŞ 001</span><span class="title-volume">I / IV</span></div>
-          <div class="title-feature" id="title-feature" data-hero="inky">
-            <div class="title-portrait-well"><span class="title-portrait-orbit"></span><img id="title-hero-feature" src="assets/sprites/upgrade_v1/hero_inky.png" alt="Inky"></div>
-            <div class="title-cover-copy">
-              <h1>LEXICON<br>SURVIVORS</h1>
-              <p class="title-worldline">Karanlık Kütüphane <span>·</span> 100 tur <span>·</span> Açık fihrist</p>
-              <div class="title-cover-rule"><span></span><img src="assets/ui/icons/open_archive.svg" alt=""><span></span></div>
-              <div class="title-feature-label">SEÇİLİ KÂTİP</div>
-              <strong id="title-hero-name">Inky</strong>
-              <p id="title-hero-motive">Mira’nın izini sür.</p>
-            </div>
-          </div>
-          <div class="title-cover-ledger"><span><img src="assets/ui/icons/book.svg" alt=""> 6 ayrı anlatı · her beş turda bir boss</span><span>ARŞİV 001</span></div>
-        </section>
+    <!-- The title is a single overlay; all canonical game hooks are retained. -->
+    <section class="screen-overlay" id="title-screen" data-step="landing" role="dialog" aria-modal="true" aria-label="Lexicon Survivors ana menüsü">
+      <header class="errata-masthead">
+        <button class="title-wordmark" data-title-step="landing" aria-label="Ana menüye dön"><img src="assets/ui/errata/logo-dark.webp" alt="Lexicon Survivors" width="170" height="58"></button>
+        <span class="masthead-edition">THE LAST ERRATA <i>／</i> SON DÜZELTME</span>
+        <nav aria-label="Arşiv menüsü"><button data-open-book="guide">Nasıl oynanır</button><button data-open-book="settings">Ayarlar</button></nav>
+      </header>
 
-        <section class="title-select-panel" aria-label="Run ayarları">
-          <div class="title-select-kicker"><span>YENİ BİR KAYIT AÇ</span><span>100 TUR / 20 BOSS</span></div>
-          <label class="music-choice-row" for="title-music-select"><span>MÜZİK DOSYASI</span>
-            <select id="title-music-select" aria-label="Müzik seçimi"><option value="auto">Otomatik · biyoma göre</option><option value="library">Karanlık Kütüphane</option><option value="action">Mürekkep Takibi</option><option value="urgent">Rafların Uyanışı</option><option value="last_stand">Son Nöbet · Boss</option></select>
-          </label>
-          <div class="character-select-heading">
-            <span>KARAKTERİNİ SEÇ</span>
-            <span id="character-scroll-hint">KAYDIR ↓</span>
-          </div>
-          <div class="card-grid" id="char-selection-grid"></div>
+      <section id="errata-landing" class="title-stage landing-stage" aria-labelledby="landing-heading">
+        <div class="landing-copy">
+          <span class="errata-kicker">KAYIP KELİMELER ARŞİVİ</span>
+          <h1 id="landing-heading"><img src="assets/ui/errata/logo-dark.webp" alt="Lexicon Survivors" width="480" height="163" class="landing-logo"></h1>
+          <div class="edition-line"><span></span>SON DÜZELTME<span></span></div>
+          <p class="landing-intro">Bir sözlük kayboldu.<br>Onu hatırlayan son kişi sensin.</p>
+          <nav class="landing-nav" aria-label="Ana menü eylemleri">
+            <button class="btn primary landing-begin" id="errata-begin" data-title-step="character"><span>Başla</span><span aria-hidden="true">↗</span></button>
+            <button class="menu-link" data-open-book="codex"><span>Kelime kitabı</span><span class="nav-index">I</span></button>
+            <button class="menu-link" data-open-book="bestiary"><span>Dil canavarları</span><span class="nav-index">II</span></button>
+            <button class="menu-link" id="title-leaderboard-btn"><span>Sefer kayıtları</span><span class="nav-index">III</span></button>
+          </nav>
+          <p class="landing-footnote">HAYATTA KAL · KELİMELERİ GERİ KAZAN · HİKÂYEYİ TAMAMLA</p>
+        </div>
+      </section>
 
-          <div class="title-difficulty-heading"><span>İNGİLİZCE BAŞLANGIÇ SEVİYEN</span><span>CEFR</span></div>
-          <div class="title-difficulty-choices" id="learning-level-selection" aria-label="İngilizce başlangıç seviyesi"></div>
-          <div class="title-difficulty-description" id="learning-level-desc"></div>
-          <div class="title-difficulty-heading"><span>RUN ZORLUĞU</span><span>AKSİYON</span></div>
-          <div class="title-difficulty-choices" id="diff-selection-container"></div>
-          <div class="title-difficulty-description" id="diff-desc"></div>
+      <section id="errata-character" class="title-stage character-stage" aria-labelledby="character-heading" hidden>
+        <div class="stage-heading"><div><span class="errata-kicker">01 ／ KÂTİP DOSYALARI</span><h2 id="character-heading">Hikâyeyi kim yazacak?</h2><p>Altı farklı arayış. Aynı kayıp arşiv.</p></div><button class="text-back" data-title-step="landing">← Ana menü</button></div>
+        <div class="dossier-layout">
+          <aside id="title-feature" class="featured-dossier" data-hero="inky">
+            <span class="errata-kicker">SEÇİLİ KÂTİP</span>
+            <div class="featured-portrait"><img id="title-hero-feature" src="assets/ui/errata/portraits/inky-selection.webp" alt="Inky"></div>
+            <div class="featured-copy"><strong id="title-hero-name">Inky</strong><p id="title-hero-motive">Mira’nın izini sür.</p><span class="editor-note">Her düzeltme, bir başlangıç.</span></div>
+          </aside>
+          <div class="dossier-index"><div class="index-rule"><span>ALTI KÂTİP · ALTI AYRI HİKÂYE</span><span class="dossier-pagination"><button type="button" aria-label="Önceki karakterler" onclick="document.getElementById('char-selection-grid').scrollBy({left:-document.getElementById('char-selection-grid').clientWidth,behavior:(matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.classList.contains('errata-reduced-motion'))?'instant':'smooth'})">←</button><button type="button" aria-label="Sonraki karakterler" onclick="document.getElementById('char-selection-grid').scrollBy({left:document.getElementById('char-selection-grid').clientWidth,behavior:(matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.classList.contains('errata-reduced-motion'))?'instant':'smooth'})">→</button></span></div><div class="card-grid" id="char-selection-grid" aria-label="Karakter seçimi"></div><p class="dossier-note">Karakterin yetenekleri ve gelişimi ona özeldir. Seçimini sonraki seferde değiştirebilirsin.</p></div>
+        </div>
+        <footer class="stage-actions"><span class="page-number">KÂTİP DOSYALARI <b>01</b></span><button class="btn primary" data-title-step="preparation">Seferi hazırla <span aria-hidden="true">→</span></button></footer>
+      </section>
 
-          <div class="title-run-options">
-            <button class="btn btn-seal" id="title-speed-btn" title="Oyun simülasyon hızı">
-              <img class="ui-icon" src="assets/ui/icons/speed.svg" alt="">Hız: 1.0x
-            </button>
-            <button class="btn btn-seal" id="title-auto-tur-btn" title="Dalga bitince otomatik yeni tura başla">Otomatik tur: AÇIK</button>
-            <button class="btn btn-seal" id="title-auto-run-btn" title="Oyun bittiğinde otomatik yeni run başlat">Otomatik yeni oyun: AÇIK</button>
-          </div>
-        </section>
-
-        <footer class="title-actions">
-          <div class="title-action-buttons">
-            <button class="btn btn-seal" id="start-game-btn">
-              <img src="assets/ui/icons/open_archive.svg" alt="">Kütüphaneye gir
-            </button>
-            <button class="btn btn-seal" id="title-leaderboard-btn" type="button"><img class="ui-icon" src="assets/ui/icons/kills.svg" alt="">KÜRESEL SIRALAMA</button>
-          </div>
-          <div class="title-control-key">WASD Hareket <i>·</i> Q/E/1–6 Silah <i>·</i> R Etkileşim <i>·</i> Space Atılım <i>·</i> I Envanter</div>
-        </footer>
-      </div>
-    </div>
-
+      <section id="errata-preparation" class="title-stage preparation-stage" aria-labelledby="preparation-heading" hidden>
+        <div class="stage-heading"><div><span class="errata-kicker">02 ／ SEFER HAZIRLIĞI</span><h2 id="preparation-heading">İlk sayfayı aç.</h2><p>İngilizce seviyen ile savaş zorluğunu ayrı ayrı seç.</p></div><button class="text-back" data-title-step="character">← Karakteri değiştir</button></div>
+        <div class="preparation-book">
+          <section class="preparation-page"><span class="page-label">I. KELİMELER</span><h3>Nereden başlayalım?</h3><p>Başlangıç seviyeni seç. Kelimeler, cevaplarına göre sana uyum sağlar.</p><div id="learning-level-selection" class="level-choices" aria-label="İngilizce başlangıç seviyesi"></div><p id="learning-level-desc" class="selection-description"></p><h3>Savaşın ritmi</h3><div id="diff-selection-container" class="difficulty-choices" aria-label="Savaş zorluğu"></div><p id="diff-desc" class="selection-description"></p></section>
+          <section class="preparation-page"><span class="page-label">II. SEFER NOTLARI</span><h3>Kendi hızında ilerle.</h3><div class="run-options"><button class="btn" id="title-speed-btn" title="Oyun simülasyon hızını değiştir">Hız: 1.0x</button><button class="btn" id="title-auto-tur-btn">Otomatik tur: açık</button><button class="btn" id="title-auto-run-btn">Otomatik yeni oyun: kapalı</button></div><label class="music-choice-row" for="title-music-select">Müzik<select id="title-music-select"><option value="auto">Otomatik · bölüme göre</option><option value="library">Karanlık Kütüphane</option><option value="action">Mürekkep Takibi</option><option value="urgent">Rafların Uyanışı</option><option value="last_stand">Son Nöbet · Boss</option></select></label><div class="control-note"><span class="errata-kicker">KENAR NOTU</span><p><kbd>WASD</kbd> veya oklarla hareket et.<br>Silahların otomatik ateş eder.<br><kbd>Space</kbd> ile aktif gerecini kullan.</p><button class="text-back" data-open-book="guide">Tüm kontrolleri gör ↗</button></div></section>
+        </div>
+        <footer class="stage-actions"><span class="page-number">SEFER HAZIRLIĞI <b>02</b></span><button class="btn primary" id="start-game-btn">Kütüphaneye gir <span aria-hidden="true">→</span></button></footer>
+      </section>
+      <footer class="errata-colophon"><span>LEXICON SURVIVORS <i>·</i> THE LAST ERRATA</span><span>Bir kelime daha.</span></footer>
+    </section>
 
     <div id="archive-intro" role="region" aria-label="Lexicon Survivors arşiv açılışı">
       <div class="archive-intro-content">
         <img class="archive-intro-mark" src="assets/ui/icons/book.svg" alt="">
         <img class="archive-intro-hero" src="assets/sprites/upgrade_v1/hero_inky.png" alt="Inky">
         <div class="archive-intro-kicker">ARŞİV AÇILIYOR</div>
-        <h1 id="archive-intro-title">LEXICON SURVIVORS</h1>
+        <h1 id="archive-intro-title"><img src="assets/ui/errata/logo-dark.webp" alt="Lexicon Survivors" class="intro-logo" width="640" height="218"></h1>
         <p>Kayıp kelimeleri rafların arasından geri çağır.</p>
       </div>
       <button class="archive-intro-skip" id="archive-intro-skip" type="button">GEÇ · SPACE</button>
@@ -2580,14 +232,14 @@
     <div class="screen-overlay" id="shop-screen" style="display: none;">
       <div class="dialog-panel">
         <div id="shop-header" style="display: flex; justify-content: space-between; align-items: center;">
-          <h2 id="shop-title">
-            KELİME ARŞİVİ
-          </h2>
+          <h2 id="shop-title"><img src="assets/ui/errata/shop-word-emblem.webp" alt="" class="scriptorium-mark">Scriptorium</h2>
           <span style="font-family: 'IBM Plex Serif', serif; font-size: 17px; color: #0284c7; font-weight: 800;" id="shop-ink-display">
             Mürekkep: 0
           </span>
         </div>
 
+        <div class="shop-workspace">
+          <aside class="shop-rail" aria-label="Scriptorium bölümleri">
         <section id="shop-chapter-strip" aria-label="Bulunulan bölüm">
           <img id="shop-chapter-mark" src="assets/ui/icons/book.svg" alt="">
           <span id="shop-chapter-kicker">DALGA ARASI · 01 TAMAMLANDI</span>
@@ -2604,11 +256,16 @@
           <button class="tab-btn" id="tab-weapons-btn" role="tab" aria-controls="shop-items-grid" aria-selected="false"><img class="ui-icon" src="assets/ui/icons/weapons.svg" alt="">SİLAHLAR · 15</button>
           <button class="tab-btn" id="tab-gadgets-btn" role="tab" aria-controls="shop-items-grid" aria-selected="false"><img class="ui-icon" src="assets/ui/icons/gadget.svg" alt="">GEREÇLER · 8</button>
           <button class="tab-btn" id="tab-artifacts-btn" role="tab" aria-controls="shop-items-grid" aria-selected="false"><img class="ui-icon" src="assets/ui/icons/artifact.svg" alt="">YADİGÂRLAR</button>
-          <button class="tab-btn" id="tab-skills-btn" role="tab" aria-controls="shop-items-grid" aria-selected="false">YETENEK AĞACI</button>
-          <button class="tab-btn" id="tab-premium-btn" role="tab" aria-controls="shop-items-grid" aria-selected="false">MÜREKKEP PAZARI</button>
+          <button class="tab-btn" id="tab-skills-btn" role="tab" aria-controls="shop-items-grid" aria-selected="false"><img class="ui-icon" src="assets/ui/icons/quill.svg" alt="">YETENEK AĞACI</button>
+          <button class="tab-btn" id="tab-premium-btn" role="tab" aria-controls="shop-items-grid" aria-selected="false"><img class="ui-icon" src="assets/ui/icons/ink.svg" alt="">MÜREKKEP PAZARI</button>
         </div>
 
+          </aside>
+          <section class="shop-display" aria-label="Dükkân teklifleri">
         <div class="card-grid-4" id="shop-items-grid" style="min-height: 240px;"></div>
+
+          </section>
+        </div>
 
         <div id="shop-actions" style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px; flex-wrap: wrap; gap: 6px;">
           <button class="btn" id="shop-reroll-btn">
@@ -2667,7 +324,7 @@
         </div>
         <div class="slots-grid" id="inv-reserve-slots" style="min-height: 80px;"></div>
 
-        <div style="background: rgba(220, 200, 160, 0.4); padding: 8px 14px; border-radius: 4px; border: 1px solid var(--parchment-border); margin-top: 4px; font-size: 12px; line-height: 1.5; color: #2b170c; font-family: 'IBM Plex Serif', serif;">
+        <div class="inventory-summary">
           <strong>Kâtip İstatistikleri:</strong>
           <span id="inv-stats-summary">Can: 120 | Hasar: 1.0x | Atış: 1.0x | Zırh: %5 | Kritik: %8 | Hız: 235</span>
         </div>
@@ -2790,9 +447,11 @@
     <!-- ILLUMINATED ROYAL QUIZ MODAL -->
     <div id="quiz-modal" style="display: none;">
       <div class="quiz-scroll">
+        <div class="quiz-content">
         <div class="quiz-scroll-header">
-          <img src="assets/ui/icons/open_archive.svg" class="quiz-wax-seal" alt="">
+          <img src="assets/ui/errata/quiz-seal.webp" class="quiz-wax-seal" alt="">
           <h3 id="quiz-word-title">Kelime Sınavı</h3>
+          <button class="speech-replay-btn" id="quiz-pronounce-btn" type="button" aria-label="Kelimenin İngilizce telaffuzunu tekrar dinle" title="İngilizce telaffuzu dinle"><img class="ui-icon" src="assets/ui/errata/voice.svg" alt=""></button>
         </div>
         <p id="quiz-question-text">'Relentless' kelimesinin Türkçe karşılığı nedir?</p>
         <p id="quiz-buff-text"></p>
@@ -2800,6 +459,7 @@
         <p id="quiz-example-text">"He unleashed a relentless barrage."</p>
         <div class="quiz-options" id="quiz-options-container"></div>
         <div class="quiz-result" id="quiz-result-text"></div>
+        </div>
         <button class="btn btn-emerald" id="quiz-continue-btn" style="display: none; align-self: center; margin-top: 4px;">
           Mühürle & Scriptorium'a Dön ➔
         </button>
@@ -2807,12 +467,15 @@
     </div>
 
     <!-- GRIMOIRE VICTORY / DEFEAT SCREEN -->
-    <div class="screen-overlay" id="game-over-screen" style="display: none;">
-      <div class="dialog-panel" style="max-width: 580px; text-align: center;">
+    <div class="screen-overlay" id="game-over-screen" role="dialog" aria-modal="true" aria-labelledby="game-over-title" style="display: none;">
+      <div class="dialog-panel result-folio">
+        <figure class="result-art"><img id="result-character-art" src="assets/ui/errata/portraits/inky-selection.webp" alt="Inky"><figcaption><span id="result-character-name">Inky</span><small id="result-file-status">DOSYA AÇIK</small></figcaption></figure>
+        <div class="result-copy">
         <p id="game-over-kicker" class="game-over-kicker">RUN SONUCU  ·  KAYIT KAPANDI</p>
         <h2 id="game-over-title">
           KİTAP KAPANDI
         </h2>
+        <div class="result-story"><span id="result-story-label">YANITSIZ KALAN İZ</span><p id="result-story-copy"></p></div>
         <div id="game-over-summary"></div>
 
         <!-- AUTO NEW RUN COUNTDOWN & CONTROLS -->
@@ -2828,18 +491,20 @@
           </button>
         </div>
 
-        <div style="display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 6px;">
+        <div class="result-actions">
+          <button class="btn btn-emerald" id="instant-restart-btn" style="font-size: 13.5px; padding: 8px 16px;">
+          Hemen yeni oyun başlat
+          </button>
           <button class="btn btn-seal" id="gameover-leaderboard-btn" type="button" style="font-size:12.5px;padding:8px 14px;">Skorunu gönder · Sıralama</button>
           <button class="btn btn-seal" id="restart-game-btn" style="font-size: 13.5px; padding: 8px 16px;">
             <img src="assets/ui/icons/open_archive.svg" style="width: 18px; height: 18px;" alt="">
             Kütüphaneye dön
           </button>
-          <button class="btn btn-emerald" id="instant-restart-btn" style="font-size: 13.5px; padding: 8px 16px;">
-          Hemen yeni oyun başlat
-          </button>
+
           <button class="btn btn-seal" id="gameover-auto-run-toggle" style="font-size: 12.5px; padding: 8px 14px;">
             Oto run: kapalı
           </button>
+        </div>
         </div>
       </div>
     </div>
@@ -2879,7 +544,7 @@
         window.clearTimeout(introTimer);
         try { localStorage.setItem(INTRO_KEY, '1'); } catch (_) {}
         intro.classList.add('is-leaving');
-        document.getElementById('start-game-btn')?.focus({ preventScroll: true });
+        document.getElementById('errata-begin')?.focus({ preventScroll: true });
         intro.setAttribute('aria-hidden', 'true');
         window.setTimeout(() => {
           intro.hidden = true;
@@ -2911,6 +576,10 @@
       window.startArchiveIntro();
     })();
   </script>
-  <script src="game.js?v=word-boss-power-20261108-2"></script>
+  <script src="assets/ui/errata/world.js?v=2e38d58501e3"></script>
+  <script src="assets/ui/errata/hud.js?v=3e3b72663e02"></script>
+  <script src="assets/ui/errata/motion.js?v=d41c69a3e8a5"></script>
+  <script src="game.js?v=a56c121c56af"></script>
+  <script src="assets/ui/errata/interface.js?v=1c5539ae1003"></script>
 </body>
 </html>
