@@ -1,0 +1,4802 @@
+[
+  {
+    "campaign": "inky",
+    "wave": 5,
+    "beat": 1,
+    "speaker": "boss_red_pen_boss",
+    "text": "Kuralı koruduğumu sanıyordum; itirazı kırmızıya boyayıp kayıttan kesmişim.. Mira’nın rotasını bu hükme indirmeyeceğim.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w005_b1_boss_red_pen_boss.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 5,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Yıldızını tanıyorum; noktayı hep ters koyardı.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w005_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 5,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Kenarı yırtılmamış. Biri saklamış, biri de bulmanı istemiş.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w005_b3_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 5,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Mira seni bekliyor. Fişi yak, eve götüreyim.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w005_b4_whisper.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 5,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Onu değil, kendi seçtiği yolu arıyorum.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w005_b5_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 10,
+    "beat": 1,
+    "speaker": "boss_syntax_titan",
+    "text": "Emir yarımdı; ben bitirdim ve içindeki “hayır”ı cümlenin dışına ittim.. Onun anısı bugünkü cevabını bana borçlu değil.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w010_b1_boss_syntax_titan.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 10,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Mira yolu hep kenardan başlatırdı.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w010_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 10,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Bu çizgi kapıya değil, kayıp kartları ayıran kanala iniyor.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w010_b3_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 10,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Harita dışı, tehlike dışı demektir.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w010_b4_whisper.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 10,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Haritasız olmak kaybolmakla aynı şey değil.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w010_b5_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 15,
+    "beat": 1,
+    "speaker": "boss_oxymoron_ogre",
+    "text": "İki tanık da doğruyu söylüyordu; birini seçince ötekini yalan yaptım.. Bu iz, Mira’nın şimdi ne istediğini kanıtlamıyor.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w015_b1_boss_oxymoron_ogre.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 15,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Mira’nın saçını yanlış çizmişim. Bu hatamı hep saklardı.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w015_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 15,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Silgi çizgisi senin elinden değil; kâğıt lifleri dışa kalkmış.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w015_b3_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 15,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Yüzünü ben tamamlayabilirim.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w015_b4_whisper.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 15,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Boşluğu doldurmak, onu tanımak değil.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w015_b5_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 20,
+    "beat": 1,
+    "speaker": "boss_homophone_harpy",
+    "text": "Adları aynı sesle çağırdım; dönüp bakmayanı da kayıp saydım.. Kendi yolumu çizeceğim; onu geri çağırmayacağım.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w020_b1_boss_homophone_harpy.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 20,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Mira buraya saklanma evi derdi.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w020_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 20,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "İzler içeri giriyor; dışarı çıkanlar ise başka yöne dönmüş.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w020_b3_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 20,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Mavi kapıdan gir; her şey eskisi gibi olsun.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w020_b4_whisper.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 20,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Kapıyı açacağım. Kimi götüreceğime karar vermeyeceğim.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w020_b5_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 25,
+    "beat": 1,
+    "speaker": "boss_lexicon_dragon_boss",
+    "text": "Halkalarımda kelimeleri sakladım; saklamak, sahip olmak demek değil.. Mira’nın rotasını bu hükme indirmeyeceğim.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w025_b1_boss_lexicon_dragon_boss.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 25,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Mira için benim adımı vereceklerini sanmışlar.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w025_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 25,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Bu kapı adını değil, senin rızanı ölçüyor.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w025_b3_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 25,
+    "beat": 4,
+    "speaker": "echo_lost_receipt_guard",
+    "text": "Mühür bir isim ister; bedeli de isim olabilir.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w025_b4_echo_lost_receipt_guard.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 25,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Kendi adımla geçiyorum; onun adına söz vermiyorum.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w025_b5_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 30,
+    "beat": 1,
+    "speaker": "boss_run_on_reaper",
+    "text": "Koş dedim; durmanın da bir çıkış olabileceğini hiç öğrenmemiştim.. Onun anısı bugünkü cevabını bana borçlu değil.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w030_b1_boss_run_on_reaper.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 30,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Mira adımı çağırırken son heceyi uzatırdı.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w030_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 30,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Kavanozun içindeki ses kaydı; konuşan biri yok.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w030_b3_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 30,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Inky, dön. Seni bekliyorum.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w030_b4_whisper.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 30,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Bekleyen bir anı olabilir; Mira’nın bugünkü kararı değil.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w030_b5_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 35,
+    "beat": 1,
+    "speaker": "boss_malapropism_mimic",
+    "text": "Yüzü tutturdum; bakışını ve kararını kopyalayamadım.. Bu iz, Mira’nın şimdi ne istediğini kanıtlamıyor.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w035_b1_boss_malapropism_mimic.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 35,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Son konuşmamızda ona git dedim.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w035_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 35,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Bir öfke anı bütün arkadaşlığınızı anlatmaz.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w035_b3_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 35,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Tek bir kelimeyi sil; suçun da yok olur.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w035_b4_whisper.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 35,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Hatırlayacağım. Onun cevabını kendim yazmayacağım.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w035_b5_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 40,
+    "beat": 1,
+    "speaker": "boss_vocabulary_void",
+    "text": "Adları silince onları bulamazlar sandım; onlar da birbirini bulamadı.. Kendi yolumu çizeceğim; onu geri çağırmayacağım.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w040_b1_boss_vocabulary_void.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 40,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Burada gitmemiş gibi yazmışlar.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w040_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 40,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Asıl sayfadaki parmak izi dışarı bakıyor.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w040_b3_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 40,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Lekeleri silersem daha güzel olur.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w040_b4_whisper.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 40,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Lekeler, onun kapıyı kendi açtığını kanıtlıyor.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w040_b5_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 45,
+    "beat": 1,
+    "speaker": "boss_punctuation_phantom",
+    "text": "Noktayı koyunca acı biter sandım; tanıklık benden sonra da sürüyordu.. Mira’nın rotasını bu hükme indirmeyeceğim.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w045_b1_boss_punctuation_phantom.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 45,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "O gün onu anlamadım. Bunu yazabilirim.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w045_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 45,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Özür, cevap borcu yaratmaz.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w045_b3_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 45,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Sana affettiğini söyleyebilirim.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w045_b4_whisper.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 45,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Uydurulmuş bir affı kabul etmeyeceğim.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w045_b5_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 50,
+    "beat": 1,
+    "speaker": "boss_double_negative_drake",
+    "text": "İki hayırı tek bir evete çevirdim; hükmü ben verdim, bedelini başkaları taşıdı.. Onun anısı bugünkü cevabını bana borçlu değil.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w050_b1_boss_double_negative_drake.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 50,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Bu işaret onun yıldız-nokta imzası.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w050_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 50,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Arşiv kopyası yapamaz; yanlış ayı da çizmiş.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w050_b3_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 50,
+    "beat": 4,
+    "speaker": "echo_mirror_copyist",
+    "text": "Bir yüzü kopyalamak, seçimini de kopyalayabilir.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w050_b4_echo_mirror_copyist.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 50,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Kopya susacak. Mira’nın kendi rotası kalacak.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w050_b5_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 55,
+    "beat": 1,
+    "speaker": "boss_palindrome_phantom",
+    "text": "Seni başladığın yere döndürdüm; değişmenden korkuyordum.. Bu iz, Mira’nın şimdi ne istediğini kanıtlamıyor.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w055_b1_boss_palindrome_phantom.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 55,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Mira kulesi hiç sevmezdi. Buraya bilerek gelmiş.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w055_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 55,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Aşağıdaki merdiven resmi planda yok.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w055_b3_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 55,
+    "beat": 4,
+    "speaker": "ink_child",
+    "text": "Mira’nın notunu taşıyorum; onun adına konuşmam. Mührü sana vereyim mi?",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w055_b4_ink_child.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 55,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Öyleyse boşluğun kenarını takip ederim.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w055_b5_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 60,
+    "beat": 1,
+    "speaker": "boss_tautology_twin",
+    "text": "Aynı sözü iki kez söyledim, kanıt sandım; ikizim bile bana inanmadı.. Kendi yolumu çizeceğim; onu geri çağırmayacağım.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w060_b1_boss_tautology_twin.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 60,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Gülerken burnunu buruştururdu.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w060_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 60,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Bu görüntü, onun şimdi ne istediğini bilmiyor.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w060_b3_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 60,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Hatırayı canlı tutmam için bana bırak.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w060_b4_whisper.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 60,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Hatırlayacağım; zincire çevirmeyeceğim.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w060_b5_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 65,
+    "beat": 1,
+    "speaker": "boss_dangling_modifier",
+    "text": "Eylemi askıda bıraktım; suç yanlış kişiye düştü.. Mira’nın rotasını bu hükme indirmeyeceğim.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w065_b1_boss_dangling_modifier.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 65,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Eksik yarıyı tamamlamak zorundaymışım.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w065_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 65,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Biri tamamlamanı değil, yönünü seçmeni istemiş olabilir.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w065_b3_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 65,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Bütün harita seni ona götürür.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w065_b4_whisper.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 65,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Bir işaret yeter; onun hayatının tümüne sahip olmam gerekmiyor.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w065_b5_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 70,
+    "beat": 1,
+    "speaker": "boss_spelling_spectre",
+    "text": "Bir harfi düzelttim, bir hayatı başka isme bağladım.. Onun anısı bugünkü cevabını bana borçlu değil.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w070_b1_boss_spelling_spectre.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 70,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Kapının ardında biri var sandım.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w070_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 70,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Ayna seni içeri çağırmıyor; yönünü düzeltiyor.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w070_b3_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 70,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Kapıyı kapat, güvenli anı koru.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w070_b4_whisper.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 70,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Anıyı saklarım. Kapıyı açık bırakırım.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w070_b5_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 75,
+    "beat": 1,
+    "speaker": "boss_idiom_imp",
+    "text": "Gülmek istedim; şakam birinin yardım çağrısını örttü.. Bu iz, Mira’nın şimdi ne istediğini kanıtlamıyor.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w075_b1_boss_idiom_imp.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 75,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Eski yolu takip etmek kolaydı.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w075_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 75,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Kolay olan, onun bugün seçtiği yol demek değil.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w075_b3_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 75,
+    "beat": 4,
+    "speaker": "echo_direction_thief",
+    "text": "Her izi sana geri çevirebilirim.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w075_b4_echo_direction_thief.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 75,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "O zaman yeni bir iz çizeceğim; sen benim haritam değilsin.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w075_b5_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 80,
+    "beat": 1,
+    "speaker": "boss_red_pen_boss",
+    "text": "Bu kez ben kestim; kime zarar vereceğini sormadan eski hükmü uyguladım.. Kendi yolumu çizeceğim; onu geri çağırmayacağım.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w080_b1_boss_red_pen_boss.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 80,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Hangisinden gittiğini söyleyebilir misin?",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w080_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 80,
+    "beat": 3,
+    "speaker": "yel",
+    "text": "Hayır. İkisini de gördüm; hangisini seçtiğini bilmiyorum.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w080_b3_yel.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 80,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "Bilmediğini saklamadı.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w080_b4_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 80,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Bu da aradığım cevabın bir parçası.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w080_b5_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 85,
+    "beat": 1,
+    "speaker": "boss_oxymoron_ogre",
+    "text": "İki gerçeği ayrı odalara koydum; susunca çatışma biter sandım.. Mira’nın rotasını bu hükme indirmeyeceğim.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w085_b1_boss_oxymoron_ogre.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 85,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Adını sen mi çıkardın?",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w085_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 85,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Bir kapıyı açmak için. Sonra başkaları da kapatıldı.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w085_b3_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 85,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Beni suçla; senin yükün hafifler.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w085_b4_whisper.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 85,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Seni dinlerim; senin yerine de hüküm vermem.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w085_b5_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 90,
+    "beat": 1,
+    "speaker": "boss_malapropism_mimic",
+    "text": "Yüzünü Neris’ten aldım; onun itirazını taklit edemedim.. Onun anısı bugünkü cevabını bana borçlu değil.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w090_b1_boss_malapropism_mimic.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 90,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Bu Mira’nın şehir damgası olabilir.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w090_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 90,
+    "beat": 3,
+    "speaker": "yel",
+    "text": "Olabilir; kesin olduğunu söyleyemem.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w090_b3_yel.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 90,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "Haberi yollayabilirsin, cevabı zorlayamazsın.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w090_b4_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 90,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Yolunu bırakıyorum. Dönüp dönmemek ona ait.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w090_b5_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 95,
+    "beat": 1,
+    "speaker": "boss_vocabulary_void",
+    "text": "Boşlukları korurken yaşayanların adlarını da sildim.. Bu iz, Mira’nın şimdi ne istediğini kanıtlamıyor.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w095_b1_boss_vocabulary_void.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 95,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Bunu birlikte çizerdik.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w095_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 95,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Şimdi tek başına çizebilirsin; bu onu silmez.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w095_b3_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 95,
+    "beat": 4,
+    "speaker": "mira",
+    "text": "Bu not dönüş sözü değil; haritamdaki yanlış kıvrımı düzeltmek istedim.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w095_b4_mira.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 95,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Bazen yarım bırakmak, başkasına yer bırakmaktır.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w095_b5_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 100,
+    "beat": 1,
+    "speaker": "boss_lexicon_dragon_boss",
+    "text": "İlk halkada sözlük tuttum; son halkada tek bir ağız olmak istedim.. Kendi yolumu çizeceğim; onu geri çağırmayacağım.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w100_b1_boss_lexicon_dragon_boss.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 100,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Mira’nın cevabını ben yazmayacağım.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w100_b2_hero.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 100,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Ben de adımı kendi elimle ekliyorum.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w100_b3_neris.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 100,
+    "beat": 4,
+    "speaker": "blank_page",
+    "text": "Tek bir mutlu son, kaybı durdurur.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w100_b4_blank_page.mp3"
+  },
+  {
+    "campaign": "inky",
+    "wave": 100,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Mutluluk zorla seçilmez; fihristi açık bırak.",
+    "audio_url": "assets/audio/dialogue/inky/voice_inky_w100_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 5,
+    "beat": 1,
+    "speaker": "boss_red_pen_boss",
+    "text": "Kuralı koruduğumu sanıyordum; itirazı kırmızıya boyayıp kayıttan kesmişim.. Ada’nın sessizliğini cevap diye mühürlemeyeceğim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w005_b1_boss_red_pen_boss.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 5,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Bu nib’i Ada’ya ben vermiştim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w005_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 5,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Uç darbeden değil, aceleyle bükülmüş.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w005_b3_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 5,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Onu sen kırdın; kalanını da silebilirim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w005_b4_whisper.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 5,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Kırdığım şeyi saklamayacağım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w005_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 10,
+    "beat": 1,
+    "speaker": "boss_syntax_titan",
+    "text": "Emir yarımdı; ben bitirdim ve içindeki “hayır”ı cümlenin dışına ittim.. Onun mektubuna benim cümlemi eklemeyeceğim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w010_b1_boss_syntax_titan.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 10,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Bir: buradayım. İki: seni bekliyorum.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w010_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 10,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Bu kez karşılık gelmemesi de bir cevap olabilir.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w010_b3_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 10,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Ben üçüncü vuruşu yapabilirim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w010_b4_whisper.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 10,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Taklit, bekleyişi bitirmez.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w010_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 15,
+    "beat": 1,
+    "speaker": "boss_oxymoron_ogre",
+    "text": "İki tanık da doğruyu söylüyordu; birini seçince ötekini yalan yaptım.. Bir yanıtı hak ettiğimi varsaymayacağım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w015_b1_boss_oxymoron_ogre.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 15,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Bunu Ada’ya ben yazmışım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w015_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 15,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Mektup değil; onun adına yazılmış bir talimat.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w015_b3_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 15,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "İyi niyetin yeter.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w015_b4_whisper.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 15,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Niyetim, onun cevabını geçersiz kılmaz.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w015_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 20,
+    "beat": 1,
+    "speaker": "boss_homophone_harpy",
+    "text": "Adları aynı sesle çağırdım; dönüp bakmayanı da kayıp saydım.. Kapıyı açık bırakacağım; dönmesini şart koşmayacağım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w020_b1_boss_homophone_harpy.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 20,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Bu zarf eve dönmemiş.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w020_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 20,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Ada kendi adresini değiştirmiş.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w020_b3_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 20,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Onu bulursan her şeyi düzeltebilirsin.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w020_b4_whisper.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 20,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Bulmakla düzeltmek aynı iş değil.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w020_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 25,
+    "beat": 1,
+    "speaker": "boss_lexicon_dragon_boss",
+    "text": "Halkalarımda kelimeleri sakladım; saklamak, sahip olmak demek değil.. Ada’nın sessizliğini cevap diye mühürlemeyeceğim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w025_b1_boss_lexicon_dragon_boss.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 25,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Ada’yı eve çağıran bendim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w025_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 25,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Önce kimin konuştuğunu dinle.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w025_b3_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 25,
+    "beat": 4,
+    "speaker": "echo_return_clerk",
+    "text": "İade edilirse, hiç gitmemiş sayılır.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w025_b4_echo_return_clerk.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 25,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Mektubu geri göndermeyi bırakıyorum; kararı alıcı verecek.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w025_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 30,
+    "beat": 1,
+    "speaker": "boss_run_on_reaper",
+    "text": "Koş dedim; durmanın da bir çıkış olabileceğini hiç öğrenmemiştim.. Onun mektubuna benim cümlemi eklemeyeceğim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w030_b1_boss_run_on_reaper.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 30,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Onun koşu adımını tanıyorum.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w030_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 30,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Ses aynı; tempo eski kayıttan.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w030_b3_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 30,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Hızlan, yetişebilirsin.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w030_b4_whisper.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 30,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Yetişmek için değil, duymak için yavaşlıyorum.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w030_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 35,
+    "beat": 1,
+    "speaker": "boss_malapropism_mimic",
+    "text": "Yüzü tutturdum; bakışını ve kararını kopyalayamadım.. Bir yanıtı hak ettiğimi varsaymayacağım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w035_b1_boss_malapropism_mimic.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 35,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Burada onu aradım, oysa yolu dışarıdaymış.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w035_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 35,
+    "beat": 3,
+    "speaker": "lira",
+    "text": "Ben kapıyı tuttum. İçeride kalmayı seçtiğini sandım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w035_b3_lira.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 35,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "İkiniz de sormadınız.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w035_b4_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 35,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Bir sonraki kapıyı izin almadan kapatmayacağım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w035_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 40,
+    "beat": 1,
+    "speaker": "boss_vocabulary_void",
+    "text": "Adları silince onları bulamazlar sandım; onlar da birbirini bulamadı.. Kapıyı açık bırakacağım; dönmesini şart koşmayacağım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w040_b1_boss_vocabulary_void.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 40,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Ada’nın elinden geçtiğini biliyorum.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w040_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 40,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Bu, sana cevap verdiği anlamına gelmiyor.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w040_b3_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 40,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Boşluğu senin imzanla tamamla.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w040_b4_whisper.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 40,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Boş kalmasına izin vereceğim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w040_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 45,
+    "beat": 1,
+    "speaker": "boss_punctuation_phantom",
+    "text": "Noktayı koyunca acı biter sandım; tanıklık benden sonra da sürüyordu.. Ada’nın sessizliğini cevap diye mühürlemeyeceğim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w045_b1_boss_punctuation_phantom.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 45,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Onu açarsam içindekini öğrenirim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w045_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 45,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Ama artık kimin açtığını geri alamazsın.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w045_b3_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 45,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Merakını gider; seni affettiğini yazmış.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w045_b4_whisper.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 45,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Uydurulmuş bir cevabı istemiyorum.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w045_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 50,
+    "beat": 1,
+    "speaker": "boss_double_negative_drake",
+    "text": "İki hayırı tek bir evete çevirdim; hükmü ben verdim, bedelini başkaları taşıdı.. Onun mektubuna benim cümlemi eklemeyeceğim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w050_b1_boss_double_negative_drake.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 50,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Ben doldurmazsam ne söyleyeceksin?",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w050_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 50,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Bırak, tanık kendi cümlesini tamamlasın.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w050_b3_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 50,
+    "beat": 4,
+    "speaker": "echo_silence_censor",
+    "text": "Cevap vermeyen, kayıttan çıkarılır.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w050_b4_echo_silence_censor.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 50,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Ada’nın susması da ona ait.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w050_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 55,
+    "beat": 1,
+    "speaker": "boss_palindrome_phantom",
+    "text": "Seni başladığın yere döndürdüm; değişmenden korkuyordum.. Bir yanıtı hak ettiğimi varsaymayacağım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w055_b1_boss_palindrome_phantom.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 55,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Bu yönlendirmeyi benim imzamla onaylamışlar.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w055_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 55,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "İmzan doğru; bilgin eksikti.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w055_b3_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 55,
+    "beat": 4,
+    "speaker": "sera",
+    "text": "Bu baskı Ada’nın adresini eve çevirmiş. Yeni adresini vermeyeceğim; itiraz kaydını sana bırakabilirim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w055_b4_sera.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 55,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Kalıbı saklayıp itirazı yanına koyacağım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w055_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 60,
+    "beat": 1,
+    "speaker": "boss_tautology_twin",
+    "text": "Aynı sözü iki kez söyledim, kanıt sandım; ikizim bile bana inanmadı.. Kapıyı açık bırakacağım; dönmesini şart koşmayacağım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w060_b1_boss_tautology_twin.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 60,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Önceden cevabını da ben ezberlemiştim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w060_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 60,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Bir prova, diğer oyuncunun seçimini içermez.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w060_b3_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 60,
+    "beat": 4,
+    "speaker": "shadow_double",
+    "text": "Susmak istemiş olabilir.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w060_b4_shadow_double.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 60,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "O zaman cümlesini tamamlamayacağım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w060_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 65,
+    "beat": 1,
+    "speaker": "boss_dangling_modifier",
+    "text": "Eylemi askıda bıraktım; suç yanlış kişiye düştü.. Ada’nın sessizliğini cevap diye mühürlemeyeceğim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w065_b1_boss_dangling_modifier.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 65,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Eve dönüşü seçmemiş.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w065_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 65,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Seçimini senin beklentinle ölçme.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w065_b3_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 65,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Yanlış yola gidiyor; çek geri.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w065_b4_whisper.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 65,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Yolunu düzeltmeyeceğim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w065_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 70,
+    "beat": 1,
+    "speaker": "boss_spelling_spectre",
+    "text": "Bir harfi düzelttim, bir hayatı başka isme bağladım.. Onun mektubuna benim cümlemi eklemeyeceğim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w070_b1_boss_spelling_spectre.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 70,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Bu bizim çocukken yaptığımız oyun.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w070_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 70,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Ayna bugünkü Ada değil.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w070_b3_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 70,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Aynayı kır; sadece gerçek kalsın.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w070_b4_whisper.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 70,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Anıyı saklayıp bugünü açık bırakacağım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w070_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 75,
+    "beat": 1,
+    "speaker": "boss_idiom_imp",
+    "text": "Gülmek istedim; şakam birinin yardım çağrısını örttü.. Bir yanıtı hak ettiğimi varsaymayacağım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w075_b1_boss_idiom_imp.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 75,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Sana emir verdim; özür dilerim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w075_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 75,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Özrü kabul etmeme hakkı da var.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w075_b3_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 75,
+    "beat": 4,
+    "speaker": "echo_unsealed_judge",
+    "text": "Özür, cevapla mühürlenmeli.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w075_b4_echo_unsealed_judge.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 75,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Hayır. Cevap Ada’nın.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w075_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 80,
+    "beat": 1,
+    "speaker": "boss_red_pen_boss",
+    "text": "Bu kez ben kestim; kime zarar vereceğini sormadan eski hükmü uyguladım.. Kapıyı açık bırakacağım; dönmesini şart koşmayacağım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w080_b1_boss_red_pen_boss.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 80,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Bunu Ada mı gönderdi?",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w080_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 80,
+    "beat": 3,
+    "speaker": "sera",
+    "text": "Evet. Okumanı istediğini söylemedi.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w080_b3_sera.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 80,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "Teslim etmek, açmak demek değil.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w080_b4_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 80,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Zarfı saklayacağım; karar onda kalacak.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w080_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 85,
+    "beat": 1,
+    "speaker": "boss_oxymoron_ogre",
+    "text": "İki gerçeği ayrı odalara koydum; susunca çatışma biter sandım.. Ada’nın sessizliğini cevap diye mühürlemeyeceğim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w085_b1_boss_oxymoron_ogre.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 85,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Onu kendi kaydımın altına koymuşum.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w085_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 85,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Şimdi iki ayrı satır var.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w085_b3_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 85,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Tek kayıt daha düzenli olur.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w085_b4_whisper.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 85,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Düzeni değil, iki imzayı koruyacağım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w085_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 90,
+    "beat": 1,
+    "speaker": "boss_malapropism_mimic",
+    "text": "Yüzünü Neris’ten aldım; onun itirazını taklit edemedim.. Onun mektubuna benim cümlemi eklemeyeceğim.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w090_b1_boss_malapropism_mimic.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 90,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Mektubu göndermiyorum.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w090_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 90,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Bir gün göndermek istersen de şart koyma.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w090_b3_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 90,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Boş kâğıt, boşa umut demek.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w090_b4_whisper.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 90,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Beklemek, sahip olmak değil.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w090_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 95,
+    "beat": 1,
+    "speaker": "boss_vocabulary_void",
+    "text": "Boşlukları korurken yaşayanların adlarını da sildim.. Bir yanıtı hak ettiğimi varsaymayacağım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w095_b1_boss_vocabulary_void.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 95,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Ada’nın nerede olduğunu bilmiyorum.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w095_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 95,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Bilmemek onun kararını değiştirmez.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w095_b3_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 95,
+    "beat": 4,
+    "speaker": "ada",
+    "text": "Mektubunu aldım. Şimdilik cevap vermeye hazır değilim; lütfen bunu da cevabım say.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w095_b4_ada.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 95,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Yine de onun adına yazmayacağım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w095_b5_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 100,
+    "beat": 1,
+    "speaker": "boss_lexicon_dragon_boss",
+    "text": "İlk halkada sözlük tuttum; son halkada tek bir ağız olmak istedim.. Kapıyı açık bırakacağım; dönmesini şart koşmayacağım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w100_b1_boss_lexicon_dragon_boss.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 100,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Bunu gönderdim; dönüşünü şart koşmadım.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w100_b2_hero.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 100,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Ben de kendi hatamı ayrı sayfaya yazıyorum.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w100_b3_neris.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 100,
+    "beat": 4,
+    "speaker": "blank_page",
+    "text": "Tek bir barış, bütün yaraları kapatır.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w100_b4_blank_page.mp3"
+  },
+  {
+    "campaign": "quillmaster",
+    "wave": 100,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Barış zorunlu değil. Cevap hakkı onda.",
+    "audio_url": "assets/audio/dialogue/quillmaster/voice_quillmaster_w100_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 5,
+    "beat": 1,
+    "speaker": "boss_red_pen_boss",
+    "text": "Kuralı koruduğumu sanıyordum; itirazı kırmızıya boyayıp kayıttan kesmişim.. İmzam zararı silmiyor.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w005_b1_boss_red_pen_boss.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 5,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Bu emri ben imzalamışım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w005_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 5,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "İmza senin. Değiştirilen satır değil.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w005_b3_neris.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 5,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Emir yoksa suç da yok.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w005_b4_whisper.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 5,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Emri kimin adına verdiğimi bulacağım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w005_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 10,
+    "beat": 1,
+    "speaker": "boss_syntax_titan",
+    "text": "Emir yarımdı; ben bitirdim ve içindeki “hayır”ı cümlenin dışına ittim.. Emri uyguladım; sonucunu da taşıyacağım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w010_b1_boss_syntax_titan.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 10,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Kapıyı kapatarak herkesi koruduğumu sanmıştım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w010_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 10,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "İçeridekiler kapının kapanmasını istedi mi?",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w010_b3_neris.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 10,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Dışarıda tehlike var. Kapat.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w010_b4_whisper.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 10,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Onların kararını sormadan nöbet tutmam.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w010_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 15,
+    "beat": 1,
+    "speaker": "boss_oxymoron_ogre",
+    "text": "İki tanık da doğruyu söylüyordu; birini seçince ötekini yalan yaptım.. Bir kapıyı kapatmadan önce içeridekilerin kararını soracağım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w015_b1_boss_oxymoron_ogre.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 15,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Seni korumak için kapıyı kapatmıştım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w015_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 15,
+    "beat": 3,
+    "speaker": "mara",
+    "text": "Ben içeride kalmayı seçmedim.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w015_b3_mara.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 15,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "Önce anlatmasına izin ver.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w015_b4_neris.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 15,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Savunmamı sonra yapacağım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w015_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 20,
+    "beat": 1,
+    "speaker": "boss_homophone_harpy",
+    "text": "Adları aynı sesle çağırdım; dönüp bakmayanı da kayıp saydım.. Sorumluluk alacağım ama kimseye af borcu yüklemeyeceğim.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w020_b1_boss_homophone_harpy.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 20,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Sorgulama hakkım vardı.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w020_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 20,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Kullanmamayı seçtin.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w020_b3_neris.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 20,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "İtaat, düşünmekten daha güvenlidir.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w020_b4_whisper.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 20,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Güvenlik bahanemi değil, sonucunu taşıyacağım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w020_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 25,
+    "beat": 1,
+    "speaker": "boss_lexicon_dragon_boss",
+    "text": "Halkalarımda kelimeleri sakladım; saklamak, sahip olmak demek değil.. İmzam zararı silmiyor.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w025_b1_boss_lexicon_dragon_boss.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 25,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Bu kapı tek kişinin emriyle kapanmayacak.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w025_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 25,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Önce kimin geçmek istediğini dinle.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w025_b3_neris.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 25,
+    "beat": 4,
+    "speaker": "echo_gate_marshal",
+    "text": "Bir açık kapı herkesi tehlikeye atar.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w025_b4_echo_gate_marshal.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 25,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Kapıyı kapatmak da herkesi tehlikeye attı.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w025_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 30,
+    "beat": 1,
+    "speaker": "boss_run_on_reaper",
+    "text": "Koş dedim; durmanın da bir çıkış olabileceğini hiç öğrenmemiştim.. Emri uyguladım; sonucunu da taşıyacağım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w030_b1_boss_run_on_reaper.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 30,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Koruyacağım dedim; kimin kararını sildim?",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w030_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 30,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Nöbet, izin istemenin yerini tutmaz.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w030_b3_neris.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 30,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Yeminini tekrarla; şüphe susar.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w030_b4_whisper.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 30,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Şüpheyi susturmak değil, doğru soruyu taşımak istiyorum.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w030_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 35,
+    "beat": 1,
+    "speaker": "boss_malapropism_mimic",
+    "text": "Yüzü tutturdum; bakışını ve kararını kopyalayamadım.. Bir kapıyı kapatmadan önce içeridekilerin kararını soracağım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w035_b1_boss_malapropism_mimic.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 35,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Kaç kişiyi görmeden geçirdim?",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w035_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 35,
+    "beat": 3,
+    "speaker": "lira",
+    "text": "Ben emir bekledim; sen kapıyı tuttun.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w035_b3_lira.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 35,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "İkiniz de seçiminizi anlatabilirsiniz.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w035_b4_neris.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 35,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "İlk kez kimin suçlu olduğunu değil, kimin zarar gördüğünü soracağım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w035_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 40,
+    "beat": 1,
+    "speaker": "boss_vocabulary_void",
+    "text": "Adları silince onları bulamazlar sandım; onlar da birbirini bulamadı.. Sorumluluk alacağım ama kimseye af borcu yüklemeyeceğim.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w040_b1_boss_vocabulary_void.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 40,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Sözün yarısını ben de sorgulamamışım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w040_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 40,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Şimdi kalan yarıyı kimin yazdığını öğren.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w040_b3_neris.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 40,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Eksik kısmı sen doldur.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w040_b4_whisper.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 40,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Tanıklar konuşmadan doldurmayacağım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w040_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 45,
+    "beat": 1,
+    "speaker": "boss_punctuation_phantom",
+    "text": "Noktayı koyunca acı biter sandım; tanıklık benden sonra da sürüyordu.. İmzam zararı silmiyor.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w045_b1_boss_punctuation_phantom.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 45,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Ben dışarıyı kolladım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w045_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 45,
+    "beat": 3,
+    "speaker": "mara",
+    "text": "Biz içeriden çıkış aradık.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w045_b3_mara.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 45,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "İkisi de aynı anda doğru olabilir.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w045_b4_neris.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 45,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Birini silmeden kayda alacağım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w045_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 50,
+    "beat": 1,
+    "speaker": "boss_double_negative_drake",
+    "text": "İki hayırı tek bir evete çevirdim; hükmü ben verdim, bedelini başkaları taşıdı.. Emri uyguladım; sonucunu da taşıyacağım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w050_b1_boss_double_negative_drake.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 50,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Bu arma bana itibar kazandırdı.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w050_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 50,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Onu bırakmak zararı geri almıyor.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w050_b3_neris.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 50,
+    "beat": 4,
+    "speaker": "echo_crest_enforcer",
+    "text": "Armasızsan emirsizsin.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w050_b4_echo_crest_enforcer.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 50,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Sorumluluk için arma gerekmiyor.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w050_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 55,
+    "beat": 1,
+    "speaker": "boss_palindrome_phantom",
+    "text": "Seni başladığın yere döndürdüm; değişmenden korkuyordum.. Bir kapıyı kapatmadan önce içeridekilerin kararını soracağım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w055_b1_boss_palindrome_phantom.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 55,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Ben herkese emir verdiğimi sanıyordum.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w055_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 55,
+    "beat": 3,
+    "speaker": "lira",
+    "text": "Ben de nöbeti reddedebilirdim; ama bedelinden korktum.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w055_b3_lira.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 55,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "Yeni çizelge ortak olmalı.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w055_b4_neris.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 55,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "İmzaları tek tek soracağım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w055_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 60,
+    "beat": 1,
+    "speaker": "boss_tautology_twin",
+    "text": "Aynı sözü iki kez söyledim, kanıt sandım; ikizim bile bana inanmadı.. Sorumluluk alacağım ama kimseye af borcu yüklemeyeceğim.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w060_b1_boss_tautology_twin.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 60,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Bu çizikleri saklamak istemiyorum.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w060_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 60,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Tanıklar kalkanın üzerinde kalabilir.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w060_b3_neris.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 60,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Parlat; kimse geçmişi görmesin.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w060_b4_whisper.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 60,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Parlaklık özür değil.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w060_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 65,
+    "beat": 1,
+    "speaker": "boss_dangling_modifier",
+    "text": "Eylemi askıda bıraktım; suç yanlış kişiye düştü.. İmzam zararı silmiyor.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w065_b1_boss_dangling_modifier.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 65,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Nöbet yerinden ayrılmak ihanet sanılmıştı.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w065_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 65,
+    "beat": 3,
+    "speaker": "mara",
+    "text": "Bizi görünce ilk kez kapı açıldı.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w065_b3_mara.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 65,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "Görev kime hizmet ediyor?",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w065_b4_neris.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 65,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "İnsanlara; duvara değil.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w065_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 70,
+    "beat": 1,
+    "speaker": "boss_spelling_spectre",
+    "text": "Bir harfi düzelttim, bir hayatı başka isme bağladım.. Emri uyguladım; sonucunu da taşıyacağım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w070_b1_boss_spelling_spectre.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 70,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Kalkanı hep öne tuttum.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w070_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 70,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Şimdi arkandaki kişiye de bak.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w070_b3_neris.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 70,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Gölgeyi kapat, emniyette kal.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w070_b4_whisper.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 70,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Güvenlik tek kişinin bakışına bağlı olmayacak.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w070_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 75,
+    "beat": 1,
+    "speaker": "boss_idiom_imp",
+    "text": "Gülmek istedim; şakam birinin yardım çağrısını örttü.. Bir kapıyı kapatmadan önce içeridekilerin kararını soracağım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w075_b1_boss_idiom_imp.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 75,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Benim yemnim başkalarını susturdu.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w075_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 75,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Zararı adlandır; kendini aklama.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w075_b3_neris.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 75,
+    "beat": 4,
+    "speaker": "echo_oath_tally",
+    "text": "Biriniz suçlu ilan edilmeli.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w075_b4_echo_oath_tally.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 75,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Kuralı yazan da, emri veren de sorumluluk taşıyor.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w075_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 80,
+    "beat": 1,
+    "speaker": "boss_red_pen_boss",
+    "text": "Bu kez ben kestim; kime zarar vereceğini sormadan eski hükmü uyguladım.. Sorumluluk alacağım ama kimseye af borcu yüklemeyeceğim.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w080_b1_boss_red_pen_boss.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 80,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "İstersen geç; istersen kal.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w080_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 80,
+    "beat": 3,
+    "speaker": "mara",
+    "text": "Bu kez benim kararımı soruyorsun.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w080_b3_mara.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 80,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "Yanıtı bekle.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w080_b4_neris.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 80,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Kapıyı tutmak yerine yolu tutacağım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w080_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 85,
+    "beat": 1,
+    "speaker": "boss_oxymoron_ogre",
+    "text": "İki gerçeği ayrı odalara koydum; susunca çatışma biter sandım.. İmzam zararı silmiyor.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w085_b1_boss_oxymoron_ogre.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 85,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Sana zarar verdim; bunu geri alamam.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w085_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 85,
+    "beat": 3,
+    "speaker": "mara",
+    "text": "Şimdi affetmiyorum.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w085_b3_mara.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 85,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "Onun cevabı da kayda girecek.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w085_b4_neris.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 85,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Bekleyeceğim; bunu görev diye dayatmayacağım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w085_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 90,
+    "beat": 1,
+    "speaker": "boss_malapropism_mimic",
+    "text": "Yüzünü Neris’ten aldım; onun itirazını taklit edemedim.. Emri uyguladım; sonucunu da taşıyacağım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w090_b1_boss_malapropism_mimic.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 90,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Bu vardiyayı kabul ediyor musun?",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w090_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 90,
+    "beat": 3,
+    "speaker": "lira",
+    "text": "Evet; bitiş saatini de ben yazıyorum.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w090_b3_lira.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 90,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "İtiraz kutusunu açık bırak.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w090_b4_neris.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 90,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Yeni kural, değiştirilebilme hakkı içerecek.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w090_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 95,
+    "beat": 1,
+    "speaker": "boss_vocabulary_void",
+    "text": "Boşlukları korurken yaşayanların adlarını da sildim.. Bir kapıyı kapatmadan önce içeridekilerin kararını soracağım.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w095_b1_boss_vocabulary_void.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 95,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Kalkanım hep engel olmuş.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w095_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 95,
+    "beat": 3,
+    "speaker": "mara",
+    "text": "Bazen siper; bazen duvar.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w095_b3_mara.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 95,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Onu geri al. Güç sende kalmalı.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w095_b4_whisper.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 95,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "Kimin tuttuğu değil, neyi koruduğu önemli.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w095_b5_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 100,
+    "beat": 1,
+    "speaker": "boss_lexicon_dragon_boss",
+    "text": "İlk halkada sözlük tuttum; son halkada tek bir ağız olmak istedim.. Sorumluluk alacağım ama kimseye af borcu yüklemeyeceğim.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w100_b1_boss_lexicon_dragon_boss.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 100,
+    "beat": 2,
+    "speaker": "hero",
+    "text": "Geçmek isteyen geçsin; nöbet tutmak isteyen kalsın.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w100_b2_hero.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 100,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Ben Neris’im. Adımı kendim yazıyorum.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w100_b3_neris.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 100,
+    "beat": 4,
+    "speaker": "blank_page",
+    "text": "Tek kural olmazsa güvenlik dağılır.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w100_b4_blank_page.mp3"
+  },
+  {
+    "campaign": "word_knight",
+    "wave": 100,
+    "beat": 5,
+    "speaker": "hero",
+    "text": "O zaman kural değiştirilebilir olsun; sorumluluk da paylaşılsın.",
+    "audio_url": "assets/audio/dialogue/word_knight/voice_word_knight_w100_b5_hero.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 5,
+    "beat": 1,
+    "speaker": "boss_red_pen_boss",
+    "text": "Kuralı koruduğumu sanıyordum; itirazı kırmızıya boyayıp kayıttan kesmişim.. Lale’nin yankısı annemin bugünkü kararını veremez.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w005_b1_boss_red_pen_boss.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 5,
+    "beat": 2,
+    "speaker": "rune_sorceress",
+    "text": "Bu çizgi annemin mührüne benziyor.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w005_b2_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 5,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "İki yolun ikisi de onun elinden.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w005_b3_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 5,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Birini yak; acı diner.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w005_b4_whisper.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 5,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "Acı benim; kararı da ben vereceğim.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w005_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 10,
+    "beat": 1,
+    "speaker": "boss_syntax_titan",
+    "text": "Emir yarımdı; ben bitirdim ve içindeki “hayır”ı cümlenin dışına ittim.. Annemin sevgisini koruyacağım; onun yerine seçmeyeceğim.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w010_b1_boss_syntax_titan.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 10,
+    "beat": 2,
+    "speaker": "rune_sorceress",
+    "text": "Büyüm onları uyandırıyor.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w010_b2_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 10,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Ya da senin korkunu tanıyorlar.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w010_b3_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 10,
+    "beat": 4,
+    "speaker": "mother_echo",
+    "text": "Sesi duydun; kararını duymadın.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w010_b4_mother_echo.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 10,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "Annemin sesiyle onun iradesini karıştırmayacağım.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w010_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 15,
+    "beat": 1,
+    "speaker": "boss_oxymoron_ogre",
+    "text": "İki tanık da doğruyu söylüyordu; birini seçince ötekini yalan yaptım.. Mühür, miras olabilir; emir değil.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w015_b1_boss_oxymoron_ogre.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 15,
+    "beat": 2,
+    "speaker": "rune_sorceress",
+    "text": "Bunu annem kırmış.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w015_b2_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 15,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Bir parçayı neden geride bıraksın?",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w015_b3_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 15,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Birleştir; onu geri getir.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w015_b4_whisper.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 15,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "Belki kırmak, gitmek için gereken seçimdi.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w015_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 20,
+    "beat": 1,
+    "speaker": "boss_homophone_harpy",
+    "text": "Adları aynı sesle çağırdım; dönüp bakmayanı da kayıp saydım.. Özlemek, geçmişi yeniden yazma izni vermiyor.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w020_b1_boss_homophone_harpy.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 20,
+    "beat": 2,
+    "speaker": "rune_sorceress",
+    "text": "İzini bulacağım; onun yerine yürümeyeceğim.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w020_b2_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 20,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Bu merdiven yalnız bir kişiye göre dönüyor.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w020_b3_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 20,
+    "beat": 4,
+    "speaker": "mother_echo",
+    "text": "Kendi adımınla in.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w020_b4_mother_echo.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 20,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "İlk adım benim.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w020_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 25,
+    "beat": 1,
+    "speaker": "boss_lexicon_dragon_boss",
+    "text": "Halkalarımda kelimeleri sakladım; saklamak, sahip olmak demek değil.. Lale’nin yankısı annemin bugünkü kararını veremez.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w025_b1_boss_lexicon_dragon_boss.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 25,
+    "beat": 2,
+    "speaker": "rune_sorceress",
+    "text": "Annem için kendimi feda etmeyeceğim.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w025_b2_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 25,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "O da senden bunu istemedi.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w025_b3_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 25,
+    "beat": 4,
+    "speaker": "echo_ash_warden",
+    "text": "İsmi yak, acısı diner.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w025_b4_echo_ash_warden.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 25,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "Mührü kırarım; adı değil.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w025_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 30,
+    "beat": 1,
+    "speaker": "boss_run_on_reaper",
+    "text": "Koş dedim; durmanın da bir çıkış olabileceğini hiç öğrenmemiştim.. Annemin sevgisini koruyacağım; onun yerine seçmeyeceğim.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w030_b1_boss_run_on_reaper.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 30,
+    "beat": 2,
+    "speaker": "mother_echo",
+    "text": "Beni bulma, kızım.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w030_b2_mother_echo.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 30,
+    "beat": 3,
+    "speaker": "rune_sorceress",
+    "text": "Bunu yıllardır duymak istedim.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w030_b3_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 30,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "Sesi tanıman, cevabın bugünkü olduğunu kanıtlamaz.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w030_b4_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 30,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "Beklemeyi de öğreneceğim.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w030_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 35,
+    "beat": 1,
+    "speaker": "boss_malapropism_mimic",
+    "text": "Yüzü tutturdum; bakışını ve kararını kopyalayamadım.. Mühür, miras olabilir; emir değil.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w035_b1_boss_malapropism_mimic.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 35,
+    "beat": 2,
+    "speaker": "rune_sorceress",
+    "text": "Bu günü hiç hatırlamıyorum.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w035_b2_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 35,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Çerçevede annenin değil, senin eski notun var.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w035_b3_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 35,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Anıyı düzeltirim.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w035_b4_whisper.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 35,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "Düzeltme değil, tanıklık istiyorum.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w035_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 40,
+    "beat": 1,
+    "speaker": "boss_vocabulary_void",
+    "text": "Adları silince onları bulamazlar sandım; onlar da birbirini bulamadı.. Özlemek, geçmişi yeniden yazma izni vermiyor.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w040_b1_boss_vocabulary_void.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 40,
+    "beat": 2,
+    "speaker": "rune_sorceress",
+    "text": "Annem burada yatmıyor.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w040_b2_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 40,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Belki onun seçtiği kişiler burada.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w040_b3_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 40,
+    "beat": 4,
+    "speaker": "mother_echo",
+    "text": "Onları hatırlamayı sürdür.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w040_b4_mother_echo.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 40,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "Onun anısını tek mezara kapatmayacağım.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w040_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 45,
+    "beat": 1,
+    "speaker": "boss_punctuation_phantom",
+    "text": "Noktayı koyunca acı biter sandım; tanıklık benden sonra da sürüyordu.. Lale’nin yankısı annemin bugünkü kararını veremez.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w045_b1_boss_punctuation_phantom.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 45,
+    "beat": 2,
+    "speaker": "rune_sorceress",
+    "text": "Seni çağırmak için kendimi eksiltiyorum.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w045_b2_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 45,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Yol, senden değerli değil.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w045_b3_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 45,
+    "beat": 4,
+    "speaker": "mother_echo",
+    "text": "Beni tutma.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w045_b4_mother_echo.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 45,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "Seni özleyebilirim; yine de bırakacağım.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w045_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 50,
+    "beat": 1,
+    "speaker": "boss_double_negative_drake",
+    "text": "İki hayırı tek bir evete çevirdim; hükmü ben verdim, bedelini başkaları taşıdı.. Annemin sevgisini koruyacağım; onun yerine seçmeyeceğim.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w050_b1_boss_double_negative_drake.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 50,
+    "beat": 2,
+    "speaker": "rune_sorceress",
+    "text": "Biri bana ait, biri anneme.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w050_b2_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 50,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Hiçbiri tek başına bütün geçmiş değil.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w050_b3_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 50,
+    "beat": 4,
+    "speaker": "echo_glass_mother",
+    "text": "Onu silersem güvenli kalır.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w050_b4_echo_glass_mother.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 50,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "Güvenlik için anıyı silmeyeceğim.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w050_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 55,
+    "beat": 1,
+    "speaker": "boss_palindrome_phantom",
+    "text": "Seni başladığın yere döndürdüm; değişmenden korkuyordum.. Mühür, miras olabilir; emir değil.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w055_b1_boss_palindrome_phantom.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 55,
+    "beat": 2,
+    "speaker": "rune_sorceress",
+    "text": "Bana büyü değil çorba tarifi yazmış.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w055_b2_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 55,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Onu yalnızca büyük kararlarından hatırlama.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w055_b3_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 55,
+    "beat": 4,
+    "speaker": "mother_echo",
+    "text": "Tuzu hep fazla koyardım.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w055_b4_mother_echo.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 55,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "Bu kusuru da anımda kalacak.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w055_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 60,
+    "beat": 1,
+    "speaker": "boss_tautology_twin",
+    "text": "Aynı sözü iki kez söyledim, kanıt sandım; ikizim bile bana inanmadı.. Özlemek, geçmişi yeniden yazma izni vermiyor.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w060_b1_boss_tautology_twin.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 60,
+    "beat": 2,
+    "speaker": "rune_sorceress",
+    "text": "Annemle aynı olmak zorunda değilim.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w060_b2_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 60,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Sevgi, benzerlik şartı koymaz.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w060_b3_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 60,
+    "beat": 4,
+    "speaker": "mother_echo",
+    "text": "Beni özleyebilirsin.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w060_b4_mother_echo.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 60,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "Ve bana bıraktığın sınırı eleştirebilirim.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w060_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 65,
+    "beat": 1,
+    "speaker": "boss_dangling_modifier",
+    "text": "Eylemi askıda bıraktım; suç yanlış kişiye düştü.. Lale’nin yankısı annemin bugünkü kararını veremez.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w065_b1_boss_dangling_modifier.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 65,
+    "beat": 2,
+    "speaker": "rune_sorceress",
+    "text": "Büyüsüz yürümekten korkuyorum.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w065_b2_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 65,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Korku, kararını geçersiz kılmaz.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w065_b3_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 65,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Tek bir doğru yol var.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w065_b4_whisper.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 65,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "Kendi yolumu bulmak zorundayım.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w065_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 70,
+    "beat": 1,
+    "speaker": "boss_spelling_spectre",
+    "text": "Bir harfi düzelttim, bir hayatı başka isme bağladım.. Annemin sevgisini koruyacağım; onun yerine seçmeyeceğim.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w070_b1_boss_spelling_spectre.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 70,
+    "beat": 2,
+    "speaker": "rune_sorceress",
+    "text": "Annem beni kurtarmadı; kendi korkusuyla karar verdi.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w070_b2_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 70,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Sevgi ve hata aynı kişide bulunabilir.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w070_b3_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 70,
+    "beat": 4,
+    "speaker": "mother_echo",
+    "text": "Beni düzeltmeye çalışma.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w070_b4_mother_echo.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 70,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "Seni değil, seçim hakkını savunacağım.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w070_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 75,
+    "beat": 1,
+    "speaker": "boss_idiom_imp",
+    "text": "Gülmek istedim; şakam birinin yardım çağrısını örttü.. Mühür, miras olabilir; emir değil.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w075_b1_boss_idiom_imp.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 75,
+    "beat": 2,
+    "speaker": "rune_sorceress",
+    "text": "Birimiz ötekinin kopyası değil.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w075_b2_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 75,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Kuralı kim yazmış?",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w075_b3_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 75,
+    "beat": 4,
+    "speaker": "echo_namekeeper",
+    "text": "Biriniz silinmeli.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w075_b4_echo_namekeeper.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 75,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "Korku kanun değildir.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w075_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 80,
+    "beat": 1,
+    "speaker": "boss_red_pen_boss",
+    "text": "Bu kez ben kestim; kime zarar vereceğini sormadan eski hükmü uyguladım.. Özlemek, geçmişi yeniden yazma izni vermiyor.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w080_b1_boss_red_pen_boss.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 80,
+    "beat": 2,
+    "speaker": "rune_sorceress",
+    "text": "Annemin adını ben taşıyamam.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w080_b2_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 80,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "İstersen taşıyabilirsin; zorunlu değil.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w080_b3_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 80,
+    "beat": 4,
+    "speaker": "mother_echo",
+    "text": "Beni unutabilirsin.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w080_b4_mother_echo.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 80,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "Unutmakla affetmek ayrı seçimler.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w080_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 85,
+    "beat": 1,
+    "speaker": "boss_oxymoron_ogre",
+    "text": "İki gerçeği ayrı odalara koydum; susunca çatışma biter sandım.. Lale’nin yankısı annemin bugünkü kararını veremez.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w085_b1_boss_oxymoron_ogre.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 85,
+    "beat": 2,
+    "speaker": "rune_sorceress",
+    "text": "Tek bir son teklif ediyor.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w085_b2_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 85,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Benim yerime de seçme.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w085_b3_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 85,
+    "beat": 4,
+    "speaker": "blank_page",
+    "text": "Acısızlık için bir son yeter.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w085_b4_blank_page.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 85,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "Sessizlik, iyileşmek değildir.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w085_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 90,
+    "beat": 1,
+    "speaker": "boss_malapropism_mimic",
+    "text": "Yüzünü Neris’ten aldım; onun itirazını taklit edemedim.. Annemin sevgisini koruyacağım; onun yerine seçmeyeceğim.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w090_b1_boss_malapropism_mimic.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 90,
+    "beat": 2,
+    "speaker": "rune_sorceress",
+    "text": "Hepsini ben taşımalıyım sandım.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w090_b2_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 90,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Yanında yürüyebilirim; adını üstlenemem.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w090_b3_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 90,
+    "beat": 4,
+    "speaker": "mother_echo",
+    "text": "Yavaşla.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w090_b4_mother_echo.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 90,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "Birlikte, ama ayrı ayrı geçiyoruz.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w090_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 95,
+    "beat": 1,
+    "speaker": "boss_vocabulary_void",
+    "text": "Boşlukları korurken yaşayanların adlarını da sildim.. Mühür, miras olabilir; emir değil.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w095_b1_boss_vocabulary_void.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 95,
+    "beat": 2,
+    "speaker": "rune_sorceress",
+    "text": "Annemin yolu burada bitmiyor; benimki de ona bağlanmıyor.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w095_b2_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 95,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "İki isim, bir kapı.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w095_b3_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 95,
+    "beat": 4,
+    "speaker": "mother_echo",
+    "text": "Kendin ol.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w095_b4_mother_echo.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 95,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "Bu kez seçimi birlikte konuşuyoruz.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w095_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 100,
+    "beat": 1,
+    "speaker": "boss_lexicon_dragon_boss",
+    "text": "İlk halkada sözlük tuttum; son halkada tek bir ağız olmak istedim.. Özlemek, geçmişi yeniden yazma izni vermiyor.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w100_b1_boss_lexicon_dragon_boss.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 100,
+    "beat": 2,
+    "speaker": "rune_sorceress",
+    "text": "Annemin adını saklayacağım, onun hayatını değil.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w100_b2_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 100,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Ben de Neris’im; adımı kendim kayda alıyorum.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w100_b3_neris.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 100,
+    "beat": 4,
+    "speaker": "mother_echo",
+    "text": "Beni anında taşı; hayatını beni beklemeye bağlama.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w100_b4_mother_echo.mp3"
+  },
+  {
+    "campaign": "rune_sorceress",
+    "wave": 100,
+    "beat": 5,
+    "speaker": "rune_sorceress",
+    "text": "Yaşayanlar, kendi sonlarını seçsin.",
+    "audio_url": "assets/audio/dialogue/rune_sorceress/voice_rune_sorceress_w100_b5_rune_sorceress.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 5,
+    "beat": 1,
+    "speaker": "boss_red_pen_boss",
+    "text": "Kuralı koruduğumu sanıyordum; itirazı kırmızıya boyayıp kayıttan kesmişim.. Lio’nun yankısını yaşayan kardeşim yerine koymayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w005_b1_boss_red_pen_boss.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 5,
+    "beat": 2,
+    "speaker": "neris",
+    "text": "Hareket, yaşam kanıtı değil.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w005_b2_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 5,
+    "beat": 3,
+    "speaker": "lexicon_alchemist",
+    "text": "Bu ölçü çizgisi Lio’nun.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w005_b3_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 5,
+    "beat": 4,
+    "speaker": "lio_echo",
+    "text": "Dozu değiştirme.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w005_b4_lio_echo.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 5,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "Önce ne olduğunu anlayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w005_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 10,
+    "beat": 1,
+    "speaker": "boss_syntax_titan",
+    "text": "Emir yarımdı; ben bitirdim ve içindeki “hayır”ı cümlenin dışına ittim.. Bir kaydı saklamak, kişiyi geri getirmek değil.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w010_b1_boss_syntax_titan.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 10,
+    "beat": 2,
+    "speaker": "neris",
+    "text": "Sen de her zaman son satırı yazardın.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w010_b2_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 10,
+    "beat": 3,
+    "speaker": "lexicon_alchemist",
+    "text": "Lio bunu bilerek eksik bırakırdı.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w010_b3_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 10,
+    "beat": 4,
+    "speaker": "lio_echo",
+    "text": "Bu kez yanlış olan senin ölçün.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w010_b4_lio_echo.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 10,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "Bunu duyunca gülüyorduk.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w010_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 15,
+    "beat": 1,
+    "speaker": "boss_oxymoron_ogre",
+    "text": "İki tanık da doğruyu söylüyordu; birini seçince ötekini yalan yaptım.. İzin olmadan kimseyi deneyin parçası yapmayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w015_b1_boss_oxymoron_ogre.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 15,
+    "beat": 2,
+    "speaker": "lexicon_alchemist",
+    "text": "Lio bu şişeyi kapatmış.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w015_b2_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 15,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Sana sormamış olması, şimdi açma izni değil.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w015_b3_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 15,
+    "beat": 4,
+    "speaker": "lio_echo",
+    "text": "Önce sor.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w015_b4_lio_echo.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 15,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "Soracağım; cevap gelmezse zorlamayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w015_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 20,
+    "beat": 1,
+    "speaker": "boss_homophone_harpy",
+    "text": "Adları aynı sesle çağırdım; dönüp bakmayanı da kayıp saydım.. Bu formülü tek başıma tamamlamayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w020_b1_boss_homophone_harpy.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 20,
+    "beat": 2,
+    "speaker": "neris",
+    "text": "Bir insanı dosya numarası korumaz.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w020_b2_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 20,
+    "beat": 3,
+    "speaker": "lexicon_alchemist",
+    "text": "Bu çizim Lio’nun eli.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w020_b3_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 20,
+    "beat": 4,
+    "speaker": "tavi",
+    "text": "Onun çizdiği formülü kurum kopyalamış.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w020_b4_tavi.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 20,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "Bu kez kimin emeği olduğunu kaydedeceğim.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w020_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 25,
+    "beat": 1,
+    "speaker": "boss_lexicon_dragon_boss",
+    "text": "Halkalarımda kelimeleri sakladım; saklamak, sahip olmak demek değil.. Lio’nun yankısını yaşayan kardeşim yerine koymayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w025_b1_boss_lexicon_dragon_boss.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 25,
+    "beat": 2,
+    "speaker": "lexicon_alchemist",
+    "text": "Şişeyi parçalarsam tanıklığı da kaybederim.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w025_b2_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 25,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Kilidi çözmek için acele etme.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w025_b3_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 25,
+    "beat": 4,
+    "speaker": "echo_vial_warden",
+    "text": "Bir ad, bin acıyı taşır.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w025_b4_echo_vial_warden.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 25,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "Öyleyse acıyı da paylaşırız.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w025_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 30,
+    "beat": 1,
+    "speaker": "boss_run_on_reaper",
+    "text": "Koş dedim; durmanın da bir çıkış olabileceğini hiç öğrenmemiştim.. Bir kaydı saklamak, kişiyi geri getirmek değil.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w030_b1_boss_run_on_reaper.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 30,
+    "beat": 2,
+    "speaker": "neris",
+    "text": "Hanginiz neyi seçmişti?",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w030_b2_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 30,
+    "beat": 3,
+    "speaker": "lexicon_alchemist",
+    "text": "Lio çıkışı, ben saklama kabını çizdim.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w030_b3_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 30,
+    "beat": 4,
+    "speaker": "lio_echo",
+    "text": "Kabı ben istemedim.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w030_b4_lio_echo.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 30,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "Bunu şimdi kabul ediyorum.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w030_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 35,
+    "beat": 1,
+    "speaker": "boss_malapropism_mimic",
+    "text": "Yüzü tutturdum; bakışını ve kararını kopyalayamadım.. İzin olmadan kimseyi deneyin parçası yapmayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w035_b1_boss_malapropism_mimic.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 35,
+    "beat": 2,
+    "speaker": "lexicon_alchemist",
+    "text": "Seni çıkarmak istiyorum.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w035_b2_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 35,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Bu kayıt yeni bir cevap üretmiyor.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w035_b3_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 35,
+    "beat": 4,
+    "speaker": "lio_echo",
+    "text": "Beni çıkar.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w035_b4_lio_echo.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 35,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "Bu söz kime ait, onu bulacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w035_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 40,
+    "beat": 1,
+    "speaker": "boss_vocabulary_void",
+    "text": "Adları silince onları bulamazlar sandım; onlar da birbirini bulamadı.. Bu formülü tek başıma tamamlamayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w040_b1_boss_vocabulary_void.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 40,
+    "beat": 2,
+    "speaker": "neris",
+    "text": "Bana sormadan beni kurtaramazsın.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w040_b2_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 40,
+    "beat": 3,
+    "speaker": "tavi",
+    "text": "Lio da bu reçeteyi reddetmişti.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w040_b3_tavi.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 40,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Bir damla yeter; kimse bilmez.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w040_b4_whisper.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 40,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "İzni olmayan hiçbir şeyi kullanmayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w040_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 45,
+    "beat": 1,
+    "speaker": "boss_punctuation_phantom",
+    "text": "Noktayı koyunca acı biter sandım; tanıklık benden sonra da sürüyordu.. Lio’nun yankısını yaşayan kardeşim yerine koymayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w045_b1_boss_punctuation_phantom.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 45,
+    "beat": 2,
+    "speaker": "lexicon_alchemist",
+    "text": "Hiçbiri yaşadığımız şey değil.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w045_b2_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 45,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "En çok hangisini istiyorsun?",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w045_b3_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 45,
+    "beat": 4,
+    "speaker": "lio_echo",
+    "text": "Sana kolay geleni seçme.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w045_b4_lio_echo.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 45,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "Hiçbirini içmeyeceğim.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w045_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 50,
+    "beat": 1,
+    "speaker": "boss_double_negative_drake",
+    "text": "İki hayırı tek bir evete çevirdim; hükmü ben verdim, bedelini başkaları taşıdı.. Bir kaydı saklamak, kişiyi geri getirmek değil.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w050_b1_boss_double_negative_drake.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 50,
+    "beat": 2,
+    "speaker": "lexicon_alchemist",
+    "text": "Bağ, çözülecek bir reaktif değil.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w050_b2_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 50,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Kimseyi denklemin içine malzeme yapma.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w050_b3_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 50,
+    "beat": 4,
+    "speaker": "echo_reagent_king",
+    "text": "Yeterli dozda her bağ kopar.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w050_b4_echo_reagent_king.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 50,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "Bağı silmeyeceğim; zehirini ayıracağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w050_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 55,
+    "beat": 1,
+    "speaker": "boss_palindrome_phantom",
+    "text": "Seni başladığın yere döndürdüm; değişmenden korkuyordum.. İzin olmadan kimseyi deneyin parçası yapmayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w055_b1_boss_palindrome_phantom.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 55,
+    "beat": 2,
+    "speaker": "lexicon_alchemist",
+    "text": "Seni bulmak istedim.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w055_b2_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 55,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Mektup neyi tamamlamanı istiyor?",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w055_b3_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 55,
+    "beat": 4,
+    "speaker": "lio_echo",
+    "text": "Sana ait olan kısmı.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w055_b4_lio_echo.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 55,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "Devamını kendi hayatımla yazacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w055_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 60,
+    "beat": 1,
+    "speaker": "boss_tautology_twin",
+    "text": "Aynı sözü iki kez söyledim, kanıt sandım; ikizim bile bana inanmadı.. Bu formülü tek başıma tamamlamayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w060_b1_boss_tautology_twin.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 60,
+    "beat": 2,
+    "speaker": "neris",
+    "text": "Kapat onu.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w060_b2_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 60,
+    "beat": 3,
+    "speaker": "tavi",
+    "text": "Bu düzenek daha önce de çalıştı.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w060_b3_tavi.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 60,
+    "beat": 4,
+    "speaker": "lio_echo",
+    "text": "Bana sormamıştın.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w060_b4_lio_echo.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 60,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "Bu kez sordum ve durduruyorum.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w060_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 65,
+    "beat": 1,
+    "speaker": "boss_dangling_modifier",
+    "text": "Eylemi askıda bıraktım; suç yanlış kişiye düştü.. Lio’nun yankısını yaşayan kardeşim yerine koymayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w065_b1_boss_dangling_modifier.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 65,
+    "beat": 2,
+    "speaker": "lexicon_alchemist",
+    "text": "Bu bölümü sen tamamlamak ister misin?",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w065_b2_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 65,
+    "beat": 3,
+    "speaker": "lio_echo",
+    "text": "İstersem yazarım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w065_b3_lio_echo.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 65,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "İstememek de bir cevap.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w065_b4_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 65,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "Eksik kalmasına izin veriyorum.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w065_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 70,
+    "beat": 1,
+    "speaker": "boss_spelling_spectre",
+    "text": "Bir harfi düzelttim, bir hayatı başka isme bağladım.. Bir kaydı saklamak, kişiyi geri getirmek değil.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w070_b1_boss_spelling_spectre.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 70,
+    "beat": 2,
+    "speaker": "lexicon_alchemist",
+    "text": "Ben de Lio’yu böyle tutmak istemişim.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w070_b2_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 70,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Farkı şimdi görüyorsun.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w070_b3_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 70,
+    "beat": 4,
+    "speaker": "lio_echo",
+    "text": "Beni kavanozda tutma.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w070_b4_lio_echo.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 70,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "Tutmayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w070_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 75,
+    "beat": 1,
+    "speaker": "boss_idiom_imp",
+    "text": "Gülmek istedim; şakam birinin yardım çağrısını örttü.. İzin olmadan kimseyi deneyin parçası yapmayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w075_b1_boss_idiom_imp.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 75,
+    "beat": 2,
+    "speaker": "lexicon_alchemist",
+    "text": "İsim, yaradır; ama yalnız yara değil.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w075_b2_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 75,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Onu dinle, sonra karar ver.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w075_b3_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 75,
+    "beat": 4,
+    "speaker": "echo_name_eater",
+    "text": "Ben de silinmekten korkarım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w075_b4_echo_name_eater.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 75,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "Korkunu kayda alacağım; seni şişeye koymayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w075_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 80,
+    "beat": 1,
+    "speaker": "boss_red_pen_boss",
+    "text": "Bu kez ben kestim; kime zarar vereceğini sormadan eski hükmü uyguladım.. Bu formülü tek başıma tamamlamayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w080_b1_boss_red_pen_boss.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 80,
+    "beat": 2,
+    "speaker": "lexicon_alchemist",
+    "text": "Bu kez düzeltmeyeceğim.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w080_b2_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 80,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "İkiniz de güldünüz.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w080_b3_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 80,
+    "beat": 4,
+    "speaker": "tavi",
+    "text": "Bu, eski kaydın en sevdiğim kısmıydı.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w080_b4_tavi.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 80,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "Sesini özlemek, onu tutmamı gerektirmiyor.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w080_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 85,
+    "beat": 1,
+    "speaker": "boss_oxymoron_ogre",
+    "text": "İki gerçeği ayrı odalara koydum; susunca çatışma biter sandım.. Lio’nun yankısını yaşayan kardeşim yerine koymayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w085_b1_boss_oxymoron_ogre.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 85,
+    "beat": 2,
+    "speaker": "lexicon_alchemist",
+    "text": "Ölçemediğim şeyi yok saymışım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w085_b2_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 85,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "İnsan ölçüm sonucu değil.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w085_b3_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 85,
+    "beat": 4,
+    "speaker": "blank_page",
+    "text": "Ölçemediğini koruyamazsın.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w085_b4_blank_page.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 85,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "Ölçüyü sınır yapacağım; hüküm değil.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w085_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 90,
+    "beat": 1,
+    "speaker": "boss_malapropism_mimic",
+    "text": "Yüzünü Neris’ten aldım; onun itirazını taklit edemedim.. Bir kaydı saklamak, kişiyi geri getirmek değil.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w090_b1_boss_malapropism_mimic.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 90,
+    "beat": 2,
+    "speaker": "tavi",
+    "text": "Ben seni hemen affetmiyorum.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w090_b2_tavi.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 90,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Bunu da sayfada tut.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w090_b3_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 90,
+    "beat": 4,
+    "speaker": "lio_echo",
+    "text": "Bana ait olmayan kısmı da yaz.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w090_b4_lio_echo.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 90,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "Yazacağım; itirazını da bırakacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w090_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 95,
+    "beat": 1,
+    "speaker": "boss_vocabulary_void",
+    "text": "Boşlukları korurken yaşayanların adlarını da sildim.. İzin olmadan kimseyi deneyin parçası yapmayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w095_b1_boss_vocabulary_void.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 95,
+    "beat": 2,
+    "speaker": "lio_echo",
+    "text": "Beni tutman da gerekmiyor.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w095_b2_lio_echo.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 95,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Bunu ikiniz seçiyorsunuz.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w095_b3_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 95,
+    "beat": 4,
+    "speaker": "lio_echo",
+    "text": "Kendi hayatını yaşa.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w095_b4_lio_echo.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 95,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "Seni seviyorum; bırakıyorum.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w095_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 100,
+    "beat": 1,
+    "speaker": "boss_lexicon_dragon_boss",
+    "text": "İlk halkada sözlük tuttum; son halkada tek bir ağız olmak istedim.. Bu formülü tek başıma tamamlamayacağım.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w100_b1_boss_lexicon_dragon_boss.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 100,
+    "beat": 2,
+    "speaker": "lexicon_alchemist",
+    "text": "Cevabı birlikte yazacağız.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w100_b2_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 100,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Hiçbir adı zorla bağlama.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w100_b3_neris.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 100,
+    "beat": 4,
+    "speaker": "blank_page",
+    "text": "Bir doğru cevap ver.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w100_b4_blank_page.mp3"
+  },
+  {
+    "campaign": "lexicon_alchemist",
+    "wave": 100,
+    "beat": 5,
+    "speaker": "lexicon_alchemist",
+    "text": "Doğru cevap, itiraz hakkı olan cevaptır.",
+    "audio_url": "assets/audio/dialogue/lexicon_alchemist/voice_lexicon_alchemist_w100_b5_lexicon_alchemist.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 5,
+    "beat": 1,
+    "speaker": "boss_red_pen_boss",
+    "text": "Kuralı koruduğumu sanıyordum; itirazı kırmızıya boyayıp kayıttan kesmişim.. Gölgenin varlığı onu emrin malı yapmaz.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w005_b1_boss_red_pen_boss.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 5,
+    "beat": 2,
+    "speaker": "neris",
+    "text": "Baskısı hâlâ duvarda.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w005_b2_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 5,
+    "beat": 3,
+    "speaker": "shadow_lexicographer",
+    "text": "Bana dön diyor.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w005_b3_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 5,
+    "beat": 4,
+    "speaker": "shadow_double",
+    "text": "Bunu ben seçmedim.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w005_b4_shadow_double.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 5,
+    "beat": 5,
+    "speaker": "shadow_lexicographer",
+    "text": "Kimin seçtiğini bulacağım.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w005_b5_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 10,
+    "beat": 1,
+    "speaker": "boss_syntax_titan",
+    "text": "Emir yarımdı; ben bitirdim ve içindeki “hayır”ı cümlenin dışına ittim.. İmzayı gördüm; kararın sahibini henüz bilmiyorum.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w010_b1_boss_syntax_titan.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 10,
+    "beat": 2,
+    "speaker": "neris",
+    "text": "İkisini nasıl ayıracaksın?",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w010_b2_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 10,
+    "beat": 3,
+    "speaker": "shadow_lexicographer",
+    "text": "Bir gece kayboldum, imzam ertesi gün dönmüş.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w010_b3_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 10,
+    "beat": 4,
+    "speaker": "shadow_double",
+    "text": "O satırı ben tamamlamadım.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w010_b4_shadow_double.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 10,
+    "beat": 5,
+    "speaker": "shadow_lexicographer",
+    "text": "Öyleyse ayrı satır bulacağız.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w010_b5_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 15,
+    "beat": 1,
+    "speaker": "boss_oxymoron_ogre",
+    "text": "İki tanık da doğruyu söylüyordu; birini seçince ötekini yalan yaptım.. Neris’in yerine konuşmayacağım.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w015_b1_boss_oxymoron_ogre.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 15,
+    "beat": 2,
+    "speaker": "shadow_lexicographer",
+    "text": "Bunu benim elim yazmış.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w015_b2_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 15,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "El izi, kararın sahibi demek değil.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w015_b3_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 15,
+    "beat": 4,
+    "speaker": "shadow_double",
+    "text": "Bana ait bir şey var.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w015_b4_shadow_double.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 15,
+    "beat": 5,
+    "speaker": "shadow_lexicographer",
+    "text": "Önce ne olduğunu soracağım.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w015_b5_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 20,
+    "beat": 1,
+    "speaker": "boss_homophone_harpy",
+    "text": "Adları aynı sesle çağırdım; dönüp bakmayanı da kayıp saydım.. İki irade kalabilir; tek hikâyeye zorlanmayacak.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w020_b1_boss_homophone_harpy.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 20,
+    "beat": 2,
+    "speaker": "neris",
+    "text": "Bunu bana sormadın.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w020_b2_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 20,
+    "beat": 3,
+    "speaker": "shadow_lexicographer",
+    "text": "Seni korumak mı, kullanmak mı bilmiyorum.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w020_b3_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 20,
+    "beat": 4,
+    "speaker": "whisper",
+    "text": "Emri uygula; cevapları sonra alırsın.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w020_b4_whisper.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 20,
+    "beat": 5,
+    "speaker": "shadow_lexicographer",
+    "text": "Önce soracağım.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w020_b5_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 25,
+    "beat": 1,
+    "speaker": "boss_lexicon_dragon_boss",
+    "text": "Halkalarımda kelimeleri sakladım; saklamak, sahip olmak demek değil.. Gölgenin varlığı onu emrin malı yapmaz.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w025_b1_boss_lexicon_dragon_boss.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 25,
+    "beat": 2,
+    "speaker": "shadow_lexicographer",
+    "text": "Hangisi benim hikâyem?",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w025_b2_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 25,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Önce kimin yazdığını öğren.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w025_b3_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 25,
+    "beat": 4,
+    "speaker": "echo_cataloguer",
+    "text": "Kendi hikâyeni yazmadın.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w025_b4_echo_cataloguer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 25,
+    "beat": 5,
+    "speaker": "shadow_lexicographer",
+    "text": "Öyleyse imzamı geri alıyorum.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w025_b5_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 30,
+    "beat": 1,
+    "speaker": "boss_run_on_reaper",
+    "text": "Koş dedim; durmanın da bir çıkış olabileceğini hiç öğrenmemiştim.. İmzayı gördüm; kararın sahibini henüz bilmiyorum.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w030_b1_boss_run_on_reaper.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 30,
+    "beat": 2,
+    "speaker": "neris",
+    "text": "Ama el yazısı sana ait değil.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w030_b2_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 30,
+    "beat": 3,
+    "speaker": "shadow_lexicographer",
+    "text": "İmza benim.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w030_b3_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 30,
+    "beat": 4,
+    "speaker": "shadow_double",
+    "text": "Benim elimdeki anı da gerçek.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w030_b4_shadow_double.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 30,
+    "beat": 5,
+    "speaker": "shadow_lexicographer",
+    "text": "İki kayıt da sorgulanabilir.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w030_b5_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 35,
+    "beat": 1,
+    "speaker": "boss_malapropism_mimic",
+    "text": "Yüzü tutturdum; bakışını ve kararını kopyalayamadım.. Neris’in yerine konuşmayacağım.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w035_b1_boss_malapropism_mimic.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 35,
+    "beat": 2,
+    "speaker": "shadow_lexicographer",
+    "text": "Hangi seçimi aldın?",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w035_b2_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 35,
+    "beat": 3,
+    "speaker": "shadow_double",
+    "text": "Öldürmeyi reddettim.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w035_b3_shadow_double.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 35,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "Bu ret kimin hayatını değiştirdi?",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w035_b4_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 35,
+    "beat": 5,
+    "speaker": "shadow_lexicographer",
+    "text": "Önce dinleyeceğim, sonra karar vereceğim.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w035_b5_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 40,
+    "beat": 1,
+    "speaker": "boss_vocabulary_void",
+    "text": "Adları silince onları bulamazlar sandım; onlar da birbirini bulamadı.. İki irade kalabilir; tek hikâyeye zorlanmayacak.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w040_b1_boss_vocabulary_void.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 40,
+    "beat": 2,
+    "speaker": "neris",
+    "text": "Baskı senin elini gösteriyor.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w040_b2_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 40,
+    "beat": 3,
+    "speaker": "silent_mechanic",
+    "text": "(İki ayrı sayfayı aralarında boşluk bırakarak yan yana koyar.)",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w040_b3_silent_mechanic.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 40,
+    "beat": 4,
+    "speaker": "shadow_double",
+    "text": "Beni de tanık yaz.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w040_b4_shadow_double.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 40,
+    "beat": 5,
+    "speaker": "shadow_lexicographer",
+    "text": "Ayrı bir satır açıyorum.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w040_b5_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 45,
+    "beat": 1,
+    "speaker": "boss_punctuation_phantom",
+    "text": "Noktayı koyunca acı biter sandım; tanıklık benden sonra da sürüyordu.. Gölgenin varlığı onu emrin malı yapmaz.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w045_b1_boss_punctuation_phantom.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 45,
+    "beat": 2,
+    "speaker": "shadow_lexicographer",
+    "text": "Bana benziyorsun.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w045_b2_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 45,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Benzerlik, sahiplik değil.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w045_b3_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 45,
+    "beat": 4,
+    "speaker": "shadow_double",
+    "text": "Beni hatırlıyorsun.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w045_b4_shadow_double.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 45,
+    "beat": 5,
+    "speaker": "shadow_lexicographer",
+    "text": "Seni ilk kez dinliyorum.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w045_b5_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 50,
+    "beat": 1,
+    "speaker": "boss_double_negative_drake",
+    "text": "İki hayırı tek bir evete çevirdim; hükmü ben verdim, bedelini başkaları taşıdı.. İmzayı gördüm; kararın sahibini henüz bilmiyorum.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w050_b1_boss_double_negative_drake.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 50,
+    "beat": 2,
+    "speaker": "shadow_lexicographer",
+    "text": "Beni bir amaca indirmişsin.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w050_b2_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 50,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Bir insanı okunur kılmak, onu tek satır yapmak değil.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w050_b3_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 50,
+    "beat": 4,
+    "speaker": "echo_redactor",
+    "text": "Sana bir amaç verdim.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w050_b4_echo_redactor.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 50,
+    "beat": 5,
+    "speaker": "shadow_lexicographer",
+    "text": "Ama amacı seçmedim. Bu kez seçiyorum.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w050_b5_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 55,
+    "beat": 1,
+    "speaker": "boss_palindrome_phantom",
+    "text": "Seni başladığın yere döndürdüm; değişmenden korkuyordum.. Neris’in yerine konuşmayacağım.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w055_b1_boss_palindrome_phantom.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 55,
+    "beat": 2,
+    "speaker": "neris",
+    "text": "Benim kararım olmadan.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w055_b2_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 55,
+    "beat": 3,
+    "speaker": "shadow_lexicographer",
+    "text": "Bunu yerine getirmeyeceğim.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w055_b3_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 55,
+    "beat": 4,
+    "speaker": "shadow_double",
+    "text": "Sorma hakkın var; cevap hakkı onun.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w055_b4_shadow_double.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 55,
+    "beat": 5,
+    "speaker": "shadow_lexicographer",
+    "text": "Bu kez okuyacağım, uygulamayacağım.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w055_b5_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 60,
+    "beat": 1,
+    "speaker": "boss_tautology_twin",
+    "text": "Aynı sözü iki kez söyledim, kanıt sandım; ikizim bile bana inanmadı.. İki irade kalabilir; tek hikâyeye zorlanmayacak.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w060_b1_boss_tautology_twin.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 60,
+    "beat": 2,
+    "speaker": "shadow_lexicographer",
+    "text": "Sana hangi adı vermeliyim?",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w060_b2_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 60,
+    "beat": 3,
+    "speaker": "shadow_double",
+    "text": "Ben seçeceğim.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w060_b3_shadow_double.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 60,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "Bu karar ona ait.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w060_b4_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 60,
+    "beat": 5,
+    "speaker": "shadow_lexicographer",
+    "text": "Bekliyorum.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w060_b5_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 65,
+    "beat": 1,
+    "speaker": "boss_dangling_modifier",
+    "text": "Eylemi askıda bıraktım; suç yanlış kişiye düştü.. Gölgenin varlığı onu emrin malı yapmaz.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w065_b1_boss_dangling_modifier.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 65,
+    "beat": 2,
+    "speaker": "shadow_double",
+    "text": "Korkun da bu hikâyede.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w065_b2_shadow_double.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 65,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Ama tek yazar o değil.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w065_b3_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 65,
+    "beat": 4,
+    "speaker": "shadow_lexicographer",
+    "text": "Kurum da, ben de karar verdik.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w065_b4_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 65,
+    "beat": 5,
+    "speaker": "shadow_double",
+    "text": "Payı eşit olmak zorunda değil.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w065_b5_shadow_double.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 70,
+    "beat": 1,
+    "speaker": "boss_spelling_spectre",
+    "text": "Bir harfi düzelttim, bir hayatı başka isme bağladım.. İmzayı gördüm; kararın sahibini henüz bilmiyorum.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w070_b1_boss_spelling_spectre.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 70,
+    "beat": 2,
+    "speaker": "shadow_lexicographer",
+    "text": "Seni korumak için emir aldım.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w070_b2_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 70,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Ben hedef değilim; karar verenim.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w070_b3_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 70,
+    "beat": 4,
+    "speaker": "shadow_double",
+    "text": "Bunu ikimiz de duymalıydık.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w070_b4_shadow_double.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 70,
+    "beat": 5,
+    "speaker": "shadow_lexicographer",
+    "text": "Bu kez söz hakkı sende.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w070_b5_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 75,
+    "beat": 1,
+    "speaker": "boss_idiom_imp",
+    "text": "Gülmek istedim; şakam birinin yardım çağrısını örttü.. Neris’in yerine konuşmayacağım.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w075_b1_boss_idiom_imp.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 75,
+    "beat": 2,
+    "speaker": "shadow_lexicographer",
+    "text": "Birimiz kalmalı sanmışım.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w075_b2_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 75,
+    "beat": 3,
+    "speaker": "shadow_double",
+    "text": "Bu kuralı sen yazdın.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w075_b3_shadow_double.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 75,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "İkinizin de sözü var.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w075_b4_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 75,
+    "beat": 5,
+    "speaker": "shadow_lexicographer",
+    "text": "İkimiz kalacağız; aynı kişi olmayacağız.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w075_b5_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 80,
+    "beat": 1,
+    "speaker": "boss_red_pen_boss",
+    "text": "Bu kez ben kestim; kime zarar vereceğini sormadan eski hükmü uyguladım.. İki irade kalabilir; tek hikâyeye zorlanmayacak.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w080_b1_boss_red_pen_boss.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 80,
+    "beat": 2,
+    "speaker": "shadow_lexicographer",
+    "text": "Öteki.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w080_b2_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 80,
+    "beat": 3,
+    "speaker": "shadow_double",
+    "text": "Beni gördüğün ilk an buydu.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w080_b3_shadow_double.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 80,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "Şimdi ne diyeceksin?",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w080_b4_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 80,
+    "beat": 5,
+    "speaker": "shadow_lexicographer",
+    "text": "Seçtiğin adı kullanacağım.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w080_b5_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 85,
+    "beat": 1,
+    "speaker": "boss_oxymoron_ogre",
+    "text": "İki gerçeği ayrı odalara koydum; susunca çatışma biter sandım.. Gölgenin varlığı onu emrin malı yapmaz.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w085_b1_boss_oxymoron_ogre.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 85,
+    "beat": 2,
+    "speaker": "shadow_lexicographer",
+    "text": "Ben tek kişi değilim.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w085_b2_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 85,
+    "beat": 3,
+    "speaker": "shadow_double",
+    "text": "Ben de onun eşyası değilim.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w085_b3_shadow_double.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 85,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "İkiniz de kendi kararınızı verin.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w085_b4_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 85,
+    "beat": 5,
+    "speaker": "shadow_lexicographer",
+    "text": "Çatışma, silinmekten daha dürüst.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w085_b5_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 90,
+    "beat": 1,
+    "speaker": "boss_malapropism_mimic",
+    "text": "Yüzünü Neris’ten aldım; onun itirazını taklit edemedim.. İmzayı gördüm; kararın sahibini henüz bilmiyorum.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w090_b1_boss_malapropism_mimic.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 90,
+    "beat": 2,
+    "speaker": "shadow_double",
+    "text": "Beni yönetmeyeceksin.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w090_b2_shadow_double.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 90,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Benim hikâyemde de sözüm var.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w090_b3_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 90,
+    "beat": 4,
+    "speaker": "shadow_lexicographer",
+    "text": "İmzanı ekle.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w090_b4_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 90,
+    "beat": 5,
+    "speaker": "shadow_double",
+    "text": "Yan yana; üst üste değil.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w090_b5_shadow_double.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 95,
+    "beat": 1,
+    "speaker": "boss_vocabulary_void",
+    "text": "Boşlukları korurken yaşayanların adlarını da sildim.. Neris’in yerine konuşmayacağım.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w095_b1_boss_vocabulary_void.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 95,
+    "beat": 2,
+    "speaker": "shadow_lexicographer",
+    "text": "Bilmiyorum.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w095_b2_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 95,
+    "beat": 3,
+    "speaker": "neris",
+    "text": "Bilmemen kapıyı kapatmak zorunda bırakmaz.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w095_b3_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 95,
+    "beat": 4,
+    "speaker": "shadow_lexicographer",
+    "text": "İçeride kalmayı seçebilirsin.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w095_b4_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 95,
+    "beat": 5,
+    "speaker": "shadow_double",
+    "text": "Bu kez seçim benim.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w095_b5_shadow_double.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 100,
+    "beat": 1,
+    "speaker": "boss_lexicon_dragon_boss",
+    "text": "İlk halkada sözlük tuttum; son halkada tek bir ağız olmak istedim.. İki irade kalabilir; tek hikâyeye zorlanmayacak.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w100_b1_boss_lexicon_dragon_boss.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 100,
+    "beat": 2,
+    "speaker": "shadow_lexicographer",
+    "text": "İki ad da kalacak.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w100_b2_shadow_lexicographer.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 100,
+    "beat": 3,
+    "speaker": "shadow_double",
+    "text": "Ve ikimiz de hikâyeyi yazacağız.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w100_b3_shadow_double.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 100,
+    "beat": 4,
+    "speaker": "neris",
+    "text": "Benim adım Neris. Kendi sayfama yazıyorum.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w100_b4_neris.mp3"
+  },
+  {
+    "campaign": "shadow_lexicographer",
+    "wave": 100,
+    "beat": 5,
+    "speaker": "narrator",
+    "text": "Üç imza aynı kitapta; hiçbirinin üstünde değil.",
+    "audio_url": "assets/audio/dialogue/shadow_lexicographer/voice_shadow_lexicographer_w100_b5_narrator.mp3"
+  }
+]

@@ -7,6 +7,7 @@ extends Node2D
 @onready var game_over_panel = $GameOverLayer/GameOverPanel
 @onready var game_over_summary = $GameOverLayer/GameOverPanel/SummaryLabel
 @onready var restart_button = $GameOverLayer/GameOverPanel/RestartButton
+@onready var main_menu_button = $GameOverLayer/GameOverPanel/MainMenuButton
 @onready var title_layer = $TitleLayer
 @onready var title_screen = $TitleLayer/TitleScreen
 @onready var player = $Player
@@ -60,6 +61,8 @@ func _ready():
 	StatsManager.player_died.connect(_on_player_died)
 	StatsManager.floating_text_requested.connect(_on_floating_text_requested)
 	restart_button.pressed.connect(_on_restart_pressed)
+	if main_menu_button:
+		main_menu_button.pressed.connect(_on_main_menu_pressed)
 	
 	if title_screen:
 		title_screen.game_started.connect(_on_title_game_started)
@@ -183,3 +186,13 @@ func _on_player_died():
 func _on_restart_pressed():
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+
+func _on_main_menu_pressed():
+	auto_run_countdown = -1.0
+	get_tree().paused = false
+	StatsManager.reset()
+	game_over_layer.hide()
+	if title_screen:
+		title_layer.show()
+	else:
+		get_tree().reload_current_scene()
