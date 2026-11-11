@@ -1,7 +1,7 @@
 {
   "version": "wave-continuity-collection-scenes-20261111-6",
-  "generatedAt": "2026-11-11T21:03:34.414279+00:00",
-  "baseCommit": "add4cd911b084d7a8f6edac2b9190a1558ecdf20",
+  "generatedAt": "2026-11-11T21:09:12.139789+00:00",
+  "baseCommit": "7d40d70d4744acf2ab0fcb51fc456669e55e6eac",
   "sha256": {
     "assets/ui/errata/theme.css": "92c1249d476d43a72bb7c241e5346e2285832f5925170cbfc85949bc4ed0982b",
     "assets/ui/errata/surfaces.css": "07812f9699264875b7a44ee6210232bed572381d50818e8992e8ec15b203b5d4",
