@@ -1,6 +1,6 @@
 {
-  "version": "2026.11.09-last-errata.2",
-  "generatedAt": "2026-11-09T15:15:15.688948+00:00",
+  "version": "2026.11.11-perf-optimization.1",
+  "generatedAt": "2026-11-11T15:16:52.716Z",
   "baseCommit": "cf5dc4ffc1bdc3338c74b95cb386da7902c242c1",
   "sha256": {
     "assets/ui/errata/theme.css": "b0f0c5fe6a8cd63dfef0f87f41ae72c0ed0a72e1b4dd096a2a97b8fe0e3580fa",
@@ -14,9 +14,9 @@
     "assets/ui/errata/world.js": "2e38d58501e3dedf6074191802382ff16235827e141757e11f90533193b0562c",
     "assets/ui/errata/hud.js": "3e3b72663e02e3bb91db0adc7675d500f14604052d06c28a4f6d60470c5687f0",
     "assets/ui/errata/motion.js": "d41c69a3e8a55f1bf6eecfde55c633ea454d0b404428a1216bce561470c5b53e",
-    "game.js": "2d099b7b8afcd1125ac547e83ac713221589f9114a60ba205c8278195a5e07ff",
+    "game.js": "34cf0506866f12cfa4d643100cd630eafba584f291230b790bdd3171876147f0",
     "assets/ui/errata/interface.js": "0c3da48bdef1f501ab01920aeb348d1b939b24ef5b2987b7bec5343e4d704461",
-    "index.html": "cfb633502a469022008d085ded940d47326d6d48f04ab3a14f34c4b9fdeff11d",
+    "index.html": "088f0404c26cd44359015a10dbabb882ac79229c2694b10aa4d0afa8d48636f7",
     "assets/ui/errata/arena-v3/manifest.json": "ca6d7a41fbec37c09b2361452ea43a609decd366428df1d8acd2f2e2f3df0c3d",
     "assets/ui/errata/title-scene-v6.webp": "c6a1d33783f6aa98e712a070809c373b11ac32f211afadff9c3852e6c94b7a3e",
     "assets/ui/errata/portraits/shadow_lexicographer-selection-v3.webp": "398604846563f9f25d5886590e788e0efcc09554cd6eddbe4426fa1143a36b25",

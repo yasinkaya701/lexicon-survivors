@@ -4898,9 +4898,12 @@ function applyWeaponHitSignature(projectile, enemy, effectiveDamage) {
 // Broad-phase spatial hash: heavy waves test only enemies near each projectile.
 const COLLISION_CELL_SIZE = 160;
 const collisionBuckets = new Map();
+const collisionActiveBuckets = [];
 const collisionCandidateScratch = [];
+const compareEnemyIndices = (a, b) => a - b;
 function buildEnemyCollisionGrid(enemies) {
-  for (const bucket of collisionBuckets.values()) bucket.length = 0;
+  for (const bucket of collisionActiveBuckets) bucket.length = 0;
+  collisionActiveBuckets.length = 0;
   let maxEnemyHalfSize = 0;
   for (let index = 0; index < enemies.length; index++) {
     const enemy = enemies[index];
@@ -4911,6 +4914,7 @@ function buildEnemyCollisionGrid(enemies) {
     const key = cellX * 64 + cellY;
     let bucket = collisionBuckets.get(key);
     if (!bucket) { bucket = []; collisionBuckets.set(key, bucket); }
+    if (bucket.length === 0) collisionActiveBuckets.push(bucket);
     bucket.push(index);
   }
   return maxEnemyHalfSize;
@@ -4929,7 +4933,7 @@ function getNearbyEnemyIndices(maxEnemyHalfSize, x, y, projectileHalfSize) {
       if (bucket) result.push(...bucket);
     }
   }
-  result.sort((a, b) => a - b);
+  result.sort(compareEnemyIndices);
   return result;
 }
 
@@ -5571,25 +5575,31 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
   }
 }
 
+const commanderAuraBuckets = new Map();
+const commanderAuraActiveBuckets = [];
+const commanderScratch = [];
+const commanderAuraCellKey = (x, y) => x * 32 + y;
 function updateCommanderAuras(enemies = state.enemies) {
   const radius = 160;
   const radiusSquared = radius * radius;
-  const cellKey = (x, y) => x * 32 + y;
-  const commanders = [];
+  const commanders = commanderScratch;
+  commanders.length = 0;
   for (const enemy of enemies) {
     enemy.is_buffed = false;
     if (!enemy.dead && enemy.affix === "commander") commanders.push(enemy);
   }
   if (!commanders.length) return;
 
-  const cells = new Map();
+  for (const bucket of commanderAuraActiveBuckets) bucket.length = 0;
+  commanderAuraActiveBuckets.length = 0;
   for (const enemy of enemies) {
     if (enemy.dead) continue;
     const cellX = Math.floor(enemy.x / radius);
     const cellY = Math.floor(enemy.y / radius);
-    const key = cellKey(cellX, cellY);
-    let bucket = cells.get(key);
-    if (!bucket) cells.set(key, bucket = []);
+    const key = commanderAuraCellKey(cellX, cellY);
+    let bucket = commanderAuraBuckets.get(key);
+    if (!bucket) commanderAuraBuckets.set(key, bucket = []);
+    if (bucket.length === 0) commanderAuraActiveBuckets.push(bucket);
     bucket.push(enemy);
   }
 
@@ -5598,7 +5608,7 @@ function updateCommanderAuras(enemies = state.enemies) {
     const cellY = Math.floor(commander.y / radius);
     for (let offsetX = -1; offsetX <= 1; offsetX++) {
       for (let offsetY = -1; offsetY <= 1; offsetY++) {
-        const nearby = cells.get(cellKey(cellX + offsetX, cellY + offsetY));
+        const nearby = commanderAuraBuckets.get(commanderAuraCellKey(cellX + offsetX, cellY + offsetY));
         if (!nearby) continue;
         for (const other of nearby) {
           if (other === commander) continue;
