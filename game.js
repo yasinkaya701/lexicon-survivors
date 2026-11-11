@@ -5003,10 +5003,11 @@ function updateProjectiles(dt) {
     const collisionCandidates = useGrid
       ? getNearbyEnemyIndices(spatialGrid, pr.x, pr.y, (pr.size || 18) / 2)
       : state.enemies;
-    collisionCandidates.forEach(candidate => {
+    for (let candidateIndex = 0; candidateIndex < collisionCandidates.length; candidateIndex++) {
+      const candidate = collisionCandidates[candidateIndex];
       const e = useGrid ? state.enemies[candidate] : candidate;
-      if (skipCollisionThisFrame || (pr.chain_target && e !== pr.chain_target)) return;
-      if (pr.sharedHitTargets?.has(e)) return;
+      if (skipCollisionThisFrame || (pr.chain_target && e !== pr.chain_target)) continue;
+      if (pr.sharedHitTargets?.has(e)) continue;
       const passSet = (pr.type === "boomerang" || pr.type === "boomerang_orbit")
         ? (pr.hitEnemiesByPass[pr.pass] || (pr.hitEnemiesByPass[pr.pass] = new Set())) : pr.hitEnemies;
       if (pr.pierce > 0 && !passSet.has(e)) {
@@ -5069,7 +5070,7 @@ function updateProjectiles(dt) {
               if (pr.tier >= 3 && pr.chain_hits + 1 >= maxTargets) {
                 state.particles.push({ x: next.x, y: next.y, radius: 8, max_radius: 42, alpha: 0.9, color: "rgba(244, 114, 182, " });
               }
-              return;
+              continue;
             }
             pr.pierce = 0;
             if (pr.tier >= 4) addWeaponField({ x: e.x, y: e.y, radius: 58, lifetime: 1.5, tick_timer: 0, tick_seconds: 0.5, damage: pr.dmg * 0.18, impact: "rune" });
@@ -5130,7 +5131,7 @@ function updateProjectiles(dt) {
           }
         }
       }
-    });
+    }
   });
 
   compactLiveArray(state.projectiles, p => p.lifetime > 0 && p.pierce > 0);
