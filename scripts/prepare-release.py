@@ -41,6 +41,8 @@ entrypoints["index.html"] = digest(index)
 for name in [
     "assets/ui/errata/arena-v3/manifest.json",
     "assets/ui/errata/title-scene-v6.webp",
+    "assets/ui/errata/archive-atlas/bestiary-v2.webp",
+    "assets/ui/errata/archive-atlas/emblems-v2.webp",
     "assets/ui/errata/portraits/shadow_lexicographer-selection-v3.webp",
     "assets/ui/errata/collection-art/preparation-lexicon.webp",
     "assets/ui/errata/collection-art/preparation-challenge.webp",
@@ -48,6 +50,12 @@ for name in [
     "assets/ui/errata/collection-art/rank-gold.webp",
     "assets/ui/errata/collection-art/rank-silver.webp",
     "assets/ui/errata/collection-art/rank-teal.webp",
+    "assets/ui/errata/collection-art/codex-scene.webp",
+    "assets/ui/errata/collection-art/bestiary-hall.webp",
+    "assets/ui/errata/collection-art/armory.webp",
+    "assets/ui/errata/collection-art/leaderboard-hall.webp",
+    "assets/ui/errata/collection-art/settings-scriptorium.webp",
+    "assets/ui/errata/collection-art/guide-map.webp",
     "assets/data/game_economy.json",
 ]:
     entrypoints[name] = digest(ROOT / name)

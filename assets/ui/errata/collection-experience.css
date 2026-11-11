@@ -297,3 +297,92 @@
   .preparation-stage .stage-actions .primary,
   .landing-nav > .landing-begin { transition: none; }
 }
+
+/* The older menu-button texture wins with !important in theme.css; replace it
+   here so the landing controls share the ink-dark dossier language. */
+.landing-nav > .landing-begin,
+.landing-nav > .menu-link {
+  min-height: 50px !important;
+  padding: 0 16px !important;
+  border: 1px solid rgba(242, 225, 197, .34) !important;
+  border-image: none !important;
+  border-radius: 3px;
+  background: linear-gradient(100deg, rgba(35, 25, 29, .96), rgba(18, 14, 17, .94)) !important;
+  color: var(--collection-ivory) !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .06), 0 8px 20px rgba(0, 0, 0, .28) !important;
+  text-decoration: none;
+  transition: transform .16s ease, border-color .16s ease, background-color .16s ease, filter .16s ease;
+}
+
+.landing-nav > .landing-begin {
+  min-height: 58px !important;
+  border-color: #d3aa68 !important;
+  background: linear-gradient(120deg, #8c2938, #581c2a 72%, #371923) !important;
+  color: #fff0da !important;
+}
+
+.landing-nav > .menu-link {
+  min-height: 47px !important;
+}
+
+.landing-nav > .menu-link .nav-index {
+  color: #e3bd7b;
+  font: 500 11px/1 "IBM Plex Mono", monospace;
+}
+
+.landing-nav > .landing-begin:hover,
+.landing-nav > .menu-link:hover {
+  transform: translateY(-2px);
+  border-color: #e3bd7b !important;
+  background-color: #302027 !important;
+  color: #fff4e2 !important;
+  filter: brightness(1.08);
+}
+
+.landing-nav > .landing-begin:focus-visible,
+.landing-nav > .menu-link:focus-visible {
+  outline: 2px solid #e3bd7b;
+  outline-offset: 3px;
+}
+
+#errata-book .errata-book-panel:has(.book-collection-grid),
+#leaderboard-overlay:not([hidden]) .leaderboard-panel {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+#errata-book[data-kind="codex"][data-category="words"] .errata-book-panel:has(.book-collection-grid) {
+  background-image: linear-gradient(100deg, rgba(17, 13, 16, .96), rgba(17, 13, 16, .82) 58%, rgba(17, 13, 16, .92)), url("collection-art/codex-scene.webp");
+}
+
+#errata-book[data-kind="codex"][data-category="weapons"] .errata-book-panel:has(.book-collection-grid) {
+  background-image: linear-gradient(100deg, rgba(17, 13, 16, .96), rgba(17, 13, 16, .8) 58%, rgba(17, 13, 16, .92)), url("collection-art/armory.webp");
+}
+
+#errata-book[data-kind="bestiary"] .errata-book-panel:has(.book-collection-grid) {
+  background-image: linear-gradient(100deg, rgba(17, 13, 16, .96), rgba(17, 13, 16, .8) 58%, rgba(17, 13, 16, .92)), url("collection-art/bestiary-hall.webp");
+}
+
+#errata-book[data-kind="settings"] .errata-book-panel:has(.settings-rows) {
+  background-image: linear-gradient(100deg, rgba(17, 13, 16, .97), rgba(17, 13, 16, .84) 65%, rgba(17, 13, 16, .92)), url("collection-art/settings-scriptorium.webp");
+  background-position: center;
+  background-size: cover;
+}
+
+#errata-book[data-kind="guide"] .errata-book-panel:has(.guide-steps) {
+  background-image: linear-gradient(100deg, rgba(17, 13, 16, .97), rgba(17, 13, 16, .82) 62%, rgba(17, 13, 16, .9)), url("collection-art/guide-map.webp");
+  background-position: center;
+  background-size: cover;
+}
+
+#leaderboard-overlay .leaderboard-panel {
+  background-image: linear-gradient(100deg, rgba(17, 13, 16, .97), rgba(17, 13, 16, .86) 58%, rgba(17, 13, 16, .74)), url("collection-art/leaderboard-hall.webp");
+}
+
+#leaderboard-podium:empty {
+  min-height: 0;
+  height: 0;
+  border: 0;
+  background: none;
+}

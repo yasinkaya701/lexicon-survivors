@@ -103,3 +103,12 @@ Still in progress: actual connected skill tree presentation and tab icons (inter
 - Published on `gh-pages` as `f97ce4d` (`wave-continuity-collection-assets-20261111-5`); Pages build status is `built`.
 - Verified live SHA-256 against `release.json` for `index.html`, `game.js`, the new stylesheet, and all six collection-art files. Live browser checks show the new character and preparation screens at 1280×800, preparation/leaderboard at 390×844 with no horizontal overflow, and real global leaderboard rows returned by the Worker.
 - Rechecked the live 1–100 enemy HP curve (strictly increasing through waves 51 and 76) and the same spawn-cap checkpoints after deployment.
+
+## Live UI defects, collection scenes and layout regression — 2026-11-12
+
+- Audited the published release in the connected browser. The landing buttons were still picking up a higher-priority paper-border rule from `theme.css`; new CSS now gives them dark dossier styling while preserving the title art and palette.
+- The catalogue atlas could show empty card tops during its first download/decode. Added intent-based image warmup for pointer, keyboard focus and touch; compressed both 1280×1280 atlases at WebP quality 82 and added versioned `-v2` filenames. The six new tab scenes total about 400 KB and are requested only when their view is opened.
+- Added distinct, matching illustrations for word entries, the bestiary, weapons, settings, guide and leaderboard. Removed the duplicate empty-state podium overlay so the new leaderboard scene and podium art no longer compete.
+- The 92-state viewport sweep exposed a character-card clipping regression at 1280×720: a stale 34px bottom margin pushed the dossier copy beyond its card. Reduced that margin to 8px; all six cards now retain a 7px or greater inset. The full 92-check layout sweep and `test/interface.spec.cjs` both pass against the local build; no browser console errors were observed.
+- Dense-wave baseline on the currently deployed build using system Chrome headless (1280×720, wave 60 Hard, 150 enemies, 128 player and 128 enemy projectiles) measured 29.98 FPS, 2.2ms game-work p95 and zero frames over 50ms. This headless runtime is refresh-capped at 30 FPS; post-deploy measurement will use the same setup for comparison. No gameplay simulation or spawn limit changed.
+- New release `wave-continuity-collection-scenes-20261111-6` is prepared. Deployment and live verification are pending.

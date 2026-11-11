@@ -412,6 +412,7 @@
   let wordsRequested = false;
   function renderBook(kind) {
     bookOverlay.dataset.kind = kind;
+    bookOverlay.dataset.category = kind === 'codex' ? 'words' : kind;
     const labels = { codex: 'Kelime kitabı', bestiary: 'Dil canavarları', guide: 'Oynama kılavuzu', settings: 'Tercihler' };
     bookOverlay.querySelector(`#${bookOverlay.id}-title`).textContent = labels[kind] || 'Arşiv';
     if (kind === 'codex' || kind === 'bestiary') {
@@ -431,6 +432,8 @@
       const tabButtons = [];
       const selectCategory = name => {
         category = name;
+        bookOverlay.dataset.category = name;
+        warmCollectionArt(name === 'weapons' ? 'weapons' : 'codex');
         levels.hidden = name !== 'words';
         entries = name === 'words' ? actualWordEntries() : actualWeaponEntries();
         tabButtons.forEach(button => { const selected = button.dataset.codexCategory === name; button.setAttribute('aria-selected', String(selected)); });
@@ -441,6 +444,10 @@
       if (kind === 'codex') {
         for (const [name, label] of [['words', 'Kelimeler'], ['weapons', 'Silahlar']]) {
           const button = document.createElement('button'); button.type = 'button'; button.dataset.codexCategory = name; button.textContent = label; button.setAttribute('aria-selected', String(name === category));
+          const warm = () => warmCollectionArt(name === 'weapons' ? 'weapons' : 'codex');
+          button.addEventListener('pointerenter', warm, { passive: true });
+          button.addEventListener('focus', warm, { passive: true });
+          button.addEventListener('pointerdown', warm, { passive: true });
           button.addEventListener('click', () => selectCategory(name)); tabButtons.push(button); tabs.append(button);
         }
       }
@@ -674,7 +681,52 @@
     const actions = [['resume', 'Oyuna dön'], ['inventory', 'Envanter'], ['mistakes', 'Hata defteri'], ['codex', 'Kelime kitabı'], ['bestiary', 'Dil canavarları'], ['settings', 'Tercihler'], ['guide', 'Oynama kılavuzu']];
     for (const [action, label] of actions) { const button = document.createElement('button'); button.type = 'button'; button.className = 'btn'; button.dataset.pauseAction = action; button.textContent = label; pauseContent.append(button); }
   }
-  function openBook(kind, opener) { renderBook(kind); openDialog(bookOverlay, opener); }
+  const collectionArtWarmups = new Map();
+  const collectionArtByView = {
+    codex: ['collection-art/codex-scene.webp', 'archive-atlas/emblems-v2.webp'],
+    weapons: ['collection-art/armory.webp'],
+    bestiary: ['collection-art/bestiary-hall.webp', 'archive-atlas/bestiary-v2.webp'],
+    guide: ['collection-art/guide-map.webp'],
+    settings: ['collection-art/settings-scriptorium.webp'],
+    leaderboard: ['collection-art/leaderboard-hall.webp', 'collection-art/rank-gold.webp', 'collection-art/rank-silver.webp', 'collection-art/rank-teal.webp']
+  };
+  function warmCollectionArt(kind) {
+    const view = kind === 'codex' && bookOverlay?.dataset.category === 'weapons' ? 'weapons' : kind;
+    const files = collectionArtByView[view] || [];
+    if (!files.length) return;
+    const key = files.join('|');
+    if (!collectionArtWarmups.has(key)) {
+      const pending = Promise.all(files.map(file => new Promise(resolve => {
+        const image = new Image();
+        image.decoding = 'async';
+        image.onload = () => {
+          const decoded = image.decode?.();
+          if (decoded) decoded.catch(() => {}).finally(resolve);
+          else resolve();
+        };
+        image.onerror = resolve;
+        image.src = `assets/ui/errata/${file}`;
+        if (image.complete && image.naturalWidth) resolve();
+      })));
+      collectionArtWarmups.set(key, pending);
+    }
+    return collectionArtWarmups.get(key);
+  }
+  bookButtons.forEach(button => {
+    const warm = () => warmCollectionArt(button.dataset.openBook);
+    button.addEventListener('pointerenter', warm, { passive: true });
+    button.addEventListener('focus', warm, { passive: true });
+    button.addEventListener('pointerdown', warm, { passive: true });
+  });
+  ['title-leaderboard-btn', 'gameover-leaderboard-btn'].forEach(id => {
+    const button = document.getElementById(id);
+    if (!button) return;
+    const warm = () => warmCollectionArt('leaderboard');
+    button.addEventListener('pointerenter', warm, { passive: true });
+    button.addEventListener('focus', warm, { passive: true });
+    button.addEventListener('pointerdown', warm, { passive: true });
+  });
+  function openBook(kind, opener) { renderBook(kind); openDialog(bookOverlay, opener); warmCollectionArt(kind); }
   bookButtons.forEach(button => button.addEventListener('click', event => { event.preventDefault(); openBook(button.dataset.openBook, button); }));
   pauseButton?.addEventListener('click', event => { event.preventDefault(); renderPause(); openDialog(pauseOverlay, pauseButton); });
   document.addEventListener('click', event => {

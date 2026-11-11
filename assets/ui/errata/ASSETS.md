@@ -26,6 +26,13 @@ Printed fantasy archive: charcoal/burgundy environments, restrained aged brass, 
 - `weapon-plates.webp`: WebP conversion of the original `assets/sprites/weapons/weapon_atlas_4x4_source.png`; catalog coordinates follow the existing fifteen weapon IDs.
 - `voice.svg`: local vector speaker glyph used consistently in quiz/story controls.
 
+### Collection-view scenes — 2026-11-11
+
+- `collection-art/codex-scene.webp`, `bestiary-hall.webp`, and `armory.webp` give the word catalogue, monster archive, and weapon tab their own illustrated setting. `leaderboard-hall.webp`, `settings-scriptorium.webp`, and `guide-map.webp` do the same for rankings, preferences, and the guide.
+- These are different scenes in one charcoal, oxblood, muted-teal and brass game-art palette. UI labels and game data remain HTML. All six images were downsampled to 1279×853 WebP quality 79; combined size is about 400 KB. The catalogue atlas warms on menu intent, keeping the new scenes out of the game-start download path.
+- `archive-atlas/bestiary-v2.webp` and `emblems-v2.webp` were re-encoded at WebP quality 82 with 95% alpha quality. Their 1280×1280 dimensions and atlas mappings are unchanged; visual comparison found no noticeable loss at card size. Combined transfer fell from 1.65 MB to about 1.26 MB. The new names bypass cached earlier atlas files.
+- Main-menu controls now use the dark dossier styling. This replaces the older `menu-button.webp` border image that had been overriding the intended dark treatment.
+
 ## Arena artwork
 
 `world/` contains four top-down room illustrations for the original 25-wave biome bands. Each uses the existing2800×2100 world rectangle; terrain and collision logic remain authoritative. Quiet floor centers keep enemies, pickups and attacks readable. `world.js` loads room art on demand and retains the legacy room as a fallback.

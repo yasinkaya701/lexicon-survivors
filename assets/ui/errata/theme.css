@@ -137,7 +137,7 @@
   .preparation-page .music-choice-row{font-size:14px;color:#302027}
   .preparation-page .music-choice-row select{font-size:15px;color:#302027}
 }
-.dossier-copy .dossier-story{margin:9px 18px 34px;padding-top:8px;max-width:calc(100% - 36px)}
+.dossier-copy .dossier-story{margin:9px 18px 8px;padding-top:8px;max-width:calc(100% - 36px)}
 @media(max-height:500px) and (orientation:landscape){
   #title-screen[data-step="preparation"] .errata-masthead{flex-basis:44px;min-height:44px;padding-block:2px}
   .preparation-stage .stage-heading p{display:none}
