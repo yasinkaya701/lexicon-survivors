@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover, interactive-widget=resizes-content">
   <link rel="icon" type="image/svg+xml" href="assets/ui/icons/book.svg">
   <title>Lexicon Survivors — Son Düzeltme</title>
-  <meta name="game-release" content="last-errata-20261109-2">
+  <meta name="game-release" content="archive-collection-20261111-1">
   <link rel="preload" as="image" href="assets/ui/errata/title-scene-v6.webp" fetchpriority="high">
   <style>
     @font-face {
@@ -51,6 +51,7 @@
   <link rel="stylesheet" href="assets/ui/errata/skill-tree.css?v=18d46c30c334">
   <link rel="stylesheet" href="assets/ui/errata/hud.css?v=181da48d4ee7">
   <link rel="stylesheet" href="assets/ui/errata/combat-controls.css?v=9e6a6e52c749">
+  <link rel="stylesheet" href="assets/ui/errata/archive-collections.css?v=fdaa942ccb40">
 </head>
 <body>
   <div id="game-container">
@@ -491,25 +492,31 @@
         </div>
       </div>
     </div>
-    <div class="screen-overlay" id="leaderboard-overlay" role="dialog" aria-modal="true" aria-labelledby="leaderboard-title" hidden style="z-index:240;">
-      <div class="dialog-panel" style="width:min(620px,94vw);max-height:86vh;overflow:auto;">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
-          <div><span class="title-index">KARANLIK KÜTÜPHANE · RUN KAYITLARI</span><h2 id="leaderboard-title" style="margin:4px 0;color:#46392c;">Küresel sıralama</h2></div>
-          <button id="leaderboard-close-btn" class="btn btn-seal" type="button" aria-label="Sıralamayı kapat">Kapat</button>
-        </div>
-        <form id="leaderboard-submit-form" style="display:flex;flex-wrap:wrap;align-items:end;gap:8px;margin:12px 0;">
-          <label for="leaderboard-alias" style="flex:1 1 220px;font-size:12px;color:#5a4b3c;">Görünen ad <input id="leaderboard-alias" maxlength="20" autocomplete="nickname" required style="display:block;width:100%;min-height:40px;padding:8px;border:1px solid #a99980;border-radius:5px;background:#faf5e9;color:#302922;"></label>
-          <button id="leaderboard-submit-btn" class="btn btn-emerald" type="submit" style="min-height:40px;">Bu koşuyu gönder</button>
+    <div class="screen-overlay leaderboard-overlay" id="leaderboard-overlay" role="dialog" aria-modal="true" aria-labelledby="leaderboard-title" hidden>
+      <section class="dialog-panel leaderboard-panel">
+        <header class="leaderboard-header">
+          <div class="leaderboard-title-lockup">
+            <span class="leaderboard-kicker">KARANLIK KÜTÜPHANE · RUN KAYITLARI</span>
+            <h2 id="leaderboard-title">Küresel sıralama</h2>
+            <p>Arşive kazınan en güçlü seferler.</p>
+          </div>
+          <button id="leaderboard-close-btn" class="btn btn-seal" type="button" aria-label="Sıralamayı kapat">Kapat <span aria-hidden="true">×</span></button>
+        </header>
+        <div id="leaderboard-podium" class="leaderboard-podium" aria-label="İlk üç sıralama"></div>
+        <form id="leaderboard-submit-form" class="leaderboard-controls">
+          <label class="leaderboard-alias-label" for="leaderboard-alias">Arşivde görünecek ad
+            <input id="leaderboard-alias" maxlength="20" autocomplete="nickname" required>
+          </label>
+          <button id="leaderboard-submit-btn" class="btn btn-emerald" type="submit">Bu koşuyu gönder</button>
+          <label class="leaderboard-difficulty-label" for="leaderboard-difficulty">Zorluk
+            <select id="leaderboard-difficulty"><option value="easy">Rahat</option><option value="normal" selected>Normal</option><option value="hard">Zor</option></select>
+          </label>
+          <button id="leaderboard-refresh-btn" class="btn btn-seal" type="button">Tabloyu yenile</button>
         </form>
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px;">
-          <label for="leaderboard-difficulty" style="font-size:12px;">Zorluk</label>
-          <select id="leaderboard-difficulty" style="min-height:36px;padding:4px 8px;"><option value="easy">Rahat</option><option value="normal" selected>Normal</option><option value="hard">Zor</option></select>
-          <button id="leaderboard-refresh-btn" class="btn btn-seal" type="button" style="min-height:36px;">Küresel tabloyu yenile</button>
-        </div>
-        <p id="leaderboard-status" role="status" aria-live="polite" style="min-height:22px;font-size:12px;color:#675b4f;"></p>
-        <ol id="leaderboard-entries" style="padding-left:28px;margin:8px 0;display:grid;gap:5px;"></ol>
-        <p style="font-size:11px;line-height:1.45;color:#756b5d;">Çevrimdışı koşular bu cihazda saklanır. Küresel skorlar istemci tarafından gönderilir ve doğrulanmış turnuva sonucu sayılmaz.</p>
-      </div>
+        <p id="leaderboard-status" class="leaderboard-status" role="status" aria-live="polite"></p>
+        <ol id="leaderboard-entries" class="leaderboard-entries" aria-label="Diğer sıralama kayıtları"></ol>
+        <p class="leaderboard-note">Çevrimdışı koşular bu cihazda saklanır. Küresel skorlar istemci tarafından gönderilir ve doğrulanmış turnuva sonucu sayılmaz.</p>
+      </section>
     </div>
   </div>
 
@@ -564,7 +571,7 @@
   <script src="assets/ui/errata/world.js?v=2e38d58501e3"></script>
   <script src="assets/ui/errata/hud.js?v=3e3b72663e02"></script>
   <script src="assets/ui/errata/motion.js?v=d41c69a3e8a5"></script>
-  <script src="game.js?v=34cf0506866f"></script>
-  <script src="assets/ui/errata/interface.js?v=0c3da48bdef1"></script>
+  <script src="game.js?v=f6a4e9da5c7a"></script>
+  <script src="assets/ui/errata/interface.js?v=f15d2409ef6a"></script>
 </body>
 </html>

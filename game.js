@@ -6705,16 +6705,37 @@ function saveLocalLeaderboard(row) {
 function renderLeaderboard(rows) {
   const list = leaderboardNode("leaderboard-entries");
   if (!list) return;
+  const podium = leaderboardNode("leaderboard-podium");
   list.replaceChildren();
+  if (podium) podium.replaceChildren();
+  const createCard = (row, index, isPodium = false) => {
+    const rank = Math.max(1, Number(row.rank) || index + 1);
+    const item = document.createElement(isPodium ? "article" : "li");
+    item.className = isPodium ? `leaderboard-podium-card leaderboard-podium-card--${rank}` : "leaderboard-row";
+    item.dataset.rank = String(rank);
+    const medal = document.createElement("span"); medal.className = "leaderboard-rank-art"; medal.setAttribute("aria-hidden", "true");
+    const atlasIndex = rank <= 3 ? 11 : (rank + 5) % 16;
+    medal.style.backgroundImage = "url('assets/ui/errata/archive-atlas/emblems.webp')";
+    medal.style.backgroundSize = "400% 400%";
+    medal.style.backgroundPosition = `${(atlasIndex % 4) * 100 / 3}% ${Math.floor(atlasIndex / 4) * 100 / 3}%`;
+    const number = document.createElement("span"); number.textContent = String(rank).padStart(2, "0"); medal.append(number);
+    const copy = document.createElement("div"); copy.className = "leaderboard-card-copy";
+    const alias = document.createElement("strong"); alias.className = "leaderboard-alias"; alias.textContent = row.alias || "Adsız kâtip";
+    const details = document.createElement("span"); details.className = "leaderboard-card-details";
+    details.textContent = `${Number(row.wavesCleared) || 0} dalga · ${Number(row.kills) || 0} canavar`;
+    const time = document.createElement("span"); time.className = "leaderboard-card-time";
+    time.textContent = `${(Math.max(0, Number(row.elapsedMs) || 0) / 60000).toFixed(1)} dk`;
+    copy.append(alias, details);
+    item.append(medal, copy, time);
+    return item;
+  };
   if (!rows.length) {
-    const empty = document.createElement("li"); empty.textContent = "Henüz kayıt yok."; list.appendChild(empty); return;
+    const empty = document.createElement("li"); empty.className = "leaderboard-empty"; empty.textContent = "Bu zorlukta henüz kayıt yok. İlk seferi sen bırak.";
+    list.appendChild(empty);
+    return;
   }
-  rows.forEach((row, index) => {
-    const item = document.createElement("li");
-    item.textContent = `${row.rank || index + 1}. ${row.alias}  ·  ${row.wavesCleared} dalga  ·  ${row.kills} düşman  ·  ${(row.elapsedMs / 60000).toFixed(1)} dk`;
-    item.style.cssText = "padding:7px 9px;border:1px solid rgba(123,94,54,.25);background:rgba(255,250,239,.68);font-size:12px;color:#41372d";
-    list.appendChild(item);
-  });
+  if (podium) rows.slice(0, 3).forEach((row, index) => podium.appendChild(createCard(row, index, true)));
+  rows.slice(3).forEach((row, index) => list.appendChild(createCard(row, index + 3)));
 }
 
 async function refreshLeaderboard() {

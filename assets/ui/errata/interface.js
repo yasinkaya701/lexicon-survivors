@@ -388,6 +388,26 @@
       });
     } catch (_) { return []; }
   }
+  const bestiaryAtlasSlots = new Map([
+    ['Grammar Goblin', [0, 0]], ['Typo Slime', [1, 0]], ['Punctuation Phantom', [2, 0]], ['Idiom Imp', [3, 0]],
+    ['Tautology Twin', [0, 1]], ['Homophone Harpy', [1, 1]], ['Run-on Reaper', [2, 1]], ['Malapropism Mimic', [3, 1]],
+    ['Dangling Modifier', [0, 2]], ['Palindrome Phantom', [1, 2]], ['Vocabulary Void', [2, 2]], ['Double Negative Drake', [3, 2]],
+    ['Oxymoron Ogre', [0, 3]], ['Spelling Spectre', [1, 3]], ['Red Pen Boss', [2, 3]], ['Syntax Titan', [3, 3]]
+  ]);
+  function stableAtlasSlot(value) {
+    let hash = 2166136261;
+    for (const character of String(value)) hash = Math.imul(hash ^ character.codePointAt(0), 16777619);
+    return (hash >>> 0) % 16;
+  }
+  function makeAtlasArtwork(name, atlas, slot) {
+    const art = document.createElement('span');
+    art.className = `archive-card-art archive-card-art--${atlas}`;
+    art.setAttribute('aria-hidden', 'true');
+    const index = Math.max(0, Math.min(15, slot));
+    art.style.backgroundPosition = `${(index % 4) * 100 / 3}% ${Math.floor(index / 4) * 100 / 3}%`;
+    art.dataset.subject = name;
+    return art;
+  }
   let bestiaryRequested = false;
   let wordsRequested = false;
   function renderBook(kind) {
@@ -399,7 +419,7 @@
       let selectedWordLevel = 'all';
       let entries = kind === 'codex' ? actualWordEntries() : actualEnemyEntries();
       const list = document.createElement('div');
-      list.className = 'book-entries';
+      list.className = 'book-entries book-collection-grid';
       const search = document.createElement('input');
       search.type = 'search'; search.className = 'book-search'; search.setAttribute('aria-label', 'Fihristte ara'); search.placeholder = 'Ada göre ara';
       const tabs = document.createElement('nav'); tabs.className = 'book-index'; tabs.setAttribute('aria-label', 'Fihrist bölümleri');
@@ -427,15 +447,42 @@
       const status = document.createElement('p'); status.className = 'book-status'; status.setAttribute('aria-live', 'polite');
       function renderEntries(query) {
         list.replaceChildren();
-        const matches = entries.filter(entry => (category !== 'words' || selectedWordLevel === 'all' || entry.level === selectedWordLevel) && `${entry.name} ${entry.description} ${entry.example || ''} ${entry.type || ''} ${entry.level || ''}`.toLocaleLowerCase('tr').includes(query.toLocaleLowerCase('tr'))).sort((a,b) => a.name.localeCompare(b.name,'en'));
+        const matches = entries.filter(entry => (category !== 'words' || selectedWordLevel === 'all' || entry.level === selectedWordLevel) && `${entry.name} ${entry.description} ${entry.example || ''} ${entry.type || ''} ${entry.level || ''}`.toLocaleLowerCase('tr').includes(query.toLocaleLowerCase('tr'))).sort((a,b) => a.name.localeCompare(b.name,'tr'));
         matches.slice(0, 80).forEach(entry => {
-          const article = document.createElement('article'); article.className = kind === 'bestiary' ? 'book-entry enemy-entry' : 'book-entry';
-          if (entry.image) { const image = document.createElement('img'); image.src = entry.image; image.alt = ''; image.loading = 'lazy'; article.append(image); }
-          const copy = document.createElement('div');
-          const heading = document.createElement('h3'); heading.textContent = entry.name; copy.append(heading);
-          if (entry.type || entry.level) { const meta = document.createElement('small'); meta.textContent = [entry.level, entry.type].filter(Boolean).join(' · '); copy.append(meta); }
-          if (entry.description) { const text = document.createElement('p'); text.textContent = entry.description; copy.append(text); }
-          if (entry.example) { const example = document.createElement('p'); example.textContent = entry.example; copy.append(example); }
+          const isEnemy = kind === 'bestiary';
+          const isWord = category === 'words';
+          const article = document.createElement('article');
+          article.className = `book-entry archive-card${isEnemy ? ' archive-card--enemy' : isWord ? ' archive-card--word' : ' archive-card--weapon'}`;
+          const tile = isEnemy ? bestiaryAtlasSlots.get(entry.name) : null;
+          if (tile) {
+            article.append(makeAtlasArtwork(entry.name, 'bestiary', tile[1] * 4 + tile[0]));
+          } else if (isWord) {
+            article.append(makeAtlasArtwork(entry.name, 'emblems', stableAtlasSlot(`${entry.level || ''}:${entry.type || ''}:${entry.name}`)));
+          } else if (entry.image) {
+            const art = document.createElement('div'); art.className = 'archive-card-art archive-card-art--image';
+            const image = document.createElement('img'); image.src = entry.image; image.alt = ''; image.loading = 'lazy'; art.append(image); article.append(art);
+          } else {
+            article.append(makeAtlasArtwork(entry.name, 'emblems', stableAtlasSlot(entry.name)));
+          }
+          const copy = document.createElement('div'); copy.className = 'archive-card-copy';
+          const eyebrow = document.createElement('span'); eyebrow.className = 'archive-card-eyebrow';
+          eyebrow.textContent = isEnemy ? (entry.name.includes('Boss') || entry.name.includes('Titan') ? 'KARŞILAŞMA · ELİT' : 'DİL CANAVARI') : isWord ? 'KELİME KAYDI' : 'SİLAH KAYDI';
+          const heading = document.createElement('h3'); heading.textContent = entry.name; copy.append(eyebrow, heading);
+          if (entry.type || entry.level) {
+            const meta = document.createElement('small'); meta.className = 'archive-card-meta';
+            meta.textContent = [entry.level, entry.type].filter(Boolean).join(' · '); copy.append(meta);
+          }
+          if (entry.description && !isEnemy) {
+            const text = document.createElement('p'); text.className = isWord ? 'archive-card-definition' : 'archive-card-description';
+            text.textContent = entry.description; copy.append(text);
+          }
+          if (entry.example) {
+            const example = document.createElement('p'); example.className = 'archive-card-example'; example.textContent = `“${entry.example}”`; copy.append(example);
+          }
+          if (isEnemy) {
+            const reward = document.createElement('span'); reward.className = 'archive-card-reward'; reward.textContent = entry.description;
+            copy.append(reward);
+          }
           article.append(copy); list.append(article);
         });
         status.textContent = matches.length > 80 ? `İlk 80 kayıt gösteriliyor (${matches.length} sonuç). Aramayı daralt.` : `${matches.length} kayıt`;

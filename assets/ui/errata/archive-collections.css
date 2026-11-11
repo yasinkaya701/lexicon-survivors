@@ -1,0 +1,492 @@
+/* Illustrated collection cards for the word book, bestiary, and leaderboard. */
+:root {
+  --archive-paper: #f2e5cb;
+  --archive-paper-deep: #e3d0ad;
+  --archive-ink: #21191c;
+  --archive-muted: #79695a;
+  --archive-wine: #7c293b;
+  --archive-brass: #b28b4e;
+  --archive-teal: #477b70;
+}
+
+.errata-book-panel:has(.book-collection-grid) {
+  width: min(1120px, 96vw);
+  height: min(850px, 94dvh);
+  max-height: 94dvh;
+  min-height: 0;
+  padding: clamp(20px, 3.4vw, 44px) clamp(18px, 4vw, 58px) 30px;
+  overflow: hidden;
+  border: 1px solid #b69a6d;
+  background: var(--archive-paper) url("archive-book-v2.webp") center / cover;
+  box-shadow: 0 28px 90px #090609b8, inset 0 0 0 5px #f6ebd24f;
+}
+
+.errata-book-panel:has(.book-collection-grid) .book-dialog-header {
+  flex: 0 0 auto;
+  align-items: center;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #87694b55;
+}
+
+.errata-book-panel:has(.book-collection-grid) .book-dialog-header h2 {
+  color: var(--archive-ink);
+  font: 700 clamp(28px, 4vw, 40px)/1.05 "IBM Plex Serif", serif;
+  letter-spacing: -.035em;
+}
+
+.errata-book-panel:has(.book-collection-grid) .errata-dialog-content {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  flex-direction: column;
+  gap: 9px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: 8px 3px 16px;
+}
+
+.book-heading {
+  max-width: 70ch;
+  margin: 0;
+  color: #695a49;
+  font: 15px/1.5 "IBM Plex Serif", serif;
+}
+
+.book-index,
+.book-level-index {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 5px 0 0;
+}
+
+.errata-book-panel .book-index button,
+.book-level-index button {
+  min-height: 42px;
+  padding: 8px 14px;
+  border: 1px solid #987b5b66;
+  border-radius: 3px;
+  background: #fff8e8b8;
+  color: #594637;
+  font: 600 12px "IBM Plex Mono", monospace;
+  letter-spacing: .035em;
+  transition: color .16s ease, background-color .16s ease, border-color .16s ease, transform .16s ease;
+}
+
+.errata-book-panel .book-index button[aria-selected="true"],
+.book-level-index button[aria-pressed="true"] {
+  border-color: var(--archive-wine);
+  background: var(--archive-wine);
+  color: #fff1d4;
+  box-shadow: 0 3px 0 #4a1823;
+}
+
+.errata-book-panel .book-index button:hover,
+.book-level-index button:hover {
+  transform: translateY(-1px);
+  border-color: var(--archive-brass);
+}
+
+.book-search {
+  flex: 0 0 auto;
+  width: 100%;
+  min-height: 46px;
+  margin: 5px 0 0;
+  padding: 10px 14px;
+  border: 1px solid #87694b88;
+  border-radius: 3px;
+  background: #fff9eb;
+  color: var(--archive-ink);
+  font: 15px "IBM Plex Sans", sans-serif;
+  box-shadow: inset 0 2px 5px #2e21100c;
+}
+
+.book-search::placeholder { color: #897965; }
+.book-search:focus-visible { outline: 3px solid #477b70a6; outline-offset: 2px; }
+.book-status { flex: 0 0 auto; margin: 0; color: var(--archive-muted); font: 11px "IBM Plex Mono", monospace; }
+
+.book-collection-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 14px;
+  margin: 3px 0 0;
+  padding: 2px 4px 12px;
+}
+
+#errata-book .book-collection-grid .archive-card { display: flex; grid-template-columns: none; }
+
+.archive-card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 285px;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #92775a99;
+  border-radius: 5px;
+  background: linear-gradient(155deg, #fff9e9 0%, #eee0c3 100%);
+  color: var(--archive-ink);
+  box-shadow: 0 7px 16px #33221518, inset 0 0 0 3px #fff8e878;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+.archive-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--archive-brass);
+  box-shadow: 0 12px 24px #3322152b, inset 0 0 0 3px #fff8e8a8;
+}
+
+.archive-card::after {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  width: 22px;
+  height: 31px;
+  border: 1px solid #d6b980;
+  border-top: 0;
+  border-radius: 0 0 3px 3px;
+  background: var(--archive-wine);
+  box-shadow: 0 2px 4px #24171828;
+  content: "";
+  opacity: .92;
+}
+
+.archive-card-art {
+  position: relative;
+  display: block;
+  flex: 0 0 auto;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  background-color: #252027;
+  background-repeat: no-repeat;
+  background-size: 400% 400%;
+}
+
+.archive-card-art--bestiary {
+  background-image: url("archive-atlas/bestiary.webp");
+  background-color: #211a20;
+}
+
+.archive-card-art--emblems {
+  background-image: url("archive-atlas/emblems.webp");
+  background-color: #d6c29d;
+}
+
+.archive-card-art--image {
+  display: grid;
+  place-items: center;
+  background: radial-gradient(ellipse at center, #6c5b4b 0%, #211a20 73%);
+}
+
+.archive-card-art--image img {
+  width: 88%;
+  height: 88%;
+  object-fit: contain;
+  image-rendering: auto;
+  filter: drop-shadow(0 8px 8px #100a0a77);
+}
+
+.archive-card--word .archive-card-art { height: 100px; }
+.archive-card--weapon .archive-card-art { height: 112px; }
+
+.archive-card-copy {
+  display: flex;
+  min-height: 0;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 14px 15px 16px;
+}
+
+.archive-card-eyebrow {
+  color: var(--archive-teal);
+  font: 700 9px "IBM Plex Mono", monospace;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.archive-card-copy h3 {
+  margin: 0;
+  color: #2a2021;
+  font: 700 18px/1.18 "IBM Plex Serif", serif;
+  overflow-wrap: anywhere;
+}
+
+.archive-card-meta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 3px 8px;
+  border: 1px solid #9c7d58;
+  border-radius: 2px;
+  background: #e4d1aa;
+  color: #574534;
+  font: 600 10px "IBM Plex Mono", monospace;
+}
+
+.archive-card-definition,
+.archive-card-description {
+  margin: 3px 0 0;
+  color: #655644;
+  font: 13px/1.48 "IBM Plex Sans", sans-serif;
+}
+
+.archive-card-example {
+  width: 100%;
+  margin: 3px 0 0;
+  padding: 8px 9px;
+  border-left: 2px solid var(--archive-teal);
+  background: #dfcfb080;
+  color: #514337;
+  font: italic 12px/1.45 "IBM Plex Serif", serif;
+}
+
+.archive-card-reward {
+  margin-top: auto;
+  padding-top: 8px;
+  color: var(--archive-wine);
+  font: 600 10px "IBM Plex Mono", monospace;
+  letter-spacing: .02em;
+}
+
+.archive-card--enemy { background: linear-gradient(155deg, #fff8e8 0%, #e8d9b9 100%); }
+.archive-card--enemy .archive-card-art { border-bottom: 1px solid #b4996d; }
+.archive-card--enemy .archive-card-copy h3 { min-height: 2.2em; }
+.archive-card--word { min-height: 245px; }
+.archive-card--word .archive-card-copy h3 { font-size: 21px; }
+.archive-card--weapon { min-height: 230px; }
+
+.errata-large-text .archive-card-copy h3 { font-size: 23px; }
+.errata-large-text .archive-card-definition,
+.errata-large-text .archive-card-description,
+.errata-large-text .archive-card-example { font-size: 17px; }
+
+/* Global run archive */
+.leaderboard-overlay { z-index: 240; }
+.leaderboard-panel {
+  display: flex;
+  width: min(920px, 96vw);
+  max-height: min(92dvh, 920px);
+  flex-direction: column;
+  overflow: auto;
+  padding: clamp(20px, 4vw, 42px);
+  border: 1px solid #a48250;
+  border-radius: 5px;
+  background: linear-gradient(150deg, #f5e9d0, #e5d2af 80%);
+  color: var(--archive-ink);
+  box-shadow: 0 28px 90px #090609b8, inset 0 0 0 5px #fff8e45e;
+}
+
+#leaderboard-overlay .leaderboard-panel {
+  width: min(920px, 96vw);
+  background: linear-gradient(150deg, #f5e9d0, #e5d2af 80%);
+  color: var(--archive-ink);
+}
+
+.leaderboard-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #80684c55;
+}
+
+.leaderboard-kicker {
+  color: var(--archive-wine);
+  font: 600 10px "IBM Plex Mono", monospace;
+  letter-spacing: .12em;
+}
+
+.leaderboard-title-lockup h2 {
+  margin: 5px 0 3px;
+  color: #2a2021;
+  font: 700 clamp(30px, 5vw, 43px)/1.02 "IBM Plex Serif", serif;
+  letter-spacing: -.035em;
+}
+
+#leaderboard-overlay .leaderboard-title-lockup h2 { color: #2a2021 !important; }
+#leaderboard-overlay .leaderboard-title-lockup p { color: #71604f !important; }
+
+.leaderboard-title-lockup p { margin: 0; color: var(--archive-muted); font: 14px/1.45 "IBM Plex Serif", serif; }
+.leaderboard-header .btn { flex: 0 0 auto; min-height: 42px; }
+
+.leaderboard-podium {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: end;
+  gap: 12px;
+  margin: 22px 0 18px;
+}
+
+.leaderboard-podium-card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  min-height: 160px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+  padding: 52px 13px 16px;
+  border: 1px solid #a88a5f;
+  border-radius: 4px 4px 2px 2px;
+  background: linear-gradient(150deg, #fff8e8, #d9c29b);
+  text-align: center;
+  box-shadow: 0 8px 16px #30211920, inset 0 0 0 3px #fff8e85c;
+}
+
+.leaderboard-podium-card--1 { order: 2; min-height: 190px; border-color: #a57939; background: linear-gradient(150deg, #fff5d6, #d7b874); }
+.leaderboard-podium-card--2 { order: 1; min-height: 166px; }
+.leaderboard-podium-card--3 { order: 3; min-height: 152px; }
+
+.leaderboard-rank-art {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  display: grid;
+  width: 76px;
+  height: 76px;
+  place-items: center;
+  transform: translateX(-50%);
+  background-repeat: no-repeat;
+  background-size: 400% 400%;
+  filter: drop-shadow(0 5px 4px #321e1b46);
+}
+
+.leaderboard-rank-art span {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid #fff0cf;
+  border-radius: 50%;
+  background: #5c2632e8;
+  color: #fff2d4;
+  font: 700 12px "IBM Plex Mono", monospace;
+  box-shadow: 0 2px 5px #24131b55;
+}
+
+.leaderboard-card-copy { display: flex; min-width: 0; flex-direction: column; gap: 4px; }
+.leaderboard-alias { overflow: hidden; color: #302326; font: 700 17px/1.2 "IBM Plex Serif", serif; text-overflow: ellipsis; white-space: nowrap; }
+.leaderboard-card-details { color: #675547; font: 11px/1.4 "IBM Plex Mono", monospace; }
+.leaderboard-card-time { color: var(--archive-wine); font: 700 11px "IBM Plex Mono", monospace; }
+
+.leaderboard-controls {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) auto minmax(132px, .45fr) auto;
+  align-items: end;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid #9a7a555e;
+  border-radius: 3px;
+  background: #fff8e59c;
+}
+
+.leaderboard-controls label { display: grid; gap: 5px; color: #5b4839; font: 600 10px "IBM Plex Mono", monospace; letter-spacing: .04em; }
+#leaderboard-overlay .leaderboard-controls label { color: #5b4839 !important; }
+.leaderboard-controls input,
+.leaderboard-controls select {
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 10px;
+  border: 1px solid #947658;
+  border-radius: 3px;
+  background: #fffdf5;
+  color: #302326;
+  font: 14px "IBM Plex Sans", sans-serif;
+}
+
+#leaderboard-overlay .leaderboard-controls input,
+#leaderboard-overlay .leaderboard-controls select {
+  border-color: #947658 !important;
+  background: #fffdf5 !important;
+  color: #302326 !important;
+}
+
+.leaderboard-controls .btn { min-height: 42px; white-space: nowrap; }
+.leaderboard-status { min-height: 20px; margin: 13px 2px 5px; color: var(--archive-muted); font: 11px "IBM Plex Mono", monospace; }
+#leaderboard-overlay .leaderboard-status,
+#leaderboard-overlay .leaderboard-note { color: #71604f !important; }
+.leaderboard-entries { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
+#leaderboard-overlay #leaderboard-entries { max-height: min(42vh, 360px); padding: 0 !important; }
+.leaderboard-row {
+  position: relative;
+  display: grid;
+  min-height: 72px;
+  grid-template-columns: 60px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 15px;
+  border: 1px solid #a68a635c;
+  border-radius: 3px;
+  background: #fff9e9b8;
+}
+
+#leaderboard-overlay #leaderboard-entries li {
+  border-color: #a68a635c !important;
+  background: #fff9e9 !important;
+  color: #302326 !important;
+}
+
+.leaderboard-row .leaderboard-rank-art { position: static; width: 48px; height: 48px; transform: none; filter: none; }
+.leaderboard-row .leaderboard-rank-art span { width: 25px; height: 25px; font-size: 10px; }
+.leaderboard-row .leaderboard-card-copy { align-items: flex-start; }
+.leaderboard-row .leaderboard-alias { font-size: 16px; }
+.leaderboard-row .leaderboard-card-time { justify-self: end; }
+.leaderboard-empty { padding: 22px 16px; border: 1px dashed #927855; color: #665344; text-align: center; font: 15px "IBM Plex Serif", serif; }
+.leaderboard-note { margin: 14px 0 0; color: #78695a; font: 11px/1.5 "IBM Plex Sans", sans-serif; }
+
+.leaderboard-controls :focus-visible,
+.leaderboard-panel button:focus-visible { outline: 3px solid #477b70; outline-offset: 3px; }
+
+@media (max-width: 900px) {
+  .book-collection-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .leaderboard-controls { grid-template-columns: minmax(0, 1fr) auto; }
+}
+
+@media (max-width: 650px) {
+  .errata-book-panel:has(.book-collection-grid) { width: 100vw; height: 100dvh; max-height: 100dvh; padding: 20px 14px 16px; border: 0; }
+  .errata-book-panel:has(.book-collection-grid) .book-dialog-header { padding-bottom: 10px; }
+  .errata-book-panel:has(.book-collection-grid) .book-dialog-header h2 { font-size: 29px; }
+  .book-collection-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; padding-inline: 1px; }
+  .archive-card { min-height: 250px; }
+  .archive-card-art { height: 120px; }
+  .archive-card--word .archive-card-art { height: 82px; }
+  .archive-card-copy { gap: 5px; padding: 11px 10px 13px; }
+  .archive-card-copy h3 { font-size: 16px; }
+  .archive-card--word .archive-card-copy h3 { font-size: 18px; }
+  .archive-card-definition,
+  .archive-card-description { font-size: 12px; }
+  .archive-card-example { font-size: 11px; }
+  .errata-book-panel .book-index button,
+  .book-level-index button { min-height: 40px; padding: 7px 10px; }
+  .leaderboard-panel { width: 100vw; max-height: 100dvh; height: 100dvh; padding: 18px 14px 22px; border: 0; border-radius: 0; }
+  .leaderboard-header { gap: 10px; }
+  .leaderboard-title-lockup h2 { font-size: 31px; }
+  .leaderboard-title-lockup p { font-size: 12px; }
+  .leaderboard-header .btn { min-height: 40px; padding: 7px 10px; }
+  .leaderboard-podium { gap: 6px; margin: 15px 0; }
+  .leaderboard-podium-card { min-height: 138px; gap: 6px; padding: 45px 5px 11px; }
+  .leaderboard-podium-card--1 { min-height: 160px; }
+  .leaderboard-rank-art { top: 4px; width: 66px; height: 66px; }
+  .leaderboard-alias { max-width: 100%; font-size: 13px; }
+  .leaderboard-card-details,
+  .leaderboard-card-time { font-size: 9px; }
+  .leaderboard-controls { grid-template-columns: minmax(0, 1fr) minmax(112px, .6fr); gap: 8px; padding: 10px; }
+  .leaderboard-controls .btn { width: 100%; padding: 8px; font-size: 12px; }
+  .leaderboard-row { grid-template-columns: 48px minmax(0, 1fr) auto; gap: 8px; padding: 7px 9px; }
+  .leaderboard-row .leaderboard-rank-art { width: 42px; height: 42px; }
+  .leaderboard-row .leaderboard-alias { font-size: 14px; }
+  .leaderboard-row .leaderboard-card-time { font-size: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .archive-card,
+  .errata-book-panel .book-index button,
+  .book-level-index button { transition: none; }
+}
