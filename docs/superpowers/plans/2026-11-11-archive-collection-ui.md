@@ -13,6 +13,7 @@
 ## Global Constraints
 
 - Preserve the codex search, word-level filters, bestiary catalog data, and leaderboard API behavior.
+- Match the title/character selection palette; avoid yellow paper panels and decorative ribbon buttons.
 - Keep all score text and vocabulary as accessible HTML text.
 - Do not change combat, spawn counts, or render-quality settings.
 - Support touch layouts and reduced-motion preferences.

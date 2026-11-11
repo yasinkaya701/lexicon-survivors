@@ -1,6 +1,6 @@
 {
-  "version": "2026.11.11-archive-collection.1",
-  "generatedAt": "2026-11-11T15:44:34.092Z",
+  "version": "2026.11.11-archive-collection.2",
+  "generatedAt": "2026-11-11T15:55:05Z",
   "baseCommit": "cf5dc4ffc1bdc3338c74b95cb386da7902c242c1",
   "sha256": {
     "assets/ui/errata/theme.css": "b0f0c5fe6a8cd63dfef0f87f41ae72c0ed0a72e1b4dd096a2a97b8fe0e3580fa",
@@ -16,12 +16,12 @@
     "assets/ui/errata/motion.js": "d41c69a3e8a55f1bf6eecfde55c633ea454d0b404428a1216bce561470c5b53e",
     "game.js": "f6a4e9da5c7a74ffe783fabe9cf63d2f3a7f7d2254c09201667e54ec63023ea1",
     "assets/ui/errata/interface.js": "f15d2409ef6af68bd71bd2405df05baf38de9450d5dd9106f3b994271f15bf61",
-    "index.html": "dee37a64fba6051227c89fc11cad5591a3be52661fc536dd124087448a17fdc2",
+    "index.html": "c714659bca41bc3c1a52c8c2e03005aaa2d6246818521bf266442533897d7553",
     "assets/ui/errata/arena-v3/manifest.json": "ca6d7a41fbec37c09b2361452ea43a609decd366428df1d8acd2f2e2f3df0c3d",
     "assets/ui/errata/title-scene-v6.webp": "c6a1d33783f6aa98e712a070809c373b11ac32f211afadff9c3852e6c94b7a3e",
     "assets/ui/errata/portraits/shadow_lexicographer-selection-v3.webp": "398604846563f9f25d5886590e788e0efcc09554cd6eddbe4426fa1143a36b25",
     "assets/data/game_economy.json": "f3dbbdc3371b16d61c3a3970187949271c22635086072d458428d61cfbda0e77",
-    "assets/ui/errata/archive-collections.css": "fdaa942ccb402a34a6077e3a73a438e65b9492fba6439ea3105274044a802d9d",
+    "assets/ui/errata/archive-collections.css": "4eada18e9d80b0d39d7c144b9bdca41469a46ad25a33e58c8726c01dde641d80",
     "assets/ui/errata/archive-atlas/bestiary.webp": "4544a24a0bc303e3fc4a4e7dd8b0c0c681a40d77b30dd947e12d131e220d136a",
     "assets/ui/errata/archive-atlas/emblems.webp": "2b4547b550e37ee574103937cf053f9664af2cdf9d27a55fa04457465ef8c4a0"
   }
