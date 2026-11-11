@@ -1,7 +1,7 @@
 {
-  "version": "2026.11.11-dense-wave.3",
-  "generatedAt": "2026-11-11T16:24:28Z",
-  "baseCommit": "cf5dc4ffc1bdc3338c74b95cb386da7902c242c1",
+  "version": "wave-continuity-collection-assets-20261111-5",
+  "generatedAt": "2026-11-11T20:12:32.726997+00:00",
+  "baseCommit": "00f2ae3a853ca9c50252a4febcd64b5d1ee32c47",
   "sha256": {
     "assets/ui/errata/theme.css": "b0f0c5fe6a8cd63dfef0f87f41ae72c0ed0a72e1b4dd096a2a97b8fe0e3580fa",
     "assets/ui/errata/surfaces.css": "07812f9699264875b7a44ee6210232bed572381d50818e8992e8ec15b203b5d4",
@@ -9,20 +9,25 @@
     "assets/ui/errata/skill-tree.css": "18d46c30c3341cf435986766efb44997cf97a02f3ad0336db4a0ea5307a63cd8",
     "assets/ui/errata/hud.css": "181da48d4ee7dbd061cfda1e2528a55da662a3d3037df01149fc0977cdd0021a",
     "assets/ui/errata/combat-controls.css": "9e6a6e52c7493cd31437cc68aabe81798c2674db4c4aeeaeab9a10e4b5f645d9",
+    "assets/ui/errata/archive-collections.css": "4eada18e9d80b0d39d7c144b9bdca41469a46ad25a33e58c8726c01dde641d80",
+    "assets/ui/errata/collection-experience.css": "c389ac6b9a246acae75c4df7e30fad3e059f2fc72a5102874a3b5349461a9dd5",
     "assets/ui/errata/voice.js": "0a13ba4664863d13f7fb3f41b98c912bd920942b2f3a45060efe6b7bc0605468",
     "assets/ui/errata/combat-controls.js": "b6900e4a59615a2ceac909b993f51f977a9cb9cabd54fc89f43225211476bc07",
     "assets/ui/errata/world.js": "2e38d58501e3dedf6074191802382ff16235827e141757e11f90533193b0562c",
     "assets/ui/errata/hud.js": "3e3b72663e02e3bb91db0adc7675d500f14604052d06c28a4f6d60470c5687f0",
     "assets/ui/errata/motion.js": "d41c69a3e8a55f1bf6eecfde55c633ea454d0b404428a1216bce561470c5b53e",
-    "game.js": "14269c295e4d750b7b3750b235d90525cb98126d16ffb842f9be1c495799fd17",
+    "game.js": "5b0685637369dd5d56c7f573d0a5ca35b8141eaa688f5d977ac615e2b2d24600",
     "assets/ui/errata/interface.js": "f15d2409ef6af68bd71bd2405df05baf38de9450d5dd9106f3b994271f15bf61",
-    "index.html": "fcd658cb852a616e329413370f620c9253b817742ae00245963624b6d82f261f",
+    "index.html": "5e9378d02e15e0102e8e799f2122c2a83af18eebe1010f98d79a8a2e9da0e3e8",
     "assets/ui/errata/arena-v3/manifest.json": "ca6d7a41fbec37c09b2361452ea43a609decd366428df1d8acd2f2e2f3df0c3d",
     "assets/ui/errata/title-scene-v6.webp": "c6a1d33783f6aa98e712a070809c373b11ac32f211afadff9c3852e6c94b7a3e",
     "assets/ui/errata/portraits/shadow_lexicographer-selection-v3.webp": "398604846563f9f25d5886590e788e0efcc09554cd6eddbe4426fa1143a36b25",
-    "assets/data/game_economy.json": "f3dbbdc3371b16d61c3a3970187949271c22635086072d458428d61cfbda0e77",
-    "assets/ui/errata/archive-collections.css": "4eada18e9d80b0d39d7c144b9bdca41469a46ad25a33e58c8726c01dde641d80",
-    "assets/ui/errata/archive-atlas/bestiary.webp": "4544a24a0bc303e3fc4a4e7dd8b0c0c681a40d77b30dd947e12d131e220d136a",
-    "assets/ui/errata/archive-atlas/emblems.webp": "2b4547b550e37ee574103937cf053f9664af2cdf9d27a55fa04457465ef8c4a0"
+    "assets/ui/errata/collection-art/preparation-lexicon.webp": "3e9108b06e2d5d6499287923522843a6c14fb93200462de285671003bf2b93ba",
+    "assets/ui/errata/collection-art/preparation-challenge.webp": "89950166ebaadd5ebfdfc6907df4ba1d42cc4ce0b25255c91d7178414aeaa943",
+    "assets/ui/errata/collection-art/leaderboard-podium.webp": "358d774434a13e9bfe74cacea492db0ef375a085780f823f4b255ca4ac1decb2",
+    "assets/ui/errata/collection-art/rank-gold.webp": "851568e0f4e07e807a52fa0a3f7e33235d53900761f444dc1d697263a994cc8f",
+    "assets/ui/errata/collection-art/rank-silver.webp": "ff4105f1d9b16840145161642e9f7b3361dd45c4eda114be13e7d199d773d9f2",
+    "assets/ui/errata/collection-art/rank-teal.webp": "5436fafca52172379d62c3ec1a780146e7f8e1440b2628fcff7e4bb00bcc5f2e",
+    "assets/data/game_economy.json": "f3dbbdc3371b16d61c3a3970187949271c22635086072d458428d61cfbda0e77"
   }
 }
