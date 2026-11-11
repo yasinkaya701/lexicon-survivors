@@ -10,6 +10,14 @@ Printed fantasy archive: charcoal/burgundy environments, restrained aged brass, 
 
 - `title-scene-v2.webp`: library approach, canonical Inky at left and masked antagonist at right; quiet center for navigation.
 - `logo-dark.webp`, `logo-light.webp`: transparent Lexicon Survivors wordmark for contrasting surfaces.
+
+### Campaign and leaderboard collection art — 2026-11-11
+
+- `collection-art/preparation-lexicon.webp` and `preparation-challenge.webp`: two crops from one 1536×1024 painted diptych, separately used behind the vocabulary-level and combat-settings panels. They add clear, distinct artwork without placing text inside images.
+- `collection-art/leaderboard-podium.webp`: transparent 1536×1024 podium illustration for the global board's empty state.
+- `collection-art/rank-{gold,silver,teal}.webp`: three 280×280 crops from that same podium master, used as unique first-, second-, and third-place marks. Lower ranks keep the existing emblem atlas.
+- All shipped files use WebP. The preparation illustrations were exported at quality 84; podium and rank art at quality 84/88. The generated masters are stored in the Codex generated-images directory; no source image was overwritten.
+- Prompts: preparation diptych—dark candlelit library, open ink lexicon on the left, three ascending difficulty seals on a library stair on the right, no lettering/UI; podium—three charcoal book pedestals with gold/silver/teal seals, dark wine cloth, no lettering/UI. Both follow the established charcoal, burgundy, brass, ivory and teal art direction.
 - `archive-book-v2.webp`: cool ivory open folio used for preparation and archive overlays.
 - `dossier-paper.webp`, `menu-button.webp`: tactile paper silhouettes with restrained editorial edges.
 - `portraits/*-selection.webp`: six 720×900 selection busts, generated against the canonical story model sheets. The wardrobe, face, silhouette and characteristic prop are preserved. Each is below180KB.

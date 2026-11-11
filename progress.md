@@ -93,3 +93,11 @@ Still in progress: actual connected skill tree presentation and tab icons (inter
 
 - The first `arena-v4` common-enemy sheet was rejected after review because it resembled generic monsters. Its files were saved outside the repo in `/tmp/lexicon-enemies-rejected-v1/`; none remain in product assets.
 - Replaced those 32 frames with the reviewed canonical-reference sheets: current upgrade_v1 goblin/slime sprites plus high-resolution story-art boss references for the other six enemies, using Rune Sorceress v3 only for painterly finish. Parent reviewed `/tmp/arena-v4-canonical-enemies-contact.jpg` and approved all 32. Prompts and source paths are recorded in `assets/ui/errata/arena-v4/enemies/common-enemies-prompts.md`; each texture is 128×128 RGBA with transparent corners and four distinct poses per identity.
+
+## Wave balance and illustrated collection surfaces — 2026-11-11
+
+- Fixed the ordinary enemy HP curve at the 51/76 segment changes. It previously fell from 12.75× to 10.23× and from 28.02× to 23.28×. New curve carries the prior segment end forward while retaining prior values before wave 51. Spawn cadence, batch sizes and the 150-enemy cap are untouched.
+- Replaced the character-selection paper cards and preparation open-book surface with dark portrait dossiers and two illustrated settings panels. Generated and integrated three WebP scenes plus distinct top-three rank marks for the global board; asset notes and image-generation direction are in `assets/ui/errata/ASSETS.md`.
+- Local browser review: character/preparation at 1280×800, preparation at 390×844, global-board empty state and injected top-three sample entries. No horizontal overflow at mobile size; rank badges resolve to distinct local images. Global leaderboard API returned HTTP 200 and allowed the Pages origin; localhost browser testing falls back to local records because the API rejects localhost CORS.
+- Browser evaluation checked the HP curve at every wave 1–100 and all 60 boss difficulty/wave cases; boss 5× HP/3× damage and all existing spawn-cap checkpoints remain intact. `node --check` and `git diff --check` passed. The standalone `test/boss-balance.cjs` runner could not launch because its Playwright headless browser binary is absent; equivalent balance assertions ran in the connected browser.
+- Release/deploy is pending this change set.

@@ -20,6 +20,9 @@ def digest(path):
 index = ROOT / "index.html"
 html = index.read_text()
 entrypoints = {}
+version_match = re.search(r'<meta name="game-release" content="([^"]+)"', html)
+if not version_match:
+    raise SystemExit("Missing game-release version in index.html")
 
 
 def stamp(match):
@@ -35,10 +38,21 @@ def stamp(match):
 html = re.sub(r'(src|href)="((?:assets/ui/errata/[^"?]+\.(?:js|css)|game\.js)(?:\?[^" ]*)?)"', stamp, html)
 index.write_text(html)
 entrypoints["index.html"] = digest(index)
-for name in ["assets/ui/errata/arena-v3/manifest.json", "assets/ui/errata/title-scene-v6.webp", "assets/ui/errata/portraits/shadow_lexicographer-selection-v3.webp", "assets/data/game_economy.json"]:
+for name in [
+    "assets/ui/errata/arena-v3/manifest.json",
+    "assets/ui/errata/title-scene-v6.webp",
+    "assets/ui/errata/portraits/shadow_lexicographer-selection-v3.webp",
+    "assets/ui/errata/collection-art/preparation-lexicon.webp",
+    "assets/ui/errata/collection-art/preparation-challenge.webp",
+    "assets/ui/errata/collection-art/leaderboard-podium.webp",
+    "assets/ui/errata/collection-art/rank-gold.webp",
+    "assets/ui/errata/collection-art/rank-silver.webp",
+    "assets/ui/errata/collection-art/rank-teal.webp",
+    "assets/data/game_economy.json",
+]:
     entrypoints[name] = digest(ROOT / name)
 release = {
-    "version": "2026.11.09-last-errata.2",
+    "version": version_match.group(1),
     "generatedAt": datetime.now(timezone.utc).isoformat(),
     "baseCommit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
     "sha256": entrypoints,

@@ -5205,15 +5205,19 @@ const danglingPhrases = ["Walking slowly...", "Hoping for rain...", "Having arri
 const doubleNegPhrases = ["not impossible", "never not", "scarcely none", "hardly unready", "can't no"];
 const runOnSentences = ["neverending runon sentence with no pauses", "the sun shone and the wind blew and we kept walking", "words words words chained endlessly without fullstops"];
 
+const WAVE_HP_AT_50 = 3.5 + 25 * 0.22 + Math.pow(25 / 12.0, 1.8);
+const WAVE_HP_AT_75 = WAVE_HP_AT_50 + 25 * 0.42 + Math.pow(25 / 9.0, 2.0);
 function getWaveHpMult(wave) {
+  // Carry each segment's end value into the next one. Resetting the old
+  // segment constants here made enemies lose HP at waves 51 and 76.
   if (wave <= 25) {
     return 1.0 + (wave - 1) * 0.10;
   } else if (wave <= 50) {
     return 3.5 + (wave - 25) * 0.22 + Math.pow((wave - 25) / 12.0, 1.8);
   } else if (wave <= 75) {
-    return 9.8 + (wave - 50) * 0.42 + Math.pow((wave - 50) / 9.0, 2.0);
+    return WAVE_HP_AT_50 + (wave - 50) * 0.42 + Math.pow((wave - 50) / 9.0, 2.0);
   } else {
-    return 22.5 + (wave - 75) * 0.75 + Math.pow((wave - 75) / 7.0, 2.2);
+    return WAVE_HP_AT_75 + (wave - 75) * 0.75 + Math.pow((wave - 75) / 7.0, 2.2);
   }
 }
 function getWaveSpeedMult(wave) {
@@ -6716,9 +6720,12 @@ function renderLeaderboard(rows) {
     item.dataset.rank = String(rank);
     const medal = document.createElement("span"); medal.className = "leaderboard-rank-art"; medal.setAttribute("aria-hidden", "true");
     const atlasIndex = rank <= 3 ? 11 : (rank + 5) % 16;
-    medal.style.backgroundImage = "url('assets/ui/errata/archive-atlas/emblems.webp')";
-    medal.style.backgroundSize = "400% 400%";
-    medal.style.backgroundPosition = `${(atlasIndex % 4) * 100 / 3}% ${Math.floor(atlasIndex / 4) * 100 / 3}%`;
+    const podiumArt = { 1: "rank-gold.webp", 2: "rank-silver.webp", 3: "rank-teal.webp" }[rank];
+    medal.style.backgroundImage = podiumArt
+      ? `url('assets/ui/errata/collection-art/${podiumArt}')`
+      : "url('assets/ui/errata/archive-atlas/emblems.webp')";
+    medal.style.backgroundSize = podiumArt ? "cover" : "400% 400%";
+    medal.style.backgroundPosition = podiumArt ? "center" : `${(atlasIndex % 4) * 100 / 3}% ${Math.floor(atlasIndex / 4) * 100 / 3}%`;
     const number = document.createElement("span"); number.textContent = String(rank).padStart(2, "0"); medal.append(number);
     const copy = document.createElement("div"); copy.className = "leaderboard-card-copy";
     const alias = document.createElement("strong"); alias.className = "leaderboard-alias"; alias.textContent = row.alias || "Adsız kâtip";
