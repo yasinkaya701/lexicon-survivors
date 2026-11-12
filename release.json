@@ -1,7 +1,7 @@
 {
-  "version": "web-performance-20261112-1",
-  "generatedAt": "2026-11-12T19:27:43.785209+00:00",
-  "baseCommit": "c4030112e71066a1abdb18042e4a941be69abf98",
+  "version": "web-performance-20261112-2",
+  "generatedAt": "2026-11-12T19:42:49.072062+00:00",
+  "baseCommit": "b813e4969014664e423d79aba98324c96cee5b2a",
   "sha256": {
     "assets/ui/errata/theme.css": "92c1249d476d43a72bb7c241e5346e2285832f5925170cbfc85949bc4ed0982b",
     "assets/ui/errata/surfaces.css": "07812f9699264875b7a44ee6210232bed572381d50818e8992e8ec15b203b5d4",
@@ -16,9 +16,9 @@
     "assets/ui/errata/world.js": "2e38d58501e3dedf6074191802382ff16235827e141757e11f90533193b0562c",
     "assets/ui/errata/hud.js": "3e3b72663e02e3bb91db0adc7675d500f14604052d06c28a4f6d60470c5687f0",
     "assets/ui/errata/motion.js": "d41c69a3e8a55f1bf6eecfde55c633ea454d0b404428a1216bce561470c5b53e",
-    "game.js": "376452f09b08d4bcb240aea2dce50883575cdd6557b270c8459e2bdecaa12859",
+    "game.js": "f27850cc783aab9c5ff2667b90addd1fbe4fa7b7bcb3e2bb52da537ed8d1249e",
     "assets/ui/errata/interface.js": "42ea62bf068b9aca3e17f9338bcdacfb30cbf47c629a524efd03fe1b64f2c461",
-    "index.html": "ef324dbd02972ad92c68db1f3b1e5e36d5ebe2410518fcde68547c40e53b2e9e",
+    "index.html": "41dd82a637875b2946ba6d4f1c82312d8a82ac4c920fc6dd70b679bc64ff0234",
     "assets/ui/errata/arena-v3/manifest.json": "ca6d7a41fbec37c09b2361452ea43a609decd366428df1d8acd2f2e2f3df0c3d",
     "assets/ui/errata/title-scene-v6.webp": "c6a1d33783f6aa98e712a070809c373b11ac32f211afadff9c3852e6c94b7a3e",
     "assets/ui/errata/archive-atlas/bestiary-v2.webp": "501057eaefb6ce27e520e0080e33fa2ccbfe2873d611e1fc60a7a47bd4b495ae",
