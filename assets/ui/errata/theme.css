@@ -1,4 +1,4 @@
-/* The Last Errata — one visual system, separate from the simulation. */
+/* Main menu and archive interface styles. */
 :root{--ink:#110d10;--ink-soft:#21191c;--paper:#f2e1c5;--paper-deep:#e4cba6;--text:#281a1a;--wine:#7c202d;--red:#b63a3e;--teal:#49766e;--muted:#716258;--line:rgba(40,26,26,.22);--gold:#b9945c;--bg-dark:var(--ink);--parchment-base:var(--paper);--parchment-deep:var(--paper-deep);--parchment-border:#af9574;--gold-primary:#b9945c;--gold-bright:#f2e1c5;--gold-dark:#675143;--ink-primary:var(--text);--ink-crimson:var(--wine);--ink-emerald:var(--teal);--ink-sapphire:#334b58;--leather-dark:var(--ink-soft);--leather-rim:#564048;--tier-common:#716258;--tier-rare:#49766e;--tier-epic:#755f7d;--tier-legendary:#8a5e2d;--game-viewport-height:100dvh;--app-height:100dvh;--app-width:100vw;--game-safe-top:env(safe-area-inset-top,0px);--game-safe-right:env(safe-area-inset-right,0px);--game-safe-bottom:env(safe-area-inset-bottom,0px);--game-safe-left:env(safe-area-inset-left,0px);font-family:'IBM Plex Sans',sans-serif;color:var(--text);font-size:16px;color-scheme:dark}
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--ink)}body{font-family:'IBM Plex Sans',sans-serif}button,select,input{font:inherit}button{cursor:pointer}button,a,select,input,[role=button]{touch-action:manipulation}button:disabled{cursor:not-allowed;opacity:.6}button:focus-visible,select:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--red);outline-offset:4px}button{transition:background-color 140ms,border-color 140ms}h1,h2,h3,p{margin:0}h1,h2,h3{font-family:'IBM Plex Serif',Georgia,serif}p{line-height:1.5}img{max-width:100%}[hidden]{display:none!important}.visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}::-webkit-scrollbar{width:7px;height:7px}::-webkit-scrollbar-thumb{background:#947768}::-webkit-scrollbar-track{background:rgba(40,26,26,.08)}
 #game-container{position:relative;width:100%;height:var(--game-viewport-height,100dvh);isolation:isolate;overflow:hidden;background:var(--ink)}#game-canvas{display:block;width:100%;height:100%;image-rendering:pixelated;touch-action:none} .ui-icon{width:20px;height:20px;object-fit:contain;display:inline-block;vertical-align:middle;flex-shrink:0}.btn{display:inline-flex;justify-content:center;align-items:center;gap:10px;min-height:44px;padding:10px 18px;border:1px solid var(--line);border-radius:2px;color:var(--text);background:transparent;font-size:14px;font-weight:500;text-decoration:none;line-height:1.35}.btn:hover{background:rgba(124,32,45,.08);border-color:var(--wine)}.btn.primary,.btn-seal{background:var(--wine);border-color:var(--wine);color:var(--paper)}.btn.primary:hover,.btn-seal:hover{background:#96303d}.btn-emerald{background:var(--teal);color:white;border-color:var(--teal)}.btn-crimson{color:var(--wine);border-color:var(--wine)}.btn img{width:20px;height:20px}.screen-overlay{position:absolute;inset:0;z-index:150;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(17,13,16,.88)}.dialog-panel{display:flex;flex-direction:column;gap:16px;width:min(1120px,100%);max-height:100%;overflow:auto;padding:28px;background:var(--paper);color:var(--text);border:1px solid #a98d6b;box-shadow:0 12px 42px #0006;color-scheme:light} .dialog-panel h2{font-size:32px}.errata-kicker{font:500 12px/1.5 'IBM Plex Mono',monospace;letter-spacing:.14em;color:var(--wine);display:block} .text-back{border:0;border-bottom:1px solid currentColor;background:transparent;color:inherit;min-height:44px;padding:8px 0;font-size:14px;white-space:nowrap}.text-back:hover{color:var(--red)}kbd{font:500 12px 'IBM Plex Mono',monospace;border:1px solid var(--line);padding:3px 5px;border-radius:2px}
@@ -208,3 +208,35 @@
 
 /* Keep the ninja eye slit below the dossier status ribbon. */
 .dossier-art img[src*="shadow_lexicographer-selection-v3"]{object-position:center 4%}
+
+/* The two setup panels use separate scenes and a deliberate text hierarchy. */
+#title-screen[data-step='preparation'] .preparation-book{background:transparent;gap:22px;padding:18px 5% 28px}
+#title-screen[data-step='preparation'] .preparation-page{position:relative;isolation:isolate;overflow:hidden;padding:24px 26px;border:1px solid rgba(242,225,197,.25);background-color:#151316;color:#f2e1c5}
+#title-screen[data-step='preparation'] .preparation-page::before{content:"";position:absolute;inset:0;z-index:-2;background-position:center;background-size:cover;background-repeat:no-repeat;opacity:.74}
+#title-screen[data-step='preparation'] .preparation-page::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(12,13,13,.76),rgba(12,13,13,.70))}
+#title-screen[data-step='preparation'] .preparation-page:first-child{border-top:2px solid #9a4a4d;border-right:1px solid rgba(242,225,197,.25);box-shadow:none}
+#title-screen[data-step='preparation'] .preparation-page:first-child::before{background-image:url('../backgrounds/entry_words_archive.png')}
+#title-screen[data-step='preparation'] .preparation-page:nth-child(2){border-top:2px solid #527466}
+#title-screen[data-step='preparation'] .preparation-page:nth-child(2)::before{background-image:url('../backgrounds/entry_expedition_notes.png')}
+#title-screen[data-step='preparation'] .preparation-page .page-label{position:relative;color:#d7b495;font:500 11px/1.5 'IBM Plex Mono',monospace;letter-spacing:.12em}
+#title-screen[data-step='preparation'] .preparation-page h3{position:relative;color:#f2e6d2;font:600 clamp(22px,2.2vw,28px)/1.14 'IBM Plex Serif',Georgia,serif;letter-spacing:-.015em}
+#title-screen[data-step='preparation'] .preparation-page>p{position:relative;color:#d8cbbd;font:400 14px/1.5 'IBM Plex Sans',sans-serif}
+#title-screen[data-step='preparation'] .preparation-page .selection-description{color:#f2e6d2;font:500 12px/1.45 'IBM Plex Sans',sans-serif}
+#title-screen[data-step='preparation'] .level-choices .btn,#title-screen[data-step='preparation'] .difficulty-choices .btn{min-height:46px;background:rgba(17,15,16,.88);border:1px solid rgba(242,225,197,.28);color:#f2e6d2;font:500 14px 'IBM Plex Mono',monospace}
+#title-screen[data-step='preparation'] .level-choices .btn:hover,#title-screen[data-step='preparation'] .difficulty-choices .btn:hover{border-color:#b9975e;background:#27201f}
+#title-screen[data-step='preparation'] .level-choices .btn.btn-seal,#title-screen[data-step='preparation'] .difficulty-choices .btn.btn-seal{background:#702631;border-color:#c39b63;color:#fff2dc}
+#title-screen[data-step='preparation'] .run-options .btn{min-height:48px;background:rgba(17,15,16,.86)!important;border:1px solid rgba(242,225,197,.25)!important;color:#f2e6d2!important;font:500 14px 'IBM Plex Sans',sans-serif}
+#title-screen[data-step='preparation'] .run-options .btn[aria-pressed='true']{background:#702631!important;border-color:#c39b63!important;color:#fff2dc!important}
+#title-screen[data-step='preparation'] .music-choice-row{color:#e7d8c6;font:500 13px 'IBM Plex Sans',sans-serif}
+#title-screen[data-step='preparation'] .music-choice-row select{min-height:44px;background:rgba(17,15,16,.88);border-color:rgba(242,225,197,.3);color:#f2e6d2;color-scheme:dark;font:500 14px 'IBM Plex Sans',sans-serif}
+#title-screen[data-step='preparation'] .control-note{border-top:1px solid rgba(242,225,197,.24);border-left:0;background:transparent;color:#d8cbbd}
+#title-screen[data-step='preparation'] .control-note .errata-kicker{color:#d7b495}
+#title-screen[data-step='preparation'] .control-note p{font:400 13px/1.7 'IBM Plex Sans',sans-serif}
+#title-screen[data-step='preparation'] .control-note kbd{color:#fff2dc;border-color:rgba(242,225,197,.4)}
+#title-screen[data-step='preparation'] .control-note .text-back{color:#f2e6d2}
+@media(max-width:700px){
+  #title-screen[data-step='preparation'] .preparation-book{gap:10px;padding:6px 4% 18px}
+  #title-screen[data-step='preparation'] .preparation-page{padding:16px 14px}
+  #title-screen[data-step='preparation'] .preparation-page h3{font-size:22px}
+  #title-screen[data-step='preparation'] .level-choices .btn,#title-screen[data-step='preparation'] .difficulty-choices .btn{font-size:12px}
+}

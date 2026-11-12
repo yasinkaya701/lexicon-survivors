@@ -20,7 +20,7 @@
     if(icon.getAttribute('src')!==src)icon.src=src;
     button.classList.toggle('is-cooling',!ready);
     if(button.getAttribute('aria-disabled')!==String(!ready))button.setAttribute('aria-disabled',String(!ready));
-    const label=`${gadget.name} · ${ready?'Hazır, gereci kullan':'Gereç yeniden hazırlanıyor'} · Space`;
+    const label=`${gadget.name} · ${ready?'Hazır, yeteneği kullan':'Yetenek yeniden hazırlanıyor'} · Space`;
     if(button.getAttribute('aria-label')!==label)button.setAttribute('aria-label',label);
     button.style.setProperty('--gadget-ready',String(ready?1:Math.max(0,Math.min(1,1-remaining/total))));
   }

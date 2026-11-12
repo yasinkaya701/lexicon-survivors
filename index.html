@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover, interactive-widget=resizes-content">
   <link rel="icon" type="image/svg+xml" href="assets/ui/icons/book.svg">
-  <title>Lexicon Survivors — Son Düzeltme</title>
-  <meta name="game-release" content="web-performance-20261112-3">
+  <title>Lexicon Survivors</title>
+  <meta name="game-release" content="web-performance-20261112-1">
   <link rel="preload" as="image" href="assets/ui/errata/title-scene-v6.webp" fetchpriority="high">
   <style>
     @font-face {
@@ -45,7 +45,7 @@
       font-display: swap;
     }
   </style>
-  <link rel="stylesheet" href="assets/ui/errata/theme.css?v=92c1249d476d">
+  <link rel="stylesheet" href="assets/ui/errata/theme.css?v=1f375a77519a">
   <link rel="stylesheet" href="assets/ui/errata/surfaces.css?v=07812f969926">
   <link rel="stylesheet" href="assets/ui/errata/inventory-forge.css?v=b8bccab86ec6">
   <link rel="stylesheet" href="assets/ui/errata/skill-tree.css?v=18d46c30c334">
@@ -134,7 +134,7 @@
       <span id="chapter-transition-kicker">BÖLÜM I · DALGALAR 01–25</span>
       <span id="chapter-transition-number" aria-hidden="true">I</span>
       <h2 id="chapter-transition-title">KARANLIK KÜTÜPHANE</h2>
-      <p id="chapter-transition-narration">Kayıp kelimeleri rafların arasından geri çağır.</p>
+      <p id="chapter-transition-narration">Kırmızı Kalem sözlüğü parçaladı; kelimeler raflara dağıldı. Inky onları geri topluyor.</p>
     </section>
 
     <section id="story-intermission" hidden role="dialog" aria-modal="true" aria-labelledby="story-title">
@@ -176,7 +176,7 @@
     <section class="screen-overlay" id="title-screen" data-step="landing" role="dialog" aria-modal="true" aria-label="Lexicon Survivors ana menüsü">
       <header class="errata-masthead">
         <button class="title-wordmark" data-title-step="landing" aria-label="Ana menüye dön"><img src="assets/ui/errata/logo-dark.webp" alt="Lexicon Survivors" width="170" height="58"></button>
-        <span class="masthead-edition">THE LAST ERRATA <i>／</i> SON DÜZELTME</span>
+        <span class="masthead-edition">100 DALGA · 4 BÖLÜM</span>
         <nav aria-label="Arşiv menüsü"><button data-open-book="guide">Nasıl oynanır</button><button data-open-book="settings">Ayarlar</button></nav>
       </header>
 
@@ -184,40 +184,40 @@
         <div class="landing-copy">
           <span class="errata-kicker">KAYIP KELİMELER ARŞİVİ</span>
           <h1 id="landing-heading"><img src="assets/ui/errata/logo-dark.webp" alt="Lexicon Survivors" width="480" height="163" class="landing-logo"></h1>
-          <div class="edition-line"><span></span>SON DÜZELTME<span></span></div>
-          <p class="landing-intro">Bir sözlük kayboldu.<br>Onu hatırlayan son kişi sensin.</p>
+          <div class="edition-line"><span></span>100 DALGA · 4 BÖLÜM<span></span></div>
+          <p class="landing-intro">Kelimeleri topla, soruları yanıtla ve 100 dalgayı tamamla.</p>
           <nav class="landing-nav" aria-label="Ana menü eylemleri">
             <button class="btn primary landing-begin" id="errata-begin" data-title-step="character"><span>Başla</span><span aria-hidden="true">↗</span></button>
             <button class="menu-link" data-open-book="codex"><span>Kelime kitabı</span><span class="nav-index">I</span></button>
             <button class="menu-link" data-open-book="bestiary"><span>Dil canavarları</span><span class="nav-index">II</span></button>
             <button class="menu-link" id="title-leaderboard-btn"><span>Sefer kayıtları</span><span class="nav-index">III</span></button>
           </nav>
-          <p class="landing-footnote">HAYATTA KAL · KELİMELERİ GERİ KAZAN · HİKÂYEYİ TAMAMLA</p>
+          <p class="landing-footnote">HAREKET · WASD / OKLAR &nbsp; · &nbsp; SALDIRI · OTOMATİK</p>
         </div>
       </section>
 
       <section id="errata-character" class="title-stage character-stage" aria-labelledby="character-heading" hidden>
-        <div class="stage-heading"><div><span class="errata-kicker">01 ／ KÂTİP DOSYALARI</span><h2 id="character-heading">Hikâyeyi kim yazacak?</h2><p>Altı farklı arayış. Aynı kayıp arşiv.</p></div><button class="text-back" data-title-step="landing">← Ana menü</button></div>
+        <div class="stage-heading"><div><span class="errata-kicker">01 ／ KARAKTER SEÇİMİ</span><h2 id="character-heading">Karakterini seç</h2><p>Her karakter farklı özelliklerle başlar.</p></div><button class="text-back" data-title-step="landing">← Ana menü</button></div>
         <div class="dossier-layout">
           <aside id="title-feature" class="featured-dossier" data-hero="inky">
             <span class="errata-kicker">SEÇİLİ KÂTİP</span>
             <div class="featured-portrait"><img id="title-hero-feature" src="assets/ui/errata/portraits/inky-selection.webp" alt="Inky"></div>
-            <div class="featured-copy"><strong id="title-hero-name">Inky</strong><p id="title-hero-motive">Mira’nın izini sür.</p><span class="editor-note">Her düzeltme, bir başlangıç.</span></div>
+            <div class="featured-copy"><strong id="title-hero-name">Inky</strong><p id="title-hero-motive">Karakter açıklaması</p></div>
           </aside>
-          <div class="dossier-index"><div class="index-rule"><span>ALTI KÂTİP · ALTI AYRI HİKÂYE</span><span class="dossier-pagination"><button type="button" aria-label="Önceki karakterler" onclick="document.getElementById('char-selection-grid').scrollBy({left:-document.getElementById('char-selection-grid').clientWidth,behavior:(matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.classList.contains('errata-reduced-motion'))?'instant':'smooth'})">←</button><button type="button" aria-label="Sonraki karakterler" onclick="document.getElementById('char-selection-grid').scrollBy({left:document.getElementById('char-selection-grid').clientWidth,behavior:(matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.classList.contains('errata-reduced-motion'))?'instant':'smooth'})">→</button></span></div><div class="card-grid" id="char-selection-grid" aria-label="Karakter seçimi"></div><p class="dossier-note">Karakterin yetenekleri ve gelişimi ona özeldir. Seçimini sonraki seferde değiştirebilirsin.</p></div>
+          <div class="dossier-index"><div class="index-rule"><span>KARAKTERLER · 6</span><span class="dossier-pagination"><button type="button" aria-label="Önceki karakterler" onclick="document.getElementById('char-selection-grid').scrollBy({left:-document.getElementById('char-selection-grid').clientWidth,behavior:(matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.classList.contains('errata-reduced-motion'))?'instant':'smooth'})">←</button><button type="button" aria-label="Sonraki karakterler" onclick="document.getElementById('char-selection-grid').scrollBy({left:document.getElementById('char-selection-grid').clientWidth,behavior:(matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.classList.contains('errata-reduced-motion'))?'instant':'smooth'})">→</button></span></div><div class="card-grid" id="char-selection-grid" aria-label="Karakter seçimi"></div><p class="dossier-note">Karakterin özelliklerini ve yeteneklerini karşılaştır. Seçimini sonraki seferde değiştirebilirsin.</p></div>
         </div>
-        <footer class="stage-actions"><span class="page-number">KÂTİP DOSYALARI <b>01</b></span><button class="btn primary" data-title-step="preparation">Seferi hazırla <span aria-hidden="true">→</span></button></footer>
+        <footer class="stage-actions"><span class="page-number">KARAKTER SEÇİMİ <b>01</b></span><button class="btn primary" data-title-step="preparation">Devam <span aria-hidden="true">→</span></button></footer>
       </section>
 
       <section id="errata-preparation" class="title-stage preparation-stage" aria-labelledby="preparation-heading" hidden>
-        <div class="stage-heading"><div><span class="errata-kicker">02 ／ SEFER HAZIRLIĞI</span><h2 id="preparation-heading">İlk sayfayı aç.</h2><p>İngilizce seviyen ile savaş zorluğunu ayrı ayrı seç.</p></div><button class="text-back" data-title-step="character">← Karakteri değiştir</button></div>
+        <div class="stage-heading"><div><span class="errata-kicker">02 ／ BAŞLANGIÇ AYARLARI</span><h2 id="preparation-heading">Başlangıç ayarları</h2><p>İngilizce seviyesini ve oyun zorluğunu seç.</p></div><button class="text-back" data-title-step="character">← Karakteri değiştir</button></div>
         <div class="preparation-book">
-          <section class="preparation-page"><span class="page-label">I. KELİMELER</span><h3>Nereden başlayalım?</h3><p>Başlangıç seviyeni seç. Kelimeler, cevaplarına göre sana uyum sağlar.</p><div id="learning-level-selection" class="level-choices" aria-label="İngilizce başlangıç seviyesi"></div><p id="learning-level-desc" class="selection-description"></p><h3>Savaşın ritmi</h3><div id="diff-selection-container" class="difficulty-choices" aria-label="Savaş zorluğu"></div><p id="diff-desc" class="selection-description"></p></section>
-          <section class="preparation-page"><span class="page-label">II. SEFER NOTLARI</span><h3>Kendi hızında ilerle.</h3><div class="run-options"><button class="btn" id="title-speed-btn" title="Oyun simülasyon hızını değiştir">Hız: 1.0x</button><button class="btn" id="title-auto-tur-btn">Otomatik tur: açık</button><button class="btn" id="title-auto-run-btn">Otomatik yeni oyun: kapalı</button></div><label class="music-choice-row" for="title-music-select">Müzik<select id="title-music-select"><option value="auto">Otomatik · bölüme göre</option><option value="library">Karanlık Kütüphane</option><option value="action">Mürekkep Takibi</option><option value="urgent">Rafların Uyanışı</option><option value="last_stand">Son Nöbet · Boss</option></select></label><div class="control-note"><span class="errata-kicker">KENAR NOTU</span><p><kbd>WASD</kbd> veya oklarla hareket et.<br>Silahların otomatik ateş eder.<br><kbd>Space</kbd> ile aktif gerecini kullan.</p><button class="text-back" data-open-book="guide">Tüm kontrolleri gör ↗</button></div></section>
+          <section class="preparation-page"><span class="page-label">I. İNGİLİZCE SEVİYESİ</span><h3>Nereden başlayalım?</h3><p>Seviyeni seç. Oyun, yanıtlarına göre kelime düzeyini ayarlar.</p><div id="learning-level-selection" class="level-choices" aria-label="İngilizce başlangıç seviyesi"></div><p id="learning-level-desc" class="selection-description"></p><h3>Savaş zorluğu</h3><div id="diff-selection-container" class="difficulty-choices" aria-label="Savaş zorluğu"></div><p id="diff-desc" class="selection-description"></p></section>
+          <section class="preparation-page"><span class="page-label">II. OYUN AYARLARI</span><h3>Oyun ayarları</h3><div class="run-options"><button class="btn" id="title-speed-btn" title="Oyun hızını değiştir">Hız: 1.0x</button><button class="btn" id="title-auto-tur-btn">Otomatik sonraki dalga: açık</button><button class="btn" id="title-auto-run-btn">Otomatik yeni oyun: kapalı</button></div><label class="music-choice-row" for="title-music-select">Müzik<select id="title-music-select"><option value="auto">Otomatik · bölüme göre</option><option value="library">Kütüphane</option><option value="action">Savaş</option><option value="urgent">Dalgalar</option><option value="last_stand">Boss</option></select></label><div class="control-note"><span class="errata-kicker">KONTROLLER</span><p><kbd>WASD</kbd> veya oklarla hareket et.<br>Silahlar otomatik ateş eder.<br><kbd>Space</kbd> ile etkin yeteneğini kullan.</p><button class="text-back" data-open-book="guide">Tüm kontrolleri gör ↗</button></div></section>
         </div>
-        <footer class="stage-actions"><span class="page-number">SEFER HAZIRLIĞI <b>02</b></span><button class="btn primary" id="start-game-btn">Kütüphaneye gir <span aria-hidden="true">→</span></button></footer>
+        <footer class="stage-actions"><span class="page-number">BAŞLANGIÇ AYARLARI <b>02</b></span><button class="btn primary" id="start-game-btn">Oyuna başla <span aria-hidden="true">→</span></button></footer>
       </section>
-      <footer class="errata-colophon"><span>LEXICON SURVIVORS <i>·</i> THE LAST ERRATA</span><span>Bir kelime daha.</span></footer>
+      <footer class="errata-colophon"><span>LEXICON SURVIVORS</span><span>100 DALGA · 4 BÖLÜM</span></footer>
     </section>
 
     <div id="archive-intro" role="region" aria-label="Lexicon Survivors arşiv açılışı">
@@ -226,7 +226,7 @@
         <img class="archive-intro-hero" src="assets/ui/errata/arena-v3/inky_idle_0.webp" alt="Inky">
         <div class="archive-intro-kicker">ARŞİV AÇILIYOR</div>
         <h1 id="archive-intro-title"><img src="assets/ui/errata/logo-dark.webp" alt="Lexicon Survivors" class="intro-logo" width="640" height="218"></h1>
-        <p>Kayıp kelimeleri rafların arasından geri çağır.</p>
+        <p>WASD ile hareket et. Silahın otomatik ateş eder.</p>
       </div>
       <button class="archive-intro-skip" id="archive-intro-skip" type="button">GEÇ · SPACE</button>
     </div>
@@ -247,7 +247,7 @@
           <img id="shop-chapter-mark" src="assets/ui/icons/book.svg" alt="">
           <span id="shop-chapter-kicker">DALGA ARASI · 01 TAMAMLANDI</span>
           <h3 id="shop-chapter-title">KARANLIK KÜTÜPHANE</h3>
-          <p id="shop-chapter-narration">Kayıp kelimeleri rafların arasından geri çağır.</p>
+          <p id="shop-chapter-narration">Kırmızı Kalem sözlüğü parçaladı; kelimeler raflara dağıldı. Inky onları geri topluyor.</p>
         </section>
 
         <div style="font-family: 'IBM Plex Sans', serif; font-size: 12px; color: #7a481d; font-style: italic;" id="shop-synergy-text">
@@ -333,7 +333,7 @@
         </div>
         </div>
         <div id="inventory-gadgets-panel" role="tabpanel" aria-labelledby="inventory-gadgets-tab" style="display:none;">
-          <p class="inventory-gadget-note">Sahip olduğun gereçler buradadır. Kuşanmak ücretsizdir; her dalgada birini etkin kullan.</p>
+          <p class="inventory-gadget-note">Sahip olduğun yetenekler buradadır. Kuşanmak ücretsizdir; her dalgada birini etkin kullan.</p>
           <div id="inv-gadgets-list" class="inventory-gadgets-grid"></div>
         </div>
       </div>
@@ -369,7 +369,7 @@
       <div id="touch-action-buttons">
         <button id="touch-inv-btn" class="touch-circle-btn" type="button" title="Envanter · I" aria-label="Envanteri aç"><img class="touch-icon" src="assets/ui/errata/icons/inventory.svg" alt=""><span class="touch-label">Envanter</span></button>
         <button id="touch-mistakes-btn" class="touch-circle-btn" type="button" title="Hata defteri · M" aria-label="Hata defterini aç"><img class="touch-icon" src="assets/ui/errata/icons/notebook.svg" alt=""><span class="touch-label">Defter</span></button>
-        <button id="touch-gadget-btn" class="touch-circle-btn" type="button" title="Gereci kullan · Space / Shift" aria-label="Gereci kullan"><img class="touch-icon" src="assets/sprites/gadgets/eraser_dash.png" alt=""><span id="combat-gadget-name">Silgi Atılımı</span><span id="combat-gadget-status">HAZIR</span></button>
+        <button id="touch-gadget-btn" class="touch-circle-btn" type="button" title="Yeteneği kullan · Space / Shift" aria-label="Yeteneği kullan"><img class="touch-icon" src="assets/sprites/gadgets/eraser_dash.png" alt=""><span id="combat-gadget-name">Silgi Sıçrayışı</span><span id="combat-gadget-status">HAZIR</span></button>
       </div>
     </nav>
 
@@ -568,11 +568,11 @@
     })();
   </script>
   <script src="assets/ui/errata/voice.js?v=0a13ba466486"></script>
-  <script src="assets/ui/errata/combat-controls.js?v=b6900e4a5961"></script>
+  <script src="assets/ui/errata/combat-controls.js?v=acc7882bbe23"></script>
   <script src="assets/ui/errata/world.js?v=2e38d58501e3"></script>
   <script src="assets/ui/errata/hud.js?v=3e3b72663e02"></script>
   <script src="assets/ui/errata/motion.js?v=d41c69a3e8a5"></script>
-  <script src="game.js?v=fd763fcb3ae4"></script>
-  <script src="assets/ui/errata/interface.js?v=42ea62bf068b"></script>
+  <script src="game.js?v=b0b133a7b6f6"></script>
+  <script src="assets/ui/errata/interface.js?v=ee955c3f67cd"></script>
 </body>
 </html>

@@ -1556,7 +1556,7 @@ const DIFFICULTIES = {
   easy: {
     id: "easy",
     name: "Rahat",
-    desc: "Düşmanlar yavaş (%-25), canları az (%-35). Başlangıç canı +40 HP. Rahat öğrenme ortamı.",
+    desc: "Düşmanlar %25 daha yavaş, %35 daha az dayanıklıdır ve %40 daha az hasar verir. Başlangıç canı +40.",
     enemy_speed_mult: 0.75,
     enemy_hp_mult: 0.65,
     enemy_damage_mult: 0.60,
@@ -1566,7 +1566,7 @@ const DIFFICULTIES = {
   normal: {
     id: "normal",
     name: "Dengeli",
-    desc: "Daha dirençli ve hızlı düşmanlar, daha sık akınlar. Pürüzsüz dalga geçişleri, toplanabilir can parşömenleri ve ödüllendirici sorular.",
+    desc: "Düşmanlar %10 daha yavaş, %15 daha az dayanıklıdır ve %20 daha az hasar verir. Başlangıç canı +15.",
     enemy_speed_mult: 0.90,
     enemy_hp_mult: 0.85,
     enemy_damage_mult: 0.80,
@@ -1576,7 +1576,7 @@ const DIFFICULTIES = {
   hard: {
     id: "hard",
     name: "Çetin",
-    desc: "Akademik arena! Daha çevik ve dayanıklı düşmanlar, daha yüksek hasar ve yoğun akınlar.",
+    desc: "Düşmanlar %8 daha hızlı, %15 daha dayanıklı ve %15 daha fazla hasar verir. Başlangıç canı bonusu yoktur.",
     enemy_speed_mult: 1.08,
     enemy_hp_mult: 1.15,
     enemy_damage_mult: 1.15,
@@ -1695,7 +1695,7 @@ const TIER_MULTIPLIERS = {
 let GADGETS_CATALOG = {
   eraser_dash: {
     id: "eraser_dash",
-    name: "Kenar Atılımı", desc: "Düşmanların içinden sıyrılır; geride kısa süre kalan keskin bir mürekkep izi bırakır.",
+    name: "Silgi Sıçrayışı", desc: "Düşmanların arasından geçer ve geçtiği yerde kısa süre kalan bir mürekkep izi bırakır.",
     cooldown: 5.0, icon: "assets/sprites/gadgets/eraser_dash.png", cost: 0,
     mechanic: "dash_ink_trail", values: { invulnerability: 0.35, damage: 60, trail_seconds: 1.4, trail_radius: 30 }
   },
@@ -1770,7 +1770,7 @@ let ARTIFACTS_CATALOG = {
     icon: "assets/sprites/relics/quantum_eraser.png", stats: { gadget_cooldown_mult: -0.18 }
   },
   marginalia_prism: {
-    id: "marginalia_prism", name: "Kenar Notu Prizması", desc: "Art arda isabetler hedefi işaretler; sonraki vuruş yankılanır.", cost: 20,
+    id: "marginalia_prism", name: "İşaret Prizması", desc: "Art arda isabetler hedefi işaretler; sonraki vuruş yankılanır.", cost: 20,
     icon: "assets/sprites/relics/marginalia_prism.png", mechanic: "mark_and_echo", values: { hits_to_mark: 4, mark_seconds: 2, echo_damage_factor: 0.32 }
   },
   mnemonic_thread: {
@@ -2577,7 +2577,7 @@ function updateAutoTurUI() {
   }
   const titleBtn = document.getElementById("title-auto-tur-btn");
   if (titleBtn) {
-    titleBtn.textContent = isAuto ? "Otomatik Tur: AÇIK" : "Otomatik Tur: KAPALI";
+    titleBtn.textContent = isAuto ? "Otomatik sonraki dalga: açık" : "Otomatik sonraki dalga: kapalı";
     titleBtn.style.color = isAuto ? "#587767" : "#7c7668";
   }
   const shopBtn = document.getElementById("shop-auto-tur-btn");
@@ -2661,7 +2661,7 @@ function updateAutoRunUI() {
   }
   const titleBtn = document.getElementById("title-auto-run-btn");
   if (titleBtn) {
-    titleBtn.textContent = isAuto ? "Otomatik Yeni Run: AÇIK" : "Otomatik Yeni Run: KAPALI";
+    titleBtn.textContent = isAuto ? "Otomatik yeni oyun: açık" : "Otomatik yeni oyun: kapalı";
     titleBtn.style.color = isAuto ? "#587767" : "#7c7668";
   }
   const goBtn = document.getElementById("gameover-auto-run-toggle");
@@ -2990,28 +2990,28 @@ const chapterTransitions = [
   {
     title: "KARANLIK KÜTÜPHANE",
     kicker: "BÖLÜM I · DALGALAR 01–25",
-    narration: "Kayıp kelimeleri rafların arasından geri çağır.",
+    narration: "Kırmızı Kalem sözlüğü parçaladı; kelimeler raflara dağıldı. Inky onları geri topluyor.",
     accent: "#c5aa72",
     numeral: "I"
   },
   {
     title: "SÖZ DEHLİZİ",
     kicker: "BÖLÜM II · DALGALAR 26–50",
-    narration: "Taş kapı açılır; duvarlardaki yanlış kelimeler uyanır.",
+    narration: "Mühürlü dehlizde yanlış kelimeler düşmanlara dönüştü. Sıradaki mühür taş kapının ardında.",
     accent: "#99a99d",
     numeral: "II"
   },
   {
     title: "ASTRAL GÖZLEMEVİ",
     kicker: "BÖLÜM III · DALGALAR 51–75",
-    narration: "Dehlizin son kapısı açılır; yıldızlar yeni sözcükler dizer.",
+    narration: "Gözlemevi çalınan kelimelerin izini gösteriyor. Kırmızı Kalem son mührü yıldızlara taşıdı.",
     accent: "#9baad1",
     numeral: "III"
   },
   {
     title: "SON SAYFA",
     kicker: "BÖLÜM IV · DALGALAR 76–100",
-    narration: "Kitap kapanır; boşlukta son kelimeler uyanır.",
+    narration: "Sözlüğü kurtarmak için Kırmızı Kalem'i yen ve Kayıp Kelime'yi serbest bırak.",
     accent: "#bd91b7",
     numeral: "IV"
   }
@@ -3762,7 +3762,7 @@ function startWave() {
   } else if (w === 15) {
     triggerTacticalAlert("KALKANLI MUHAFIZLAR", "Ön zırhları %75 hasar emer. Arkadan vurun veya bomba kullanın.");
   } else if (w === 25) {
-    triggerTacticalAlert("IŞINLANAN SUİKASTÇİLER", "Kırmızı zemin işaretlerine dikkat edin; belirdiklerinde Silgi Atılımı yapın.");
+    triggerTacticalAlert("IŞINLANAN SUİKASTÇİLER", "Kırmızı zemin işaretlerinden uzaklaşın; işaret belirince Silgi Sıçrayışı'nı kullanın.");
   } else if (w === 35) {
     triggerTacticalAlert("AURA LİDERLERİ", "Yakındaki canavarları %35 hızlandırırlar. Önce liderleri hedefleyin.");
   } else if (w === 50) {
@@ -3774,7 +3774,7 @@ function startWave() {
   } else if (w === 85) {
     triggerTacticalAlert("ŞAMPİYONLAR ORDUSU", "Kalkanlılar ve Aura liderleri birlikte. Silahınızı duruma göre değiştirin.");
   } else if (w === 100) {
-    triggerTacticalAlert("OMEGA EJDERHA", "Son kuşatma başladı. Cephaneliğinizi ve gereçlerinizi kullanın.");
+    triggerTacticalAlert("OMEGA EJDERHA", "Son kuşatma başladı. Cephaneliğinizi ve yeteneklerinizi kullanın.");
   }
 
 }
@@ -6662,7 +6662,7 @@ function renderCharacterEpilogue(victory) {
     shadow_lexicographer: ["Neris’in kaydını çözemedin.", "Neris’in izini son sayfaya taşıdın."]
   };
   document.getElementById("game-over-title").textContent = endings[id]?.[victory ? 1 : 0] || (victory ? "Son sayfa açıldı." : "Gizem henüz çözülmedi.");
-  document.getElementById("game-over-kicker").textContent = victory ? "SEFER TAMAMLANDI · SON DÜZELTME" : "SEFER SONA ERDİ · GİZEM SÜRÜYOR";
+  document.getElementById("game-over-kicker").textContent = victory ? "OYUN TAMAMLANDI · 100 DALGA" : "OYUN BİTTİ";
   const portrait = document.getElementById("result-character-art");
   portrait.src = getCharacterPortrait(id);
   portrait.alt = character.name;
@@ -7356,7 +7356,7 @@ function renderShopView() {
       const card = document.createElement("div");
       card.className = "choice-card shop-card";
       card.innerHTML = `
-        <div class="shop-meta"><span>Gereç</span><span>Aktif donanım</span></div>
+        <div class="shop-meta"><span>Yetenek</span><span>Aktif donanım</span></div>
         <div style="display: flex; align-items: center; gap: 8px; margin: 2px 0;">
           <img src="${g.icon}" style="width: 38px; height: 38px; object-fit: contain; flex: 0 0 auto;" alt="">
           <h3 class="shop-title">${g.name}</h3>
@@ -7820,7 +7820,7 @@ function renderInventoryView() {
       const name = document.createElement("strong");
       name.textContent = `${state.active_gadget_id === gadgetId ? "KUŞANILDI · " : ""}${gadget.name}`;
       const description = document.createElement("small");
-      description.textContent = gadget.desc || gadget.description || "Aktif gereç";
+      description.textContent = gadget.desc || gadget.description || "Aktif yetenek";
       copy.append(name, description);
       button.append(icon, copy);
       button.addEventListener("click", () => {
@@ -7833,7 +7833,7 @@ function renderInventoryView() {
     if (!gadgetList.children.length) {
       const empty = document.createElement("p");
       empty.className = "inventory-gadget-note";
-      empty.textContent = "Henüz gereç yok. Dalgalar arasındaki dükkândan bir gereç kuşan.";
+      empty.textContent = "Henüz yetenek yok. Dalgalar arasındaki dükkândan bir yetenek kuşan.";
       gadgetList.appendChild(empty);
     }
     return;
@@ -9085,7 +9085,6 @@ function wakeGameLoop() {
   if (idleGameLoopTimer === null) return;
   clearTimeout(idleGameLoopTimer);
   idleGameLoopTimer = null;
-  lastTime = performance.now();
   requestAnimationFrame(gameLoop);
 }
 
@@ -9096,7 +9095,7 @@ function gameLoop(now) {
     scheduleGameLoop();
     return;
   }
-  const rawDt = Math.max(0, Math.min(0.1, (now - lastTime) / 1000));
+  const rawDt = Math.min(0.1, (now - lastTime) / 1000);
   lastTime = now;
   const dt = rawDt * (state.game_speed || 1.0);
 
@@ -9399,11 +9398,11 @@ window.advanceTime = (ms) => {
 initTitleScreen();
 initTouchControls();
 ensureWeaponVisuals();
-// A slow decorative sprite must not hold the first wave's simulation.
-scheduleGameLoop();
 
 loadAssets(() => {
-  if (state.is_wave_active) return;
   initTitleScreen();
+  initTouchControls();
+  // Paint the static title backdrop once before the idle loop goes to sleep.
   render(0);
+  requestAnimationFrame(gameLoop);
 });

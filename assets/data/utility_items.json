@@ -9,9 +9,9 @@
   },
   "gadgets": {
     "eraser_dash": {
-      "name": "Kenar Atılımı",
-      "subtitle": "Margin Step",
-      "description": "Düşmanların içinden sıyrılır; geride kısa süre kalan keskin bir mürekkep izi bırakır.",
+      "name": "Silgi Sıçrayışı",
+      "subtitle": "Hareket yeteneği",
+      "description": "Düşmanların arasından geçer ve geçtiği yerde kısa süre kalan bir mürekkep izi bırakır.",
       "cooldown": 5.0,
       "cost": 0,
       "icon": "assets/sprites/gadgets/eraser_dash.png",
@@ -201,7 +201,7 @@
       }
     },
     "marginalia_prism": {
-      "name": "Kenar Notu Prizması",
+      "name": "İşaret Prizması",
       "subtitle": "Marginalia Prism",
       "description": "Art arda isabetler hedefi işaretler; sonraki vuruş zayıf bir yankı çıkarır.",
       "cost": 20,

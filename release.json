@@ -1,9 +1,9 @@
 {
-  "version": "web-performance-20261112-3",
-  "generatedAt": "2026-11-12T19:48:13.915256+00:00",
-  "baseCommit": "216f84dffa3a0a62a09e9654a93f7f5db03f3bf9",
+  "version": "ui-typography-art-20261112-1",
+  "generatedAt": "2026-11-12T20:05:41Z",
+  "baseCommit": "3e7fa5c480de5a6a2c6b0639adab907c38fc1b",
   "sha256": {
-    "assets/ui/errata/theme.css": "92c1249d476d43a72bb7c241e5346e2285832f5925170cbfc85949bc4ed0982b",
+    "assets/ui/errata/theme.css": "1f375a77519a07666075d00f6b2adf297c44b9d0488a96a0e8056c291ecb9228",
     "assets/ui/errata/surfaces.css": "07812f9699264875b7a44ee6210232bed572381d50818e8992e8ec15b203b5d4",
     "assets/ui/errata/inventory-forge.css": "b8bccab86ec6b97a55b7aa8a07d9ef99c865002baf671af3842e479643d45d5e",
     "assets/ui/errata/skill-tree.css": "18d46c30c3341cf435986766efb44997cf97a02f3ad0336db4a0ea5307a63cd8",
@@ -12,13 +12,13 @@
     "assets/ui/errata/archive-collections.css": "1f80c36874ce0ba55fd59cfafdcfb90da9e8d5ed060a13c65a49bba1507fb302",
     "assets/ui/errata/collection-experience.css": "5b03f480941aa8bb223a9d1eda52b9b0fdae7edc20da51b73cec2870e7a4507b",
     "assets/ui/errata/voice.js": "0a13ba4664863d13f7fb3f41b98c912bd920942b2f3a45060efe6b7bc0605468",
-    "assets/ui/errata/combat-controls.js": "b6900e4a59615a2ceac909b993f51f977a9cb9cabd54fc89f43225211476bc07",
+    "assets/ui/errata/combat-controls.js": "acc7882bbe236076932fbb07ad65f15d889626b1d433677af5212029c182008b",
     "assets/ui/errata/world.js": "2e38d58501e3dedf6074191802382ff16235827e141757e11f90533193b0562c",
     "assets/ui/errata/hud.js": "3e3b72663e02e3bb91db0adc7675d500f14604052d06c28a4f6d60470c5687f0",
     "assets/ui/errata/motion.js": "d41c69a3e8a55f1bf6eecfde55c633ea454d0b404428a1216bce561470c5b53e",
-    "game.js": "fd763fcb3ae48c79639e7b75046ba4a377fd9623df7a73b06817430275cc42ed",
-    "assets/ui/errata/interface.js": "42ea62bf068b9aca3e17f9338bcdacfb30cbf47c629a524efd03fe1b64f2c461",
-    "index.html": "3b9a37359a0f66708e99ae2c3da81652f17a8ca171b4c2e6d695509914eb85e8",
+    "game.js": "b0b133a7b6f6188c0a4550ecc2529690a046fb3bd49bfd99ac357ee024af9a84",
+    "assets/ui/errata/interface.js": "ee955c3f67cd1ad2e6c29fecdb6183a91c2f1155da057fd520f4d70397cf6892",
+    "index.html": "c33dc9e9f1aade4aec6a045ca1780b627d939f6b1ec75333d713c795ddfb3494",
     "assets/ui/errata/arena-v3/manifest.json": "ca6d7a41fbec37c09b2361452ea43a609decd366428df1d8acd2f2e2f3df0c3d",
     "assets/ui/errata/title-scene-v6.webp": "c6a1d33783f6aa98e712a070809c373b11ac32f211afadff9c3852e6c94b7a3e",
     "assets/ui/errata/archive-atlas/bestiary-v2.webp": "501057eaefb6ce27e520e0080e33fa2ccbfe2873d611e1fc60a7a47bd4b495ae",
@@ -36,6 +36,9 @@
     "assets/ui/errata/collection-art/leaderboard-hall.webp": "58ce70f1df9c6d50f5c52df2bb064c7bd1d2030b645f97f02ba7aa0f972b9955",
     "assets/ui/errata/collection-art/settings-scriptorium.webp": "88a04fd1947a65833bf857d386e114ee8d6e6aab825b6f3d4917182b44f0be91",
     "assets/ui/errata/collection-art/guide-map.webp": "2252a369d03734e3945927fd46080a71ec6b7cb2b1f3b233169dabb410a96aa2",
-    "assets/data/game_economy.json": "f3dbbdc3371b16d61c3a3970187949271c22635086072d458428d61cfbda0e77"
+    "assets/data/game_economy.json": "f3dbbdc3371b16d61c3a3970187949271c22635086072d458428d61cfbda0e77",
+    "assets/data/utility_items.json": "292ef5a971b0cf7b225cee5bd3c224cf7d52eef42ce8f3f1598ee57a9c804836",
+    "assets/ui/backgrounds/entry_words_archive.png": "eac39f9b33445bb0203965a288e26948e1ce8139642f900144a9fdb8bb6209ba",
+    "assets/ui/backgrounds/entry_expedition_notes.png": "bcec5bcc8ffc8884aafcc1bdfa718a71786324dfd6a8c61616bc9c7a20bd7553"
   }
 }

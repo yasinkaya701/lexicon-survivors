@@ -646,22 +646,22 @@
       const steps = document.createElement('ol'); steps.className = 'guide-steps';
       const guideCards = [
         {
-          title: 'Hareket sende. Ateş bizde.',
+          title: 'Hareket ve saldırı',
           visual: '<div class="guide-visual"><img src="assets/ui/errata/arena-v3/inky_idle_0.webp" alt="Inky oyun sprite’ı"><div class="guide-keys" aria-label="Hareket: W A S D"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div><span class="guide-path" aria-hidden="true">→</span><img src="assets/ui/errata/arena-v4/enemies/grammar_goblin_0.webp" alt="Grammar Goblin"></div>',
           copy: 'WASD veya ok tuşlarıyla düşmanlardan uzaklaş. Silahın otomatik ateş eder. Dokunmatik ekranda sol alttaki hareket kolunu kullan.'
         },
         {
-          title: 'Bir boşluk yarat.',
-          visual: '<div class="guide-visual"><img src="assets/sprites/gadgets/eraser_dash.png" alt="Silgi Atılımı"><img src="assets/sprites/gadgets/lexicon_aegis.png" alt="Lexicon Aegis"><kbd class="key-wide">SPACE</kbd></div>',
-          copy: 'Gerecin hazır olduğunda Space, Shift veya sağ tıkla kullan. Seçtiğin karakterin gereci farklıdır. Mobilde GEREÇ düğmesine dokun; arena nesneleri için R kullan.'
+          title: 'Etkin yetenek',
+          visual: '<div class="guide-visual"><img src="assets/sprites/gadgets/eraser_dash.png" alt="Silgi Sıçrayışı"><img src="assets/sprites/gadgets/lexicon_aegis.png" alt="Sözlük Kalkanı"><kbd class="key-wide">SPACE</kbd></div>',
+          copy: 'Etkin yeteneğini Space, Shift veya sağ tıkla kullan. Her karakterin yeteneği farklıdır. Mobilde YETENEK düğmesine dokun; arena nesneleri için R kullan.'
         },
         {
-          title: 'Kendi teçhizatını kur.',
+          title: 'Silah ve envanter',
           visual: '<div class="guide-visual"><img src="assets/sprites/weapons/quill_blaster.png" alt="İğne Ucu Kalem"><img src="assets/sprites/weapons/dictionary_blade.png" alt="Sözlük Kılıcı"><div class="guide-shortcuts"><kbd>Q / E</kbd><kbd>I</kbd></div></div>',
-          copy: 'Q/E veya 1–6 ile silah seç. I ile envanteri, M ile hata defterini aç. Dalga arasında mürekkebini silah, gereç ve gelişim için harca.'
+          copy: 'Q/E veya 1–6 ile silah seç. I ile envanteri, M ile hata defterini aç. Dalga arasında mürekkebini silah, yetenek ve geliştirmeler için harca.'
         },
         {
-          title: 'Kelimeyi güce çevir.',
+          title: 'Kelime soruları',
           visual: '<div class="guide-flow"><img src="assets/ui/icons/cards.svg" alt="Kelime kartı"><span aria-hidden="true">→</span><img src="assets/ui/icons/corrections.svg" alt="Soruyu yanıtla"><span aria-hidden="true">→</span><img src="assets/ui/icons/health.svg" alt="Can ve güç kazan"><strong>½ fiyat</strong></div>',
           copy: 'Doğru yanıt normal kartı yarı fiyatına kazandırır; etkisi %50 artar ve 25 can yeniler. Yanlışta normal fiyat ödenir. Yanlış kelimeler hata defterine ve sonraki boss turlarına geri döner.'
         }
