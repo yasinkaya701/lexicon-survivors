@@ -1,6 +1,6 @@
 {
-  "version": "ui-typography-art-20261112-1",
-  "generatedAt": "2026-11-12T20:05:41Z",
+  "version": "ui-copy-20261112-2",
+  "generatedAt": "2026-11-12T20:10:47Z",
   "baseCommit": "3e7fa5c480de5a6a2c6b0639adab907c38fc1b",
   "sha256": {
     "assets/ui/errata/theme.css": "1f375a77519a07666075d00f6b2adf297c44b9d0488a96a0e8056c291ecb9228",
@@ -18,7 +18,7 @@
     "assets/ui/errata/motion.js": "d41c69a3e8a55f1bf6eecfde55c633ea454d0b404428a1216bce561470c5b53e",
     "game.js": "b0b133a7b6f6188c0a4550ecc2529690a046fb3bd49bfd99ac357ee024af9a84",
     "assets/ui/errata/interface.js": "ee955c3f67cd1ad2e6c29fecdb6183a91c2f1155da057fd520f4d70397cf6892",
-    "index.html": "c33dc9e9f1aade4aec6a045ca1780b627d939f6b1ec75333d713c795ddfb3494",
+    "index.html": "50179183c9373b6b5546aeababb69519b9d715907241c1ba3660542cf495b0a6",
     "assets/ui/errata/arena-v3/manifest.json": "ca6d7a41fbec37c09b2361452ea43a609decd366428df1d8acd2f2e2f3df0c3d",
     "assets/ui/errata/title-scene-v6.webp": "c6a1d33783f6aa98e712a070809c373b11ac32f211afadff9c3852e6c94b7a3e",
     "assets/ui/errata/archive-atlas/bestiary-v2.webp": "501057eaefb6ce27e520e0080e33fa2ccbfe2873d611e1fc60a7a47bd4b495ae",
