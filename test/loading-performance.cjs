@@ -47,7 +47,35 @@ const GAME_URL = process.env.GAME_URL || 'http://127.0.0.1:8000';
     assert.equal(fallbackRequests.length, 1, 'failed new room art should request the legacy arena fallback once');
     assert.equal(loadedFallback.status(), 200, 'the requested legacy arena fallback should load successfully');
 
-    console.log(`Loading: current room once, zero eager legacy room frames, WOFF2 only, title cover reused; fallback loaded (${startup.resources.length} startup resources).`);
+    const firstWave = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+    await firstWave.addInitScript(() => localStorage.setItem('lexicon-survivors-archive-intro-seen-v1', '1'));
+    let releaseSprite;
+    const heldSprite = new Promise(resolve => { releaseSprite = resolve; });
+    let requestedSprite = false;
+    await firstWave.route('**/assets/sprites/tile_void_sanctum.png*', async route => {
+      requestedSprite = true;
+      await heldSprite;
+      await route.continue();
+    });
+    try {
+      await firstWave.goto(GAME_URL, { waitUntil: 'domcontentloaded' });
+      await firstWave.locator('#errata-begin').click();
+      await firstWave.locator('#errata-character [data-title-step="preparation"]').click();
+      await firstWave.locator('#start-game-btn').click();
+      await firstWave.waitForFunction(() => state.is_wave_active && state.current_wave === 1);
+      assert.ok(requestedSprite, 'the unrelated biome sprite is still held back');
+      const initial = await firstWave.evaluate(() => ({ x: state.player.x, time: state.wave_time_left }));
+      await firstWave.keyboard.down('d');
+      await firstWave.waitForFunction(({ x, time }) => state.player.x > x + 20 && state.wave_time_left < time - 0.2,
+        initial, { timeout: 2000 });
+      await firstWave.keyboard.up('d');
+    } finally {
+      releaseSprite();
+      await firstWave.unrouteAll({ behavior: 'wait' });
+      await firstWave.close();
+    }
+
+    console.log(`Loading: room fallback works and wave one runs during other biome downloads (${startup.resources.length} startup resources).`);
   } finally {
     await browser.close();
   }

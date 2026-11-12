@@ -9085,6 +9085,7 @@ function wakeGameLoop() {
   if (idleGameLoopTimer === null) return;
   clearTimeout(idleGameLoopTimer);
   idleGameLoopTimer = null;
+  lastTime = performance.now();
   requestAnimationFrame(gameLoop);
 }
 
@@ -9095,7 +9096,7 @@ function gameLoop(now) {
     scheduleGameLoop();
     return;
   }
-  const rawDt = Math.min(0.1, (now - lastTime) / 1000);
+  const rawDt = Math.max(0, Math.min(0.1, (now - lastTime) / 1000));
   lastTime = now;
   const dt = rawDt * (state.game_speed || 1.0);
 
@@ -9398,11 +9399,11 @@ window.advanceTime = (ms) => {
 initTitleScreen();
 initTouchControls();
 ensureWeaponVisuals();
+// A slow decorative sprite must not hold the first wave's simulation.
+scheduleGameLoop();
 
 loadAssets(() => {
+  if (state.is_wave_active) return;
   initTitleScreen();
-  initTouchControls();
-  // Paint the static title backdrop once before the idle loop goes to sleep.
   render(0);
-  requestAnimationFrame(gameLoop);
 });
