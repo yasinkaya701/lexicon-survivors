@@ -2048,22 +2048,22 @@ function applySkillEffects(effects = {}) {
 function grantCharacterXp(amount, reason = "") {
   const profile = getCharacterProgress();
   if (profile.level >= 18 || amount <= 0) return;
+  const previousLevel = profile.level;
   profile.xp += Math.round(amount);
-  let leveled = false;
   while (profile.level < 18 && profile.xp >= xpForNextCharacterLevel(profile.level)) {
     profile.xp -= xpForNextCharacterLevel(profile.level);
     profile.level += 1;
     profile.skill_points += 1;
-    leveled = true;
   }
   if (profile.level >= 18) profile.xp = 0;
   persistCharacterProgress();
-  if (leveled) {
-    state.skill_tree_notice = `${CHARACTERS[state.selected_char].name} · SEVİYE ${profile.level} · 1 YETENEK PUANI`;
-    addFloatingText(state.player.x, state.player.y - 34, `SEVİYE ${profile.level} · +1 YETENEK`, "#e4c477", 15);
+  const levelsGained = profile.level - previousLevel;
+  if (levelsGained > 0) {
+    state.skill_tree_notice = `${CHARACTERS[state.selected_char].name} · SEVİYE ${profile.level} · ${levelsGained} YETENEK PUANI`;
+    addFloatingText(state.player.x, state.player.y - 34, `SEVİYE ${profile.level} · +${levelsGained} YETENEK`, "#e4c477", 15);
     sounds.playTone(660, "triangle", 0.16, 0.16);
+    if (state.is_wave_active) updateHUD();
   }
-  if (leveled && state.is_wave_active) updateHUD();
 }
 function unlockCharacterSkill(nodeId) {
   const nodes = getCharacterSkillNodes();
@@ -4263,37 +4263,44 @@ function updatePlayer(dt) {
 
   clampPlayerToArena(p);
 
-  // Ink drops
-  state.ink_drops.forEach(drop => {
-    const dist = Math.hypot(drop.x - p.x, drop.y - p.y);
-    const pullRadius = state.magnet_timer > 0 ? (GADGETS_CATALOG.grammar_magnet.values?.radius || 1200) : state.pickup_radius;
-    if (dist < pullRadius) {
-      const pull = (state.magnet_timer > 0 ? (GADGETS_CATALOG.grammar_magnet.values?.pull_speed || 520) : (380 + (state.pickup_radius - dist) * 2.5)) * dt;
-      drop.x += ((p.x - drop.x) / dist) * pull;
-      drop.y += ((p.y - drop.y) / dist) * pull;
-      if (dist < 24) {
-        drop.collected = true;
-        sounds.pickup();
-        const earned = Math.ceil(drop.value * state.ink_mult);
-        state.ink_count += earned;
-        addFloatingText(p.x + (Math.random() - 0.5) * 20, p.y - 20, `+${earned}`, "#a9c6b6", 12);
-        updateHUD();
+  const magnetActive = state.magnet_timer > 0;
+  const magnetValues = GADGETS_CATALOG.grammar_magnet.values;
+  const pullRadius = magnetActive ? (magnetValues?.radius || 1200) : state.pickup_radius;
+  const pullRadiusSquared = pullRadius * pullRadius;
+  const magnetSpeed = magnetActive ? (magnetValues?.pull_speed || 520) : 0;
+  let pickedUpDrop = false;
+  let earnedInk = 0;
+  let inkWriteIndex = 0;
+  for (const drop of state.ink_drops) {
+    const dx = p.x - drop.x;
+    const dy = p.y - drop.y;
+    const distanceSquared = dx * dx + dy * dy;
+    if (distanceSquared < pullRadiusSquared) {
+      if (distanceSquared < 24 * 24) {
+        pickedUpDrop = true;
+        earnedInk += Math.ceil(drop.value * state.ink_mult);
+        continue;
       }
+      const distance = Math.sqrt(distanceSquared);
+      const pull = (magnetSpeed || (380 + (state.pickup_radius - distance) * 2.5)) * dt / distance;
+      drop.x += dx * pull;
+      drop.y += dy * pull;
     }
-  });
-  compactLiveArray(state.ink_drops, d => !d.collected);
+    state.ink_drops[inkWriteIndex++] = drop;
+  }
+  state.ink_drops.length = inkWriteIndex;
+  if (pickedUpDrop) {
+    state.ink_count += earnedInk;
+    addFloatingText(p.x + (Math.random() - 0.5) * 20, p.y - 20, `+${earnedInk}`, "#a9c6b6", 12);
+  }
 
   // Health Drops / Şifa Parşömeni (+18 HP)
   state.health_drops.forEach(drop => {
     const dist = Math.hypot(drop.x - p.x, drop.y - p.y);
-    const pullRadius = state.magnet_timer > 0 ? (GADGETS_CATALOG.grammar_magnet.values?.radius || 1200) : state.pickup_radius;
     if (dist < pullRadius) {
-      const pull = (state.magnet_timer > 0 ? (GADGETS_CATALOG.grammar_magnet.values?.pull_speed || 520) : (380 + (state.pickup_radius - dist) * 2.5)) * dt;
-      drop.x += ((p.x - drop.x) / dist) * pull;
-      drop.y += ((p.y - drop.y) / dist) * pull;
       if (dist < 26) {
         drop.collected = true;
-        sounds.pickup();
+        pickedUpDrop = true;
         const threadActive = state.artifacts_owned.includes("mnemonic_thread") && !state.mnemonic_used_this_wave;
         const threadValues = ARTIFACTS_CATALOG.mnemonic_thread.values || {};
         const healing = Math.round((drop.value + (threadActive ? (threadValues.heal_bonus || 14) : 0)) * (state.selected_char === "lexicon_alchemist" ? 1.5 : 1.0));
@@ -4309,11 +4316,18 @@ function updatePlayer(dt) {
           x: p.x, y: p.y, radius: 10, max_radius: 50,
           alpha: 1.0, color: "rgba(34, 197, 94, "
         });
-        updateHUD();
+      } else {
+        const pull = (magnetSpeed || (380 + (state.pickup_radius - dist) * 2.5)) * dt / dist;
+        drop.x += (p.x - drop.x) * pull;
+        drop.y += (p.y - drop.y) * pull;
       }
     }
   });
   compactLiveArray(state.health_drops, d => !d.collected);
+  if (pickedUpDrop) {
+    sounds.pickup();
+    updateHUD();
+  }
 
   // Floating Combat Damage Numbers update
   if (state.floating_texts && state.floating_texts.length) {
@@ -5698,6 +5712,8 @@ function updateEnemies(dt) {
   // Commander proximity uses a small spatial grid instead of comparing every pair.
   updateCommanderAuras();
 
+  const velocityDecay = Math.pow(0.06, dt);
+  let enemyFired = false;
   state.enemies.forEach(e => {
     e.charge_timer = Math.max(0, (e.charge_timer || 0) - dt);
     if (e.charge_timer === 0) e.charge_damage = 0;
@@ -5709,8 +5725,8 @@ function updateEnemies(dt) {
     e.quill_mark_timer = Math.max(0, (e.quill_mark_timer || 0) - dt);
     e.hyphen_mark_timer = Math.max(0, (e.hyphen_mark_timer || 0) - dt);
     e.quill_echo_cooldown = Math.max(0, (e.quill_echo_cooldown || 0) - dt);
-    e.vx *= Math.pow(0.06, dt);
-    e.vy *= Math.pow(0.06, dt);
+    e.vx *= velocityDecay;
+    e.vy *= velocityDecay;
     if ((e.burn_timer || 0) > 0) {
       e.burn_timer = Math.max(0, e.burn_timer - dt);
       e.burn_tick_timer = (e.burn_tick_timer || 0.35) - dt;
@@ -5880,7 +5896,7 @@ function updateEnemies(dt) {
             }));
             state.telegraphs.push(telegraph(angles[1], () => {}));
           }
-          sounds.enemyShoot();
+          enemyFired = true;
           break;
         }
         if (dist < 172) {
@@ -5914,7 +5930,7 @@ function updateEnemies(dt) {
 
         if (e.shoot_cooldown <= 0) {
           e.shoot_cooldown = 2.4;
-          sounds.enemyShoot();
+          enemyFired = true;
           spawnEnemyProjectile(e.x, e.y, dirX, dirY, e.damage * 0.85, 240 * chronoMult);
         }
         break;
@@ -5955,7 +5971,7 @@ function updateEnemies(dt) {
           if (e.behavior_timer === 0) {
             spawnEnemyProjectile(e.x + e.attack_dx * 22, e.y + e.attack_dy * 22,
               e.attack_dx, e.attack_dy, e.damage * 0.55, 175 * chronoMult);
-            sounds.enemyShoot();
+            enemyFired = true;
             e.behavior_phase = "recovery";
             e.behavior_timer = 0.48;
             e.dive_cooldown = 2.7;
@@ -6110,6 +6126,7 @@ function updateEnemies(dt) {
       e.vy = -dirY * 220;
     }
   });
+  if (enemyFired) sounds.enemyShoot();
 
   updateBossHealthBar();
 
@@ -6149,13 +6166,15 @@ function updateEnemies(dt) {
   // Dead enemies & splitting & health drops & volatile bomb
   const newEnemies = [];
   let milestoneBossDefeated = false;
+  let earnedCombatXp = 0;
   state.enemies.forEach(e => {
     if (e.hp <= 0 && !e.dead) {
       e.dead = true;
-      sounds.enemyDeath();
       state.kill_count++;
       const isBoss = e.is_boss || e.type === "Red Pen Boss" || e.type === "Lexicon Dragon Boss";
-      grantCharacterXp(e.is_mistake_echo ? 5 + (e.fail_count || 1) : isBoss ? 24 + Math.floor(state.current_wave / 10) : 2 + Math.floor(state.current_wave / 40), e.is_mistake_echo ? "word_echo" : isBoss ? "boss" : "enemy");
+      const enemyXp = e.is_mistake_echo ? 5 + (e.fail_count || 1)
+        : isBoss ? 24 + Math.floor(state.current_wave / 10) : 2 + Math.floor(state.current_wave / 40);
+      earnedCombatXp += Math.round(enemyXp);
       const inkReward = e.is_boss
         ? (e.ink_reward || Math.round(32 + state.current_wave * 1.4))
         : getEnemyInkReward(e.type, e.ink_reward || 1);
@@ -6165,12 +6184,15 @@ function updateEnemies(dt) {
       if (state.selected_char === "rune_sorceress") {
         state.particles.push({x:e.x,y:e.y,radius:12,max_radius:128,alpha:0.95,color:"rgba(166, 119, 255, "});
         state.enemies.forEach(other => {
-          const burstDist = Math.hypot(other.x - e.x, other.y - e.y);
-          if (other !== e && !other.dead && burstDist < 118) {
+          if (other.dead) return;
+          const dx = other.x - e.x;
+          const dy = other.y - e.y;
+          const distanceSquared = dx * dx + dy * dy;
+          if (distanceSquared < 118 * 118) {
             other.hp -= 34 * state.damage_mult;
-            const knock = burstDist > 0.001 ? 220 / burstDist : 0;
-            other.vx += (other.x - e.x) * knock;
-            other.vy += (other.y - e.y) * knock;
+            const knock = distanceSquared > 0.000001 ? 220 / Math.sqrt(distanceSquared) : 0;
+            other.vx += dx * knock;
+            other.vy += dy * knock;
           }
         });
       }
@@ -6231,6 +6253,10 @@ function updateEnemies(dt) {
       }
     }
   });
+  if (earnedCombatXp > 0) {
+    sounds.enemyDeath();
+    grantCharacterXp(earnedCombatXp, "combat");
+  }
 
   compactLiveArray(state.enemies, e => !e.dead);
   newEnemies.forEach(addAliveEnemy);
@@ -6535,7 +6561,7 @@ function spawnEnemyProjectile(x, y, dx, dy, dmg, spd) {
 }
 
 function spawnInkDrop(x, y, value) {
-  state.ink_drops.push({ x, y, value, collected: false });
+  state.ink_drops.push({ x, y, value });
 }
 
 function takePlayerDamage(amount) {
@@ -8169,10 +8195,10 @@ function render(dt = 1 / 60) {
   // reach the viewport; movement, collision, and attack logic still run for
   // every entity off screen.
   const renderBounds = {
-    left: p.x - cx / zoom,
-    right: p.x + cx / zoom,
-    top: p.y - cy / zoom,
-    bottom: p.y + cy / zoom
+    left: p.x - (cx + shakeX) / zoom,
+    right: p.x + (cx - shakeX) / zoom,
+    top: p.y - (cy + shakeY) / zoom,
+    bottom: p.y + (cy - shakeY) / zoom
   };
   const isInRenderViewport = (x, y, margin = 40) =>
     x + margin >= renderBounds.left && x - margin <= renderBounds.right
@@ -8226,7 +8252,7 @@ function render(dt = 1 / 60) {
   if (!hasErrataRoom && !reducedMotion) state.rune_rotation += 0.003;
   const runeRotation = reducedMotion ? 0 : state.rune_rotation;
   const runeImg = images[runeSprite] || images["magical_rune_circle.png"];
-  if (!hasErrataRoom && runeImg) {
+  if (!hasErrataRoom && runeImg && isInRenderViewport(0, 0, 420 * Math.SQRT1_2)) {
     ctx.save();
     ctx.translate(0, 0);
     ctx.rotate(runeRotation);
