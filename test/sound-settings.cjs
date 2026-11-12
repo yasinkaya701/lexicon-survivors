@@ -37,14 +37,13 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || path.join(os.homed
       persisted: [localStorage.getItem('lexicon_sfx_volume'), localStorage.getItem('lexicon_music_volume'), localStorage.getItem('lexicon_music_choice')]
     })), { sfx: 0.4, music: 0.35, choice: 'action', persisted: ['0.4', '0.35', 'action'] });
 
-    const audioState = await page.evaluate(() => {
+    const audioState = await page.evaluate(async () => {
       const created = [];
       window.Audio = function FakeAudio(src = '') {
         this.src = src ? new URL(src, location.href).href : '';
         this.volume = 1; this.muted = false; this.loop = false; this.currentTime = 0;
         this.play = () => { created.push(this); return Promise.resolve(); };
       };
-      sounds.assetVoices = [];
       const mutedAssetResult = sounds.playAsset('hit');
       const mutedDirectResult = sounds.playOneShot('assets/audio/weapons/weapon_quill_blaster_v1.wav');
       let synthSources = 0;
@@ -59,15 +58,41 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || path.join(os.homed
       const musicUnmutedWhileSfxMuted = music?.muted;
       bgm.setMuted(true);
       sounds.setSfxMuted(false);
-      sounds.assetVoices = [];
+
+      let decodes = 0;
+      let stoppedSources = 0;
+      const bufferedSources = [];
+      sounds.ctx = {
+        state: 'running',
+        destination: {},
+        async decodeAudioData() { decodes++; return {}; },
+        createBufferSource() {
+          return {
+            connect(gain) { this.gain = gain; },
+            start() { bufferedSources.push(this); },
+            stop() { stoppedSources++; },
+            disconnect() {}
+          };
+        },
+        createGain() { return { gain: { value: 0 }, connect() {}, disconnect() {} }; }
+      };
+      const mediaPlayCountBeforeSfx = created.length;
       const sfxWhileMusicMuted = sounds.playAsset('hit');
-      const sfxPlayCountWhileMusicMuted = created.length;
+      for (let i = 0; i < 50 && !bufferedSources.length; i++) {
+        await new Promise(resolve => setTimeout(resolve, 20));
+      }
+      sounds.playAsset('hit');
+      const mediaSfxPlays = created.length - mediaPlayCountBeforeSfx;
+      sounds.setSfxVolume(0.25);
+      const activeVolume = bufferedSources[0]?.gain.gain.value;
+      sounds.setSfxVolume(0.4);
       sounds.setSfxMuted(true);
       return {
         mutedAssetResult, mutedDirectResult, blockedCount, mutedSynthCount,
         musicPath: music?.src || '', musicMuted: music?.muted, musicUnmutedWhileSfxMuted,
         musicVolume: music?.volume, sfxMuted: sounds.sfxMuted,
-        sfxWhileMusicMuted, sfxPlayCountWhileMusicMuted
+        sfxWhileMusicMuted, mediaSfxPlays, bufferedSfxPlays: bufferedSources.length, decodes,
+        stoppedSources, activeVolume
       };
     });
     assert.equal(audioState.mutedAssetResult, false);
@@ -80,7 +105,11 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || path.join(os.homed
     assert.equal(audioState.musicVolume, 0.24 * 0.35);
     assert.equal(audioState.sfxMuted, true);
     assert.equal(audioState.sfxWhileMusicMuted, true, 'muting music leaves sound effects enabled');
-    assert.equal(audioState.sfxPlayCountWhileMusicMuted, 1);
+    assert.equal(audioState.mediaSfxPlays, 0, 'sound effects never restart HTML media elements');
+    assert.equal(audioState.bufferedSfxPlays, 2, 'the same decoded effect can play twice');
+    assert.equal(audioState.decodes, 1, 'repeated effects reuse a single decoded buffer');
+    assert.equal(audioState.activeVolume, 0.72 * 0.25, 'volume changes apply to active effects');
+    assert.equal(audioState.stoppedSources, 2, 'mute stops all active effects');
 
     await page.reload({ waitUntil: 'domcontentloaded' });
     const persisted = await page.evaluate(() => ({

@@ -714,9 +714,8 @@ function updateAmbientMotes(dt) {
 class SoundManager {
   constructor() {
     this.ctx = null;
-    this.assetVoices = [];
-    this.assetVoiceCursor = 0;
-    this.oneShotVoices = [];
+    this.assetBuffers = new Map();
+    this.bufferVoices = new Set();
     this.synthVoices = new Set();
     this.lastAssetVariant = Object.create(null);
     this.lastWeaponCueAt = Object.create(null);
@@ -748,9 +747,11 @@ class SoundManager {
   setSfxMuted(muted) {
     this.sfxMuted = Boolean(muted);
     if (this.sfxMuted) {
-      [...this.assetVoices, ...this.oneShotVoices].forEach(voice => {
-        try { voice.pause(); voice.currentTime = 0; } catch (_) {}
-      });
+      for (const asset of this.assetBuffers.values()) asset.pendingCue = null;
+      for (const voice of this.bufferVoices) {
+        try { voice.source.stop(); } catch (_) {}
+      }
+      this.bufferVoices.clear();
       this.synthVoices.forEach(voice => { try { voice.oscillator.stop(); } catch (_) {} });
       this.synthVoices.clear();
     }
@@ -759,9 +760,7 @@ class SoundManager {
   setSfxVolume(volume) {
     const value = Number(volume);
     this.sfxVolume = Number.isFinite(value) ? Math.min(1, Math.max(0, value)) : 1;
-    [...this.assetVoices, ...this.oneShotVoices].forEach(voice => {
-      if (voice && Number.isFinite(voice.baseSfxVolume)) voice.volume = Math.max(0, Math.min(1, voice.baseSfxVolume * this.sfxVolume));
-    });
+    for (const voice of this.bufferVoices) voice.gain.gain.value = voice.volume * this.sfxVolume;
     try { localStorage.setItem("lexicon_sfx_volume", String(this.sfxVolume)); } catch (_) {}
   }
   setMusicVolume(volume) {
@@ -770,16 +769,63 @@ class SoundManager {
     if (this.music) this.music.volume = 0.24 * this.musicVolume;
     try { localStorage.setItem("lexicon_music_volume", String(this.musicVolume)); } catch (_) {}
   }
+  loadSoundEffect(path) {
+    const context = this.ctx;
+    const asset = { buffer: null, pendingCue: null, failed: false };
+    this.assetBuffers.set(path, asset);
+    fetch(path)
+      .then(response => {
+        if (!response.ok) throw new Error(`Could not load sound effect: ${path}`);
+        return response.arrayBuffer();
+      })
+      .then(bytes => context.decodeAudioData(bytes))
+      .then(buffer => {
+        asset.buffer = buffer;
+        const cue = asset.pendingCue;
+        asset.pendingCue = null;
+        if (cue && performance.now() - cue.time < 500) this.playSoundBuffer(buffer, cue.volume);
+      })
+      .catch(() => {
+        asset.failed = true;
+        asset.pendingCue = null;
+      });
+    return asset;
+  }
+
+  playSoundBuffer(buffer, volume) {
+    if (this.sfxMuted || this.sfxVolume <= 0 || this.ctx?.state !== "running") return false;
+    if (this.bufferVoices.size >= 12) {
+      const oldest = this.bufferVoices.values().next().value;
+      this.bufferVoices.delete(oldest);
+      try { oldest.source.stop(); } catch (_) {}
+    }
+    const source = this.ctx.createBufferSource();
+    const gain = this.ctx.createGain();
+    const voice = { source, gain, volume };
+    source.buffer = buffer;
+    gain.gain.value = volume * this.sfxVolume;
+    source.connect(gain);
+    gain.connect(this.ctx.destination);
+    source.onended = () => {
+      this.bufferVoices.delete(voice);
+      source.disconnect();
+      gain.disconnect();
+    };
+    source.start();
+    this.bufferVoices.add(voice);
+    return true;
+  }
+
   playOneShot(path, volume = 0.72) {
     if (this.sfxMuted || this.sfxVolume <= 0) return false;
     try {
-      const voice = new Audio(path);
-      voice.baseSfxVolume = volume;
-      voice.volume = Math.max(0, Math.min(1, volume * this.sfxVolume));
-      this.oneShotVoices = this.oneShotVoices.filter(item => !item.ended);
-      this.oneShotVoices.push(voice);
-      if (this.oneShotVoices.length > 36) this.oneShotVoices.shift();
-      voice.play().catch(() => {});
+      if (!this.ctx || this.ctx.state === "suspended") this.init();
+      if (!this.ctx) return false;
+      // WebKit can stall when combat repeatedly seeks and restarts media elements.
+      const asset = this.assetBuffers.get(path) || this.loadSoundEffect(path);
+      if (asset.failed) return false;
+      if (asset.buffer) return this.playSoundBuffer(asset.buffer, volume);
+      asset.pendingCue = { time: performance.now(), volume };
       return true;
     } catch (_) { return false; }
   }
@@ -798,16 +844,7 @@ class SoundManager {
       this.lastAssetVariant[key] = asset;
       const category = key === "gadget" ? "abilities"
         : ["hit", "death", "pickup", "wave", "boss_roar", "resonance_bell"].includes(key) ? "gameplay" : "weapons";
-      const path = `assets/audio/${category}/${asset}.wav`;
-      const poolIndex = this.assetVoiceCursor++ % 12;
-      const voice = this.assetVoices[poolIndex]
-        || (() => { const candidate = new Audio(); this.assetVoices[poolIndex] = candidate; return candidate; })();
-      if (voice.src !== new URL(path, window.location.href).href) voice.src = path;
-      voice.currentTime = 0;
-      voice.baseSfxVolume = volume;
-      voice.volume = Math.max(0, Math.min(1, volume * this.sfxVolume));
-      voice.play().catch(() => {});
-      return true;
+      return this.playOneShot(`assets/audio/${category}/${asset}.wav`, volume);
     } catch (_) { return false; }
   }
   startMusic() {
@@ -830,10 +867,11 @@ class SoundManager {
   init() {
     if (!this.ctx) {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContext) return;
       this.ctx = new AudioContext();
     }
     if (this.ctx.state === 'suspended') {
-      this.ctx.resume();
+      this.ctx.resume().catch(() => {});
     }
   }
   playTone(freq, type, duration, gainVal = 0.15) {
