@@ -602,3 +602,175 @@
   #title-screen[data-step="landing"] .control-name { font-size: 11px !important; }
   #title-screen[data-step="landing"] .landing-footnote small { font-size: 12px !important; }
 }
+
+/* Settings are laid out like three marked folio sections, with active controls carrying the signal red. */
+#errata-book[data-kind="settings"] .errata-book-panel {
+  width: min(1120px, 100%);
+  padding: 34px clamp(24px, 4vw, 54px) 40px;
+  background-color: #171315 !important;
+  background-image: linear-gradient(100deg, rgba(17, 13, 16, .76), rgba(17, 13, 16, .64) 65%, rgba(17, 13, 16, .74)), url("./collection-art/settings-scriptorium.webp") !important;
+  background-position: left center !important;
+  background-size: cover !important;
+  border: 1px solid rgba(210, 177, 134, .64) !important;
+  border-top: 3px solid #b83b46 !important;
+  box-shadow: inset 0 0 0 5px rgba(17, 13, 16, .42), 0 26px 80px rgba(0, 0, 0, .72) !important;
+}
+#errata-book[data-kind="settings"] .book-dialog-header {
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 18px;
+  border-bottom-color: rgba(242, 225, 197, .32);
+}
+#errata-book[data-kind="settings"] .book-dialog-header h2 {
+  color: #f1eee9;
+  font: 600 clamp(31px, 3vw, 43px)/1.05 "Cinzel Decorative", "IBM Plex Serif", serif;
+  letter-spacing: -.025em;
+}
+#errata-book[data-kind="settings"] .settings-rows {
+  display: grid;
+  grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr);
+  align-items: stretch;
+  gap: 16px 24px;
+}
+#errata-book[data-kind="settings"] .settings-group {
+  min-width: 0;
+  padding: 17px 20px 10px;
+  border: 1px solid rgba(231, 220, 208, .17);
+  border-top: 2px solid rgba(184, 59, 70, .88);
+  background: rgba(12, 10, 12, .66);
+  box-shadow: inset 0 1px rgba(255, 255, 255, .035);
+}
+#errata-book[data-kind="settings"] .settings-group[data-settings-group="appearance"] { grid-column: 1; grid-row: 1; }
+#errata-book[data-kind="settings"] .settings-group[data-settings-group="play"] { grid-column: 1; grid-row: 2; }
+#errata-book[data-kind="settings"] .settings-group[data-settings-group="sound"] { grid-column: 2; grid-row: 1 / span 2; }
+#errata-book[data-kind="settings"] .settings-group-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin-bottom: 7px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(242, 225, 197, .2);
+}
+#errata-book[data-kind="settings"] .settings-group-index {
+  display: grid;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgba(216, 89, 89, .8);
+  background: rgba(126, 31, 43, .36);
+  color: #ffb3a0;
+  font: 500 12px "IBM Plex Mono", monospace;
+  letter-spacing: .04em;
+}
+#errata-book[data-kind="settings"] .settings-group-heading h3 {
+  margin: 0;
+  color: #f0ece7;
+  font: 600 21px/1.15 "IBM Plex Serif", serif;
+}
+#errata-book[data-kind="settings"] .settings-group-heading p {
+  margin: 4px 0 0;
+  color: #c4c0bf;
+  font: 14px/1.4 "IBM Plex Sans", sans-serif;
+}
+#errata-book[data-kind="settings"] .settings-group-rows { display: flex; flex-direction: column; }
+#errata-book[data-kind="settings"] .settings-row {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px 13px;
+  min-height: 65px;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(242, 225, 197, .16);
+  color: #f0ece7;
+  font-size: 15px;
+}
+#errata-book[data-kind="settings"] .settings-row:last-child { border-bottom: 0; }
+#errata-book[data-kind="settings"] .settings-row::before {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(230, 218, 205, .25);
+  background: rgba(35, 30, 32, .94);
+  color: #f28478;
+  font: 500 16px/1 "IBM Plex Sans", sans-serif;
+}
+#errata-book[data-kind="settings"] .settings-row > span,
+#errata-book[data-kind="settings"] .settings-row > label {
+  grid-column: 2;
+  min-width: 0;
+  color: #f0ece7;
+  line-height: 1.35;
+}
+#errata-book[data-kind="settings"] .settings-row small {
+  color: #c7c3c0;
+  font-size: 12px;
+  line-height: 1.4;
+}
+#errata-book[data-kind="settings"] .settings-row input[type="checkbox"] {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  width: 48px;
+  height: 27px;
+  border-color: rgba(223, 212, 203, .52);
+  background: #211c20;
+}
+#errata-book[data-kind="settings"] .settings-row input[type="checkbox"]:checked {
+  border-color: #ff8777;
+  background: #9e2636;
+}
+#errata-book[data-kind="settings"] .settings-row input[type="checkbox"]::after { width: 17px; height: 17px; }
+#errata-book[data-kind="settings"] .settings-row input[type="checkbox"]:checked::after { transform: translateX(20px); background: #fff2e7; }
+#errata-book[data-kind="settings"] .settings-row:has(input[type="range"]),
+#errata-book[data-kind="settings"] .settings-row:has(select) {
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 5px 13px;
+}
+#errata-book[data-kind="settings"] .settings-row:has(input[type="range"])::before,
+#errata-book[data-kind="settings"] .settings-row:has(select)::before { grid-column: 1; grid-row: 1 / span 2; }
+#errata-book[data-kind="settings"] .settings-row:has(input[type="range"]) > label,
+#errata-book[data-kind="settings"] .settings-row:has(select) > label { grid-column: 2; }
+#errata-book[data-kind="settings"] .settings-row .audio-setting-control,
+#errata-book[data-kind="settings"] .settings-row select,
+#errata-book[data-kind="settings"] .settings-row button {
+  grid-column: 2;
+  justify-self: stretch;
+  min-width: 0;
+  max-width: none !important;
+}
+#errata-book[data-kind="settings"] .settings-row select,
+#errata-book[data-kind="settings"] .settings-row button {
+  min-height: 42px;
+  border: 1px solid rgba(236, 195, 164, .58);
+  border-radius: 2px;
+  background: rgba(111, 29, 42, .7);
+  color: #fff0e5;
+  font: 600 14px "IBM Plex Sans", sans-serif;
+}
+#errata-book[data-kind="settings"] .settings-row button:hover,
+#errata-book[data-kind="settings"] .settings-row select:hover { border-color: #ff9b82; background: #822638; }
+#errata-book[data-kind="settings"] .audio-setting-control { grid-template-columns: minmax(0, 1fr) 42px; align-items: center; gap: 10px; }
+#errata-book[data-kind="settings"] .audio-setting-control input[type="range"] { width: 100% !important; min-width: 0 !important; accent-color: #e24b4d !important; }
+#errata-book[data-kind="settings"] .audio-setting-value { color: #fff0e5; font: 600 12px "IBM Plex Mono", monospace; text-align: right; }
+
+@media (max-width: 760px) {
+  #errata-book[data-kind="settings"] .settings-rows { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  #errata-book[data-kind="settings"] .settings-group[data-settings-group="appearance"],
+  #errata-book[data-kind="settings"] .settings-group[data-settings-group="play"],
+  #errata-book[data-kind="settings"] .settings-group[data-settings-group="sound"] { grid-column: 1; grid-row: auto; }
+  #errata-book[data-kind="settings"] .settings-group { padding: 14px 15px 8px; }
+  #errata-book[data-kind="settings"] .settings-row { min-height: 62px; }
+}
+@media (max-width: 650px) {
+  #errata-book[data-kind="settings"] .errata-book-panel { height: 94dvh; padding: 20px 15px; }
+  #errata-book[data-kind="settings"] .book-dialog-header { margin-bottom: 12px; }
+  #errata-book[data-kind="settings"] .settings-group-heading h3 { font-size: 19px; }
+  #errata-book[data-kind="settings"] .settings-group-heading p { font-size: 12px; }
+  #errata-book[data-kind="settings"] .settings-row { grid-template-columns: 30px minmax(0, 1fr) auto; gap: 9px; font-size: 14px; }
+  #errata-book[data-kind="settings"] .settings-row::before { width: 28px; height: 29px; }
+  #errata-book[data-kind="settings"] .settings-row input[type="checkbox"] { width: 44px; }
+  #errata-book[data-kind="settings"] .settings-row:has(input[type="range"]),
+  #errata-book[data-kind="settings"] .settings-row:has(select) { grid-template-columns: 30px minmax(0, 1fr); }
+}

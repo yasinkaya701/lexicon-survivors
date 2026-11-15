@@ -639,8 +639,33 @@
         const row = document.createElement('div'); row.className = 'settings-row';
         const label = document.createElement('span'); label.textContent = 'Ekran';
         const button = document.createElement('button'); button.type = 'button'; button.className = 'btn'; button.textContent = 'Tam ekranı değiştir'; button.addEventListener('click', () => fullscreenControl.click());
+        button.dataset.setting = 'fullscreen';
         row.append(label, button); rows.append(row);
       }
+      const groups = [
+        { id: 'appearance', index: '01', title: 'Görünüm', note: 'Okuma ve görsel sunum tercihleri.' },
+        { id: 'sound', index: '02', title: 'Ses arşivi', note: 'Müzik, efekt ve anlatım düzeyleri.' },
+        { id: 'play', index: '03', title: 'Oynanış', note: 'Sefer akışı ve ekran davranışı.' }
+      ];
+      const groupElements = new Map(groups.map(group => {
+        const section = document.createElement('section'); section.className = 'settings-group'; section.dataset.settingsGroup = group.id;
+        const heading = document.createElement('header'); heading.className = 'settings-group-heading';
+        const index = document.createElement('span'); index.className = 'settings-group-index'; index.textContent = group.index;
+        const copy = document.createElement('div');
+        const title = document.createElement('h3'); title.textContent = group.title;
+        const note = document.createElement('p'); note.textContent = group.note;
+        copy.append(title, note); heading.append(index, copy);
+        const body = document.createElement('div'); body.className = 'settings-group-rows';
+        section.append(heading, body);
+        return [group.id, body];
+      }));
+      for (const row of [...rows.children]) {
+        const setting = row.querySelector('[data-setting]')?.dataset.setting;
+        const group = row.classList.contains('audio-setting-row') || setting === 'voice-preview' ? 'sound' :
+          ['large-text', 'reduced-motion', 'low-effects'].includes(setting) ? 'appearance' : 'play';
+        groupElements.get(group).append(row);
+      }
+      rows.replaceChildren(...groups.map(group => groupElements.get(group.id).parentElement));
       bookContent.replaceChildren(rows);
     } else {
       const steps = document.createElement('ol'); steps.className = 'guide-steps';
