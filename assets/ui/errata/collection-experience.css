@@ -119,7 +119,7 @@
   background: linear-gradient(135deg, #8c2938, #581c2a);
   color: #fff0da;
   box-shadow: 0 8px 22px rgba(0, 0, 0, .34), inset 0 1px rgba(255, 255, 255, .12);
-  font: 600 17px/1.2 "Assassin", "IBM Plex Sans", sans-serif;
+  font: 600 17px/1.2 "IBM Plex Sans", sans-serif;
   letter-spacing: .025em;
   transition: transform .16s ease, filter .16s ease, box-shadow .16s ease;
 }
@@ -327,7 +327,7 @@
 
 .landing-nav > .menu-link .nav-index {
   color: #e3bd7b;
-  font: 500 11px/1 "Assassin", "IBM Plex Mono", monospace;
+  font: 500 11px/1 "IBM Plex Mono", monospace;
 }
 
 .landing-nav > .landing-begin:hover,

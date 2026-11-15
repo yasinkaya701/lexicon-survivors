@@ -402,7 +402,7 @@ function ensureWeaponVisualStatus() {
   Object.assign(node.style, {
     display: "none", margin: "2px auto", padding: "8px 12px", maxWidth: "460px",
     border: "1px solid #8b6b2e", background: "#f7edda", color: "#402c18",
-    font: "600 12px 'Assassin', 'IBM Plex Sans', sans-serif", textAlign: "center"
+    font: "600 12px 'IBM Plex Sans', sans-serif", textAlign: "center"
   });
   panel.appendChild(node);
   weaponVisualStatusNode = node;
@@ -426,7 +426,7 @@ function setWeaponVisualStatus(message, isError = false) {
     retry.textContent = "Tekrar dene";
     Object.assign(retry.style, {
       display: "block", margin: "6px auto 0", padding: "5px 11px", border: "1px solid #6f512b",
-      borderRadius: "3px", background: "#e2c88e", color: "#2b1c10", font: "700 12px 'Assassin', 'IBM Plex Sans', sans-serif"
+      borderRadius: "3px", background: "#e2c88e", color: "#2b1c10", font: "700 12px 'IBM Plex Sans', sans-serif"
     });
     retry.onclick = () => { ensureWeaponVisuals(true); };
     node.appendChild(retry);
@@ -3111,8 +3111,8 @@ function renderMistakesList() {
 
   if (!state.mistake_words || state.mistake_words.length === 0) {
     listEl.innerHTML = `
-      <div style="text-align: center; padding: 25px; font-family: 'Assassin', 'IBM Plex Sans', serif; color: #1b4d2e;">
-        <strong style="font-size: 16px; font-family: 'Assassin', 'IBM Plex Serif', serif;">Hata defteri temiz</strong>
+      <div style="text-align: center; padding: 25px; font-family: 'IBM Plex Sans', serif; color: #1b4d2e;">
+        <strong style="font-size: 16px; font-family: 'IBM Plex Serif', serif;">Hata defteri temiz</strong>
         <p style="font-size: 13px; color: #634325; margin-top: 4px;">Henüz bilinemeyen bir kelime yok. Sınavlarda harika bir başarı gösteriyorsun!</p>
       </div>
     `;
@@ -8193,9 +8193,9 @@ function drawSemanticEchoMark(ctx, archetype, radius, reducedEffects) {
       ctx.moveTo(-r,-r*.4);ctx.lineTo(r*.25,-r*.4);ctx.lineTo(r*.25,-r*.85);ctx.lineTo(r,r*.05);ctx.lineTo(r*.25,r*.85);ctx.lineTo(r*.25,r*.4);ctx.lineTo(-r,r*.4);ctx.closePath();ctx.fill();ctx.stroke();break;
     default:
       ctx.arc(0,0,r*.74,0,(Math.PI * 2));ctx.fill();ctx.stroke();
-      ctx.fillStyle = "#17232c";ctx.shadowBlur = 0;ctx.font = `900 ${Math.max(7,r*.62)}px 'Assassin', 'IBM Plex Sans',sans-serif`;ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(mark,0,1);ctx.restore();return;
+      ctx.fillStyle = "#17232c";ctx.shadowBlur = 0;ctx.font = `900 ${Math.max(7,r*.62)}px 'IBM Plex Sans',sans-serif`;ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(mark,0,1);ctx.restore();return;
   }
-  ctx.fillStyle = "#17232c";ctx.shadowBlur = 0;ctx.font = `900 ${Math.max(7,r*.54)}px 'Assassin', 'IBM Plex Sans',sans-serif`;ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(mark,0,1);
+  ctx.fillStyle = "#17232c";ctx.shadowBlur = 0;ctx.font = `900 ${Math.max(7,r*.54)}px 'IBM Plex Sans',sans-serif`;ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(mark,0,1);
   ctx.restore();
 }
 
@@ -8509,7 +8509,7 @@ function render(dt = 1 / 60) {
     ctx.stroke();
 
     ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 11px 'Assassin', 'IBM Plex Sans', sans-serif";
+    ctx.font = "bold 11px sans-serif";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillText("✚", 0, 0.5);
@@ -8793,7 +8793,7 @@ function render(dt = 1 / 60) {
       const frame = images["upgrade_v1/word_echo/word_echo_title_frame.svg"];
       const text = String(e.memory_word || e.label || "?");
       ctx.save();
-      ctx.font = "600 12px 'Assassin', 'IBM Plex Sans', sans-serif";
+      ctx.font = "600 12px 'IBM Plex Sans', sans-serif";
       const plateWidth = Math.max(140, Math.min(230, ctx.measureText(text).width + 38));
       const plateHeight = plateWidth * 0.30;
       const plateX = e.x - plateWidth / 2;
@@ -8807,7 +8807,7 @@ function render(dt = 1 / 60) {
               : /synonym|antonym|anlam|eş|zit/.test(category) ? "echo_mark_mirror.svg" : "echo_mark_quill.svg";
       const mark = images[`upgrade_v1/word_echo/${markKey}`];
       if (mark) ctx.drawImage(mark, e.x - 11, e.y + (e.size || 32) * 0.34, 22, 22);
-      ctx.font = "600 12px 'Assassin', 'IBM Plex Sans', sans-serif";
+      ctx.font = "600 12px 'IBM Plex Sans', sans-serif";
       ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.lineJoin = "round";
       ctx.lineWidth = 3; ctx.strokeStyle = "#111714"; ctx.fillStyle = "#f2e7cf";
       ctx.strokeText(text, e.x, plateY + plateHeight * 0.51, plateWidth - 28);
@@ -8819,7 +8819,7 @@ function render(dt = 1 / 60) {
       const label = e.is_boss
         ? (e.label || (e.type === "Lexicon Dragon Boss" ? "LEKSİKON EJDERHASI" : e.type === "Red Pen Boss" ? "KIRMIZI KALEM" : e.type))
         : (e.label || "ELİT DÜŞMAN");
-      ctx.font = "600 12px 'Assassin', 'IBM Plex Sans', sans-serif";
+      ctx.font = "600 12px 'IBM Plex Sans', sans-serif";
       ctx.textAlign = "center";
       const labelWidth = Math.min(178, ctx.measureText(label).width);
       const labelY = e.y - (e.size / 2) - 14;
@@ -9046,7 +9046,7 @@ function render(dt = 1 / 60) {
     state.floating_texts.forEach(ft => {
       const prog = Math.max(0, ft.lifetime / ft.max_lifetime);
       ctx.save();
-      ctx.font = `bold ${ft.size || 13}px 'Assassin', 'IBM Plex Serif', serif`;
+      ctx.font = `bold ${ft.size || 13}px 'IBM Plex Serif', serif`;
       ctx.fillStyle = ft.color;
       ctx.globalAlpha = Math.min(1.0, prog * 1.6);
       ctx.shadowColor = "rgba(0, 0, 0, 0.85)";
