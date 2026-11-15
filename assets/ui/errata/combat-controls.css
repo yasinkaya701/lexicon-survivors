@@ -24,11 +24,11 @@
 #combat-action-dock .touch-circle-btn:hover{background:#3b2932;border-color:#ddbd8c}
 #combat-action-dock .touch-circle-btn:active{background:#59303a;transform:translateY(1px)}
 #combat-action-dock .touch-icon{width:22px;height:22px;object-fit:contain;image-rendering:auto;pointer-events:none}
-#combat-action-dock .touch-label{font:500 12px/1.1 'IBM Plex Sans',sans-serif;pointer-events:none}
+#combat-action-dock .touch-label{font:500 12px/1.1 'Assassin', 'IBM Plex Sans',sans-serif;pointer-events:none}
 #combat-action-dock #touch-gadget-btn{grid-column:1/3;grid-row:2;width:129px;height:110px;justify-self:end;gap:3px;padding:8px;border:2px solid #d5b77c;border-radius:24px;background:radial-gradient(ellipse at 50% 25%,#494032,#251d24 72%);box-shadow:inset 0 0 0 3px #171116,inset 0 0 0 4px #d5b77c44,0 4px 12px #08060977}
 #combat-action-dock #touch-gadget-btn .touch-icon{width:48px;height:48px;filter:drop-shadow(0 2px 2px #0008)}
-#combat-gadget-name{max-width:100%;font:600 12px/1.1 'IBM Plex Sans',sans-serif;white-space:normal;text-align:center;pointer-events:none}
-#combat-gadget-status{color:#b6d4c0;font:600 12px/1 'IBM Plex Sans',sans-serif;font-variant-numeric:tabular-nums;pointer-events:none}
+#combat-gadget-name{max-width:100%;font:600 12px/1.1 'Assassin', 'IBM Plex Sans',sans-serif;white-space:normal;text-align:center;pointer-events:none}
+#combat-gadget-status{color:#b6d4c0;font:600 12px/1 'Assassin', 'IBM Plex Sans',sans-serif;font-variant-numeric:tabular-nums;pointer-events:none}
 #touch-gadget-btn.is-cooling{border-color:#826b60;background:#241c23}
 #touch-gadget-btn.is-cooling .touch-icon{opacity:.58}
 #touch-gadget-btn.is-cooling #combat-gadget-status{color:#e4ba9e}

@@ -30,7 +30,7 @@
 
 .errata-book-panel:has(.book-collection-grid) .book-dialog-header h2 {
   color: var(--archive-ink);
-  font: 700 clamp(28px, 4vw, 40px)/1.05 "IBM Plex Serif", serif;
+  font: 700 clamp(28px, 4vw, 40px)/1.05 "Assassin", "IBM Plex Serif", serif;
   letter-spacing: -.035em;
 }
 
@@ -49,7 +49,7 @@
   max-width: 70ch;
   margin: 0;
   color: #695a49;
-  font: 15px/1.5 "IBM Plex Serif", serif;
+  font: 15px/1.5 "Assassin", "IBM Plex Serif", serif;
 }
 
 .book-index,
@@ -69,7 +69,7 @@
   border-radius: 3px;
   background: #fff8e8b8;
   color: #594637;
-  font: 600 12px "IBM Plex Mono", monospace;
+  font: 600 12px "Assassin", "IBM Plex Mono", monospace;
   letter-spacing: .035em;
   transition: color .16s ease, background-color .16s ease, border-color .16s ease, transform .16s ease;
 }
@@ -98,13 +98,13 @@
   border-radius: 3px;
   background: #fff9eb;
   color: var(--archive-ink);
-  font: 15px "IBM Plex Sans", sans-serif;
+  font: 15px "Assassin", "IBM Plex Sans", sans-serif;
   box-shadow: inset 0 2px 5px #2e21100c;
 }
 
 .book-search::placeholder { color: #897965; }
 .book-search:focus-visible { outline: 3px solid #477b70a6; outline-offset: 2px; }
-.book-status { flex: 0 0 auto; margin: 0; color: var(--archive-muted); font: 11px "IBM Plex Mono", monospace; }
+.book-status { flex: 0 0 auto; margin: 0; color: var(--archive-muted); font: 11px "Assassin", "IBM Plex Mono", monospace; }
 
 .book-collection-grid {
   display: grid;
@@ -204,7 +204,7 @@
 
 .archive-card-eyebrow {
   color: var(--archive-teal);
-  font: 700 9px "IBM Plex Mono", monospace;
+  font: 700 9px "Assassin", "IBM Plex Mono", monospace;
   letter-spacing: .11em;
   text-transform: uppercase;
 }
@@ -212,7 +212,7 @@
 .archive-card-copy h3 {
   margin: 0;
   color: #2a2021;
-  font: 700 18px/1.18 "IBM Plex Serif", serif;
+  font: 700 18px/1.18 "Assassin", "IBM Plex Serif", serif;
   overflow-wrap: anywhere;
 }
 
@@ -225,14 +225,14 @@
   border-radius: 2px;
   background: #e4d1aa;
   color: #574534;
-  font: 600 10px "IBM Plex Mono", monospace;
+  font: 600 10px "Assassin", "IBM Plex Mono", monospace;
 }
 
 .archive-card-definition,
 .archive-card-description {
   margin: 3px 0 0;
   color: #655644;
-  font: 13px/1.48 "IBM Plex Sans", sans-serif;
+  font: 13px/1.48 "Assassin", "IBM Plex Sans", sans-serif;
 }
 
 .archive-card-example {
@@ -242,14 +242,14 @@
   border-left: 2px solid var(--archive-teal);
   background: #dfcfb080;
   color: #514337;
-  font: italic 12px/1.45 "IBM Plex Serif", serif;
+  font: italic 12px/1.45 "Assassin", "IBM Plex Serif", serif;
 }
 
 .archive-card-reward {
   margin-top: auto;
   padding-top: 8px;
   color: var(--archive-wine);
-  font: 600 10px "IBM Plex Mono", monospace;
+  font: 600 10px "Assassin", "IBM Plex Mono", monospace;
   letter-spacing: .02em;
 }
 
@@ -298,21 +298,21 @@
 
 .leaderboard-kicker {
   color: var(--archive-wine);
-  font: 600 10px "IBM Plex Mono", monospace;
+  font: 600 10px "Assassin", "IBM Plex Mono", monospace;
   letter-spacing: .12em;
 }
 
 .leaderboard-title-lockup h2 {
   margin: 5px 0 3px;
   color: #2a2021;
-  font: 700 clamp(30px, 5vw, 43px)/1.02 "IBM Plex Serif", serif;
+  font: 700 clamp(30px, 5vw, 43px)/1.02 "Assassin", "IBM Plex Serif", serif;
   letter-spacing: -.035em;
 }
 
 #leaderboard-overlay .leaderboard-title-lockup h2 { color: #2a2021 !important; }
 #leaderboard-overlay .leaderboard-title-lockup p { color: #71604f !important; }
 
-.leaderboard-title-lockup p { margin: 0; color: var(--archive-muted); font: 14px/1.45 "IBM Plex Serif", serif; }
+.leaderboard-title-lockup p { margin: 0; color: var(--archive-muted); font: 14px/1.45 "Assassin", "IBM Plex Serif", serif; }
 .leaderboard-header .btn { flex: 0 0 auto; min-height: 42px; }
 
 .leaderboard-podium {
@@ -367,14 +367,14 @@
   border-radius: 50%;
   background: #5c2632e8;
   color: #fff2d4;
-  font: 700 12px "IBM Plex Mono", monospace;
+  font: 700 12px "Assassin", "IBM Plex Mono", monospace;
   box-shadow: 0 2px 5px #24131b55;
 }
 
 .leaderboard-card-copy { display: flex; min-width: 0; flex-direction: column; gap: 4px; }
-.leaderboard-alias { overflow: hidden; color: #302326; font: 700 17px/1.2 "IBM Plex Serif", serif; text-overflow: ellipsis; white-space: nowrap; }
-.leaderboard-card-details { color: #675547; font: 11px/1.4 "IBM Plex Mono", monospace; }
-.leaderboard-card-time { color: var(--archive-wine); font: 700 11px "IBM Plex Mono", monospace; }
+.leaderboard-alias { overflow: hidden; color: #302326; font: 700 17px/1.2 "Assassin", "IBM Plex Serif", serif; text-overflow: ellipsis; white-space: nowrap; }
+.leaderboard-card-details { color: #675547; font: 11px/1.4 "Assassin", "IBM Plex Mono", monospace; }
+.leaderboard-card-time { color: var(--archive-wine); font: 700 11px "Assassin", "IBM Plex Mono", monospace; }
 
 .leaderboard-controls {
   display: grid;
@@ -387,7 +387,7 @@
   background: #fff8e59c;
 }
 
-.leaderboard-controls label { display: grid; gap: 5px; color: #5b4839; font: 600 10px "IBM Plex Mono", monospace; letter-spacing: .04em; }
+.leaderboard-controls label { display: grid; gap: 5px; color: #5b4839; font: 600 10px "Assassin", "IBM Plex Mono", monospace; letter-spacing: .04em; }
 #leaderboard-overlay .leaderboard-controls label { color: #5b4839 !important; }
 .leaderboard-controls input,
 .leaderboard-controls select {
@@ -398,7 +398,7 @@
   border-radius: 3px;
   background: #fffdf5;
   color: #302326;
-  font: 14px "IBM Plex Sans", sans-serif;
+  font: 14px "Assassin", "IBM Plex Sans", sans-serif;
 }
 
 #leaderboard-overlay .leaderboard-controls input,
@@ -409,7 +409,7 @@
 }
 
 .leaderboard-controls .btn { min-height: 42px; white-space: nowrap; }
-.leaderboard-status { min-height: 20px; margin: 13px 2px 5px; color: var(--archive-muted); font: 11px "IBM Plex Mono", monospace; }
+.leaderboard-status { min-height: 20px; margin: 13px 2px 5px; color: var(--archive-muted); font: 11px "Assassin", "IBM Plex Mono", monospace; }
 #leaderboard-overlay .leaderboard-status,
 #leaderboard-overlay .leaderboard-note { color: #71604f !important; }
 .leaderboard-entries { display: grid; gap: 7px; margin: 0; padding: 0; list-style: none; }
@@ -438,8 +438,8 @@
 .leaderboard-row .leaderboard-card-copy { align-items: flex-start; }
 .leaderboard-row .leaderboard-alias { font-size: 16px; }
 .leaderboard-row .leaderboard-card-time { justify-self: end; }
-.leaderboard-empty { padding: 22px 16px; border: 1px dashed #927855; color: #665344; text-align: center; font: 15px "IBM Plex Serif", serif; }
-.leaderboard-note { margin: 14px 0 0; color: #78695a; font: 11px/1.5 "IBM Plex Sans", sans-serif; }
+.leaderboard-empty { padding: 22px 16px; border: 1px dashed #927855; color: #665344; text-align: center; font: 15px "Assassin", "IBM Plex Serif", serif; }
+.leaderboard-note { margin: 14px 0 0; color: #78695a; font: 11px/1.5 "Assassin", "IBM Plex Sans", sans-serif; }
 
 .leaderboard-controls :focus-visible,
 .leaderboard-panel button:focus-visible { outline: 3px solid #477b70; outline-offset: 3px; }

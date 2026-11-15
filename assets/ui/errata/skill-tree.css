@@ -10,7 +10,7 @@
   gap: 15px;
   width: 100%;
   color: #eee2d2;
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: 'Assassin', 'IBM Plex Sans', sans-serif;
 }
 .skill-tree-profile {
   display: grid;
@@ -34,10 +34,10 @@
 .skill-tree-kicker,.skill-detail-kicker {
   display: block;
   color: #d3b47e;
-  font: 600 12px/1.4 'IBM Plex Mono', monospace;
+  font: 600 12px/1.4 'Assassin', 'IBM Plex Mono', monospace;
   letter-spacing: .09em;
 }
-.skill-tree-profile h2 { margin: 3px 0 4px; color: #f4e8d5; font: 600 22px/1.2 'IBM Plex Serif', serif; }
+.skill-tree-profile h2 { margin: 3px 0 4px; color: #f4e8d5; font: 600 22px/1.2 'Assassin', 'IBM Plex Serif', serif; }
 .skill-tree-profile p { margin: 0 0 7px; color: #c8b9a7; font-size: 12px; }
 .skill-xp-track { height: 7px; max-width: 470px; overflow: hidden; border: 1px solid #73543d; background: #0d0b0d; }
 .skill-xp-track span { display: block; height: 100%; background: linear-gradient(90deg, #3aa889, #dcc17d); transition: width .2s ease; }
@@ -52,7 +52,7 @@
   border: 1px solid #c7a96c88;
   background: #34251f;
   color: #f1d79d;
-  font: 600 13px 'IBM Plex Mono', monospace;
+  font: 600 13px 'Assassin', 'IBM Plex Mono', monospace;
   white-space: nowrap;
 }
 .skill-points-badge img { width: 22px; height: 22px; filter: brightness(0) saturate(100%) invert(78%) sepia(30%) saturate(504%) hue-rotate(5deg) brightness(103%); }
@@ -96,7 +96,7 @@
   border-bottom: 1px solid #72564366;
 }
 .skill-branch-heading > img { width: 32px; height: 32px; margin-top: 3px; object-fit: contain; opacity: .9; }
-.skill-branch-heading h3 { margin: 0 0 4px; color: #ead7b9; font: 600 16px/1.25 'IBM Plex Serif',serif; }
+.skill-branch-heading h3 { margin: 0 0 4px; color: #ead7b9; font: 600 16px/1.25 'Assassin', 'IBM Plex Serif',serif; }
 .skill-branch-heading p { margin: 0; color: #bcae9c; font-size: 12px; line-height: 1.4; }
 .skill-node-stack { position: relative; display: grid; align-content: start; gap: 10px; padding-top: 12px; }
 .skill-node-stack::before {
@@ -149,15 +149,15 @@
   opacity: .98;
 }
 .skill-node-copy { display: grid; gap: 3px; min-width: 0; }
-.skill-node-copy strong { color: #f1e4ce; font: 600 15px/1.2 'IBM Plex Serif',serif; }
-.skill-node-copy small { color: #c7b295; font: 12px 'IBM Plex Mono',monospace; }
+.skill-node-copy strong { color: #f1e4ce; font: 600 15px/1.2 'Assassin', 'IBM Plex Serif',serif; }
+.skill-node-copy small { color: #c7b295; font: 12px 'Assassin', 'IBM Plex Mono',monospace; }
 .skill-node-copy em { color: #b6d7bf; font-size: 12px; font-style: normal; line-height: 1.25; }
 .skill-status {
   justify-self: start;
   padding: 3px 6px;
   border: 1px solid #88745b88;
   color: #d4c4aa;
-  font: 600 12px 'IBM Plex Mono',monospace;
+  font: 600 12px 'Assassin', 'IBM Plex Mono',monospace;
   letter-spacing: .035em;
 }
 .skill-node-button[data-state="available"] { border-color: #70a88e; border-left-color: #66c39a; background: linear-gradient(110deg,#20332b,#1c1a1b 62%); }
@@ -183,10 +183,10 @@
 .skill-detail-panel[data-state="learned"] { border-left-color: #d5b66b; }
 .skill-detail-icon { width: 42px; height: 42px; object-fit: contain; margin-top: 4px; }
 .skill-detail-copy { display: grid; justify-items: start; gap: 5px; }
-.skill-detail-copy h4 { margin: 0; color: #f3e6d1; font: 600 18px 'IBM Plex Serif',serif; }
+.skill-detail-copy h4 { margin: 0; color: #f3e6d1; font: 600 18px 'Assassin', 'IBM Plex Serif',serif; }
 .skill-detail-copy p { margin: 0; color: #c9bdaf; font-size: 13px; line-height: 1.45; }
 .skill-detail-copy strong { color: #b1ddbf; font-size: 12px; }
-.skill-detail-copy small { color: #b9a78d; font: 12px 'IBM Plex Mono',monospace; }
+.skill-detail-copy small { color: #b9a78d; font: 12px 'Assassin', 'IBM Plex Mono',monospace; }
 .skill-tree-unavailable { padding: 16px; color: #f0d5ae; background: #21191b; }
 @media (max-width: 900px) {
   .skill-tree-branches { gap: 8px; }

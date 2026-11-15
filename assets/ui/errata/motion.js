@@ -44,7 +44,7 @@
     }
     for(const value of batches.values())labels.push({...value,text:Number(value.total.toFixed(1)).toString(),size:Math.min(19,Math.max(value.size||13,14)+(value.count>1?2:0))});
     context.save();context.textAlign='center';context.lineJoin='round';
-    for(const text of labels){const progress=Math.max(0,text.lifetime/text.max_lifetime);context.font=`600 ${Math.max(13,text.size||13)}px 'IBM Plex Sans',sans-serif`;context.globalAlpha=Math.min(1,progress*1.8);context.strokeStyle='#161018';context.lineWidth=3;context.fillStyle=text.color;context.strokeText(text.text,text.x,text.y);context.fillText(text.text,text.x,text.y)}
+    for(const text of labels){const progress=Math.max(0,text.lifetime/text.max_lifetime);context.font=`600 ${Math.max(13,text.size||13)}px 'Assassin', 'IBM Plex Sans',sans-serif`;context.globalAlpha=Math.min(1,progress*1.8);context.strokeStyle='#161018';context.lineWidth=3;context.fillStyle=text.color;context.strokeText(text.text,text.x,text.y);context.fillText(text.text,text.x,text.y)}
     context.restore();
   }
   window.ErrataMotion=Object.freeze({ready,heroFrame,enemyFrame,pickup,pose,drawPickup,drawProjectileTrail,drawCombatText});
