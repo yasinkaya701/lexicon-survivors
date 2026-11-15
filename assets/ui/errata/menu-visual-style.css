@@ -550,3 +550,55 @@
   background: rgba(15,13,15,.8) !important;
   color: var(--archive-white) !important;
 }
+
+/* Readability pass: keep small copy bright against the illustrated dark surfaces. */
+#title-screen[data-step="landing"] .landing-footnote {
+  background: rgba(12, 11, 12, .9) !important;
+  color: #f0f0ef !important;
+}
+#title-screen[data-step="landing"] .control-name {
+  color: #f0f0ef !important;
+  font-family: "IBM Plex Sans", sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700;
+  letter-spacing: 0 !important;
+}
+#title-screen[data-step="landing"] .landing-footnote small {
+  color: #dedee1 !important;
+  font-size: 12px !important;
+}
+#title-screen[data-step="landing"] .landing-footnote strong {
+  color: #fff !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+}
+#title-screen[data-step="landing"] .control-divider {
+  color: #dedee1 !important;
+}
+#title-screen .landing-intro,
+#title-screen .stage-heading p,
+#title-screen .dossier-note,
+#title-screen .featured-copy p,
+#title-screen .selection-description,
+#title-screen .control-note p,
+#title-screen .preparation-page p {
+  color: #e8e8ea !important;
+}
+#title-screen .errata-kicker,
+#title-screen .edition-line,
+#title-screen .page-label {
+  color: #f0f0ef !important;
+}
+#hud .timer-clock,
+#hud .timer-wave,
+#hud .timer-place,
+#hud .char-info,
+#hud .kill-count,
+#hud .ink-count {
+  color: #f0f0ef !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .95);
+}
+@media (max-width: 650px) {
+  #title-screen[data-step="landing"] .control-name { font-size: 11px !important; }
+  #title-screen[data-step="landing"] .landing-footnote small { font-size: 12px !important; }
+}
