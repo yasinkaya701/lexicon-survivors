@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "Cinzel Decorative";
+  src: url("../../fonts/cinzel-decorative/CinzelDecorative-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Cinzel Decorative";
+  src: url("../../fonts/cinzel-decorative/CinzelDecorative-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* Preview option 02 on game headings while leaving reading text in IBM Plex. */
+#game-container h1,
+#game-container h2,
+#game-container h3,
+#game-container h4,
+#game-container .shop-title {
+  font-family: "Cinzel Decorative", "IBM Plex Serif", serif !important;
+}
