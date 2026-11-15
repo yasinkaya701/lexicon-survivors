@@ -496,9 +496,8 @@
   color: #f0f0ef !important;
   text-shadow: 0 1px 3px rgba(0,0,0,.9);
 }
-#shop-screen[data-tab="cards"] #shop-items-grid > .shop-card,
-#game-container .dialog-panel,
-.screen-overlay .dialog-panel {
+#game-container .dialog-panel:not(#shop-screen .dialog-panel),
+.screen-overlay .dialog-panel:not(#shop-screen .dialog-panel) {
   background: rgba(16,14,16,.94) !important;
   border: 1px solid rgba(230,230,230,.4) !important;
   box-shadow: none !important;
@@ -773,4 +772,175 @@
   #errata-book[data-kind="settings"] .settings-row input[type="checkbox"] { width: 44px; }
   #errata-book[data-kind="settings"] .settings-row:has(input[type="range"]),
   #errata-book[data-kind="settings"] .settings-row:has(select) { grid-template-columns: 30px minmax(0, 1fr); }
+}
+
+/* Keep the narrow landing folio compact and the primary action grouped. */
+@media (max-width: 650px) {
+  #title-screen .errata-masthead {
+    flex-basis: 40px;
+    justify-content: flex-end;
+    padding: 4px 5%;
+  }
+  #title-screen .title-wordmark { display: none; }
+  #title-screen .errata-colophon { flex-basis: 38px; padding-block: 7px; }
+  #title-screen[data-step="landing"] .landing-stage {
+    flex: 1 1 auto;
+    min-height: 0 !important;
+    padding-block: 8px;
+    overflow-y: auto;
+  }
+  #title-screen[data-step="landing"] .landing-copy {
+    width: min(420px, calc(100vw - 32px));
+    padding: 14px 15px !important;
+  }
+  #title-screen[data-step="landing"] .landing-logo {
+    width: min(260px, 100%);
+    max-height: none;
+    min-height: 0;
+    margin-inline: auto;
+  }
+  #title-screen[data-step="landing"] .edition-line { margin: 11px 0; font-size: 11px; }
+  #title-screen[data-step="landing"] .landing-intro { margin: 8px 0 12px; font-size: 15px; line-height: 1.3; }
+  #title-screen[data-step="landing"] .landing-nav { gap: 4px; }
+  #title-screen[data-step="landing"] .landing-nav > .menu-link { min-height: 42px; }
+  #title-screen[data-step="landing"] .menu-icon { width: 30px; height: 30px; flex-basis: 30px; }
+  #title-screen[data-step="landing"] .landing-nav > .landing-begin {
+    position: relative;
+    justify-content: flex-start;
+    gap: 12px;
+    min-height: 50px;
+    padding: 5px 13px !important;
+  }
+  #title-screen[data-step="landing"] .landing-begin .menu-icon { width: 38px; height: 38px; flex-basis: 38px; }
+  #title-screen[data-step="landing"] .landing-begin .landing-label {
+    flex: 1 1 auto;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+  #title-screen[data-step="landing"] .landing-begin .landing-label > span {
+    flex: 0 0 auto;
+    margin: 0;
+    position: static !important;
+  }
+  #title-screen[data-step="landing"] .landing-nav > .landing-begin > span:last-child {
+    position: static;
+    margin-left: auto;
+    font-size: 19px;
+  }
+  #title-screen[data-step="landing"] .landing-footnote { min-height: 34px; margin-top: 8px; padding-block: 5px; }
+}
+
+/* Preserve the Scriptorium scene and its category states under the shared modal rules. */
+#shop-screen .dialog-panel {
+  background: rgba(16, 12, 15, .8) !important;
+  border: 1px solid rgba(211, 179, 108, .56) !important;
+  border-top: 3px solid #b83b46 !important;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, .62) !important;
+}
+#shop-screen .shop-rail .tab-btn {
+  border: 0 !important;
+  border-left: 2px solid transparent !important;
+  border-bottom: 1px solid rgba(230, 230, 230, .2) !important;
+  background: transparent !important;
+  color: #dedee1 !important;
+}
+#shop-screen .shop-rail .tab-btn[aria-selected="true"],
+#shop-screen .shop-rail .tab-btn.active {
+  border-left: 3px solid #e34b52 !important;
+  border-bottom-color: rgba(230, 230, 230, .2) !important;
+  background: linear-gradient(90deg, rgba(165, 30, 52, .46), rgba(165, 30, 52, .08)) !important;
+  color: #fff !important;
+}
+#shop-screen[data-tab="cards"] .shop-card {
+  border: 1px solid rgba(231, 220, 208, .2) !important;
+  border-top: 2px solid #a51e34 !important;
+  background: linear-gradient(145deg, rgba(39, 25, 31, .98), rgba(18, 14, 17, .98)) !important;
+  color: #f0f0ef !important;
+  box-shadow: inset 0 1px rgba(255, 255, 255, .04) !important;
+}
+#shop-screen[data-tab="cards"] .shop-card:hover {
+  border-color: rgba(242, 225, 197, .48) !important;
+  border-top-color: #f05a5e !important;
+  background: linear-gradient(145deg, #38212a, #1a1418) !important;
+}
+#shop-screen[data-tab="cards"] .shop-card .shop-title,
+#shop-screen[data-tab="cards"] .shop-card .shop-description,
+#shop-screen[data-tab="cards"] .shop-card .shop-example,
+#shop-screen[data-tab="cards"] .shop-card .shop-price {
+  color: #f0f0ef !important;
+}
+#shop-screen[data-tab="cards"] .shop-card .shop-example {
+  border-top: 1px solid rgba(230, 230, 230, .2) !important;
+}
+#shop-screen #shop-actions .btn:not(.btn-seal):not(.primary) {
+  border: 1px solid rgba(230, 230, 230, .35) !important;
+  border-bottom: 2px solid rgba(230, 230, 230, .55) !important;
+  background: rgba(17, 14, 16, .88) !important;
+  color: #f0f0ef !important;
+}
+#shop-screen #shop-actions .btn:hover:not(:disabled) { border-bottom-color: #ef4a54 !important; }
+
+/* Quiz pages reuse their engraved leaf, toned to the game's charcoal and signal red. */
+#quiz-modal {
+  background: rgba(8, 6, 8, .86) !important;
+}
+#quiz-modal .quiz-scroll {
+  border: 1px solid rgba(224, 196, 162, .58) !important;
+  border-top: 3px solid #c52b42 !important;
+  background-color: #171316 !important;
+  background-image: linear-gradient(120deg, rgba(17, 13, 16, .91), rgba(17, 13, 16, .84)), url("./quiz-leaf.webp") !important;
+  background-position: center !important;
+  background-size: cover !important;
+  box-shadow: 0 24px 74px rgba(0, 0, 0, .7) !important;
+  color: #f0f0ef !important;
+}
+#quiz-modal .quiz-scroll-header { border-color: rgba(230, 230, 230, .28) !important; }
+#quiz-modal .quiz-scroll-header h3,
+#quiz-modal #quiz-question-text { color: #f0f0ef !important; }
+#quiz-modal .quiz-scroll .speech-replay-btn {
+  border-color: rgba(230, 230, 230, .5) !important;
+  background: rgba(15, 13, 15, .88) !important;
+}
+#quiz-modal #quiz-buff-text {
+  border-left: 3px solid #e34b52 !important;
+  background: rgba(165, 30, 52, .2) !important;
+  color: #f0f0ef !important;
+}
+#quiz-modal #quiz-warning-text {
+  border-left: 3px solid #f05a5e !important;
+  background: rgba(165, 30, 52, .18) !important;
+  color: #ffb6ae !important;
+  padding: 9px 12px !important;
+}
+#quiz-modal #quiz-example-text { color: #d4d2d1 !important; }
+#quiz-modal .quiz-opt-btn {
+  border: 1px solid rgba(230, 230, 230, .35) !important;
+  border-left: 3px solid #9f2639 !important;
+  background: rgba(17, 14, 17, .9) !important;
+  color: #f0f0ef !important;
+}
+#quiz-modal .quiz-answer-key {
+  border-color: #ec7473 !important;
+  background: rgba(140, 30, 45, .3) !important;
+  color: #ffb5aa !important;
+}
+#quiz-modal .quiz-opt-btn:hover:not(:disabled),
+#quiz-modal .quiz-opt-btn:focus-visible {
+  border-color: #fff !important;
+  border-left-color: #f14c57 !important;
+  background: rgba(129, 27, 45, .92) !important;
+  color: #fff !important;
+}
+#quiz-modal #quiz-continue-btn {
+  width: auto;
+  border: 1px solid rgba(245, 245, 245, .72) !important;
+  background: #a51e34 !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+@media (max-width: 650px) {
+  #quiz-modal .quiz-scroll { padding: 21px 20px 24px !important; }
+  #quiz-modal .quiz-content { padding-right: 4px; }
+  #quiz-modal .quiz-options { grid-template-columns: minmax(0, 1fr) !important; }
+  #quiz-modal #quiz-continue-btn { width: 100%; }
 }
