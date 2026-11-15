@@ -346,28 +346,25 @@
   box-shadow: inset 0 0 0 1px rgba(255, 244, 220, .28), 0 3px 0 #4a292d;
 }
 
-/* Folio index system: custom dark plates, archive-red markers, paper-white type. */
+/* Archive index treatment: the library art carries the surface; controls stay spare. */
 :root {
-  --folio-ink: #151214;
-  --folio-plate: #211a1d;
-  --folio-plate-raised: #302124;
-  --folio-ruby: #9b1d32;
-  --folio-ruby-bright: #cf243b;
-  --folio-ruby-edge: #ed5a61;
-  --folio-silver: #d8d7d7;
-  --folio-copy: #eeedeb;
-  --folio-line: rgba(216, 215, 215, .52);
+  --archive-ink: #151214;
+  --archive-red: #a51e34;
+  --archive-red-hot: #d12a40;
+  --archive-white: #f0f0ef;
+  --archive-rule: rgba(230, 230, 230, .32);
 }
 #title-screen[data-step="landing"] .landing-nav > .menu-link {
-  border: 1px solid var(--folio-line) !important;
-  border-left: 3px solid var(--folio-ruby) !important;
-  background: rgba(21, 18, 20, .88) !important;
-  color: var(--folio-copy) !important;
-  box-shadow: inset 0 1px rgba(255,255,255,.08), 0 3px 0 #090809, 0 7px 15px rgba(0,0,0,.4);
+  border: 0 !important;
+  border-bottom: 1px solid var(--archive-rule) !important;
+  background: transparent !important;
+  color: var(--archive-white) !important;
+  box-shadow: none !important;
 }
 #title-screen[data-step="landing"] .landing-nav > .menu-link:hover {
-  background: var(--folio-plate-raised) !important;
-  border-color: var(--folio-silver) !important;
+  border-bottom-color: var(--archive-red-hot) !important;
+  background: rgba(15, 12, 14, .5) !important;
+  color: #fff !important;
 }
 #title-screen[data-step="landing"] .landing-nav > .landing-begin,
 #game-container .btn.primary,
@@ -375,88 +372,82 @@
 #shop-screen .shop-card .shop-buy,
 #shop-next-wave-btn,
 #errata-pause .errata-dialog-content .btn[data-pause-action="resume"] {
-  border: 1px solid #f0e8e8 !important;
-  border-left: 4px solid var(--folio-ruby-edge) !important;
-  background: var(--folio-ruby) !important;
+  border: 1px solid rgba(245,245,245,.68) !important;
+  background: var(--archive-red) !important;
   color: #fff !important;
-  box-shadow: inset 0 1px rgba(255,255,255,.18), 0 3px 0 #3b101b, 0 8px 16px rgba(0,0,0,.42) !important;
-  text-shadow: 0 1px 2px rgba(0,0,0,.34);
+  box-shadow: none !important;
+  text-shadow: none !important;
 }
 #title-screen[data-step="landing"] .landing-nav > .landing-begin:hover,
 #game-container .btn.primary:hover,
 #shop-next-wave-btn:hover {
-  background: var(--folio-ruby-bright) !important;
+  background: var(--archive-red-hot) !important;
+  border-color: #fff !important;
 }
 #title-screen[data-step="landing"] .landing-footnote {
-  border: 1px solid rgba(216,215,215,.34);
-  border-left: 2px solid var(--folio-ruby);
-  background: rgba(16, 14, 16, .92);
-  color: var(--folio-copy);
+  border: 0;
+  border-top: 1px solid var(--archive-rule);
+  background: rgba(12, 11, 12, .64);
+  color: var(--archive-white);
+  box-shadow: none;
 }
 #title-screen[data-step="landing"] .landing-footnote kbd {
-  background: #090809;
-  border-color: rgba(216,215,215,.6);
-  color: #fff;
+  border-color: rgba(240,240,239,.55);
+  background: #151315;
+  color: #f0f0ef;
 }
 #title-screen[data-step="preparation"] .preparation-stage {
-  background: linear-gradient(145deg, rgba(9,8,9,.34), rgba(9,8,9,.2)), url("./title-library.webp") center / cover no-repeat !important;
+  background: linear-gradient(145deg, rgba(9,8,9,.2), rgba(9,8,9,.1)), url("./title-library.webp") center / cover no-repeat !important;
 }
 #title-screen[data-step="preparation"] .preparation-page {
-  background: rgba(18, 15, 17, .79) !important;
-  border-color: rgba(216,215,215,.44) !important;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), 0 10px 30px rgba(0,0,0,.44) !important;
+  background: rgba(15, 13, 15, .72) !important;
+  border-color: rgba(230,230,230,.42) !important;
+  box-shadow: none !important;
 }
 #title-screen[data-step="preparation"] .preparation-page::after {
-  background: linear-gradient(180deg, rgba(11,9,10,.22), rgba(11,9,10,.3)) !important;
+  background: linear-gradient(180deg, rgba(8,7,8,.16), rgba(8,7,8,.24)) !important;
 }
 #title-screen[data-step="preparation"] .preparation-page p,
 #title-screen[data-step="preparation"] .stage-heading p,
-#title-screen[data-step="preparation"] .selection-description {
-  color: var(--folio-copy) !important;
-}
+#title-screen[data-step="preparation"] .selection-description,
 #title-screen[data-step="preparation"] .preparation-page h1,
 #title-screen[data-step="preparation"] .preparation-page h2,
 #title-screen[data-step="preparation"] .preparation-page h3 {
-  color: #f0eff0 !important;
+  color: var(--archive-white) !important;
 }
 #title-screen[data-step="preparation"] .level-choices .btn,
 #title-screen[data-step="preparation"] .difficulty-choices .btn,
 #title-screen[data-step="preparation"] #learning-level-selection > button[aria-pressed="false"],
-#title-screen[data-step="preparation"] #diff-selection-container > button[aria-pressed="false"] {
+#title-screen[data-step="preparation"] #diff-selection-container > button[aria-pressed="false"],
+#title-screen[data-step="preparation"] .run-options .btn {
   min-height: 48px;
-  border: 1px solid rgba(216,215,215,.65) !important;
-  border-left: 3px solid #6e3a43 !important;
-  background: rgba(28, 23, 26, .94) !important;
-  color: #f2f1ef !important;
-  box-shadow: inset 0 1px rgba(255,255,255,.06), 0 3px 0 #090809, 0 5px 12px rgba(0,0,0,.34) !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(230,230,230,.55) !important;
+  background: rgba(11,10,11,.58) !important;
+  color: #f0f0ef !important;
+  box-shadow: none !important;
 }
 #title-screen[data-step="preparation"] .level-choices .btn[aria-pressed="true"],
 #title-screen[data-step="preparation"] .difficulty-choices .btn[aria-pressed="true"],
 #title-screen[data-step="preparation"] #learning-level-selection > button[aria-pressed="true"],
-#title-screen[data-step="preparation"] #diff-selection-container > button[aria-pressed="true"] {
-  border: 1px solid #f0dfe1 !important;
-  border-left: 4px solid var(--folio-ruby-edge) !important;
-  background: var(--folio-ruby) !important;
-  color: #fff !important;
-  box-shadow: inset 0 1px rgba(255,255,255,.17), 0 3px 0 #3b101b, 0 0 14px rgba(155,29,50,.18) !important;
-}
-#title-screen[data-step="preparation"] .run-options .btn,
-#title-screen[data-step="preparation"] .music-choice-row select {
-  border: 1px solid rgba(216,215,215,.55) !important;
-  border-left: 3px solid #6e3a43 !important;
-  background: rgba(28, 23, 26, .94) !important;
-  color: #f2f1ef !important;
-  box-shadow: inset 0 1px rgba(255,255,255,.06), 0 3px 0 #090809, 0 6px 12px rgba(0,0,0,.34) !important;
-}
+#title-screen[data-step="preparation"] #diff-selection-container > button[aria-pressed="true"],
 #title-screen[data-step="preparation"] .run-options .btn[aria-pressed="true"] {
-  border-color: #f0dfe1 !important;
-  border-left-color: var(--folio-ruby-edge) !important;
-  background: var(--folio-ruby) !important;
+  border: 1px solid rgba(255,255,255,.85) !important;
+  border-bottom: 3px solid var(--archive-red-hot) !important;
+  background: rgba(104, 25, 39, .92) !important;
   color: #fff !important;
+  box-shadow: none !important;
+}
+#title-screen[data-step="preparation"] .music-choice-row select {
+  border: 0 !important;
+  border-bottom: 1px solid rgba(230,230,230,.65) !important;
+  background: rgba(12,11,12,.86) !important;
+  color: var(--archive-white) !important;
+  box-shadow: none !important;
 }
 #title-screen[data-step="preparation"] .music-choice-row select option {
   background: #171416 !important;
-  color: #f2f1ef !important;
+  color: var(--archive-white) !important;
 }
 #game-container .btn:not(.primary):not(.btn-seal):not(.landing-begin):not(.shop-buy),
 #game-container .hud-btn,
@@ -464,11 +455,11 @@
 .screen-overlay .dialog-panel .btn:not(.primary):not(.btn-seal),
 #hud .hud-btn,
 #shop-screen .tab-btn {
-  border: 1px solid rgba(216,215,215,.62) !important;
-  border-left: 3px solid #6e3a43 !important;
-  background: rgba(28, 23, 26, .94) !important;
-  color: var(--folio-copy) !important;
-  box-shadow: inset 0 1px rgba(255,255,255,.07), 0 3px 0 rgba(8,7,8,.9), 0 6px 12px rgba(0,0,0,.3) !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(230,230,230,.58) !important;
+  background: rgba(15,13,15,.84) !important;
+  color: var(--archive-white) !important;
+  box-shadow: none !important;
 }
 #game-container .btn:not(.primary):not(.btn-seal):not(.landing-begin):not(.shop-buy):hover,
 #game-container .hud-btn:hover,
@@ -476,27 +467,25 @@
 .screen-overlay .dialog-panel .btn:not(.primary):not(.btn-seal):hover,
 #shop-screen .tab-btn[aria-selected="true"],
 #shop-screen .tab-btn.active {
-  border-color: #f0dfe1 !important;
-  border-left-color: var(--folio-ruby-edge) !important;
-  background: #492128 !important;
+  border-bottom: 2px solid var(--archive-red-hot) !important;
+  background: rgba(83,19,31,.92) !important;
   color: #fff !important;
 }
 #hud {
-  background: linear-gradient(180deg, rgba(17,14,16,.97), rgba(24,20,22,.8) 72%, transparent) !important;
-  border-bottom: 1px solid rgba(216,215,215,.28) !important;
+  background: linear-gradient(180deg, rgba(13,12,14,.92), rgba(18,16,18,.7) 72%, transparent) !important;
+  border-bottom: 1px solid var(--archive-rule) !important;
 }
 #hud .hud-btn,
 #hud .weapon-token {
-  border-color: rgba(216,215,215,.66) !important;
-  background: rgba(25,21,23,.95) !important;
+  border: 1px solid rgba(230,230,230,.48) !important;
+  background: rgba(15,13,15,.85) !important;
   color: #fff !important;
 }
 #hud .hud-btn:hover,
 #hud .weapon-token:hover,
 #hud .weapon-token.is-active {
-  border-color: #f0dfe1 !important;
-  background: var(--folio-ruby) !important;
-  color: #fff !important;
+  border-color: #fff !important;
+  background: var(--archive-red) !important;
 }
 #hud .timer-badge,
 #hud .hp-text,
@@ -504,15 +493,15 @@
 #hud .kill-count,
 #hud .char-info,
 #hud #archive-progress-row {
-  color: var(--folio-copy) !important;
+  color: #f0f0ef !important;
   text-shadow: 0 1px 3px rgba(0,0,0,.9);
 }
 #shop-screen[data-tab="cards"] #shop-items-grid > .shop-card,
 #game-container .dialog-panel,
 .screen-overlay .dialog-panel {
-  background: rgba(23, 19, 21, .96) !important;
-  border: 1px solid rgba(216,215,215,.48) !important;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.04), 0 12px 32px rgba(0,0,0,.46) !important;
+  background: rgba(16,14,16,.94) !important;
+  border: 1px solid rgba(230,230,230,.4) !important;
+  box-shadow: none !important;
 }
 #shop-screen .shop-title,
 #shop-screen .shop-description,
@@ -522,42 +511,42 @@
 #game-container .dialog-panel p,
 #game-container .dialog-panel label,
 .screen-overlay .dialog-panel p,
-.screen-overlay .dialog-panel label {
-  color: #eceae9 !important;
-}
-#errata-pause .dialog-panel {
-  border: 1px solid rgba(216,215,215,.62) !important;
-  background-color: #1b1517 !important;
-  background-image: linear-gradient(180deg, rgba(15,12,13,.2), rgba(15,12,13,.38)), url("./pause-errata-folio.webp") !important;
-  background-position: center !important;
-  background-size: cover !important;
-}
-#errata-pause .book-dialog-header {
-  border-bottom-color: rgba(216,215,215,.35) !important;
-}
-#errata-pause .book-dialog-header h1,
-#errata-pause .book-dialog-header h2,
+.screen-overlay .dialog-panel label,
 #game-container .dialog-panel h1,
 #game-container .dialog-panel h2,
 .screen-overlay .dialog-panel h1,
 .screen-overlay .dialog-panel h2 {
-  color: #f0eff0 !important;
+  color: #f0f0ef !important;
+}
+#errata-pause .dialog-panel {
+  border: 1px solid rgba(230,230,230,.6) !important;
+  background-color: #171315 !important;
+  background-image: linear-gradient(180deg, rgba(12,10,11,.16), rgba(12,10,11,.28)), url("./pause-errata-folio.webp") !important;
+  background-position: center !important;
+  background-size: cover !important;
+}
+#errata-pause .book-dialog-header {
+  border-bottom-color: var(--archive-rule) !important;
 }
 #errata-pause .errata-dialog-content .btn:not([data-pause-action="resume"]) {
-  border: 1px solid rgba(216,215,215,.58) !important;
-  border-left: 3px solid #8f2738 !important;
-  background: rgba(19, 16, 18, .9) !important;
-  color: #f1efed !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(230,230,230,.54) !important;
+  background: rgba(12,10,11,.74) !important;
+  color: #f0f0ef !important;
+  box-shadow: none !important;
 }
 #errata-pause .errata-dialog-content .btn:not([data-pause-action="resume"]):hover {
-  background: #492128 !important;
-  border-color: #f0dfe1 !important;
+  border-bottom: 2px solid var(--archive-red-hot) !important;
+  background: rgba(82,19,30,.94) !important;
 }
 #errata-pause .errata-dialog-content .btn::before {
-  border-right-color: rgba(216,215,215,.35) !important;
-  color: #d64b58 !important;
+  border-right-color: var(--archive-rule) !important;
+  color: #ec5963 !important;
 }
 #errata-pause .book-dialog-header .btn {
   min-width: 98px;
   flex: 0 0 auto;
+  border: 1px solid rgba(230,230,230,.55) !important;
+  background: rgba(15,13,15,.8) !important;
+  color: var(--archive-white) !important;
 }
