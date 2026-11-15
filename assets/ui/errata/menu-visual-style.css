@@ -277,3 +277,71 @@
   #title-screen[data-step="landing"] .keycaps { gap: 2px; }
   #title-screen[data-step="landing"] .landing-footnote small { display: none; }
 }
+
+/* Final setup pass: keep the illustrated rooms visible and let the controls carry the contrast. */
+#title-screen[data-step="preparation"] .preparation-stage {
+  background:
+    linear-gradient(145deg, rgba(17, 13, 16, .54), rgba(17, 13, 16, .42)),
+    url("./title-library.webp") center / cover no-repeat !important;
+}
+#title-screen[data-step="preparation"] .preparation-page::before { opacity: 1 !important; }
+#title-screen[data-step="preparation"] .preparation-page::after {
+  background: linear-gradient(180deg, rgba(17, 13, 16, .32), rgba(17, 13, 16, .24)) !important;
+}
+#title-screen[data-step="preparation"] .level-choices .btn,
+#title-screen[data-step="preparation"] .difficulty-choices .btn {
+  min-height: 48px;
+  border: 1px solid #c4a16f !important;
+  background: linear-gradient(180deg, #f2e3c8 0%, #dcc39a 100%) !important;
+  color: #38242a !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 244, 220, .3), 0 3px 0 #4a292d, 0 5px 10px rgba(0, 0, 0, .28);
+  font-weight: 600;
+  transition: transform 140ms ease, filter 140ms ease, box-shadow 140ms ease;
+}
+#title-screen[data-step="preparation"] .level-choices .btn[aria-pressed="true"],
+#title-screen[data-step="preparation"] .difficulty-choices .btn[aria-pressed="true"] {
+  border: 2px solid #e4c17d !important;
+  background: linear-gradient(135deg, #9b3541, #64212e) !important;
+  color: #fff0d6 !important;
+  box-shadow: inset 0 1px rgba(255, 235, 194, .25), 0 4px 0 #351b22, 0 8px 16px rgba(0, 0, 0, .38);
+  transform: translateY(-2px);
+}
+#title-screen[data-step="preparation"] .level-choices .btn:hover,
+#title-screen[data-step="preparation"] .difficulty-choices .btn:hover {
+  filter: brightness(1.12);
+  transform: translateY(-2px);
+}
+#title-screen[data-step="preparation"] #learning-level-selection > button[aria-pressed="false"],
+#title-screen[data-step="preparation"] #diff-selection-container > button[aria-pressed="false"] {
+  background: linear-gradient(180deg, #f5e8d0 0%, #dfc69e 100%) !important;
+  color: #352229 !important;
+  border-color: #d6b780 !important;
+}
+#title-screen[data-step="preparation"] #learning-level-selection > button[aria-pressed="true"],
+#title-screen[data-step="preparation"] #diff-selection-container > button[aria-pressed="true"] {
+  background: linear-gradient(135deg, #a63a45, #64202e) !important;
+  color: #fff0d6 !important;
+  border-color: #f0ca7c !important;
+}
+#title-screen[data-step="preparation"] .run-options .btn {
+  min-height: 52px;
+  border: 1px solid rgba(206, 173, 122, .72) !important;
+  border-left: 4px solid #9b3541 !important;
+  background: linear-gradient(100deg, rgba(244, 225, 191, .96), rgba(216, 192, 153, .94)) !important;
+  color: #35232a !important;
+  box-shadow: inset 0 1px rgba(255, 249, 230, .72), 0 3px 0 rgba(48, 28, 30, .72), 0 6px 12px rgba(0, 0, 0, .22);
+  font-weight: 600;
+}
+#title-screen[data-step="preparation"] .run-options .btn[aria-pressed="true"] {
+  border-left-color: #5b8371 !important;
+  background: linear-gradient(100deg, #d6e0cb, #b7cdb9) !important;
+  color: #213e36 !important;
+}
+#title-screen[data-step="preparation"] .music-choice-row select {
+  min-height: 48px;
+  padding-inline: 12px;
+  border: 1px solid #c4a16f !important;
+  background: linear-gradient(180deg, #f2e3c8 0%, #dcc39a 100%) !important;
+  color: #38242a !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 244, 220, .28), 0 3px 0 #4a292d;
+}
