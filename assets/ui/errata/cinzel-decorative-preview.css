@@ -18,6 +18,9 @@
 #game-container h2,
 #game-container h3,
 #game-container h4,
-#game-container .shop-title {
+#game-container .shop-title,
+#title-screen .landing-nav button,
+#title-screen .errata-kicker,
+#title-screen .edition-line {
   font-family: "Cinzel Decorative", "IBM Plex Serif", serif !important;
 }
