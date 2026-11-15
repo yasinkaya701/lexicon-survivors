@@ -19,6 +19,74 @@
   font-weight: 400;
   font-display: swap;
 }
+
+/* Give setup and pause screens physical, game-specific surfaces instead of flat fills. */
+#title-screen[data-step="preparation"] .preparation-stage {
+  background:
+    linear-gradient(145deg, rgba(17, 13, 16, .78), rgba(17, 13, 16, .62)),
+    url("./title-library.webp") center / cover no-repeat;
+  border-color: rgba(190, 149, 99, .76);
+  box-shadow: inset 0 0 0 5px rgba(22, 15, 17, .62), 8px 8px 0 #21191c, -3px 0 0 #c6ae8d;
+}
+#title-screen[data-step="preparation"] .preparation-page::before {
+  opacity: .92;
+}
+#title-screen[data-step="preparation"] .preparation-page::after {
+  background: linear-gradient(180deg, rgba(17, 13, 16, .50), rgba(17, 13, 16, .44));
+}
+#title-screen[data-step="preparation"] .preparation-page {
+  border-color: rgba(215, 182, 134, .38);
+  box-shadow: inset 0 0 0 1px rgba(242, 225, 197, .08), 0 9px 24px rgba(0, 0, 0, .2);
+}
+#errata-pause .dialog-panel {
+  isolation: isolate;
+  background-color: #251719;
+  background-image:
+    linear-gradient(180deg, rgba(17, 13, 16, .16), rgba(17, 13, 16, .30)),
+    url("./pause-errata-folio.webp");
+  background-position: center;
+  background-size: cover;
+  border: 1px solid rgba(209, 165, 113, .78);
+  box-shadow: inset 0 0 0 5px rgba(24, 14, 16, .38), 0 24px 70px rgba(0, 0, 0, .65);
+}
+#errata-pause .book-dialog-header {
+  border-bottom-color: rgba(225, 190, 145, .34);
+}
+#errata-pause .errata-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  counter-reset: pause-entry;
+}
+#errata-pause .errata-dialog-content .btn {
+  counter-increment: pause-entry;
+  justify-content: flex-start;
+  min-height: 52px;
+  padding: 10px 14px;
+  border: 1px solid rgba(230, 199, 157, .32);
+  border-left: 3px solid rgba(190, 111, 94, .78);
+  background: linear-gradient(100deg, rgba(92, 34, 43, .9), rgba(40, 25, 31, .92));
+  color: #f3e5d0;
+  text-align: left;
+}
+#errata-pause .errata-dialog-content .btn::before {
+  content: "0" counter(pause-entry);
+  min-width: 34px;
+  padding-right: 11px;
+  border-right: 1px solid rgba(221, 187, 143, .35);
+  color: #d6b27d;
+  font: 500 12px "IBM Plex Mono", monospace;
+  letter-spacing: .08em;
+}
+#errata-pause .errata-dialog-content .btn[data-pause-action="resume"] {
+  border-color: rgba(225, 193, 139, .68);
+  border-left-color: #d9b36d;
+  background: linear-gradient(100deg, rgba(128, 43, 52, .96), rgba(76, 30, 38, .94));
+}
+#errata-pause .errata-dialog-content .btn:hover {
+  background: linear-gradient(100deg, rgba(130, 51, 57, .96), rgba(64, 37, 42, .96));
+  border-color: rgba(229, 197, 147, .74);
+}
 @font-face {
   font-family: "EB Garamond";
   src: url("../../fonts/eb-garamond/EBGaramond-SemiBold.ttf") format("truetype");
