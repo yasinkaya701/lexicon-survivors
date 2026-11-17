@@ -16,7 +16,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || path.join(os.homed
       const context=canvas.getContext('2d');
       const originalDrawImage=context.drawImage;
       const calls=[];
-      context.drawImage=function(image,...args){calls.push({src:image?.src||'',args});return originalDrawImage.call(this,image,...args)};
+      context.drawImage=function(image,...args){calls.push({image,src:image?.src||'',args});return originalDrawImage.call(this,image,...args)};
       const rows=[];
       try {
         for(const id of ids){
@@ -35,8 +35,9 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || path.join(os.homed
           const decoysBefore=JSON.stringify(state.gadget_decoys);
           const combatBefore=JSON.stringify({player:state.player,decoys:state.gadget_decoys,projectiles:state.projectiles,enemies:state.enemies});
           calls.length=0; render(0);
-          const currentDecoyDraw=calls.some(call=>call.src===decoyHero?.src && call.args.length===4 && call.args[2]===48 && call.args[3]===56);
-          const liveHeroDraw=calls.some(call=>call.src.includes(`/arena-v3/${key}_`) && call.args.length===4 && call.args[2]===96 && call.args[3]===96);
+          const heroFrames=new Set(['idle','run','attack','ranged','dash','hurt'].flatMap(action=>window.GrimoireSprites?.strip(`hero_${key}_${action}`)||[]));
+          const currentDecoyDraw=calls.some(call=>(heroFrames.has(call.image)||(call.src&&call.src===decoyHero?.src)) && call.args.length===4 && call.args[2]===48 && call.args[3]===56);
+          const liveHeroDraw=calls.some(call=>(heroFrames.has(call.image)||call.src.includes(`/arena-v3/${key}_`)) && call.args.length===4 && call.args[2]===96 && call.args[3]===96);
           const after=JSON.stringify({player:state.player,decoys:state.gadget_decoys,projectiles:state.projectiles,enemies:state.enemies});
           rows.push({id,portrait:portrait.getAttribute('src'),alt:portrait.alt,expectedPortrait,currentDecoyDraw,liveHeroDraw,pure:after===combatBefore,decoysBefore});
         }

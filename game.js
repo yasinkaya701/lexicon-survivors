@@ -6259,6 +6259,7 @@ function updateEnemies(dt) {
   state.enemies.forEach(e => {
     if (e.hp <= 0 && !e.dead) {
       e.dead = true;
+      window.GrimoireSprites?.recordDeath(e);
       state.kill_count++;
       const isBoss = e.is_boss || e.type === "Red Pen Boss" || e.type === "Lexicon Dragon Boss";
       const enemyXp = e.is_mistake_echo ? 5 + (e.fail_count || 1)
@@ -8706,7 +8707,8 @@ function render(dt = 1 / 60) {
   // Labels are reserved for nearby elites and bosses to keep crowds readable.
   const enemyLabelBoxes = [];
 
-  // Enemies
+  // Enemies (finished boss bodies sink first, under the living)
+  window.GrimoireSprites?.drawBodies(ctx);
   let detailedCrowdSprites = 0;
   state.enemies.forEach(e => {
     if (!isInRenderViewport(e.x, e.y, Math.max(64, (e.size || 36) * 0.95 + 18))) return;
@@ -8829,10 +8831,11 @@ function render(dt = 1 / 60) {
 
     if (e.facing_left) ctx.scale(-1, 1);
 
-    const paintedEnemy = window.ErrataMotion?.enemyFrame(e.sprite, performance.now(), e.x * 0.013 + e.y * 0.007);
+    const paintedEnemy = window.ErrataMotion?.enemyFrame(e.sprite, performance.now(), e.x * 0.013 + e.y * 0.007, e);
     const spr = paintedEnemy || images[e.sprite] || images[BOSS_SPRITE_FALLBACKS[e.sprite]] || images[e.type === "Red Pen Boss" ? "red_pen_boss.png" : e.type === "Lexicon Dragon Boss" ? "lexicon_dragon_boss.png" : ""];
     const sz = e.size || 36;
-    const spriteSize = sz * 1.55;
+    // Grimoire boss sheets leave headroom in each cell; draw them larger so a boss towers over the hero.
+    const spriteSize = sz * (paintedEnemy && e.is_boss ? window.GrimoireSprites?.BOSS_SCALE || 1.55 : 1.55);
     if (spr) {
       ctx.save();
       if (e.is_boss) {
@@ -9048,7 +9051,7 @@ function render(dt = 1 / 60) {
   const errataHeroSprite = animationKey
     ? images[`ui/errata/heroes/${animationKey}_${renderLayers.base}_${frame}.webp`]
     : null;
-  const paintedHero = window.ErrataMotion?.heroFrame(animationKey,renderLayers.base,frame);
+  const paintedHero = window.ErrataMotion?.heroFrame(animationKey,renderLayers.base,frame,p);
   const pSpr = paintedHero || (errataHeroSprite?.complete && errataHeroSprite.naturalWidth > 0
     ? errataHeroSprite
     : actionSprite || images[cData.sprite] || images["player.png"]);
