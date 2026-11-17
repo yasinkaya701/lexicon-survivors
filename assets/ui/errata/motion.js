@@ -57,7 +57,7 @@
       const size=Math.max(13,text.size||13);
       const crit=String(text.color).toLowerCase()===CRIT_COLOR;
       context.globalAlpha=Math.min(1,progress*1.8);
-      context.font=text.numeric?`italic 700 ${size+2}px "Old Standard TT", Georgia, serif`:`500 ${Math.max(11,size-2)}px "IBM Plex Mono", monospace`;
+      context.font=text.numeric?`italic 700 ${size+2}px "Grenze", Georgia, serif`:`500 ${Math.max(11,size-2)}px "IBM Plex Mono", monospace`;
       context.strokeStyle='rgba(10,14,24,.92)';context.lineWidth=3.5;
       context.fillStyle=inkFor(text.color);
       context.strokeText(text.text,text.x,text.y);context.fillText(text.text,text.x,text.y);
