@@ -173,6 +173,31 @@
     const hero = HERO_KEYS[characterId];
     return hero ? src(`hero_${hero}_${part}`) : null;
   }
+  // Painted story panel for one beat of a hero's episode (see docs: 73 key panels).
+  const WINGS = ["reading_hall", "word_corridor", "observatory", "last_page"];
+  function storyPanel(characterId, episode, beatIndex, speakerId = "") {
+    const hero = HERO_KEYS[characterId];
+    const wave = Number(episode?.wave) || 0;
+    if (!hero || !wave) return null;
+    const beats = episode.beats?.length || 5;
+    let id = null;
+    if (wave >= 100) {
+      id = ["story_boss_omega_blank_page", `story_${hero}_final_1`, `story_${hero}_final_2`, "story_end_2", "story_end_4"][Math.min(4, beatIndex)];
+    } else if (wave === 5 && beatIndex < 3 && !String(speakerId).startsWith("boss_")) {
+      id = `story_open_${beatIndex + 1}`;
+    } else if (String(speakerId).startsWith("boss_")) {
+      id = `story_boss_${bossKeyForWave(wave)}`;
+    } else if (episode.boss_reward?.type === "relic" && beatIndex === beats - 1) {
+      id = `story_${hero}_relic_${Math.round(wave / 25)}`;
+    } else if (speakerId === "neris") {
+      id = "story_open_3";
+    } else {
+      const wing = WINGS[Math.min(3, Math.floor((wave - 1) / 25))];
+      id = `story_wing_${wing}_${(beatIndex % 2) + 1}`;
+    }
+    return src(id);
+  }
+
   function npcFace(npc, mood = "neutral") { return src(`npc_${npc}_face_${mood}`) || src(`npc_${npc}_face_neutral`); }
 
   function baseOf(enemy) {
@@ -400,6 +425,6 @@
   window.GrimoireSprites = Object.freeze({
     BOSS_SCALE, ready, has, url, strip, image, loopFrame, onceFrame, onceDuration,
     heroFrame, heroImage, enemyFrame, recordDeath, drawBodies, pickupFrame, setLegacyEnemyFrame,
-    fx, drawEffects, hurtFlash, syncLowHealth, heldVisual, bossKeyForWave, bossArt, heroArt, npcFace, projectileFrame, weaponImpact, weaponId, enemyShotFrame, src, weaponIcon, iconUrl
+    fx, drawEffects, hurtFlash, syncLowHealth, heldVisual, bossKeyForWave, bossArt, heroArt, npcFace, storyPanel, projectileFrame, weaponImpact, weaponId, enemyShotFrame, src, weaponIcon, iconUrl
   });
 })();

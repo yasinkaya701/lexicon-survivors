@@ -3940,9 +3940,12 @@ function renderStoryPanel() {
     }));
   }
   const panelArt = episode.panel_art?.[storyPanelIndex] || episode.backdrop;
-  sceneImage.src = `assets/sprites/story/${panelArt}`;
-  const nextArt = episode.panel_art?.[storyPanelIndex + 1];
-  if (nextArt) { const preload = new Image(); preload.src = `assets/sprites/story/${nextArt}`; }
+  const paintedPanel = window.GrimoireSprites?.storyPanel(state.selected_char, episode, storyPanelIndex, speakerId);
+  sceneImage.src = paintedPanel || `assets/sprites/story/${panelArt}`;
+  const nextBeat = episode.beats[storyPanelIndex + 1];
+  const nextPainted = nextBeat ? window.GrimoireSprites?.storyPanel(state.selected_char, episode, storyPanelIndex + 1, nextBeat[0]) : null;
+  const nextArt = nextPainted || (episode.panel_art?.[storyPanelIndex + 1] ? `assets/sprites/story/${episode.panel_art[storyPanelIndex + 1]}` : null);
+  if (nextArt) { const preload = new Image(); preload.src = nextArt; }
   sceneImage.alt = `${episode.scene} · ${episode.location}`;
   const chosenBossSprite = speakerBoss?.portrait_sprite || (isBossVoice ? MILESTONE_BOSS_ROSTER?.[storyEpisodeIndex]?.[1] : "");
   const speakerPath = heroSpeakerIds.has(speakerId) ? portraitPaths.hero
@@ -3952,11 +3955,14 @@ function renderStoryPanel() {
       : speakerBoss?.title || (isBossVoice ? MILESTONE_BOSS_ROSTER?.[storyEpisodeIndex]?.[2] : "") || storySpeakerNames[speakerId] || speakerId.replaceAll("_", " ").toLocaleUpperCase("tr-TR");
   speaker.textContent = speakerName;
   // Story backdrops already depict the selected hero; compositing a second cutout creates a false, doubled character.
-  const portraitAlreadyInScene = heroSpeakerIds.has(speakerId) || speakerId === "shadow_double";
+  // Painted shared panels do not always show the hero, so the hero speaks with their face.
+  const paintedHeroFace = paintedPanel && heroSpeakerIds.has(speakerId) ? window.GrimoireSprites?.heroArt(state.selected_char, "face_neutral") : null;
+  const portraitAlreadyInScene = !paintedHeroFace && (heroSpeakerIds.has(speakerId) || speakerId === "shadow_double");
   portrait.hidden = !speakerPath || portraitAlreadyInScene;
   if (speakerPath) {
     portrait.dataset.kind = isBossVoice ? "boss" : speakerId;
-    const paintedSpeaker = isBossVoice ? window.GrimoireSprites?.bossArt(episode.wave, "portrait")
+    const paintedSpeaker = paintedHeroFace ? paintedHeroFace
+      : isBossVoice ? window.GrimoireSprites?.bossArt(episode.wave, "portrait")
       : speakerId === "neris" ? window.GrimoireSprites?.npcFace("neris")
         : speakerId === "whisper" ? window.GrimoireSprites?.src("boss_wordless_mouth_portrait") : null;
     portrait.src = paintedSpeaker || resolvePortraitPath(speakerPath);
