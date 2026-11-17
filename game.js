@@ -1553,6 +1553,8 @@ const CHARACTERS = {
 };
 
 function getCharacterPortrait(characterId) {
+  const painted = window.GrimoireSprites?.heroArt(characterId, "portrait");
+  if (painted) return painted;
   const file = characterId === "shadow_lexicographer"
     ? "shadow_lexicographer-selection-v3" : `${characterId}-selection`;
   return `assets/ui/errata/portraits/${file}.webp`;
@@ -3942,7 +3944,10 @@ function renderStoryPanel() {
   portrait.hidden = !speakerPath || portraitAlreadyInScene;
   if (speakerPath) {
     portrait.dataset.kind = isBossVoice ? "boss" : speakerId;
-    portrait.src = resolvePortraitPath(speakerPath);
+    const paintedSpeaker = isBossVoice ? window.GrimoireSprites?.bossArt(episode.wave, "portrait")
+      : speakerId === "neris" ? window.GrimoireSprites?.npcFace("neris")
+        : speakerId === "whisper" ? window.GrimoireSprites?.src("boss_wordless_mouth_portrait") : null;
+    portrait.src = paintedSpeaker || resolvePortraitPath(speakerPath);
     portrait.alt = speakerName;
   }
   const memory = document.getElementById("story-boss-memory");
@@ -5350,7 +5355,8 @@ function updateBossHealthBar(force = false) {
   const portrait = document.getElementById("boss-hp-portrait");
   if (portrait) {
     const storyBoss = STORY_EXPANSION_DATA?.boss_encounters?.find(boss => boss.wave === state.current_wave);
-    const portraitPath = storyBoss?.portrait_sprite ? `assets/sprites/${storyBoss.portrait_sprite}` : "";
+    const portraitPath = window.GrimoireSprites?.bossArt(state.current_wave, "portrait")
+      || (storyBoss?.portrait_sprite ? `assets/sprites/${storyBoss.portrait_sprite}` : "");
     portrait.hidden = !portraitPath;
     if (portraitPath && portrait.getAttribute("src") !== portraitPath) portrait.src = portraitPath;
     if (storyBoss) portrait.alt = `${storyBoss.title} portresi`;
@@ -8197,7 +8203,8 @@ function updateHUD() {
   setHUDText("char-diff-info", `${c.name} · ${d.name} · ${state.learning_level} · Sv. ${profile.level}${profile.skill_points ? ` · ${profile.skill_points} puan` : ""}`);
   const heroPortrait = document.getElementById("hero-hud-portrait");
   if (heroPortrait) {
-    const portraitPath = getCharacterPortrait(state.selected_char);
+    // The HUD ring shows the painted medallion, drawn for a round frame.
+    const portraitPath = window.GrimoireSprites?.heroArt(state.selected_char, "medallion") || getCharacterPortrait(state.selected_char);
     if (heroPortrait.getAttribute("src") !== portraitPath) heroPortrait.src = portraitPath;
     const portraitLabel = `${c.name} portresi`;
     if (heroPortrait.alt !== portraitLabel) heroPortrait.alt = portraitLabel;

@@ -25,7 +25,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || path.join(os.homed
           state.player.x=0; state.player.y=0; state.player.vx=0; state.player.vy=0;
           updateHUD();
           const portrait=document.getElementById('hero-hud-portrait');
-          const expectedPortrait=id==='shadow_lexicographer'?'assets/ui/errata/portraits/shadow_lexicographer-selection-v3.webp':`assets/ui/errata/portraits/${id}-selection.webp`;
+          const expectedPortrait=window.GrimoireSprites.heroArt(id,'medallion');
           const key={lexicon_alchemist:'alchemist',shadow_lexicographer:'shadow_scribe'}[id]||id;
           const layer=getHeroRenderLayers(state.player);
           let hero=ErrataMotion.heroFrame(key,layer.base,layer.baseFrame);
@@ -45,7 +45,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || path.join(os.homed
       return rows;
     },ids);
     for(const row of results){
-      assert.equal(row.portrait,row.expectedPortrait,`${row.id}: HUD should use its canonical selection portrait`);
+      assert.equal(row.portrait,row.expectedPortrait,`${row.id}: HUD should use its painted medallion`);
       assert.equal(row.alt,`${await page.evaluate(id=>CHARACTERS[id].name,row.id)} portresi`,`${row.id}: accessible name retained`);
       assert.ok(row.currentDecoyDraw,`${row.id}: actual canvas drawImage should use current painted hero at decoy footprint`);
       assert.ok(row.liveHeroDraw,`${row.id}: actual canvas drawImage should render painted hero`);

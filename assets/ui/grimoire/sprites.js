@@ -156,6 +156,25 @@
     "the unwritten": "unwritten", "omega, last word": "omega_blank_page"
   };
 
+  // Milestone bosses in roster order (wave 5, 10, ... 100).
+  const BOSS_ORDER = ["red_inspector", "unfinished_giant", "contradiction", "two_voiced_harpy",
+    "lexicon_dragon", "restless_reaper", "borrowed_face", "wordless_mouth", "final_stop",
+    "double_negation", "reversed_reflection", "repeating_twin", "dangling_clause", "pale_corrector",
+    "literal_flame", "red_redactor", "twofold_truth", "false_neris", "unwritten", "omega_blank_page"];
+  function bossKeyForWave(wave) {
+    const index = Math.floor((Number(wave) || 0) / 5) - 1;
+    return index >= 0 ? BOSS_ORDER[Math.min(19, index)] : null;
+  }
+  function bossArt(wave, part = "portrait") {
+    const key = bossKeyForWave(wave);
+    return key ? src(`boss_${key}_${part}`) : null;
+  }
+  function heroArt(characterId, part = "portrait") {
+    const hero = HERO_KEYS[characterId];
+    return hero ? src(`hero_${hero}_${part}`) : null;
+  }
+  function npcFace(npc, mood = "neutral") { return src(`npc_${npc}_face_${mood}`) || src(`npc_${npc}_face_neutral`); }
+
   function baseOf(enemy) {
     if (enemy.__grimoireBase !== undefined) return enemy.__grimoireBase;
     let base = null;
@@ -358,6 +377,6 @@
   window.GrimoireSprites = Object.freeze({
     BOSS_SCALE, ready, has, url, strip, image, loopFrame, onceFrame, onceDuration,
     heroFrame, heroImage, enemyFrame, recordDeath, drawBodies, pickupFrame, setLegacyEnemyFrame,
-    fx, drawEffects, heldVisual, projectileFrame, weaponImpact, weaponId, enemyShotFrame, src, weaponIcon, iconUrl
+    fx, drawEffects, heldVisual, bossKeyForWave, bossArt, heroArt, npcFace, projectileFrame, weaponImpact, weaponId, enemyShotFrame, src, weaponIcon, iconUrl
   });
 })();

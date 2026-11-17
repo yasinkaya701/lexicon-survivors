@@ -25,7 +25,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || path.join(os.homed
     for (const branch of await page.locator('.skill-tree-branch').all()) {
       assert.equal(await branch.locator('.skill-node-button').count(), 3, 'each branch shows its three connected levels');
     }
-    assert.equal(await page.locator('.skill-tree-profile > img').getAttribute('src'), 'assets/ui/errata/portraits/inky-selection.webp');
+    assert.equal(await page.locator('.skill-tree-profile > img').getAttribute('src'), 'assets/art/grimoire/heroes/inky/portrait.webp');
     assert.equal(await page.locator('.skill-tree-profile [role=progressbar]').count(), 1);
     assert.equal(await page.locator('.skill-node-button[data-state="available"]').count(), 3);
     assert.ok(await page.locator('.skill-tree-branches').evaluate(branches => branches.getBoundingClientRect().width > 700), 'tree spans the shop workspace');

@@ -32,6 +32,11 @@ OUT = ROOT / "assets/art/grimoire"
 SKIP_GROUPS = ("01 ", "18 ", "30 ", "31 ")
 
 
+ICONISH = ("/relics/", "/skills/", "/achievements/", "/status/", "/heat/", "/hub/icons/",
+           "/hub/upgrades/", "/errata/", "/system/buttons/", "/inkshop/", "/gadgets/",
+           "/medallion", "/icon", "_icon", "/app_icon")
+
+
 def target_long_edge(entry: dict) -> int:
     """Longest edge (per cell for strips) the runtime copy should have."""
     path = entry["path"]
@@ -57,7 +62,16 @@ def target_long_edge(entry: dict) -> int:
         return min(long_edge, 1024)
     if "/face_" in path or "/hub/lore/" in path or "/hub/stations/" in path:
         return min(long_edge, 512)
-    return min(long_edge, 256)
+    # Only real icons go down to 256; larger illustrations keep screen size.
+    if long_edge <= 512 or any(k in path for k in ICONISH):
+        return min(long_edge, 256)
+    if "/effects/telegraph" in path:
+        return 512
+    if path.endswith("/card.png"):
+        return 768
+    if path.endswith("/defeat.png") or path.endswith("/victory.png"):
+        return 1200
+    return min(long_edge, 1600 if long_edge >= 1600 else 1024)
 
 
 # ---------------------------------------------------------------------------
