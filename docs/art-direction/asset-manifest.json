@@ -1,7 +1,7 @@
 {
  "base": "assets/art/grimoire",
  "style": "STYLE LOCK (docs/art-direction/README.md §2)",
- "count": 856,
+ "count": 1174,
  "entries": [
   {
    "group": "01 Referanslar",
@@ -17977,6 +17977,6684 @@
    "reference": null,
    "priority": 3,
    "prompt": "Steam store art (steam page bg): Inky with the quill raised in the foreground, Blank Page looming behind erasing the library into white; leave room for the logo.",
+   "note": null
+  },
+  {
+   "group": "19 Modlar",
+   "id": "mode_lexicon_card",
+   "path": "assets/art/grimoire/modes/lexicon_card.png",
+   "size": [
+    1200,
+    1600
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1200,
+    1600
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 1,
+   "prompt": "Mode selection card art for Lexicon mode: a sealed English dictionary glowing with brass light, a quill crossing it — the mode where words are your weapons. Lower third dark for text.",
+   "note": null
+  },
+  {
+   "group": "19 Modlar",
+   "id": "mode_lexicon_emblem",
+   "path": "assets/art/grimoire/modes/lexicon_emblem.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Emblem for Lexicon mode: a sealed English dictionary glowing with brass light, a quill crossing it — the mode where words are your weapons, simplified to a strong icon.",
+   "note": null
+  },
+  {
+   "group": "19 Modlar",
+   "id": "mode_errata_card",
+   "path": "assets/art/grimoire/modes/errata_card.png",
+   "size": [
+    1200,
+    1600
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1200,
+    1600
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 1,
+   "prompt": "Mode selection card art for Errata mode: a blood-red pen driven into a torn page like a sword — the pure action mode. Lower third dark for text.",
+   "note": null
+  },
+  {
+   "group": "19 Modlar",
+   "id": "mode_errata_emblem",
+   "path": "assets/art/grimoire/modes/errata_emblem.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Emblem for Errata mode: a blood-red pen driven into a torn page like a sword — the pure action mode, simplified to a strong icon.",
+   "note": null
+  },
+  {
+   "group": "19 Modlar",
+   "id": "mode_endless_card",
+   "path": "assets/art/grimoire/modes/endless_card.png",
+   "size": [
+    1200,
+    1600
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1200,
+    1600
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 1,
+   "prompt": "Mode selection card art for Endless Archive: a staircase of shelves descending forever into darkness. Lower third dark for text.",
+   "note": null
+  },
+  {
+   "group": "19 Modlar",
+   "id": "mode_endless_emblem",
+   "path": "assets/art/grimoire/modes/endless_emblem.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Emblem for Endless Archive: a staircase of shelves descending forever into darkness, simplified to a strong icon.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "cursed_blood_price",
+   "path": "assets/art/grimoire/errata/cursed/blood_price.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Cursed seal card icon: a seal dripping blood: big damage, healing halved. A blood-red wax seal with a distinct pressed sigil and a dark crack through it.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "cursed_hollow_quill",
+   "path": "assets/art/grimoire/errata/cursed/hollow_quill.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Cursed seal card icon: a hollow quill: fire rate up, accuracy down. A blood-red wax seal with a distinct pressed sigil and a dark crack through it.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "cursed_iron_binding",
+   "path": "assets/art/grimoire/errata/cursed/iron_binding.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Cursed seal card icon: a book bound in iron chains: armour up, speed down. A blood-red wax seal with a distinct pressed sigil and a dark crack through it.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "cursed_burning_margin",
+   "path": "assets/art/grimoire/errata/cursed/burning_margin.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Cursed seal card icon: a page edge on fire: burn every hit, lose health over time. A blood-red wax seal with a distinct pressed sigil and a dark crack through it.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "cursed_glass_ink",
+   "path": "assets/art/grimoire/errata/cursed/glass_ink.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Cursed seal card icon: a glass inkwell cracked: critical hits soar, max health down. A blood-red wax seal with a distinct pressed sigil and a dark crack through it.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "cursed_hungry_index",
+   "path": "assets/art/grimoire/errata/cursed/hungry_index.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Cursed seal card icon: an index card with teeth: ink gain doubled, enemies faster. A blood-red wax seal with a distinct pressed sigil and a dark crack through it.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "cursed_silent_bell",
+   "path": "assets/art/grimoire/errata/cursed/silent_bell.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Cursed seal card icon: a bell with its clapper torn out: gadget cooldown halved, no healing pickups. A blood-red wax seal with a distinct pressed sigil and a dark crack through it.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "cursed_twin_shadow",
+   "path": "assets/art/grimoire/errata/cursed/twin_shadow.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Cursed seal card icon: a seal with two overlapping shadows: extra projectile, damage taken up. A blood-red wax seal with a distinct pressed sigil and a dark crack through it.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "cursed_red_ledger",
+   "path": "assets/art/grimoire/errata/cursed/red_ledger.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Cursed seal card icon: a ledger of red debts: gold now, pay later. A blood-red wax seal with a distinct pressed sigil and a dark crack through it.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "cursed_last_candle",
+   "path": "assets/art/grimoire/errata/cursed/last_candle.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Cursed seal card icon: a candle burnt to the stub: massive power for the next wave only. A blood-red wax seal with a distinct pressed sigil and a dark crack through it.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "cursed_erased_name",
+   "path": "assets/art/grimoire/errata/cursed/erased_name.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Cursed seal card icon: a name scratched out: invisible for 2 seconds after each kill, cannot regen. A blood-red wax seal with a distinct pressed sigil and a dark crack through it.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "cursed_weeping_wax",
+   "path": "assets/art/grimoire/errata/cursed/weeping_wax.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Cursed seal card icon: a wax seal weeping: shield on hit, shield breaks into damage. A blood-red wax seal with a distinct pressed sigil and a dark crack through it.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "affix_shielded_icon",
+   "path": "assets/art/grimoire/errata/affixes/shielded_icon.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Elite affix icon: a rotating shield of index tabs.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "affix_shielded_aura",
+   "path": "assets/art/grimoire/errata/affixes/shielded_aura.png",
+   "size": [
+    1536,
+    256
+   ],
+   "frames": 6,
+   "fps": 10,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Looping aura effect drawn around an elite enemy: a rotating shield of index tabs, 6 frames, transparent centre.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "affix_splitting_icon",
+   "path": "assets/art/grimoire/errata/affixes/splitting_icon.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Elite affix icon: a body cracked down the middle, ready to split.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "affix_splitting_aura",
+   "path": "assets/art/grimoire/errata/affixes/splitting_aura.png",
+   "size": [
+    1536,
+    256
+   ],
+   "frames": 6,
+   "fps": 10,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Looping aura effect drawn around an elite enemy: a body cracked down the middle, ready to split, 6 frames, transparent centre.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "affix_teleporting_icon",
+   "path": "assets/art/grimoire/errata/affixes/teleporting_icon.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Elite affix icon: an outline smeared like wet ink.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "affix_teleporting_aura",
+   "path": "assets/art/grimoire/errata/affixes/teleporting_aura.png",
+   "size": [
+    1536,
+    256
+   ],
+   "frames": 6,
+   "fps": 10,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Looping aura effect drawn around an elite enemy: an outline smeared like wet ink, 6 frames, transparent centre.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "affix_exploding_icon",
+   "path": "assets/art/grimoire/errata/affixes/exploding_icon.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Elite affix icon: a fuse-lit ink core.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "affix_exploding_aura",
+   "path": "assets/art/grimoire/errata/affixes/exploding_aura.png",
+   "size": [
+    1536,
+    256
+   ],
+   "frames": 6,
+   "fps": 10,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Looping aura effect drawn around an elite enemy: a fuse-lit ink core, 6 frames, transparent centre.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "affix_hasted_icon",
+   "path": "assets/art/grimoire/errata/affixes/hasted_icon.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Elite affix icon: trailing speed lines of torn paper.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "affix_hasted_aura",
+   "path": "assets/art/grimoire/errata/affixes/hasted_aura.png",
+   "size": [
+    1536,
+    256
+   ],
+   "frames": 6,
+   "fps": 10,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Looping aura effect drawn around an elite enemy: trailing speed lines of torn paper, 6 frames, transparent centre.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "affix_vampiric_icon",
+   "path": "assets/art/grimoire/errata/affixes/vampiric_icon.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Elite affix icon: red threads drawing health.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "affix_vampiric_aura",
+   "path": "assets/art/grimoire/errata/affixes/vampiric_aura.png",
+   "size": [
+    1536,
+    256
+   ],
+   "frames": 6,
+   "fps": 10,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Looping aura effect drawn around an elite enemy: red threads drawing health, 6 frames, transparent centre.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "affix_summoner_icon",
+   "path": "assets/art/grimoire/errata/affixes/summoner_icon.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Elite affix icon: a ring of tiny paper minions.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "affix_summoner_aura",
+   "path": "assets/art/grimoire/errata/affixes/summoner_aura.png",
+   "size": [
+    1536,
+    256
+   ],
+   "frames": 6,
+   "fps": 10,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Looping aura effect drawn around an elite enemy: a ring of tiny paper minions, 6 frames, transparent centre.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "affix_warded_icon",
+   "path": "assets/art/grimoire/errata/affixes/warded_icon.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Elite affix icon: a circle of red correction marks.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "affix_warded_aura",
+   "path": "assets/art/grimoire/errata/affixes/warded_aura.png",
+   "size": [
+    1536,
+    256
+   ],
+   "frames": 6,
+   "fps": 10,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Looping aura effect drawn around an elite enemy: a circle of red correction marks, 6 frames, transparent centre.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "nemesis_mark",
+   "path": "assets/art/grimoire/errata/nemesis_mark.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Nemesis mark: a red skull-shaped wax seal with the hero's own quill through it, worn above the enemy that killed you last run.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "weakpoint_marker",
+   "path": "assets/art/grimoire/errata/weakpoint.png",
+   "size": [
+    1536,
+    256
+   ],
+   "frames": 6,
+   "fps": 12,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 1,
+   "prompt": "Boss weak-point marker: a hand-drawn red correction circle pulsing, 6 frames.",
+   "note": null
+  },
+  {
+   "group": "20 Errata modu",
+   "id": "weakpoint_break",
+   "path": "assets/art/grimoire/errata/weakpoint_break.png",
+   "size": [
+    3072,
+    384
+   ],
+   "frames": 8,
+   "fps": 18,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    384,
+    384
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Weak point shattering: red ink and torn page fragments burst outward, 8 frames.",
+   "note": null
+  },
+  {
+   "group": "21 Lexicon modu",
+   "id": "word_plate",
+   "path": "assets/art/grimoire/lexicon/word_plate.png",
+   "size": [
+    768,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    768,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 1,
+   "prompt": "A floating iron word plate with brass rim, blank centre for live text, transparent.",
+   "note": "Kelime kodla yazılır."
+  },
+  {
+   "group": "21 Lexicon modu",
+   "id": "word_plate_correct",
+   "path": "assets/art/grimoire/lexicon/word_plate_correct.png",
+   "size": [
+    4608,
+    256
+   ],
+   "frames": 6,
+   "fps": 16,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    768,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 1,
+   "prompt": "The word plate igniting in brass light as the correct word is chosen, 6 frames.",
+   "note": null
+  },
+  {
+   "group": "21 Lexicon modu",
+   "id": "word_plate_wrong",
+   "path": "assets/art/grimoire/lexicon/word_plate_wrong.png",
+   "size": [
+    4608,
+    256
+   ],
+   "frames": 6,
+   "fps": 16,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    768,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 1,
+   "prompt": "The word plate cracking and crossed with red ink when the wrong word is chosen, 6 frames.",
+   "note": null
+  },
+  {
+   "group": "21 Lexicon modu",
+   "id": "correction_strike",
+   "path": "assets/art/grimoire/lexicon/correction_strike.png",
+   "size": [
+    10240,
+    1024
+   ],
+   "frames": 10,
+   "fps": 20,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    1024,
+    1024
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 1,
+   "prompt": "Boss finisher: a giant red pen stroke slashes across the boss and the boss's sentence tears apart, 10 frames.",
+   "note": null
+  },
+  {
+   "group": "21 Lexicon modu",
+   "id": "word_enemy_banner",
+   "path": "assets/art/grimoire/lexicon/word_enemy_banner.png",
+   "size": [
+    512,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "A small torn paper banner that floats above word enemies, blank for live text, transparent.",
+   "note": null
+  },
+  {
+   "group": "21 Lexicon modu",
+   "id": "word_learned",
+   "path": "assets/art/grimoire/lexicon/word_learned.png",
+   "size": [
+    2048,
+    256
+   ],
+   "frames": 8,
+   "fps": 14,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "A word sealed into the grimoire: a page folds closed and a brass seal stamps it, 8 frames.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_neris_hearth",
+   "path": "assets/art/grimoire/hub/stations/neris_hearth.png",
+   "size": [
+    768,
+    768
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    768,
+    768
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Hub station prop: Neris's hearth chair with a cold candle and open ledger, three-quarter view, transparent.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_neris_hearth_icon",
+   "path": "assets/art/grimoire/hub/icons/neris_hearth.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Interaction icon for the hub station: Neris's hearth chair with a cold candle and open ledger.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_mechanic_bench",
+   "path": "assets/art/grimoire/hub/stations/mechanic_bench.png",
+   "size": [
+    768,
+    768
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    768,
+    768
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Hub station prop: the Silent Mechanic's workbench with clamps and weapon frames, three-quarter view, transparent.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_mechanic_bench_icon",
+   "path": "assets/art/grimoire/hub/icons/mechanic_bench.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Interaction icon for the hub station: the Silent Mechanic's workbench with clamps and weapon frames.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_ink_child_post",
+   "path": "assets/art/grimoire/hub/stations/ink_child_post.png",
+   "size": [
+    768,
+    768
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    768,
+    768
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Hub station prop: a wall of pigeonholes stuffed with notes, three-quarter view, transparent.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_ink_child_post_icon",
+   "path": "assets/art/grimoire/hub/icons/ink_child_post.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Interaction icon for the hub station: a wall of pigeonholes stuffed with notes.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_sera_post",
+   "path": "assets/art/grimoire/hub/stations/sera_post.png",
+   "size": [
+    768,
+    768
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    768,
+    768
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Hub station prop: a post office counter with sealed letters and scissors, three-quarter view, transparent.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_sera_post_icon",
+   "path": "assets/art/grimoire/hub/icons/sera_post.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Interaction icon for the hub station: a post office counter with sealed letters and scissors.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_yel_map",
+   "path": "assets/art/grimoire/hub/stations/yel_map.png",
+   "size": [
+    768,
+    768
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    768,
+    768
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Hub station prop: a large map table with string routes and pins, three-quarter view, transparent.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_yel_map_icon",
+   "path": "assets/art/grimoire/hub/icons/yel_map.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Interaction icon for the hub station: a large map table with string routes and pins.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_lira_training",
+   "path": "assets/art/grimoire/hub/stations/lira_training.png",
+   "size": [
+    768,
+    768
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    768,
+    768
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Hub station prop: a training dummy and weapon rack, three-quarter view, transparent.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_lira_training_icon",
+   "path": "assets/art/grimoire/hub/icons/lira_training.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Interaction icon for the hub station: a training dummy and weapon rack.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_tavi_apothecary",
+   "path": "assets/art/grimoire/hub/stations/tavi_apothecary.png",
+   "size": [
+    768,
+    768
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    768,
+    768
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Hub station prop: an apothecary shelf of vials, three-quarter view, transparent.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_tavi_apothecary_icon",
+   "path": "assets/art/grimoire/hub/icons/tavi_apothecary.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Interaction icon for the hub station: an apothecary shelf of vials.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_redactor_desk",
+   "path": "assets/art/grimoire/hub/stations/redactor_desk.png",
+   "size": [
+    768,
+    768
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    768,
+    768
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Hub station prop: a desk of red-inked ledgers, the Errata notebook, three-quarter view, transparent.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_redactor_desk_icon",
+   "path": "assets/art/grimoire/hub/icons/redactor_desk.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Interaction icon for the hub station: a desk of red-inked ledgers, the Errata notebook.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_exit_door",
+   "path": "assets/art/grimoire/hub/stations/exit_door.png",
+   "size": [
+    768,
+    768
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    768,
+    768
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Hub station prop: the iron door back into the archive, light behind it, three-quarter view, transparent.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_exit_door_icon",
+   "path": "assets/art/grimoire/hub/icons/exit_door.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Interaction icon for the hub station: the iron door back into the archive, light behind it.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_erase_mask",
+   "path": "assets/art/grimoire/hub/erase_mask.png",
+   "size": [
+    2560,
+    1440
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    2560,
+    1440
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Greyscale mask of white erasure spreading from the edges (white = erased), used to blend hub states.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "hub_hearth_loop",
+   "path": "assets/art/grimoire/hub/hearth_loop.png",
+   "size": [
+    4096,
+    512
+   ],
+   "frames": 8,
+   "fps": 10,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Hearth fire loop, 8 frames.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "meta_max_health",
+   "path": "assets/art/grimoire/hub/upgrades/max_health.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Permanent upgrade icon: max health, engraved brass on dark leather.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "meta_ink_gain",
+   "path": "assets/art/grimoire/hub/upgrades/ink_gain.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Permanent upgrade icon: ink gain, engraved brass on dark leather.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "meta_dash_charges",
+   "path": "assets/art/grimoire/hub/upgrades/dash_charges.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Permanent upgrade icon: dash charges, engraved brass on dark leather.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "meta_reroll",
+   "path": "assets/art/grimoire/hub/upgrades/reroll.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Permanent upgrade icon: reroll, engraved brass on dark leather.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "meta_revive",
+   "path": "assets/art/grimoire/hub/upgrades/revive.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Permanent upgrade icon: revive, engraved brass on dark leather.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "meta_starting_weapon",
+   "path": "assets/art/grimoire/hub/upgrades/starting_weapon.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Permanent upgrade icon: starting weapon, engraved brass on dark leather.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "meta_luck",
+   "path": "assets/art/grimoire/hub/upgrades/luck.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Permanent upgrade icon: luck, engraved brass on dark leather.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "meta_armour",
+   "path": "assets/art/grimoire/hub/upgrades/armour.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Permanent upgrade icon: armour, engraved brass on dark leather.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "meta_pickup_range",
+   "path": "assets/art/grimoire/hub/upgrades/pickup_range.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Permanent upgrade icon: pickup range, engraved brass on dark leather.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "meta_gadget_slot",
+   "path": "assets/art/grimoire/hub/upgrades/gadget_slot.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Permanent upgrade icon: gadget slot, engraved brass on dark leather.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "meta_relic_slot",
+   "path": "assets/art/grimoire/hub/upgrades/relic_slot.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Permanent upgrade icon: relic slot, engraved brass on dark leather.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "meta_story_insight",
+   "path": "assets/art/grimoire/hub/upgrades/story_insight.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Permanent upgrade icon: story insight, engraved brass on dark leather.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_01",
+   "path": "assets/art/grimoire/hub/lore/note_01.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 1: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_02",
+   "path": "assets/art/grimoire/hub/lore/note_02.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 2: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_03",
+   "path": "assets/art/grimoire/hub/lore/note_03.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 3: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_04",
+   "path": "assets/art/grimoire/hub/lore/note_04.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 4: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_05",
+   "path": "assets/art/grimoire/hub/lore/note_05.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 5: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_06",
+   "path": "assets/art/grimoire/hub/lore/note_06.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 6: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_07",
+   "path": "assets/art/grimoire/hub/lore/note_07.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 7: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_08",
+   "path": "assets/art/grimoire/hub/lore/note_08.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 8: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_09",
+   "path": "assets/art/grimoire/hub/lore/note_09.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 9: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_10",
+   "path": "assets/art/grimoire/hub/lore/note_10.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 10: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_11",
+   "path": "assets/art/grimoire/hub/lore/note_11.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 11: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_12",
+   "path": "assets/art/grimoire/hub/lore/note_12.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 12: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_13",
+   "path": "assets/art/grimoire/hub/lore/note_13.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 13: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_14",
+   "path": "assets/art/grimoire/hub/lore/note_14.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 14: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_15",
+   "path": "assets/art/grimoire/hub/lore/note_15.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 15: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_16",
+   "path": "assets/art/grimoire/hub/lore/note_16.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 16: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_17",
+   "path": "assets/art/grimoire/hub/lore/note_17.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 17: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_18",
+   "path": "assets/art/grimoire/hub/lore/note_18.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 18: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_19",
+   "path": "assets/art/grimoire/hub/lore/note_19.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 19: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "lore_note_20",
+   "path": "assets/art/grimoire/hub/lore/note_20.png",
+   "size": [
+    1024,
+    1400
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1400
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Collectible lore note 20: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "letter_quest",
+   "path": "assets/art/grimoire/hub/letter_quest.png",
+   "size": [
+    1024,
+    768
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    768
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "A sealed quest letter on the post counter, wax seal intact, blank lines.",
+   "note": null
+  },
+  {
+   "group": "22 Hub ve ilerleme",
+   "id": "letter_reward",
+   "path": "assets/art/grimoire/hub/letter_reward.png",
+   "size": [
+    1024,
+    768
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    768
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "An opened reward letter with a small pouch of ink drops.",
+   "note": null
+  },
+  {
+   "group": "23 Rota haritası",
+   "id": "route_map_bg",
+   "path": "assets/art/grimoire/route/map_bg.png",
+   "size": [
+    2560,
+    1440
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    2560,
+    1440
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Yel's map of the four wings drawn on dark parchment: corridors, stairs, the dome, the last page dissolving at the edge; paths left empty for nodes.",
+   "note": null
+  },
+  {
+   "group": "23 Rota haritası",
+   "id": "route_node_combat",
+   "path": "assets/art/grimoire/route/node_combat.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Map node icon: crossed quill and blade, brass medallion style.",
+   "note": null
+  },
+  {
+   "group": "23 Rota haritası",
+   "id": "route_node_elite",
+   "path": "assets/art/grimoire/route/node_elite.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Map node icon: crowned skull seal, brass medallion style.",
+   "note": null
+  },
+  {
+   "group": "23 Rota haritası",
+   "id": "route_node_boss",
+   "path": "assets/art/grimoire/route/node_boss.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Map node icon: great red seal, brass medallion style.",
+   "note": null
+  },
+  {
+   "group": "23 Rota haritası",
+   "id": "route_node_shop",
+   "path": "assets/art/grimoire/route/node_shop.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Map node icon: inkwell and coin, brass medallion style.",
+   "note": null
+  },
+  {
+   "group": "23 Rota haritası",
+   "id": "route_node_rest",
+   "path": "assets/art/grimoire/route/node_rest.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Map node icon: candle, brass medallion style.",
+   "note": null
+  },
+  {
+   "group": "23 Rota haritası",
+   "id": "route_node_story",
+   "path": "assets/art/grimoire/route/node_story.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Map node icon: open book, brass medallion style.",
+   "note": null
+  },
+  {
+   "group": "23 Rota haritası",
+   "id": "route_node_treasure",
+   "path": "assets/art/grimoire/route/node_treasure.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Map node icon: iron-bound chest, brass medallion style.",
+   "note": null
+  },
+  {
+   "group": "23 Rota haritası",
+   "id": "route_node_unknown",
+   "path": "assets/art/grimoire/route/node_unknown.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Map node icon: question-shaped ink blot, brass medallion style.",
+   "note": null
+  },
+  {
+   "group": "23 Rota haritası",
+   "id": "route_path",
+   "path": "assets/art/grimoire/route/path_tile.png",
+   "size": [
+    512,
+    64
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    64
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Seamless dotted ink path segment, transparent.",
+   "note": null
+  },
+  {
+   "group": "23 Rota haritası",
+   "id": "route_cursor",
+   "path": "assets/art/grimoire/route/cursor.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Hero position marker on the map: a small brass figure on a pin.",
+   "note": null
+  },
+  {
+   "group": "24 Düzeltme Dereceleri",
+   "id": "heat_red_ink",
+   "path": "assets/art/grimoire/heat/red_ink.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Difficulty modifier icon 'red ink': a red correction mark engraved on a dark iron plate.",
+   "note": null
+  },
+  {
+   "group": "24 Düzeltme Dereceleri",
+   "id": "heat_faster_shelves",
+   "path": "assets/art/grimoire/heat/faster_shelves.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Difficulty modifier icon 'faster shelves': a red correction mark engraved on a dark iron plate.",
+   "note": null
+  },
+  {
+   "group": "24 Düzeltme Dereceleri",
+   "id": "heat_thick_paper",
+   "path": "assets/art/grimoire/heat/thick_paper.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Difficulty modifier icon 'thick paper': a red correction mark engraved on a dark iron plate.",
+   "note": null
+  },
+  {
+   "group": "24 Düzeltme Dereceleri",
+   "id": "heat_silent_witness",
+   "path": "assets/art/grimoire/heat/silent_witness.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Difficulty modifier icon 'silent witness': a red correction mark engraved on a dark iron plate.",
+   "note": null
+  },
+  {
+   "group": "24 Düzeltme Dereceleri",
+   "id": "heat_short_candle",
+   "path": "assets/art/grimoire/heat/short_candle.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Difficulty modifier icon 'short candle': a red correction mark engraved on a dark iron plate.",
+   "note": null
+  },
+  {
+   "group": "24 Düzeltme Dereceleri",
+   "id": "heat_double_guard",
+   "path": "assets/art/grimoire/heat/double_guard.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Difficulty modifier icon 'double guard': a red correction mark engraved on a dark iron plate.",
+   "note": null
+  },
+  {
+   "group": "24 Düzeltme Dereceleri",
+   "id": "heat_blank_margins",
+   "path": "assets/art/grimoire/heat/blank_margins.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Difficulty modifier icon 'blank margins': a red correction mark engraved on a dark iron plate.",
+   "note": null
+  },
+  {
+   "group": "24 Düzeltme Dereceleri",
+   "id": "heat_no_mercy",
+   "path": "assets/art/grimoire/heat/no_mercy.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Difficulty modifier icon 'no mercy': a red correction mark engraved on a dark iron plate.",
+   "note": null
+  },
+  {
+   "group": "24 Düzeltme Dereceleri",
+   "id": "heat_elite_tide",
+   "path": "assets/art/grimoire/heat/elite_tide.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Difficulty modifier icon 'elite tide': a red correction mark engraved on a dark iron plate.",
+   "note": null
+  },
+  {
+   "group": "24 Düzeltme Dereceleri",
+   "id": "heat_last_word",
+   "path": "assets/art/grimoire/heat/last_word.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Difficulty modifier icon 'last word': a red correction mark engraved on a dark iron plate.",
+   "note": null
+  },
+  {
+   "group": "25 Savaş okunurluğu",
+   "id": "status_slow",
+   "path": "assets/art/grimoire/status/slow.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Status effect icon: a melting hourglass, readable at 24 px.",
+   "note": null
+  },
+  {
+   "group": "25 Savaş okunurluğu",
+   "id": "status_burn",
+   "path": "assets/art/grimoire/status/burn.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Status effect icon: a candle flame, readable at 24 px.",
+   "note": null
+  },
+  {
+   "group": "25 Savaş okunurluğu",
+   "id": "status_bleed",
+   "path": "assets/art/grimoire/status/bleed.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Status effect icon: a dripping red drop, readable at 24 px.",
+   "note": null
+  },
+  {
+   "group": "25 Savaş okunurluğu",
+   "id": "status_stun",
+   "path": "assets/art/grimoire/status/stun.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Status effect icon: circling stars of ink, readable at 24 px.",
+   "note": null
+  },
+  {
+   "group": "25 Savaş okunurluğu",
+   "id": "status_shield",
+   "path": "assets/art/grimoire/status/shield.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Status effect icon: index-tab shield, readable at 24 px.",
+   "note": null
+  },
+  {
+   "group": "25 Savaş okunurluğu",
+   "id": "status_haste",
+   "path": "assets/art/grimoire/status/haste.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Status effect icon: winged boot, readable at 24 px.",
+   "note": null
+  },
+  {
+   "group": "25 Savaş okunurluğu",
+   "id": "status_poison",
+   "path": "assets/art/grimoire/status/poison.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Status effect icon: green-black ink drop, readable at 24 px.",
+   "note": null
+  },
+  {
+   "group": "25 Savaş okunurluğu",
+   "id": "status_weaken",
+   "path": "assets/art/grimoire/status/weaken.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Status effect icon: a broken quill, readable at 24 px.",
+   "note": null
+  },
+  {
+   "group": "25 Savaş okunurluğu",
+   "id": "status_marked",
+   "path": "assets/art/grimoire/status/marked.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Status effect icon: a red circle, readable at 24 px.",
+   "note": null
+  },
+  {
+   "group": "25 Savaş okunurluğu",
+   "id": "status_silence",
+   "path": "assets/art/grimoire/status/silence.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Status effect icon: a sewn mouth, readable at 24 px.",
+   "note": null
+  },
+  {
+   "group": "25 Savaş okunurluğu",
+   "id": "status_regen",
+   "path": "assets/art/grimoire/status/regen.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Status effect icon: a brass heart, readable at 24 px.",
+   "note": null
+  },
+  {
+   "group": "25 Savaş okunurluğu",
+   "id": "status_invisible",
+   "path": "assets/art/grimoire/status/invisible.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Status effect icon: a dotted outline, readable at 24 px.",
+   "note": null
+  },
+  {
+   "group": "25 Savaş okunurluğu",
+   "id": "tier_frame_1",
+   "path": "assets/art/grimoire/ui/tier_frame_1.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Weapon tier frame level 1: arch-shaped brass frame, more ornate with each level, transparent centre.",
+   "note": null
+  },
+  {
+   "group": "25 Savaş okunurluğu",
+   "id": "tier_frame_2",
+   "path": "assets/art/grimoire/ui/tier_frame_2.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Weapon tier frame level 2: arch-shaped brass frame, more ornate with each level, transparent centre.",
+   "note": null
+  },
+  {
+   "group": "25 Savaş okunurluğu",
+   "id": "tier_frame_3",
+   "path": "assets/art/grimoire/ui/tier_frame_3.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Weapon tier frame level 3: arch-shaped brass frame, more ornate with each level, transparent centre.",
+   "note": null
+  },
+  {
+   "group": "25 Savaş okunurluğu",
+   "id": "tier_frame_4",
+   "path": "assets/art/grimoire/ui/tier_frame_4.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Weapon tier frame level 4: arch-shaped brass frame, more ornate with each level, transparent centre.",
+   "note": null
+  },
+  {
+   "group": "25 Savaş okunurluğu",
+   "id": "damage_flash_overlay",
+   "path": "assets/art/grimoire/ui/hurt_overlay.png",
+   "size": [
+    1920,
+    1080
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1920,
+    1080
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Screen-edge red ink vignette used when the hero is hit, transparent centre.",
+   "note": null
+  },
+  {
+   "group": "25 Savaş okunurluğu",
+   "id": "low_health_overlay",
+   "path": "assets/art/grimoire/ui/low_health_overlay.png",
+   "size": [
+    1920,
+    1080
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1920,
+    1080
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Screen-edge cracked page and dried blood vignette for low health, transparent centre.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_quill_blaster_evo_icon",
+   "path": "assets/art/grimoire/weapons/quill_blaster/evolved_icon.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved form of 'İğne Ucu Kalem': a needle-tipped steel pen pistol, now gilded with brass filigree and a red gem, clearly grander.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_quill_blaster_evo_held",
+   "path": "assets/art/grimoire/weapons/quill_blaster/evolved_held.png",
+   "size": [
+    512,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "In-hand sprite of the evolved a needle-tipped steel pen pistol, side view pointing right, grip lower left.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_quill_blaster_evo_projectile",
+   "path": "assets/art/grimoire/weapons/quill_blaster/evolved_projectile.png",
+   "size": [
+    512,
+    128
+   ],
+   "frames": 4,
+   "fps": 16,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved projectile: a needle of ink, larger, edged with brass light, 4 frames.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_syllable_shotgun_evo_icon",
+   "path": "assets/art/grimoire/weapons/syllable_shotgun/evolved_icon.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved form of 'Hece Saçması': a blunderbuss loaded with syllable pellets, now gilded with brass filigree and a red gem, clearly grander.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_syllable_shotgun_evo_held",
+   "path": "assets/art/grimoire/weapons/syllable_shotgun/evolved_held.png",
+   "size": [
+    512,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "In-hand sprite of the evolved a blunderbuss loaded with syllable pellets, side view pointing right, grip lower left.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_syllable_shotgun_evo_projectile",
+   "path": "assets/art/grimoire/weapons/syllable_shotgun/evolved_projectile.png",
+   "size": [
+    512,
+    128
+   ],
+   "frames": 4,
+   "fps": 16,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved projectile: a spray of ink pellets, larger, edged with brass light, 4 frames.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_lexicon_beam_evo_icon",
+   "path": "assets/art/grimoire/weapons/lexicon_beam/evolved_icon.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved form of 'Prizma Işını': a brass prism lantern-gun, now gilded with brass filigree and a red gem, clearly grander.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_lexicon_beam_evo_held",
+   "path": "assets/art/grimoire/weapons/lexicon_beam/evolved_held.png",
+   "size": [
+    512,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "In-hand sprite of the evolved a brass prism lantern-gun, side view pointing right, grip lower left.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_lexicon_beam_evo_projectile",
+   "path": "assets/art/grimoire/weapons/lexicon_beam/evolved_projectile.png",
+   "size": [
+    512,
+    128
+   ],
+   "frames": 4,
+   "fps": 16,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved projectile: a flat bone-white beam, larger, edged with brass light, 4 frames.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_punctuation_bomb_evo_icon",
+   "path": "assets/art/grimoire/weapons/punctuation_bomb/evolved_icon.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved form of 'Ünlem Mayını': an exclamation-shaped iron mine, now gilded with brass filigree and a red gem, clearly grander.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_punctuation_bomb_evo_held",
+   "path": "assets/art/grimoire/weapons/punctuation_bomb/evolved_held.png",
+   "size": [
+    512,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "In-hand sprite of the evolved an exclamation-shaped iron mine, side view pointing right, grip lower left.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_punctuation_bomb_evo_projectile",
+   "path": "assets/art/grimoire/weapons/punctuation_bomb/evolved_projectile.png",
+   "size": [
+    512,
+    128
+   ],
+   "frames": 4,
+   "fps": 16,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved projectile: an iron mine with a burning fuse, larger, edged with brass light, 4 frames.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_dictionary_blade_evo_icon",
+   "path": "assets/art/grimoire/weapons/dictionary_blade/evolved_icon.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved form of 'Sözlük Muhafızı': a broad blade with a dictionary-cover guard, now gilded with brass filigree and a red gem, clearly grander.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_dictionary_blade_evo_held",
+   "path": "assets/art/grimoire/weapons/dictionary_blade/evolved_held.png",
+   "size": [
+    512,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "In-hand sprite of the evolved a broad blade with a dictionary-cover guard, side view pointing right, grip lower left.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_dictionary_blade_evo_projectile",
+   "path": "assets/art/grimoire/weapons/dictionary_blade/evolved_projectile.png",
+   "size": [
+    512,
+    128
+   ],
+   "frames": 4,
+   "fps": 16,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved projectile: a sweeping slash arc of ink, larger, edged with brass light, 4 frames.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_crossword_crossbow_evo_icon",
+   "path": "assets/art/grimoire/weapons/crossword_crossbow/evolved_icon.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved form of 'Bulmaca Balistası': a small crossbow with a crossword-grid stock, now gilded with brass filigree and a red gem, clearly grander.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_crossword_crossbow_evo_held",
+   "path": "assets/art/grimoire/weapons/crossword_crossbow/evolved_held.png",
+   "size": [
+    512,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "In-hand sprite of the evolved a small crossbow with a crossword-grid stock, side view pointing right, grip lower left.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_crossword_crossbow_evo_projectile",
+   "path": "assets/art/grimoire/weapons/crossword_crossbow/evolved_projectile.png",
+   "size": [
+    512,
+    128
+   ],
+   "frames": 4,
+   "fps": 16,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved projectile: a heavy bolt, larger, edged with brass light, 4 frames.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_hyphen_boomerang_evo_icon",
+   "path": "assets/art/grimoire/weapons/hyphen_boomerang/evolved_icon.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved form of 'Tire Yörüngesi': a dash-shaped bronze boomerang, now gilded with brass filigree and a red gem, clearly grander.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_hyphen_boomerang_evo_held",
+   "path": "assets/art/grimoire/weapons/hyphen_boomerang/evolved_held.png",
+   "size": [
+    512,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "In-hand sprite of the evolved a dash-shaped bronze boomerang, side view pointing right, grip lower left.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_hyphen_boomerang_evo_projectile",
+   "path": "assets/art/grimoire/weapons/hyphen_boomerang/evolved_projectile.png",
+   "size": [
+    512,
+    128
+   ],
+   "frames": 4,
+   "fps": 16,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved projectile: a spinning dash, larger, edged with brass light, 4 frames.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_ink_flamethrower_evo_icon",
+   "path": "assets/art/grimoire/weapons/ink_flamethrower/evolved_icon.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved form of 'Mürekkep Ocağı': an ink brazier flamethrower, now gilded with brass filigree and a red gem, clearly grander.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_ink_flamethrower_evo_held",
+   "path": "assets/art/grimoire/weapons/ink_flamethrower/evolved_held.png",
+   "size": [
+    512,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "In-hand sprite of the evolved an ink brazier flamethrower, side view pointing right, grip lower left.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_ink_flamethrower_evo_projectile",
+   "path": "assets/art/grimoire/weapons/ink_flamethrower/evolved_projectile.png",
+   "size": [
+    512,
+    128
+   ],
+   "frames": 4,
+   "fps": 16,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved projectile: a gout of black-red ink fire, larger, edged with brass light, 4 frames.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_thesaurus_rocket_evo_icon",
+   "path": "assets/art/grimoire/weapons/thesaurus_rocket/evolved_icon.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved form of 'Eşanlamlı Harcı': a mortar with twin pestles, now gilded with brass filigree and a red gem, clearly grander.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_thesaurus_rocket_evo_held",
+   "path": "assets/art/grimoire/weapons/thesaurus_rocket/evolved_held.png",
+   "size": [
+    512,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "In-hand sprite of the evolved a mortar with twin pestles, side view pointing right, grip lower left.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_thesaurus_rocket_evo_projectile",
+   "path": "assets/art/grimoire/weapons/thesaurus_rocket/evolved_projectile.png",
+   "size": [
+    512,
+    128
+   ],
+   "frames": 4,
+   "fps": 16,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved projectile: a falling twin shell, larger, edged with brass light, 4 frames.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_quote_pistols_evo_icon",
+   "path": "assets/art/grimoire/weapons/quote_pistols/evolved_icon.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved form of 'Tırnak Salvosu': twin quotation-mark pistols, now gilded with brass filigree and a red gem, clearly grander.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_quote_pistols_evo_held",
+   "path": "assets/art/grimoire/weapons/quote_pistols/evolved_held.png",
+   "size": [
+    512,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "In-hand sprite of the evolved twin quotation-mark pistols, side view pointing right, grip lower left.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_quote_pistols_evo_projectile",
+   "path": "assets/art/grimoire/weapons/quote_pistols/evolved_projectile.png",
+   "size": [
+    512,
+    128
+   ],
+   "frames": 4,
+   "fps": 16,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved projectile: paired quote-shaped bullets, larger, edged with brass light, 4 frames.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_calligraphy_katana_evo_icon",
+   "path": "assets/art/grimoire/weapons/calligraphy_katana/evolved_icon.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved form of 'Kalem Hilali': a crescent quill-blade katana, now gilded with brass filigree and a red gem, clearly grander.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_calligraphy_katana_evo_held",
+   "path": "assets/art/grimoire/weapons/calligraphy_katana/evolved_held.png",
+   "size": [
+    512,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "In-hand sprite of the evolved a crescent quill-blade katana, side view pointing right, grip lower left.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_calligraphy_katana_evo_projectile",
+   "path": "assets/art/grimoire/weapons/calligraphy_katana/evolved_projectile.png",
+   "size": [
+    512,
+    128
+   ],
+   "frames": 4,
+   "fps": 16,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved projectile: a crescent slash, larger, edged with brass light, 4 frames.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_scroll_turret_evo_icon",
+   "path": "assets/art/grimoire/weapons/scroll_turret/evolved_icon.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved form of 'Raf Bekçisi': a tiny turret made from a bookshelf, now gilded with brass filigree and a red gem, clearly grander.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_scroll_turret_evo_held",
+   "path": "assets/art/grimoire/weapons/scroll_turret/evolved_held.png",
+   "size": [
+    512,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "In-hand sprite of the evolved a tiny turret made from a bookshelf, side view pointing right, grip lower left.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_scroll_turret_evo_projectile",
+   "path": "assets/art/grimoire/weapons/scroll_turret/evolved_projectile.png",
+   "size": [
+    512,
+    128
+   ],
+   "frames": 4,
+   "fps": 16,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved projectile: a page dart, larger, edged with brass light, 4 frames.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_rune_orb_evo_icon",
+   "path": "assets/art/grimoire/weapons/rune_orb/evolved_icon.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved form of 'Atıf Küresi': a citation orb in a brass cage, now gilded with brass filigree and a red gem, clearly grander.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_rune_orb_evo_held",
+   "path": "assets/art/grimoire/weapons/rune_orb/evolved_held.png",
+   "size": [
+    512,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "In-hand sprite of the evolved a citation orb in a brass cage, side view pointing right, grip lower left.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_rune_orb_evo_projectile",
+   "path": "assets/art/grimoire/weapons/rune_orb/evolved_projectile.png",
+   "size": [
+    512,
+    128
+   ],
+   "frames": 4,
+   "fps": 16,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved projectile: an orbiting citation orb, larger, edged with brass light, 4 frames.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_grammar_sniper_evo_icon",
+   "path": "assets/art/grimoire/weapons/grammar_sniper/evolved_icon.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved form of 'Zayıf Nokta Rayı': a long sniper rail pen, now gilded with brass filigree and a red gem, clearly grander.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_grammar_sniper_evo_held",
+   "path": "assets/art/grimoire/weapons/grammar_sniper/evolved_held.png",
+   "size": [
+    512,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "In-hand sprite of the evolved a long sniper rail pen, side view pointing right, grip lower left.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_grammar_sniper_evo_projectile",
+   "path": "assets/art/grimoire/weapons/grammar_sniper/evolved_projectile.png",
+   "size": [
+    512,
+    128
+   ],
+   "frames": 4,
+   "fps": 16,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved projectile: a thin piercing line, larger, edged with brass light, 4 frames.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_word_loom_evo_icon",
+   "path": "assets/art/grimoire/weapons/word_loom/evolved_icon.png",
+   "size": [
+    512,
+    512
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    512
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved form of 'Dipnot Tezgâhı': a footnote loom, now gilded with brass filigree and a red gem, clearly grander.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_word_loom_evo_held",
+   "path": "assets/art/grimoire/weapons/word_loom/evolved_held.png",
+   "size": [
+    512,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    512,
+    256
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "In-hand sprite of the evolved a footnote loom, side view pointing right, grip lower left.",
+   "note": null
+  },
+  {
+   "group": "26 Silah evrimleri",
+   "id": "weapon_word_loom_evo_projectile",
+   "path": "assets/art/grimoire/weapons/word_loom/evolved_projectile.png",
+   "size": [
+    512,
+    128
+   ],
+   "frames": 4,
+   "fps": 16,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Evolved projectile: a thread of footnotes, larger, edged with brass light, 4 frames.",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "sys_cursor",
+   "path": "assets/art/grimoire/system/cursor.png",
+   "size": [
+    64,
+    64
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    64,
+    64
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Custom mouse cursor: a small quill nib pointing up-left, transparent.",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "sys_cursor_hover",
+   "path": "assets/art/grimoire/system/cursor_hover.png",
+   "size": [
+    64,
+    64
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    64,
+    64
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Cursor hover state: the quill nib dipped red, transparent.",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "sys_app_icon",
+   "path": "assets/art/grimoire/system/app_icon.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1024,
+    1024
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Application icon: the blackletter 'l' with a red stroke through it on dark tooled leather.",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "sys_favicon",
+   "path": "assets/art/grimoire/system/favicon.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Tiny icon: red stroke through a brass 'l' seal, readable at 16 px.",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "sys_loading_spinner",
+   "path": "assets/art/grimoire/system/loading_spinner.png",
+   "size": [
+    1536,
+    128
+   ],
+   "frames": 12,
+   "fps": 14,
+   "layout": "horizontal strip, equal cells, no gutters",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Loading animation: an ink drop falling and spreading into a ring, 12 frames.",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "sys_splash_studio",
+   "path": "assets/art/grimoire/system/splash_studio.png",
+   "size": [
+    1920,
+    1080
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1920,
+    1080
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Studio splash: a single candle lighting a closed book, space for a studio name.",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "sys_credits_bg",
+   "path": "assets/art/grimoire/system/credits_bg.png",
+   "size": [
+    2560,
+    1440
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    2560,
+    1440
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Credits backdrop: the restored library at dawn, very calm.",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "btn_pad_a",
+   "path": "assets/art/grimoire/system/buttons/pad_a.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Gamepad button prompt 'A' as a small brass button with an engraved shape (no letters; letter added in code).",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "btn_pad_b",
+   "path": "assets/art/grimoire/system/buttons/pad_b.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Gamepad button prompt 'B' as a small brass button with an engraved shape (no letters; letter added in code).",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "btn_pad_x",
+   "path": "assets/art/grimoire/system/buttons/pad_x.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Gamepad button prompt 'X' as a small brass button with an engraved shape (no letters; letter added in code).",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "btn_pad_y",
+   "path": "assets/art/grimoire/system/buttons/pad_y.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Gamepad button prompt 'Y' as a small brass button with an engraved shape (no letters; letter added in code).",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "btn_pad_lb",
+   "path": "assets/art/grimoire/system/buttons/pad_lb.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Gamepad button prompt 'LB' as a small brass button with an engraved shape (no letters; letter added in code).",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "btn_pad_rb",
+   "path": "assets/art/grimoire/system/buttons/pad_rb.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Gamepad button prompt 'RB' as a small brass button with an engraved shape (no letters; letter added in code).",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "btn_pad_lt",
+   "path": "assets/art/grimoire/system/buttons/pad_lt.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Gamepad button prompt 'LT' as a small brass button with an engraved shape (no letters; letter added in code).",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "btn_pad_rt",
+   "path": "assets/art/grimoire/system/buttons/pad_rt.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Gamepad button prompt 'RT' as a small brass button with an engraved shape (no letters; letter added in code).",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "btn_pad_ls",
+   "path": "assets/art/grimoire/system/buttons/pad_ls.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Gamepad button prompt 'LS' as a small brass button with an engraved shape (no letters; letter added in code).",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "btn_pad_rs",
+   "path": "assets/art/grimoire/system/buttons/pad_rs.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Gamepad button prompt 'RS' as a small brass button with an engraved shape (no letters; letter added in code).",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "btn_pad_dpad",
+   "path": "assets/art/grimoire/system/buttons/pad_dpad.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Gamepad button prompt 'DPAD' as a small brass button with an engraved shape (no letters; letter added in code).",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "btn_pad_start",
+   "path": "assets/art/grimoire/system/buttons/pad_start.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Gamepad button prompt 'START' as a small brass button with an engraved shape (no letters; letter added in code).",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "btn_pad_select",
+   "path": "assets/art/grimoire/system/buttons/pad_select.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Gamepad button prompt 'SELECT' as a small brass button with an engraved shape (no letters; letter added in code).",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "btn_key",
+   "path": "assets/art/grimoire/system/buttons/key.png",
+   "size": [
+    128,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    128,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Keyboard keycap prompt: a dark iron key with brass rim, blank face for live text.",
+   "note": null
+  },
+  {
+   "group": "27 Sistem",
+   "id": "btn_key_wide",
+   "path": "assets/art/grimoire/system/buttons/key_wide.png",
+   "size": [
+    320,
+    128
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    320,
+    128
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Wide keyboard keycap (Space, Shift): dark iron with brass rim, blank face.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tut_move",
+   "path": "assets/art/grimoire/tutorial/move.png",
+   "size": [
+    1200,
+    800
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1200,
+    800
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Tutorial illustration showing 'move' clearly in the Grimoire style, simple composition, one action per image.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tut_dash",
+   "path": "assets/art/grimoire/tutorial/dash.png",
+   "size": [
+    1200,
+    800
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1200,
+    800
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Tutorial illustration showing 'dash' clearly in the Grimoire style, simple composition, one action per image.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tut_auto_attack",
+   "path": "assets/art/grimoire/tutorial/auto_attack.png",
+   "size": [
+    1200,
+    800
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1200,
+    800
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Tutorial illustration showing 'auto attack' clearly in the Grimoire style, simple composition, one action per image.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tut_gadget",
+   "path": "assets/art/grimoire/tutorial/gadget.png",
+   "size": [
+    1200,
+    800
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1200,
+    800
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Tutorial illustration showing 'gadget' clearly in the Grimoire style, simple composition, one action per image.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tut_pickup_ink",
+   "path": "assets/art/grimoire/tutorial/pickup_ink.png",
+   "size": [
+    1200,
+    800
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1200,
+    800
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Tutorial illustration showing 'pickup ink' clearly in the Grimoire style, simple composition, one action per image.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tut_shop_cards",
+   "path": "assets/art/grimoire/tutorial/shop_cards.png",
+   "size": [
+    1200,
+    800
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1200,
+    800
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Tutorial illustration showing 'shop cards' clearly in the Grimoire style, simple composition, one action per image.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tut_quiz_answer",
+   "path": "assets/art/grimoire/tutorial/quiz_answer.png",
+   "size": [
+    1200,
+    800
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1200,
+    800
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Tutorial illustration showing 'quiz answer' clearly in the Grimoire style, simple composition, one action per image.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tut_weapon_merge",
+   "path": "assets/art/grimoire/tutorial/weapon_merge.png",
+   "size": [
+    1200,
+    800
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1200,
+    800
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Tutorial illustration showing 'weapon merge' clearly in the Grimoire style, simple composition, one action per image.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tut_boss_sentence",
+   "path": "assets/art/grimoire/tutorial/boss_sentence.png",
+   "size": [
+    1200,
+    800
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1200,
+    800
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Tutorial illustration showing 'boss sentence' clearly in the Grimoire style, simple composition, one action per image.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tut_hub_return",
+   "path": "assets/art/grimoire/tutorial/hub_return.png",
+   "size": [
+    1200,
+    800
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1200,
+    800
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 2,
+   "prompt": "Tutorial illustration showing 'hub return' clearly in the Grimoire style, simple composition, one action per image.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tip_01",
+   "path": "assets/art/grimoire/tutorial/tip_01.png",
+   "size": [
+    1600,
+    900
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1600,
+    900
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Loading-screen tip illustration 1: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tip_02",
+   "path": "assets/art/grimoire/tutorial/tip_02.png",
+   "size": [
+    1600,
+    900
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1600,
+    900
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Loading-screen tip illustration 2: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tip_03",
+   "path": "assets/art/grimoire/tutorial/tip_03.png",
+   "size": [
+    1600,
+    900
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1600,
+    900
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Loading-screen tip illustration 3: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tip_04",
+   "path": "assets/art/grimoire/tutorial/tip_04.png",
+   "size": [
+    1600,
+    900
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1600,
+    900
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Loading-screen tip illustration 4: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tip_05",
+   "path": "assets/art/grimoire/tutorial/tip_05.png",
+   "size": [
+    1600,
+    900
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1600,
+    900
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Loading-screen tip illustration 5: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tip_06",
+   "path": "assets/art/grimoire/tutorial/tip_06.png",
+   "size": [
+    1600,
+    900
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1600,
+    900
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Loading-screen tip illustration 6: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tip_07",
+   "path": "assets/art/grimoire/tutorial/tip_07.png",
+   "size": [
+    1600,
+    900
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1600,
+    900
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Loading-screen tip illustration 7: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tip_08",
+   "path": "assets/art/grimoire/tutorial/tip_08.png",
+   "size": [
+    1600,
+    900
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1600,
+    900
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Loading-screen tip illustration 8: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tip_09",
+   "path": "assets/art/grimoire/tutorial/tip_09.png",
+   "size": [
+    1600,
+    900
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1600,
+    900
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Loading-screen tip illustration 9: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tip_10",
+   "path": "assets/art/grimoire/tutorial/tip_10.png",
+   "size": [
+    1600,
+    900
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1600,
+    900
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Loading-screen tip illustration 10: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tip_11",
+   "path": "assets/art/grimoire/tutorial/tip_11.png",
+   "size": [
+    1600,
+    900
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1600,
+    900
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Loading-screen tip illustration 11: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line.",
+   "note": null
+  },
+  {
+   "group": "28 Öğretici",
+   "id": "tip_12",
+   "path": "assets/art/grimoire/tutorial/tip_12.png",
+   "size": [
+    1600,
+    900
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1600,
+    900
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Loading-screen tip illustration 12: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_first_night",
+   "path": "assets/art/grimoire/achievements/first_night.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'first night': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_first_night_locked",
+   "path": "assets/art/grimoire/achievements/first_night_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'first night': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_first_boss",
+   "path": "assets/art/grimoire/achievements/first_boss.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'first boss': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_first_boss_locked",
+   "path": "assets/art/grimoire/achievements/first_boss_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'first boss': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_wing_1",
+   "path": "assets/art/grimoire/achievements/wing_1.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'wing 1': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_wing_1_locked",
+   "path": "assets/art/grimoire/achievements/wing_1_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'wing 1': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_wing_2",
+   "path": "assets/art/grimoire/achievements/wing_2.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'wing 2': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_wing_2_locked",
+   "path": "assets/art/grimoire/achievements/wing_2_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'wing 2': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_wing_3",
+   "path": "assets/art/grimoire/achievements/wing_3.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'wing 3': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_wing_3_locked",
+   "path": "assets/art/grimoire/achievements/wing_3_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'wing 3': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_wing_4",
+   "path": "assets/art/grimoire/achievements/wing_4.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'wing 4': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_wing_4_locked",
+   "path": "assets/art/grimoire/achievements/wing_4_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'wing 4': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_true_ending",
+   "path": "assets/art/grimoire/achievements/true_ending.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'true ending': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_true_ending_locked",
+   "path": "assets/art/grimoire/achievements/true_ending_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'true ending': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_all_heroes",
+   "path": "assets/art/grimoire/achievements/all_heroes.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'all heroes': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_all_heroes_locked",
+   "path": "assets/art/grimoire/achievements/all_heroes_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'all heroes': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_no_damage_wave",
+   "path": "assets/art/grimoire/achievements/no_damage_wave.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'no damage wave': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_no_damage_wave_locked",
+   "path": "assets/art/grimoire/achievements/no_damage_wave_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'no damage wave': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_chain_50",
+   "path": "assets/art/grimoire/achievements/chain_50.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'chain 50': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_chain_50_locked",
+   "path": "assets/art/grimoire/achievements/chain_50_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'chain 50': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_chain_100",
+   "path": "assets/art/grimoire/achievements/chain_100.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'chain 100': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_chain_100_locked",
+   "path": "assets/art/grimoire/achievements/chain_100_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'chain 100': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_words_100",
+   "path": "assets/art/grimoire/achievements/words_100.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'words 100': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_words_100_locked",
+   "path": "assets/art/grimoire/achievements/words_100_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'words 100': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_words_500",
+   "path": "assets/art/grimoire/achievements/words_500.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'words 500': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_words_500_locked",
+   "path": "assets/art/grimoire/achievements/words_500_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'words 500': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_words_1000",
+   "path": "assets/art/grimoire/achievements/words_1000.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'words 1000': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_words_1000_locked",
+   "path": "assets/art/grimoire/achievements/words_1000_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'words 1000': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_perfect_quiz_10",
+   "path": "assets/art/grimoire/achievements/perfect_quiz_10.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'perfect quiz 10': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_perfect_quiz_10_locked",
+   "path": "assets/art/grimoire/achievements/perfect_quiz_10_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'perfect quiz 10': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_all_relics",
+   "path": "assets/art/grimoire/achievements/all_relics.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'all relics': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_all_relics_locked",
+   "path": "assets/art/grimoire/achievements/all_relics_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'all relics': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_all_weapons",
+   "path": "assets/art/grimoire/achievements/all_weapons.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'all weapons': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_all_weapons_locked",
+   "path": "assets/art/grimoire/achievements/all_weapons_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'all weapons': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_evolve_weapon",
+   "path": "assets/art/grimoire/achievements/evolve_weapon.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'evolve weapon': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_evolve_weapon_locked",
+   "path": "assets/art/grimoire/achievements/evolve_weapon_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'evolve weapon': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_nemesis_slain",
+   "path": "assets/art/grimoire/achievements/nemesis_slain.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'nemesis slain': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_nemesis_slain_locked",
+   "path": "assets/art/grimoire/achievements/nemesis_slain_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'nemesis slain': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_heat_5",
+   "path": "assets/art/grimoire/achievements/heat_5.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'heat 5': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_heat_5_locked",
+   "path": "assets/art/grimoire/achievements/heat_5_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'heat 5': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_heat_10",
+   "path": "assets/art/grimoire/achievements/heat_10.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'heat 10': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_heat_10_locked",
+   "path": "assets/art/grimoire/achievements/heat_10_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'heat 10': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_endless_50",
+   "path": "assets/art/grimoire/achievements/endless_50.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'endless 50': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_endless_50_locked",
+   "path": "assets/art/grimoire/achievements/endless_50_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'endless 50': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_endless_100",
+   "path": "assets/art/grimoire/achievements/endless_100.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'endless 100': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_endless_100_locked",
+   "path": "assets/art/grimoire/achievements/endless_100_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'endless 100': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_red_redactor_ally",
+   "path": "assets/art/grimoire/achievements/red_redactor_ally.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'red redactor ally': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_red_redactor_ally_locked",
+   "path": "assets/art/grimoire/achievements/red_redactor_ally_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'red redactor ally': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_neris_name",
+   "path": "assets/art/grimoire/achievements/neris_name.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'neris name': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_neris_name_locked",
+   "path": "assets/art/grimoire/achievements/neris_name_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'neris name': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_hero_inky",
+   "path": "assets/art/grimoire/achievements/hero_inky.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'hero inky': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_hero_inky_locked",
+   "path": "assets/art/grimoire/achievements/hero_inky_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'hero inky': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_hero_quillmaster",
+   "path": "assets/art/grimoire/achievements/hero_quillmaster.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'hero quillmaster': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_hero_quillmaster_locked",
+   "path": "assets/art/grimoire/achievements/hero_quillmaster_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'hero quillmaster': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_hero_word_knight",
+   "path": "assets/art/grimoire/achievements/hero_word_knight.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'hero word knight': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_hero_word_knight_locked",
+   "path": "assets/art/grimoire/achievements/hero_word_knight_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'hero word knight': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_hero_rune_sorceress",
+   "path": "assets/art/grimoire/achievements/hero_rune_sorceress.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'hero rune sorceress': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_hero_rune_sorceress_locked",
+   "path": "assets/art/grimoire/achievements/hero_rune_sorceress_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'hero rune sorceress': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_hero_alchemist",
+   "path": "assets/art/grimoire/achievements/hero_alchemist.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'hero alchemist': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_hero_alchemist_locked",
+   "path": "assets/art/grimoire/achievements/hero_alchemist_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'hero alchemist': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_hero_shadow_scribe",
+   "path": "assets/art/grimoire/achievements/hero_shadow_scribe.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam achievement icon 'hero shadow scribe': a brass medallion with an engraved symbol, readable at 64 px.",
+   "note": null
+  },
+  {
+   "group": "29 Başarımlar",
+   "id": "ach_hero_shadow_scribe_locked",
+   "path": "assets/art/grimoire/achievements/hero_shadow_scribe_locked.png",
+   "size": [
+    256,
+    256
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    256,
+    256
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Locked version of achievement 'hero shadow scribe': the same medallion tarnished and dark.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "trading_card_01",
+   "path": "assets/art/grimoire/steam_community/card_01.png",
+   "size": [
+    1920,
+    1080
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1920,
+    1080
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam trading card art featuring inky in a dramatic archive moment.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "trading_card_02",
+   "path": "assets/art/grimoire/steam_community/card_02.png",
+   "size": [
+    1920,
+    1080
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1920,
+    1080
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam trading card art featuring quillmaster in a dramatic archive moment.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "trading_card_03",
+   "path": "assets/art/grimoire/steam_community/card_03.png",
+   "size": [
+    1920,
+    1080
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1920,
+    1080
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam trading card art featuring word knight in a dramatic archive moment.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "trading_card_04",
+   "path": "assets/art/grimoire/steam_community/card_04.png",
+   "size": [
+    1920,
+    1080
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1920,
+    1080
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam trading card art featuring rune sorceress in a dramatic archive moment.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "trading_card_05",
+   "path": "assets/art/grimoire/steam_community/card_05.png",
+   "size": [
+    1920,
+    1080
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1920,
+    1080
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam trading card art featuring alchemist in a dramatic archive moment.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "trading_card_06",
+   "path": "assets/art/grimoire/steam_community/card_06.png",
+   "size": [
+    1920,
+    1080
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1920,
+    1080
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam trading card art featuring shadow scribe in a dramatic archive moment.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "trading_card_07",
+   "path": "assets/art/grimoire/steam_community/card_07.png",
+   "size": [
+    1920,
+    1080
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1920,
+    1080
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam trading card art featuring neris in a dramatic archive moment.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "trading_card_08",
+   "path": "assets/art/grimoire/steam_community/card_08.png",
+   "size": [
+    1920,
+    1080
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1920,
+    1080
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam trading card art featuring blank page in a dramatic archive moment.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "badge_1",
+   "path": "assets/art/grimoire/steam_community/badge_1.png",
+   "size": [
+    80,
+    80
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    80,
+    80
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam badge level 1: brass seal that grows more ornate with the level.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "profile_bg_1",
+   "path": "assets/art/grimoire/steam_community/profile_bg_1.png",
+   "size": [
+    1920,
+    1080
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1920,
+    1080
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam profile background 1: a wide calm archive vista.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "badge_2",
+   "path": "assets/art/grimoire/steam_community/badge_2.png",
+   "size": [
+    80,
+    80
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    80,
+    80
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam badge level 2: brass seal that grows more ornate with the level.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "profile_bg_2",
+   "path": "assets/art/grimoire/steam_community/profile_bg_2.png",
+   "size": [
+    1920,
+    1080
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1920,
+    1080
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam profile background 2: a wide calm archive vista.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "badge_3",
+   "path": "assets/art/grimoire/steam_community/badge_3.png",
+   "size": [
+    80,
+    80
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    80,
+    80
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam badge level 3: brass seal that grows more ornate with the level.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "profile_bg_3",
+   "path": "assets/art/grimoire/steam_community/profile_bg_3.png",
+   "size": [
+    1920,
+    1080
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1920,
+    1080
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam profile background 3: a wide calm archive vista.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "badge_4",
+   "path": "assets/art/grimoire/steam_community/badge_4.png",
+   "size": [
+    80,
+    80
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    80,
+    80
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam badge level 4: brass seal that grows more ornate with the level.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "profile_bg_4",
+   "path": "assets/art/grimoire/steam_community/profile_bg_4.png",
+   "size": [
+    1920,
+    1080
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1920,
+    1080
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam profile background 4: a wide calm archive vista.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "badge_5",
+   "path": "assets/art/grimoire/steam_community/badge_5.png",
+   "size": [
+    80,
+    80
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    80,
+    80
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam badge level 5: brass seal that grows more ornate with the level.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "profile_bg_5",
+   "path": "assets/art/grimoire/steam_community/profile_bg_5.png",
+   "size": [
+    1920,
+    1080
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1920,
+    1080
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam profile background 5: a wide calm archive vista.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "emoticon_quill",
+   "path": "assets/art/grimoire/steam_community/emoticon_quill.png",
+   "size": [
+    54,
+    54
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    54,
+    54
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam emoticon: quill, bold and simple.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "emoticon_inkdrop",
+   "path": "assets/art/grimoire/steam_community/emoticon_inkdrop.png",
+   "size": [
+    54,
+    54
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    54,
+    54
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam emoticon: inkdrop, bold and simple.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "emoticon_red_pen",
+   "path": "assets/art/grimoire/steam_community/emoticon_red_pen.png",
+   "size": [
+    54,
+    54
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    54,
+    54
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam emoticon: red pen, bold and simple.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "emoticon_blank_page",
+   "path": "assets/art/grimoire/steam_community/emoticon_blank_page.png",
+   "size": [
+    54,
+    54
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    54,
+    54
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam emoticon: blank page, bold and simple.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "emoticon_candle",
+   "path": "assets/art/grimoire/steam_community/emoticon_candle.png",
+   "size": [
+    54,
+    54
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    54,
+    54
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam emoticon: candle, bold and simple.",
+   "note": null
+  },
+  {
+   "group": "30 Steam topluluk",
+   "id": "emoticon_seal",
+   "path": "assets/art/grimoire/steam_community/emoticon_seal.png",
+   "size": [
+    54,
+    54
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    54,
+    54
+   ],
+   "transparent": true,
+   "reference": null,
+   "priority": 3,
+   "prompt": "Steam emoticon: seal, bold and simple.",
+   "note": null
+  },
+  {
+   "group": "31 Basın ve sosyal",
+   "id": "social_twitter_header",
+   "path": "assets/art/grimoire/marketing/social/twitter_header.png",
+   "size": [
+    1500,
+    500
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1500,
+    500
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "twitter header: the six heroes facing the wave of white erasure in the library, logo space kept clear.",
+   "note": null
+  },
+  {
+   "group": "31 Basın ve sosyal",
+   "id": "social_discord_banner",
+   "path": "assets/art/grimoire/marketing/social/discord_banner.png",
+   "size": [
+    960,
+    540
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    960,
+    540
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "discord banner: the six heroes facing the wave of white erasure in the library, logo space kept clear.",
+   "note": null
+  },
+  {
+   "group": "31 Basın ve sosyal",
+   "id": "social_youtube_banner",
+   "path": "assets/art/grimoire/marketing/social/youtube_banner.png",
+   "size": [
+    2560,
+    1440
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    2560,
+    1440
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "youtube banner: the six heroes facing the wave of white erasure in the library, logo space kept clear.",
+   "note": null
+  },
+  {
+   "group": "31 Basın ve sosyal",
+   "id": "social_press_key_art",
+   "path": "assets/art/grimoire/marketing/social/press_key_art.png",
+   "size": [
+    3840,
+    2160
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    3840,
+    2160
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "press key art: the six heroes facing the wave of white erasure in the library, logo space kept clear.",
+   "note": null
+  },
+  {
+   "group": "31 Basın ve sosyal",
+   "id": "social_press_key_art_vertical",
+   "path": "assets/art/grimoire/marketing/social/press_key_art_vertical.png",
+   "size": [
+    2160,
+    3840
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    2160,
+    3840
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "press key art vertical: the six heroes facing the wave of white erasure in the library, logo space kept clear.",
+   "note": null
+  },
+  {
+   "group": "31 Basın ve sosyal",
+   "id": "social_trailer_end_card",
+   "path": "assets/art/grimoire/marketing/social/trailer_end_card.png",
+   "size": [
+    1920,
+    1080
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    1920,
+    1080
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "trailer end card: the six heroes facing the wave of white erasure in the library, logo space kept clear.",
+   "note": null
+  },
+  {
+   "group": "31 Basın ve sosyal",
+   "id": "social_itch_cover",
+   "path": "assets/art/grimoire/marketing/social/itch_cover.png",
+   "size": [
+    630,
+    500
+   ],
+   "frames": 1,
+   "fps": null,
+   "layout": "single image",
+   "cell": [
+    630,
+    500
+   ],
+   "transparent": false,
+   "reference": null,
+   "priority": 3,
+   "prompt": "itch cover: the six heroes facing the wave of white erasure in the library, logo space kept clear.",
    "note": null
   }
  ]
