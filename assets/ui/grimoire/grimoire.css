@@ -4528,3 +4528,14 @@ input[type="range"]::-webkit-slider-thumb { background: var(--proof-night); bord
   48% { opacity: 1; transform: scale(2.6); }
   100% { opacity: 0; transform: scale(3); }
 }
+
+/* ------------------------------------------------------------------
+   Painted Grimoire art: the sepia/greyscale toning above existed only to
+   pull the old placeholder art toward this palette. Painted assets
+   already carry it, so they render untouched.
+   ------------------------------------------------------------------ */
+img[src*="/art/grimoire/"] { filter: none !important; mix-blend-mode: normal !important; }
+.weapon-illustration.is-painted::before,
+.weapon-illustration.is-painted::after { display: none; }
+.weapon-illustration.is-painted { background: radial-gradient(circle at 50% 45%, #2a1f17 0%, #120d0b 75%); }
+.weapon-illustration.is-painted img { padding: 4px; }

@@ -37,7 +37,10 @@ const HIT_SPRITE_PROFILE = Object.freeze({
 });
 
 function getWeaponVisual(weaponId) {
-  return WEAPON_VISUALS[weaponId] || null;
+  const base = WEAPON_VISUALS[weaponId] || null;
+  // Painted held art carries its own grip/muzzle; the tier picks the evolved sheet.
+  const tier = typeof state !== "undefined" ? state.weapons?.find(weapon => weapon.id === weaponId)?.tier : 1;
+  return window.GrimoireSprites?.heldVisual(weaponId, tier, base) || base;
 }
 
 function getWeaponArchetype(weaponId) {
@@ -355,13 +358,15 @@ function getWeaponRootWorld(weapon, weaponIndex = state.weapons.indexOf(weapon))
   const pose = getLocomotionPoseOffset(p);
   let x, y;
   if (state.weapons.length >= 2) {
+    // Weapons stay in the hero's hands: a tight ellipse at hand height
+    // (two weapons = one per hand), never a halo floating round the body.
     const count = state.weapons.length;
-    const radius = count === 2 ? 44 : count <= 4 ? 48 : 56;
+    const HAND_Y = 10, RX = count === 2 ? 22 : 25, RY = count === 2 ? 0 : 11;
     const angle = count === 2
       ? (weaponIndex === 0 ? Math.PI : 0)
-      : -Math.PI / 2 + weaponIndex * Math.PI * 2 / count;
-    x = Math.cos(angle) * radius;
-    y = Math.sin(angle) * radius;
+      : Math.PI + weaponIndex * Math.PI * 2 / count;
+    x = Math.cos(angle) * RX;
+    y = HAND_Y + Math.sin(angle) * RY;
   } else {
     const mount = active ? visual?.mount_active : visual?.mount_holstered;
     const facingLeft = active ? getHorizontalFacing(weapon.rotation, p.facing_left) : p.facing_left;
@@ -371,7 +376,8 @@ function getWeaponRootWorld(weapon, weaponIndex = state.weapons.indexOf(weapon))
   }
   const recoil = (weapon.recoil || 0) * (visual?.recoil_px || 3.5);
   const root = { x: p.x + pose.x + x - Math.cos(weapon.rotation) * recoil, y: p.y + pose.y + y - Math.sin(weapon.rotation) * recoil };
-  const sizeScale = state.weapons.length >= 2 && visual ? Math.min(1.5, 42 / visual.draw_size) : 1.0;
+  // Several weapons share the hands; keep each one hand-sized rather than enlarging small ones.
+  const sizeScale = state.weapons.length >= 2 && visual ? Math.min(1.0, 36 / visual.draw_size) : 1.0;
   return { ...root, active, sizeScale, visual };
 }
 
@@ -1588,6 +1594,12 @@ const DIFFICULTIES = {
 // =========================================
 // 3. 15 WEAPONS CATALOG & TIERS
 // =========================================
+// Painted (Grimoire) icon for a legacy sprite path; falls back to the path itself.
+function paintedIcon(path) { return window.GrimoireSprites?.iconUrl(path) || path; }
+function weaponIconSrc(id, tier = 1) {
+  return window.GrimoireSprites?.weaponIcon(id, tier) || `assets/sprites/${WEAPONS_CATALOG[id]?.sprite || "weapons/quill_blaster.png"}`;
+}
+
 const WEAPONS_CATALOG = {
   quill_blaster: {
     id: "quill_blaster",
@@ -2097,6 +2109,7 @@ function grantCharacterXp(amount, reason = "") {
   persistCharacterProgress();
   const levelsGained = profile.level - previousLevel;
   if (levelsGained > 0) {
+    window.GrimoireSprites?.fx("fx_level_up", 0, 0, { follow: state.player, size: 220 });
     state.skill_tree_notice = `${CHARACTERS[state.selected_char].name} · SEVİYE ${profile.level} · ${levelsGained} YETENEK PUANI`;
     addFloatingText(state.player.x, state.player.y - 34, `SEVİYE ${profile.level} · +${levelsGained} YETENEK`, "#e4c477", 15);
     sounds.playTone(660, "triangle", 0.16, 0.16);
@@ -3737,6 +3750,7 @@ function startWave() {
   state.wave_time_left = state.wave_duration;
   state.is_wave_active = true;
   wakeGameLoop();
+  window.GrimoireSprites?.fx("fx_wave_sigil", state.player.x, state.player.y, { size: 320, under: true });
   state.arena_interactables.forEach(object => { object.used = false; });
   state.mnemonic_used_this_wave = false;
   state.milestone_boss_delay = state.current_wave % 5 === 0 ? 1.8 : 0;
@@ -4032,6 +4046,7 @@ function activateActiveGadget() {
   sounds.gadget(gid);
 
   const p = state.player;
+  if (gid !== "eraser_dash") window.GrimoireSprites?.fx(`gadget_${gid}_fx`, p.x, p.y, { follow: p, size: 190 });
 
   if (gid === "eraser_dash") {
     let dx = 0, dy = 0;
@@ -4049,6 +4064,7 @@ function activateActiveGadget() {
     dx /= len; dy /= len;
 
     p.is_dashing = true;
+    window.GrimoireSprites?.fx("fx_dash_trail", p.x, p.y, { rotation: Math.atan2(dy, dx), size: 130, under: true });
     p.dash_timer = 0.22;
     p.dash_dir = { x: dx, y: dy };
     p.dash_hit_ids = new Set();
@@ -4329,6 +4345,7 @@ function updatePlayer(dt) {
   state.ink_drops.length = inkWriteIndex;
   if (pickedUpDrop) {
     state.ink_count += earnedInk;
+    window.GrimoireSprites?.fx("fx_pickup_ink", p.x, p.y - 8, { size: 76, throttle: 140 });
     addFloatingText(p.x + (Math.random() - 0.5) * 20, p.y - 20, `+${earnedInk}`, "#a9c6b6", 12);
   }
 
@@ -4343,6 +4360,8 @@ function updatePlayer(dt) {
         const threadValues = ARTIFACTS_CATALOG.mnemonic_thread.values || {};
         const healing = Math.round((drop.value + (threadActive ? (threadValues.heal_bonus || 14) : 0)) * (state.selected_char === "lexicon_alchemist" ? 1.5 : 1.0));
         state.hp = Math.min(state.max_hp, state.hp + healing);
+        window.GrimoireSprites?.fx("fx_pickup_health", drop.x, drop.y, { size: 90 });
+        window.GrimoireSprites?.fx("fx_heal", 0, 0, { follow: p, size: 140, throttle: 300 });
         if (threadActive) {
           state.mnemonic_used_this_wave = true;
           state.shield_charges = Math.max(state.shield_charges, 1);
@@ -4896,6 +4915,7 @@ function addWeaponField(field) {
 }
 
 function applyWeaponHitSignature(projectile, enemy, effectiveDamage) {
+  window.GrimoireSprites?.weaponImpact(projectile.weapon_id, enemy.x, enemy.y, Math.atan2(projectile.dy || 0, projectile.dx || 1), 72);
   const weapon = state.weapons.find(item => item.id === projectile.weapon_id);
   const tier = weapon?.tier || projectile.tier || 1;
   if (projectile.weapon_id === "quill_blaster" && !projectile.echo_shot) {
@@ -5433,6 +5453,7 @@ function resolveBossLine(boss, x1, y1, x2, y2, halfWidth = 24, damageFactor = 0.
 function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
   if (boss.hp <= boss.max_hp * 0.70 && boss.boss_phase < 2) {
     boss.boss_phase = 2;
+    window.GrimoireSprites?.fx("fx_boss_phase", 0, 0, { follow: boss, size: 300 });
     boss.boss_skill_interval *= 0.78;
     boss.speed *= 1.12;
     sounds.bossRoar();
@@ -5440,6 +5461,7 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
     triggerScreenShake(0.32, 9);
   } else if (boss.hp <= boss.max_hp * 0.35 && boss.boss_phase < 3) {
     boss.boss_phase = 3;
+    window.GrimoireSprites?.fx("fx_boss_phase", 0, 0, { follow: boss, size: 340 });
     boss.enraged = true;
     boss.boss_skill_interval *= 0.70;
     boss.speed *= 1.12;
@@ -6482,6 +6504,7 @@ function spawnEnemy() {
       const affixes = ["shielded", "blinker", "commander", "volatile"];
       newEnemy.affix = affixes[Math.floor(Math.random() * affixes.length)];
       newEnemy.is_elite = true;
+      window.GrimoireSprites?.fx("fx_elite_spawn", 0, 0, { follow: newEnemy, size: 130, under: true });
       newEnemy.max_hp *= 1.30;
       newEnemy.hp = newEnemy.max_hp;
       if (newEnemy.affix === "shielded") {
@@ -6573,6 +6596,7 @@ function spawnMilestoneBoss(wave) {
   sounds.bossRoar();
   addAliveEnemy(boss);
   state.active_boss = boss;
+  window.GrimoireSprites?.fx("fx_boss_spawn", boss.x, boss.y, { size: 300, under: true });
   speakBossVoiceLine(`wave-${wave}-entrance`, getBossEntranceLine(wave, boss));
   state.boss_defeated = false;
   state.boss_mistake_queue = [...(state.mistake_words || [])]
@@ -6655,6 +6679,7 @@ function spawnInkDrop(x, y, value) {
 }
 
 function takePlayerDamage(amount) {
+  if (amount > 0) window.GrimoireSprites?.fx("fx_hero_hurt", 0, 0, { follow: state.player, size: 110, throttle: 160 });
   if (state.shield_charges > 0) {
     const finalCharge = state.shield_charges === 1;
     state.shield_charges--;
@@ -7076,12 +7101,12 @@ function getSkillEffectIcon(node, characterId = state.selected_char) {
   const gadget = GADGETS_CATALOG[character?.starting_gadget];
   if (effects.armor || effects.max_hp) return "assets/sprites/relics/grammar_guide.png";
   if (effects.crit_chance) return "assets/sprites/relics/magnifying_glass.png";
-  if (effects.move_speed) return gadget?.icon || "assets/ui/icons/gadget.svg";
+  if (effects.move_speed) return gadget?.icon ? paintedIcon(gadget.icon) : "assets/ui/icons/gadget.svg";
   if (effects.damage || effects.attack_speed || effects.projectile_count || effects.pierce) {
-    return weapon ? `assets/sprites/${weapon.sprite}` : "assets/ui/icons/weapons.svg";
+    return weapon ? weaponIconSrc(weapon.id) : "assets/ui/icons/weapons.svg";
   }
-  if (effects.pickup_radius) return gadget?.icon || "assets/ui/icons/gadget.svg";
-  return gadget?.icon || "assets/ui/icons/quill.svg";
+  if (effects.pickup_radius) return gadget?.icon ? paintedIcon(gadget.icon) : "assets/ui/icons/gadget.svg";
+  return gadget?.icon ? paintedIcon(gadget.icon) : "assets/ui/icons/quill.svg";
 }
 
 function getSkillEffectSummary(node) {
@@ -7373,7 +7398,7 @@ function renderShopView() {
       card.innerHTML = `
         <div class="shop-meta"><span>Silah</span><span>Teçhizat</span></div>
         <div style="display: flex; align-items: center; gap: 8px; margin: 2px 0;">
-          <span class="weapon-illustration" aria-hidden="true" style="--atlas-x:${(Object.keys(WEAPONS_CATALOG).indexOf(wId) % 4) / 3 * 100}%;--atlas-y:${Math.floor(Object.keys(WEAPONS_CATALOG).indexOf(wId) / 4) / 3 * 100}%"></span>
+          <span class="weapon-illustration is-painted" aria-hidden="true"><img src="${weaponIconSrc(wId)}" alt=""></span>
           <h3 class="shop-title" style="min-width:0; overflow-wrap:anywhere;">${w.name}</h3>
         </div>
         <div class="shop-description">${w.desc}</div>
@@ -7449,7 +7474,7 @@ function renderShopView() {
       card.innerHTML = `
         <div class="shop-meta"><span>Yadigâr</span><span>Pasif eser</span></div>
         <div style="display:flex;align-items:center;gap:9px;min-width:0;margin:2px 0;">
-          <img src="${a.icon || "assets/sprites/relics/magnifying_glass.png"}" width="38" height="38" style="object-fit:contain;flex:0 0 auto;" alt="">
+          <img src="${paintedIcon(a.icon || "assets/sprites/relics/magnifying_glass.png")}" width="38" height="38" style="object-fit:contain;flex:0 0 auto;" alt="">
           <h3 class="shop-title" style="min-width:0;overflow-wrap:anywhere;">${a.name}</h3>
         </div>
         <div class="shop-description">${a.desc}</div>
@@ -7912,7 +7937,7 @@ function renderInventoryView() {
       button.setAttribute("role", "button");
       button.setAttribute("aria-pressed", String(state.active_gadget_id === gadgetId));
       const icon = document.createElement("img");
-      icon.src = gadget.icon || "assets/sprites/gadgets/eraser_dash.png";
+      icon.src = paintedIcon(gadget.icon || "assets/sprites/gadgets/eraser_dash.png");
       icon.alt = "";
       const copy = document.createElement("span");
       const name = document.createElement("strong");
@@ -7974,7 +7999,7 @@ function renderInventoryView() {
       const t = TIER_MULTIPLIERS[item.tier];
       box.innerHTML = `
         <span class="tier-badge ${t.badge}">${t.stars} ${t.name}</span>
-        <img src="assets/sprites/${w.sprite}" style="width: 32px; height: 32px;" alt="${w.name}">
+        <img src="${weaponIconSrc(item.id, item.tier)}" style="width: 32px; height: 32px;" alt="${w.name}">
         <span style="font-size: 11px; font-weight: bold; color: #2b170c;">${w.name.split(" ")[0]}</span>
         <button class="btn" style="font-size: 10px; padding: 2px 6px;" id="inv-unequip-${i}">Çantaya Al</button>
       `;
@@ -8004,7 +8029,7 @@ function renderInventoryView() {
     box.className = "slot-box";
     box.innerHTML = `
       <span class="tier-badge ${t.badge}">${t.stars} ${t.name}</span>
-      <img src="assets/sprites/${w.sprite}" style="width: 28px; height: 28px;" alt="${w.name}">
+      <img src="${weaponIconSrc(item.id, item.tier)}" style="width: 28px; height: 28px;" alt="${w.name}">
       <span style="font-size: 10.5px; font-weight: bold; color: #2b170c;">${w.name.split(" ")[0]}</span>
       <button class="btn btn-emerald" style="font-size: 10px; padding: 2px 6px;" id="inv-equip-${idx}">Kuşan</button>
     `;
@@ -8197,7 +8222,7 @@ function updateHUD() {
     const weapon = WEAPONS_CATALOG[item.id];
     const weaponArt = document.createElement("img");
     weaponArt.className = "weapon-token-art";
-    weaponArt.src = `assets/sprites/${weapon?.sprite || "weapons/quill_blaster.png"}`;
+    weaponArt.src = weaponIconSrc(item.id, item.tier);
     weaponArt.alt = "";
     weaponArt.loading = "lazy";
     const weaponCopy = document.createElement("span");
@@ -8220,7 +8245,7 @@ function updateHUD() {
   const gData = GADGETS_CATALOG[state.active_gadget_id] || GADGETS_CATALOG["eraser_dash"];
   const gadgetIcon = gData.icon || gData.sprite || "assets/sprites/gadgets/eraser_dash.png";
   const gadgetIconNode = document.getElementById("gadget-panel-icon");
-  const nextGadgetIcon = gadgetIcon.startsWith("assets/") ? gadgetIcon : `assets/sprites/${gadgetIcon}`;
+  const nextGadgetIcon = paintedIcon(gadgetIcon.startsWith("assets/") ? gadgetIcon : `assets/sprites/${gadgetIcon}`);
   if (gadgetIconNode.getAttribute("src") !== nextGadgetIcon) gadgetIconNode.src = nextGadgetIcon;
   setHUDText("gadget-panel-name", `${gData.name.split(" ")[0]} [SPACE]:`);
   const gStatus = document.getElementById("gadget-status");
@@ -8675,6 +8700,16 @@ function render(dt = 1 / 60) {
       const radius = ep.radius || 10;
       ctx.rotate(Math.atan2(ep.dy, ep.dx));
       ctx.drawImage(projectileSprite, -radius * 1.8, -radius * 1.8, radius * 3.6, radius * 3.6);
+    } else if (ep.color && window.GrimoireSprites?.enemyShotFrame(ep.shape, performance.now())) {
+      // Painted bullet over a soft halo in its danger colour, so ink-dark shots stay readable.
+      const r = ep.radius || 10;
+      const shot = window.GrimoireSprites.enemyShotFrame(ep.shape, performance.now(), (ep.x + ep.y) * 0.02);
+      ctx.globalAlpha = 0.42; ctx.fillStyle = ep.color;
+      ctx.beginPath(); ctx.arc(0, 0, r * 1.35, 0, Math.PI * 2); ctx.fill();
+      ctx.globalAlpha = 1;
+      ctx.rotate(Math.atan2(ep.dy, ep.dx));
+      ctx.imageSmoothingEnabled = true;
+      ctx.drawImage(shot, -r * 2.2, -r * 2.2, r * 4.4, r * 4.4);
     } else if (ep.color) {
       const r = ep.radius || 10;
       ctx.shadowColor = ep.color; ctx.shadowBlur = reducedEffects ? 0 : 13;
@@ -8709,6 +8744,7 @@ function render(dt = 1 / 60) {
 
   // Enemies (finished boss bodies sink first, under the living)
   window.GrimoireSprites?.drawBodies(ctx);
+  window.GrimoireSprites?.drawEffects(ctx, true);
   let detailedCrowdSprites = 0;
   state.enemies.forEach(e => {
     if (!isInRenderViewport(e.x, e.y, Math.max(64, (e.size || 36) * 0.95 + 18))) return;
@@ -8945,8 +8981,15 @@ function render(dt = 1 / 60) {
     ctx.rotate(Math.atan2(pr.dy, pr.dx));
     window.ErrataMotion?.drawProjectileTrail(ctx,pr,reducedEffects);
 
+    const prTier = pr.tier || state.weapons.find(w => w.id === pr.weapon_id)?.tier || 1;
+    const paintedShot = pr.weapon_id ? window.GrimoireSprites?.projectileFrame(pr.weapon_id, prTier, performance.now(), (pr.x + pr.y) * 0.01) : null;
     const prSpr = pr.sprite ? images[pr.sprite] : null;
-    if (prSpr && !pr.crit) {
+    if (paintedShot) {
+      // Painted strips leave a margin round the shot; draw larger than the hit size.
+      const sz = Math.max(16, (pr.size || 18) * 1.6) * (pr.crit ? 1.2 : 1);
+      ctx.imageSmoothingEnabled = true;
+      ctx.drawImage(paintedShot, -sz / 2, -sz / 2, sz, sz);
+    } else if (prSpr && !pr.crit) {
       const sz = pr.size || 18;
       ctx.drawImage(prSpr, -sz / 2, -sz / 2, sz, sz);
     } else {
@@ -8961,18 +9004,24 @@ function render(dt = 1 / 60) {
   // Weapon-aware hit confirmations. The eight generated pixel sprites stay short-lived and capped.
   state.hit_effects.forEach(effect => {
     if (!isInRenderViewport(effect.x, effect.y, (effect.size || 30) + 16)) return;
-    const sprite = images[`effects/combat_hit_${effect.frame}.png`];
-    if (!sprite) return;
     const progress = 1 - effect.lifetime / effect.max_lifetime;
+    const paintedHit = window.GrimoireSprites?.strip(effect.critical ? "fx_crit_hit" : "fx_hit");
+    const sprite = paintedHit
+      ? paintedHit[Math.min(paintedHit.length - 1, Math.floor(progress * paintedHit.length))]
+      : images[`effects/combat_hit_${effect.frame}.png`];
+    if (!sprite) return;
     const scale = 0.72 + progress * (effect.heavy || effect.critical ? 0.5 : 0.36);
     ctx.save();
     ctx.translate(effect.x, effect.y);
     ctx.rotate(Math.atan2(effect.dy, effect.dx));
     ctx.globalAlpha = Math.min(1, effect.lifetime / Math.min(0.07, effect.max_lifetime * 0.55));
-    const size = effect.size * scale;
+    const size = effect.size * scale * (paintedHit ? 1.9 : 1);
+    if (paintedHit) ctx.imageSmoothingEnabled = true;
     ctx.drawImage(sprite, -size / 2, -size / 2, size, size);
     ctx.restore();
   });
+
+  window.GrimoireSprites?.drawEffects(ctx, false);
 
   // Player
   state.gadget_trails.forEach(trail => {
@@ -9089,7 +9138,8 @@ function render(dt = 1 / 60) {
     ctx.rotate(getWeaponRenderAngle(w.id, w.rotation, swingRotation));
     ctx.imageSmoothingEnabled = false;
 
-    const wSpr = images[w.data.sprite];
+    const wSpr = (visual.painted_id && window.GrimoireSprites?.image(visual.painted_id)) || images[w.data.sprite];
+    if (visual.painted_id) ctx.imageSmoothingEnabled = true;
     const weaponInHeroFrame = state.weapons.length < 2 && ((state.selected_char === "inky" && w.id === "quill_blaster")
       || (state.selected_char === "quillmaster" && w.id === "syllable_shotgun")
       || (state.selected_char === "word_knight" && w.id === "dictionary_blade")

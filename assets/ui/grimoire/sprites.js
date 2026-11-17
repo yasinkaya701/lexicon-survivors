@@ -25,7 +25,8 @@
     });
   }
 
-  const ready = fetch(ATLAS_URL)
+  if (window.GRIMOIRE_ATLAS?.assets) atlas = window.GRIMOIRE_ATLAS.assets;
+  const ready = atlas ? Promise.resolve(atlas) : fetch(ATLAS_URL)
     .then(r => { if (!r.ok) throw Error("atlas"); return r.json(); })
     .then(data => { atlas = data.assets || {}; repaint(); return atlas; })
     .catch(() => { atlas = {}; return atlas; });
@@ -242,12 +243,121 @@
     return id && has(id) ? loopFrame(id, time, offset) : null;
   }
 
+  // ------------------------------------------------------- one-shot effects
+  // World-space strips played once at a point (impacts, level-up, boss
+  // arrival...). Purely visual, capped, and skipped under reduced effects.
+  const effects = [];
+  const FX_CAP = 48;
+  const lastFx = new Map();
+  function fx(id, x, y, options = {}) {
+    if (!has(id) || window.ErrataArena?.flags?.lowEffects) return;
+    if (options.throttle) {
+      const now = performance.now();
+      if (now - (lastFx.get(id) || 0) < options.throttle) return;
+      lastFx.set(id, now);
+    }
+    strip(id);
+    if (effects.length >= FX_CAP) effects.shift();
+    effects.push({ id, x, y, size: options.size || 96, rotation: options.rotation || 0,
+      follow: options.follow || null, alpha: options.alpha ?? 1, start: performance.now(),
+      blend: options.blend || null, under: !!options.under });
+  }
+
+  function drawEffects(context, under = false) {
+    if (!effects.length) return;
+    const now = performance.now();
+    const reduced = window.ErrataArena?.flags?.reducedMotion;
+    for (let i = effects.length - 1; i >= 0; i--) {
+      const effect = effects[i];
+      if (effect.under !== under) continue;
+      const duration = onceDuration(effect.id) || 400;
+      if (now - effect.start > duration) { effects.splice(i, 1); continue; }
+      const frame = reduced ? strip(effect.id)?.[Math.floor((strip(effect.id)?.length || 1) / 2)] : onceFrame(effect.id, effect.start, now);
+      if (!frame) continue;
+      const x = effect.follow ? effect.follow.x : effect.x;
+      const y = effect.follow ? effect.follow.y : effect.y;
+      context.save();
+      context.globalAlpha = effect.alpha;
+      if (effect.blend) context.globalCompositeOperation = effect.blend;
+      context.translate(x, y);
+      if (effect.rotation) context.rotate(effect.rotation);
+      context.imageSmoothingEnabled = true;
+      context.drawImage(frame, -effect.size / 2, -effect.size / 2, effect.size, effect.size);
+      context.restore();
+    }
+  }
+
+  // --------------------------------------------------------- weapons
+  // Held-weapon calibration for the painted sheets: grip (pivot in the hand)
+  // and muzzle (where shots leave), as fractions of the square image.
+  const HELD = {"quill_blaster":{"base":{"grip":[0.55,0.55],"muzzle":[0.91,0.84]},"evo":{"grip":[0.2,0.62],"muzzle":[0.86,0.38]}},"syllable_shotgun":{"base":{"grip":[0.3,0.55],"muzzle":[0.8,0.62]},"evo":{"grip":[0.15,0.62],"muzzle":[0.93,0.4]}},"lexicon_beam":{"base":{"grip":[0.44,0.08],"muzzle":[0.62,0.8]},"evo":{"grip":[0.15,0.65],"muzzle":[0.87,0.42]}},"punctuation_bomb":{"base":{"grip":[0.5,0.1],"muzzle":[0.48,0.88]},"evo":{"grip":[0.2,0.65],"muzzle":[0.79,0.46]}},"dictionary_blade":{"base":{"grip":[0.12,0.49],"muzzle":[0.91,0.55]},"evo":{"grip":[0.08,0.57],"muzzle":[0.93,0.55]}},"crossword_crossbow":{"base":{"grip":[0.1,0.65],"muzzle":[0.95,0.19]},"evo":{"grip":[0.08,0.6],"muzzle":[0.9,0.41]}},"hyphen_boomerang":{"base":{"grip":[0.09,0.54],"muzzle":[0.85,0.47]},"evo":{"grip":[0.14,0.48],"muzzle":[0.87,0.47]}},"ink_flamethrower":{"base":{"grip":[0.3,0.6],"muzzle":[0.77,0.42]},"evo":{"grip":[0.25,0.55],"muzzle":[0.86,0.5]}},"thesaurus_rocket":{"base":{"grip":[0.5,0.85],"muzzle":[0.5,0.08]},"evo":{"grip":[0.15,0.53],"muzzle":[0.93,0.55]}},"quote_pistols":{"base":{"grip":[0.2,0.62],"muzzle":[0.8,0.5]},"evo":{"grip":[0.3,0.6],"muzzle":[0.78,0.42]}},"calligraphy_katana":{"base":{"grip":[0.05,0.57],"muzzle":[0.92,0.4]},"evo":{"grip":[0.25,0.86],"muzzle":[0.8,0.35]}},"scroll_turret":{"base":{"grip":[0.3,0.75],"muzzle":[0.9,0.34]},"evo":{"grip":[0.45,0.8],"muzzle":[0.62,0.25]}},"rune_orb":{"base":{"grip":[0.5,0.05],"muzzle":[0.5,0.75]},"evo":{"grip":[0.5,0.1],"muzzle":[0.5,0.8]}},"grammar_sniper":{"base":{"grip":[0.15,0.55],"muzzle":[0.94,0.59]},"evo":{"grip":[0.2,0.42],"muzzle":[0.78,0.08]}},"word_loom":{"base":{"grip":[0.15,0.6],"muzzle":[0.9,0.47]},"evo":{"grip":[0.3,0.75],"muzzle":[0.7,0.25]}}};
+  /**
+   * Visual row for a held painted weapon, or null. Same shape as a
+   * weapon_visuals.json row so the existing muzzle/angle math applies.
+   */
+  function heldVisual(weapon, tier, base) {
+    const calibration = HELD[weapon];
+    if (!calibration || !base) return null;
+    const evolved = (tier || 1) >= EVOLVED_TIER && calibration.evo && has(`weapon_${weapon}_evo_held`);
+    const { grip, muzzle } = evolved ? calibration.evo : calibration.base;
+    const id = evolved ? `weapon_${weapon}_evo_held` : `weapon_${weapon}_held`;
+    if (!has(id)) return null;
+    const angle = Math.atan2(muzzle[1] - grip[1], muzzle[0] - grip[0]) * 180 / Math.PI;
+    return { ...base, grip, muzzle, art_angle_deg: angle, draw_size: base.draw_size, painted_id: id };
+  }
+  const EVOLVED_TIER = 4;
+  function weaponId(id, tier, part) {
+    const evolved = (tier || 1) >= EVOLVED_TIER && has(`weapon_${id}_evo_${part}`);
+    return evolved ? `weapon_${id}_evo_${part}` : `weapon_${id}_${part}`;
+  }
+  function projectileFrame(weapon, tier, time, offset = 0) {
+    const id = weaponId(weapon, tier, "projectile");
+    return has(id) ? loopFrame(id, time, offset) : null;
+  }
+  function weaponImpact(weapon, x, y, rotation, size = 64) {
+    fx(`weapon_${weapon}_impact`, x, y, { rotation, size });
+  }
+  // Enemy bullet shapes → painted bullet strips.
+  const ENEMY_SHOTS = { orb: "orb", shard: "shard", ink: "blot", return: "dot", book: "feather", ember: "ember" };
+  function enemyShotFrame(shape, time, offset = 0) {
+    const id = `enemy_projectile_${ENEMY_SHOTS[shape] || "orb"}`;
+    return has(id) ? loopFrame(id, time, offset) : null;
+  }
+
+  // ------------------------------------------------------------ icons (sync)
+  // Resolves the legacy sprite paths used by UI markup to the painted set.
+  // Uses window.GRIMOIRE_ATLAS (atlas.js) so markup built at boot is correct.
+  function syncRecord(id) { return (atlas || window.GRIMOIRE_ATLAS?.assets || {})[id]; }
+  function src(id) { return syncRecord(id)?.src || null; }
+  function weaponIcon(id, tier = 1) {
+    const evolved = (tier || 1) >= EVOLVED_TIER ? src(`weapon_${id}_evo_icon`) : null;
+    return evolved || src(`weapon_${id}_icon`);
+  }
+  function legacyIcon(path) {
+    const clean = String(path || "").replace(/^assets\/sprites\//, "").replace(/\?.*$/, "");
+    let match = clean.match(/^weapons\/([a-z_]+)\.png$/);
+    if (match) return weaponIcon(match[1]);
+    match = clean.match(/^gadgets\/([a-z_]+)\.png$/);
+    if (match) return src(`gadget_${match[1]}_icon`);
+    match = clean.match(/^relics\/([a-z_]+)\.png$/);
+    if (match) return src(`relic_${match[1]}`);
+    return null;
+  }
+  /** Painted URL for a legacy sprite path, or the original path. */
+  function iconUrl(path) {
+    const resolved = legacyIcon(path);
+    if (resolved) return resolved;
+    const value = String(path || "");
+    return value.startsWith("assets/") ? value : `assets/sprites/${value}`;
+  }
+
   // ---------------------------------------------------- legacy (arena-v3)
   let legacyEnemyFrame = () => null;
   function setLegacyEnemyFrame(fn) { legacyEnemyFrame = fn; }
 
   window.GrimoireSprites = Object.freeze({
     BOSS_SCALE, ready, has, url, strip, image, loopFrame, onceFrame, onceDuration,
-    heroFrame, heroImage, enemyFrame, recordDeath, drawBodies, pickupFrame, setLegacyEnemyFrame
+    heroFrame, heroImage, enemyFrame, recordDeath, drawBodies, pickupFrame, setLegacyEnemyFrame,
+    fx, drawEffects, heldVisual, projectileFrame, weaponImpact, weaponId, enemyShotFrame, src, weaponIcon, iconUrl
   });
 })();

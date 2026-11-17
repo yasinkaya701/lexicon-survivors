@@ -293,6 +293,8 @@ def main() -> int:
             else:
                 atlas[asset_id] = record
     (OUT / "atlas.json").write_text(json.dumps({"version": 1, "assets": atlas}, separators=(",", ":"), sort_keys=True))
+    # Same data as a classic script so UI markup built at boot can use it synchronously.
+    (OUT / "atlas.js").write_text("window.GRIMOIRE_ATLAS=" + json.dumps({"version": 1, "assets": atlas}, separators=(",", ":"), sort_keys=True) + ";\n")
     total = sum(f.stat().st_size for f in OUT.rglob("*.webp"))
     print(f"built {len(atlas)} assets, {total / 1e6:.1f} MB")
     for err in errors:

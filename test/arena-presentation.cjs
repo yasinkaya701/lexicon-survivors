@@ -14,10 +14,11 @@ const output=path.join(process.cwd(),'output/errata-arena');fs.mkdirSync(output,
  });
  for(const s of contracts.shots){if(s.projectileCount){assert.ok(Math.abs(Math.hypot(s.projectile.x-s.expected.x,s.projectile.y-s.expected.y)-(s.id==='quote_pistols'?12:0))<.001,`${s.id} muzzle mismatch`)}}
  assert.equal(contracts.layout.playerColliderRadius,15);assert.equal(contracts.layout.width,2800);assert.equal(contracts.layout.height,2100);
- // A full loadout must surround the body rather than share one hand.
+ // A full loadout stays in the hero's hands rather than floating round the body.
  for(const count of [2,4,6]){
   const roots=await p.evaluate(count=>{state.equipped_weapons=['quill_blaster','syllable_shotgun','dictionary_blade','lexicon_beam','rune_orb','calligraphy_katana'].slice(0,count).map(id=>({id,tier:1}));state.active_weapon_index=0;syncWeapons();state.player.x=0;state.player.y=0;state.player.vx=0;state.player.vy=0;state.player.shot_recoil_timer=0;return state.weapons.map((w,i)=>{const r=getWeaponRootWorld(w,i);return{x:r.x,y:r.y}})},count);
-  for(let i=0;i<roots.length;i++){assert.ok(Math.hypot(roots[i].x,roots[i].y)>=40,`${count} slots: weapon obscures body`);for(let j=0;j<i;j++)assert.ok(Math.hypot(roots[i].x-roots[j].x,roots[i].y-roots[j].y)>=34,`${count} slots: weapon mounts stack`)}
+  // Weapons are held, not orbiting: every mount sits in the hand zone (hand height, y≈10) and none stack.
+  for(let i=0;i<roots.length;i++){assert.ok(Math.hypot(roots[i].x,roots[i].y-10)<=30,`${count} slots: weapon floats away from the hands`);for(let j=0;j<i;j++)assert.ok(Math.hypot(roots[i].x-roots[j].x,roots[i].y-roots[j].y)>=14,`${count} slots: weapon mounts stack`)}
  }
  for(const wave of [1,26,51,76]){
   await p.evaluate(w=>{state.current_wave=w;ErrataArena.room(w)},wave);
