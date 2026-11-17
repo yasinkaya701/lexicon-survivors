@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" ><defs><path id="r" d="M100 100m-74 0a74 74 0 1 1 148 0a74 74 0 1 1-148 0"/></defs>
+<g fill="none" stroke="#22336B"><circle cx="100" cy="100" r="92" stroke-width="5"/><circle cx="100" cy="100" r="84" stroke-width="1.6"/><circle cx="100" cy="100" r="57" stroke-width="1.6"/></g>
+<text font-family="Courier New, Courier, monospace" font-weight="700" font-size="17" letter-spacing="2.2" fill="#22336B"><textPath href="#r" startOffset="0">KAYIP KENARLAR KÜTÜPHANESİ · KATALOG · ARŞİV ·</textPath></text>
+<text x="100" y="98" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="30" fill="#22336B">1887</text>
+<text x="100" y="124" text-anchor="middle" font-family="Courier New, monospace" font-weight="700" font-size="13" letter-spacing="2" fill="#22336B">NO. 000</text>
+<g fill="#22336B"><circle cx="40" cy="100" r="3"/><circle cx="160" cy="100" r="3"/></g></svg>

@@ -5097,7 +5097,7 @@ function updateProjectiles(dt) {
           if (pr.weapon_id === "hyphen_boomerang" && pr.tier >= 3) e.hyphen_mark_timer = Math.max(e.hyphen_mark_timer || 0, 2.0);
           applyHitFeedback(e, { x: pr.dx, y: pr.dy }, shieldDeflect ? "shield" : (pr.impact_profile || (pr.type === "rocket" ? "heavy" : "ink")), !shieldDeflect && !!pr.crit, !shieldDeflect && pr.type === "rocket", 180);
           if (!shieldDeflect) applyWeaponHitSignature(pr, e, effectiveDmg);
-          addFloatingText(e.x + (Math.random() - 0.5) * 16, e.y - 14, pr.crit ? `CRIT ${Math.round(effectiveDmg)}!` : `${Math.round(effectiveDmg)}`, pr.crit ? "#ffd700" : "#ffffff", pr.crit ? 16 : 13);
+          addFloatingText(e.x + (Math.random() - 0.5) * 16, e.y - 14, `${Math.round(effectiveDmg)}`, pr.crit ? "#ffd700" : "#ffffff", pr.crit ? 17 : 13);
           if (pr.crit) triggerHaptic("light");
           if (pr.crit && state.selected_char === "shadow_lexicographer") {
             e.slow_timer = 1.2;
@@ -5343,6 +5343,57 @@ function updateBossHealthBar(force = false) {
       title.textContent = `ELEBAŞLARI ORDUSU · ${aliveBosses.length} · %${Math.ceil(pct)}`;
     }
   }
+  renderBossSentence(aliveBosses, pct);
+}
+
+// The boss health readout is the sentence the boss defends. Each share of
+// damage strikes one word through in proofreading red; the last word falls
+// with the boss.
+const BOSS_SENTENCES = {
+  "Kırmızı Müfettiş": "Hiçbir itiraz bu kayda geçemez.",
+  "Yarım Kalan Dev": "Her cümle benim emrimle tamamlanır.",
+  "Çelişki": "İki doğru tek hükümde birleşir.",
+  "İki Sesli Harpy": "Benzeyen her ad aynı kişidir.",
+  "Leksikon Ejderhası": "Kaybolan her sözcük artık benimdir.",
+  "Duraksız Orakçı": "Duraklayan geride kalır, durmak yok.",
+  "Ödünç Yüz": "Gerçek yüz dönmezse kopya kalır.",
+  "Sözcüksüz Ağız": "İsimsiz olanı kimse avlayamaz.",
+  "Son Nokta": "Bu tanıklık burada noktalanmıştır.",
+  "Çifte Yadsıma": "Hiç kimse hiçbir şeyi inkâr etmedi.",
+  "Ters Yansı": "Aynı yol hep aynı sona çıkar.",
+  "Yinelenen İkiz": "Tekrarlanan her söz kanıt sayılır.",
+  "Askıda Cümle": "Eylemi yapanın adı yazılmaz.",
+  "Soluk Düzeltmen": "Bir harf düzelir, hayat değişmez.",
+  "Harfî Alev": "Her korku bir şakayla örtülür.",
+  "Kırmızı Redaktör": "Susturanı da ben susturacağım.",
+  "İkili Gerçek": "Her gerçek kendi salonunda kalır.",
+  "Yanlış Neris": "Neris adına artık ben konuşurum.",
+  "Yazılmamış": "Sessizlik herkesi aynı biçimde korur.",
+  "Omega · Son Söz": "Son söz tek bir ağızdan çıkar."
+};
+let bossSentenceKey = "";
+function renderBossSentence(aliveBosses, pct) {
+  const host = document.getElementById("boss-hp-sentence");
+  if (!host) return;
+  const storyBoss = STORY_EXPANSION_DATA?.boss_encounters?.find(boss => boss.wave === state.current_wave);
+  const sentence = aliveBosses.length > 1
+    ? "Elebaşları tek bir hükümde birleşti."
+    : (storyBoss && BOSS_SENTENCES[storyBoss.title]) || "Bu sayfa asla düzeltilmeyecek.";
+  if (sentence !== bossSentenceKey) {
+    bossSentenceKey = sentence;
+    host.textContent = "";
+    sentence.split(" ").forEach(word => {
+      const span = document.createElement("span");
+      span.className = "boss-word";
+      span.textContent = word;
+      host.append(span, " ");
+    });
+    host.setAttribute("aria-label", sentence);
+  }
+  const words = host.querySelectorAll(".boss-word");
+  const struck = Math.min(words.length - 1, Math.floor((1 - Math.max(0, Math.min(100, pct)) / 100) * words.length));
+  // Strike from the end of the sentence back towards its subject.
+  words.forEach((word, index) => word.classList.toggle("is-struck", index >= words.length - struck));
 }
 
 function fireBossProjectile(boss, angle, speed = 260, damageFactor = 0.55, shape = "orb", originX = boss.x, originY = boss.y) {
@@ -7540,9 +7591,7 @@ function openQuiz(card, cardIndex) {
 
       if (isCorrect) {
         grantCharacterXp(card.is_review_redemption ? 28 : 18, "quiz_correct");
-        btn.style.setProperty("background", "#e6f4ea", "important");
-        btn.style.setProperty("border-color", "#2e7d32", "important");
-        btn.style.setProperty("color", "#1b4d2e", "important");
+        btn.classList.add("is-correct");
         sounds.quizSuccess();
         triggerHaptic("success");
         addFloatingText(state.player.x, state.player.y - 30, "KÂTİP MÜHRÜ · +%50", "#587767", 15);
@@ -7557,29 +7606,21 @@ function openQuiz(card, cardIndex) {
           try { localStorage.setItem("lexicon_mistakes", JSON.stringify(state.mistake_words)); } catch(e){}
           state.hp = Math.min(state.max_hp, state.hp + 35);
           resText.textContent = `PEKİŞTİRME TAMAMLANDI · HATA DEFTERİNDEN SİLİNDİ\n%50 indirim, +%75 nitelik ve +35 HP yenilendi.\nÖdenen: ${discCost} mürekkep`;
-          resText.style.color = "#1b4d2e";
-          resText.style.background = "rgba(46, 125, 50, 0.22)";
           applyCardUpgrade(card, true, 1.75);
         } else {
           state.hp = Math.min(state.max_hp, state.hp + 25);
           resText.textContent = `DOĞRU CEVAP · KÂTİP MÜHRÜ KAZANILDI\n%50 indirim, +%50 nitelik ve +25 HP yenilendi.\nÖdenen: ${discCost} mürekkep`;
-          resText.style.color = "#1b4d2e";
-          resText.style.background = "rgba(46, 125, 50, 0.15)";
           applyCardUpgrade(card, true, 1.5);
         }
         resText.textContent += `\nANLAM HAFIZASI: ${card.meaning_tr || card.options[card.correct_index]}`;
       } else {
-        btn.style.setProperty("background", "#fce8e6", "important");
-        btn.style.setProperty("border-color", "#c5221f", "important");
-        btn.style.setProperty("color", "#8b0000", "important");
+        btn.classList.add("is-wrong");
 
         // Highlight correct option in green
         const allBtns = optsContainer.querySelectorAll(".quiz-opt-btn");
         const correctDisplayIndex = shuffledOptions.findIndex(option => option.originalIndex === card.correct_index);
         if (allBtns[correctDisplayIndex]) {
-          allBtns[correctDisplayIndex].style.setProperty("background", "#e6f4ea", "important");
-          allBtns[correctDisplayIndex].style.setProperty("border-color", "#2e7d32", "important");
-          allBtns[correctDisplayIndex].style.setProperty("color", "#1b4d2e", "important");
+          allBtns[correctDisplayIndex].classList.add("is-correction");
         }
 
         sounds.quizFail();
@@ -7589,8 +7630,6 @@ function openQuiz(card, cardIndex) {
         state.ink_count -= card.shop_cost ?? card.cost;
         resText.textContent = `YANLIŞ CEVAP! Doğru Seçenek: "${card.options[card.correct_index]}"\nKelime Kâtip Hata Defterine eklendi (sonraki turlarda pekiştirilecek)!\nÖdenen: ${card.cost} Mürekkep`;
         resText.textContent += `\nANLAM HAFIZASI: ${card.meaning_tr || card.options[card.correct_index]}`;
-        resText.style.color = "#8b0000";
-        resText.style.background = "rgba(139, 0, 0, 0.12)";
         applyCardUpgrade(card, false, 1.0);
 
         // Record into persistent mistake notebook

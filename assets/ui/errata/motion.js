@@ -32,6 +32,14 @@
     context.save();context.globalAlpha=.2;context.fillStyle=projectile.crit?'#e5c17a':(projectile.color||'#b8d9d1');
     context.beginPath();context.moveTo(-length,0);context.quadraticCurveTo(-8,-2,-3,-1.2);context.lineTo(-3,1.2);context.quadraticCurveTo(-8,2,-length,0);context.fill();context.restore();
   }
+  // Combat text speaks the catalog language: damage is set in the
+  // dictionary face, a critical hit is circled in proofreading red, and
+  // every colour folds into the night palette.
+  const CRIT_COLOR='#ffd700',PROOF='#FF6A5C',NIGHT_TEXT='#E6EAF1',RULE_BLUE='#A9C7E8';
+  const HEAL=new Set(['#8ee0b5','#4ade80','#a9c6b6','#587767']);
+  const HURT=new Set(['#ef4444','#c5221f','#f97316']);
+  function inkFor(color){const c=String(color||'').toLowerCase();if(c===CRIT_COLOR)return PROOF;if(HURT.has(c))return PROOF;if(HEAL.has(c))return RULE_BLUE;return NIGHT_TEXT}
+  function ring(context,x,y,w,h){context.beginPath();const rx=w/2+9,ry=h/2+6;for(let i=0;i<=34;i++){const t=-.9+i/34*(Math.PI*2+.55);const wobble=1+Math.sin(i*1.7)*.035;const px=x+Math.cos(t)*rx*wobble,py=y+Math.sin(t)*ry*wobble;i?context.lineTo(px,py):context.moveTo(px,py)}context.stroke()}
   function drawCombatText(context,texts,lowEffects){
     const batches=new Map(),labels=[];
     for(const text of texts){
@@ -40,11 +48,21 @@
       const key=`${Math.round(text.x/42)}:${Math.round(text.y/42)}:${text.color}:${Math.floor(age/.15)}`;
       const previous=batches.get(key);
       if(previous){previous.total+=Number(text.text);previous.count++;previous.x+=(text.x-previous.x)/previous.count;previous.y=Math.min(previous.y,text.y);previous.lifetime=Math.max(previous.lifetime,text.lifetime)}
-      else batches.set(key,{...text,total:Number(text.text),count:1});
+      else batches.set(key,{...text,total:Number(text.text),count:1,numeric:true});
     }
-    for(const value of batches.values())labels.push({...value,text:Number(value.total.toFixed(1)).toString(),size:Math.min(19,Math.max(value.size||13,14)+(value.count>1?2:0))});
-    context.save();context.textAlign='center';context.lineJoin='round';
-    for(const text of labels){const progress=Math.max(0,text.lifetime/text.max_lifetime);context.font=`600 ${Math.max(13,text.size||13)}px 'IBM Plex Sans',sans-serif`;context.globalAlpha=Math.min(1,progress*1.8);context.strokeStyle='#161018';context.lineWidth=3;context.fillStyle=text.color;context.strokeText(text.text,text.x,text.y);context.fillText(text.text,text.x,text.y)}
+    for(const value of batches.values())labels.push({...value,text:Number(value.total.toFixed(1)).toString(),size:Math.min(21,Math.max(value.size||13,14)+(value.count>1?2:0))});
+    context.save();context.textAlign='center';context.textBaseline='alphabetic';context.lineJoin='round';
+    for(const text of labels){
+      const progress=Math.max(0,text.lifetime/text.max_lifetime);
+      const size=Math.max(13,text.size||13);
+      const crit=String(text.color).toLowerCase()===CRIT_COLOR;
+      context.globalAlpha=Math.min(1,progress*1.8);
+      context.font=text.numeric?`italic 700 ${size+2}px "Old Standard TT", Georgia, serif`:`500 ${Math.max(11,size-2)}px "IBM Plex Mono", monospace`;
+      context.strokeStyle='rgba(10,14,24,.92)';context.lineWidth=3.5;
+      context.fillStyle=inkFor(text.color);
+      context.strokeText(text.text,text.x,text.y);context.fillText(text.text,text.x,text.y);
+      if(crit&&!lowEffects){const w=context.measureText(text.text).width;context.strokeStyle=PROOF;context.lineWidth=1.8;ring(context,text.x,text.y-size*.36,w,size*.9)}
+    }
     context.restore();
   }
   window.ErrataMotion=Object.freeze({ready,heroFrame,enemyFrame,pickup,pose,drawPickup,drawProjectileTrail,drawCombatText});

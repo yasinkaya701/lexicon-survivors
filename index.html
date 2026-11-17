@@ -7,7 +7,6 @@
   <link rel="icon" type="image/svg+xml" href="assets/ui/icons/book.svg">
   <title>Lexicon Survivors</title>
   <meta name="game-release" content="web-performance-20261112-1">
-  <link rel="preload" as="image" href="assets/ui/errata/title-scene-v6.webp" fetchpriority="high">
   <style>
     @font-face {
       font-family: "IBM Plex Sans";
@@ -45,21 +44,13 @@
       font-display: swap;
     }
   </style>
-  <link rel="stylesheet" href="assets/ui/errata/theme.css?v=1f375a77519a">
-  <link rel="stylesheet" href="assets/ui/errata/surfaces.css?v=07812f969926">
-  <link rel="stylesheet" href="assets/ui/errata/inventory-forge.css?v=b8bccab86ec6">
-  <link rel="stylesheet" href="assets/ui/errata/skill-tree.css?v=18d46c30c334">
-  <link rel="stylesheet" href="assets/ui/errata/hud.css?v=181da48d4ee7">
-  <link rel="stylesheet" href="assets/ui/errata/combat-controls.css?v=9e6a6e52c749">
-  <link rel="stylesheet" href="assets/ui/errata/archive-collections.css?v=1f80c36874ce">
-  <link rel="stylesheet" href="assets/ui/errata/collection-experience.css?v=5b03f480941a">
-  <link rel="stylesheet" href="assets/ui/errata/menu-visual-style.css?v=17">
+  <link rel="stylesheet" href="assets/ui/catalog/catalog.css?v=1">
 </head>
 <body>
   <div id="game-container">
     <div id="orientation-hint" hidden><span>Daha geniş arena için ekranı yatay tutabilirsin.</span><button type="button" onclick="this.parentElement.hidden=true" aria-label="Ekran yönü ipucunu kapat">Kapat</button></div>
     <!-- SPEED TOAST NOTIFICATION -->
-    <div id="speed-toast" style="position: absolute; top: 62px; right: 24px; z-index: 120; display: none; background: rgba(28, 16, 10, 0.92); border: 1.5px solid var(--gold-bright); color: var(--gold-bright); font-family: 'IBM Plex Serif', serif; font-size: 13px; font-weight: bold; padding: 6px 14px; border-radius: 4px; pointer-events: none; box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);">
+    <div id="speed-toast" style="display: none;">
       OYUN HIZI: 1.0x
     </div>
     <canvas id="game-canvas" width="1280" height="720"></canvas>
@@ -107,6 +98,7 @@
     <!-- BOSS HP BAR OVERLAY -->
     <div id="boss-hp-container">
       <div class="boss-title-row"><img id="boss-hp-portrait" alt="Boss portresi" hidden><div id="boss-hp-title">RED PEN INQUISITOR</div></div>
+      <p id="boss-hp-sentence" class="boss-sentence" role="img"></p>
       <div class="boss-bar-frame">
         <div id="boss-hp-fill"></div>
       </div>
@@ -126,9 +118,9 @@
     </div>
 
     <!-- TACTICAL WAVE THREAT BANNER -->
-    <div id="tactical-alert-banner" style="display: none; position: absolute; top: 68px; left: 50%; transform: translateX(-50%); background: rgba(20, 25, 22, 0.96); border: 1px solid #a75d50; border-radius: 7px; padding: 8px 18px; color: #e9e2d2; font-family: 'IBM Plex Serif', serif; z-index: 130; text-align: center; box-shadow: none; pointer-events: none; transition: opacity 0.4s ease; max-width: 92vw;">
-      <div id="tactical-alert-title" style="font-size: 13px; font-weight: 600; color: #e2a79c; letter-spacing: 0.04em;">TEHDİT UYARISI</div>
-      <div id="tactical-alert-desc" style="font-size: 11px; font-family: 'IBM Plex Sans', sans-serif; color: #d4d0c5; margin-top: 3px;">Lider canavarları önce yok edin!</div>
+    <div id="tactical-alert-banner" style="display: none;">
+      <div id="tactical-alert-title">TEHDİT UYARISI</div>
+      <div id="tactical-alert-desc">Lider canavarları önce yok edin!</div>
     </div>
 
     <section id="chapter-transition-card" hidden role="status" aria-live="polite" aria-atomic="true">
@@ -165,8 +157,8 @@
           <button class="speech-replay-btn" id="story-replay" type="button" aria-label="Bu hikâye repliğini tekrar dinle" title="Repliği tekrar dinle"><img class="ui-icon" src="assets/ui/errata/voice.svg" alt=""></button>
           <div id="story-panel-track" role="progressbar" aria-label="Hikâye kareleri" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1"></div>
           <button id="story-back" type="button" aria-label="Önceki hikâye karesi">← Önceki</button>
-          <button id="story-next" type="button">Enter · Sonraki kare</button>
-          <button id="story-skip" type="button">HİKÂYEYİ ATLA</button>
+          <button id="story-next" type="button">Sonraki kare</button>
+          <button id="story-skip" type="button">Hikâyeyi atla</button>
           <span id="story-enter-hint">ENTER / → · İLERLE</span>
           <span id="story-counter">1 / 5</span>
         </div>
@@ -176,24 +168,35 @@
     <!-- The title is a single overlay; all canonical game hooks are retained. -->
     <section class="screen-overlay" id="title-screen" data-step="landing" role="dialog" aria-modal="true" aria-label="Lexicon Survivors ana menüsü">
       <header class="errata-masthead">
-        <button class="title-wordmark" data-title-step="landing" aria-label="Ana menüye dön"><img src="assets/ui/errata/logo-dark.webp" alt="Lexicon Survivors" width="170" height="58"></button>
-        <span class="masthead-edition">İNGİLİZCE · A1–C2</span>
+        <button class="title-wordmark" data-title-step="landing" aria-label="Ana menüye dön"><span class="mini-logotype" aria-hidden="true">LEXIC<s>O</s>N <span>SURVIVORS</span></span></button>
+        <span class="masthead-edition">KAYIP KENARLAR KÜTÜPHANESİ · KATALOG</span>
         <nav aria-label="Arşiv menüsü"><button data-open-book="guide">Nasıl oynanır</button><button data-open-book="settings">Ayarlar</button></nav>
       </header>
 
       <section id="errata-landing" class="title-stage landing-stage" aria-labelledby="landing-heading">
         <div class="landing-copy">
-          <span class="errata-kicker">KAYIP KELİMELER ARŞİVİ</span>
-          <h1 id="landing-heading"><img src="assets/ui/errata/logo-dark.webp" alt="Lexicon Survivors" width="480" height="163" class="landing-logo"></h1>
-          <div class="edition-line"><span></span>İNGİLİZCE KELİME PRATİĞİ<span></span></div>
-          <p class="landing-intro">Kelimeleri topla, soruları yanıtla ve 100 dalgayı tamamla.</p>
-          <nav class="landing-nav" aria-label="Ana menü eylemleri">
-            <button class="btn primary landing-begin" id="errata-begin" data-title-step="character"><span class="landing-label"><i class="menu-icon scribe" aria-hidden="true"></i><span>Başla</span></span><span aria-hidden="true">↗</span></button>
-            <button class="menu-link" data-open-book="codex"><span class="landing-label"><i class="menu-icon book" aria-hidden="true"></i><span>Kelime kitabı</span></span><span class="nav-index">I</span></button>
-            <button class="menu-link" data-open-book="bestiary"><span class="landing-label"><i class="menu-icon beast" aria-hidden="true"></i><span>Dil canavarları</span></span><span class="nav-index">II</span></button>
-            <button class="menu-link" id="title-leaderboard-btn"><span class="landing-label"><i class="menu-icon journal" aria-hidden="true"></i><span>Sefer kayıtları</span></span><span class="nav-index">III</span></button>
+          <div class="landing-stack">
+          <article class="catalog-card landing-card">
+            <div class="card-callno"><span>FİŞ 000 · LS / 2026</span><span>BİR GECE · 4 KANAT</span></div>
+            <span class="stamp stamp--archive" aria-hidden="true"></span>
+            <h1 id="landing-heading" class="logotype" aria-label="Lexicon Survivors: The Last Errata">
+              <span class="lt-row" aria-hidden="true">LEXIC<span class="lt-struck">O</span>N</span>
+              <span class="lt-row" aria-hidden="true">SURVIVORS</span>
+              <span class="lt-errata" aria-hidden="true"><span class="lt-caret">^</span>The Last Errata</span>
+            </h1>
+            <p class="landing-def"><b>errata</b> <span class="pron">/ɛˈrɑːtə/</span> <span class="pos">i. çoğ.</span> Basılmış bir kitaba sonradan eklenen düzeltmeler. Bu gece Blank Page kütüphanedeki bütün adların üstünü çizecek. Son düzeltmeyi sen yapacaksın.</p>
+            <p class="landing-footnote"><span class="control-hint"><span class="control-name">HAREKET</span><span class="keycaps"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> <small>/ oklar</small></span></span><span class="control-hint"><span class="control-name">SALDIRI</span><span>otomatik</span></span><span class="control-hint"><span class="control-name">YETENEK</span><kbd class="key-wide">Space</kbd></span></p>
+          </article>
+          </div>
+          <nav class="landing-nav toc" aria-label="Ana menü eylemleri">
+            <span class="toc-head">İçindekiler</span>
+            <button class="toc-item landing-begin" id="errata-begin" data-title-step="character"><span class="toc-num">I.</span><span class="toc-label">Sefere çık</span><span class="toc-dots" aria-hidden="true"></span><span class="toc-page">1</span></button>
+            <button class="toc-item" data-open-book="codex"><span class="toc-num">II.</span><span class="toc-label">Kelime kitabı</span><span class="toc-dots" aria-hidden="true"></span><span class="toc-page">14</span></button>
+            <button class="toc-item" data-open-book="bestiary"><span class="toc-num">III.</span><span class="toc-label">Dil canavarları</span><span class="toc-dots" aria-hidden="true"></span><span class="toc-page">37</span></button>
+            <button class="toc-item" id="title-leaderboard-btn"><span class="toc-num">IV.</span><span class="toc-label">Sefer kayıtları</span><span class="toc-dots" aria-hidden="true"></span><span class="toc-page">52</span></button>
+            <p class="toc-margin-note"><span class="margin-arrow" aria-hidden="true"></span>şafak sökmeden başla</p>
+            <p class="toc-colophon">İngilizce · A1–C2 · 6 kâtip · 20 bekçi</p>
           </nav>
-          <p class="landing-footnote"><span class="control-hint"><span class="control-name">HAREKET</span><span class="keycaps"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> <small>／ OKLAR</small></span></span><span class="control-divider" aria-hidden="true">·</span><span class="control-hint"><span class="control-name">SALDIRI</span><strong>OTOMATİK</strong></span></p>
         </div>
       </section>
 
@@ -223,21 +226,23 @@
 
     <div id="archive-intro" role="region" aria-label="Lexicon Survivors arşiv açılışı">
       <div class="archive-intro-content">
-        <img class="archive-intro-mark" src="assets/ui/icons/book.svg" alt="">
-        <img class="archive-intro-hero" src="assets/ui/errata/arena-v3/inky_idle_0.webp" alt="Inky">
-        <div class="archive-intro-kicker">ARŞİV AÇILIYOR</div>
-        <h1 id="archive-intro-title"><img src="assets/ui/errata/logo-dark.webp" alt="Lexicon Survivors" class="intro-logo" width="640" height="218"></h1>
-        <p>WASD ile hareket et. Silahın otomatik ateş eder.</p>
+        <div class="archive-intro-kicker">KAYIP KENARLAR KÜTÜPHANESİ · GECE YARISI</div>
+        <h1 id="archive-intro-title" class="logotype" aria-label="Lexicon Survivors: The Last Errata">
+          <span class="lt-row" aria-hidden="true">LEXIC<span class="lt-struck">O</span>N</span>
+          <span class="lt-row" aria-hidden="true">SURVIVORS</span>
+          <span class="lt-errata" aria-hidden="true"><span class="lt-caret">^</span>The Last Errata</span>
+        </h1>
+        <p>Şafağa kadar her ad silinecek. Kalemini al.</p>
       </div>
-      <button class="archive-intro-skip" id="archive-intro-skip" type="button">GEÇ · SPACE</button>
+      <button class="archive-intro-skip" id="archive-intro-skip" type="button">Geç · Space</button>
     </div>
 
     <!-- SCRIPTORIUM BAZAAR SHOP OVERLAY -->
     <div class="screen-overlay" id="shop-screen" style="display: none;">
       <div class="dialog-panel">
-        <div id="shop-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <div id="shop-header">
           <h2 id="shop-title"><img src="assets/ui/errata/shop-word-emblem.webp" alt="" class="scriptorium-mark">Scriptorium</h2>
-          <span style="font-family: 'IBM Plex Serif', serif; font-size: 17px; color: #0284c7; font-weight: 800;" id="shop-ink-display">
+          <span id="shop-ink-display">
             Mürekkep: 0
           </span>
         </div>
@@ -251,7 +256,7 @@
           <p id="shop-chapter-narration">Kırmızı Kalem sözlüğü parçaladı; kelimeler raflara dağıldı. Inky onları geri topluyor.</p>
         </section>
 
-        <div style="font-family: 'IBM Plex Sans', serif; font-size: 12px; color: #7a481d; font-style: italic;" id="shop-synergy-text">
+        <div id="shop-synergy-text">
           Aktif Sinerji: Yok
         </div>
 
@@ -266,20 +271,20 @@
 
           </aside>
           <section class="shop-display" aria-label="Dükkân teklifleri">
-        <div class="card-grid-4" id="shop-items-grid" style="min-height: 240px;"></div>
+        <div class="card-grid-4" id="shop-items-grid"></div>
 
           </section>
         </div>
 
-        <div id="shop-actions" style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px; flex-wrap: wrap; gap: 6px;">
+        <div id="shop-actions">
           <button class="btn" id="shop-reroll-btn">
             <img class="ui-icon" src="assets/ui/icons/reroll.svg" alt="">Kartları yenile (5)
           </button>
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <button class="btn btn-seal" id="shop-auto-tur-btn" style="font-size: 12px; padding: 6px 12px;" title="Otomatik sonraki tura / dalgaya geç">
+          <div>
+            <button class="btn btn-seal" id="shop-auto-tur-btn" title="Otomatik sonraki tura / dalgaya geç">
               Otomatik tur: AÇIK
             </button>
-            <button class="btn btn-seal" id="shop-next-wave-btn" style="font-size: 15px; padding: 10px 24px;">
+            <button class="btn btn-seal" id="shop-next-wave-btn">
               <img src="assets/ui/icons/next_wave.svg" class="ui-icon" alt="">
               <span id="shop-next-wave-text">Sonraki dalgaya geç</span>
             </button>
@@ -287,13 +292,13 @@
         </div>
 
         <!-- AUTO NEXT WAVE COUNTDOWN BAR -->
-        <div id="shop-auto-wave-container" style="display: none; width: 100%; margin-top: 6px; background: rgba(30,15,10,0.7); padding: 6px 12px; border-radius: 4px; border: 1px solid var(--gold-dark); text-align: center;">
-          <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-family: 'IBM Plex Serif', serif; color: var(--gold-bright); margin-bottom: 4px;">
+        <div id="shop-auto-wave-container" style="display: none;">
+          <div>
             <span id="shop-auto-wave-label">Otomatik sonraki tur: 4s</span>
-            <button class="btn btn-crimson" id="shop-auto-wave-cancel-btn" style="padding: 2px 10px; font-size: 11px;"><img class="ui-icon" src="assets/ui/icons/close.svg" alt="">Durdur (Burada Kal)</button>
+            <button class="btn btn-crimson" id="shop-auto-wave-cancel-btn"><img class="ui-icon" src="assets/ui/icons/close.svg" alt="">Durdur (Burada Kal)</button>
           </div>
-          <div style="width: 100%; height: 6px; background: rgba(0,0,0,0.5); border-radius: 3px; overflow: hidden;">
-            <div id="shop-auto-wave-bar" style="width: 100%; height: 100%; background: linear-gradient(90deg, #d4af37, #00b894); transition: width 0.1s linear;"></div>
+          <div>
+            <div id="shop-auto-wave-bar"></div>
           </div>
         </div>
       </div>
@@ -301,32 +306,32 @@
 
     <!-- INVENTORY & WEAPON SLOTS MODAL (I Tuşu) -->
     <div id="inventory-modal">
-      <div class="dialog-panel" style="max-width: 880px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid var(--parchment-border); padding-bottom: 6px;">
-          <h2 style="font-family: 'IBM Plex Serif', serif; font-size: 20px; color: #2b170c; font-weight: 900;">
-            KÂTİP ENVANTERİ · TEÇHİZAT DEFTERİ
+      <div class="dialog-panel">
+        <div>
+          <h2>
+            Kâtip envanteri
           </h2>
-          <button class="btn" id="close-inventory-btn" style="padding: 4px 12px;"><img class="ui-icon" src="assets/ui/icons/close.svg" alt="">Kapat [I]</button>
+          <button class="btn" id="close-inventory-btn"><img class="ui-icon" src="assets/ui/icons/close.svg" alt="">Kapat [I]</button>
         </div>
         <div class="tab-bar inventory-tabs" role="tablist" aria-label="Envanter kategorileri">
           <button class="tab-btn active" id="inventory-weapons-tab" role="tab" aria-selected="true" aria-controls="inventory-weapons-panel">SİLAH YÜKÜ</button>
           <button class="tab-btn" id="inventory-gadgets-tab" role="tab" aria-selected="false" aria-controls="inventory-gadgets-panel">GEREÇ ÇANTASI</button>
         </div>
         <div id="inventory-weapons-panel">
-        <div style="font-family: 'IBM Plex Serif', serif; font-size: 13.5px; font-weight: 800; color: #5c3b1e; margin-top: 4px;">
-          AKTİF SİLAHLAR (Otomatik ateş)
+        <div>
+          Aktif silahlar · otomatik ateş
         </div>
         <div class="slots-grid" id="inv-active-slots"></div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
-          <span style="font-family: 'IBM Plex Serif', serif; font-size: 13px; font-weight: 800; color: #5c3b1e;">
-            YEDEK ÇANTA (Rezerv silahlar)
+        <div>
+          <span>
+            Yedek çanta
           </span>
-          <button class="btn btn-seal" id="inv-combine-btn" style="font-size: 12px; padding: 5px 14px; display: none;">
-            AYNI SİLAHLARI BİRLEŞTİR & YÜKSELT
+          <button class="btn btn-seal" id="inv-combine-btn" style="display: none;">
+            Aynı silahları birleştir
           </button>
         </div>
-        <div class="slots-grid" id="inv-reserve-slots" style="min-height: 80px;"></div>
+        <div class="slots-grid" id="inv-reserve-slots"></div>
 
         <div class="inventory-summary">
           <strong>Kâtip İstatistikleri:</strong>
@@ -342,22 +347,22 @@
 
     <!-- SCRIBE'S MISTAKE NOTEBOOK MODAL -->
     <div id="mistakes-modal">
-      <div class="dialog-panel" style="max-width: 780px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid var(--parchment-border); padding-bottom: 6px;">
-          <h2 style="font-family: 'IBM Plex Serif', serif; font-size: 20px; color: #8b0000; font-weight: 900; display: flex; align-items: center; gap: 8px;">
-            <span>HATA DEFTERİ</span>
+      <div class="dialog-panel">
+        <div>
+          <h2>
+            <span>Hata defteri</span>
           </h2>
-          <button class="btn" id="close-mistakes-btn" style="padding: 4px 12px;"><img class="ui-icon" src="assets/ui/icons/close.svg" alt="">Kapat</button>
+          <button class="btn" id="close-mistakes-btn"><img class="ui-icon" src="assets/ui/icons/close.svg" alt="">Kapat</button>
         </div>
-        <p style="font-size: 13px; color: #634325; font-style: italic; margin-top: 4px;">
+        <p>
           Sınavlarda yanlış cevaplanan kelimeler burada birikir. Bu kelimeler sonraki dalgalarda pekiştirme için önünüze tekrar çıkacaktır. Doğru cevaplandığında defterden silinir ve ekstra ödül kazandırır.
         </p>
-        <div id="mistakes-list" style="display: flex; flex-direction: column; gap: 8px; max-height: 380px; overflow-y: auto; margin: 10px 0; padding-right: 4px;">
+        <div id="mistakes-list">
           <!-- Dynamically populated mistake cards -->
         </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--parchment-border); padding-top: 6px;">
-          <span style="font-size: 12px; font-weight: bold; color: #7a481d;" id="mistakes-summary-text">Toplam 0 kelime pekiştirilmeyi bekliyor</span>
-          <button class="btn" id="clear-mistakes-btn" style="font-size: 11px; padding: 4px 10px;">Defteri sıfırla</button>
+        <div>
+          <span id="mistakes-summary-text">Toplam 0 kelime pekiştirilmeyi bekliyor</span>
+          <button class="btn" id="clear-mistakes-btn">Defteri sıfırla</button>
         </div>
       </div>
     </div>
@@ -375,54 +380,54 @@
     </nav>
 
     <!-- MOBILE QUICK SETTINGS MENU -->
-    <div id="mobile-quick-menu" class="screen-overlay" style="display: none; z-index: 250;">
-      <div class="dialog-panel" style="max-width: 440px; padding: 14px 18px; text-align: center;">
-        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1.5px solid var(--parchment-border); padding-bottom: 8px;">
-          <h3 style="font-family: 'IBM Plex Serif', serif; font-size: 18px; color: #2b170c; margin: 0; font-weight: 900;">
-            HIZLI AYARLAR · KONTROLLER
+    <div id="mobile-quick-menu" class="screen-overlay" style="display: none;">
+      <div class="dialog-panel">
+        <div>
+          <h3>
+            Hızlı ayarlar
           </h3>
-          <button class="btn btn-crimson" id="close-mobile-menu-btn" style="padding: 4px 12px; font-size: 12px;"><img class="ui-icon" src="assets/ui/icons/close.svg" alt="">Kapat</button>
+          <button class="btn btn-crimson" id="close-mobile-menu-btn"><img class="ui-icon" src="assets/ui/icons/close.svg" alt="">Kapat</button>
         </div>
 
-        <div style="margin: 10px 0 6px 0; text-align: left;">
-          <div style="font-family: 'IBM Plex Serif', serif; font-size: 12px; font-weight: bold; color: #5c3b1e; margin-bottom: 5px;">
-            OYUN HIZI
+        <div>
+          <div>
+            Oyun hızı
           </div>
-          <div id="mobile-speed-segmented" style="display: flex; gap: 4px; width: 100%;">
-            <button class="btn mobile-speed-opt" data-speed="0.5" style="flex: 1; padding: 7px 2px; font-size: 11px;">0.5x</button>
-            <button class="btn mobile-speed-opt" data-speed="1.0" style="flex: 1; padding: 7px 2px; font-size: 11px;">1.0x</button>
-            <button class="btn mobile-speed-opt" data-speed="1.5" style="flex: 1; padding: 7px 2px; font-size: 11px;">1.5x</button>
-            <button class="btn mobile-speed-opt" data-speed="2.0" style="flex: 1; padding: 7px 2px; font-size: 11px;">2.0x</button>
-            <button class="btn mobile-speed-opt" data-speed="3.0" style="flex: 1; padding: 7px 2px; font-size: 11px;">3.0x</button>
+          <div id="mobile-speed-segmented">
+            <button class="btn mobile-speed-opt" data-speed="0.5">0.5x</button>
+            <button class="btn mobile-speed-opt" data-speed="1.0">1.0x</button>
+            <button class="btn mobile-speed-opt" data-speed="1.5">1.5x</button>
+            <button class="btn mobile-speed-opt" data-speed="2.0">2.0x</button>
+            <button class="btn mobile-speed-opt" data-speed="3.0">3.0x</button>
           </div>
         </div>
 
-        <div style="display: flex; flex-direction: column; gap: 7px; margin-top: 4px;">
-          <label class="music-choice-row" for="mobile-music-select" style="justify-content:space-between;">MÜZİK SEÇ
+        <div>
+          <label class="music-choice-row" for="mobile-music-select">Müzik
             <select id="mobile-music-select" aria-label="Müzik seçimi"><option value="auto">Otomatik · biyoma göre</option><option value="library">Karanlık Kütüphane</option><option value="action">Mürekkep Takibi</option><option value="urgent">Rafların Uyanışı</option><option value="last_stand">Son Nöbet · Boss</option></select>
           </label>
-          <button class="btn" id="mobile-toggle-autowave-btn" style="width: 100%; min-height: 42px; font-size: 13px;">
+          <button class="btn" id="mobile-toggle-autowave-btn">
             Otomatik yeni tur: açık
           </button>
-          <button class="btn" id="mobile-toggle-autorun-btn" style="width: 100%; min-height: 42px; font-size: 13px;">
+          <button class="btn" id="mobile-toggle-autorun-btn">
             Otomatik yeni oyun: AÇIK
           </button>
-          <button class="btn" id="mobile-toggle-music-btn" style="width: 100%; min-height: 42px; font-size: 13px;">
+          <button class="btn" id="mobile-toggle-music-btn">
             Müzik: açık
           </button>
-          <div style="display: flex; gap: 6px; width: 100%;">
-            <button class="btn btn-seal" id="mobile-open-inv-btn" style="flex: 1; min-height: 42px; font-size: 12.5px;">
+          <div>
+            <button class="btn btn-seal" id="mobile-open-inv-btn">
               Envanter [I]
             </button>
-            <button class="btn" id="mobile-open-mistakes-btn" style="flex: 1; min-height: 42px; font-size: 12.5px;">
+            <button class="btn" id="mobile-open-mistakes-btn">
               Hata defteri
             </button>
           </div>
-          <div style="display: flex; gap: 6px; width: 100%;">
-            <button class="btn" id="mobile-toggle-joy-btn" style="flex: 1; min-height: 40px; font-size: 12px;">
+          <div>
+            <button class="btn" id="mobile-toggle-joy-btn">
               Sanal joystick: açık
             </button>
-            <button class="btn" id="mobile-toggle-fs-btn" style="flex: 1; min-height: 40px; font-size: 12px;">
+            <button class="btn" id="mobile-toggle-fs-btn">
               Tam ekran
             </button>
           </div>
@@ -446,8 +451,8 @@
         <div class="quiz-options" id="quiz-options-container"></div>
         <div class="quiz-result" id="quiz-result-text"></div>
         </div>
-        <button class="btn btn-emerald" id="quiz-continue-btn" style="display: none; align-self: center; margin-top: 4px;">
-          Mühürle & Scriptorium'a Dön ➔
+        <button class="btn btn-emerald" id="quiz-continue-btn" style="display: none;">
+          Mühürle ve Scriptorium'a dön
         </button>
       </div>
     </div>
@@ -465,29 +470,29 @@
         <div id="game-over-summary"></div>
 
         <!-- AUTO NEW RUN COUNTDOWN & CONTROLS -->
-        <div id="auto-run-countdown-container" style="display: none; margin: 8px 0;">
+        <div id="auto-run-countdown-container" style="display: none;">
           <div id="auto-run-countdown-text">
             Otomatik yeni oyun: 3s
           </div>
           <div class="countdown-track">
             <div id="auto-run-countdown-bar"></div>
           </div>
-          <button class="btn btn-crimson" id="cancel-auto-run-btn" style="padding: 5px 16px; font-size: 12px;">
+          <button class="btn btn-crimson" id="cancel-auto-run-btn">
             Geri sayımı durdur
           </button>
         </div>
 
         <div class="result-actions">
-          <button class="btn btn-emerald" id="instant-restart-btn" style="font-size: 13.5px; padding: 8px 16px;">
+          <button class="btn btn-emerald" id="instant-restart-btn">
           Hemen yeni oyun başlat
           </button>
-          <button class="btn btn-seal" id="gameover-leaderboard-btn" type="button" style="font-size:12.5px;padding:8px 14px;">Skorunu gönder · Sıralama</button>
-          <button class="btn btn-seal" id="restart-game-btn" style="font-size: 13.5px; padding: 8px 16px;">
-            <img src="assets/ui/icons/open_archive.svg" style="width: 18px; height: 18px;" alt="">
+          <button class="btn btn-seal" id="gameover-leaderboard-btn" type="button">Skorunu gönder · Sıralama</button>
+          <button class="btn btn-seal" id="restart-game-btn">
+            <img src="assets/ui/icons/open_archive.svg" alt="">
             Kütüphaneye dön
           </button>
 
-          <button class="btn btn-seal" id="gameover-auto-run-toggle" style="font-size: 12.5px; padding: 8px 14px;">
+          <button class="btn btn-seal" id="gameover-auto-run-toggle">
             Oto run: kapalı
           </button>
         </div>
