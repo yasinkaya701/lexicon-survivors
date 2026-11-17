@@ -33,15 +33,29 @@
       alpha: 0.15 + Math.random() * 0.45
     };
   }
+  let fog = [];
   function seed() {
     const count = Math.round(Math.min(90, (w * h) / 16000));
     flakes = Array.from({ length: count }, () => spawn(true));
+    fog = Array.from({ length: 7 }, (_, i) => ({ x: Math.random() * w, y: h * (.55 + Math.random() * .45), r: 260 + Math.random() * 320, vx: 6 + Math.random() * 10, a: .05 + Math.random() * .06 }));
+  }
+  function drawFog(dt) {
+    for (const f of fog) {
+      f.x += f.vx * dt;
+      if (f.x - f.r > w) f.x = -f.r;
+      const g = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r);
+      g.addColorStop(0, `rgba(150,140,130,${f.a})`);
+      g.addColorStop(1, 'rgba(150,140,130,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(f.x - f.r, f.y - f.r, f.r * 2, f.r * 2);
+    }
   }
   function frame(now) {
     raf = 0;
     if (title.hidden || title.style.display === 'none' || !title.isConnected) return;
     const dt = Math.min(0.05, (now - last) / 1000 || 0.016); last = now;
     ctx.clearRect(0, 0, w, h);
+    drawFog(dt);
     for (const f of flakes) {
       f.sway += dt * 0.9;
       f.x += (f.vx + Math.sin(f.sway) * 6) * dt;

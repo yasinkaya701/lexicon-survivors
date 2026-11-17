@@ -106,9 +106,14 @@
   const ROMAN = ['I', 'II', 'III', 'IV'];
   let lastWave = null;
   const timer = $('timer-badge');
+  let waveSpan = 0;
   function onTimer() {
     const wave = parseInt($('hud-wave-number')?.textContent, 10);
     const secs = parseInt($('hud-seconds')?.textContent, 10);
+    if (!Number.isNaN(secs)) {
+      if (wave !== lastWave || secs > waveSpan) waveSpan = Math.max(secs, 1);
+      timer.style.setProperty('--wave-left', Math.max(0, Math.min(1, secs / waveSpan)).toFixed(3));
+    }
     timer.classList.toggle('gm-urgent', inCombat() && secs > 0 && secs <= 5);
     if (!Number.isNaN(wave) && wave !== lastWave) {
       if (lastWave !== null && inCombat() && wave % 5 !== 0) showBanner(wave);
@@ -157,6 +162,56 @@
     gadgetBtn.classList.toggle('gm-ready', ready);
   }).observe(gadgetStatus, { childList: true, characterData: true, subtree: true });
 
+  /* -- ink wipe between stages ---------------------------------------- */
+  const wipe = document.createElement('div');
+  wipe.id = 'gm-ink-wipe';
+  wipe.setAttribute('aria-hidden', 'true');
+  container.appendChild(wipe);
+  function inkWipe(x, y) {
+    if (reduced()) return;
+    wipe.style.webkitMaskPosition = wipe.style.maskPosition = (x != null ? `${x}px ${y}px` : 'center');
+    replay(wipe, 'is-on');
+  }
+  document.addEventListener('click', (event) => {
+    const target = event.target.closest('[data-title-step], #start-game-btn, #shop-next-wave-btn, #quiz-continue-btn, #restart-game-btn');
+    if (!target) return;
+    const r = container.getBoundingClientRect();
+    inkWipe(event.clientX - r.left - r.width * 4.5, event.clientY - r.top - r.height * 4.5);
+  }, true);
+  const shopScreen = $('shop-screen');
+  let shopOpen = false;
+  if (shopScreen) new MutationObserver(() => {
+    const open = shopScreen.style.display && shopScreen.style.display !== 'none';
+    if (open && !shopOpen) inkWipe();
+    shopOpen = open;
+  }).observe(shopScreen, { attributes: true, attributeFilter: ['style'] });
+
+  /* -- cards tilt toward the cursor; candlelight slides across them ---- */
+  const TILT = '#shop-screen[data-tab="cards"] .shop-card, #char-selection-grid .choice-card';
+  let tilted = null;
+  document.addEventListener('pointermove', (event) => {
+    if (reduced() || event.pointerType === 'touch') return;
+    const card = event.target.closest?.(TILT);
+    if (tilted && tilted !== card) { tilted.style.removeProperty('--rx'); tilted.style.removeProperty('--ry'); tilted.style.removeProperty('--gx'); tilted.style.removeProperty('--gy'); }
+    tilted = card;
+    if (!card) return;
+    const r = card.getBoundingClientRect();
+    const px = (event.clientX - r.left) / r.width, py = (event.clientY - r.top) / r.height;
+    card.style.setProperty('--ry', ((px - .5) * 14).toFixed(2) + 'deg');
+    card.style.setProperty('--rx', ((.5 - py) * 10).toFixed(2) + 'deg');
+    card.style.setProperty('--gx', (px * 100).toFixed(1) + '%');
+    card.style.setProperty('--gy', (py * 100).toFixed(1) + '%');
+  }, { passive: true });
+
+  /* -- title parallax -------------------------------------------------- */
+  const titleScreen = $('title-screen');
+  if (titleScreen) titleScreen.addEventListener('pointermove', (event) => {
+    if (reduced()) return;
+    const r = titleScreen.getBoundingClientRect();
+    titleScreen.style.setProperty('--mx', (((event.clientX - r.left) / r.width) - .5).toFixed(3));
+    titleScreen.style.setProperty('--my', (((event.clientY - r.top) / r.height) - .5).toFixed(3));
+  }, { passive: true });
+
   // test hooks for screenshots
-  window.GrimoireAction = Object.freeze({ showBanner, splat, flashHurt: () => replay(hurt, 'is-on') });
+  window.GrimoireAction = Object.freeze({ showBanner, splat, inkWipe, flashHurt: () => replay(hurt, 'is-on') });
 })();
