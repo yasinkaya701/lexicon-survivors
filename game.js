@@ -7505,6 +7505,37 @@ function applyArtifact(art) {
   });
 }
 
+// The result arrives as lines of text; the first line is the verdict.
+function formatQuizResult(el) {
+  const lines = el.textContent.split("\n").map(line => line.trim()).filter(Boolean);
+  el.textContent = "";
+  if (!lines.length) return;
+  const verdict = document.createElement("strong");
+  verdict.className = "quiz-verdict";
+  verdict.textContent = el.dataset.outcome === "correct" ? "Doğru" : "Yanlış";
+  const sub = document.createElement("span");
+  sub.className = "quiz-verdict-sub";
+  sub.textContent = lines[0].replace(/^(DOĞRU CEVAP|YANLIŞ CEVAP!?|PEKİŞTİRME TAMAMLANDI)\s*·?\s*/i, "");
+  const list = document.createElement("ul");
+  lines.slice(1).forEach(line => { const li = document.createElement("li"); li.textContent = line; list.appendChild(li); });
+  el.append(verdict, sub, list);
+}
+
+// 1–4 or A–D answer the open quiz; Enter continues.
+document.addEventListener("keydown", (event) => {
+  const modal = document.getElementById("quiz-modal");
+  if (!modal || modal.style.display !== "flex" || event.repeat) return;
+  const key = event.key.toLowerCase();
+  const index = ["1", "2", "3", "4"].indexOf(key) >= 0 ? ["1", "2", "3", "4"].indexOf(key) : ["a", "b", "c", "d"].indexOf(key);
+  if (index >= 0) {
+    const option = modal.querySelectorAll(".quiz-opt-btn")[index];
+    if (option && !option.disabled) { event.preventDefault(); option.click(); }
+  } else if (key === "enter") {
+    const next = document.getElementById("quiz-continue-btn");
+    if (next && next.style.display !== "none") { event.preventDefault(); next.click(); }
+  }
+});
+
 function quizExampleRevealsTranslation(card) {
   const meaning = String(card?.meaning_tr || "").normalize("NFKC").toLocaleLowerCase("tr-TR").replace(/\s+/g, " ").trim();
   if (!meaning) return false;
@@ -7524,7 +7555,14 @@ function openQuiz(card, cardIndex) {
   modal.classList.remove("hidden");
   syncMobileControlsVisibility();
 
-  document.getElementById("quiz-word-title").textContent = `${card.word} [${card.type} • ${card.level}] · HEDEF ${state.learning_level}`;
+  document.getElementById("quiz-word-title").textContent = card.word;
+  let quizMeta = document.getElementById("quiz-word-meta");
+  if (!quizMeta) {
+    quizMeta = document.createElement("p");
+    quizMeta.id = "quiz-word-meta";
+    document.querySelector("#quiz-modal .quiz-scroll-header")?.prepend(quizMeta);
+  }
+  quizMeta.textContent = `Kelime sınavı · ${card.type} · ${card.level}`;
   const pronounceButton = document.getElementById("quiz-pronounce-btn");
   if (pronounceButton) pronounceButton.onclick = () => speakGameText(card.word, { lang: "en-US", role: "word" });
   speakGameText(card.word, { lang: "en-US", role: "word" });
@@ -7532,9 +7570,26 @@ function openQuiz(card, cardIndex) {
   const buffText = document.getElementById("quiz-buff-text");
   const exampleText = document.getElementById("quiz-example-text");
   const exampleRevealsTranslation = quizExampleRevealsTranslation(card);
-  buffText.textContent = card.description || "Bu kart oyun içi niteliklerini geliştirir.";
-  document.getElementById("quiz-warning-text").textContent = "Yanlış bıraktığın kelimeler boss turunda anlamlarına uygun düşman olarak geri döner.";
-  exampleText.textContent = card.example && !exampleRevealsTranslation ? `Örnek Metin: "${card.example}"` : "";
+  const fullCost = card.shop_cost ?? card.cost;
+  buffText.innerHTML = "";
+  [["Ödül", card.description || "Nitelik artışı"], ["Doğruysa", `${Math.ceil(fullCost * 0.5)} mürekkep · +25 can`], ["Yanlışsa", `${fullCost} mürekkep · deftere`]].forEach(([label, value], i) => {
+    const chip = document.createElement("span");
+    chip.className = `quiz-chip${i === 0 ? " is-reward" : ""}`;
+    const l = document.createElement("small"); l.textContent = label;
+    const v = document.createElement("b"); v.textContent = value;
+    chip.append(l, v);
+    buffText.appendChild(chip);
+  });
+  delete buffText.dataset.state;
+  document.getElementById("quiz-warning-text").textContent = "Yanlış bıraktığın kelimeler boss turunda düşman olarak geri döner.";
+  exampleText.textContent = "";
+  if (card.example && !exampleRevealsTranslation) {
+    const pattern = new RegExp(`(${String(card.word).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "i");
+    String(card.example).split(pattern).forEach((part, i) => {
+      if (i % 2 === 1) { const mark = document.createElement("mark"); mark.textContent = part; exampleText.appendChild(mark); }
+      else exampleText.appendChild(document.createTextNode(part));
+    });
+  }
 
   const resText = document.getElementById("quiz-result-text");
   resText.textContent = "";
@@ -7559,7 +7614,8 @@ function openQuiz(card, cardIndex) {
     btn.setAttribute("type", "button");
     const answerKey = document.createElement("span");
     answerKey.className = "quiz-answer-key";
-    answerKey.textContent = ['A', 'B', 'C', 'D'][idx] || String(idx + 1);
+    answerKey.textContent = String(idx + 1);
+    answerKey.setAttribute("aria-label", `${idx + 1}. seçenek`);
     const answerCopy = document.createElement("span");
     answerCopy.textContent = item.text;
     btn.append(answerKey, answerCopy);
@@ -7572,8 +7628,9 @@ function openQuiz(card, cardIndex) {
       }
       answered = true;
       stopGameSpeech();
-      buffText.textContent = `${card.buff_name || "Kelime Buff’ı"} · ${card.description || "Oyun içi nitelik etkisi"}\n${card.buff_meaning_link || `“${card.word}” kelimesinin anlamı buff’ının temasını belirliyor.`}`;
-      if (exampleRevealsTranslation && card.example) exampleText.textContent = `Örnek Metin: "${card.example}"`;
+      buffText.dataset.state = "answered";
+      buffText.textContent = `${card.buff_name || "Kelime gücü"} · ${card.description || "Oyun içi nitelik etkisi"}`;
+      if (exampleRevealsTranslation && card.example) exampleText.textContent = card.example;
 
       btn.classList.add("active-press");
       optsContainer.querySelectorAll(".quiz-opt-btn").forEach(b => {
@@ -7659,6 +7716,7 @@ function openQuiz(card, cardIndex) {
         try { localStorage.setItem("lexicon_mistakes", JSON.stringify(state.mistake_words)); } catch(e){}
       }
       if (learningFeedback) resText.textContent += `\n${learningFeedback}`;
+      formatQuizResult(resText);
 
       shopCards.splice(cardIndex, 1);
       continueBtn.style.display = "inline-flex";
