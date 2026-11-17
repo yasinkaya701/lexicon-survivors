@@ -1,6 +1,6 @@
 # Asset manifest (tam liste)
 
-Oyundaki **her görsel** için bir istek: toplam **856** dosya. Bu dosya `tools/art/build_manifest.py` ile üretilir; elle düzenlenmez. Makine okuyabilen hali: `asset-manifest.json`.
+Oyundaki **her görsel** için bir istek: toplam **1174** dosya. Bu dosya `tools/art/build_manifest.py` ile üretilir; elle düzenlenmez. Makine okuyabilen hali: `asset-manifest.json`.
 
 **Kurallar:**
 - Her prompt'un sonuna `README.md` § 2'deki **STYLE LOCK** eklenir. `Referans` sütunu doluysa o ID'nin onaylı görseli GPT'ye verilir.
@@ -28,6 +28,19 @@ Oyundaki **her görsel** için bir istek: toplam **856** dosya. Bu dosya `tools/
 | 16 Hikâye panelleri | 73 | 0 |
 | 17 Malzemeler | 10 | 0 |
 | 18 Pazarlama | 8 | 0 |
+| 19 Modlar | 6 | 3 |
+| 20 Errata modu | 31 | 1 |
+| 21 Lexicon modu | 6 | 4 |
+| 22 Hub ve ilerleme | 54 | 0 |
+| 23 Rota haritası | 11 | 0 |
+| 24 Düzeltme Dereceleri | 10 | 0 |
+| 25 Savaş okunurluğu | 18 | 0 |
+| 26 Silah evrimleri | 45 | 0 |
+| 27 Sistem | 22 | 0 |
+| 28 Öğretici | 22 | 0 |
+| 29 Başarımlar | 62 | 0 |
+| 30 Steam topluluk | 24 | 0 |
+| 31 Basın ve sosyal | 7 | 0 |
 
 ## 01 Referanslar
 
@@ -974,3 +987,386 @@ Oyundaki **her görsel** için bir istek: toplam **856** dosya. Bu dosya `tools/
 | `mk_steam_library_hero` | `assets/art/grimoire/marketing/steam_library_hero.png` | 3840×1240 | — |  | 3 |  | Steam store art (steam library hero): Inky with the quill raised in the foreground, Blank Page looming behind erasing the library into white; leave room for the logo. |
 | `mk_steam_library_logo` | `assets/art/grimoire/marketing/steam_library_logo.png` | 1280×720 | — |  | 3 |  | Steam store art (steam library logo): Inky with the quill raised in the foreground, Blank Page looming behind erasing the library into white; leave room for the logo. |
 | `mk_steam_page_bg` | `assets/art/grimoire/marketing/steam_page_bg.png` | 1438×810 | — |  | 3 |  | Steam store art (steam page bg): Inky with the quill raised in the foreground, Blank Page looming behind erasing the library into white; leave room for the logo. |
+
+## 19 Modlar
+
+| ID | Dosya | Boyut | Kare | T | Ö | Referans | Prompt |
+|---|---|---|---|---|---|---|---|
+| `mode_lexicon_card` | `assets/art/grimoire/modes/lexicon_card.png` | 1200×1600 | — |  | 1 |  | Mode selection card art for Lexicon mode: a sealed English dictionary glowing with brass light, a quill crossing it — the mode where words are your weapons. Lower third dark for text. |
+| `mode_lexicon_emblem` | `assets/art/grimoire/modes/lexicon_emblem.png` | 512×512 | — | T | 2 |  | Emblem for Lexicon mode: a sealed English dictionary glowing with brass light, a quill crossing it — the mode where words are your weapons, simplified to a strong icon. |
+| `mode_errata_card` | `assets/art/grimoire/modes/errata_card.png` | 1200×1600 | — |  | 1 |  | Mode selection card art for Errata mode: a blood-red pen driven into a torn page like a sword — the pure action mode. Lower third dark for text. |
+| `mode_errata_emblem` | `assets/art/grimoire/modes/errata_emblem.png` | 512×512 | — | T | 2 |  | Emblem for Errata mode: a blood-red pen driven into a torn page like a sword — the pure action mode, simplified to a strong icon. |
+| `mode_endless_card` | `assets/art/grimoire/modes/endless_card.png` | 1200×1600 | — |  | 1 |  | Mode selection card art for Endless Archive: a staircase of shelves descending forever into darkness. Lower third dark for text. |
+| `mode_endless_emblem` | `assets/art/grimoire/modes/endless_emblem.png` | 512×512 | — | T | 2 |  | Emblem for Endless Archive: a staircase of shelves descending forever into darkness, simplified to a strong icon. |
+
+## 20 Errata modu
+
+| ID | Dosya | Boyut | Kare | T | Ö | Referans | Prompt |
+|---|---|---|---|---|---|---|---|
+| `cursed_blood_price` | `assets/art/grimoire/errata/cursed/blood_price.png` | 512×512 | — | T | 2 |  | Cursed seal card icon: a seal dripping blood: big damage, healing halved. A blood-red wax seal with a distinct pressed sigil and a dark crack through it. |
+| `cursed_hollow_quill` | `assets/art/grimoire/errata/cursed/hollow_quill.png` | 512×512 | — | T | 2 |  | Cursed seal card icon: a hollow quill: fire rate up, accuracy down. A blood-red wax seal with a distinct pressed sigil and a dark crack through it. |
+| `cursed_iron_binding` | `assets/art/grimoire/errata/cursed/iron_binding.png` | 512×512 | — | T | 2 |  | Cursed seal card icon: a book bound in iron chains: armour up, speed down. A blood-red wax seal with a distinct pressed sigil and a dark crack through it. |
+| `cursed_burning_margin` | `assets/art/grimoire/errata/cursed/burning_margin.png` | 512×512 | — | T | 2 |  | Cursed seal card icon: a page edge on fire: burn every hit, lose health over time. A blood-red wax seal with a distinct pressed sigil and a dark crack through it. |
+| `cursed_glass_ink` | `assets/art/grimoire/errata/cursed/glass_ink.png` | 512×512 | — | T | 2 |  | Cursed seal card icon: a glass inkwell cracked: critical hits soar, max health down. A blood-red wax seal with a distinct pressed sigil and a dark crack through it. |
+| `cursed_hungry_index` | `assets/art/grimoire/errata/cursed/hungry_index.png` | 512×512 | — | T | 2 |  | Cursed seal card icon: an index card with teeth: ink gain doubled, enemies faster. A blood-red wax seal with a distinct pressed sigil and a dark crack through it. |
+| `cursed_silent_bell` | `assets/art/grimoire/errata/cursed/silent_bell.png` | 512×512 | — | T | 2 |  | Cursed seal card icon: a bell with its clapper torn out: gadget cooldown halved, no healing pickups. A blood-red wax seal with a distinct pressed sigil and a dark crack through it. |
+| `cursed_twin_shadow` | `assets/art/grimoire/errata/cursed/twin_shadow.png` | 512×512 | — | T | 2 |  | Cursed seal card icon: a seal with two overlapping shadows: extra projectile, damage taken up. A blood-red wax seal with a distinct pressed sigil and a dark crack through it. |
+| `cursed_red_ledger` | `assets/art/grimoire/errata/cursed/red_ledger.png` | 512×512 | — | T | 2 |  | Cursed seal card icon: a ledger of red debts: gold now, pay later. A blood-red wax seal with a distinct pressed sigil and a dark crack through it. |
+| `cursed_last_candle` | `assets/art/grimoire/errata/cursed/last_candle.png` | 512×512 | — | T | 2 |  | Cursed seal card icon: a candle burnt to the stub: massive power for the next wave only. A blood-red wax seal with a distinct pressed sigil and a dark crack through it. |
+| `cursed_erased_name` | `assets/art/grimoire/errata/cursed/erased_name.png` | 512×512 | — | T | 2 |  | Cursed seal card icon: a name scratched out: invisible for 2 seconds after each kill, cannot regen. A blood-red wax seal with a distinct pressed sigil and a dark crack through it. |
+| `cursed_weeping_wax` | `assets/art/grimoire/errata/cursed/weeping_wax.png` | 512×512 | — | T | 2 |  | Cursed seal card icon: a wax seal weeping: shield on hit, shield breaks into damage. A blood-red wax seal with a distinct pressed sigil and a dark crack through it. |
+| `affix_shielded_icon` | `assets/art/grimoire/errata/affixes/shielded_icon.png` | 256×256 | — | T | 2 |  | Elite affix icon: a rotating shield of index tabs. |
+| `affix_shielded_aura` | `assets/art/grimoire/errata/affixes/shielded_aura.png` | 1536×256 | 6 @ 10fps | T | 2 |  | Looping aura effect drawn around an elite enemy: a rotating shield of index tabs, 6 frames, transparent centre. |
+| `affix_splitting_icon` | `assets/art/grimoire/errata/affixes/splitting_icon.png` | 256×256 | — | T | 2 |  | Elite affix icon: a body cracked down the middle, ready to split. |
+| `affix_splitting_aura` | `assets/art/grimoire/errata/affixes/splitting_aura.png` | 1536×256 | 6 @ 10fps | T | 2 |  | Looping aura effect drawn around an elite enemy: a body cracked down the middle, ready to split, 6 frames, transparent centre. |
+| `affix_teleporting_icon` | `assets/art/grimoire/errata/affixes/teleporting_icon.png` | 256×256 | — | T | 2 |  | Elite affix icon: an outline smeared like wet ink. |
+| `affix_teleporting_aura` | `assets/art/grimoire/errata/affixes/teleporting_aura.png` | 1536×256 | 6 @ 10fps | T | 2 |  | Looping aura effect drawn around an elite enemy: an outline smeared like wet ink, 6 frames, transparent centre. |
+| `affix_exploding_icon` | `assets/art/grimoire/errata/affixes/exploding_icon.png` | 256×256 | — | T | 2 |  | Elite affix icon: a fuse-lit ink core. |
+| `affix_exploding_aura` | `assets/art/grimoire/errata/affixes/exploding_aura.png` | 1536×256 | 6 @ 10fps | T | 2 |  | Looping aura effect drawn around an elite enemy: a fuse-lit ink core, 6 frames, transparent centre. |
+| `affix_hasted_icon` | `assets/art/grimoire/errata/affixes/hasted_icon.png` | 256×256 | — | T | 2 |  | Elite affix icon: trailing speed lines of torn paper. |
+| `affix_hasted_aura` | `assets/art/grimoire/errata/affixes/hasted_aura.png` | 1536×256 | 6 @ 10fps | T | 2 |  | Looping aura effect drawn around an elite enemy: trailing speed lines of torn paper, 6 frames, transparent centre. |
+| `affix_vampiric_icon` | `assets/art/grimoire/errata/affixes/vampiric_icon.png` | 256×256 | — | T | 2 |  | Elite affix icon: red threads drawing health. |
+| `affix_vampiric_aura` | `assets/art/grimoire/errata/affixes/vampiric_aura.png` | 1536×256 | 6 @ 10fps | T | 2 |  | Looping aura effect drawn around an elite enemy: red threads drawing health, 6 frames, transparent centre. |
+| `affix_summoner_icon` | `assets/art/grimoire/errata/affixes/summoner_icon.png` | 256×256 | — | T | 2 |  | Elite affix icon: a ring of tiny paper minions. |
+| `affix_summoner_aura` | `assets/art/grimoire/errata/affixes/summoner_aura.png` | 1536×256 | 6 @ 10fps | T | 2 |  | Looping aura effect drawn around an elite enemy: a ring of tiny paper minions, 6 frames, transparent centre. |
+| `affix_warded_icon` | `assets/art/grimoire/errata/affixes/warded_icon.png` | 256×256 | — | T | 2 |  | Elite affix icon: a circle of red correction marks. |
+| `affix_warded_aura` | `assets/art/grimoire/errata/affixes/warded_aura.png` | 1536×256 | 6 @ 10fps | T | 2 |  | Looping aura effect drawn around an elite enemy: a circle of red correction marks, 6 frames, transparent centre. |
+| `nemesis_mark` | `assets/art/grimoire/errata/nemesis_mark.png` | 512×512 | — | T | 2 |  | Nemesis mark: a red skull-shaped wax seal with the hero's own quill through it, worn above the enemy that killed you last run. |
+| `weakpoint_marker` | `assets/art/grimoire/errata/weakpoint.png` | 1536×256 | 6 @ 12fps | T | 1 |  | Boss weak-point marker: a hand-drawn red correction circle pulsing, 6 frames. |
+| `weakpoint_break` | `assets/art/grimoire/errata/weakpoint_break.png` | 3072×384 | 8 @ 18fps | T | 2 |  | Weak point shattering: red ink and torn page fragments burst outward, 8 frames. |
+
+## 21 Lexicon modu
+
+| ID | Dosya | Boyut | Kare | T | Ö | Referans | Prompt |
+|---|---|---|---|---|---|---|---|
+| `word_plate` | `assets/art/grimoire/lexicon/word_plate.png` | 768×256 | — | T | 1 |  | A floating iron word plate with brass rim, blank centre for live text, transparent. *(Kelime kodla yazılır.)* |
+| `word_plate_correct` | `assets/art/grimoire/lexicon/word_plate_correct.png` | 4608×256 | 6 @ 16fps | T | 1 |  | The word plate igniting in brass light as the correct word is chosen, 6 frames. |
+| `word_plate_wrong` | `assets/art/grimoire/lexicon/word_plate_wrong.png` | 4608×256 | 6 @ 16fps | T | 1 |  | The word plate cracking and crossed with red ink when the wrong word is chosen, 6 frames. |
+| `correction_strike` | `assets/art/grimoire/lexicon/correction_strike.png` | 10240×1024 | 10 @ 20fps | T | 1 |  | Boss finisher: a giant red pen stroke slashes across the boss and the boss's sentence tears apart, 10 frames. |
+| `word_enemy_banner` | `assets/art/grimoire/lexicon/word_enemy_banner.png` | 512×128 | — | T | 2 |  | A small torn paper banner that floats above word enemies, blank for live text, transparent. |
+| `word_learned` | `assets/art/grimoire/lexicon/word_learned.png` | 2048×256 | 8 @ 14fps | T | 2 |  | A word sealed into the grimoire: a page folds closed and a brass seal stamps it, 8 frames. |
+
+## 22 Hub ve ilerleme
+
+| ID | Dosya | Boyut | Kare | T | Ö | Referans | Prompt |
+|---|---|---|---|---|---|---|---|
+| `hub_neris_hearth` | `assets/art/grimoire/hub/stations/neris_hearth.png` | 768×768 | — | T | 2 |  | Hub station prop: Neris's hearth chair with a cold candle and open ledger, three-quarter view, transparent. |
+| `hub_neris_hearth_icon` | `assets/art/grimoire/hub/icons/neris_hearth.png` | 256×256 | — | T | 3 |  | Interaction icon for the hub station: Neris's hearth chair with a cold candle and open ledger. |
+| `hub_mechanic_bench` | `assets/art/grimoire/hub/stations/mechanic_bench.png` | 768×768 | — | T | 2 |  | Hub station prop: the Silent Mechanic's workbench with clamps and weapon frames, three-quarter view, transparent. |
+| `hub_mechanic_bench_icon` | `assets/art/grimoire/hub/icons/mechanic_bench.png` | 256×256 | — | T | 3 |  | Interaction icon for the hub station: the Silent Mechanic's workbench with clamps and weapon frames. |
+| `hub_ink_child_post` | `assets/art/grimoire/hub/stations/ink_child_post.png` | 768×768 | — | T | 2 |  | Hub station prop: a wall of pigeonholes stuffed with notes, three-quarter view, transparent. |
+| `hub_ink_child_post_icon` | `assets/art/grimoire/hub/icons/ink_child_post.png` | 256×256 | — | T | 3 |  | Interaction icon for the hub station: a wall of pigeonholes stuffed with notes. |
+| `hub_sera_post` | `assets/art/grimoire/hub/stations/sera_post.png` | 768×768 | — | T | 2 |  | Hub station prop: a post office counter with sealed letters and scissors, three-quarter view, transparent. |
+| `hub_sera_post_icon` | `assets/art/grimoire/hub/icons/sera_post.png` | 256×256 | — | T | 3 |  | Interaction icon for the hub station: a post office counter with sealed letters and scissors. |
+| `hub_yel_map` | `assets/art/grimoire/hub/stations/yel_map.png` | 768×768 | — | T | 2 |  | Hub station prop: a large map table with string routes and pins, three-quarter view, transparent. |
+| `hub_yel_map_icon` | `assets/art/grimoire/hub/icons/yel_map.png` | 256×256 | — | T | 3 |  | Interaction icon for the hub station: a large map table with string routes and pins. |
+| `hub_lira_training` | `assets/art/grimoire/hub/stations/lira_training.png` | 768×768 | — | T | 2 |  | Hub station prop: a training dummy and weapon rack, three-quarter view, transparent. |
+| `hub_lira_training_icon` | `assets/art/grimoire/hub/icons/lira_training.png` | 256×256 | — | T | 3 |  | Interaction icon for the hub station: a training dummy and weapon rack. |
+| `hub_tavi_apothecary` | `assets/art/grimoire/hub/stations/tavi_apothecary.png` | 768×768 | — | T | 2 |  | Hub station prop: an apothecary shelf of vials, three-quarter view, transparent. |
+| `hub_tavi_apothecary_icon` | `assets/art/grimoire/hub/icons/tavi_apothecary.png` | 256×256 | — | T | 3 |  | Interaction icon for the hub station: an apothecary shelf of vials. |
+| `hub_redactor_desk` | `assets/art/grimoire/hub/stations/redactor_desk.png` | 768×768 | — | T | 2 |  | Hub station prop: a desk of red-inked ledgers, the Errata notebook, three-quarter view, transparent. |
+| `hub_redactor_desk_icon` | `assets/art/grimoire/hub/icons/redactor_desk.png` | 256×256 | — | T | 3 |  | Interaction icon for the hub station: a desk of red-inked ledgers, the Errata notebook. |
+| `hub_exit_door` | `assets/art/grimoire/hub/stations/exit_door.png` | 768×768 | — | T | 2 |  | Hub station prop: the iron door back into the archive, light behind it, three-quarter view, transparent. |
+| `hub_exit_door_icon` | `assets/art/grimoire/hub/icons/exit_door.png` | 256×256 | — | T | 3 |  | Interaction icon for the hub station: the iron door back into the archive, light behind it. |
+| `hub_erase_mask` | `assets/art/grimoire/hub/erase_mask.png` | 2560×1440 | — |  | 2 |  | Greyscale mask of white erasure spreading from the edges (white = erased), used to blend hub states. |
+| `hub_hearth_loop` | `assets/art/grimoire/hub/hearth_loop.png` | 4096×512 | 8 @ 10fps | T | 3 |  | Hearth fire loop, 8 frames. |
+| `meta_max_health` | `assets/art/grimoire/hub/upgrades/max_health.png` | 256×256 | — | T | 3 |  | Permanent upgrade icon: max health, engraved brass on dark leather. |
+| `meta_ink_gain` | `assets/art/grimoire/hub/upgrades/ink_gain.png` | 256×256 | — | T | 3 |  | Permanent upgrade icon: ink gain, engraved brass on dark leather. |
+| `meta_dash_charges` | `assets/art/grimoire/hub/upgrades/dash_charges.png` | 256×256 | — | T | 3 |  | Permanent upgrade icon: dash charges, engraved brass on dark leather. |
+| `meta_reroll` | `assets/art/grimoire/hub/upgrades/reroll.png` | 256×256 | — | T | 3 |  | Permanent upgrade icon: reroll, engraved brass on dark leather. |
+| `meta_revive` | `assets/art/grimoire/hub/upgrades/revive.png` | 256×256 | — | T | 3 |  | Permanent upgrade icon: revive, engraved brass on dark leather. |
+| `meta_starting_weapon` | `assets/art/grimoire/hub/upgrades/starting_weapon.png` | 256×256 | — | T | 3 |  | Permanent upgrade icon: starting weapon, engraved brass on dark leather. |
+| `meta_luck` | `assets/art/grimoire/hub/upgrades/luck.png` | 256×256 | — | T | 3 |  | Permanent upgrade icon: luck, engraved brass on dark leather. |
+| `meta_armour` | `assets/art/grimoire/hub/upgrades/armour.png` | 256×256 | — | T | 3 |  | Permanent upgrade icon: armour, engraved brass on dark leather. |
+| `meta_pickup_range` | `assets/art/grimoire/hub/upgrades/pickup_range.png` | 256×256 | — | T | 3 |  | Permanent upgrade icon: pickup range, engraved brass on dark leather. |
+| `meta_gadget_slot` | `assets/art/grimoire/hub/upgrades/gadget_slot.png` | 256×256 | — | T | 3 |  | Permanent upgrade icon: gadget slot, engraved brass on dark leather. |
+| `meta_relic_slot` | `assets/art/grimoire/hub/upgrades/relic_slot.png` | 256×256 | — | T | 3 |  | Permanent upgrade icon: relic slot, engraved brass on dark leather. |
+| `meta_story_insight` | `assets/art/grimoire/hub/upgrades/story_insight.png` | 256×256 | — | T | 3 |  | Permanent upgrade icon: story insight, engraved brass on dark leather. |
+| `lore_note_01` | `assets/art/grimoire/hub/lore/note_01.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 1: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `lore_note_02` | `assets/art/grimoire/hub/lore/note_02.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 2: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `lore_note_03` | `assets/art/grimoire/hub/lore/note_03.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 3: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `lore_note_04` | `assets/art/grimoire/hub/lore/note_04.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 4: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `lore_note_05` | `assets/art/grimoire/hub/lore/note_05.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 5: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `lore_note_06` | `assets/art/grimoire/hub/lore/note_06.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 6: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `lore_note_07` | `assets/art/grimoire/hub/lore/note_07.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 7: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `lore_note_08` | `assets/art/grimoire/hub/lore/note_08.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 8: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `lore_note_09` | `assets/art/grimoire/hub/lore/note_09.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 9: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `lore_note_10` | `assets/art/grimoire/hub/lore/note_10.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 10: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `lore_note_11` | `assets/art/grimoire/hub/lore/note_11.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 11: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `lore_note_12` | `assets/art/grimoire/hub/lore/note_12.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 12: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `lore_note_13` | `assets/art/grimoire/hub/lore/note_13.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 13: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `lore_note_14` | `assets/art/grimoire/hub/lore/note_14.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 14: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `lore_note_15` | `assets/art/grimoire/hub/lore/note_15.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 15: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `lore_note_16` | `assets/art/grimoire/hub/lore/note_16.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 16: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `lore_note_17` | `assets/art/grimoire/hub/lore/note_17.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 17: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `lore_note_18` | `assets/art/grimoire/hub/lore/note_18.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 18: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `lore_note_19` | `assets/art/grimoire/hub/lore/note_19.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 19: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `lore_note_20` | `assets/art/grimoire/hub/lore/note_20.png` | 1024×1400 | — |  | 3 |  | Collectible lore note 20: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines. |
+| `letter_quest` | `assets/art/grimoire/hub/letter_quest.png` | 1024×768 | — |  | 3 |  | A sealed quest letter on the post counter, wax seal intact, blank lines. |
+| `letter_reward` | `assets/art/grimoire/hub/letter_reward.png` | 1024×768 | — |  | 3 |  | An opened reward letter with a small pouch of ink drops. |
+
+## 23 Rota haritası
+
+| ID | Dosya | Boyut | Kare | T | Ö | Referans | Prompt |
+|---|---|---|---|---|---|---|---|
+| `route_map_bg` | `assets/art/grimoire/route/map_bg.png` | 2560×1440 | — |  | 2 |  | Yel's map of the four wings drawn on dark parchment: corridors, stairs, the dome, the last page dissolving at the edge; paths left empty for nodes. |
+| `route_node_combat` | `assets/art/grimoire/route/node_combat.png` | 256×256 | — | T | 2 |  | Map node icon: crossed quill and blade, brass medallion style. |
+| `route_node_elite` | `assets/art/grimoire/route/node_elite.png` | 256×256 | — | T | 2 |  | Map node icon: crowned skull seal, brass medallion style. |
+| `route_node_boss` | `assets/art/grimoire/route/node_boss.png` | 256×256 | — | T | 2 |  | Map node icon: great red seal, brass medallion style. |
+| `route_node_shop` | `assets/art/grimoire/route/node_shop.png` | 256×256 | — | T | 2 |  | Map node icon: inkwell and coin, brass medallion style. |
+| `route_node_rest` | `assets/art/grimoire/route/node_rest.png` | 256×256 | — | T | 2 |  | Map node icon: candle, brass medallion style. |
+| `route_node_story` | `assets/art/grimoire/route/node_story.png` | 256×256 | — | T | 2 |  | Map node icon: open book, brass medallion style. |
+| `route_node_treasure` | `assets/art/grimoire/route/node_treasure.png` | 256×256 | — | T | 2 |  | Map node icon: iron-bound chest, brass medallion style. |
+| `route_node_unknown` | `assets/art/grimoire/route/node_unknown.png` | 256×256 | — | T | 2 |  | Map node icon: question-shaped ink blot, brass medallion style. |
+| `route_path` | `assets/art/grimoire/route/path_tile.png` | 512×64 | — | T | 3 |  | Seamless dotted ink path segment, transparent. |
+| `route_cursor` | `assets/art/grimoire/route/cursor.png` | 256×256 | — | T | 3 |  | Hero position marker on the map: a small brass figure on a pin. |
+
+## 24 Düzeltme Dereceleri
+
+| ID | Dosya | Boyut | Kare | T | Ö | Referans | Prompt |
+|---|---|---|---|---|---|---|---|
+| `heat_red_ink` | `assets/art/grimoire/heat/red_ink.png` | 256×256 | — | T | 3 |  | Difficulty modifier icon 'red ink': a red correction mark engraved on a dark iron plate. |
+| `heat_faster_shelves` | `assets/art/grimoire/heat/faster_shelves.png` | 256×256 | — | T | 3 |  | Difficulty modifier icon 'faster shelves': a red correction mark engraved on a dark iron plate. |
+| `heat_thick_paper` | `assets/art/grimoire/heat/thick_paper.png` | 256×256 | — | T | 3 |  | Difficulty modifier icon 'thick paper': a red correction mark engraved on a dark iron plate. |
+| `heat_silent_witness` | `assets/art/grimoire/heat/silent_witness.png` | 256×256 | — | T | 3 |  | Difficulty modifier icon 'silent witness': a red correction mark engraved on a dark iron plate. |
+| `heat_short_candle` | `assets/art/grimoire/heat/short_candle.png` | 256×256 | — | T | 3 |  | Difficulty modifier icon 'short candle': a red correction mark engraved on a dark iron plate. |
+| `heat_double_guard` | `assets/art/grimoire/heat/double_guard.png` | 256×256 | — | T | 3 |  | Difficulty modifier icon 'double guard': a red correction mark engraved on a dark iron plate. |
+| `heat_blank_margins` | `assets/art/grimoire/heat/blank_margins.png` | 256×256 | — | T | 3 |  | Difficulty modifier icon 'blank margins': a red correction mark engraved on a dark iron plate. |
+| `heat_no_mercy` | `assets/art/grimoire/heat/no_mercy.png` | 256×256 | — | T | 3 |  | Difficulty modifier icon 'no mercy': a red correction mark engraved on a dark iron plate. |
+| `heat_elite_tide` | `assets/art/grimoire/heat/elite_tide.png` | 256×256 | — | T | 3 |  | Difficulty modifier icon 'elite tide': a red correction mark engraved on a dark iron plate. |
+| `heat_last_word` | `assets/art/grimoire/heat/last_word.png` | 256×256 | — | T | 3 |  | Difficulty modifier icon 'last word': a red correction mark engraved on a dark iron plate. |
+
+## 25 Savaş okunurluğu
+
+| ID | Dosya | Boyut | Kare | T | Ö | Referans | Prompt |
+|---|---|---|---|---|---|---|---|
+| `status_slow` | `assets/art/grimoire/status/slow.png` | 128×128 | — | T | 2 |  | Status effect icon: a melting hourglass, readable at 24 px. |
+| `status_burn` | `assets/art/grimoire/status/burn.png` | 128×128 | — | T | 2 |  | Status effect icon: a candle flame, readable at 24 px. |
+| `status_bleed` | `assets/art/grimoire/status/bleed.png` | 128×128 | — | T | 2 |  | Status effect icon: a dripping red drop, readable at 24 px. |
+| `status_stun` | `assets/art/grimoire/status/stun.png` | 128×128 | — | T | 2 |  | Status effect icon: circling stars of ink, readable at 24 px. |
+| `status_shield` | `assets/art/grimoire/status/shield.png` | 128×128 | — | T | 2 |  | Status effect icon: index-tab shield, readable at 24 px. |
+| `status_haste` | `assets/art/grimoire/status/haste.png` | 128×128 | — | T | 2 |  | Status effect icon: winged boot, readable at 24 px. |
+| `status_poison` | `assets/art/grimoire/status/poison.png` | 128×128 | — | T | 2 |  | Status effect icon: green-black ink drop, readable at 24 px. |
+| `status_weaken` | `assets/art/grimoire/status/weaken.png` | 128×128 | — | T | 2 |  | Status effect icon: a broken quill, readable at 24 px. |
+| `status_marked` | `assets/art/grimoire/status/marked.png` | 128×128 | — | T | 2 |  | Status effect icon: a red circle, readable at 24 px. |
+| `status_silence` | `assets/art/grimoire/status/silence.png` | 128×128 | — | T | 2 |  | Status effect icon: a sewn mouth, readable at 24 px. |
+| `status_regen` | `assets/art/grimoire/status/regen.png` | 128×128 | — | T | 2 |  | Status effect icon: a brass heart, readable at 24 px. |
+| `status_invisible` | `assets/art/grimoire/status/invisible.png` | 128×128 | — | T | 2 |  | Status effect icon: a dotted outline, readable at 24 px. |
+| `tier_frame_1` | `assets/art/grimoire/ui/tier_frame_1.png` | 256×256 | — | T | 2 |  | Weapon tier frame level 1: arch-shaped brass frame, more ornate with each level, transparent centre. |
+| `tier_frame_2` | `assets/art/grimoire/ui/tier_frame_2.png` | 256×256 | — | T | 2 |  | Weapon tier frame level 2: arch-shaped brass frame, more ornate with each level, transparent centre. |
+| `tier_frame_3` | `assets/art/grimoire/ui/tier_frame_3.png` | 256×256 | — | T | 2 |  | Weapon tier frame level 3: arch-shaped brass frame, more ornate with each level, transparent centre. |
+| `tier_frame_4` | `assets/art/grimoire/ui/tier_frame_4.png` | 256×256 | — | T | 2 |  | Weapon tier frame level 4: arch-shaped brass frame, more ornate with each level, transparent centre. |
+| `damage_flash_overlay` | `assets/art/grimoire/ui/hurt_overlay.png` | 1920×1080 | — | T | 2 |  | Screen-edge red ink vignette used when the hero is hit, transparent centre. |
+| `low_health_overlay` | `assets/art/grimoire/ui/low_health_overlay.png` | 1920×1080 | — | T | 2 |  | Screen-edge cracked page and dried blood vignette for low health, transparent centre. |
+
+## 26 Silah evrimleri
+
+| ID | Dosya | Boyut | Kare | T | Ö | Referans | Prompt |
+|---|---|---|---|---|---|---|---|
+| `weapon_quill_blaster_evo_icon` | `assets/art/grimoire/weapons/quill_blaster/evolved_icon.png` | 512×512 | — | T | 3 |  | Evolved form of 'İğne Ucu Kalem': a needle-tipped steel pen pistol, now gilded with brass filigree and a red gem, clearly grander. |
+| `weapon_quill_blaster_evo_held` | `assets/art/grimoire/weapons/quill_blaster/evolved_held.png` | 512×256 | — | T | 3 |  | In-hand sprite of the evolved a needle-tipped steel pen pistol, side view pointing right, grip lower left. |
+| `weapon_quill_blaster_evo_projectile` | `assets/art/grimoire/weapons/quill_blaster/evolved_projectile.png` | 512×128 | 4 @ 16fps | T | 3 |  | Evolved projectile: a needle of ink, larger, edged with brass light, 4 frames. |
+| `weapon_syllable_shotgun_evo_icon` | `assets/art/grimoire/weapons/syllable_shotgun/evolved_icon.png` | 512×512 | — | T | 3 |  | Evolved form of 'Hece Saçması': a blunderbuss loaded with syllable pellets, now gilded with brass filigree and a red gem, clearly grander. |
+| `weapon_syllable_shotgun_evo_held` | `assets/art/grimoire/weapons/syllable_shotgun/evolved_held.png` | 512×256 | — | T | 3 |  | In-hand sprite of the evolved a blunderbuss loaded with syllable pellets, side view pointing right, grip lower left. |
+| `weapon_syllable_shotgun_evo_projectile` | `assets/art/grimoire/weapons/syllable_shotgun/evolved_projectile.png` | 512×128 | 4 @ 16fps | T | 3 |  | Evolved projectile: a spray of ink pellets, larger, edged with brass light, 4 frames. |
+| `weapon_lexicon_beam_evo_icon` | `assets/art/grimoire/weapons/lexicon_beam/evolved_icon.png` | 512×512 | — | T | 3 |  | Evolved form of 'Prizma Işını': a brass prism lantern-gun, now gilded with brass filigree and a red gem, clearly grander. |
+| `weapon_lexicon_beam_evo_held` | `assets/art/grimoire/weapons/lexicon_beam/evolved_held.png` | 512×256 | — | T | 3 |  | In-hand sprite of the evolved a brass prism lantern-gun, side view pointing right, grip lower left. |
+| `weapon_lexicon_beam_evo_projectile` | `assets/art/grimoire/weapons/lexicon_beam/evolved_projectile.png` | 512×128 | 4 @ 16fps | T | 3 |  | Evolved projectile: a flat bone-white beam, larger, edged with brass light, 4 frames. |
+| `weapon_punctuation_bomb_evo_icon` | `assets/art/grimoire/weapons/punctuation_bomb/evolved_icon.png` | 512×512 | — | T | 3 |  | Evolved form of 'Ünlem Mayını': an exclamation-shaped iron mine, now gilded with brass filigree and a red gem, clearly grander. |
+| `weapon_punctuation_bomb_evo_held` | `assets/art/grimoire/weapons/punctuation_bomb/evolved_held.png` | 512×256 | — | T | 3 |  | In-hand sprite of the evolved an exclamation-shaped iron mine, side view pointing right, grip lower left. |
+| `weapon_punctuation_bomb_evo_projectile` | `assets/art/grimoire/weapons/punctuation_bomb/evolved_projectile.png` | 512×128 | 4 @ 16fps | T | 3 |  | Evolved projectile: an iron mine with a burning fuse, larger, edged with brass light, 4 frames. |
+| `weapon_dictionary_blade_evo_icon` | `assets/art/grimoire/weapons/dictionary_blade/evolved_icon.png` | 512×512 | — | T | 3 |  | Evolved form of 'Sözlük Muhafızı': a broad blade with a dictionary-cover guard, now gilded with brass filigree and a red gem, clearly grander. |
+| `weapon_dictionary_blade_evo_held` | `assets/art/grimoire/weapons/dictionary_blade/evolved_held.png` | 512×256 | — | T | 3 |  | In-hand sprite of the evolved a broad blade with a dictionary-cover guard, side view pointing right, grip lower left. |
+| `weapon_dictionary_blade_evo_projectile` | `assets/art/grimoire/weapons/dictionary_blade/evolved_projectile.png` | 512×128 | 4 @ 16fps | T | 3 |  | Evolved projectile: a sweeping slash arc of ink, larger, edged with brass light, 4 frames. |
+| `weapon_crossword_crossbow_evo_icon` | `assets/art/grimoire/weapons/crossword_crossbow/evolved_icon.png` | 512×512 | — | T | 3 |  | Evolved form of 'Bulmaca Balistası': a small crossbow with a crossword-grid stock, now gilded with brass filigree and a red gem, clearly grander. |
+| `weapon_crossword_crossbow_evo_held` | `assets/art/grimoire/weapons/crossword_crossbow/evolved_held.png` | 512×256 | — | T | 3 |  | In-hand sprite of the evolved a small crossbow with a crossword-grid stock, side view pointing right, grip lower left. |
+| `weapon_crossword_crossbow_evo_projectile` | `assets/art/grimoire/weapons/crossword_crossbow/evolved_projectile.png` | 512×128 | 4 @ 16fps | T | 3 |  | Evolved projectile: a heavy bolt, larger, edged with brass light, 4 frames. |
+| `weapon_hyphen_boomerang_evo_icon` | `assets/art/grimoire/weapons/hyphen_boomerang/evolved_icon.png` | 512×512 | — | T | 3 |  | Evolved form of 'Tire Yörüngesi': a dash-shaped bronze boomerang, now gilded with brass filigree and a red gem, clearly grander. |
+| `weapon_hyphen_boomerang_evo_held` | `assets/art/grimoire/weapons/hyphen_boomerang/evolved_held.png` | 512×256 | — | T | 3 |  | In-hand sprite of the evolved a dash-shaped bronze boomerang, side view pointing right, grip lower left. |
+| `weapon_hyphen_boomerang_evo_projectile` | `assets/art/grimoire/weapons/hyphen_boomerang/evolved_projectile.png` | 512×128 | 4 @ 16fps | T | 3 |  | Evolved projectile: a spinning dash, larger, edged with brass light, 4 frames. |
+| `weapon_ink_flamethrower_evo_icon` | `assets/art/grimoire/weapons/ink_flamethrower/evolved_icon.png` | 512×512 | — | T | 3 |  | Evolved form of 'Mürekkep Ocağı': an ink brazier flamethrower, now gilded with brass filigree and a red gem, clearly grander. |
+| `weapon_ink_flamethrower_evo_held` | `assets/art/grimoire/weapons/ink_flamethrower/evolved_held.png` | 512×256 | — | T | 3 |  | In-hand sprite of the evolved an ink brazier flamethrower, side view pointing right, grip lower left. |
+| `weapon_ink_flamethrower_evo_projectile` | `assets/art/grimoire/weapons/ink_flamethrower/evolved_projectile.png` | 512×128 | 4 @ 16fps | T | 3 |  | Evolved projectile: a gout of black-red ink fire, larger, edged with brass light, 4 frames. |
+| `weapon_thesaurus_rocket_evo_icon` | `assets/art/grimoire/weapons/thesaurus_rocket/evolved_icon.png` | 512×512 | — | T | 3 |  | Evolved form of 'Eşanlamlı Harcı': a mortar with twin pestles, now gilded with brass filigree and a red gem, clearly grander. |
+| `weapon_thesaurus_rocket_evo_held` | `assets/art/grimoire/weapons/thesaurus_rocket/evolved_held.png` | 512×256 | — | T | 3 |  | In-hand sprite of the evolved a mortar with twin pestles, side view pointing right, grip lower left. |
+| `weapon_thesaurus_rocket_evo_projectile` | `assets/art/grimoire/weapons/thesaurus_rocket/evolved_projectile.png` | 512×128 | 4 @ 16fps | T | 3 |  | Evolved projectile: a falling twin shell, larger, edged with brass light, 4 frames. |
+| `weapon_quote_pistols_evo_icon` | `assets/art/grimoire/weapons/quote_pistols/evolved_icon.png` | 512×512 | — | T | 3 |  | Evolved form of 'Tırnak Salvosu': twin quotation-mark pistols, now gilded with brass filigree and a red gem, clearly grander. |
+| `weapon_quote_pistols_evo_held` | `assets/art/grimoire/weapons/quote_pistols/evolved_held.png` | 512×256 | — | T | 3 |  | In-hand sprite of the evolved twin quotation-mark pistols, side view pointing right, grip lower left. |
+| `weapon_quote_pistols_evo_projectile` | `assets/art/grimoire/weapons/quote_pistols/evolved_projectile.png` | 512×128 | 4 @ 16fps | T | 3 |  | Evolved projectile: paired quote-shaped bullets, larger, edged with brass light, 4 frames. |
+| `weapon_calligraphy_katana_evo_icon` | `assets/art/grimoire/weapons/calligraphy_katana/evolved_icon.png` | 512×512 | — | T | 3 |  | Evolved form of 'Kalem Hilali': a crescent quill-blade katana, now gilded with brass filigree and a red gem, clearly grander. |
+| `weapon_calligraphy_katana_evo_held` | `assets/art/grimoire/weapons/calligraphy_katana/evolved_held.png` | 512×256 | — | T | 3 |  | In-hand sprite of the evolved a crescent quill-blade katana, side view pointing right, grip lower left. |
+| `weapon_calligraphy_katana_evo_projectile` | `assets/art/grimoire/weapons/calligraphy_katana/evolved_projectile.png` | 512×128 | 4 @ 16fps | T | 3 |  | Evolved projectile: a crescent slash, larger, edged with brass light, 4 frames. |
+| `weapon_scroll_turret_evo_icon` | `assets/art/grimoire/weapons/scroll_turret/evolved_icon.png` | 512×512 | — | T | 3 |  | Evolved form of 'Raf Bekçisi': a tiny turret made from a bookshelf, now gilded with brass filigree and a red gem, clearly grander. |
+| `weapon_scroll_turret_evo_held` | `assets/art/grimoire/weapons/scroll_turret/evolved_held.png` | 512×256 | — | T | 3 |  | In-hand sprite of the evolved a tiny turret made from a bookshelf, side view pointing right, grip lower left. |
+| `weapon_scroll_turret_evo_projectile` | `assets/art/grimoire/weapons/scroll_turret/evolved_projectile.png` | 512×128 | 4 @ 16fps | T | 3 |  | Evolved projectile: a page dart, larger, edged with brass light, 4 frames. |
+| `weapon_rune_orb_evo_icon` | `assets/art/grimoire/weapons/rune_orb/evolved_icon.png` | 512×512 | — | T | 3 |  | Evolved form of 'Atıf Küresi': a citation orb in a brass cage, now gilded with brass filigree and a red gem, clearly grander. |
+| `weapon_rune_orb_evo_held` | `assets/art/grimoire/weapons/rune_orb/evolved_held.png` | 512×256 | — | T | 3 |  | In-hand sprite of the evolved a citation orb in a brass cage, side view pointing right, grip lower left. |
+| `weapon_rune_orb_evo_projectile` | `assets/art/grimoire/weapons/rune_orb/evolved_projectile.png` | 512×128 | 4 @ 16fps | T | 3 |  | Evolved projectile: an orbiting citation orb, larger, edged with brass light, 4 frames. |
+| `weapon_grammar_sniper_evo_icon` | `assets/art/grimoire/weapons/grammar_sniper/evolved_icon.png` | 512×512 | — | T | 3 |  | Evolved form of 'Zayıf Nokta Rayı': a long sniper rail pen, now gilded with brass filigree and a red gem, clearly grander. |
+| `weapon_grammar_sniper_evo_held` | `assets/art/grimoire/weapons/grammar_sniper/evolved_held.png` | 512×256 | — | T | 3 |  | In-hand sprite of the evolved a long sniper rail pen, side view pointing right, grip lower left. |
+| `weapon_grammar_sniper_evo_projectile` | `assets/art/grimoire/weapons/grammar_sniper/evolved_projectile.png` | 512×128 | 4 @ 16fps | T | 3 |  | Evolved projectile: a thin piercing line, larger, edged with brass light, 4 frames. |
+| `weapon_word_loom_evo_icon` | `assets/art/grimoire/weapons/word_loom/evolved_icon.png` | 512×512 | — | T | 3 |  | Evolved form of 'Dipnot Tezgâhı': a footnote loom, now gilded with brass filigree and a red gem, clearly grander. |
+| `weapon_word_loom_evo_held` | `assets/art/grimoire/weapons/word_loom/evolved_held.png` | 512×256 | — | T | 3 |  | In-hand sprite of the evolved a footnote loom, side view pointing right, grip lower left. |
+| `weapon_word_loom_evo_projectile` | `assets/art/grimoire/weapons/word_loom/evolved_projectile.png` | 512×128 | 4 @ 16fps | T | 3 |  | Evolved projectile: a thread of footnotes, larger, edged with brass light, 4 frames. |
+
+## 27 Sistem
+
+| ID | Dosya | Boyut | Kare | T | Ö | Referans | Prompt |
+|---|---|---|---|---|---|---|---|
+| `sys_cursor` | `assets/art/grimoire/system/cursor.png` | 64×64 | — | T | 2 |  | Custom mouse cursor: a small quill nib pointing up-left, transparent. |
+| `sys_cursor_hover` | `assets/art/grimoire/system/cursor_hover.png` | 64×64 | — | T | 2 |  | Cursor hover state: the quill nib dipped red, transparent. |
+| `sys_app_icon` | `assets/art/grimoire/system/app_icon.png` | 1024×1024 | — |  | 2 |  | Application icon: the blackletter 'l' with a red stroke through it on dark tooled leather. |
+| `sys_favicon` | `assets/art/grimoire/system/favicon.png` | 256×256 | — |  | 2 |  | Tiny icon: red stroke through a brass 'l' seal, readable at 16 px. |
+| `sys_loading_spinner` | `assets/art/grimoire/system/loading_spinner.png` | 1536×128 | 12 @ 14fps | T | 2 |  | Loading animation: an ink drop falling and spreading into a ring, 12 frames. |
+| `sys_splash_studio` | `assets/art/grimoire/system/splash_studio.png` | 1920×1080 | — |  | 2 |  | Studio splash: a single candle lighting a closed book, space for a studio name. |
+| `sys_credits_bg` | `assets/art/grimoire/system/credits_bg.png` | 2560×1440 | — |  | 2 |  | Credits backdrop: the restored library at dawn, very calm. |
+| `btn_pad_a` | `assets/art/grimoire/system/buttons/pad_a.png` | 128×128 | — | T | 3 |  | Gamepad button prompt 'A' as a small brass button with an engraved shape (no letters; letter added in code). |
+| `btn_pad_b` | `assets/art/grimoire/system/buttons/pad_b.png` | 128×128 | — | T | 3 |  | Gamepad button prompt 'B' as a small brass button with an engraved shape (no letters; letter added in code). |
+| `btn_pad_x` | `assets/art/grimoire/system/buttons/pad_x.png` | 128×128 | — | T | 3 |  | Gamepad button prompt 'X' as a small brass button with an engraved shape (no letters; letter added in code). |
+| `btn_pad_y` | `assets/art/grimoire/system/buttons/pad_y.png` | 128×128 | — | T | 3 |  | Gamepad button prompt 'Y' as a small brass button with an engraved shape (no letters; letter added in code). |
+| `btn_pad_lb` | `assets/art/grimoire/system/buttons/pad_lb.png` | 128×128 | — | T | 3 |  | Gamepad button prompt 'LB' as a small brass button with an engraved shape (no letters; letter added in code). |
+| `btn_pad_rb` | `assets/art/grimoire/system/buttons/pad_rb.png` | 128×128 | — | T | 3 |  | Gamepad button prompt 'RB' as a small brass button with an engraved shape (no letters; letter added in code). |
+| `btn_pad_lt` | `assets/art/grimoire/system/buttons/pad_lt.png` | 128×128 | — | T | 3 |  | Gamepad button prompt 'LT' as a small brass button with an engraved shape (no letters; letter added in code). |
+| `btn_pad_rt` | `assets/art/grimoire/system/buttons/pad_rt.png` | 128×128 | — | T | 3 |  | Gamepad button prompt 'RT' as a small brass button with an engraved shape (no letters; letter added in code). |
+| `btn_pad_ls` | `assets/art/grimoire/system/buttons/pad_ls.png` | 128×128 | — | T | 3 |  | Gamepad button prompt 'LS' as a small brass button with an engraved shape (no letters; letter added in code). |
+| `btn_pad_rs` | `assets/art/grimoire/system/buttons/pad_rs.png` | 128×128 | — | T | 3 |  | Gamepad button prompt 'RS' as a small brass button with an engraved shape (no letters; letter added in code). |
+| `btn_pad_dpad` | `assets/art/grimoire/system/buttons/pad_dpad.png` | 128×128 | — | T | 3 |  | Gamepad button prompt 'DPAD' as a small brass button with an engraved shape (no letters; letter added in code). |
+| `btn_pad_start` | `assets/art/grimoire/system/buttons/pad_start.png` | 128×128 | — | T | 3 |  | Gamepad button prompt 'START' as a small brass button with an engraved shape (no letters; letter added in code). |
+| `btn_pad_select` | `assets/art/grimoire/system/buttons/pad_select.png` | 128×128 | — | T | 3 |  | Gamepad button prompt 'SELECT' as a small brass button with an engraved shape (no letters; letter added in code). |
+| `btn_key` | `assets/art/grimoire/system/buttons/key.png` | 128×128 | — | T | 3 |  | Keyboard keycap prompt: a dark iron key with brass rim, blank face for live text. |
+| `btn_key_wide` | `assets/art/grimoire/system/buttons/key_wide.png` | 320×128 | — | T | 3 |  | Wide keyboard keycap (Space, Shift): dark iron with brass rim, blank face. |
+
+## 28 Öğretici
+
+| ID | Dosya | Boyut | Kare | T | Ö | Referans | Prompt |
+|---|---|---|---|---|---|---|---|
+| `tut_move` | `assets/art/grimoire/tutorial/move.png` | 1200×800 | — |  | 2 |  | Tutorial illustration showing 'move' clearly in the Grimoire style, simple composition, one action per image. |
+| `tut_dash` | `assets/art/grimoire/tutorial/dash.png` | 1200×800 | — |  | 2 |  | Tutorial illustration showing 'dash' clearly in the Grimoire style, simple composition, one action per image. |
+| `tut_auto_attack` | `assets/art/grimoire/tutorial/auto_attack.png` | 1200×800 | — |  | 2 |  | Tutorial illustration showing 'auto attack' clearly in the Grimoire style, simple composition, one action per image. |
+| `tut_gadget` | `assets/art/grimoire/tutorial/gadget.png` | 1200×800 | — |  | 2 |  | Tutorial illustration showing 'gadget' clearly in the Grimoire style, simple composition, one action per image. |
+| `tut_pickup_ink` | `assets/art/grimoire/tutorial/pickup_ink.png` | 1200×800 | — |  | 2 |  | Tutorial illustration showing 'pickup ink' clearly in the Grimoire style, simple composition, one action per image. |
+| `tut_shop_cards` | `assets/art/grimoire/tutorial/shop_cards.png` | 1200×800 | — |  | 2 |  | Tutorial illustration showing 'shop cards' clearly in the Grimoire style, simple composition, one action per image. |
+| `tut_quiz_answer` | `assets/art/grimoire/tutorial/quiz_answer.png` | 1200×800 | — |  | 2 |  | Tutorial illustration showing 'quiz answer' clearly in the Grimoire style, simple composition, one action per image. |
+| `tut_weapon_merge` | `assets/art/grimoire/tutorial/weapon_merge.png` | 1200×800 | — |  | 2 |  | Tutorial illustration showing 'weapon merge' clearly in the Grimoire style, simple composition, one action per image. |
+| `tut_boss_sentence` | `assets/art/grimoire/tutorial/boss_sentence.png` | 1200×800 | — |  | 2 |  | Tutorial illustration showing 'boss sentence' clearly in the Grimoire style, simple composition, one action per image. |
+| `tut_hub_return` | `assets/art/grimoire/tutorial/hub_return.png` | 1200×800 | — |  | 2 |  | Tutorial illustration showing 'hub return' clearly in the Grimoire style, simple composition, one action per image. |
+| `tip_01` | `assets/art/grimoire/tutorial/tip_01.png` | 1600×900 | — |  | 3 |  | Loading-screen tip illustration 1: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line. |
+| `tip_02` | `assets/art/grimoire/tutorial/tip_02.png` | 1600×900 | — |  | 3 |  | Loading-screen tip illustration 2: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line. |
+| `tip_03` | `assets/art/grimoire/tutorial/tip_03.png` | 1600×900 | — |  | 3 |  | Loading-screen tip illustration 3: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line. |
+| `tip_04` | `assets/art/grimoire/tutorial/tip_04.png` | 1600×900 | — |  | 3 |  | Loading-screen tip illustration 4: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line. |
+| `tip_05` | `assets/art/grimoire/tutorial/tip_05.png` | 1600×900 | — |  | 3 |  | Loading-screen tip illustration 5: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line. |
+| `tip_06` | `assets/art/grimoire/tutorial/tip_06.png` | 1600×900 | — |  | 3 |  | Loading-screen tip illustration 6: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line. |
+| `tip_07` | `assets/art/grimoire/tutorial/tip_07.png` | 1600×900 | — |  | 3 |  | Loading-screen tip illustration 7: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line. |
+| `tip_08` | `assets/art/grimoire/tutorial/tip_08.png` | 1600×900 | — |  | 3 |  | Loading-screen tip illustration 8: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line. |
+| `tip_09` | `assets/art/grimoire/tutorial/tip_09.png` | 1600×900 | — |  | 3 |  | Loading-screen tip illustration 9: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line. |
+| `tip_10` | `assets/art/grimoire/tutorial/tip_10.png` | 1600×900 | — |  | 3 |  | Loading-screen tip illustration 10: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line. |
+| `tip_11` | `assets/art/grimoire/tutorial/tip_11.png` | 1600×900 | — |  | 3 |  | Loading-screen tip illustration 11: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line. |
+| `tip_12` | `assets/art/grimoire/tutorial/tip_12.png` | 1600×900 | — |  | 3 |  | Loading-screen tip illustration 12: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line. |
+
+## 29 Başarımlar
+
+| ID | Dosya | Boyut | Kare | T | Ö | Referans | Prompt |
+|---|---|---|---|---|---|---|---|
+| `ach_first_night` | `assets/art/grimoire/achievements/first_night.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'first night': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_first_night_locked` | `assets/art/grimoire/achievements/first_night_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'first night': the same medallion tarnished and dark. |
+| `ach_first_boss` | `assets/art/grimoire/achievements/first_boss.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'first boss': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_first_boss_locked` | `assets/art/grimoire/achievements/first_boss_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'first boss': the same medallion tarnished and dark. |
+| `ach_wing_1` | `assets/art/grimoire/achievements/wing_1.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'wing 1': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_wing_1_locked` | `assets/art/grimoire/achievements/wing_1_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'wing 1': the same medallion tarnished and dark. |
+| `ach_wing_2` | `assets/art/grimoire/achievements/wing_2.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'wing 2': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_wing_2_locked` | `assets/art/grimoire/achievements/wing_2_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'wing 2': the same medallion tarnished and dark. |
+| `ach_wing_3` | `assets/art/grimoire/achievements/wing_3.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'wing 3': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_wing_3_locked` | `assets/art/grimoire/achievements/wing_3_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'wing 3': the same medallion tarnished and dark. |
+| `ach_wing_4` | `assets/art/grimoire/achievements/wing_4.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'wing 4': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_wing_4_locked` | `assets/art/grimoire/achievements/wing_4_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'wing 4': the same medallion tarnished and dark. |
+| `ach_true_ending` | `assets/art/grimoire/achievements/true_ending.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'true ending': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_true_ending_locked` | `assets/art/grimoire/achievements/true_ending_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'true ending': the same medallion tarnished and dark. |
+| `ach_all_heroes` | `assets/art/grimoire/achievements/all_heroes.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'all heroes': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_all_heroes_locked` | `assets/art/grimoire/achievements/all_heroes_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'all heroes': the same medallion tarnished and dark. |
+| `ach_no_damage_wave` | `assets/art/grimoire/achievements/no_damage_wave.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'no damage wave': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_no_damage_wave_locked` | `assets/art/grimoire/achievements/no_damage_wave_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'no damage wave': the same medallion tarnished and dark. |
+| `ach_chain_50` | `assets/art/grimoire/achievements/chain_50.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'chain 50': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_chain_50_locked` | `assets/art/grimoire/achievements/chain_50_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'chain 50': the same medallion tarnished and dark. |
+| `ach_chain_100` | `assets/art/grimoire/achievements/chain_100.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'chain 100': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_chain_100_locked` | `assets/art/grimoire/achievements/chain_100_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'chain 100': the same medallion tarnished and dark. |
+| `ach_words_100` | `assets/art/grimoire/achievements/words_100.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'words 100': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_words_100_locked` | `assets/art/grimoire/achievements/words_100_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'words 100': the same medallion tarnished and dark. |
+| `ach_words_500` | `assets/art/grimoire/achievements/words_500.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'words 500': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_words_500_locked` | `assets/art/grimoire/achievements/words_500_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'words 500': the same medallion tarnished and dark. |
+| `ach_words_1000` | `assets/art/grimoire/achievements/words_1000.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'words 1000': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_words_1000_locked` | `assets/art/grimoire/achievements/words_1000_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'words 1000': the same medallion tarnished and dark. |
+| `ach_perfect_quiz_10` | `assets/art/grimoire/achievements/perfect_quiz_10.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'perfect quiz 10': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_perfect_quiz_10_locked` | `assets/art/grimoire/achievements/perfect_quiz_10_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'perfect quiz 10': the same medallion tarnished and dark. |
+| `ach_all_relics` | `assets/art/grimoire/achievements/all_relics.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'all relics': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_all_relics_locked` | `assets/art/grimoire/achievements/all_relics_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'all relics': the same medallion tarnished and dark. |
+| `ach_all_weapons` | `assets/art/grimoire/achievements/all_weapons.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'all weapons': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_all_weapons_locked` | `assets/art/grimoire/achievements/all_weapons_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'all weapons': the same medallion tarnished and dark. |
+| `ach_evolve_weapon` | `assets/art/grimoire/achievements/evolve_weapon.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'evolve weapon': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_evolve_weapon_locked` | `assets/art/grimoire/achievements/evolve_weapon_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'evolve weapon': the same medallion tarnished and dark. |
+| `ach_nemesis_slain` | `assets/art/grimoire/achievements/nemesis_slain.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'nemesis slain': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_nemesis_slain_locked` | `assets/art/grimoire/achievements/nemesis_slain_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'nemesis slain': the same medallion tarnished and dark. |
+| `ach_heat_5` | `assets/art/grimoire/achievements/heat_5.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'heat 5': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_heat_5_locked` | `assets/art/grimoire/achievements/heat_5_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'heat 5': the same medallion tarnished and dark. |
+| `ach_heat_10` | `assets/art/grimoire/achievements/heat_10.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'heat 10': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_heat_10_locked` | `assets/art/grimoire/achievements/heat_10_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'heat 10': the same medallion tarnished and dark. |
+| `ach_endless_50` | `assets/art/grimoire/achievements/endless_50.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'endless 50': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_endless_50_locked` | `assets/art/grimoire/achievements/endless_50_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'endless 50': the same medallion tarnished and dark. |
+| `ach_endless_100` | `assets/art/grimoire/achievements/endless_100.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'endless 100': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_endless_100_locked` | `assets/art/grimoire/achievements/endless_100_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'endless 100': the same medallion tarnished and dark. |
+| `ach_red_redactor_ally` | `assets/art/grimoire/achievements/red_redactor_ally.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'red redactor ally': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_red_redactor_ally_locked` | `assets/art/grimoire/achievements/red_redactor_ally_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'red redactor ally': the same medallion tarnished and dark. |
+| `ach_neris_name` | `assets/art/grimoire/achievements/neris_name.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'neris name': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_neris_name_locked` | `assets/art/grimoire/achievements/neris_name_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'neris name': the same medallion tarnished and dark. |
+| `ach_hero_inky` | `assets/art/grimoire/achievements/hero_inky.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'hero inky': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_hero_inky_locked` | `assets/art/grimoire/achievements/hero_inky_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'hero inky': the same medallion tarnished and dark. |
+| `ach_hero_quillmaster` | `assets/art/grimoire/achievements/hero_quillmaster.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'hero quillmaster': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_hero_quillmaster_locked` | `assets/art/grimoire/achievements/hero_quillmaster_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'hero quillmaster': the same medallion tarnished and dark. |
+| `ach_hero_word_knight` | `assets/art/grimoire/achievements/hero_word_knight.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'hero word knight': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_hero_word_knight_locked` | `assets/art/grimoire/achievements/hero_word_knight_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'hero word knight': the same medallion tarnished and dark. |
+| `ach_hero_rune_sorceress` | `assets/art/grimoire/achievements/hero_rune_sorceress.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'hero rune sorceress': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_hero_rune_sorceress_locked` | `assets/art/grimoire/achievements/hero_rune_sorceress_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'hero rune sorceress': the same medallion tarnished and dark. |
+| `ach_hero_alchemist` | `assets/art/grimoire/achievements/hero_alchemist.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'hero alchemist': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_hero_alchemist_locked` | `assets/art/grimoire/achievements/hero_alchemist_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'hero alchemist': the same medallion tarnished and dark. |
+| `ach_hero_shadow_scribe` | `assets/art/grimoire/achievements/hero_shadow_scribe.png` | 256×256 | — |  | 3 |  | Steam achievement icon 'hero shadow scribe': a brass medallion with an engraved symbol, readable at 64 px. |
+| `ach_hero_shadow_scribe_locked` | `assets/art/grimoire/achievements/hero_shadow_scribe_locked.png` | 256×256 | — |  | 3 |  | Locked version of achievement 'hero shadow scribe': the same medallion tarnished and dark. |
+
+## 30 Steam topluluk
+
+| ID | Dosya | Boyut | Kare | T | Ö | Referans | Prompt |
+|---|---|---|---|---|---|---|---|
+| `trading_card_01` | `assets/art/grimoire/steam_community/card_01.png` | 1920×1080 | — |  | 3 |  | Steam trading card art featuring inky in a dramatic archive moment. |
+| `trading_card_02` | `assets/art/grimoire/steam_community/card_02.png` | 1920×1080 | — |  | 3 |  | Steam trading card art featuring quillmaster in a dramatic archive moment. |
+| `trading_card_03` | `assets/art/grimoire/steam_community/card_03.png` | 1920×1080 | — |  | 3 |  | Steam trading card art featuring word knight in a dramatic archive moment. |
+| `trading_card_04` | `assets/art/grimoire/steam_community/card_04.png` | 1920×1080 | — |  | 3 |  | Steam trading card art featuring rune sorceress in a dramatic archive moment. |
+| `trading_card_05` | `assets/art/grimoire/steam_community/card_05.png` | 1920×1080 | — |  | 3 |  | Steam trading card art featuring alchemist in a dramatic archive moment. |
+| `trading_card_06` | `assets/art/grimoire/steam_community/card_06.png` | 1920×1080 | — |  | 3 |  | Steam trading card art featuring shadow scribe in a dramatic archive moment. |
+| `trading_card_07` | `assets/art/grimoire/steam_community/card_07.png` | 1920×1080 | — |  | 3 |  | Steam trading card art featuring neris in a dramatic archive moment. |
+| `trading_card_08` | `assets/art/grimoire/steam_community/card_08.png` | 1920×1080 | — |  | 3 |  | Steam trading card art featuring blank page in a dramatic archive moment. |
+| `badge_1` | `assets/art/grimoire/steam_community/badge_1.png` | 80×80 | — |  | 3 |  | Steam badge level 1: brass seal that grows more ornate with the level. |
+| `profile_bg_1` | `assets/art/grimoire/steam_community/profile_bg_1.png` | 1920×1080 | — |  | 3 |  | Steam profile background 1: a wide calm archive vista. |
+| `badge_2` | `assets/art/grimoire/steam_community/badge_2.png` | 80×80 | — |  | 3 |  | Steam badge level 2: brass seal that grows more ornate with the level. |
+| `profile_bg_2` | `assets/art/grimoire/steam_community/profile_bg_2.png` | 1920×1080 | — |  | 3 |  | Steam profile background 2: a wide calm archive vista. |
+| `badge_3` | `assets/art/grimoire/steam_community/badge_3.png` | 80×80 | — |  | 3 |  | Steam badge level 3: brass seal that grows more ornate with the level. |
+| `profile_bg_3` | `assets/art/grimoire/steam_community/profile_bg_3.png` | 1920×1080 | — |  | 3 |  | Steam profile background 3: a wide calm archive vista. |
+| `badge_4` | `assets/art/grimoire/steam_community/badge_4.png` | 80×80 | — |  | 3 |  | Steam badge level 4: brass seal that grows more ornate with the level. |
+| `profile_bg_4` | `assets/art/grimoire/steam_community/profile_bg_4.png` | 1920×1080 | — |  | 3 |  | Steam profile background 4: a wide calm archive vista. |
+| `badge_5` | `assets/art/grimoire/steam_community/badge_5.png` | 80×80 | — |  | 3 |  | Steam badge level 5: brass seal that grows more ornate with the level. |
+| `profile_bg_5` | `assets/art/grimoire/steam_community/profile_bg_5.png` | 1920×1080 | — |  | 3 |  | Steam profile background 5: a wide calm archive vista. |
+| `emoticon_quill` | `assets/art/grimoire/steam_community/emoticon_quill.png` | 54×54 | — | T | 3 |  | Steam emoticon: quill, bold and simple. |
+| `emoticon_inkdrop` | `assets/art/grimoire/steam_community/emoticon_inkdrop.png` | 54×54 | — | T | 3 |  | Steam emoticon: inkdrop, bold and simple. |
+| `emoticon_red_pen` | `assets/art/grimoire/steam_community/emoticon_red_pen.png` | 54×54 | — | T | 3 |  | Steam emoticon: red pen, bold and simple. |
+| `emoticon_blank_page` | `assets/art/grimoire/steam_community/emoticon_blank_page.png` | 54×54 | — | T | 3 |  | Steam emoticon: blank page, bold and simple. |
+| `emoticon_candle` | `assets/art/grimoire/steam_community/emoticon_candle.png` | 54×54 | — | T | 3 |  | Steam emoticon: candle, bold and simple. |
+| `emoticon_seal` | `assets/art/grimoire/steam_community/emoticon_seal.png` | 54×54 | — | T | 3 |  | Steam emoticon: seal, bold and simple. |
+
+## 31 Basın ve sosyal
+
+| ID | Dosya | Boyut | Kare | T | Ö | Referans | Prompt |
+|---|---|---|---|---|---|---|---|
+| `social_twitter_header` | `assets/art/grimoire/marketing/social/twitter_header.png` | 1500×500 | — |  | 3 |  | twitter header: the six heroes facing the wave of white erasure in the library, logo space kept clear. |
+| `social_discord_banner` | `assets/art/grimoire/marketing/social/discord_banner.png` | 960×540 | — |  | 3 |  | discord banner: the six heroes facing the wave of white erasure in the library, logo space kept clear. |
+| `social_youtube_banner` | `assets/art/grimoire/marketing/social/youtube_banner.png` | 2560×1440 | — |  | 3 |  | youtube banner: the six heroes facing the wave of white erasure in the library, logo space kept clear. |
+| `social_press_key_art` | `assets/art/grimoire/marketing/social/press_key_art.png` | 3840×2160 | — |  | 3 |  | press key art: the six heroes facing the wave of white erasure in the library, logo space kept clear. |
+| `social_press_key_art_vertical` | `assets/art/grimoire/marketing/social/press_key_art_vertical.png` | 2160×3840 | — |  | 3 |  | press key art vertical: the six heroes facing the wave of white erasure in the library, logo space kept clear. |
+| `social_trailer_end_card` | `assets/art/grimoire/marketing/social/trailer_end_card.png` | 1920×1080 | — |  | 3 |  | trailer end card: the six heroes facing the wave of white erasure in the library, logo space kept clear. |
+| `social_itch_cover` | `assets/art/grimoire/marketing/social/itch_cover.png` | 630×500 | — |  | 3 |  | itch cover: the six heroes facing the wave of white erasure in the library, logo space kept clear. |

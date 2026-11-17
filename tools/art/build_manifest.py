@@ -384,6 +384,143 @@ for k, (w, h) in MARKETING.items():
     add("18 Pazarlama", f"mk_{k}", f"marketing/{k}.png", w, h, f"Steam store art ({k.replace('_', ' ')}): Inky with the quill raised in the foreground, Blank Page looming behind erasing the library into white; leave room for the logo.", priority=3)
 
 # ----------------------------------------------------------------------------
+# Extras: art for planned systems and for shipping the game
+# ----------------------------------------------------------------------------
+MODES = {
+    "lexicon": ("Lexicon mode", "a sealed English dictionary glowing with brass light, a quill crossing it — the mode where words are your weapons"),
+    "errata": ("Errata mode", "a blood-red pen driven into a torn page like a sword — the pure action mode"),
+    "endless": ("Endless Archive", "a staircase of shelves descending forever into darkness"),
+}
+for k, (name, desc) in MODES.items():
+    add("19 Modlar", f"mode_{k}_card", f"modes/{k}_card.png", 1200, 1600, f"Mode selection card art for {name}: {desc}. Lower third dark for text.", priority=1)
+    add("19 Modlar", f"mode_{k}_emblem", f"modes/{k}_emblem.png", 512, 512, f"Emblem for {name}: {desc}, simplified to a strong icon.", transparent=True, priority=2)
+
+CURSED_SEALS = {
+    "blood_price": "a seal dripping blood: big damage, healing halved",
+    "hollow_quill": "a hollow quill: fire rate up, accuracy down",
+    "iron_binding": "a book bound in iron chains: armour up, speed down",
+    "burning_margin": "a page edge on fire: burn every hit, lose health over time",
+    "glass_ink": "a glass inkwell cracked: critical hits soar, max health down",
+    "hungry_index": "an index card with teeth: ink gain doubled, enemies faster",
+    "silent_bell": "a bell with its clapper torn out: gadget cooldown halved, no healing pickups",
+    "twin_shadow": "a seal with two overlapping shadows: extra projectile, damage taken up",
+    "red_ledger": "a ledger of red debts: gold now, pay later",
+    "last_candle": "a candle burnt to the stub: massive power for the next wave only",
+    "erased_name": "a name scratched out: invisible for 2 seconds after each kill, cannot regen",
+    "weeping_wax": "a wax seal weeping: shield on hit, shield breaks into damage",
+}
+for k, desc in CURSED_SEALS.items():
+    add("20 Errata modu", f"cursed_{k}", f"errata/cursed/{k}.png", 512, 512, f"Cursed seal card icon: {desc}. A blood-red wax seal with a distinct pressed sigil and a dark crack through it.", transparent=True, priority=2)
+ELITE_AFFIXES = {
+    "shielded": "a rotating shield of index tabs", "splitting": "a body cracked down the middle, ready to split",
+    "teleporting": "an outline smeared like wet ink", "exploding": "a fuse-lit ink core",
+    "hasted": "trailing speed lines of torn paper", "vampiric": "red threads drawing health",
+    "summoner": "a ring of tiny paper minions", "warded": "a circle of red correction marks",
+}
+for k, desc in ELITE_AFFIXES.items():
+    add("20 Errata modu", f"affix_{k}_icon", f"errata/affixes/{k}_icon.png", 256, 256, f"Elite affix icon: {desc}.", transparent=True, priority=2)
+    add("20 Errata modu", f"affix_{k}_aura", f"errata/affixes/{k}_aura.png", 256 * 6, 256, f"Looping aura effect drawn around an elite enemy: {desc}, 6 frames, transparent centre.", frames=6, fps=10, transparent=True, priority=2)
+add("20 Errata modu", "nemesis_mark", "errata/nemesis_mark.png", 512, 512, "Nemesis mark: a red skull-shaped wax seal with the hero's own quill through it, worn above the enemy that killed you last run.", transparent=True, priority=2)
+add("20 Errata modu", "weakpoint_marker", "errata/weakpoint.png", 256 * 6, 256, "Boss weak-point marker: a hand-drawn red correction circle pulsing, 6 frames.", frames=6, fps=12, transparent=True, priority=1)
+add("20 Errata modu", "weakpoint_break", "errata/weakpoint_break.png", 384 * 8, 384, "Weak point shattering: red ink and torn page fragments burst outward, 8 frames.", frames=8, fps=18, transparent=True, priority=2)
+
+add("21 Lexicon modu", "word_plate", "lexicon/word_plate.png", 768, 256, "A floating iron word plate with brass rim, blank centre for live text, transparent.", transparent=True, priority=1, note="Kelime kodla yazılır.")
+add("21 Lexicon modu", "word_plate_correct", "lexicon/word_plate_correct.png", 768 * 6, 256, "The word plate igniting in brass light as the correct word is chosen, 6 frames.", frames=6, fps=16, transparent=True, priority=1)
+add("21 Lexicon modu", "word_plate_wrong", "lexicon/word_plate_wrong.png", 768 * 6, 256, "The word plate cracking and crossed with red ink when the wrong word is chosen, 6 frames.", frames=6, fps=16, transparent=True, priority=1)
+add("21 Lexicon modu", "correction_strike", "lexicon/correction_strike.png", 1024 * 10, 1024, "Boss finisher: a giant red pen stroke slashes across the boss and the boss's sentence tears apart, 10 frames.", frames=10, fps=20, transparent=True, priority=1)
+add("21 Lexicon modu", "word_enemy_banner", "lexicon/word_enemy_banner.png", 512, 128, "A small torn paper banner that floats above word enemies, blank for live text, transparent.", transparent=True, priority=2)
+add("21 Lexicon modu", "word_learned", "lexicon/word_learned.png", 256 * 8, 256, "A word sealed into the grimoire: a page folds closed and a brass seal stamps it, 8 frames.", frames=8, fps=14, transparent=True, priority=2)
+
+HUB_STATIONS = {
+    "neris_hearth": "Neris's hearth chair with a cold candle and open ledger",
+    "mechanic_bench": "the Silent Mechanic's workbench with clamps and weapon frames",
+    "ink_child_post": "a wall of pigeonholes stuffed with notes",
+    "sera_post": "a post office counter with sealed letters and scissors",
+    "yel_map": "a large map table with string routes and pins",
+    "lira_training": "a training dummy and weapon rack",
+    "tavi_apothecary": "an apothecary shelf of vials",
+    "redactor_desk": "a desk of red-inked ledgers, the Errata notebook",
+    "exit_door": "the iron door back into the archive, light behind it",
+}
+for k, desc in HUB_STATIONS.items():
+    add("22 Hub ve ilerleme", f"hub_{k}", f"hub/stations/{k}.png", 768, 768, f"Hub station prop: {desc}, three-quarter view, transparent.", transparent=True, priority=2)
+    add("22 Hub ve ilerleme", f"hub_{k}_icon", f"hub/icons/{k}.png", 256, 256, f"Interaction icon for the hub station: {desc}.", transparent=True, priority=3)
+add("22 Hub ve ilerleme", "hub_erase_mask", "hub/erase_mask.png", 2560, 1440, "Greyscale mask of white erasure spreading from the edges (white = erased), used to blend hub states.", priority=2)
+add("22 Hub ve ilerleme", "hub_hearth_loop", "hub/hearth_loop.png", 512 * 8, 512, "Hearth fire loop, 8 frames.", frames=8, fps=10, transparent=True, priority=3)
+META_UPGRADES = ["max_health", "ink_gain", "dash_charges", "reroll", "revive", "starting_weapon", "luck", "armour", "pickup_range", "gadget_slot", "relic_slot", "story_insight"]
+for k in META_UPGRADES:
+    add("22 Hub ve ilerleme", f"meta_{k}", f"hub/upgrades/{k}.png", 256, 256, f"Permanent upgrade icon: {k.replace('_', ' ')}, engraved brass on dark leather.", transparent=True, priority=3)
+for i in range(1, 21):
+    add("22 Hub ve ilerleme", f"lore_note_{i:02}", f"hub/lore/note_{i:02}.png", 1024, 1400, f"Collectible lore note {i}: a torn, stained archive page with a small ink sketch (a hand, a key, a door, a face) and only abstract handwriting lines.", priority=3)
+add("22 Hub ve ilerleme", "letter_quest", "hub/letter_quest.png", 1024, 768, "A sealed quest letter on the post counter, wax seal intact, blank lines.", priority=3)
+add("22 Hub ve ilerleme", "letter_reward", "hub/letter_reward.png", 1024, 768, "An opened reward letter with a small pouch of ink drops.", priority=3)
+
+ROUTE_NODES = {"combat": "crossed quill and blade", "elite": "crowned skull seal", "boss": "great red seal", "shop": "inkwell and coin", "rest": "candle", "story": "open book", "treasure": "iron-bound chest", "unknown": "question-shaped ink blot"}
+add("23 Rota haritası", "route_map_bg", "route/map_bg.png", 2560, 1440, "Yel's map of the four wings drawn on dark parchment: corridors, stairs, the dome, the last page dissolving at the edge; paths left empty for nodes.", priority=2)
+for k, desc in ROUTE_NODES.items():
+    add("23 Rota haritası", f"route_node_{k}", f"route/node_{k}.png", 256, 256, f"Map node icon: {desc}, brass medallion style.", transparent=True, priority=2)
+add("23 Rota haritası", "route_path", "route/path_tile.png", 512, 64, "Seamless dotted ink path segment, transparent.", transparent=True, priority=3)
+add("23 Rota haritası", "route_cursor", "route/cursor.png", 256, 256, "Hero position marker on the map: a small brass figure on a pin.", transparent=True, priority=3)
+
+HEAT = ["red_ink", "faster_shelves", "thick_paper", "silent_witness", "short_candle", "double_guard", "blank_margins", "no_mercy", "elite_tide", "last_word"]
+for k in HEAT:
+    add("24 Düzeltme Dereceleri", f"heat_{k}", f"heat/{k}.png", 256, 256, f"Difficulty modifier icon '{k.replace('_', ' ')}': a red correction mark engraved on a dark iron plate.", transparent=True, priority=3)
+
+STATUS = {"slow": "a melting hourglass", "burn": "a candle flame", "bleed": "a dripping red drop", "stun": "circling stars of ink", "shield": "index-tab shield", "haste": "winged boot", "poison": "green-black ink drop", "weaken": "a broken quill", "marked": "a red circle", "silence": "a sewn mouth", "regen": "a brass heart", "invisible": "a dotted outline"}
+for k, desc in STATUS.items():
+    add("25 Savaş okunurluğu", f"status_{k}", f"status/{k}.png", 128, 128, f"Status effect icon: {desc}, readable at 24 px.", transparent=True, priority=2)
+for t in (1, 2, 3, 4):
+    add("25 Savaş okunurluğu", f"tier_frame_{t}", f"ui/tier_frame_{t}.png", 256, 256, f"Weapon tier frame level {t}: arch-shaped brass frame, more ornate with each level, transparent centre.", transparent=True, priority=2)
+add("25 Savaş okunurluğu", "damage_flash_overlay", "ui/hurt_overlay.png", 1920, 1080, "Screen-edge red ink vignette used when the hero is hit, transparent centre.", transparent=True, priority=2)
+add("25 Savaş okunurluğu", "low_health_overlay", "ui/low_health_overlay.png", 1920, 1080, "Screen-edge cracked page and dried blood vignette for low health, transparent centre.", transparent=True, priority=2)
+
+for k, (tr, obj, proj) in WEAPONS.items():
+    add("26 Silah evrimleri", f"weapon_{k}_evo_icon", f"weapons/{k}/evolved_icon.png", 512, 512, f"Evolved form of '{tr}': {obj}, now gilded with brass filigree and a red gem, clearly grander.", transparent=True, priority=3)
+    add("26 Silah evrimleri", f"weapon_{k}_evo_held", f"weapons/{k}/evolved_held.png", 512, 256, f"In-hand sprite of the evolved {obj}, side view pointing right, grip lower left.", transparent=True, priority=3)
+    add("26 Silah evrimleri", f"weapon_{k}_evo_projectile", f"weapons/{k}/evolved_projectile.png", 128 * 4, 128, f"Evolved projectile: {proj}, larger, edged with brass light, 4 frames.", frames=4, fps=16, transparent=True, priority=3)
+
+SYSTEM = {
+    "cursor": (64, 64, "custom mouse cursor: a small quill nib pointing up-left, transparent"),
+    "cursor_hover": (64, 64, "cursor hover state: the quill nib dipped red, transparent"),
+    "app_icon": (1024, 1024, "application icon: the blackletter 'L' with a red stroke through it on dark tooled leather"),
+    "favicon": (256, 256, "tiny icon: red stroke through a brass 'L' seal, readable at 16 px"),
+    "loading_spinner": (128 * 12, 128, "loading animation: an ink drop falling and spreading into a ring, 12 frames"),
+    "splash_studio": (1920, 1080, "studio splash: a single candle lighting a closed book, space for a studio name"),
+    "credits_bg": (2560, 1440, "credits backdrop: the restored library at dawn, very calm"),
+}
+for k, (w, h, desc) in SYSTEM.items():
+    fr = 12 if k == "loading_spinner" else 1
+    add("27 Sistem", f"sys_{k}", f"system/{k}.png", w, h, desc.capitalize() + ".", frames=fr, fps=14 if fr > 1 else None, transparent=k.startswith("cursor") or k == "loading_spinner", priority=2)
+GAMEPAD = ["a", "b", "x", "y", "lb", "rb", "lt", "rt", "ls", "rs", "dpad", "start", "select"]
+for k in GAMEPAD:
+    add("27 Sistem", f"btn_pad_{k}", f"system/buttons/pad_{k}.png", 128, 128, f"Gamepad button prompt '{k.upper()}' as a small brass button with an engraved shape (no letters; letter added in code).", transparent=True, priority=3)
+add("27 Sistem", "btn_key", "system/buttons/key.png", 128, 128, "Keyboard keycap prompt: a dark iron key with brass rim, blank face for live text.", transparent=True, priority=3)
+add("27 Sistem", "btn_key_wide", "system/buttons/key_wide.png", 320, 128, "Wide keyboard keycap (Space, Shift): dark iron with brass rim, blank face.", transparent=True, priority=3)
+
+TUTORIAL = ["move", "dash", "auto_attack", "gadget", "pickup_ink", "shop_cards", "quiz_answer", "weapon_merge", "boss_sentence", "hub_return"]
+for k in TUTORIAL:
+    add("28 Öğretici", f"tut_{k}", f"tutorial/{k}.png", 1200, 800, f"Tutorial illustration showing '{k.replace('_', ' ')}' clearly in the Grimoire style, simple composition, one action per image.", priority=2)
+for i in range(1, 13):
+    add("28 Öğretici", f"tip_{i:02}", f"tutorial/tip_{i:02}.png", 1600, 900, f"Loading-screen tip illustration {i}: a vignette from the archive (a hero, an enemy or an object) with empty space at the bottom for a tip line.", priority=3)
+
+ACHIEVEMENTS = ["first_night", "first_boss", "wing_1", "wing_2", "wing_3", "wing_4", "true_ending", "all_heroes", "no_damage_wave", "chain_50", "chain_100", "words_100", "words_500", "words_1000", "perfect_quiz_10", "all_relics", "all_weapons", "evolve_weapon", "nemesis_slain", "heat_5", "heat_10", "endless_50", "endless_100", "red_redactor_ally", "neris_name"] + [f"hero_{h}" for h in HEROES]
+for k in ACHIEVEMENTS:
+    add("29 Başarımlar", f"ach_{k}", f"achievements/{k}.png", 256, 256, f"Steam achievement icon '{k.replace('_', ' ')}': a brass medallion with an engraved symbol, readable at 64 px.", priority=3)
+    add("29 Başarımlar", f"ach_{k}_locked", f"achievements/{k}_locked.png", 256, 256, f"Locked version of achievement '{k.replace('_', ' ')}': the same medallion tarnished and dark.", priority=3)
+
+for i, h in enumerate(list(HEROES) + ["neris", "blank_page"], 1):
+    add("30 Steam topluluk", f"trading_card_{i:02}", f"steam_community/card_{i:02}.png", 1920, 1080, f"Steam trading card art featuring {h.replace('_', ' ')} in a dramatic archive moment.", priority=3)
+for i in range(1, 6):
+    add("30 Steam topluluk", f"badge_{i}", f"steam_community/badge_{i}.png", 80, 80, f"Steam badge level {i}: brass seal that grows more ornate with the level.", priority=3)
+    add("30 Steam topluluk", f"profile_bg_{i}", f"steam_community/profile_bg_{i}.png", 1920, 1080, f"Steam profile background {i}: a wide calm archive vista.", priority=3)
+for k in ("quill", "inkdrop", "red_pen", "blank_page", "candle", "seal"):
+    add("30 Steam topluluk", f"emoticon_{k}", f"steam_community/emoticon_{k}.png", 54, 54, f"Steam emoticon: {k.replace('_', ' ')}, bold and simple.", transparent=True, priority=3)
+
+SOCIAL = {"twitter_header": (1500, 500), "discord_banner": (960, 540), "youtube_banner": (2560, 1440), "press_key_art": (3840, 2160), "press_key_art_vertical": (2160, 3840), "trailer_end_card": (1920, 1080), "itch_cover": (630, 500)}
+for k, (w, h) in SOCIAL.items():
+    add("31 Basın ve sosyal", f"social_{k}", f"marketing/social/{k}.png", w, h, f"{k.replace('_', ' ')}: the six heroes facing the wave of white erasure in the library, logo space kept clear.", priority=3)
+
+# ----------------------------------------------------------------------------
 OUT_JSON.write_text(json.dumps({"base": BASE, "style": STYLE, "count": len(entries), "entries": entries}, ensure_ascii=False, indent=1), encoding="utf-8")
 
 groups = {}
