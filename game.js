@@ -8400,8 +8400,8 @@ function render(dt = 1 / 60) {
   ctx.fillStyle = "#0a0e0c";
   ctx.fillRect(-ARENA_LAYOUT.width / 2, -ARENA_LAYOUT.height / 2, ARENA_LAYOUT.width, ARENA_LAYOUT.height);
   const hasErrataRoom = window.ErrataArena?.drawRoom?.(ctx, state.current_wave, ARENA_LAYOUT.width, ARENA_LAYOUT.height, ARENA_LAYOUT) || false;
-  const roomArt = window.ErrataArena?.room?.(state.current_wave);
-  const roomFailed = !window.ErrataArena?.drawRoom || !roomArt || (!!roomArt.complete && !roomArt.naturalWidth);
+  const roomArt = hasErrataRoom ? null : window.ErrataArena?.room?.(state.current_wave);
+  const roomFailed = !hasErrataRoom && (!window.ErrataArena?.drawRoom || !roomArt || (!!roomArt.complete && !roomArt.naturalWidth));
   const frameImg = hasErrataRoom || !roomFailed ? null : getLegacyArenaFrame(frameSprite);
   if (!hasErrataRoom && frameImg) {
     // The library is one fixed room in world space; its frame no longer follows

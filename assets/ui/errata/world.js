@@ -33,7 +33,44 @@
     }
     return artwork.get(key);
   }
+  // ---- Painted Grimoire arena: tiled floor under a nine-sliced border whose
+  // open centre (atlas `inner`) is fitted to the playable boundary.
+  const BIOMES = ['reading_hall','word_corridor','observatory','last_page'];
+  const TILE = 512; // world px per floor tile
+  // Fixed floor-decal spots (world px), kept clear of the centre spawn.
+  const DECALS = [[-760,-420,.55],[820,360,.5],[-520,520,.45],[640,-560,.5],[40,700,.4]];
+  function hash(x,y){let h=(x*374761393+y*668265263)|0;h=(h^(h>>>13))*1274126177|0;return (h^(h>>>16))>>>0}
+  function drawPaintedRoom(context,wave,width,height,layout) {
+    const G=window.GrimoireSprites;if(!G)return false;
+    const biome=BIOMES[biomeIndex(wave)];
+    const frame=G.image(`arena_${biome}_frame`);
+    const floors=['a','b','c'].map(v=>G.image(`arena_${biome}_floor_${v}`));
+    const inner=(window.GRIMOIRE_ATLAS?.assets||{})[`arena_${biome}_frame`]?.inner;
+    if(!frame||floors.some(f=>!f)||!inner)return false;
+    const ix=layout?.innerShelfX ?? width*1245/2800, iy=layout?.innerShelfY ?? height*870/2100;
+    context.save();context.imageSmoothingEnabled=true;
+    // Floor: tiles over the whole arena (the border hides the outer ring).
+    const nx=Math.ceil(width/TILE/2)+1, ny=Math.ceil(height/TILE/2)+1;
+    for(let ty=-ny;ty<ny;ty++)for(let tx=-nx;tx<nx;tx++){
+      context.drawImage(floors[hash(tx,ty)%3],tx*TILE,ty*TILE,TILE+1,TILE+1);
+    }
+    const decal=G.image(`arena_${biome}_floor_decal`);
+    if(decal)for(const [x,y,a] of DECALS){context.globalAlpha=a;context.drawImage(decal,x-110,y-110,220,220)}
+    context.globalAlpha=1;
+    // Border: nine-slice so the opening lands exactly on the playable edge.
+    const sx=[0,inner[0],inner[2],frame.naturalWidth], sy=[0,inner[1],inner[3],frame.naturalHeight];
+    const dx=[-width/2,-ix,ix,width/2], dy=[-height/2,-iy,iy,height/2];
+    for(let y=0;y<3;y++)for(let x=0;x<3;x++){
+      if(x===1&&y===1)continue;
+      context.drawImage(frame,sx[x],sy[y],sx[x+1]-sx[x],sy[y+1]-sy[y],dx[x],dy[y],dx[x+1]-dx[x],dy[y+1]-dy[y]);
+    }
+    // The opening's feathered rim also sits in the centre slice.
+    context.drawImage(frame,sx[1],sy[1],sx[2]-sx[1],sy[2]-sy[1],dx[1],dy[1],dx[2]-dx[1],dy[2]-dy[1]);
+    context.restore();
+    return true;
+  }
   function drawRoom(context,wave,width,height,layout) {
+    if (drawPaintedRoom(context,wave,width,height,layout)) return true;
     const image = room(wave);
     if (!image.complete || !image.naturalWidth) return false;
     const floor = floors[biomeIndex(wave)];
@@ -68,6 +105,14 @@
     return structureArt.get(id);
   }
   function drawStructure(context,id) {
+    // Painted, gently animated structure (bottom-anchored on the interaction point).
+    const painted=window.GrimoireSprites?.loopFrame(`interact_${id}`,performance.now());
+    if(painted&&structures[id]){
+      const size=structures[id].height*1.35;
+      context.save();context.imageSmoothingEnabled=true;
+      context.drawImage(painted,-size/2,-size*0.93+8,size,size);
+      context.restore();return true;
+    }
     const data=structures[id],image=structure(id);
     if(!data||!image?.complete||!image.naturalWidth)return false;
     const [sx,sy,sw,sh]=data.crop,width=data.height*sw/sh;
@@ -77,6 +122,7 @@
   }
   // Start the default room while the title screen is visible so the first
   // playable frame never has to wait for its floor art.
-  room(1);
+  // Prefer the painted room; the legacy illustration only loads as a fallback.
+  setTimeout(()=>{const G=window.GrimoireSprites;if(G)['frame','floor_a','floor_b','floor_c','floor_decal'].forEach(k=>G.image(`arena_reading_hall_${k}`));else room(1)},0);
   window.ErrataArena = Object.freeze({flags,room,drawRoom,drawShadow,biomeIndex,structure,drawStructure});
 })();
