@@ -1552,6 +1552,15 @@ const CHARACTERS = {
   }
 };
 
+// Small painted wax seal in front of a choice button's label.
+function addSealArt(button, assetId) {
+  const url = window.GrimoireSprites?.src(assetId);
+  if (!url) return;
+  const seal = document.createElement("img");
+  seal.className = "seal-art"; seal.src = url; seal.alt = ""; seal.setAttribute("aria-hidden", "true");
+  button.prepend(seal);
+}
+
 function getCharacterPortrait(characterId) {
   const painted = window.GrimoireSprites?.heroArt(characterId, "portrait");
   if (painted) return painted;
@@ -3057,6 +3066,7 @@ function showChapterCard(stageIndex) {
   const card = document.getElementById("chapter-transition-card");
   if (!card) return;
   card.style.setProperty("--chapter-accent", chapter.accent);
+  card.dataset.biome = String(Math.max(0, Math.min(3, stageIndex)));
   document.getElementById("chapter-transition-kicker").textContent = chapter.kicker;
   document.getElementById("chapter-transition-number").textContent = chapter.numeral;
   document.getElementById("chapter-transition-title").textContent = chapter.title;
@@ -3522,6 +3532,7 @@ function initTitleScreen() {
     const btn = document.createElement("button");
     btn.className = "btn" + (did === state.difficulty ? " btn-seal" : "");
     btn.textContent = ({easy:"Rahat",normal:"Dengeli",hard:"Çetin"})[did];
+    addSealArt(btn, `seal_difficulty_${({easy:"rahat",normal:"dengeli",hard:"cetin"})[did]}`);
     btn.setAttribute("aria-pressed", String(did === state.difficulty));
     const pickDiff = (e) => {
       if (e) e.stopPropagation();
@@ -3549,6 +3560,7 @@ function initTitleScreen() {
     btn.type = "button";
     btn.className = "btn" + (level === state.learning_level ? " btn-seal" : "");
     btn.textContent = level;
+    addSealArt(btn, `seal_level_${level}`);
     btn.setAttribute("aria-pressed", String(level === state.learning_level));
     btn.onclick = event => {
       event.stopPropagation();
@@ -6686,6 +6698,7 @@ function spawnInkDrop(x, y, value) {
 
 function takePlayerDamage(amount) {
   if (amount > 0) window.GrimoireSprites?.fx("fx_hero_hurt", 0, 0, { follow: state.player, size: 110, throttle: 160 });
+  if (amount > 0) window.GrimoireSprites?.hurtFlash();
   if (state.shield_charges > 0) {
     const finalCharge = state.shield_charges === 1;
     state.shield_charges--;
@@ -8331,6 +8344,7 @@ function drawSemanticEchoMark(ctx, archetype, radius, reducedEffects) {
 
 function render(dt = 1 / 60) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  window.GrimoireSprites?.syncLowHealth(state.hp / Math.max(1, state.max_hp), state.is_wave_active);
   ctx.imageSmoothingEnabled = false;
 
   const cx = canvas.width / 2;

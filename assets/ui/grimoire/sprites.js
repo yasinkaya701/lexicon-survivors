@@ -370,6 +370,29 @@
     return value.startsWith("assets/") ? value : `assets/sprites/${value}`;
   }
 
+  // ---------------------------------------------------- screen vignettes
+  // Painted edge vignettes: a red-ink flash on hits and a cracked-page edge
+  // while health is low. DOM only changes when the state changes.
+  let hurtLayer = null, lowLayer = null, lowOn = false;
+  function vignettes() {
+    if (hurtLayer || !document.body) return !!hurtLayer;
+    const make = (cls, id) => { const el = document.createElement("div"); el.className = `grimoire-vignette ${cls}`; el.setAttribute("aria-hidden", "true");
+      const url = src(id); if (url) el.style.backgroundImage = `url("${url}")`; document.body.append(el); return el; };
+    hurtLayer = make("is-hurt", "damage_flash_overlay");
+    lowLayer = make("is-low", "low_health_overlay");
+    return true;
+  }
+  function hurtFlash() {
+    if (!vignettes() || window.ErrataArena?.flags?.reducedMotion) return;
+    hurtLayer.classList.remove("on"); void hurtLayer.offsetWidth; hurtLayer.classList.add("on");
+  }
+  function syncLowHealth(fraction, active) {
+    const on = !!active && fraction > 0 && fraction < 0.3;
+    if (on === lowOn) return;
+    lowOn = on;
+    if (vignettes()) lowLayer.classList.toggle("on", on);
+  }
+
   // ---------------------------------------------------- legacy (arena-v3)
   let legacyEnemyFrame = () => null;
   function setLegacyEnemyFrame(fn) { legacyEnemyFrame = fn; }
@@ -377,6 +400,6 @@
   window.GrimoireSprites = Object.freeze({
     BOSS_SCALE, ready, has, url, strip, image, loopFrame, onceFrame, onceDuration,
     heroFrame, heroImage, enemyFrame, recordDeath, drawBodies, pickupFrame, setLegacyEnemyFrame,
-    fx, drawEffects, heldVisual, bossKeyForWave, bossArt, heroArt, npcFace, projectileFrame, weaponImpact, weaponId, enemyShotFrame, src, weaponIcon, iconUrl
+    fx, drawEffects, hurtFlash, syncLowHealth, heldVisual, bossKeyForWave, bossArt, heroArt, npcFace, projectileFrame, weaponImpact, weaponId, enemyShotFrame, src, weaponIcon, iconUrl
   });
 })();

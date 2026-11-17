@@ -364,7 +364,7 @@
   const pauseContent = pauseOverlay.querySelector('.errata-dialog-content');
 
   function actualWeaponEntries() {
-    try { return Object.values(WEAPONS_CATALOG || {}).filter(item => item && item.name).map(item => ({ name: item.name, description: item.desc || '', image: `assets/sprites/${item.sprite}` })); }
+    try { return Object.values(WEAPONS_CATALOG || {}).filter(item => item && item.name).map(item => ({ name: item.name, description: item.desc || '', image: window.GrimoireSprites?.weaponIcon(item.id) || `assets/sprites/${item.sprite}` })); }
     catch (_) { return []; }
   }
   function actualWordEntries() {
@@ -379,12 +379,20 @@
       return [...unique.values()];
     } catch (_) { return []; }
   }
+  // Painted medallion for a bestiary entry (bosses: their portrait).
+  function paintedEnemyArt(spriteId) {
+    const G = window.GrimoireSprites;
+    if (!G) return null;
+    return G.src(`enemy_${spriteId}_medallion`)
+      || (spriteId === 'red_pen_boss' ? G.src('boss_red_inspector_portrait') : null)
+      || (spriteId === 'lexicon_dragon_boss' ? G.src('boss_lexicon_dragon_portrait') : null);
+  }
   function actualEnemyEntries() {
     try {
       const rewards = GAME_ECONOMY?.enemy_ink_rewards || {};
       return Object.entries(rewards).map(([name, reward]) => {
         const spriteId = name.toLocaleLowerCase('en').replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
-        return { name, description: `Ödül: ${reward} mürekkep.`, image: `assets/ui/errata/arena-v4/enemies/${spriteId}_0.webp` };
+        return { name, description: `Ödül: ${reward} mürekkep.`, image: paintedEnemyArt(spriteId) || `assets/ui/errata/arena-v4/enemies/${spriteId}_0.webp`, painted: !!paintedEnemyArt(spriteId) };
       });
     } catch (_) { return []; }
   }
@@ -460,7 +468,7 @@
           const isWord = category === 'words';
           const article = document.createElement('article');
           article.className = `book-entry archive-card${isEnemy ? ' archive-card--enemy' : isWord ? ' archive-card--word' : ' archive-card--weapon'}`;
-          const tile = isEnemy ? bestiaryAtlasSlots.get(entry.name) : null;
+          const tile = isEnemy && !entry.painted ? bestiaryAtlasSlots.get(entry.name) : null;
           if (tile) {
             article.append(makeAtlasArtwork(entry.name, 'bestiary', tile[1] * 4 + tile[0]));
           } else if (isWord) {
@@ -505,7 +513,7 @@
           if (!data?.enemy_ink_rewards) return;
           entries = Object.entries(data.enemy_ink_rewards).map(([name, reward]) => {
             const spriteId = name.toLocaleLowerCase('en').replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
-            return { name, description: `Ödül: ${reward} mürekkep.`, image: `assets/ui/errata/arena-v4/enemies/${spriteId}_0.webp` };
+            return { name, description: `Ödül: ${reward} mürekkep.`, image: paintedEnemyArt(spriteId) || `assets/ui/errata/arena-v4/enemies/${spriteId}_0.webp`, painted: !!paintedEnemyArt(spriteId) };
           });
           if (visibleDialog(bookOverlay) && bookOverlay.querySelector(`#${bookOverlay.id}-title`)?.textContent === labels.bestiary) appendEntries(search.value);
         }).catch(() => {});
@@ -671,22 +679,22 @@
       const steps = document.createElement('ol'); steps.className = 'guide-steps';
       const guideCards = [
         {
-          title: 'Hareket ve saldırı',
+          title: 'Hareket ve saldırı', tut: 'tut_move',
           visual: '<div class="guide-visual"><img src="assets/ui/errata/arena-v3/inky_idle_0.webp" alt="Inky oyun sprite’ı"><div class="guide-keys" aria-label="Hareket: W A S D"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div><span class="guide-path" aria-hidden="true">→</span><img src="assets/ui/errata/arena-v4/enemies/grammar_goblin_0.webp" alt="Grammar Goblin"></div>',
           copy: 'WASD veya ok tuşlarıyla düşmanlardan uzaklaş. Silahın otomatik ateş eder. Dokunmatik ekranda sol alttaki hareket kolunu kullan.'
         },
         {
-          title: 'Etkin yetenek',
+          title: 'Etkin yetenek', tut: 'tut_gadget',
           visual: '<div class="guide-visual"><img src="assets/sprites/gadgets/eraser_dash.png" alt="Silgi Sıçrayışı"><img src="assets/sprites/gadgets/lexicon_aegis.png" alt="Sözlük Kalkanı"><kbd class="key-wide">SPACE</kbd></div>',
           copy: 'Etkin yeteneğini Space, Shift veya sağ tıkla kullan. Her karakterin yeteneği farklıdır. Mobilde YETENEK düğmesine dokun; arena nesneleri için R kullan.'
         },
         {
-          title: 'Silah ve envanter',
+          title: 'Silah ve envanter', tut: 'tut_weapon_merge',
           visual: '<div class="guide-visual"><img src="assets/sprites/weapons/quill_blaster.png" alt="İğne Ucu Kalem"><img src="assets/sprites/weapons/dictionary_blade.png" alt="Sözlük Kılıcı"><div class="guide-shortcuts"><kbd>Q / E</kbd><kbd>I</kbd></div></div>',
           copy: 'Q/E veya 1–6 ile silah seç. I ile envanteri, M ile hata defterini aç. Dalga arasında mürekkebini silah, yetenek ve geliştirmeler için harca.'
         },
         {
-          title: 'Kelime soruları',
+          title: 'Kelime soruları', tut: 'tut_quiz_answer',
           visual: '<div class="guide-flow"><img src="assets/ui/icons/cards.svg" alt="Kelime kartı"><span aria-hidden="true">→</span><img src="assets/ui/icons/corrections.svg" alt="Soruyu yanıtla"><span aria-hidden="true">→</span><img src="assets/ui/icons/health.svg" alt="Can ve güç kazan"><strong>½ fiyat</strong></div>',
           copy: 'Doğru yanıt normal kartı yarı fiyatına kazandırır; etkisi %50 artar ve 25 can yeniler. Yanlışta normal fiyat ödenir. Yanlış kelimeler hata defterine ve sonraki boss turlarına geri döner.'
         }
@@ -695,6 +703,8 @@
         const li = document.createElement('li');
         const heading = document.createElement('h3'); heading.textContent = item.title;
         const art = document.createElement('div'); art.innerHTML = item.visual;
+        const plateUrl = item.tut && window.GrimoireSprites?.src(item.tut);
+        if (plateUrl) { const plate = document.createElement('img'); plate.className = 'guide-plate'; plate.src = plateUrl; plate.alt = ''; plate.loading = 'lazy'; art.prepend(plate); }
         const copy = document.createElement('p'); copy.textContent = item.copy;
         li.append(heading, art, copy); steps.append(li);
       }
