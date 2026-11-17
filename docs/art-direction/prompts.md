@@ -1,5 +1,7 @@
 # Prompt listesi
 
+> **Tam liste:** Oyundaki bütün görsellerin eksiksiz istek listesi [`asset-manifest.md`](asset-manifest.md) dosyasındadır: 856 dosya; animasyon şeritleri, efektler, ikonlar, arena, NPC ifadeleri ve pazarlama görselleri dahil. Makine okuyabilen hali [`asset-manifest.json`](asset-manifest.json). Bu sayfa aşağıdaki gruplar için daha ayrıntılı açıklamalar ve sahne tarifleri içerir; ikisi çelişirse manifest geçerlidir.
+
 **Kullanım:** Her prompt'un sonuna `README.md` § 2'deki **STYLE LOCK** bloğu aynen eklenir. `[REF: …]` yazan yerlerde, ilgili onaylı referans görseli GPT'ye ek olarak verilir. Prompt'lar İngilizcedir; açıklamalar Türkçedir.
 
 **Üretim sırası:**
