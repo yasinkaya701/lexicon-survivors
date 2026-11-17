@@ -169,14 +169,14 @@
   container.appendChild(wipe);
   function inkWipe(x, y) {
     if (reduced()) return;
-    wipe.style.webkitMaskPosition = wipe.style.maskPosition = (x != null ? `${x}px ${y}px` : 'center');
+    wipe.style.transformOrigin = x != null ? `${x}px ${y}px` : '50% 50%';
     replay(wipe, 'is-on');
   }
   document.addEventListener('click', (event) => {
     const target = event.target.closest('[data-title-step], #start-game-btn, #shop-next-wave-btn, #quiz-continue-btn, #restart-game-btn');
     if (!target) return;
     const r = container.getBoundingClientRect();
-    inkWipe(event.clientX - r.left - r.width * 4.5, event.clientY - r.top - r.height * 4.5);
+    inkWipe(event.clientX - r.left, event.clientY - r.top);
   }, true);
   const shopScreen = $('shop-screen');
   let shopOpen = false;
@@ -188,28 +188,45 @@
 
   /* -- cards tilt toward the cursor; candlelight slides across them ---- */
   const TILT = '#shop-screen[data-tab="cards"] .shop-card, #char-selection-grid .choice-card';
-  let tilted = null;
-  document.addEventListener('pointermove', (event) => {
-    if (reduced() || event.pointerType === 'touch') return;
-    const card = event.target.closest?.(TILT);
-    if (tilted && tilted !== card) { tilted.style.removeProperty('--rx'); tilted.style.removeProperty('--ry'); tilted.style.removeProperty('--gx'); tilted.style.removeProperty('--gy'); }
+  let tilted = null, pending = null, tiltFrame = 0;
+  function release(card) {
+    card.classList.remove('is-tilting');
+    ['--rx', '--ry', '--gx', '--gy'].forEach(name => card.style.removeProperty(name));
+  }
+  function applyTilt() {
+    tiltFrame = 0;
+    if (!pending) return;
+    const { card, x, y } = pending; pending = null;
+    if (tilted && tilted !== card) release(tilted);
     tilted = card;
     if (!card) return;
     const r = card.getBoundingClientRect();
-    const px = (event.clientX - r.left) / r.width, py = (event.clientY - r.top) / r.height;
-    card.style.setProperty('--ry', ((px - .5) * 14).toFixed(2) + 'deg');
-    card.style.setProperty('--rx', ((.5 - py) * 10).toFixed(2) + 'deg');
+    const px = Math.min(1, Math.max(0, (x - r.left) / r.width)), py = Math.min(1, Math.max(0, (y - r.top) / r.height));
+    card.classList.add('is-tilting');
+    card.style.setProperty('--ry', ((px - .5) * 12).toFixed(2) + 'deg');
+    card.style.setProperty('--rx', ((.5 - py) * 8).toFixed(2) + 'deg');
     card.style.setProperty('--gx', (px * 100).toFixed(1) + '%');
     card.style.setProperty('--gy', (py * 100).toFixed(1) + '%');
+  }
+  document.addEventListener('pointermove', (event) => {
+    if (reduced() || event.pointerType === 'touch') return;
+    pending = { card: event.target.closest?.(TILT) || null, x: event.clientX, y: event.clientY };
+    if (!tiltFrame) tiltFrame = requestAnimationFrame(applyTilt);
   }, { passive: true });
 
   /* -- title parallax -------------------------------------------------- */
   const titleScreen = $('title-screen');
+  let parallaxFrame = 0, parallaxEvent = null;
   if (titleScreen) titleScreen.addEventListener('pointermove', (event) => {
     if (reduced()) return;
-    const r = titleScreen.getBoundingClientRect();
-    titleScreen.style.setProperty('--mx', (((event.clientX - r.left) / r.width) - .5).toFixed(3));
-    titleScreen.style.setProperty('--my', (((event.clientY - r.top) / r.height) - .5).toFixed(3));
+    parallaxEvent = event;
+    if (parallaxFrame) return;
+    parallaxFrame = requestAnimationFrame(() => {
+      parallaxFrame = 0;
+      const r = titleScreen.getBoundingClientRect();
+      titleScreen.style.setProperty('--mx', (((parallaxEvent.clientX - r.left) / r.width) - .5).toFixed(3));
+      titleScreen.style.setProperty('--my', (((parallaxEvent.clientY - r.top) / r.height) - .5).toFixed(3));
+    });
   }, { passive: true });
 
   // test hooks for screenshots

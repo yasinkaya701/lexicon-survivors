@@ -39,16 +39,17 @@
     flakes = Array.from({ length: count }, () => spawn(true));
     fog = Array.from({ length: 7 }, (_, i) => ({ x: Math.random() * w, y: h * (.55 + Math.random() * .45), r: 260 + Math.random() * 320, vx: 6 + Math.random() * 10, a: .05 + Math.random() * .06 }));
   }
+  const puff = document.createElement('canvas');
+  puff.width = puff.height = 256;
+  (() => { const p = puff.getContext('2d'); const g = p.createRadialGradient(128, 128, 0, 128, 128, 128); g.addColorStop(0, 'rgba(150,140,130,1)'); g.addColorStop(1, 'rgba(150,140,130,0)'); p.fillStyle = g; p.fillRect(0, 0, 256, 256); })();
   function drawFog(dt) {
     for (const f of fog) {
       f.x += f.vx * dt;
       if (f.x - f.r > w) f.x = -f.r;
-      const g = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r);
-      g.addColorStop(0, `rgba(150,140,130,${f.a})`);
-      g.addColorStop(1, 'rgba(150,140,130,0)');
-      ctx.fillStyle = g;
-      ctx.fillRect(f.x - f.r, f.y - f.r, f.r * 2, f.r * 2);
+      ctx.globalAlpha = f.a;
+      ctx.drawImage(puff, f.x - f.r, f.y - f.r, f.r * 2, f.r * 2);
     }
+    ctx.globalAlpha = 1;
   }
   function frame(now) {
     raf = 0;
