@@ -174,5 +174,11 @@
   }
 
   Object.assign(api, { onRunBegin });
+  // Safety net: if a cached game.js lacks the startGame hook, notice the first
+  // active wave ourselves.
+  const watch = setInterval(() => {
+    if (seen()) return clearInterval(watch);
+    if (typeof state !== "undefined" && state.is_wave_active && !api.active) { clearInterval(watch); onRunBegin(); }
+  }, 600);
   window.GrimoireTutorial = api;
 })();
