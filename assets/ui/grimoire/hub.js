@@ -236,15 +236,81 @@
     button.addEventListener("click", () => open(button));
     // The room is the heart between runs: right under "Sefere çık".
     toc.querySelector(".landing-begin")?.after(button);
-    // Each choice wears its station's painted icon.
-    const icons = { "errata-begin": "exit_door", "title-hub-btn": "mechanic_bench", "title-leaderboard-btn": "sera_post" };
     toc.querySelectorAll(".toc-item").forEach((item, i) => {
-      const key = icons[item.id] || { codex: "neris_hearth", bestiary: "tavi_apothecary" }[item.dataset.openBook];
-      if (key && !item.querySelector(".toc-icon")) item.insertAdjacentHTML("afterbegin", `<img class="toc-icon" src="${art(`hub_${key}_icon`)}" alt="">`);
       const num = item.querySelector(".toc-num"); if (num) num.textContent = ["I.", "II.", "III.", "IV.", "V.", "VI."][i] || "";
       item.style.setProperty("--n", i);
+      item.addEventListener("pointerenter", () => showPreview(item));
+      item.addEventListener("focus", () => showPreview(item));
     });
+    buildModeSeals(toc);
+    buildPreview();
     renderTitleStatus();
+  }
+
+  // ---- Title: a floating preview of where each choice leads ----------------
+  const PREVIEWS = {
+    "title-hub-btn": () => ({ img: art(roomArt(record()).includes("restored") ? "screen_hub_restored" : "screen_hub"), kicker: "SEFERLER ARASI", title: "Arşiv Odası", copy: "Dokuz istasyon, dokuz bekçi. Mumlarını kalıcı güce çevir, başarımlarını gör, notları oku." }),
+    codex: () => ({ img: art("screen_codex"), kicker: "SÖZLÜK", title: "Kelime kitabı", copy: "Sorulardaki bütün kelimeler, seviyeleri ve örnek cümleleri." }),
+    bestiary: () => ({ img: art("screen_bestiary"), kicker: "DİL CANAVARLARI", title: "Canavar salonu", copy: "Karşına çıkacak yaratıklar, bekçiler ve bıraktıkları mürekkep." }),
+    "title-leaderboard-btn": () => ({ img: art("screen_leaderboard"), kicker: "SEFER KAYITLARI", title: "Sıralama", copy: "En derin seferler, en çok yenilen canavar. Adını arşive kazı." }),
+    "errata-begin": () => {
+      const meta = window.GrimoireMeta;
+      const mode = meta?.modes().find(m => m.id === meta.mode) || {};
+      const hero = typeof state !== "undefined" ? state.selected_char : "inky";
+      return { img: mode.card || art("screen_title_hero"), face: G()?.heroArt(hero, "medallion"), kicker: `${(mode.sub || "").toLocaleUpperCase("tr-TR")} · ${(mode.name || "").toLocaleUpperCase("tr-TR")}`, title: "Sefere çık", copy: mode.desc || "" };
+    }
+  };
+  let preview = null, previewKey = "";
+  function buildPreview() {
+    const stage = document.getElementById("errata-landing");
+    if (!stage || document.getElementById("title-preview")) return;
+    preview = document.createElement("aside");
+    preview.id = "title-preview";
+    preview.className = "title-preview";
+    preview.setAttribute("aria-hidden", "true");
+    preview.innerHTML = `<div class="title-preview-card"><i class="tp-img"></i><i class="tp-img"></i><img class="tp-face" alt=""><span class="tp-corner"></span></div><div class="title-preview-copy"><small></small><b></b><p></p></div>`;
+    stage.append(preview);
+    showPreview(document.getElementById("errata-begin"));
+  }
+  let flip = 0;
+  function showPreview(item) {
+    if (!preview || !item) return;
+    const key = PREVIEWS[item.id] ? item.id : item.dataset.openBook;
+    const data = PREVIEWS[key]?.();
+    if (!data) return;
+    if (key === previewKey && key !== "errata-begin") return;
+    previewKey = key;
+    const layers = preview.querySelectorAll(".tp-img");
+    flip = 1 - flip;
+    layers[flip].style.backgroundImage = `url("${data.img}")`;
+    layers[flip].classList.add("on"); layers[1 - flip].classList.remove("on");
+    const face = preview.querySelector(".tp-face");
+    face.hidden = !data.face; if (data.face) face.src = data.face;
+    preview.querySelector("small").textContent = data.kicker;
+    preview.querySelector("b").textContent = data.title;
+    preview.querySelector("p").textContent = data.copy;
+    preview.classList.remove("is-swap"); void preview.offsetWidth; preview.classList.add("is-swap");
+  }
+  // Mode seals under "Sefere çık": the mode is chosen right on the title.
+  function buildModeSeals(toc) {
+    const meta = window.GrimoireMeta;
+    const begin = toc.querySelector(".landing-begin");
+    if (!meta || !begin) return;
+    let row = document.getElementById("title-modes");
+    if (!row) { row = document.createElement("div"); row.id = "title-modes"; row.className = "title-modes"; row.setAttribute("role", "radiogroup"); row.setAttribute("aria-label", "Sefer türü"); begin.after(row); }
+    row.replaceChildren(...meta.modes().map(m => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = `title-mode${meta.mode === m.id ? " is-on" : ""}${m.locked ? " is-locked" : ""}`;
+      b.disabled = m.locked;
+      b.setAttribute("role", "radio");
+      b.setAttribute("aria-checked", String(meta.mode === m.id));
+      b.title = m.locked ? m.lockNote : m.desc;
+      b.innerHTML = `<img src="${m.emblem}" alt=""><span><b>${m.name}</b><small>${m.locked ? m.lockNote : m.sub}</small></span>`;
+      b.addEventListener("click", () => { if (meta.setMode(m.id)) { buildModeSeals(toc); previewKey = ""; showPreview(document.getElementById("errata-begin")); renderTitleStatus(); try { sounds.playTone(420, "triangle", 0.1, 0.14); } catch (_) {} } });
+      b.addEventListener("pointerenter", () => showPreview(document.getElementById("errata-begin")));
+      return b;
+    }));
   }
   // A small plaque on the title: what the archive remembers.
   function renderTitleStatus() {

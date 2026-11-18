@@ -683,6 +683,8 @@
     commitChoice,
     // ui for the hub
     upgradesSheet, achievementsSheet, renderPreparation, toast,
+    modes: () => MODES.map(m => ({ id: m.id, name: m.name, sub: m.sub, desc: m.desc, emblem: art(m.emblem), card: art(m.card), locked: !!(m.unlock && !m.unlock()), lockNote: m.lockNote || "" })),
+    setMode(id) { const m = MODES.find(x => x.id === id); if (!m || (m.unlock && !m.unlock())) return false; store.mode = id; save(); renderPreparation(); document.dispatchEvent(new CustomEvent("grimoire:mode", { detail: id })); return true; },
     get wax() { return store.wax; }, get mode() { return run.started ? run.mode : mode(); },
     _debug: { store: () => store, run: () => run, unlock, UPGRADES, ACH, HEAT, CURSED, setWax: n => { store.wax = n; save(); } }
   };
