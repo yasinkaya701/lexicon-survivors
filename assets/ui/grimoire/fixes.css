@@ -123,3 +123,30 @@ html body #quiz-modal #quiz-example-text { padding: 10px 24px !important; font-s
 /* the default blue selection colour clashes with and hides the ink */
 ::selection { background: rgba(176, 138, 78, .55); color: #fff7e6; }
 html body #quiz-modal #quiz-example-text ::selection, html body #quiz-modal #quiz-example-text::selection { background: rgba(142, 27, 20, .35); color: #25180f; -webkit-text-fill-color: #25180f; }
+
+.gt-chapters { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.gt-chapters button { background: none; border: 0; border-bottom: 2px solid transparent; padding: 6px 10px; color: var(--ink-2); font: 600 12px var(--f-head); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+.gt-chapters button:hover { color: var(--ink); }
+.gt-chapters button.is-on { color: var(--ink); border-bottom-color: var(--proof, #d8392c); }
+.gt-dots { flex-wrap: wrap; gap: 5px; }
+.gt-dots li { width: 8px; height: 8px; }
+.gt-copy { overflow: auto; max-height: 52vh; }
+.gt-body { font-size: clamp(15px, 1.25vw, 18px); }
+.gt-folio { grid-template-rows: minmax(0, 1fr) auto auto; }
+.gt-plate { min-width: 0; }
+@media (max-width: 760px), (max-height: 520px) {
+  .gt-folio { padding: 14px 16px 12px; gap: 0 16px; }
+  .gt-plate { max-height: 34vh; width: auto; margin-top: 22px; }
+  .gt-plate img { max-height: 34vh; }
+  .gt-copy { max-height: 34vh; }
+  .gt-copy h2 { font-size: 24px; margin: 4px 0 8px; }
+  .gt-body { font-size: 14px; line-height: 1.4; }
+  .gt-first { display: none; }
+  .gt-foot { margin-top: 8px; padding-top: 8px; }
+  .gt-chapters button { padding: 4px 6px; font-size: 10px; }
+}
+@media (max-width: 760px) { .gt-folio { grid-template-columns: 1fr; } .gt-copy { max-height: 30vh; } }
+/* replay button inside the guide */
+.guide-replay { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; }
+.guide-replay .btn { min-height: 44px; }
+.guide-replay small { color: var(--ink-2); font: italic 14px var(--f-ui); }

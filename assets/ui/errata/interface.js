@@ -710,9 +710,12 @@
         const copy = document.createElement('p'); copy.textContent = item.copy;
         li.append(heading, art, copy); steps.append(li);
       }
-      const replay = document.createElement('button'); replay.type = 'button'; replay.className = 'btn'; replay.textContent = 'Eğitimi baştan oynat';
+      const replayRow = document.createElement('div'); replayRow.className = 'guide-replay';
+      const replay = document.createElement('button'); replay.type = 'button'; replay.className = 'btn primary'; replay.id = 'guide-replay-tutorial'; replay.textContent = 'Eğitimi tekrar oynat';
       replay.addEventListener('click', () => window.GrimoireTutorial?.open());
-      bookContent.replaceChildren(replay, steps);
+      const replayNote = document.createElement('small'); replayNote.textContent = '30 adımlık tam rehber: kontroller, kelimeler, yol haritası, hazine, bosslar, modlar.';
+      replayRow.append(replay, replayNote);
+      bookContent.replaceChildren(replayRow, steps);
     }
   }
   function renderPause() {

@@ -11,43 +11,75 @@
   const art = id => window.GrimoireSprites?.src(id) || "";
   const touch = () => ("ontouchstart" in window) || (navigator.maxTouchPoints > 0);
 
+  const CHAPTERS = ["Temel", "Dükkân ve kelimeler", "Yol ve hazine", "Bosslar", "Modlar ve ilerleme"];
+  const T = (ch, art, kicker, title, body, keys) => ({ ch, art, kicker, title, body: typeof body === "function" ? body : () => body, keys: keys || (() => []) });
+  const K = list => () => touch() ? [] : list;
   const STEPS = [
-    { art: "tut_move", kicker: "I · HAREKET", title: "Kalem hep hareket halinde",
-      body: () => touch()
-        ? "Sol alttaki hareket koluyla düşmanlardan uzaklaş. Silahın kendiliğinden ateş eder; sen sadece yaşa."
-        : "WASD veya ok tuşlarıyla düşmanlardan uzaklaş. Silahın kendiliğinden ateş eder; sen sadece yaşa.",
-      keys: () => touch() ? [] : ["W", "A", "S", "D"] },
-    { art: "tut_auto_attack", kicker: "II · SİLAHLAR", title: "Silahın kendi kendine yazar",
-      body: () => "Hedefi sen seçmezsin, en yakın düşmana ateş eder. Birden fazla silahın varsa Q / E ya da 1–6 ile değiştir.",
-      keys: () => touch() ? [] : ["Q", "E", "1–6"] },
-    { art: "tut_dash", kicker: "III · KAÇIŞ", title: "Sıkıştığında sıçra",
-      body: () => touch()
-        ? "Sağ alttaki YETENEK düğmesi etkin yeteneğini kullanır. Bekleme süresi dolana kadar bir daha kullanamazsın."
-        : "Space, Shift ya da sağ tık etkin yeteneğini kullanır; kalabalıktan çıkmanın en hızlı yolu. Bekleme süresi düğmenin altında görünür.",
-      keys: () => touch() ? [] : ["SPACE"] },
-    { art: "tut_gadget", kicker: "IV · GEREÇ", title: "Her kâtibin kendi gereci var",
-      body: () => "Gerecin her karakterde farklıdır: kalkan, sıçrayış ya da tuzak. Arenadaki ocak, kürsü ve çan gibi nesnelere yaklaşınca R ile etkileş.",
-      keys: () => touch() ? [] : ["R"] },
-    { art: "tut_pickup_ink", kicker: "V · MÜREKKEP", title: "Mürekkep damlalarını topla",
-      body: () => "Düşen her damla mürekkep demek. Mürekkep, dalgalar arasında silah, gereç ve kelime kartı almak için harcanır; ne kadar toplarsan o kadar güçlenirsin.",
-      keys: () => [] },
-    { art: "tut_shop_cards", kicker: "VI · SCRIPTORIUM", title: "Dalga bitince dükkân açılır",
-      body: () => "Kelime kartları, silahlar, gereçler ve yadigârlar burada. Sonraki dalga düğmesine basana kadar acele yok; dükkândayken oyun durur.",
-      keys: () => [] },
-    { art: "tut_quiz_answer", kicker: "VII · KELİME SINAVI", title: "Doğru cevap yarı fiyatına",
-      body: () => "Kartı almadan önce kelimenin anlamı sorulur. Doğru bilirsen kart yarı fiyatına gelir, etkisi %50 artar ve 25 can yenilenir. Yanlışta tam fiyat ödersin ve kelime hata defterine yazılır.",
-      keys: () => [] },
-    { art: "tut_weapon_merge", kicker: "VIII · BİRLEŞTİRME", title: "İki aynı silah, bir güçlü silah",
-      body: () => touch()
-        ? "Envanterde aynı silahın aynı seviyedeki iki kopyasını birleştirerek geliştir."
-        : "I ile envanteri aç. Aynı silahın aynı seviyedeki iki kopyasını birleştirerek bir üst seviyeye çıkar.",
-      keys: () => touch() ? [] : ["I"] },
-    { art: "tut_boss_sentence", kicker: "IX · BOSS", title: "Her beşinci dalgada bir hüküm",
-      body: () => "Beşinci dalgada ve her beşinde bir boss gelir. Cevaplamadığın ya da yanlış bildiğin kelimeler boss turunda geri döner, her turda biraz daha güçlü.",
-      keys: () => [] },
-    { art: "tut_hub_return", kicker: "X · ARŞİV ODASI", title: "Düşersen kütüphaneye dönersin",
-      body: () => "Sefer bittiğinde Arşiv Odası'nda kalıcı geliştirmeler, yetenek ağacı ve başarımlar seni bekler. Bu rehbere her zaman Nasıl oynanır'dan dönebilirsin.",
-      keys: () => [] }
+    // ---- 0 · Temel
+    T(0, "tut_move", "HAREKET", "Kalem hep hareket halinde",
+      () => touch() ? "Sol alttaki hareket koluyla düşmanlardan uzaklaş. Silahın kendiliğinden ateş eder; sen sadece yaşa." : "WASD veya ok tuşlarıyla düşmanlardan uzaklaş. Silahın kendiliğinden ateş eder; sen sadece yaşa. Durmak ölümdür.", K(["W", "A", "S", "D"])),
+    T(0, "tut_auto_attack", "SİLAHLAR", "Silahın kendi kendine yazar",
+      "Hedefi sen seçmezsin; silah en yakın düşmana ateş eder. Dört silah yuvan var (yadigârla altıya çıkar). Q / E ya da 1–6 ile aktif silahı değiştir; her silahın kendi menzili ve ritmi vardır.", K(["Q", "E", "1–6"])),
+    T(0, "tut_dash", "KAÇIŞ", "Sıkıştığında sıçra",
+      () => touch() ? "Sağ alttaki YETENEK düğmesi etkin yeteneğini kullanır. Sıçrayış sırasında hasar almazsın; kırmızı çizgiden ve halkadan bu şekilde sıyrılırsın." : "Space, Shift ya da sağ tık etkin yeteneğini kullanır. Sıçrayış sırasında hasar almazsın; kırmızı çizgiden ve halkadan bu şekilde sıyrılırsın. Bekleme süresi düğmenin altında görünür.", K(["SPACE"])),
+    T(0, "tut_gadget", "GEREÇ VE ARENA", "Her kâtibin kendi gereci var",
+      "Gereç karaktere göre değişir: sıçrayış, kalkan, tuzak. Arenada ocak, kürsü ve çan gibi nesneler de var; yaklaşınca R ile etkileş. Her nesne dalga başına bir kez çalışır, bazıları dalga dalga yer değiştirir.", K(["R"])),
+    T(0, "tut_pickup_ink", "MÜREKKEP", "Mürekkep damlalarını topla",
+      "Düşmanlar mürekkep bırakır. Mürekkep dalga arasında silah, gereç, yadigâr ve kelime kartı almak için harcanır. Kırmızı damlalar can yeniler. Toplama menzilini geliştirmeler büyütür.", () => []),
+    T(0, "tip_02", "DENEYİM", "Kâtibin seviyesi kalıcıdır",
+      "Seferlerde kazandığın deneyim karakterini seviyelendirir ve yetenek puanı verir. Puanları Arşiv Odası'nda Lira'nın yetenek ağacında harcarsın; kalıcıdır, sefer bitince silinmez.", () => []),
+    T(0, "tip_01", "DALGALAR", "Yüz dalga, her biri bir sayfa",
+      "Üstteki sayaç dalganın kalan süresini gösterir. Süre dolunca dalga biter ve Scriptorium açılır. Hasar alınca ekran kenarı kızarır; canın azalınca çatlak sayfa kenarı belirir.", () => []),
+    // ---- 1 · Dükkân ve kelimeler
+    T(1, "tut_shop_cards", "SCRIPTORIUM", "Dalga bitince dükkân açılır",
+      "Kelime kartları, silahlar, gereçler, yadigârlar, yetenek ağacı ve mürekkep pazarı sekmelerde. Dükkândayken oyun durur, acele yok. Yenile düğmesi yeni kartlar getirir ama mürekkep harcar.", () => []),
+    T(1, "tut_quiz_answer", "KELİME SINAVI", "Doğru cevap yarı fiyatına",
+      "Lexicon modunda bir kartı almadan önce kelimenin anlamı sorulur. Doğru bilirsen kart yarı fiyatına gelir, etkisi %50 artar ve 25 can yenilenir. Yanlışta tam fiyatı ödersin ve kelime hata defterine yazılır.", () => []),
+    T(1, "screen_codex", "SEVİYE", "Sorular seninle büyür",
+      "A1'den C2'ye kendi seviyeni seçersin. Her 10 soruda 8 ya da daha fazla doğru yaparsan seviye yükselir, 5'ten azında düşer. Böylece sorular ne çok kolay ne imkânsız olur. Kelimeleri Neris'in kelime kitabında tekrar okuyabilirsin.", () => []),
+    T(1, "tip_09", "BİLİNMEYEN KELİMELER", "Bilmediğin kelime geri döner",
+      "Yanlış bildiğin ve dükkânda hiç cevaplamadığın kelimeler unutulmaz: boss turunda düşman olarak geri gelir. Her boss turunda biraz daha güçlenirler. Onları yenmek kelimeyi öğrenmiş saymanın en eğlenceli yolu.", () => []),
+    T(1, "screen_bestiary", "HATA DEFTERİ", "Yanlışların defterde birikir",
+      () => touch() ? "Defter düğmesiyle hata defterini aç. Yanlış kelimeler orada anlamlarıyla durur; dükkânda 'Pekiştirme' kartı olarak karşına çıkar." : "M ile hata defterini aç. Yanlış kelimeler anlamlarıyla orada durur; sonraki dükkânlarda 'Pekiştirme' kartı olarak karşına çıkar ve doğru bilirsen defterden silinir.", K(["M"])),
+    T(1, "tut_weapon_merge", "BİRLEŞTİRME", "İki aynı silah, bir güçlü silah",
+      () => touch() ? "Envanterde aynı silahın aynı seviyedeki iki kopyasını birleştirerek bir üst seviyeye çıkar. En üst seviyede silah evrimleşir ve görünümü değişir." : "I ile envanteri aç. Aynı silahın aynı seviyedeki iki kopyasını birleştirerek bir üst seviyeye çıkar. En üst seviyede silah evrimleşir ve görünümü değişir.", K(["I"])),
+    T(1, "tip_05", "SİNERJİLER", "Kelime türleri birlikte çalışır",
+      "Aldığın kelimelerin türü sinerji açar: 3 sıfat +40 hareket hızı, 3 fiil +%28 hasar, 2 ön ek +2 delme, 3 dilbilgisi +%18 zırh. Bir kez açılır, banner'la haber verilir. Kartları seçerken türlere de bak.", () => []),
+    // ---- 2 · Yol ve hazine
+    T(2, "route_map_bg", "YOL HARİTASI", "Her beş dalgada yolunu seçersin",
+      "Boss'tan sonra iki yol sunulur; her yol dört dalgalık düğümlerden oluşur: Çatışma, Elit, Hazine, Mola, Pazar ve Bilinmeyen. Sonunda yine bir Bekçi (boss) var. Üstteki rozet bulunduğun düğümü gösterir.", () => []),
+    T(2, "route_node_treasure", "HAZİNE", "Dalga sonunda sandık açılır",
+      "Hazine düğümünde dalgayı bitirince sandık seni dükkânda bekler. Lexicon'da mürekkep ya da bir yadigâr seçersin; Errata'da iki lanetli yadigâr arasından seçersin. Hazineyi planlayarak yol seçmek büyük güç kazandırır.", () => []),
+    T(2, "route_node_elite", "ELİT", "Zor dalga, bol mürekkep",
+      "Elit düğümünde seçkin düşmanlar çıkar ve mürekkep ×1,5 olur. Hasım maskesi takan düşman daha da güçlüdür ama altı kat mürekkep bırakır. Gücün yetiyorsa risk al.", () => []),
+    T(2, "route_node_rest", "MOLA VE PAZAR", "Nefes al, ucuza al",
+      "Mola dalgası başında canının %30'unu yeniler. Pazar düğümünden sonraki dükkânda her şey %25 ucuzdur. Bilinmeyen düğüm dalga başında rastgele bir türe dönüşür.", () => []),
+    T(2, "tip_10", "YADİGÂRLAR VE GEREÇLER", "Kalıcı güçler, bu sefere özel",
+      "Yadigârlar can, zırh, silah yuvası gibi etkileri sefer boyunca verir. Gereçler etkin yetenek yuvanı doldurur. İkisini de dükkândan ya da hazineden alırsın; sefer bitince kaybolurlar.", () => []),
+    // ---- 3 · Bosslar
+    T(3, "boss_red_inspector_portrait", "BOSS", "Her beşinci dalgada bir bekçi",
+      "5, 10, 15 ... dalgalarda bir boss gelir; toplam yirmi tane, hepsinin kendi adı ve hikâyesi var. Boss'a ulaşınca kütüphanenin bölümü değişir; her yirmi beş dalgada yeni bir kanat açılır.", () => []),
+    T(3, "tip_07", "SALDIRILAR", "Kırmızı işaret, ardından darbe",
+      "Boss hamleleri önceden yerde belirir: kırmızı çizgi yönü, halka alanı gösterir. İşarete bakıp yandan çık ya da sıçra. Her boss imza hamlesini yapar ama zamanla yelpaze, paralel şerit ve düşen mühür gibi yeni hamleler ekler.", () => []),
+    T(3, "fx_boss_phase", "EVRELER", "Canı azaldıkça sertleşir",
+      "Boss canı %70 ve %35'e inince yeni evreye girer: daha hızlı olur, hamleleri sıklaşır ve yeni desenler açar. Son evrede öfkelenir; bu evrede mürekkep ve sıçrayış bekleme süreni hazır tut.", () => []),
+    T(3, "tut_boss_sentence", "HATA YANKILARI", "Cevaplamadığın kelimeler boss'la gelir",
+      "Boss turunda geri dönen kelime yankıları üzerinde kelimeyi taşır. Yankıları öldürmek boss'a ulaşmadan önce ortalığı temizler. Çok kelime biriktirdiysen boss turu kalabalık olur; dükkânda kelimeleri cevaplamak bunu azaltır.", () => []),
+    // ---- 4 · Modlar ve ilerleme
+    T(4, "mode_lexicon_card", "LEXICON", "Kelime seferi",
+      "Varsayılan mod: kartlar sınavla açılır, doğru cevap yarı fiyat ve +%50 güç. İngilizce öğrenirken oynamanın ana yolu bu.", () => []),
+    T(4, "mode_errata_card", "ERRATA", "Saf savaş",
+      "Sınav yok, kartları doğrudan alırsın. Bunun yerine 'mührü kır': altın bölgede vurursan yarı fiyata +%50 güç. Elitler lanet taşır, hasım adlı güçlü düşmanlar çıkar ve lanetli yadigârlar hem güç hem bedel getirir.", () => []),
+    T(4, "mode_endless_card", "SONSUZ", "Kapanmayan kitap",
+      "25. dalgaya ulaşınca açılır. 100. dalgadan sonra devam eder; bosslar yeniden gelir ve her dalga daha sert olur. Ne kadar derine inebileceğini gör.", () => []),
+    T(4, "heat_red_ink", "KIRMIZI SÖZLEŞMELER", "İsteyerek zorlaştır",
+      "İlk seferini bitirince açılır. Düşman hasarı, canı, hızı gibi on koşuldan istediklerini seçersin; her sözleşme puanı kazanılan mühür mumunu %10 artırır.", () => []),
+    T(4, "mat_wax_seal", "MÜHÜR MUMU", "Kalıcı para birimi",
+      "Her sefer sonunda ve başarım açınca mühür mumu kazanırsın. Arşiv Odası'ndaki Atölye Tezgâhı'nda on iki kalıcı geliştirme alırsın: can, zırh, kritik, mürekkep, başlangıç silahı, diriliş ve daha fazlası.", () => []),
+    T(4, "screen_hub", "ARŞİV ODASI", "Seferler arası evin",
+      "Neris kelime kitabını, Sessiz Mekanik geliştirmeleri, Lira yetenek ağacını, Tavi canavarları, Sera başarımları, Yel kanat haritasını, Mürekkep Çocuk arşiv notlarını tutar. Kırmızı Masa, 5. dalgayı geçince açılır. Demir Kapı yeni sefere çıkar.", () => []),
+    T(4, "screen_settings", "KONTROLLER", "Oynarken işine yarayanlar",
+      () => touch() ? "Duraklat düğmesi menüyü açar. Ayarlardan hız, yazı boyutu, hareket azaltma ve ses seçeneklerini değiştirebilirsin." : "Esc duraklatır. [ ve ] oyun hızını azaltır ya da artırır, 0 hızı sıfırlar. Z ve X yakınlaştırır / uzaklaştırır. Ayarlardan yazı boyutu, hareket azaltma ve sesi değiştirebilirsin.", K(["ESC", "[ ]", "Z X"]))
   ];
 
   let root = null, index = 0, resolve = null, restore = null;
@@ -74,6 +106,7 @@
           <p class="gt-body"></p>
           <p class="gt-first" hidden>İlk seferin: istediğin an <b>Geç</b> diyebilirsin; bir daha sormayacağım.</p>
         </div>
+        <nav class="gt-chapters" aria-label="Bölümler"></nav>
         <footer class="gt-foot">
           <ol class="gt-dots" aria-hidden="true"></ol>
           <span class="gt-count"></span>
@@ -83,7 +116,12 @@
       </div>`;
     document.body.append(root);
     root.querySelector(".gt-dots").replaceChildren(...STEPS.map(() => document.createElement("li")));
+    root.querySelector(".gt-chapters").replaceChildren(...CHAPTERS.map((name, i) => {
+      const tab = document.createElement("button"); tab.type = "button"; tab.dataset.chapter = i; tab.textContent = name; return tab;
+    }));
     root.addEventListener("click", event => {
+      const chapter = event.target.closest("[data-chapter]");
+      if (chapter) return go(STEPS.findIndex(step => step.ch === Number(chapter.dataset.chapter)));
       const action = event.target.closest("[data-gt]")?.dataset.gt;
       if (action === "skip") finish(true);
       else if (action === "back") go(index - 1);
@@ -113,14 +151,15 @@
     const img = root.querySelector(".gt-plate img");
     img.src = art(step.art);
     img.hidden = !img.src;
-    root.querySelector(".gt-kicker").textContent = step.kicker;
+    root.querySelector(".gt-kicker").textContent = `${step.kicker}`;
+    root.querySelectorAll(".gt-chapters button").forEach(tab => tab.classList.toggle("is-on", Number(tab.dataset.chapter) === step.ch));
     root.querySelector("#gt-title").textContent = step.title;
     root.querySelector(".gt-body").textContent = step.body();
     const keys = step.keys();
     const caps = root.querySelector(".gt-keys");
     caps.replaceChildren(...keys.map(label => { const kbd = document.createElement("kbd"); kbd.textContent = label; return kbd; }));
     caps.hidden = !keys.length;
-    root.querySelectorAll(".gt-dots li").forEach((dot, i) => { dot.className = i < index ? "is-done" : i === index ? "is-on" : ""; });
+    root.querySelectorAll(".gt-dots li").forEach((dot, i) => { dot.className = i < index ? "is-done" : i === index ? "is-on" : ""; dot.dataset.ch = STEPS[i].ch; });
     root.querySelector(".gt-count").textContent = `${index + 1} / ${STEPS.length}`;
     root.querySelector('[data-gt="back"]').style.visibility = index ? "visible" : "hidden";
     const last = index === STEPS.length - 1;
