@@ -405,6 +405,11 @@ def main() -> int:
     (OUT / "atlas.json").write_text(json.dumps({"version": 1, "assets": atlas}, separators=(",", ":"), sort_keys=True))
     # Same data as a classic script so UI markup built at boot can use it synchronously.
     (OUT / "atlas.js").write_text("window.GRIMOIRE_ATLAS=" + json.dumps({"version": 1, "assets": atlas}, separators=(",", ":"), sort_keys=True) + ";\n")
+    # Browser chrome needs PNG: cursors at 32 px, the tab icon at 64 px.
+    for name, size in (("cursor", 32), ("cursor_hover", 32), ("favicon", 64)):
+        source = Path(ns.src) / "system" / f"{name}.png"
+        if source.exists():
+            Image.open(source).convert("RGBA").resize((size, size), Image.LANCZOS).save(OUT / "system" / f"{name}.png")
     # Every runtime file must decode; a broken one fails the build.
     for record in atlas.values():
         try:

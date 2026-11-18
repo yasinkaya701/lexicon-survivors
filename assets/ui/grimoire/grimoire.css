@@ -4672,3 +4672,10 @@ img[src*="/art/grimoire/"] { filter: none !important; mix-blend-mode: normal !im
   .hub-wing { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) { .hub-npc, .hub-station { animation: none; } }
+.skill-node-button img.skill-node-art { object-fit: cover; border-radius: 50%; filter: none !important; }
+.skill-node-button[data-state="locked"] img.skill-node-art { filter: grayscale(1) brightness(.5) !important; }
+/* Painted quill cursor on menus and books; the arena keeps the plain system arrow it always had. */
+body { cursor: url("../../art/grimoire/system/cursor.png") 3 3, auto; }
+button, a, [role="button"], select, label, .toc-item, .hub-station { cursor: url("../../art/grimoire/system/cursor_hover.png") 3 3, pointer; }
+.hub-station.is-locked, button:disabled { cursor: url("../../art/grimoire/system/cursor.png") 3 3, not-allowed; }
+#game-canvas { cursor: default; }

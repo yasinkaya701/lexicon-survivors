@@ -7292,7 +7292,10 @@ function renderCharacterSkillTree(grid) {
       button.setAttribute("aria-controls", "skill-detail-panel");
       button.setAttribute("aria-label", `${node.name_tr}. ${node.description_tr} ${availability.label}. Seviye ${node.required_level}, ${node.point_cost} yetenek puanı.`);
       const icon = document.createElement("img");
-      icon.src = getSkillEffectIcon(node);
+      // Each node has its own painted icon (skill_<character>_<node>).
+      const paintedSkill = window.GrimoireSprites?.src(`skill_${state.selected_char}_${node.id}`);
+      icon.src = paintedSkill || getSkillEffectIcon(node);
+      if (paintedSkill) icon.className = "skill-node-art";
       icon.alt = "";
       const copy = document.createElement("span");
       copy.className = "skill-node-copy";
