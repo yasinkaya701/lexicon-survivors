@@ -113,3 +113,13 @@ body > .shop-card.is-bought { transform-style: flat; pointer-events: none; anima
 .gt-dots li.is-on { background: var(--proof, #d8392c); border-color: var(--proof, #d8392c); box-shadow: 0 0 10px rgba(216, 57, 44, .7); }
 .gt-count { font: 12px var(--f-ui); color: var(--ink-2); letter-spacing: .1em; }
 @media (max-width: 760px) { .gt-folio { grid-template-columns: 1fr; padding: 18px; } .gt-plate { margin-top: 26px; } .gt-dots { display: none; } .gt-foot { justify-content: flex-end; } }
+
+/* B9 — the quiz example sentence was pale grey on cream parchment: a later
+   #quiz-modal rule (more specific) overrode the dark ink colour. */
+html body #quiz-modal #quiz-example-text,
+html body #quiz-modal #quiz-example-text * { color: #25180f !important; -webkit-text-fill-color: #25180f !important; opacity: 1 !important; font-style: italic; font-weight: 600; }
+html body #quiz-modal #quiz-example-text mark { color: #8e1b14 !important; -webkit-text-fill-color: #8e1b14 !important; font-weight: 800; border-bottom: 0; text-decoration: underline wavy rgba(142, 27, 20, .6); }
+html body #quiz-modal #quiz-example-text { padding: 10px 24px !important; font-size: 18px !important; }
+/* the default blue selection colour clashes with and hides the ink */
+::selection { background: rgba(176, 138, 78, .55); color: #fff7e6; }
+html body #quiz-modal #quiz-example-text ::selection, html body #quiz-modal #quiz-example-text::selection { background: rgba(142, 27, 20, .35); color: #25180f; -webkit-text-fill-color: #25180f; }
