@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="assets/art/grimoire/system/favicon.png">
   <link rel="apple-touch-icon" href="assets/art/grimoire/system/app_icon.webp">
   <title>Lexicon Survivors</title>
-  <meta name="game-release" content="last-errata-20261118-3">
+  <meta name="game-release" content="last-errata-20261118-4">
   <style>
     @font-face {
       font-family: "IBM Plex Sans";
@@ -223,7 +223,7 @@
         <div class="stage-heading"><div><span class="errata-kicker">02 ／ BAŞLANGIÇ AYARLARI</span><h2 id="preparation-heading">Başlangıç ayarları</h2><p>İngilizce seviyesini ve oyun zorluğunu seç.</p></div><button class="text-back" data-title-step="character">← Karakteri değiştir</button></div>
         <div class="preparation-book">
           <section class="preparation-page"><span class="page-label">I. İNGİLİZCE SEVİYESİ</span><h3>Nereden başlayalım?</h3><p>Seviyeni seç. Oyun, yanıtlarına göre kelime düzeyini ayarlar.</p><div id="learning-level-selection" class="level-choices" aria-label="İngilizce başlangıç seviyesi"></div><p id="learning-level-desc" class="selection-description"></p><h3>Savaş zorluğu</h3><div id="diff-selection-container" class="difficulty-choices" aria-label="Savaş zorluğu"></div><p id="diff-desc" class="selection-description"></p></section>
-          <section class="preparation-page"><span class="page-label">II. OYUN AYARLARI</span><h3>Oyun ayarları</h3><div class="run-options"><button class="btn" id="title-speed-btn" title="Oyun hızını değiştir">Hız: 1.0x</button><button class="btn" id="title-auto-tur-btn">Otomatik sonraki dalga: açık</button><button class="btn" id="title-auto-run-btn">Otomatik yeni sefer: kapalı</button></div><label class="music-choice-row" for="title-music-select">Müzik<select id="title-music-select"><option value="auto">Otomatik · bölüme göre</option><option value="library">Kütüphane</option><option value="action">Savaş</option><option value="urgent">Dalgalar</option><option value="last_stand">Boss</option></select></label><div class="control-note"><span class="errata-kicker">KONTROLLER</span><p><kbd>WASD</kbd> veya oklarla hareket et.<br>Silahlar otomatik ateş eder.<br><kbd>Space</kbd> ile etkin yeteneğini kullan.</p><button class="text-back" data-open-book="guide">Tüm kontrolleri gör ↗</button></div></section>
+          <section class="preparation-page"><span class="page-label">II. OYUN AYARLARI</span><h3>Oyun ayarları</h3><div class="run-options"><button class="btn" id="title-speed-btn" title="Oyun hızını değiştir">Hız: 1.0x</button><button class="btn" id="title-auto-tur-btn">Otomatik sonraki dalga: açık</button><button class="btn" id="title-auto-run-btn">Otomatik yeni sefer: kapalı</button></div><label class="music-choice-row" for="title-music-select">Müzik<select id="title-music-select"><option value="playlist">Sırayla çal · tüm parçalar</option><option value="auto">Otomatik · bölüme göre</option><option value="library">Kütüphane</option><option value="action">Savaş</option><option value="urgent">Dalgalar</option><option value="last_stand">Boss</option></select></label><div class="control-note"><span class="errata-kicker">KONTROLLER</span><p><kbd>WASD</kbd> veya oklarla hareket et.<br>Silahlar otomatik ateş eder.<br><kbd>Space</kbd> ile etkin yeteneğini kullan.</p><button class="text-back" data-open-book="guide">Tüm kontrolleri gör ↗</button></div></section>
         </div>
         <footer class="stage-actions"><span class="page-number">BAŞLANGIÇ AYARLARI <b>02</b></span><button class="btn primary" id="start-game-btn">Oyuna başla <span aria-hidden="true">→</span></button></footer>
       </section>
@@ -410,7 +410,7 @@
 
         <div>
           <label class="music-choice-row" for="mobile-music-select">Müzik
-            <select id="mobile-music-select" aria-label="Müzik seçimi"><option value="auto">Otomatik · biyoma göre</option><option value="library">Karanlık Kütüphane</option><option value="action">Mürekkep Takibi</option><option value="urgent">Rafların Uyanışı</option><option value="last_stand">Son Nöbet · Boss</option></select>
+            <select id="mobile-music-select" aria-label="Müzik seçimi"><option value="playlist">Sırayla çal · tüm parçalar</option><option value="auto">Otomatik · biyoma göre</option><option value="library">Karanlık Kütüphane</option><option value="action">Mürekkep Takibi</option><option value="urgent">Rafların Uyanışı</option><option value="last_stand">Son Nöbet · Boss</option></select>
           </label>
           <button class="btn" id="mobile-toggle-autowave-btn">
             Otomatik yeni dalga: açık
@@ -587,8 +587,8 @@
   <script src="assets/ui/grimoire/sprites.js?v=art-3"></script>
   <script src="assets/ui/errata/motion.js?v=art-1"></script>
   <script src="assets/ui/grimoire/meta.js?v=3"></script>
-  <script src="game.js?v=art-10"></script>
-  <script src="assets/ui/errata/interface.js?v=art-4"></script>
+  <script src="game.js?v=art-11"></script>
+  <script src="assets/ui/errata/interface.js?v=art-5"></script>
   <script src="assets/ui/grimoire/hub.js?v=art-3"></script>
   <script src="assets/ui/grimoire/gamepad.js?v=1"></script>
   <script src="assets/ui/grimoire/story.js?v=2"></script>

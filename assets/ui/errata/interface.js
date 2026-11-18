@@ -581,10 +581,10 @@
       } catch (_) {}
       const trackRow = document.createElement('div'); trackRow.className = 'settings-row audio-setting-row'; trackRow.dataset.audioSetting = 'music-track';
       const trackLabel = document.createElement('label'); trackLabel.htmlFor = 'setting-music-track'; trackLabel.textContent = 'Müzik parçası';
-      const trackDescription = document.createElement('small'); trackDescription.textContent = 'Otomatik seçim bölümün ritmini izler.'; trackLabel.append(trackDescription);
+      const trackDescription = document.createElement('small'); trackDescription.textContent = 'Sırayla çal: parçalar bitince sıradakine geçer. Otomatik: bölümün ritmini izler.'; trackLabel.append(trackDescription);
       const track = document.createElement('select'); track.id = 'setting-music-track'; track.dataset.setting = 'music-track'; track.setAttribute('aria-label', 'Müzik parçası');
       track.style.cssText = 'min-height:44px;max-width:min(250px,44vw);width:100%';
-      [['auto','Otomatik · bölüme göre'],['library','Karanlık Kütüphane'],['action','Mürekkep Takibi'],['urgent','Rafların Uyanışı'],['last_stand','Son Nöbet · Boss']].forEach(([value, label]) => { const option = document.createElement('option'); option.value = value; option.textContent = label; track.appendChild(option); });
+      [['playlist','Sırayla çal · tüm parçalar'],['auto','Otomatik · bölüme göre'],['library','Karanlık Kütüphane'],['action','Mürekkep Takibi'],['urgent','Rafların Uyanışı'],['last_stand','Son Nöbet · Boss']].forEach(([value, label]) => { const option = document.createElement('option'); option.value = value; option.textContent = label; track.appendChild(option); });
       try { track.value = bgm.musicChoice; } catch (_) {}
       track.addEventListener('change', () => { try { bgm.setMusicChoice(track.value); } catch (_) {} });
       trackRow.append(trackLabel, track); rows.append(trackRow);
@@ -720,7 +720,7 @@
   }
   function renderPause() {
     pauseContent.replaceChildren();
-    const actions = [['resume', 'Oyuna dön'], ['inventory', 'Envanter'], ['mistakes', 'Hata defteri'], ['codex', 'Kelime kitabı'], ['bestiary', 'Dil canavarları'], ['settings', 'Tercihler'], ['guide', 'Oynama kılavuzu']];
+    const actions = [['resume', 'Oyuna dön'], ['inventory', 'Envanter'], ['mistakes', 'Hata defteri'], ['codex', 'Kelime kitabı'], ['bestiary', 'Dil canavarları'], ['settings', 'Tercihler'], ['guide', 'Oynama kılavuzu'], ['menu', 'Ana menüye dön']];
     for (const [action, label] of actions) { const button = document.createElement('button'); button.type = 'button'; button.className = 'btn'; button.dataset.pauseAction = action; button.textContent = label; pauseContent.append(button); }
   }
   const collectionArtWarmups = new Map();
@@ -779,6 +779,16 @@
     const pauseAction = event.target.closest('[data-pause-action]');
     if (!pauseAction || !pauseOverlay.contains(pauseAction)) return;
     if (pauseAction.dataset.pauseAction === 'resume') { closeTop(); return; }
+    if (pauseAction.dataset.pauseAction === 'menu') {
+      if (pauseAction.dataset.armed !== 'true') {
+        pauseAction.dataset.armed = 'true'; pauseAction.textContent = 'Emin misin? Sefer biter · tekrar dokun';
+        setTimeout(() => { if (pauseAction.isConnected) { delete pauseAction.dataset.armed; pauseAction.textContent = 'Ana menüye dön'; } }, 4000);
+        return;
+      }
+      while (dialogStack.length) closeTop();
+      window.abandonRunToMenu?.();
+      return;
+    }
     if (pauseAction.dataset.pauseAction === 'inventory' || pauseAction.dataset.pauseAction === 'mistakes') {
       const control = document.getElementById(pauseAction.dataset.pauseAction === 'inventory' ? 'inventory-btn' : 'mistakes-btn');
       if (!control) return;

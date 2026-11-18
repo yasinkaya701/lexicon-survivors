@@ -858,18 +858,19 @@ class SoundManager {
     } catch (_) { return false; }
   }
   startMusic() {
-    if (!this.music) { this.music = new Audio("assets/audio/music/main_theme.mp3"); this.music.loop = true; }
+    if (!this.music) { this.music = new Audio("assets/audio/music/main_theme.mp3"); this.music.loop = true; this.music.addEventListener("ended", () => this.onMusicEnded?.()); }
     this.music.volume = 0.24 * this.musicVolume;
     this.music.muted = Boolean(window.gameMusicMuted);
     this.music.play().catch(() => {});
   }
-  setMusicSource(path) {
-    if (!this.music) { this.music = new Audio(); this.music.loop = true; }
+  setMusicSource(path, loop = true) {
+    if (!this.music) { this.music = new Audio(); this.music.loop = true; this.music.addEventListener("ended", () => this.onMusicEnded?.()); }
+    this.music.loop = loop;
     this.music.volume = 0.24 * this.musicVolume;
     this.music.muted = Boolean(window.gameMusicMuted);
     if (!this.music.src.endsWith(path)) {
       this.music.src = path;
-      this.music.loop = true;
+      this.music.loop = loop;
       this.music.play().catch(() => {});
     }
   }
@@ -1145,7 +1146,15 @@ class MedievalBGM {
     this.volume = 0.24 * this.musicVolume;
     window.gameMusicMuted = this.isMuted;
     this.mode = "peaceful"; // "peaceful" | "battle" | "boss"
-    this.musicChoice = localStorage.getItem("lexicon_music_choice") || "auto";
+    this.musicChoice = localStorage.getItem("lexicon_music_choice") || "playlist";
+    this.playlist = ["main_theme.mp3", "biome_dark_library_theme.mp3", "magical_library_action_b.mp3", "magical_library_urgent_a.mp3", "magical_library_extreme_a.mp3"];
+    this.playlistIndex = Math.max(0, Number(localStorage.getItem("lexicon_music_playlist_index")) || 0) % this.playlist.length;
+    this.sm.onMusicEnded = () => {
+      if (this.musicChoice !== "playlist") return;
+      this.playlistIndex = (this.playlistIndex + 1) % this.playlist.length;
+      try { localStorage.setItem("lexicon_music_playlist_index", String(this.playlistIndex)); } catch (_) {}
+      this.syncMusicChoice();
+    };
     this.biome = -1;
     this.step = 0;
     this.timerId = null;
@@ -1218,13 +1227,14 @@ class MedievalBGM {
   }
 
   setMusicChoice(choice) {
-    this.musicChoice = ["auto", "library", "action", "urgent", "last_stand"].includes(choice) ? choice : "auto";
+    this.musicChoice = ["playlist", "auto", "library", "action", "urgent", "last_stand"].includes(choice) ? choice : "playlist";
     localStorage.setItem("lexicon_music_choice", this.musicChoice);
     this.syncMusicChoice();
   }
 
   syncMusicChoice() {
     const autoTracks = ["biome_dark_library_theme.mp3", "magical_library_action_b.mp3", "magical_library_urgent_a.mp3", "magical_library_urgent_a.mp3"];
+    if (this.musicChoice === "playlist") { this.sm.setMusicSource(`assets/audio/music/${this.playlist[this.playlistIndex]}`, false); return; }
     const path = this.musicChoice === "last_stand" ? "assets/audio/music/magical_library_extreme_a.mp3"
       : this.musicChoice === "library" ? "assets/audio/music/biome_dark_library_theme.mp3"
         : this.musicChoice === "action" ? "assets/audio/music/magical_library_action_b.mp3"
@@ -7197,6 +7207,23 @@ leaderboardNode("leaderboard-submit-form")?.addEventListener("submit", async eve
     renderLeaderboard(readLocalLeaderboard(row.difficultyId));
   } finally { if (button) button.disabled = false; }
 });
+
+// Leave an active run from the pause menu: the run is recorded as a loss, every overlay closes and the title returns.
+function abandonRunToMenu() {
+  stopGameSpeech();
+  clearAutoRunCountdown();
+  try { finalizeRunResult(false); } catch (_) {}
+  state.is_wave_active = false;
+  storyEpisodeIndex = -1; storyPanelIndex = 0; storyWavePending = 0;
+  for (const id of ["story-intermission", "chapter-transition-card"]) { const node = document.getElementById(id); if (node) node.hidden = true; }
+  for (const id of ["shop-screen", "game-over-screen", "mobile-quick-menu", "quiz-modal"]) { const node = document.getElementById(id); if (node) node.style.display = "none"; }
+  document.querySelectorAll("#grimoire-chest, .seal-break").forEach(node => node.remove());
+  bgm.setMode("peaceful");
+  document.getElementById("title-screen").style.display = "flex";
+  initTitleScreen();
+  syncMobileControlsVisibility();
+}
+window.abandonRunToMenu = abandonRunToMenu;
 
 const onRestart = () => {
   clearAutoRunCountdown();
