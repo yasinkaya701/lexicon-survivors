@@ -3770,6 +3770,7 @@ function startGame() {
   state.learning_answers = [];
   startWave();
   window.GrimoireMeta?.onRunBegin();
+  window.GrimoireTutorial?.onRunBegin();
 }
 
 function recordLearningAnswer(isCorrect) {
@@ -5555,6 +5556,32 @@ function resolveBossLine(boss, x1, y1, x2, y2, halfWidth = 24, damageFactor = 0.
   return true;
 }
 
+const BOSS_REPERTOIRE = {
+  judgment: ["fan", "lanes", "rain"], charge: ["lanes", "quake", "rain"], quake: ["fan", "spiral", "charge"],
+  nova: ["rain", "fan", "spiral"], orbit: ["lanes", "quake", "rain"], fan: ["spiral", "nova", "lanes"],
+  crossfire: ["rain", "sever", "spiral"], shards: ["lanes", "split", "eclipse"], mirror: ["rain", "charge", "spiral"],
+  echo: ["lanes", "nova", "snare"], return: ["spiral", "sever", "rain"], sever: ["rain", "fan", "lanes"],
+  split: ["spiral", "gravity", "rain"], eclipse: ["lanes", "void_bloom", "rain"], void_bloom: ["spiral", "gravity", "lanes"],
+  gravity: ["fan", "rain", "spiral"], snare: ["fan", "lanes", "charge"], rift: ["fan", "rain", "spiral"],
+  embers: ["lanes", "spiral", "charge"], finale: ["lanes", "spiral", "rain"]
+};
+// Each boss keeps its signature move but no longer repeats it forever: phase 1
+// mixes in one extra every third cast, phase 2 alternates, phase 3 cycles all.
+function pickBossSkill(boss, phase) {
+  const signature = boss.boss_skill;
+  const extras = BOSS_REPERTOIRE[signature] || [];
+  const turn = boss.skill_turn = (boss.skill_turn || 0) + 1;
+  let pick = signature;
+  if (extras.length) {
+    if (phase === 1) pick = turn % 3 === 0 ? extras[0] : signature;
+    else if (phase === 2) pick = turn % 2 === 0 ? extras[(turn / 2) % 2 | 0] : signature;
+    else pick = turn % 4 === 1 ? signature : extras[(turn - 2) % extras.length];
+  }
+  if (pick === boss.last_skill && pick !== signature) pick = signature;
+  boss.last_skill = pick;
+  return pick;
+}
+
 function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
   if (boss.hp <= boss.max_hp * 0.70 && boss.boss_phase < 2) {
     boss.boss_phase = 2;
@@ -5577,6 +5604,7 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
   boss.boss_skill_cooldown = Math.max(0, (boss.boss_skill_cooldown || 0) - dt);
   if (boss.boss_skill_cooldown > 0) return;
   const phase = boss.boss_phase || 1;
+  const skill = pickBossSkill(boss, phase);
   // Stronger multi-phase pressure, while keeping every dangerous move readable and dodgeable.
   const duration = phase === 3 ? 0.78 : (phase === 2 ? 0.90 : 0.95);
   const baseDamage = phase === 3 ? 0.82 : (phase === 2 ? 0.60 : 0.54);
@@ -5605,13 +5633,13 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
     }
     sounds.enemyShoot();
   };
-  switch (boss.boss_skill) {
+  switch (skill) {
     case "judgment":
     case "charge": {
       const telegraph = telegraphLine(angle, 950);
       telegraph.action = () => {
         if (boss.dead) return;
-        if (boss.boss_skill === "charge") {
+        if (skill === "charge") {
           boss.vx = Math.cos(angle) * (430 + phase * 80) * chronoMult;
           boss.vy = Math.sin(angle) * (430 + phase * 80) * chronoMult;
           boss.charge_damage = boss.damage * 0.55;
@@ -5626,17 +5654,17 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
     case "quake":
     case "nova":
     case "orbit": {
-      const radius = boss.boss_skill === "orbit" ? 145 : (boss.boss_skill === "nova" ? 115 : 205);
+      const radius = skill === "orbit" ? 145 : (skill === "nova" ? 115 : 205);
       const markX = boss.x, markY = boss.y;
       state.telegraphs.push(groundMark(boss.x, boss.y, radius, () => {
         if (boss.dead) return;
-        resolveBossArea(boss, markX, markY, radius, baseDamage, boss.boss_skill === "nova");
-        if (boss.boss_skill === "orbit") {
+        resolveBossArea(boss, markX, markY, radius, baseDamage, skill === "nova");
+        if (skill === "orbit") {
           const count = phase === 3 ? 16 : 10;
           for (let index = 0; index < count; index++) fireBossProjectile(boss, index * Math.PI * 2 / count, 205 + phase * 24, 0.38, "orb");
         }
         sounds.detonateMine();
-      }, boss.boss_skill));
+      }, skill));
       break;
     }
     case "fan":
@@ -5646,9 +5674,9 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
       const ray = telegraphLine(angle, 820);
       ray.action = () => {
         if (boss.dead) return;
-        fireFan(boss.boss_skill === "finale" && phase === 3 ? 9 : boss.boss_skill === "shards" ? 6 : 5,
-          boss.boss_skill === "crossfire" ? 0.9 : 0.66, baseDamage);
-        if (boss.boss_skill === "crossfire" || boss.boss_skill === "finale") {
+        fireFan(skill === "finale" && phase === 3 ? 9 : skill === "shards" ? 6 : 5,
+          skill === "crossfire" ? 0.9 : 0.66, baseDamage);
+        if (skill === "crossfire" || skill === "finale") {
           const crossAngle = angle + Math.PI / 2;
           for (let index = -1; index <= 1; index++) {
             const a = crossAngle + index * 0.16;
@@ -5657,7 +5685,7 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
         }
       };
       state.telegraphs.push(ray);
-      if (boss.boss_skill === "crossfire" || boss.boss_skill === "finale") {
+      if (skill === "crossfire" || skill === "finale") {
         // The perpendicular projectiles need their own warning lane; without
         // this tell the second half of the crossfire arrives unannounced.
         state.telegraphs.push(telegraphLine(angle + Math.PI / 2, 820));
@@ -5668,13 +5696,13 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
     case "echo": {
       state.telegraphs.push(groundMark(boss.x, boss.y, 128, () => {
         if (boss.dead) return;
-        const count = boss.boss_skill === "echo" ? 10 : 8;
+        const count = skill === "echo" ? 10 : 8;
         for (let index = 0; index < count; index++) {
           const a = index * Math.PI * 2 / count;
           fireBossProjectile(boss, a, 220 + phase * 24, phase === 3 ? 0.50 : 0.42, "ink");
         }
         sounds.enemyShoot();
-      }, boss.boss_skill));
+      }, skill));
       break;
     }
     case "return": {
@@ -5779,17 +5807,17 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
     case "snare":
     case "rift":
     case "embers": {
-      const radius = boss.boss_skill === "gravity" ? 150 : 92;
-      const x = boss.boss_skill === "rift" ? boss.x - dirX * 105 : targetX;
-      const y = boss.boss_skill === "rift" ? boss.y - dirY * 105 : targetY;
+      const radius = skill === "gravity" ? 150 : 92;
+      const x = skill === "rift" ? boss.x - dirX * 105 : targetX;
+      const y = skill === "rift" ? boss.y - dirY * 105 : targetY;
       state.telegraphs.push(groundMark(x, y, radius, () => {
         if (boss.dead) return;
-        if (boss.boss_skill === "rift") {
+        if (skill === "rift") {
           const oldX = boss.x, oldY = boss.y;
           boss.x = Math.max(-1100, Math.min(1100, x));
           boss.y = Math.max(-800, Math.min(800, y));
           state.particles.push({ x: oldX, y: oldY, radius: 14, max_radius: 70, alpha: 0.8, color: "rgba(151, 117, 226, " });
-        } else if (boss.boss_skill === "gravity") {
+        } else if (skill === "gravity") {
           const pullX = x - state.player.x, pullY = y - state.player.y;
           const pullDist = Math.hypot(pullX, pullY);
           if (pullDist <= radius && pullDist > 0) {
@@ -5799,10 +5827,58 @@ function updateMilestoneBossSkill(boss, dt, dirX, dirY, chronoMult) {
           }
           resolveBossArea(boss, x, y, radius, baseDamage * 0.8, true);
         } else {
-          resolveBossArea(boss, x, y, radius, baseDamage, boss.boss_skill !== "embers");
-          if (boss.boss_skill === "embers") fireFan(3, 0.95, 0.28);
+          resolveBossArea(boss, x, y, radius, baseDamage, skill !== "embers");
+          if (skill === "embers") fireFan(3, 0.95, 0.28);
         }
-      }, boss.boss_skill));
+      }, skill));
+      break;
+    }
+    case "spiral": {
+      // Four small seals at the boss fire rotating rings one after another:
+      // the gap walks around the circle, so you follow it instead of standing still.
+      for (let index = 0; index < 4; index++) {
+        const delay = index * 0.34;
+        const mark = groundMark(boss.x, boss.y, 84, () => {
+          if (boss.dead) return;
+          const count = phase === 3 ? 9 : 7;
+          for (let shard = 0; shard < count; shard++) {
+            fireBossProjectile(boss, shard * Math.PI * 2 / count + index * 0.62, 205 + phase * 20, 0.3, "ink");
+          }
+        }, "spiral");
+        mark.timer += delay; mark.max_timer = mark.timer;
+        state.telegraphs.push(mark);
+      }
+      break;
+    }
+    case "lanes": {
+      // Parallel cutting lanes, one after the other, with a different lane left open each time.
+      const perpX = -Math.sin(angle), perpY = Math.cos(angle);
+      const safe = Math.floor(Math.random() * 3) - 1;
+      for (const k of [-1, 0, 1]) {
+        if (k === safe) continue;
+        const delay = (k + 1) * 0.22;
+        const line = telegraphLine(angle, 1250);
+        line.x1 += perpX * k * 120; line.y1 += perpY * k * 120;
+        line.x2 += perpX * k * 120; line.y2 += perpY * k * 120;
+        line.timer = duration + delay; line.max_timer = line.timer;
+        const x1 = line.x1, y1 = line.y1, x2 = line.x2, y2 = line.y2;
+        line.action = () => { if (!boss.dead) resolveBossLine(boss, x1, y1, x2, y2, 34, phase === 3 ? 0.84 : 0.7); };
+        state.telegraphs.push(line);
+      }
+      break;
+    }
+    case "rain": {
+      // A ring of falling seals closes in around where you are, then one lands on you.
+      const radius = phase === 3 ? 70 : 60;
+      const ring = phase === 3 ? 5 : 4;
+      for (let index = 0; index < ring + 1; index++) {
+        const around = index * Math.PI * 2 / ring + Math.random() * 0.4;
+        const markX = index === ring ? targetX : targetX + Math.cos(around) * 150;
+        const markY = index === ring ? targetY : targetY + Math.sin(around) * 150;
+        const mark = groundMark(markX, markY, radius, () => { if (!boss.dead) resolveBossArea(boss, markX, markY, radius, baseDamage * 0.78); }, "split");
+        mark.timer += index * 0.2; mark.max_timer = mark.timer;
+        state.telegraphs.push(mark);
+      }
       break;
     }
     default:
@@ -6667,7 +6743,9 @@ const BOSS_TELEGRAPH_GUIDANCE = {
   sever: "İki kesik çizgisi sırayla gelir; ilki geçince ikinci uyarıyı yeniden oku.",
   split: "İki mühür arasında bırakılan güvenli yarığa kaç.",
   eclipse: "Çekim halkası sonrası kırık parça çemberindeki açık aralıktan geç.",
-  void_bloom: "Yoluna sırayla açılan üç mürekkep çiçeğinden hareketle sıyrıl."
+  void_bloom: "Yoluna sırayla açılan üç mürekkep çiçeğinden hareketle sıyrıl.",
+  spiral: "Dönen halkaların açıklığı yürür; boşluğu takip et.", lanes: "Paralel şeritlerden biri boş bırakılır; ona geç.",
+  rain: "Çevrende kapanan mühürler var, sonuncusu tam üstüne düşer; dışarı kay."
 };
 const BOSS_AREA_SIGILS = Object.freeze({
   eclipse: "upgrade_v1/boss_eclipse_sigil.svg",
@@ -9020,7 +9098,7 @@ function render(dt = 1 / 60) {
     if (e.facing_left) ctx.scale(-1, 1);
 
     const paintedEnemy = window.ErrataMotion?.enemyFrame(e.sprite, performance.now(), e.x * 0.013 + e.y * 0.007, e);
-    const spr = paintedEnemy || images[e.sprite] || images[BOSS_SPRITE_FALLBACKS[e.sprite]] || images[e.type === "Red Pen Boss" ? "red_pen_boss.png" : e.type === "Lexicon Dragon Boss" ? "lexicon_dragon_boss.png" : ""];
+    const spr = paintedEnemy || (window.GrimoireSprites?.expectsEnemy(e) ? null : (images[e.sprite] || images[BOSS_SPRITE_FALLBACKS[e.sprite]] || images[e.type === "Red Pen Boss" ? "red_pen_boss.png" : e.type === "Lexicon Dragon Boss" ? "lexicon_dragon_boss.png" : ""]));
     const sz = e.size || 36;
     // Grimoire boss sheets leave headroom in each cell; draw them larger so a boss towers over the hero.
     const spriteSize = sz * (paintedEnemy && e.is_boss ? window.GrimoireSprites?.BOSS_SCALE || 1.55 : 1.55);
@@ -9253,9 +9331,9 @@ function render(dt = 1 / 60) {
     ? images[`ui/errata/heroes/${animationKey}_${renderLayers.base}_${frame}.webp`]
     : null;
   const paintedHero = window.ErrataMotion?.heroFrame(animationKey,renderLayers.base,frame,p);
-  const pSpr = paintedHero || (errataHeroSprite?.complete && errataHeroSprite.naturalWidth > 0
+  const pSpr = paintedHero || (window.GrimoireSprites?.expectsHero(animationKey) ? null : (errataHeroSprite?.complete && errataHeroSprite.naturalWidth > 0
     ? errataHeroSprite
-    : actionSprite || images[cData.sprite] || images["player.png"]);
+    : actionSprite || images[cData.sprite] || images["player.png"]));
   if (pSpr) {
     const drawSize = paintedHero ? 96 : 88;
     if (paintedHero) ctx.imageSmoothingEnabled = true;
@@ -9392,7 +9470,7 @@ function wakeGameLoop() {
 }
 
 function gameLoop(now) {
-  if (!state.is_wave_active || state.is_inventory_open || document.hidden) {
+  if (!state.is_wave_active || state.is_inventory_open || document.hidden || window.GrimoireTutorial?.active) {
     // Do not let an idle period turn into a huge simulation step on resume.
     lastTime = now;
     scheduleGameLoop();

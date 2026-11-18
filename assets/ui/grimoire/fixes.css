@@ -1,0 +1,115 @@
+/* Bug-fix layer (2026-11-18). Loaded last; each block names the bug it fixes. */
+
+/* B2 — clicking a hero card scrolled the whole screen sideways. The ink-wipe
+   curtain (scale 3) and the parallax backdrop (scale 1.1) overflowed their
+   containers, and an overflow:hidden box can still be scrolled by focus. */
+#game-container { overflow: hidden; overflow: clip; }
+#title-screen { overflow-x: hidden; }
+#title-screen::before, #title-screen::after { contain: paint; }
+.screen-overlay { overflow-x: hidden; }
+
+/* B6 — buying a word card glitched the screen (worst in Safari).
+   1) the ink wipe was a 140vmax mask scaled x3 on top of the shop: a huge
+      repainted layer, and shop buttons sat above it. It is now a clip-path
+      circle (no mask, no scaling) above every overlay.
+   2) shop cards used preserve-3d + translateZ children + blur filter in the
+      burn-away ghost; Safari flickers on that. The tilt is now flat. */
+#gm-ink-wipe {
+  -webkit-mask: none !important; mask: none !important;
+  transform: none !important; will-change: clip-path, opacity;
+  z-index: 9000 !important;
+  clip-path: circle(0 at var(--wx, 50%) var(--wy, 50%));
+}
+#gm-ink-wipe.is-on { animation: gm-wipe-clip .6s cubic-bezier(.5, 0, .2, 1) forwards !important; }
+@keyframes gm-wipe-clip {
+  0% { opacity: 1; clip-path: circle(0 at var(--wx, 50%) var(--wy, 50%)); }
+  55% { opacity: 1; clip-path: circle(160vmax at var(--wx, 50%) var(--wy, 50%)); }
+  100% { opacity: 0; clip-path: circle(160vmax at var(--wx, 50%) var(--wy, 50%)); }
+}
+html body #shop-screen[data-tab="cards"] #shop-items-grid { perspective: none; }
+html body #shop-screen[data-tab="cards"] .shop-card { transform-style: flat; transform: rotateX(calc(var(--rx) * .5)) rotateY(calc(var(--ry) * .5)); backface-visibility: hidden; }
+html body #shop-screen[data-tab="cards"] .word-painted-emblem,
+html body #shop-screen[data-tab="cards"] .shop-title,
+html body #shop-screen[data-tab="cards"] .shop-description,
+html body #shop-screen[data-tab="cards"] .shop-buy-row { transform: none; }
+html body #shop-screen[data-tab="cards"] .shop-card.is-bought { transform-style: flat; pointer-events: none; animation: card-burn-flat .55s ease-in forwards; }
+@keyframes card-burn-flat { 0% { opacity: 1; } 35% { opacity: 1; transform: translateY(-8px) scale(1.03); } 100% { opacity: 0; transform: translateY(-32px) scale(.92); } }
+/* cards of different copy length keep their buy row on one baseline */
+#shop-screen[data-tab="cards"] .shop-card { display: flex; flex-direction: column; }
+#shop-screen[data-tab="cards"] .shop-card .shop-buy-row { margin-top: auto; }
+/* the burn-away ghost lives on <body>, outside #shop-screen */
+body > .shop-card.is-bought { transform-style: flat; pointer-events: none; animation: card-burn-flat .55s ease-in forwards; }
+
+/* B3 — the red proof-pen mark.
+   The hand-drawn red ellipse that appeared on hover was sized from its
+   element: on a full-width row it became a 470px oval slashing through the
+   label, on "← Ana menü" it overshot the title, and it relied on an animated
+   conic mask that Safari draws raggedly. It is now a red wavy underline that
+   is pulled left→right with a plain transform, whatever the element width. */
+:root {
+  --mark-wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M1 4.6C9 1.4 15 7 24 4s14-3.2 22 0 14 3 22 0 14-3.4 22 0 14 3 22 0 6-1.6 9-.4' fill='none' stroke='%23c9332a' stroke-width='1.7' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+.btn::after, .text-back::after, .tab-btn::after,
+.toc-item .toc-label::after, .errata-masthead nav button::after,
+.quiz-opt-btn > span:last-child::after, .dossier-copy h3::after,
+#shop-reroll-btn::after, #shop-auto-tur-btn::after {
+  inset: auto 0 -4px 0 !important;
+  height: 7px;
+  background: var(--mark-wave) left center / 100% 100% no-repeat !important;
+  -webkit-mask: none !important; mask: none !important;
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform .3s cubic-bezier(.2, .7, .2, 1) !important;
+  opacity: .95;
+}
+.btn:hover:not(:disabled)::after, .btn:focus-visible::after,
+.text-back:hover::after, .text-back:focus-visible::after,
+.tab-btn:hover::after, .tab-btn:focus-visible::after, .tab-btn.active::after,
+.toc-item:hover .toc-label::after, .toc-item:focus-visible .toc-label::after,
+.errata-masthead nav button:hover::after, .errata-masthead nav button:focus-visible::after,
+.quiz-opt-btn:not(:disabled):hover > span:last-child::after, .quiz-opt-btn:focus-visible > span:last-child::after,
+.choice-card.selected .dossier-copy h3::after { transform: scaleX(1); }
+/* a filled/selected block already says "chosen"; no pen on top of it */
+.btn-seal::after, .btn[aria-pressed="true"]::after, .btn.primary::after { display: none !important; }
+@media (prefers-reduced-motion: reduce) { .btn::after, .text-back::after, .tab-btn::after, .toc-item .toc-label::after { transition: none !important; } }
+
+/* B7 — the "o" of the logo turned into a white glyph on a blue block in Safari.
+   Gradient text (background-clip:text) does not paint through the inline-block
+   .lt-struck child, which also carries two animated pseudo-elements. Plain
+   coloured text with a gradient-like shadow stack is identical and safe. */
+.logotype, .logotype * { -webkit-user-select: none; user-select: none; }
+.logotype .lt-row:first-child {
+  background: none !important;
+  -webkit-background-clip: border-box !important; background-clip: border-box !important;
+  -webkit-text-fill-color: currentColor !important;
+  color: #EBDDBF;
+  text-shadow: 0 -2px 0 #F8F0DD, 0 2px 0 #B9A27A;
+}
+.logotype .lt-struck { -webkit-text-fill-color: currentColor !important; background: none !important; }
+
+/* Tutorial (Kâtibin Rehberi) */
+.grimoire-tutorial { position: fixed; inset: 0; z-index: 8000; display: grid; place-items: center; padding: 24px; background: radial-gradient(ellipse at 50% 40%, rgba(40, 12, 10, .72), rgba(3, 2, 3, .94)); animation: gt-in .3s ease both; }
+.grimoire-tutorial[hidden] { display: none; }
+@keyframes gt-in { from { opacity: 0; } }
+.gt-folio { position: relative; width: min(1040px, 100%); max-height: 100%; overflow: auto; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); grid-template-rows: 1fr auto; gap: 0 28px; padding: 26px 30px 20px; background: linear-gradient(180deg, #1c1410, #0f0a08); box-shadow: inset 0 0 0 1px rgba(176, 138, 78, .55), inset 0 0 0 6px #0b0706, inset 0 0 0 7px rgba(176, 138, 78, .28), 0 30px 80px #000; color: var(--ink); }
+.gt-folio.is-turn .gt-plate, .gt-folio.is-turn .gt-copy { animation: gt-turn .38s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes gt-turn { from { opacity: 0; transform: translateX(14px); } }
+.gt-skip { position: absolute; top: 12px; right: 16px; z-index: 2; background: none; border: 0; color: var(--ink-2); font: 600 13px var(--f-head); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; padding: 8px 10px; }
+.gt-skip:hover { color: var(--ink); }
+.gt-skip kbd { margin-left: 6px; padding: 1px 6px; border: 1px solid rgba(176, 138, 78, .5); font: 11px var(--f-ui); }
+.gt-plate { position: relative; margin: 0; aspect-ratio: 3 / 2; align-self: center; box-shadow: 0 0 0 1px rgba(176, 138, 78, .6), 0 0 0 5px #0b0706, 0 0 0 6px rgba(176, 138, 78, .3); overflow: hidden; background: #050304; }
+.gt-plate img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gt-keys { position: absolute; left: 12px; bottom: 12px; display: flex; gap: 6px; }
+.gt-keys[hidden] { display: none; }
+.gt-keys kbd { min-width: 34px; padding: 6px 10px; text-align: center; font: 700 15px var(--f-head); color: #1a120d; background: linear-gradient(#ecdcb4, #c8aa74); border-radius: 4px; box-shadow: 0 3px 0 #6b5128, 0 6px 10px rgba(0, 0, 0, .6); }
+.gt-copy { align-self: center; padding: 14px 0; }
+.gt-kicker { font: 600 12px var(--f-ui); letter-spacing: .22em; color: var(--brass, #b08a4e); }
+.gt-copy h2 { margin: 8px 0 14px; font: 400 clamp(30px, 3.4vw, 46px)/1.05 var(--f-display); color: var(--ink); text-shadow: 0 3px 0 #000; }
+.gt-body { margin: 0; font: 400 clamp(16px, 1.35vw, 19px)/1.5 var(--f-ui); color: var(--ink-2); }
+.gt-first { margin: 18px 0 0; padding-left: 12px; border-left: 2px solid var(--proof, #d8392c); font: italic 14px var(--f-ui); color: var(--ink-2); }
+.gt-foot { grid-column: 1 / -1; display: flex; align-items: center; gap: 12px; margin-top: 20px; padding-top: 14px; border-top: 1px solid rgba(176, 138, 78, .3); }
+.gt-dots { display: flex; gap: 8px; margin: 0; padding: 0; list-style: none; flex: 1; }
+.gt-dots li { width: 11px; height: 11px; border-radius: 50%; border: 1px solid rgba(176, 138, 78, .6); }
+.gt-dots li.is-done { background: rgba(176, 138, 78, .55); }
+.gt-dots li.is-on { background: var(--proof, #d8392c); border-color: var(--proof, #d8392c); box-shadow: 0 0 10px rgba(216, 57, 44, .7); }
+.gt-count { font: 12px var(--f-ui); color: var(--ink-2); letter-spacing: .1em; }
+@media (max-width: 760px) { .gt-folio { grid-template-columns: 1fr; padding: 18px; } .gt-plate { margin-top: 26px; } .gt-dots { display: none; } .gt-foot { justify-content: flex-end; } }

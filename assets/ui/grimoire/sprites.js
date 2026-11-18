@@ -106,9 +106,17 @@
    * combat code (idle/run/attack/ranged with a combat-synced frame index);
    * `player` lets dash and hurt override them.
    */
+  const lastHeroFrame = new Map();
   function heroFrame(key, action, frame = 0, player = null) {
     const hero = HERO_KEYS[key];
     if (!hero || !atlas) return null;
+    const result = heroFrameNow(key, hero, action, frame, player);
+    // While a strip is still loading, keep showing the last painted frame
+    // instead of letting the caller drop to the old (pre-redesign) sprites.
+    if (result) lastHeroFrame.set(hero, result);
+    return result || lastHeroFrame.get(hero) || null;
+  }
+  function heroFrameNow(key, hero, action, frame, player) {
     const now = performance.now();
     let kind = action === "ranged" || action === "attack" || action === "run" ? action : "idle";
     if (player?.is_dashing) kind = "dash";
@@ -244,8 +252,9 @@
     if (!has(`${base}_${kind}`)) kind = has(`${base}_move`) ? "move" : "idle";
     if (kind !== clock.action) { clock.action = kind; clock.since = time; }
     const id = `${base}_${kind}`;
-    if (kind === "attack" || kind === "special" || kind === "phase" || kind === "hurt") return onceFrame(id, clock.since, time);
-    return loopFrame(id, time, phase);
+    const out = (kind === "attack" || kind === "special" || kind === "phase" || kind === "hurt") ? onceFrame(id, clock.since, time) : loopFrame(id, time, phase);
+    if (out) clock.last = out;
+    return out || clock.last || null; // never fall back to the old sprite mid-load
   }
 
   // ----------------------------------------------------- boss death bodies
@@ -418,13 +427,44 @@
     if (vignettes()) lowLayer.classList.toggle("on", on);
   }
 
+  // True when the painted set covers this hero / enemy, so callers can skip the
+  // pre-redesign sprite instead of flashing it while a strip decodes.
+  function expectsHero(key) { const hero = HERO_KEYS[key]; return !!(hero && has(`hero_${hero}_idle`)); }
+  function expectsEnemy(enemy) { return !!(enemy && atlas && baseOf(enemy)); }
+
+  // ------------------------------------------------------------ preloading
+  // Strips are decoded on first use, which let the old sprites show for a few
+  // frames. warm() decodes them ahead of time, a few per idle slice.
+  const warmed = new Set();
+  function warm(match) {
+    if (!atlas) { ready.then(() => warm(match)); return; }
+    const queue = Object.keys(atlas).filter(id => atlas[id]?.frames && match.test(id) && !warmed.has(id));
+    queue.forEach(id => warmed.add(id));
+    const pump = () => {
+      queue.splice(0, 4).forEach(id => strip(id));
+      if (queue.length) (window.requestIdleCallback || (cb => setTimeout(cb, 40)))(pump);
+    };
+    pump();
+  }
+  /** Everything the arena draws every wave, plus this hero's own sheets. */
+  function warmCombat(heroKey) {
+    const hero = HERO_KEYS[heroKey];
+    if (hero) warm(new RegExp(`^hero_${hero}_(idle|run|attack|ranged|dash|hurt)$`));
+    warm(/^(enemy_|pickup_|fx_|gadget_|enemy_projectile_|affix_)/);
+    warm(/^weapon_.*_(projectile|impact)$/);
+  }
+  function warmBoss(wave) {
+    const key = bossKeyForWave(wave);
+    if (key) warm(new RegExp(`^boss_${key}_(idle|move|attack|special|phase|death)$`));
+  }
+
   // ---------------------------------------------------- legacy (arena-v3)
   let legacyEnemyFrame = () => null;
   function setLegacyEnemyFrame(fn) { legacyEnemyFrame = fn; }
 
   window.GrimoireSprites = Object.freeze({
     BOSS_SCALE, ready, has, url, strip, image, loopFrame, onceFrame, onceDuration,
-    heroFrame, heroImage, enemyFrame, recordDeath, drawBodies, pickupFrame, setLegacyEnemyFrame,
+    warm, warmCombat, warmBoss, expectsHero, expectsEnemy, heroFrame, heroImage, enemyFrame, recordDeath, drawBodies, pickupFrame, setLegacyEnemyFrame,
     fx, drawEffects, hurtFlash, syncLowHealth, heldVisual, bossKeyForWave, bossArt, heroArt, npcFace, storyPanel, projectileFrame, weaponImpact, weaponId, enemyShotFrame, src, weaponIcon, iconUrl
   });
 })();

@@ -83,7 +83,7 @@ def target_long_edge(entry: dict) -> int:
 # therefore cleaned and re-seated so every action of one character shares a
 # scale, a ground line and a horizontal anchor.
 # ---------------------------------------------------------------------------
-CHARACTER_PREFIXES = ("hero_", "enemy_", "boss_")
+CHARACTER_PREFIXES = ("hero_", "enemy_", "boss_", "npc_")
 CHARACTER_SKIP_ACTIONS = ("face_", "portrait", "medallion", "card", "title", "full", "defeat")
 BASELINE = 0.93  # ground line as a fraction of cell height
 FREE_ACTIONS = ("death", "dash")  # keep their authored travel/fall

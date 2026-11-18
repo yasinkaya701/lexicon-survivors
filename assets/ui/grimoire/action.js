@@ -169,11 +169,12 @@
   container.appendChild(wipe);
   function inkWipe(x, y) {
     if (reduced()) return;
-    wipe.style.transformOrigin = x != null ? `${x}px ${y}px` : '50% 50%';
+    wipe.style.setProperty('--wx', x != null ? `${x}px` : '50%');
+    wipe.style.setProperty('--wy', y != null ? `${y}px` : '50%');
     replay(wipe, 'is-on');
   }
   document.addEventListener('click', (event) => {
-    const target = event.target.closest('[data-title-step], #start-game-btn, #shop-next-wave-btn, #quiz-continue-btn, #restart-game-btn');
+    const target = event.target.closest('[data-title-step], #start-game-btn, #shop-next-wave-btn, #restart-game-btn');
     if (!target) return;
     const r = container.getBoundingClientRect();
     inkWipe(event.clientX - r.left, event.clientY - r.top);

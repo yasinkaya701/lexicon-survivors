@@ -27,6 +27,8 @@
     if (!button || button.disabled) return;
     const card = button.closest(".shop-card");
     if (card && !reduced()) { const ghost = card.cloneNode(true); const r = card.getBoundingClientRect();
+      ghost.removeAttribute("id"); ghost.querySelectorAll("[id]").forEach(node => node.removeAttribute("id")); ghost.querySelectorAll("button").forEach(node => { node.tabIndex = -1; node.disabled = true; });
+      ghost.setAttribute("aria-hidden", "true"); ghost.inert = true;
       Object.assign(ghost.style, { position: "fixed", left: `${r.left}px`, top: `${r.top}px`, width: `${r.width}px`, height: `${r.height}px`, margin: 0, zIndex: 600 });
       ghost.classList.add("is-bought"); document.body.append(ghost); setTimeout(() => ghost.remove(), 750); }
   }, true);

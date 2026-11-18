@@ -704,11 +704,15 @@
         const heading = document.createElement('h3'); heading.textContent = item.title;
         const art = document.createElement('div'); art.innerHTML = item.visual;
         const plateUrl = item.tut && window.GrimoireSprites?.src(item.tut);
+        // The painted plate replaces the pre-redesign sprites; only the key caps stay.
+        if (plateUrl) art.querySelectorAll('img, .guide-path, strong, span[aria-hidden]').forEach(node => node.remove());
         if (plateUrl) { const plate = document.createElement('img'); plate.className = 'guide-plate'; plate.src = plateUrl; plate.alt = ''; plate.loading = 'lazy'; art.prepend(plate); }
         const copy = document.createElement('p'); copy.textContent = item.copy;
         li.append(heading, art, copy); steps.append(li);
       }
-      bookContent.replaceChildren(steps);
+      const replay = document.createElement('button'); replay.type = 'button'; replay.className = 'btn'; replay.textContent = 'Eğitimi baştan oynat';
+      replay.addEventListener('click', () => window.GrimoireTutorial?.open());
+      bookContent.replaceChildren(replay, steps);
     }
   }
   function renderPause() {
