@@ -19,7 +19,8 @@
   const structures = {
     ink_well:{file:'ink-well',crop:[140,91,228,294],height:136},
     resonance_bell:{file:'resonance-bell',crop:[152,118,215,230],height:119},
-    astral_astrolabe:{file:'astral-astrolabe',crop:[144,118,225,239],height:124}
+    astral_astrolabe:{file:'astral-astrolabe',crop:[144,118,225,239],height:124},
+    brazier:{painted:true,height:120},illuminated_lectern:{painted:true,height:126},memory_clue:{painted:true,height:96}
   };
   const biomeIndex = wave => Math.min(3, Math.max(0, Math.floor((wave - 1) / 25)));
   function room(wave) {
@@ -52,7 +53,8 @@
     // Floor: tiles over the whole arena (the border hides the outer ring).
     const nx=Math.ceil(width/TILE/2)+1, ny=Math.ceil(height/TILE/2)+1;
     for(let ty=-ny;ty<ny;ty++)for(let tx=-nx;tx<nx;tx++){
-      context.drawImage(floors[hash(tx,ty)%3],tx*TILE,ty*TILE,TILE+1,TILE+1);
+      // One seamless variant: the b/c variants carry a different tone and show as a grid.
+      context.drawImage(floors[0],tx*TILE,ty*TILE,TILE+1,TILE+1);
     }
     const decal=G.image(`arena_${biome}_floor_decal`);
     if(decal)for(const [x,y,a] of DECALS){context.globalAlpha=a;context.drawImage(decal,x-110,y-110,220,220)}
@@ -101,6 +103,7 @@
   }
   function structure(id) {
     const data=structures[id];if(!data)return null;
+    if(data.painted)return null;
     if(!structureArt.has(id)){const image=new Image();image.decoding='async';image.src=`assets/ui/errata/structures/${data.file}.webp`;structureArt.set(id,image)}
     return structureArt.get(id);
   }
@@ -124,5 +127,66 @@
   // playable frame never has to wait for its floor art.
   // Prefer the painted room; the legacy illustration only loads as a fallback.
   setTimeout(()=>{const G=window.GrimoireSprites;if(G)['frame','floor_a','floor_b','floor_c','floor_decal'].forEach(k=>G.image(`arena_reading_hall_${k}`));else room(1)},0);
-  window.ErrataArena = Object.freeze({flags,room,drawRoom,drawShadow,biomeIndex,structure,drawStructure});
+  // ---- Set pieces: each wing's painted furniture along the walls, the
+  // corner fires, and a ceiling layer (hanging cages, light shafts) drawn
+  // above the fight. Decoration only: nothing here collides.
+  // [prop, x, y, size, flip]; the playable floor spans ±1245 × ±870.
+  const SET = [
+    ['bookshelf',-1060,-735,250,0],['bookshelf',-770,-745,230,1],['bookshelf',780,-745,230,0],['bookshelf',1070,-735,250,1],
+    ['pillar',-1165,-250,230,0],['pillar',1165,-250,230,1],['pillar',-1165,330,230,0],['pillar',1165,330,230,1],
+    ['reading_desk',-720,600,200,0],['statue',760,610,230,1],['candelabra',-560,620,150,0],['candelabra',590,630,150,1],
+    ['rubble',-300,790,170,0],['rubble',360,-790,150,1],['rubble',1040,120,140,0],['statue',-1040,40,190,0]
+  ];
+  const CAGES = [[-640,-430],[700,-360],[-180,520],[980,560]];
+  function drawImg(context,img,x,y,size,flip){
+    const h=size, w=size*img.naturalWidth/img.naturalHeight;
+    context.save();context.translate(x,y);if(flip)context.scale(-1,1);
+    context.drawImage(img,-w/2,-h*.92,w,h);context.restore();
+  }
+  function drawSetPieces(context,wave,inView){
+    const G=window.GrimoireSprites;if(!G)return false;
+    const biome=BIOMES[biomeIndex(wave)];
+    context.save();context.imageSmoothingEnabled=true;
+    for(const [prop,x,y,size,flip] of SET){
+      if(inView&&!inView(x,y-size/2,size))continue;
+      const img=G.image(`arena_${biome}_${prop}`);if(!img)continue;
+      // soft contact shadow so the furniture sits on the floor
+      context.fillStyle='rgba(6,4,8,.45)';context.beginPath();context.ellipse(x,y-4,size*.34,size*.08,0,0,Math.PI*2);context.fill();
+      drawImg(context,img,x,y,size,flip);
+    }
+    context.restore();return true;
+  }
+  // Corner fires: an animated brazier or lectern instead of the old flat icon.
+  function drawCorner(context,x,y,index){
+    const frame=window.GrimoireSprites?.loopFrame(index%2?'interact_illuminated_lectern':'interact_brazier',performance.now(),index*.7);
+    if(!frame)return false;
+    context.save();context.imageSmoothingEnabled=true;context.drawImage(frame,x-62,y-104,124,124);context.restore();return true;
+  }
+  function drawCeiling(context,wave,inView){
+    const G=window.GrimoireSprites;if(!G)return;
+    const biome=BIOMES[biomeIndex(wave)];
+    const t=performance.now()/1000;
+    context.save();context.imageSmoothingEnabled=true;
+    const light=G.image(`arena_${biome}_light`);
+    if(light&&!flags.lowEffects){
+      context.globalCompositeOperation='screen';
+      context.globalAlpha=flags.reducedMotion?.22:.18+Math.sin(t*.4)*.05;
+      context.drawImage(light,-1400,-1050,2800,2100);
+      context.globalCompositeOperation='source-over';
+    }
+    const cage=G.image(`arena_${biome}_hanging_cage`);
+    if(cage)CAGES.forEach(([x,y],i)=>{
+      if(inView&&!inView(x,y,260))return;
+      const sway=flags.reducedMotion?0:Math.sin(t*.9+i*1.7)*.07;
+      context.save();context.globalAlpha=.88;context.translate(x,y-260);context.rotate(sway);
+      context.drawImage(cage,-80,0,160,160*cage.naturalHeight/cage.naturalWidth);context.restore();
+      // the cage's shadow on the floor drifts with it
+      context.save();context.globalAlpha=.22;context.fillStyle='#000';context.beginPath();
+      context.ellipse(x+Math.sin(sway)*120,y+40,56,16,0,0,Math.PI*2);context.fill();context.restore();
+    });
+    context.restore();
+  }
+  // Warm these with the room so the first wave is furnished immediately.
+  setTimeout(()=>{const G=window.GrimoireSprites;if(!G)return;['reading_hall'].forEach(b=>['bookshelf','pillar','reading_desk','statue','rubble','candelabra','hanging_cage','light'].forEach(p=>G.image(`arena_${b}_${p}`)));['interact_brazier','interact_illuminated_lectern'].forEach(id=>G.strip(id))},400);
+  window.ErrataArena = Object.freeze({flags,room,drawRoom,drawShadow,biomeIndex,structure,drawStructure,drawSetPieces,drawCorner,drawCeiling});
 })();

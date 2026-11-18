@@ -17,7 +17,10 @@ const PLAYER_CENTER_MAX_Y = ARENA_LAYOUT.innerShelfY - ARENA_LAYOUT.playerVisual
 const ARENA_INTERACTABLE_DEFS = Object.freeze([
   { id: "ink_well", sprite: "upgrade_v1/interactables/ink_well.svg", name: "Mürekkep Kuyusu", hint: "Canını tazele", x: -420, y: -230 },
   { id: "resonance_bell", sprite: "upgrade_v1/interactables/archive_bell.svg", name: "Arşiv Çanı", hint: "Yakındakileri savur", x: 420, y: -230 },
-  { id: "astral_astrolabe", sprite: "upgrade_v1/interactables/astral_astrolabe.svg", name: "Yıldız Astrolabı", hint: "Gadget + kalkan", x: 0, y: 420 }
+  { id: "astral_astrolabe", sprite: "upgrade_v1/interactables/astral_astrolabe.svg", name: "Yıldız Astrolabı", hint: "Gadget + kalkan", x: 0, y: 420 },
+  { id: "brazier", sprite: "", name: "Kor Mangalı", hint: "Çevreyi tutuştur", x: -820, y: 260 },
+  { id: "illuminated_lectern", sprite: "", name: "Işıklı Kürsü", hint: "10 sn atış hızı ve kritik", x: 820, y: 260 },
+  { id: "memory_clue", sprite: "", name: "Hafıza İzi", hint: "Mürekkep ve deneyim", x: -300, y: -560, roams: true }
 ]);
 const ARENA_INTERACT_RADIUS = 106;
 
@@ -1747,7 +1750,7 @@ let GADGETS_CATALOG = {
     mechanic: "pull_all_pickups", values: { duration: 2.6, radius: 1200, pull_speed: 520 }
   },
   index_storm: {
-    id: "index_storm", name: "Fiş Fırtınası", desc: "Dönen fişler yakındaki farklı hedeflere sırayla saplanır.",
+    id: "index_storm", name: "Sayfa Fırtınası", desc: "Dönen sayfalar yakındaki farklı hedeflere sırayla saplanır.",
     cooldown: 13, cost: 24, icon: "assets/sprites/gadgets/index_storm.png", mechanic: "orbit_cards",
     values: { duration: 2.8, cards: 3, damage: 26, target_cap: 3 }
   },
@@ -1874,9 +1877,10 @@ function addArmor(value) {
 }
 function getShopPrice(base, category = "equipment", wave = state.current_wave) {
   const rate = Number(GAME_ECONOMY?.shop_pricing?.[`${category}_wave_rate`] ?? 0.1);
-  return Math.max(0, Math.ceil(Number(base) * (1 + rate * Math.max(0, wave - 1))));
+  return Math.max(0, Math.ceil(Number(base) * (1 + rate * Math.max(0, wave - 1)) * (window.GrimoireMeta?.priceFactor?.() ?? 1)));
 }
 function getRerollCost() {
+  if ((state.free_rerolls || 0) > 0) return 0;
   const rates = GAME_ECONOMY?.shop_pricing || {};
   return Math.ceil(5 * (1 + Number(rates.reroll_wave_rate ?? 0.15) * Math.max(0, state.current_wave - 1))
     * (1 + Number(rates.repeat_reroll_rate ?? 0.65) * (state.shop_reroll_count || 0)));
@@ -2108,6 +2112,7 @@ function applySkillEffects(effects = {}) {
 }
 function grantCharacterXp(amount, reason = "") {
   const profile = getCharacterProgress();
+  amount *= window.GrimoireMeta?.xpFactor?.() ?? 1;
   if (profile.level >= 18 || amount <= 0) return;
   const previousLevel = profile.level;
   profile.xp += Math.round(amount);
@@ -2595,7 +2600,7 @@ function updateAutoTurUI() {
   ["auto-tur-btn", "title-auto-tur-btn", "shop-auto-tur-btn"].forEach(id => { const control=document.getElementById(id); if(control && control.getAttribute("aria-pressed")!==String(isAuto)) control.setAttribute("aria-pressed",String(isAuto)); });
   const btn = document.getElementById("auto-tur-btn");
   if (btn) {
-    btn.textContent = isAuto ? "OTO TUR: AÇIK" : "OTO TUR: KAPALI";
+    btn.textContent = isAuto ? "OTO DALGA: AÇIK" : "OTO DALGA: KAPALI";
     btn.style.color = isAuto ? "#587767" : "#7c7668";
     btn.style.borderColor = isAuto ? "#718a79" : "#827965";
   }
@@ -2606,7 +2611,7 @@ function updateAutoTurUI() {
   }
   const shopBtn = document.getElementById("shop-auto-tur-btn");
   if (shopBtn) {
-    shopBtn.textContent = isAuto ? "Oto Tur: AÇIK" : "Oto Tur: KAPALI";
+    shopBtn.textContent = isAuto ? "Oto Dalga: AÇIK" : "Oto Dalga: KAPALI";
     shopBtn.style.color = isAuto ? "#587767" : "#7c7668";
   }
 }
@@ -2629,7 +2634,7 @@ function startShopAutoWaveCountdown(seconds) {
   shopAutoWaveTimer = setInterval(() => {
     const leftMs = shopAutoWaveEndTime - Date.now();
     const leftSec = Math.max(0, Math.ceil(leftMs / 1000));
-    label.textContent = `Otomatik sonraki tur: ${leftSec}s`;
+    label.textContent = `Otomatik sonraki dalga: ${leftSec}s`;
     if (nextWaveText) {
       nextWaveText.textContent = `SONRAKİ DALGA · ${leftSec}s`;
     }
@@ -2660,6 +2665,7 @@ function advanceNextWave() {
   const shopScreen = document.getElementById("shop-screen");
   if (state.is_wave_active || !shopScreen || shopScreen.style.display === "none" || state.current_wave >= state.max_waves) return;
   clearShopAutoWaveTimer();
+  window.GrimoireMeta?.commitChoice();
   shopScreen.style.display = "none";
   state.current_wave++;
   startWave();
@@ -2679,18 +2685,18 @@ function updateAutoRunUI() {
   ["auto-run-btn", "title-auto-run-btn", "gameover-auto-run-toggle"].forEach(id => { const control=document.getElementById(id); if(control && control.getAttribute("aria-pressed")!==String(isAuto)) control.setAttribute("aria-pressed",String(isAuto)); });
   const btn = document.getElementById("auto-run-btn");
   if (btn) {
-    btn.textContent = isAuto ? "OTO RUN: AÇIK" : "OTO RUN: KAPALI";
+    btn.textContent = isAuto ? "OTO SEFER: AÇIK" : "OTO SEFER: KAPALI";
     btn.style.color = isAuto ? "#587767" : "#7c7668";
     btn.style.borderColor = isAuto ? "#718a79" : "#827965";
   }
   const titleBtn = document.getElementById("title-auto-run-btn");
   if (titleBtn) {
-    titleBtn.textContent = isAuto ? "Otomatik yeni oyun: açık" : "Otomatik yeni oyun: kapalı";
+    titleBtn.textContent = isAuto ? "Otomatik yeni sefer: açık" : "Otomatik yeni sefer: kapalı";
     titleBtn.style.color = isAuto ? "#587767" : "#7c7668";
   }
   const goBtn = document.getElementById("gameover-auto-run-toggle");
   if (goBtn) {
-    goBtn.textContent = isAuto ? "Oto Run: AÇIK" : "Oto Run: KAPALI";
+    goBtn.textContent = isAuto ? "Oto sefer: AÇIK" : "Oto sefer: KAPALI";
     goBtn.style.color = isAuto ? "#587767" : "#7c7668";
   }
 }
@@ -2712,7 +2718,7 @@ function startAutoRunCountdown(seconds) {
   autoRunTimer = setInterval(() => {
     const leftMs = autoRunEndTime - Date.now();
     const leftSec = Math.max(0, Math.ceil(leftMs / 1000));
-    text.textContent = `Otomatik yeni run: ${leftSec}s`;
+    text.textContent = `Otomatik yeni sefer: ${leftSec}s`;
     const pct = Math.max(0, Math.min(100, (leftMs / (seconds * 1000)) * 100));
     bar.style.width = pct + "%";
 
@@ -2875,14 +2881,14 @@ function updateMobileQuickMenuUI() {
 
   const autoTurBtn = document.getElementById("mobile-toggle-autowave-btn");
   if (autoTurBtn) {
-    autoTurBtn.textContent = state.auto_new_tur ? "Otomatik Tur: AÇIK" : "Otomatik Tur: KAPALI";
+    autoTurBtn.textContent = state.auto_new_tur ? "Otomatik Dalga: AÇIK" : "Otomatik Dalga: KAPALI";
     if (state.auto_new_tur) autoTurBtn.classList.add("btn-emerald");
     else autoTurBtn.classList.remove("btn-emerald");
   }
 
   const autoRunBtn = document.getElementById("mobile-toggle-autorun-btn");
   if (autoRunBtn) {
-    autoRunBtn.textContent = state.auto_new_run ? "Otomatik Run: AÇIK" : "Otomatik Run: KAPALI";
+    autoRunBtn.textContent = state.auto_new_run ? "Otomatik sefer: AÇIK" : "Otomatik sefer: KAPALI";
     if (state.auto_new_run) autoRunBtn.classList.add("btn-emerald");
     else autoRunBtn.classList.remove("btn-emerald");
   }
@@ -3145,7 +3151,7 @@ function renderMistakesList() {
     return;
   }
 
-  summaryEl.textContent = `Toplam ${state.mistake_words.length} kelime pekiştirilmeyi bekliyor (Sonraki turlarda önünüze çıkacaktır)`;
+  summaryEl.textContent = `Toplam ${state.mistake_words.length} kelime pekiştirilmeyi bekliyor (Sonraki dalgalarda önünüze çıkacaktır)`;
 
   state.mistake_words.forEach(m => {
     const card = document.createElement("div");
@@ -3496,7 +3502,7 @@ function initTitleScreen() {
     card.setAttribute("aria-label", `${c.name}, ${c.title}. Can ${c.hp}, hasar ${c.damage_mult} kat, hız ${c.speed}. ${c.passive}. Karakteri seç.`);
     card.tabIndex = 0;
     card.innerHTML = `
-      <span class="dossier-art"><img src="${getCharacterPortrait(cid)}" alt="" decoding="async"></span>
+      <span class="dossier-art"><img src="${window.GrimoireSprites?.heroArt(cid, cid === state.selected_char ? "face_smile" : "face_neutral") || getCharacterPortrait(cid)}" alt="" decoding="async"></span>
       <div class="dossier-copy">
         <h3>${c.name}</h3>
         <div class="subtitle">${c.title}</div>
@@ -3630,6 +3636,7 @@ function resetStats() {
   state.armor = c.armor;
   state.crit_chance = c.crit_chance;
   state.mistake_echo_damage_mult = 1.0;
+  state.lectern_timer = 0;
   applyUnlockedCharacterSkills();
   state.pickup_radius = 150;
   state.projectile_count = 1;
@@ -3700,6 +3707,7 @@ function resetStats() {
 
   document.getElementById("boss-hp-container").style.display = "none";
 
+  window.GrimoireMeta?.applyRunStart();
   syncWeapons();
   updateHUD();
 }
@@ -3741,6 +3749,7 @@ function startGame() {
   resetStats();
   state.learning_answers = [];
   startWave();
+  window.GrimoireMeta?.onRunBegin();
 }
 
 function recordLearningAnswer(isCorrect) {
@@ -3765,7 +3774,15 @@ function startWave() {
   state.is_wave_active = true;
   wakeGameLoop();
   window.GrimoireSprites?.fx("fx_wave_sigil", state.player.x, state.player.y, { size: 320, under: true });
-  state.arena_interactables.forEach(object => { object.used = false; });
+  state.arena_interactables.forEach(object => {
+    object.used = false;
+    // The memory clue turns up somewhere new each wave, away from the centre.
+    if (object.roams) {
+      const angle = Math.random() * Math.PI * 2, radius = 420 + Math.random() * 300;
+      object.x = Math.round(Math.max(-1050, Math.min(1050, Math.cos(angle) * radius * 1.3)));
+      object.y = Math.round(Math.max(-700, Math.min(700, Math.sin(angle) * radius)));
+    }
+  });
   state.mnemonic_used_this_wave = false;
   state.milestone_boss_delay = state.current_wave % 5 === 0 ? 1.8 : 0;
   state.boss_mistake_queue = [];
@@ -3779,6 +3796,7 @@ function startWave() {
   bgm.setMode(state.current_wave % 5 === 0 ? "boss" : "battle");
   bgm.setBiomeForWave(state.current_wave);
   sounds.playAsset("wave", 0.58);
+  window.GrimoireMeta?.onWaveStart(state.current_wave);
   updateArenaInteractionPrompt();
 
   // Tactical Alert Announcements on Key Waves
@@ -3808,7 +3826,7 @@ function startWave() {
 }
 
 function getNearbyArenaInteractable() {
-  if (!state.is_wave_active || state.is_inventory_open) return null;
+  if (!state.is_wave_active || state.is_inventory_open || window.GrimoireMeta?.arenaSilenced?.()) return null;
   const p = state.player;
   let nearest = null, nearestSq = ARENA_INTERACT_RADIUS * ARENA_INTERACT_RADIUS;
   for (const object of state.arena_interactables) {
@@ -3861,6 +3879,33 @@ function interactWithArenaObject() {
     state.shield_timer = Math.max(state.shield_timer, 9);
     addFloatingText(p.x, p.y - 48, "GADGET + KALKAN", "#c5adff", 15);
     if (!sounds.playAsset("resonance_bell", 0.46)) sounds.playTone(520, "sine", 0.32, 0.22);
+  } else if (object.id === "brazier") {
+    const targets = state.enemies.filter(enemy => !enemy.dead && Math.hypot(enemy.x - p.x, enemy.y - p.y) <= 320);
+    if (!targets.length) return false;
+    const damage = (60 + state.current_wave * 7) * state.damage_mult;
+    targets.forEach(enemy => {
+      const dx = enemy.x - p.x, dy = enemy.y - p.y, distance = Math.hypot(dx, dy) || 1;
+      enemy.hp -= enemy.is_boss ? damage * 0.5 : damage;
+      applyHitFeedback(enemy, { x: dx / distance, y: dy / distance }, "fire", false, true, enemy.is_boss ? 60 : 200);
+    });
+    state.particles.push({ x: p.x, y: p.y, radius: 24, max_radius: 320, alpha: 0.9, color: "rgba(255, 140, 50, " });
+    window.GrimoireSprites?.fx("fx_crit_hit", p.x, p.y, { size: 300 });
+    triggerScreenShake(0.16, 3.5);
+    addFloatingText(p.x, p.y - 48, `KOR · ${targets.length} DÜŞMAN`, "#ffb26b", 15);
+    sounds.playTone(140, "sawtooth", 0.35, 0.2);
+  } else if (object.id === "illuminated_lectern") {
+    if (!state.lectern_timer) { state.attack_speed_mult *= 1.3; state.crit_chance = Math.min(1, state.crit_chance + 0.15); }
+    state.lectern_timer = 10;
+    window.GrimoireSprites?.fx("fx_level_up", p.x, p.y, { size: 200 });
+    addFloatingText(p.x, p.y - 48, "OKUMA · +%30 ATIŞ · +%15 KRİTİK", "#f3d390", 14);
+    sounds.playTone(660, "triangle", 0.3, 0.2);
+  } else if (object.id === "memory_clue") {
+    const ink = 10 + Math.round(state.current_wave * 0.8);
+    state.ink_count += ink;
+    grantCharacterXp(20 + state.current_wave, "memory_clue");
+    window.GrimoireSprites?.fx("fx_pickup_ink", p.x, p.y, { size: 140 });
+    addFloatingText(p.x, p.y - 48, `HAFIZA İZİ · +${ink} MÜREKKEP`, "#9fd8e8", 15);
+    sounds.playTone(880, "sine", 0.25, 0.18);
   }
   object.used = true;
   updateArenaInteractionPrompt();
@@ -3883,6 +3928,7 @@ function endWave() {
   syncMobileControlsVisibility();
   bgm.setMode("peaceful");
 
+  window.GrimoireMeta?.onWaveEnd(state.current_wave);
   if (state.current_wave % 5 === 0) {
     showStoryIntermission(state.current_wave);
   } else if (state.current_wave >= state.max_waves) {
@@ -3896,6 +3942,16 @@ let storyWavePending = 0;
 let storyEpisodeIndex = -1;
 let storyPanelIndex = 0;
 const storySpeakerNames = { caption: "SAHNE", narrator: "SAHNE", hero: "KÂŞİF", neris: "NERİS", whisper: "BOŞ SAYFA", mother_echo: "LALE'NİN YANKISI", lio_echo: "LIO'NUN YANKISI", shadow_double: "GÖLGE", blank_page: "BOŞ SAYFA" };
+// A rough read of a line's tone, used to pick the speaker's painted face.
+function storyMood(text = "", speakerId = "") {
+  const t = String(text).toLocaleLowerCase("tr-TR");
+  if (/[!]{1}.*$/.test(t) && /(hayır|dur|nasıl|ne\?|imkânsız|olamaz)/.test(t)) return "shock";
+  if (/(öfke|yeter|sus|lanet|yak|yok edeceğim|silmeyeceksin|bırak)/.test(t)) return "angry";
+  if (/(özledim|kaybettim|yalnız|üzgün|ağla|keşke|sessizce|unuttum|hatırlayamıyorum|eksik)/.test(t)) return "sad";
+  if (/(teşekkür|güzel|sonunda|başardık|gülümse|umut|iyi ki|buldum)/.test(t)) return "smile";
+  if (t.includes("!")) return speakerId.startsWith("boss_") ? "angry" : "shock";
+  return "neutral";
+}
 function renderStoryPanel() {
   if (!STORY_ARC_DATA || storyEpisodeIndex < 0) return;
   stopGameSpeech();
@@ -3956,15 +4012,19 @@ function renderStoryPanel() {
   speaker.textContent = speakerName;
   // Story backdrops already depict the selected hero; compositing a second cutout creates a false, doubled character.
   // Painted shared panels do not always show the hero, so the hero speaks with their face.
-  const paintedHeroFace = paintedPanel && heroSpeakerIds.has(speakerId) ? window.GrimoireSprites?.heroArt(state.selected_char, "face_neutral") : null;
-  const portraitAlreadyInScene = !paintedHeroFace && (heroSpeakerIds.has(speakerId) || speakerId === "shadow_double");
-  portrait.hidden = !speakerPath || portraitAlreadyInScene;
-  if (speakerPath) {
+  // Speakers wear the face that matches the line (painted mood sheets for heroes and NPCs).
+  const mood = storyMood(dialogueText, speakerId);
+  const paintedHeroFace = heroSpeakerIds.has(speakerId) ? (window.GrimoireSprites?.heroArt(state.selected_char, `face_${mood}`) || window.GrimoireSprites?.heroArt(state.selected_char, "face_neutral")) : null;
+  const npcSpeaker = { neris: "neris", mother_echo: "lale", lio_echo: "lio", shadow_double: "shadow_double", whisper: "blank_page", blank_page: "blank_page" }[speakerId];
+  const npcFace = npcSpeaker ? window.GrimoireSprites?.npcFace(npcSpeaker, mood) : null;
+  const portraitAlreadyInScene = !paintedHeroFace && !npcFace && heroSpeakerIds.has(speakerId);
+  portrait.dataset.mood = mood;
+  portrait.hidden = !(speakerPath || npcFace) || portraitAlreadyInScene;
+  if (speakerPath || npcFace) {
     portrait.dataset.kind = isBossVoice ? "boss" : speakerId;
     const paintedSpeaker = paintedHeroFace ? paintedHeroFace
       : isBossVoice ? window.GrimoireSprites?.bossArt(episode.wave, "portrait")
-      : speakerId === "neris" ? window.GrimoireSprites?.npcFace("neris")
-        : speakerId === "whisper" ? window.GrimoireSprites?.src("boss_wordless_mouth_portrait") : null;
+      : npcFace || null;
     portrait.src = paintedSpeaker || resolvePortraitPath(speakerPath);
     portrait.alt = speakerName;
   }
@@ -5244,6 +5304,7 @@ function getWaveEnemyCap(wave = state.current_wave) {
 }
 
 function addAliveEnemy(enemy) {
+  window.GrimoireMeta?.onEnemySpawn(enemy);
   if (!enemy || enemy.dead) return false;
   // Keep radial spawns and boss formations inside the playable bounds.
   enemy.x = Math.max(-1150, Math.min(1150, enemy.x));
@@ -6307,6 +6368,7 @@ function updateEnemies(dt) {
       e.dead = true;
       window.GrimoireSprites?.recordDeath(e);
       state.kill_count++;
+      { const extra = window.GrimoireMeta?.onKill(e); if (extra?.length) newEnemies.push(...extra); }
       const isBoss = e.is_boss || e.type === "Red Pen Boss" || e.type === "Lexicon Dragon Boss";
       const enemyXp = e.is_mistake_echo ? 5 + (e.fail_count || 1)
         : isBoss ? 24 + Math.floor(state.current_wave / 10) : 2 + Math.floor(state.current_wave / 40);
@@ -6522,8 +6584,9 @@ function spawnEnemy() {
 
   // Tactical Elite Affixes in higher waves (Wave 15+)
   const newEnemy = spawnedEnemy;
-  if (newEnemy && !newEnemy.is_boss && wave >= 15) {
-    const affixChance = Math.min(0.50, 0.12 + (wave - 15) * 0.008);
+  const metaAffix = window.GrimoireMeta?.affixBoost?.(wave) || null;
+  if (newEnemy && !newEnemy.is_boss && (wave >= 15 || metaAffix)) {
+    const affixChance = Math.min(0.75, (wave >= 15 ? Math.min(0.50, 0.12 + (wave - 15) * 0.008) : 0) * (metaAffix?.mult || 1) + (metaAffix?.add || 0));
     if (Math.random() < affixChance) {
       const affixes = ["shielded", "blinker", "commander", "volatile"];
       newEnemy.affix = affixes[Math.floor(Math.random() * affixes.length)];
@@ -6541,8 +6604,10 @@ function spawnEnemy() {
       } else if (newEnemy.affix === "volatile") {
         newEnemy.label = "PATLAYICI " + newEnemy.label;
       }
+      window.GrimoireMeta?.decorateElite(newEnemy);
     }
   }
+  if (newEnemy) window.GrimoireMeta?.onEliteCheck?.(newEnemy);
 }
 
 // User balance update: stronger bosses, with the existing dodge windows.
@@ -6602,7 +6667,7 @@ const BOSS_SPRITE_FALLBACKS = Object.freeze({
 function spawnMilestoneBoss(wave) {
   const player = state.player;
   const difficulty = DIFFICULTIES[state.difficulty];
-  const [type, sprite, name, color, skill] = MILESTONE_BOSS_ROSTER[Math.min(19, Math.floor(wave / 5) - 1)];
+  const [type, sprite, name, color, skill] = MILESTONE_BOSS_ROSTER[wave > 100 ? (Math.floor(wave / 5) - 1) % 20 : Math.min(19, Math.floor(wave / 5) - 1)];
   const waveScale = getWaveHpMult(wave);
   const hp = (900 + wave * 80) * Math.pow(waveScale, 0.45) * difficulty.enemy_hp_mult * 1.7 * BOSS_HP_MULTIPLIER;
   const angle = Math.random() * Math.PI * 2;
@@ -6699,6 +6764,7 @@ function spawnEnemyProjectile(x, y, dx, dy, dmg, spd) {
 }
 
 function spawnInkDrop(x, y, value) {
+  value = Math.max(1, Math.round(value * (window.GrimoireMeta?.inkFactor?.() ?? 1)));
   state.ink_drops.push({ x, y, value });
 }
 
@@ -6729,8 +6795,10 @@ function takePlayerDamage(amount) {
   triggerHaptic("heavy");
   triggerScreenShake(0.18, 6.0);
   addFloatingText(state.player.x, state.player.y - 30, `-${Math.round(finalDmg)}`, "#ef4444", 16);
+  window.GrimoireMeta?.onPlayerHurt(finalDmg);
   updateHUD();
 
+  if (state.hp <= 0 && window.GrimoireMeta?.tryRevive()) { updateHUD(); return; }
   if (state.hp <= 0) gameOver();
 }
 
@@ -6749,6 +6817,7 @@ function renderRunSummary(summary) {
   const words = document.createElement("p"); words.className = "run-words";
   words.textContent = state.words_learned.length ? state.words_learned.join(" · ") : "Bu seferde henüz kelime mühürlenmedi.";
   summary.append(identity, stats, words);
+  window.GrimoireMeta?.decorateSummary(summary);
 }
 
 function renderCharacterEpilogue(victory) {
@@ -6769,7 +6838,7 @@ function renderCharacterEpilogue(victory) {
   portrait.src = getCharacterPortrait(id);
   portrait.alt = character.name;
   document.getElementById("result-character-name").textContent = character.name;
-  document.getElementById("result-file-status").textContent = victory ? "DOSYA TAMAMLANDI" : "DOSYA AÇIK KALDI";
+  document.getElementById("result-file-status").textContent = victory ? "KİTAP TAMAMLANDI" : "KİTAP AÇIK KALDI";
   document.getElementById("result-story-label").textContent = victory ? "SON SAYFADAN" : "YANITSIZ KALAN İZ";
   document.getElementById("instant-restart-btn").textContent = victory ? "Yeni bir sefere başla" : "Bir kez daha dene";
   const finalBeats = arc?.episodes?.at(-1)?.beats || [];
@@ -6791,7 +6860,7 @@ function gameOver() {
   const wordsList = state.words_learned.length ? state.words_learned.join(", ") : "Henüz kelime mühürlenemedi.";
 
   modal.dataset.result = "defeat";
-  kicker.textContent = "RUN SONUCU  ·  KAYIT KAPANDI";
+  kicker.textContent = "SEFER SONUCU  ·  ARŞİV KAPANDI";
   title.textContent = "KİTAP KAPANDI";
 
   renderRunSummary(summary);
@@ -6820,7 +6889,7 @@ function victoryScreen() {
   const wordsList = state.words_learned.length ? state.words_learned.join(", ") : "Tüm sözlükler kurtarıldı!";
 
   modal.dataset.result = "victory";
-  kicker.textContent = "RUN SONUCU  ·  KAYIT TAMAMLANDI";
+  kicker.textContent = "SEFER SONUCU  ·  ARŞİV TAMAMLANDI";
   title.textContent = "SÖZLÜK KURTARILDI";
 
   renderRunSummary(summary);
@@ -6859,6 +6928,7 @@ function recordArchiveProgress(wave, victory) {
 function finalizeRunResult(victory) {
   if (state.run_result_recorded && state.latest_run_result) return state.latest_run_result;
   const cleared = victory ? 100 : Math.max(0, state.current_wave - 1);
+  window.GrimoireMeta?.onRunEnd(victory);
   recordArchiveProgress(victory ? 100 : state.current_wave, victory);
   state.latest_run_result = {
     submissionId: state.run_submission_id || createSubmissionId(), alias: "",
@@ -6938,7 +7008,7 @@ async function refreshLeaderboard() {
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
     renderLeaderboard(Array.isArray(data.entries) ? data.entries : []);
-    if (status) status.textContent = "Küresel sıralama · en iyi 20 koşu";
+    if (status) status.textContent = "Küresel sıralama · en iyi 20 sefer";
   } catch (_) {
     if (status) status.textContent = "Küresel tabloya ulaşılamadı; bu cihazdaki kayıtlar gösteriliyor.";
   }
@@ -6980,7 +7050,7 @@ leaderboardNode("leaderboard-submit-form")?.addEventListener("submit", async eve
   if (!alias) { if (status) status.textContent = "Görünen adını yaz."; aliasInput?.focus(); return; }
   try { localStorage.setItem("lexicon_leaderboard_alias", alias); } catch (_) {}
   const result = state.latest_run_result;
-  if (!result) { if (status) status.textContent = "Önce bir koşuyu tamamla; sonra skorunu gönderebilirsin."; return; }
+  if (!result) { if (status) status.textContent = "Önce bir seferi tamamla; sonra skorunu gönderebilirsin."; return; }
   const row = { ...result, alias };
   saveLocalLeaderboard(row);
   if (!leaderboardApiUrl) {
@@ -7042,7 +7112,7 @@ function updateShopTopBar() {
   document.getElementById("shop-ink-display").textContent = "MÜREKKEP  " + state.ink_count;
   const synKeys = Object.keys(state.active_synergies);
   if (synKeys.length === 0) {
-    document.getElementById("shop-synergy-text").textContent = "Aktif Sinerji: Yok (Aynı türden 3 kelime tomârı toplayarak antik sinerji kilidini aç!)";
+    document.getElementById("shop-synergy-text").textContent = "Aktif Sinerji: Yok (Aynı türden 3 kelime tomarı toplayarak antik sinerji kilidini aç!)";
   } else {
     document.getElementById("shop-synergy-text").textContent = "Aktif sinerjiler: " + synKeys.map(k => `[${k}]`).join(" ");
   }
@@ -7342,7 +7412,7 @@ document.getElementById("shop-reroll-btn").onclick = () => {
   const cost = getRerollCost();
   if (state.ink_count >= cost) {
     state.ink_count -= cost;
-    state.shop_reroll_count += 1;
+    if (cost === 0 && state.free_rerolls > 0) state.free_rerolls -= 1; else state.shop_reroll_count += 1;
     refreshShopCards();
     renderShopView();
     updateShopTopBar();
@@ -7365,7 +7435,7 @@ function renderShopView() {
     const offers = INK_SHOP_DATA?.offers || [];
     const note = document.createElement("section"); note.className = "choice-card shop-card premium-store-note"; note.style.gridColumn = "1 / -1";
     const noteTitle = document.createElement("h3"); noteTitle.className = "shop-title"; noteTitle.textContent = INK_SHOP_DATA?.title_tr || "Mürekkep Pazarı";
-    const noteCopy = document.createElement("div"); noteCopy.className = "shop-description"; noteCopy.textContent = "Her alışveriş oyun içinde kazandığın mürekkeple yapılır. Bu turda aldığın mühürler yalnızca mevcut koşuda etkilidir.";
+    const noteCopy = document.createElement("div"); noteCopy.className = "shop-description"; noteCopy.textContent = "Her alışveriş oyun içinde kazandığın mürekkeple yapılır. Bu seferde aldığın mühürler yalnızca mevcut seferde geçerlidir.";
     const noteStatus = document.createElement("div"); noteStatus.className = "shop-example"; noteStatus.textContent = `CÜZDAN · ${state.ink_count} MÜREKKEP`;
     note.append(noteTitle, noteCopy, noteStatus); grid.appendChild(note);
     offers.forEach(offer => {
@@ -7382,7 +7452,7 @@ function renderShopView() {
       const price = document.createElement("span"); price.className = "shop-price"; price.innerHTML = `${offer.ink_cost} <img class="ui-icon" src="assets/ui/icons/ink.svg" alt=""> mürekkep`;
       const button = document.createElement("button"); button.className = "btn shop-buy"; button.type = "button";
       button.disabled = bought || state.ink_count < offer.ink_cost;
-      button.textContent = bought ? "BU TUR ALINDI" : state.ink_count < offer.ink_cost ? "MÜREKKEP BİRİKTİR" : "MÜREKKEPLE AL";
+      button.textContent = bought ? "BU SEFERDE ALINDI" : state.ink_count < offer.ink_cost ? "MÜREKKEP BİRİKTİR" : "MÜREKKEPLE AL";
       if (!button.disabled) button.onclick = () => purchaseInkOffer(offer.id);
       row.append(price, button); card.append(meta, head, desc, row); grid.appendChild(card);
     });
@@ -7401,7 +7471,7 @@ function renderShopView() {
           <span>${c.type} · ${c.level}</span>
           ${isRedemption ? '<span class="shop-review-mark">Pekiştirme</span>' : '<span>Kelime kartı</span>'}
         </div>
-        <div class="word-effect-art" aria-hidden="true"><img class="word-emblem" src="assets/ui/errata/shop-word-emblem.webp" alt=""><img class="word-effect-mark" src="assets/ui/icons/${effectArt}.svg" alt=""></div>
+        <div class="word-effect-art" aria-hidden="true">${(() => { const emblem = window.GrimoireSprites?.src(`emblem_${{ max_hp: "health", heal: "health", armor: "armor", move_speed: "speed", speed: "speed", attack_speed: "attack_speed", crit_chance: "crit", pierce: "pierce", damage: "damage", pickup_radius: "ink_range", ink_mult: "luck", projectile_count: "damage" }[c.stat] || "shield"}`); return emblem ? `<img class="word-painted-emblem" src="${emblem}" alt="">` : `<img class="word-emblem" src="assets/ui/errata/shop-word-emblem.webp" alt=""><img class="word-effect-mark" src="assets/ui/icons/${effectArt}.svg" alt="">`; })()}</div>
         <h3 class="shop-title">${c.word}</h3>
         <div class="shop-description">${c.description}</div>
         <div class="shop-example">${quizExampleRevealsTranslation(c) ? "" : `“${c.example || ''}”`}</div>
@@ -7417,6 +7487,7 @@ function renderShopView() {
           if (e.cancelable) e.preventDefault();
         }
         triggerHaptic("light");
+        if (window.GrimoireMeta?.buyCardDirect?.(c, idx)) return;
         openQuiz(c, idx);
       };
       if (buyBtn) {
@@ -7705,6 +7776,7 @@ function openQuiz(card, cardIndex) {
       });
 
       const isCorrect = item.originalIndex === card.correct_index;
+      window.GrimoireMeta?.onQuiz(isCorrect, card);
       resText.dataset.outcome = isCorrect ? "correct" : "incorrect";
       const learningFeedback = recordLearningAnswer(isCorrect);
 
@@ -7725,6 +7797,7 @@ function openQuiz(card, cardIndex) {
         // Check if this was a mistake redemption from the notebook
         const mIdx = state.mistake_words.findIndex(m => m.word === card.word);
         if (mIdx !== -1) {
+          window.GrimoireMeta?.onRedeem?.();
           state.mistake_words.splice(mIdx, 1);
           try { localStorage.setItem("lexicon_mistakes", JSON.stringify(state.mistake_words)); } catch(e){}
           state.hp = Math.min(state.max_hp, state.hp + 35);
@@ -7751,7 +7824,7 @@ function openQuiz(card, cardIndex) {
         addFloatingText(state.player.x, state.player.y - 30, "YANLIŞ CEVAP", "#c5221f", 15);
 
         state.ink_count -= card.shop_cost ?? card.cost;
-        resText.textContent = `YANLIŞ CEVAP! Doğru Seçenek: "${card.options[card.correct_index]}"\nKelime Kâtip Hata Defterine eklendi (sonraki turlarda pekiştirilecek)!\nÖdenen: ${card.cost} Mürekkep`;
+        resText.textContent = `YANLIŞ CEVAP! Doğru Seçenek: "${card.options[card.correct_index]}"\nKelime Kâtip Hata Defterine eklendi (sonraki dalgalarda pekiştirilecek)!\nÖdenen: ${card.cost} Mürekkep`;
         resText.textContent += `\nANLAM HAFIZASI: ${card.meaning_tr || card.options[card.correct_index]}`;
         applyCardUpgrade(card, false, 1.0);
 
@@ -7953,6 +8026,12 @@ function showWeaponMergeHintOnce() {
   grid.prepend(hint);
 }
 
+// A weapon in its painted tier frame (tier 1–4).
+function inventorySlotArt(item) {
+  const w = WEAPONS_CATALOG[item.id];
+  const frame = window.GrimoireSprites?.src(`tier_frame_${Math.max(1, Math.min(4, item.tier || 1))}`);
+  return `<span class="slot-art" data-tier="${item.tier}"${frame ? ` style="--tier-frame:url('${frame}')"` : ""}><img src="${weaponIconSrc(item.id, item.tier)}" alt="${w.name}"></span>`;
+}
 function renderInventoryView() {
   const weaponsPanel = document.getElementById("inventory-weapons-panel");
   const gadgetsPanel = document.getElementById("inventory-gadgets-panel");
@@ -8039,9 +8118,9 @@ function renderInventoryView() {
       const t = TIER_MULTIPLIERS[item.tier];
       box.innerHTML = `
         <span class="tier-badge ${t.badge}">${t.stars} ${t.name}</span>
-        <img src="${weaponIconSrc(item.id, item.tier)}" style="width: 32px; height: 32px;" alt="${w.name}">
-        <span style="font-size: 11px; font-weight: bold; color: #2b170c;">${w.name.split(" ")[0]}</span>
-        <button class="btn" style="font-size: 10px; padding: 2px 6px;" id="inv-unequip-${i}">Çantaya Al</button>
+        ${inventorySlotArt(item)}
+        <span class="slot-name">${w.name}</span>
+        <button class="btn slot-action" id="inv-unequip-${i}">Çantaya al</button>
       `;
       box.querySelector(`#inv-unequip-${i}`).onclick = () => {
         if (state.equipped_weapons.length > 1) {
@@ -8056,7 +8135,8 @@ function renderInventoryView() {
       const mergePicker = createMergePicker(item);
       if (mergePicker) box.appendChild(mergePicker);
     } else {
-      box.innerHTML = `<span style="font-size: 11px; color: #78350f;">[BOŞ YUVA ${i + 1}]</span>`;
+      box.classList.add("is-empty");
+      box.innerHTML = `<span class="slot-empty-mark">${i + 1}</span><span class="slot-name">Boş yuva</span>`;
     }
     activeContainer.appendChild(box);
   }
@@ -8069,9 +8149,9 @@ function renderInventoryView() {
     box.className = "slot-box";
     box.innerHTML = `
       <span class="tier-badge ${t.badge}">${t.stars} ${t.name}</span>
-      <img src="${weaponIconSrc(item.id, item.tier)}" style="width: 28px; height: 28px;" alt="${w.name}">
-      <span style="font-size: 10.5px; font-weight: bold; color: #2b170c;">${w.name.split(" ")[0]}</span>
-      <button class="btn btn-emerald" style="font-size: 10px; padding: 2px 6px;" id="inv-equip-${idx}">Kuşan</button>
+      ${inventorySlotArt(item)}
+      <span class="slot-name">${w.name}</span>
+      <button class="btn btn-emerald slot-action" id="inv-equip-${idx}">Kuşan</button>
     `;
     box.querySelector(`#inv-equip-${idx}`).onclick = () => {
       if (state.equipped_weapons.length < state.max_weapon_slots) {
@@ -8218,7 +8298,7 @@ function updateHUD() {
   if (window.ErrataHUD) {
     window.ErrataHUD.updateTimer(biomeName, state.current_wave, Math.ceil(state.wave_time_left));
     window.ErrataHUD.updateRoute(state.current_wave);
-  } else setHUDText("timer-badge", `${biomeName} · ${state.current_wave} / 100 · ${Math.ceil(state.wave_time_left)}s`);
+  } else setHUDText("timer-badge", `${biomeName} · ${state.current_wave} / ${state.max_waves > 100 ? "∞" : 100} · ${Math.ceil(state.wave_time_left)}s`);
   const progressFill = document.getElementById("archive-progress-fill");
   const archiveVolume = document.getElementById("archive-progress-volume");
   const progress = Math.max(0, Math.min(1, (state.current_wave - 1) / 99));
@@ -8227,7 +8307,7 @@ function updateHUD() {
   const progressValue = String(state.current_wave);
   if (progressTrack && progressTrack.getAttribute("aria-valuenow") !== progressValue) progressTrack.setAttribute("aria-valuenow", progressValue);
   if (archiveVolume) setHUDText("archive-progress-volume", `CİLT ${["I", "II", "III", "IV"][Math.min(3, Math.floor((state.current_wave - 1) / 25))]}`);
-  setHUDText("archive-progress-value", `${String(state.current_wave).padStart(2, "0")} / 100`);
+  setHUDText("archive-progress-value", `${String(state.current_wave).padStart(2, "0")} / ${state.max_waves > 100 ? "∞" : 100}`);
   setHUDText("ink-value", state.ink_count);
   setHUDText("kill-value", state.kill_count);
 
@@ -8473,11 +8553,12 @@ function render(dt = 1 / 60) {
   }
 
   const now = performance.now();
+  window.ErrataArena?.drawSetPieces?.(ctx, state.current_wave, (x, y, r) => isInRenderViewport(x, y, r));
   // Three reusable archive mechanisms sit on the inner aisles and reset once
   // per wave; the new painted structures share the actual interaction anchor.
   state.arena_interactables.forEach(object => {
     if (!isInRenderViewport(object.x, object.y, 90)) return;
-    const color = object.id === "ink_well" ? "#78d6c7" : object.id === "resonance_bell" ? "#e5c477" : "#b9a2fa";
+    const color = { ink_well: "#78d6c7", resonance_bell: "#e5c477", astral_astrolabe: "#b9a2fa", brazier: "#ff9a4a", illuminated_lectern: "#f3d390", memory_clue: "#9fd8e8" }[object.id] || "#b9a2fa";
     const alpha = object.used ? 0.55 : 1;
     const pulse = object.used || reducedMotion ? 1 : 1 + Math.sin(now / 240 + object.x) * 0.08;
     ctx.save();
@@ -8510,7 +8591,8 @@ function render(dt = 1 / 60) {
 
     // Prop Sprite (Lectern or Brazier Pedestal)
     const pImg = images[propSprite] || images["brazier_pedestal.png"] || images["illuminated_lectern.png"];
-    if (pImg) {
+    if (window.ErrataArena?.drawCorner?.(ctx, bx, by, idx)) { /* painted, animated corner fire */ }
+    else if (pImg) {
       ctx.drawImage(pImg, bx - 26, by - 26, 52, 52);
     }
 
@@ -8841,6 +8923,7 @@ function render(dt = 1 / 60) {
       ctx.restore();
     }
 
+    window.GrimoireMeta?.drawEnemyMarks(ctx, e, reducedEffects);
     // Commander Aura Ring
     if (e.affix === "commander") {
       ctx.save();
@@ -9231,6 +9314,7 @@ function render(dt = 1 / 60) {
     ctx.restore();
   });
 
+  window.ErrataArena?.drawCeiling?.(ctx, state.current_wave, (x, y, r) => isInRenderViewport(x, y, r));
   // Floating Combat Damage Numbers & Pickup Text
   if (state.floating_texts && state.floating_texts.length && window.ErrataMotion) {
     window.ErrataMotion.drawCombatText(ctx,state.floating_texts,reducedEffects);
@@ -9519,6 +9603,11 @@ function updateGame(dt) {
       updatePlayer(dt);
       updateEnemies(dt);
       updateGadgetEffects(dt);
+      window.GrimoireMeta?.update(dt);
+      if (state.lectern_timer > 0) {
+        state.lectern_timer -= dt;
+        if (state.lectern_timer <= 0) { state.lectern_timer = 0; state.attack_speed_mult /= 1.3; state.crit_chance = Math.max(0, state.crit_chance - 0.15); }
+      }
     }
     // Keep canvas simulation at full frame rate while limiting repeated DOM
     // text/style work to 10 Hz. Damage, purchases, and menu actions still call

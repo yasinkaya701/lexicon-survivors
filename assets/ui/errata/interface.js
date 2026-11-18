@@ -519,7 +519,7 @@
         }).catch(() => {});
       }
       bookContent.replaceChildren();
-      const intro = document.createElement('p'); intro.className = 'book-heading'; intro.textContent = kind === 'codex' ? 'Sorulardaki gerçek kelimeler ve örnekleri.' : 'Karşılaşabileceğin düşmanlar ve katalogdaki gerçek ödülleri.';
+      const intro = document.createElement('p'); intro.className = 'book-heading'; intro.textContent = kind === 'codex' ? 'Sorulardaki gerçek kelimeler ve örnekleri.' : 'Karşılaşabileceğin düşmanlar ve arşivdeki gerçek ödülleri.';
       if (kind === 'codex') { entries = actualWordEntries(); }
       renderEntries('');
       bookContent.append(intro, tabs, levels, search, status, list);

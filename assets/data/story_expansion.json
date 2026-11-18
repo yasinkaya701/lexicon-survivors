@@ -435,7 +435,7 @@
         ],
         [
           100,
-          "Yenilgi ya da affedilme yerine yeni katalogda itiraz kabul eden bir kayıt görevi üstlenmesi teklif edilir; bu teklif kabul edilip edilmeyeceği açık kalır."
+          "Yenilgi ya da affedilme yerine yeni arşivde itirazları dinleyen bir kâtiplik görevi üstlenmesi teklif edilir; bu teklif kabul edilip edilmeyeceği açık kalır."
         ]
       ]
     },
@@ -486,7 +486,7 @@
       "appearances": [
         [
           10,
-          "Katalogda olmayan geçidi gösterir ama güvenli olup olmadığını bilmediğini açıklar."
+          "Haritada olmayan geçidi gösterir ama güvenli olup olmadığını bilmediğini açıklar."
         ],
         [
           55,
@@ -557,7 +557,7 @@
           "Void arenasındaki mekanizmanın nasıl kurulduğunu gösterir, çözümü oyuncuya bırakır."
         ]
       ],
-      "exit": "Tehlikeli mekanizmaları kapatır ve katalogdan ayrılır; affedildiği ilan edilmez."
+      "exit": "Tehlikeli mekanizmaları kapatır ve arşivden ayrılır; affedildiği ilan edilmez."
     }
   }
 }

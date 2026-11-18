@@ -46,6 +46,8 @@
     }
   </style>
   <link rel="stylesheet" href="assets/ui/grimoire/grimoire.css?v=art-4">
+  <link rel="stylesheet" href="assets/ui/grimoire/surfaces.css?v=1">
+  <link rel="stylesheet" href="assets/ui/grimoire/meta.css?v=1">
 </head>
 <body>
   <div id="game-container">
@@ -74,10 +76,10 @@
           <span class="kill-count" id="kill-count"><img class="ui-icon" src="assets/ui/errata/icons/kills.svg" alt=""><span id="kill-value">0</span></span>
           <button id="mobile-menu-btn" class="hud-btn" style="display: none;" title="Hızlı Menü"><img class="ui-icon" src="assets/ui/icons/gear.svg" alt="">MENÜ</button>
           <button id="speed-btn" class="hud-btn" title="Oyun Hızı (0.5x, 1x, 1.5x, 2x, 3x) - Kısayol: [ ve ]">HIZ 1.0x</button>
-          <button id="auto-tur-btn" class="hud-btn" title="Otomatik Yeni Tur / Dalga (Açık/Kapalı)">OTO TUR: AÇIK</button>
-          <button id="auto-run-btn" class="hud-btn" title="Otomatik Yeni Run (Açık/Kapalı)">OTO RUN: AÇIK</button>
+          <button id="auto-tur-btn" class="hud-btn" title="Otomatik sonraki dalga (açık/kapalı)">OTO DALGA: AÇIK</button>
+          <button id="auto-run-btn" class="hud-btn" title="Otomatik yeni sefer (açık/kapalı)">OTO SEFER: AÇIK</button>
           <button id="music-btn" class="hud-btn" title="Müzik Aç / Kapat">MÜZİK</button>
-          <button id="mistakes-btn" class="hud-btn" title="Kâtip Hata Defteri (Pekiştirme)"><img class="ui-icon" src="assets/ui/errata/icons/notebook.svg" alt="">HATA (<span id="mistakes-count">0</span>)</button>
+          <button id="mistakes-btn" class="hud-btn" title="Kâtip hata defteri (pekiştirme)"><img class="ui-icon" src="assets/ui/errata/icons/notebook.svg" alt="">HATA (<span id="mistakes-count">0</span>)</button>
           <button id="inventory-btn" class="hud-btn" title="Envanter yuvalarını aç (I)"><img class="ui-icon" src="assets/ui/errata/icons/inventory.svg" alt="">ENVANTER</button>
           <button id="touch-toggle-btn" class="hud-btn" title="Mobil Sanal Joystick Göster / Gizle">JOY</button>
           <button id="fullscreen-btn" class="hud-btn" title="Tam ekran aç / kapat">TAM EKRAN</button>
@@ -137,10 +139,10 @@
           <span id="story-kicker">ARŞİV ARASI · DALGA 05</span>
           <span id="story-location">KAYIP İSİMLER DİZİNİ</span>
         </div>
-        <h2 id="story-title">Boş fiş</h2>
+        <h2 id="story-title">Boş sayfa</h2>
         <div class="story-spread">
         <div id="story-scene">
-          <img id="story-scene-image" src="assets/sprites/story/panels/wave_05.png" alt="Karanlık kütüphanede açılan boş fiş">
+          <img id="story-scene-image" src="assets/sprites/story/panels/wave_05.png" alt="Karanlık kütüphanede açılan boş sayfa">
 
           <img id="story-speaker-portrait" alt="">
           <div id="story-boss-memory" class="story-boss-memory" hidden><img id="story-memory-icon" alt=""><div><strong id="story-memory-title"></strong><span id="story-memory-copy"></span></div></div>
@@ -170,7 +172,7 @@
     <section class="screen-overlay" id="title-screen" data-step="landing" role="dialog" aria-modal="true" aria-label="Lexicon Survivors ana menüsü">
       <header class="errata-masthead">
         <button class="title-wordmark" data-title-step="landing" aria-label="Ana menüye dön"><span class="mini-logotype" aria-hidden="true">Lexic<s>o</s>n <span>SURVIVORS</span></span></button>
-        <span class="masthead-edition">KAYIP KENARLAR KÜTÜPHANESİ · KATALOG</span>
+        <span class="masthead-edition">KAYIP KENARLAR KÜTÜPHANESİ · ARŞİV</span>
         <nav aria-label="Arşiv menüsü"><button data-open-book="guide">Nasıl oynanır</button><button data-open-book="settings">Ayarlar</button></nav>
       </header>
 
@@ -178,7 +180,7 @@
         <div class="landing-copy">
           <div class="landing-stack">
           <article class="catalog-card landing-card">
-            <div class="card-callno"><span>FİŞ 000 · LS / 2026</span><span>BİR GECE · 4 KANAT</span></div>
+            <div class="card-callno"><span>CİLT 000 · LS / 2026</span><span>BİR GECE · 4 KANAT</span></div>
             <span class="stamp stamp--archive" aria-hidden="true"></span>
             <h1 id="landing-heading" class="logotype" aria-label="Lexicon Survivors: The Last Errata">
               <span class="lt-row" aria-hidden="true">Lexic<span class="lt-struck">o</span>n</span>
@@ -218,7 +220,7 @@
         <div class="stage-heading"><div><span class="errata-kicker">02 ／ BAŞLANGIÇ AYARLARI</span><h2 id="preparation-heading">Başlangıç ayarları</h2><p>İngilizce seviyesini ve oyun zorluğunu seç.</p></div><button class="text-back" data-title-step="character">← Karakteri değiştir</button></div>
         <div class="preparation-book">
           <section class="preparation-page"><span class="page-label">I. İNGİLİZCE SEVİYESİ</span><h3>Nereden başlayalım?</h3><p>Seviyeni seç. Oyun, yanıtlarına göre kelime düzeyini ayarlar.</p><div id="learning-level-selection" class="level-choices" aria-label="İngilizce başlangıç seviyesi"></div><p id="learning-level-desc" class="selection-description"></p><h3>Savaş zorluğu</h3><div id="diff-selection-container" class="difficulty-choices" aria-label="Savaş zorluğu"></div><p id="diff-desc" class="selection-description"></p></section>
-          <section class="preparation-page"><span class="page-label">II. OYUN AYARLARI</span><h3>Oyun ayarları</h3><div class="run-options"><button class="btn" id="title-speed-btn" title="Oyun hızını değiştir">Hız: 1.0x</button><button class="btn" id="title-auto-tur-btn">Otomatik sonraki dalga: açık</button><button class="btn" id="title-auto-run-btn">Otomatik yeni oyun: kapalı</button></div><label class="music-choice-row" for="title-music-select">Müzik<select id="title-music-select"><option value="auto">Otomatik · bölüme göre</option><option value="library">Kütüphane</option><option value="action">Savaş</option><option value="urgent">Dalgalar</option><option value="last_stand">Boss</option></select></label><div class="control-note"><span class="errata-kicker">KONTROLLER</span><p><kbd>WASD</kbd> veya oklarla hareket et.<br>Silahlar otomatik ateş eder.<br><kbd>Space</kbd> ile etkin yeteneğini kullan.</p><button class="text-back" data-open-book="guide">Tüm kontrolleri gör ↗</button></div></section>
+          <section class="preparation-page"><span class="page-label">II. OYUN AYARLARI</span><h3>Oyun ayarları</h3><div class="run-options"><button class="btn" id="title-speed-btn" title="Oyun hızını değiştir">Hız: 1.0x</button><button class="btn" id="title-auto-tur-btn">Otomatik sonraki dalga: açık</button><button class="btn" id="title-auto-run-btn">Otomatik yeni sefer: kapalı</button></div><label class="music-choice-row" for="title-music-select">Müzik<select id="title-music-select"><option value="auto">Otomatik · bölüme göre</option><option value="library">Kütüphane</option><option value="action">Savaş</option><option value="urgent">Dalgalar</option><option value="last_stand">Boss</option></select></label><div class="control-note"><span class="errata-kicker">KONTROLLER</span><p><kbd>WASD</kbd> veya oklarla hareket et.<br>Silahlar otomatik ateş eder.<br><kbd>Space</kbd> ile etkin yeteneğini kullan.</p><button class="text-back" data-open-book="guide">Tüm kontrolleri gör ↗</button></div></section>
         </div>
         <footer class="stage-actions"><span class="page-number">BAŞLANGIÇ AYARLARI <b>02</b></span><button class="btn primary" id="start-game-btn">Oyuna başla <span aria-hidden="true">→</span></button></footer>
       </section>
@@ -282,8 +284,8 @@
             <img class="ui-icon" src="assets/ui/icons/reroll.svg" alt="">Kartları yenile (5)
           </button>
           <div>
-            <button class="btn btn-seal" id="shop-auto-tur-btn" title="Otomatik sonraki tura / dalgaya geç">
-              Otomatik tur: AÇIK
+            <button class="btn btn-seal" id="shop-auto-tur-btn" title="Otomatik sonraki dalgaya geç">
+              Otomatik dalga: AÇIK
             </button>
             <button class="btn btn-seal" id="shop-next-wave-btn">
               <img src="assets/ui/icons/next_wave.svg" class="ui-icon" alt="">
@@ -295,7 +297,7 @@
         <!-- AUTO NEXT WAVE COUNTDOWN BAR -->
         <div id="shop-auto-wave-container" style="display: none;">
           <div>
-            <span id="shop-auto-wave-label">Otomatik sonraki tur: 4s</span>
+            <span id="shop-auto-wave-label">Otomatik sonraki dalga: 4s</span>
             <button class="btn btn-crimson" id="shop-auto-wave-cancel-btn"><img class="ui-icon" src="assets/ui/icons/close.svg" alt="">Durdur (Burada Kal)</button>
           </div>
           <div>
@@ -408,10 +410,10 @@
             <select id="mobile-music-select" aria-label="Müzik seçimi"><option value="auto">Otomatik · biyoma göre</option><option value="library">Karanlık Kütüphane</option><option value="action">Mürekkep Takibi</option><option value="urgent">Rafların Uyanışı</option><option value="last_stand">Son Nöbet · Boss</option></select>
           </label>
           <button class="btn" id="mobile-toggle-autowave-btn">
-            Otomatik yeni tur: açık
+            Otomatik yeni dalga: açık
           </button>
           <button class="btn" id="mobile-toggle-autorun-btn">
-            Otomatik yeni oyun: AÇIK
+            Otomatik yeni sefer: AÇIK
           </button>
           <button class="btn" id="mobile-toggle-music-btn">
             Müzik: açık
@@ -461,9 +463,9 @@
     <!-- GRIMOIRE VICTORY / DEFEAT SCREEN -->
     <div class="screen-overlay" id="game-over-screen" role="dialog" aria-modal="true" aria-labelledby="game-over-title" style="display: none;">
       <div class="dialog-panel result-folio">
-        <figure class="result-art"><img id="result-character-art" src="assets/art/grimoire/heroes/inky/portrait.webp" alt="Inky"><figcaption><span id="result-character-name">Inky</span><small id="result-file-status">DOSYA AÇIK</small></figcaption></figure>
+        <figure class="result-art"><img id="result-character-art" src="assets/art/grimoire/heroes/inky/portrait.webp" alt="Inky"><figcaption><span id="result-character-name">Inky</span><small id="result-file-status">KİTAP AÇIK</small></figcaption></figure>
         <div class="result-copy">
-        <p id="game-over-kicker" class="game-over-kicker">RUN SONUCU  ·  KAYIT KAPANDI</p>
+        <p id="game-over-kicker" class="game-over-kicker">SEFER SONUCU  ·  ARŞİV KAPANDI</p>
         <h2 id="game-over-title">
           KİTAP KAPANDI
         </h2>
@@ -473,7 +475,7 @@
         <!-- AUTO NEW RUN COUNTDOWN & CONTROLS -->
         <div id="auto-run-countdown-container" style="display: none;">
           <div id="auto-run-countdown-text">
-            Otomatik yeni oyun: 3s
+            Otomatik yeni sefer: 3s
           </div>
           <div class="countdown-track">
             <div id="auto-run-countdown-bar"></div>
@@ -485,7 +487,7 @@
 
         <div class="result-actions">
           <button class="btn btn-emerald" id="instant-restart-btn">
-          Hemen yeni oyun başlat
+          Hemen yeni sefer başlat
           </button>
           <button class="btn btn-seal" id="gameover-leaderboard-btn" type="button">Skorunu gönder · Sıralama</button>
           <button class="btn btn-seal" id="restart-game-btn">
@@ -494,7 +496,7 @@
           </button>
 
           <button class="btn btn-seal" id="gameover-auto-run-toggle">
-            Oto run: kapalı
+            Oto sefer: kapalı
           </button>
         </div>
         </div>
@@ -504,7 +506,7 @@
       <section class="dialog-panel leaderboard-panel">
         <header class="leaderboard-header">
           <div class="leaderboard-title-lockup">
-            <span class="leaderboard-kicker">KARANLIK KÜTÜPHANE · RUN KAYITLARI</span>
+            <span class="leaderboard-kicker">KARANLIK KÜTÜPHANE · SEFER KAYITLARI</span>
             <h2 id="leaderboard-title">Küresel sıralama</h2>
             <p>Arşive kazınan en güçlü seferler.</p>
           </div>
@@ -515,7 +517,7 @@
           <label class="leaderboard-alias-label" for="leaderboard-alias">Arşivde görünecek ad
             <input id="leaderboard-alias" maxlength="20" autocomplete="nickname" required>
           </label>
-          <button id="leaderboard-submit-btn" class="btn btn-emerald" type="submit">Bu koşuyu gönder</button>
+          <button id="leaderboard-submit-btn" class="btn btn-emerald" type="submit">Bu seferi gönder</button>
           <label class="leaderboard-difficulty-label" for="leaderboard-difficulty">Zorluk
             <select id="leaderboard-difficulty"><option value="easy">Rahat</option><option value="normal" selected>Normal</option><option value="hard">Zor</option></select>
           </label>
@@ -523,7 +525,7 @@
         </form>
         <p id="leaderboard-status" class="leaderboard-status" role="status" aria-live="polite"></p>
         <ol id="leaderboard-entries" class="leaderboard-entries" aria-label="Diğer sıralama kayıtları"></ol>
-        <p class="leaderboard-note">Çevrimdışı koşular bu cihazda saklanır. Küresel skorlar istemci tarafından gönderilir ve doğrulanmış turnuva sonucu sayılmaz.</p>
+        <p class="leaderboard-note">Çevrimdışı seferler bu cihazda saklanır. Küresel skorlar istemci tarafından gönderilir ve doğrulanmış turnuva sonucu sayılmaz.</p>
       </section>
     </div>
   </div>
@@ -581,9 +583,12 @@
   <script src="assets/art/grimoire/atlas.js?v=art-1"></script>
   <script src="assets/ui/grimoire/sprites.js?v=art-2"></script>
   <script src="assets/ui/errata/motion.js?v=art-1"></script>
-  <script src="game.js?v=art-4"></script>
+  <script src="assets/ui/grimoire/meta.js?v=1"></script>
+  <script src="game.js?v=art-5"></script>
   <script src="assets/ui/errata/interface.js?v=art-1"></script>
-  <script src="assets/ui/grimoire/hub.js?v=art-1"></script>
+  <script src="assets/ui/grimoire/hub.js?v=art-2"></script>
+  <script src="assets/ui/grimoire/gamepad.js?v=1"></script>
+  <script src="assets/ui/grimoire/story.js?v=1"></script>
   <script src="assets/ui/grimoire/title-ambience.js?v=3"></script>
   <script src="assets/ui/grimoire/action.js?v=3"></script>
 </body>
