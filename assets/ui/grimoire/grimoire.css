@@ -4615,3 +4615,60 @@ img[src*="/art/grimoire/"] { filter: none !important; mix-blend-mode: normal !im
 @keyframes grimoire-low { from { opacity: .6; } to { opacity: .9; } }
 @media (prefers-reduced-motion: reduce) { .grimoire-vignette.is-low.on { animation: none; } }
 .guide-plate { display: block; width: 100%; max-width: 420px; aspect-ratio: 3 / 2; object-fit: cover; margin: 0 0 10px; border: 1px solid var(--rule-strong); }
+
+/* =====================================================================
+   G10. ARŞİV ODASI (hub)
+   A painted room above a row of stations, Darkest-Dungeon-town style:
+   each station is its own prop with its keeper breathing in front of it.
+   ===================================================================== */
+#grimoire-hub { z-index: 170; display: flex; flex-direction: column; justify-content: space-between; padding: 22px 28px 18px; background: var(--night); overflow: hidden; }
+#grimoire-hub[hidden] { display: none !important; }
+#grimoire-hub .hub-room { position: absolute; inset: 0; background: center 30% / cover no-repeat; filter: brightness(.62) contrast(1.05); }
+#grimoire-hub .hub-room::after { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(5, 4, 6, .78), rgba(5, 4, 6, .1) 26%, rgba(5, 4, 6, .1) 48%, rgba(5, 4, 6, .94) 78%); }
+#grimoire-hub > :not(.hub-room) { position: relative; z-index: 1; }
+.hub-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.hub-head h2 { margin: 2px 0 4px; font: 700 clamp(34px, 5vw, 58px)/1 var(--f-display); color: var(--ink); text-shadow: 0 3px 18px #000; }
+.hub-record { margin: 0; font: italic 400 16px var(--f-ui); color: var(--ink-2); }
+.hub-stations { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 10px; align-items: end; }
+.hub-station { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 6px 4px 8px; background: none; border: 0; color: var(--ink); cursor: pointer; font: inherit; animation: hub-rise .5s var(--delay, 0ms) both cubic-bezier(.2, .8, .2, 1); }
+.hub-station-art { position: relative; display: block; width: 100%; aspect-ratio: 1; }
+.hub-station-art > img { position: absolute; left: 0; top: 0; width: 82%; height: 82%; object-fit: contain; filter: drop-shadow(0 10px 14px rgba(0, 0, 0, .7)) !important; transition: transform .25s ease, filter .25s ease; }
+.hub-station[data-station="exit_door"] .hub-station-art > img { left: 9%; width: 82%; height: 100%; }
+.hub-npc { position: absolute; left: 30%; bottom: -10%; width: 92%; aspect-ratio: 1; background: 0 0 / 400% 100% no-repeat; animation: hub-npc-idle .8s steps(3, jump-none) infinite alternate; filter: drop-shadow(0 0 2px rgba(240, 214, 160, .55)) drop-shadow(0 6px 6px rgba(0, 0, 0, .85)); pointer-events: none; }
+.hub-station-copy { display: flex; flex-direction: column; align-items: center; text-align: center; line-height: 1.15; min-height: 3.6em; }
+.hub-station-copy b { font: 700 15px var(--f-head); letter-spacing: .02em; }
+.hub-station-copy small { font: 400 11px var(--f-ui); color: var(--ink-2); letter-spacing: .08em; text-transform: uppercase; }
+.hub-station-copy em { font: italic 400 13px var(--f-ui); color: var(--brass, #b08a4e); }
+.hub-station:hover .hub-station-art > img, .hub-station:focus-visible .hub-station-art > img { transform: translateY(-6px) scale(1.04); filter: drop-shadow(0 0 14px rgba(176, 138, 78, .55)) drop-shadow(0 12px 14px rgba(0, 0, 0, .7)) !important; }
+.hub-station:focus-visible { outline: 2px solid var(--proof-night, #b3201a); outline-offset: 2px; }
+.hub-station.is-locked { cursor: not-allowed; opacity: .55; }
+.hub-station.is-locked .hub-station-art > img, .hub-station.is-locked .hub-npc { filter: grayscale(1) brightness(.45) !important; }
+@keyframes hub-npc-idle { to { background-position: 100% 0; } }
+@keyframes hub-rise { from { opacity: 0; transform: translateY(18px); } }
+.hub-sheet { position: absolute !important; inset: 70px 6% 24px; z-index: 3 !important; display: flex; flex-direction: column; background: rgba(12, 9, 8, .97); border: 30px solid transparent; border-image: url("frame.svg") 54 / 30px / 0 stretch; box-shadow: 0 30px 80px #000; }
+.hub-sheet[hidden] { display: none !important; }
+.hub-sheet > header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.hub-sheet-title { margin: 0; font: 700 30px var(--f-display); color: var(--ink); }
+.hub-sheet-body { overflow: auto; min-height: 0; }
+.hub-wing { display: grid; grid-template-columns: 220px 1fr; gap: 16px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--rule); }
+.hub-wing img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--rule-strong); }
+.hub-wing.is-dark img { filter: grayscale(1) brightness(.35) !important; }
+.hub-wing b { display: block; font: 700 20px var(--f-head); color: var(--ink); }
+.hub-wing small { color: var(--ink-2); }
+.hub-wing em { display: block; margin-top: 4px; font: italic 14px var(--f-ui); color: var(--brass, #b08a4e); }
+.hub-wing-bar { display: block; height: 8px; margin-top: 8px; background: rgba(255, 255, 255, .08); }
+.hub-wing-bar i { display: block; height: 100%; background: linear-gradient(90deg, #7a1410, #b3201a); }
+.hub-lore { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; }
+.hub-note { display: flex; flex-direction: column; gap: 6px; }
+.hub-note img { width: 100%; aspect-ratio: 1; object-fit: cover; border: 1px solid var(--rule-strong); }
+.hub-note b { font: 700 15px var(--f-head); color: var(--ink); }
+.hub-note p { margin: 0; font: 13px/1.35 var(--f-ui); color: var(--ink-2); }
+.hub-note.is-sealed img { filter: grayscale(1) brightness(.25) blur(1px) !important; }
+.hub-note.is-sealed b, .hub-note.is-sealed p { color: var(--ink-3, #6d6458); }
+@media (max-width: 900px) {
+  .hub-stations { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .hub-station-copy small { display: none; }
+  .hub-sheet { inset: 60px 8px 12px; }
+  .hub-wing { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { .hub-npc, .hub-station { animation: none; } }

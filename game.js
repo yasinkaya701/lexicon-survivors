@@ -6845,9 +6845,21 @@ function createSubmissionId() {
   });
 }
 
+// Lifetime archive record (deepest wave reached, victories) read by the hub.
+function recordArchiveProgress(wave, victory) {
+  let record = {};
+  try { record = JSON.parse(localStorage.getItem("lexicon_archive_record") || "{}") || {}; } catch (_) {}
+  record.best_wave = Math.max(Number(record.best_wave) || 0, Math.floor(Number(wave) || 0));
+  record.victories = (Number(record.victories) || 0) + (victory ? 1 : 0);
+  record.runs = (Number(record.runs) || 0) + 1;
+  try { localStorage.setItem("lexicon_archive_record", JSON.stringify(record)); } catch (_) {}
+  return record;
+}
+
 function finalizeRunResult(victory) {
   if (state.run_result_recorded && state.latest_run_result) return state.latest_run_result;
   const cleared = victory ? 100 : Math.max(0, state.current_wave - 1);
+  recordArchiveProgress(victory ? 100 : state.current_wave, victory);
   state.latest_run_result = {
     submissionId: state.run_submission_id || createSubmissionId(), alias: "",
     wavesCleared: cleared, kills: Math.max(0, Math.floor(state.kill_count || 0)),
