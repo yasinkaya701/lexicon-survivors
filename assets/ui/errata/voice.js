@@ -87,7 +87,7 @@
   const VOICE_DIR = 'assets/audio/voice/';
   let manifest = null, clipAudio = null, hallNode = null;
   const canFetch = !!root.location && /^https?:$/.test(root.location.protocol);
-  if (canFetch && root.fetch) {
+  if (false && canFetch && root.fetch) { // narration clips disabled: only quiz words are voiced
     root.fetch(VOICE_DIR + 'manifest.json').then(r => r.ok ? r.json() : null).then(m => { manifest = m; }).catch(() => {});
   }
   function fnv(text) {

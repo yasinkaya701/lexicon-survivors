@@ -1064,6 +1064,8 @@ function speakGameText(text, options = {}) {
   if (!content || !synthesis || !Utterance) return false;
 
   const settings = { lang: "tr-TR", role: "narrator", ...options };
+  // Only quiz word pronunciation is spoken; story, chapter and boss narration are off (they stuttered the game).
+  if (settings.role !== "word") return false;
   gameSpeechState.text = content;
   gameSpeechState.options = settings;
   if (window.ErrataVoice?.speak) {
