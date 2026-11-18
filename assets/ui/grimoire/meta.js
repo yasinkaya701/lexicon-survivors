@@ -388,6 +388,7 @@
   // Per-frame affix behaviour; runs only while a wave is active.
   function update(dt) {
     const s = S(); if (!run.started || !s.is_wave_active) return;
+    renderStatus(dt);
     for (const e of s.enemies) {
       if (e.dead) continue;
       if (e.affix === "summoner") {
@@ -421,6 +422,25 @@
     }
   }
 
+  // Status icons: on the HUD for the hero, above enemies for stun/slow.
+  let statusClock = 0;
+  function renderStatus(dt) {
+    statusClock -= dt; if (statusClock > 0) return; statusClock = 0.25;
+    const s = S(); const host = document.querySelector("#hud .char-info"); if (!host) return;
+    let row = document.getElementById("hud-status"); if (!row) { row = el("div", "hud-status"); row.id = "hud-status"; host.after(row); }
+    const list = [];
+    if (s.shield_charges > 0) list.push(["shield", `Kalkan ×${s.shield_charges}`]);
+    if (s.lectern_timer > 0) list.push(["haste", `Okuma · ${Math.ceil(s.lectern_timer)} sn`]);
+    if (s.player.slow_timer > 0) list.push(["slow", "Yavaşlatıldın"]);
+    if (s.player.invuln_timer > 0.4) list.push(["invisible", "Dokunulmaz"]);
+    if (run.node === "rest") list.push(["regen", "Mola dalgası"]);
+    if (run.cursed.includes("burning_margin")) list.push(["burn", "Yanan Kenar"]);
+    if (s.enemies.some(e => e.is_nemesis && !e.dead)) list.push(["marked", "Hasım sahada"]);
+    if (heatOn("red_ink") || heatOn("thick_paper")) list.push(["weaken", `Sözleşme · ${run.heat} puan`]);
+    const key = list.map(x => x[1]).join("|");
+    if (row.dataset.key === key) return; row.dataset.key = key;
+    row.replaceChildren(...list.map(([id, label]) => { const i = el("span", "hud-status-icon"); i.title = label; i.innerHTML = `<img src="${art(`status_${id}`)}" alt="${label}">`; return i; }));
+  }
   const auraFrames = new Map();
   function drawEnemyMarks(ctx, e, reduced) {
     const key = AFFIX_ART[e.affix];
@@ -437,6 +457,8 @@
       const bob = reduced ? 0 : Math.sin(now * 0.005) * 3;
       if (mark) ctx.drawImage(mark, e.x - 20, e.y - sz - 34 + bob, 40, 40);
     }
+    const status = e.stun_timer > 0 ? "stun" : e.slow_timer > 0 ? "slow" : null;
+    if (status && !e.is_boss) { const icon = G()?.image?.(`status_${status}`); if (icon) ctx.drawImage(icon, e.x - sz * 0.5 - 6, e.y - sz * 0.95, 20, 20); }
     if (e.weak && e.weak.open > 0) {
       const img = G()?.image?.("weakpoint");
       const r = sz * 0.9 * (1 + (reduced ? 0 : Math.sin(now * 0.012) * 0.06));
@@ -456,19 +478,74 @@
   }
   function onRedeem() { store.stats.redeemed += 1; if (store.stats.redeemed >= 10) unlock("red_redactor_ally"); save(); }
 
-  // Errata: no quiz. The card is bought at full price and grants +25%.
+  // Errata: no quiz. Breaking the seal is a timing strike instead:
+  // gold = half price and +50%, bronze = full price and +25%, miss = full price.
   function buyCardDirect(card, index) {
     if (!errata()) return false;
     const s = S();
     const cost = card.shop_cost ?? card.cost;
     if (s.ink_count < cost) return true;
-    s.ink_count -= cost;
-    applyCardUpgrade(card, false, 1.25);
-    if (typeof shopCards !== "undefined") shopCards.splice(index, 1);
-    sounds?.playTone?.(620, "triangle", 0.12, 0.18);
-    addFloatingText?.(s.player.x, s.player.y - 34, `${card.buff_name || "GÜÇ"} · +%25`, "#e9c47a", 15);
-    renderShopView(); updateShopTopBar(); updateHUD();
+    openSealBreak(card, index, cost);
     return true;
+  }
+  function openSealBreak(card, index, cost) {
+    const s = S();
+    clearShopAutoWaveTimer?.();
+    const wave = s.current_wave;
+    const speed = Math.min(560, 210 + wave * 4.5);          // degrees per second
+    const gold = Math.max(16, 38 - wave * 0.3);             // gold arc width
+    const bronze = gold + 46;
+    const target = 40 + Math.random() * 280;
+    const emblem = { max_hp: "health", heal: "health", armor: "armor", move_speed: "speed", attack_speed: "attack_speed", crit_chance: "crit", pierce: "pierce", damage: "damage", pickup_radius: "ink_range", ink_mult: "luck", projectile_count: "damage" }[card.stat] || "shield";
+    const arc = (from, width, r) => { const a0 = (from - width / 2 - 90) * Math.PI / 180, a1 = (from + width / 2 - 90) * Math.PI / 180;
+      return `M ${50 + r * Math.cos(a0)} ${50 + r * Math.sin(a0)} A ${r} ${r} 0 ${width > 180 ? 1 : 0} 1 ${50 + r * Math.cos(a1)} ${50 + r * Math.sin(a1)}`; };
+    const overlay = el("div", "seal-break");
+    overlay.setAttribute("role", "dialog"); overlay.setAttribute("aria-label", "Mühür kırma");
+    overlay.innerHTML = `<div class="seal-break-box">
+      <small class="errata-kicker">MÜHÜR KIRMA · ${card.buff_name || "GÜÇ"}</small>
+      <h3>${card.description || ""}</h3>
+      <div class="seal-dial">
+        <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="44" class="sb-track"/><path d="${arc(target, bronze, 44)}" class="sb-bronze"/><path d="${arc(target, gold, 44)}" class="sb-gold"/></svg>
+        <img class="sb-seal" src="${art("mat_wax_seal")}" alt=""><img class="sb-emblem" src="${art(`emblem_${emblem}`)}" alt="">
+        <i class="sb-needle"></i>
+      </div>
+      <p class="sb-legend"><span class="g">Altın · yarı fiyat, +%50</span><span class="b">Bronz · +%25</span><span>Iska · normal</span></p>
+      <button type="button" class="btn primary sb-strike">Vur · <kbd>Space</kbd></button>
+      <p class="sb-result" aria-live="assertive"></p>
+    </div>`;
+    document.body.append(overlay);
+    const needle = overlay.querySelector(".sb-needle");
+    const strike = overlay.querySelector(".sb-strike");
+    strike.focus({ preventScroll: true });
+    let angle = Math.random() * 360, last = performance.now(), done = false, raf = 0;
+    const tick = now => { angle = (angle + speed * (now - last) / 1000) % 360; last = now; needle.style.transform = `rotate(${angle}deg)`; if (!done) raf = requestAnimationFrame(tick); };
+    raf = requestAnimationFrame(tick);
+    const finish = () => {
+      if (done) return; done = true; cancelAnimationFrame(raf);
+      const diff = Math.abs(((angle - target + 540) % 360) - 180);
+      const grade = diff <= gold / 2 ? "gold" : diff <= bronze / 2 ? "bronze" : "miss";
+      const mult = grade === "gold" ? 1.5 : grade === "bronze" ? 1.25 : 1.0;
+      const paid = grade === "gold" ? Math.ceil(cost * 0.5) : cost;
+      s.ink_count -= paid;
+      applyCardUpgrade(card, grade === "gold", mult);
+      if (typeof shopCards !== "undefined") shopCards.splice(index, 1);
+      overlay.dataset.grade = grade;
+      overlay.querySelector(".sb-result").textContent = grade === "gold" ? `KUSURSUZ · +%50 · ${paid} mürekkep` : grade === "bronze" ? `İYİ VURUŞ · +%25 · ${paid} mürekkep` : `MÜHÜR ÇATLADI · ${paid} mürekkep`;
+      const fx = grade === "miss" ? "correction_strike" : "word_learned";
+      overlay.querySelector(".seal-dial").insertAdjacentHTML("beforeend", `<span class="sb-fx" style="background-image:url('${art(fx)}');--frames:${grade === "miss" ? 10 : 8}"></span>`);
+      sounds?.playTone?.(grade === "gold" ? 880 : grade === "bronze" ? 660 : 180, grade === "miss" ? "sawtooth" : "triangle", 0.2, 0.2);
+      if (grade !== "miss") triggerHaptic?.("success"); else triggerHaptic?.("fail");
+      renderShopView(); updateShopTopBar(); updateHUD();
+      setTimeout(close, 1100);
+    };
+    const close = () => { cancelAnimationFrame(raf); window.removeEventListener("keydown", onKey, true); overlay.classList.add("is-out"); setTimeout(() => overlay.remove(), 260); };
+    const onKey = event => {
+      if (event.code === "Space" || event.key === "Enter") { event.preventDefault(); event.stopImmediatePropagation(); finish(); }
+      else if (event.key === "Escape" && !done) { event.preventDefault(); event.stopImmediatePropagation(); done = true; close(); }
+    };
+    window.addEventListener("keydown", onKey, true);
+    strike.addEventListener("click", event => { event.stopPropagation(); finish(); });
+    overlay.addEventListener("pointerdown", event => { if (event.target === overlay && !done) { done = true; close(); } });
   }
 
   /* ------------------------------------------------------------ achievements */
@@ -649,6 +726,14 @@
     const wrap = el("div", "meta-achievements");
     const done = ACH.filter(a => store.achievements[a.id]).length;
     wrap.append(el("div", "meta-sheet-head", `${waxChip()}<p><b>${done} / ${ACH.length}</b> başarım mühürlendi.</p>`));
+    // Sera's letters: the next three seals to earn, and the last one earned.
+    const letters = el("div", "meta-letters");
+    const open = ACH.filter(a => !store.achievements[a.id]).slice(0, 3);
+    const last = ACH.filter(a => store.achievements[a.id]).sort((a, b) => store.achievements[b.id] - store.achievements[a.id])[0];
+    open.forEach((a, i) => letters.append(el("article", "meta-letter", `<img src="${art("letter_quest")}" alt=""><div><small>GÖREV MEKTUBU</small><b>${a.name}</b><span>${a.desc}</span><em>Ödül: ${a.wax} mum</em></div>`)));
+    if (last) letters.append(el("article", "meta-letter is-reward", `<img src="${art("letter_reward")}" alt=""><div><small>ÖDÜL MEKTUBU</small><b>${last.name}</b><span>Sera mührünü arşive işledi.</span><em>+${last.wax} mum alındı</em></div>`));
+    letters.querySelectorAll(".meta-letter").forEach((n, i) => n.style.setProperty("--i", i));
+    wrap.append(letters);
     const grid = el("div", "meta-ach-grid");
     ACH.forEach((a, i) => {
       const on = !!store.achievements[a.id];
@@ -665,11 +750,6 @@
   function watch() {
     const shop = document.getElementById("shop-screen");
     if (shop) new MutationObserver(() => { if (shop.style.display !== "none") renderShopPanel(); }).observe(shop, { attributes: true, attributeFilter: ["style"] });
-    const grid = document.getElementById("shop-items-grid");
-    if (grid) new MutationObserver(() => {
-      if (!errata() || !run.started) return;
-      grid.querySelectorAll("button.shop-buy[id^='card-buy-']").forEach(b => { if (!b.disabled) b.textContent = "Satın al · +%25"; });
-    }).observe(grid, { childList: true });
     const prep = document.getElementById("errata-preparation");
     if (prep) new MutationObserver(() => { if (!prep.hidden) renderPreparation(); }).observe(prep, { attributes: true, attributeFilter: ["hidden"] });
     renderPreparation();

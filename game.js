@@ -2661,10 +2661,29 @@ function clearShopAutoWaveTimer() {
   }
 }
 
+// Words the player was offered but never answered still haunt the next boss
+// round (Lexicon only). They leave the list once answered correctly.
+function rememberUnseenShopWords() {
+  if (window.GrimoireMeta?.mode === "errata" || !Array.isArray(shopCards)) return;
+  state.unseen_words = state.unseen_words || [];
+  const known = new Set([...state.mistake_words, ...state.unseen_words].map(m => String(m.word).toLocaleLowerCase("tr-TR")));
+  shopCards.forEach(card => {
+    const key = String(card.word || "").toLocaleLowerCase("tr-TR");
+    if (!key || known.has(key) || card.is_review_redemption) return;
+    known.add(key);
+    state.unseen_words.push({ id: card.id, word: card.word, type: card.type, level: card.level, meaning_tr: card.meaning_tr,
+      enemy_archetype: card.enemy_archetype, enemy_attack: card.enemy_attack, fail_count: 1, boss_returns: 0, unseen: true });
+  });
+}
+function forgetUnseenWord(word) {
+  const key = String(word || "").toLocaleLowerCase("tr-TR");
+  state.unseen_words = (state.unseen_words || []).filter(m => String(m.word).toLocaleLowerCase("tr-TR") !== key);
+}
 function advanceNextWave() {
   const shopScreen = document.getElementById("shop-screen");
   if (state.is_wave_active || !shopScreen || shopScreen.style.display === "none" || state.current_wave >= state.max_waves) return;
   clearShopAutoWaveTimer();
+  rememberUnseenShopWords();
   window.GrimoireMeta?.commitChoice();
   shopScreen.style.display = "none";
   state.current_wave++;
@@ -3637,6 +3656,7 @@ function resetStats() {
   state.crit_chance = c.crit_chance;
   state.mistake_echo_damage_mult = 1.0;
   state.lectern_timer = 0;
+  state.unseen_words = [];
   applyUnlockedCharacterSkills();
   state.pickup_radius = 150;
   state.projectile_count = 1;
@@ -6688,16 +6708,19 @@ function spawnMilestoneBoss(wave) {
   window.GrimoireSprites?.fx("fx_boss_spawn", boss.x, boss.y, { size: 300, under: true });
   speakBossVoiceLine(`wave-${wave}-entrance`, getBossEntranceLine(wave, boss));
   state.boss_defeated = false;
-  state.boss_mistake_queue = [...(state.mistake_words || [])]
+  // Every boss round a still-unanswered word returns one step stronger.
+  [...(state.mistake_words || []), ...(state.unseen_words || [])].forEach(mistake => { mistake.boss_returns = (mistake.boss_returns || 0) + 1; });
+  try { localStorage.setItem("lexicon_mistakes", JSON.stringify(state.mistake_words)); } catch (_) {}
+  state.boss_mistake_queue = (window.GrimoireMeta?.mode === "errata" ? [] : [...(state.mistake_words || []), ...(state.unseen_words || [])])
     .filter(mistake => String(mistake.word || "").trim())
-    .sort((a, b) => (b.fail_count || 1) - (a.fail_count || 1));
+    .sort((a, b) => ((b.fail_count || 1) + (b.boss_returns || 0)) - ((a.fail_count || 1) + (a.boss_returns || 0)));
   spawnBossMistakeBatch(angle);
   const queuedWords = state.boss_mistake_queue.length + state.enemies.filter(enemy => enemy.is_mistake_echo && !enemy.dead).length;
   const alert = queuedWords
     ? `${name.toLocaleUpperCase("tr-TR")} · ${queuedWords} KELİME ANLAMINA UYGUN DÜŞMAN OLARAK GERİ DÖNDÜ`
     : name.toLocaleUpperCase("tr-TR");
   const alertGuidance = queuedWords
-    ? "Hata defterindeki kelimeler boss turunda anlamlarına uygun düşman olur. Düşmanı yenmek kaydı silmez; doğru telafi cevabı siler."
+    ? "Yanlış ya da hiç cevaplanmamış kelimeler düşman olarak döndü. Doğru cevaplanana kadar her boss turunda daha güçlü gelirler."
     : (BOSS_TELEGRAPH_GUIDANCE[skill] || "İşaretlere bak, saldırıdan önce güvenli alanı bul.");
   triggerTacticalAlert(alert, alertGuidance);
   updateBossHealthBar(true);
@@ -6728,7 +6751,8 @@ function spawnBossMistakeBatch(preferredAngle = null) {
     const mistake = state.boss_mistake_queue.shift();
     const memoryWord = String(mistake.word || "?").trim();
     const wordCard = state.questions.find(card => String(card.word).toLocaleLowerCase("tr-TR") === memoryWord.toLocaleLowerCase("tr-TR")) || mistake;
-    const failures = Math.max(1, Math.min(5, Math.floor(mistake.fail_count || 1)));
+    // Strength grows with wrong answers and with every boss round survived unanswered.
+    const failures = Math.max(1, Math.min(8, Math.floor(mistake.fail_count || 1) + Math.max(0, (mistake.boss_returns || 1) - 1)));
     const difficulty = DIFFICULTIES[state.difficulty];
     const echoPower = 1.25 + failures * 0.15;
     const echoSpeed = 1.0 + failures * 0.05;
@@ -6742,7 +6766,7 @@ function spawnBossMistakeBatch(preferredAngle = null) {
       hp, max_hp: hp, speed: (145 + (state.current_wave - 1) * 4) * difficulty.enemy_speed_mult * echoSpeed,
       damage: 42 * difficulty.enemy_damage_mult * echoDamage,
       ink_reward: 0, size: 40 + failures * 2, label: memoryWord, word_type: mistake.type || "", is_elite: true, is_mistake_echo: true,
-      memory_word: memoryWord, fail_count: failures,
+      memory_word: memoryWord, fail_count: failures, unseen_word: !!mistake.unseen,
       semantic_archetype: wordCard.enemy_archetype || "spectre",
       semantic_visual_modifier: wordCard.enemy_visual_modifier || "Kelimenin anlamını taşıyan mühürlü gövde",
       echo_mechanic: getBossEchoMechanic(wordCard.enemy_attack, mistake.type),
@@ -7151,7 +7175,7 @@ function refreshShopCards() {
   const selected = [];
 
   // Spaced Repetition (Leitner System): If player has mistakes in notebook, prioritize 1 redemption card!
-  if (state.mistake_words && state.mistake_words.length > 0) {
+  if (state.mistake_words && state.mistake_words.length > 0 && window.GrimoireMeta?.mode !== "errata") {
     const mistakeItem = state.mistake_words[Math.floor(Math.random() * state.mistake_words.length)];
     const matchingQ = state.questions.find(q => q.word === mistakeItem.word);
     if (matchingQ) {
@@ -7464,20 +7488,21 @@ function renderShopView() {
       if (isRedemption) {
         card.classList.add("shop-redemption");
       }
+      const errataCards = window.GrimoireMeta?.mode === "errata";
       const effectArt = c.stat === "max_hp" || c.stat === "heal" ? "health" : c.stat === "armor" ? "shield" : c.stat === "move_speed" || c.stat === "speed" || c.stat === "attack_speed" ? "speed" : c.stat === "crit_chance" || c.stat === "pierce" ? "quill" : c.stat === "ink_mult" ? "ink" : "cards";
       card.dataset.effect = effectArt;
       card.innerHTML = `
         <div class="shop-meta">
-          <span>${c.type} · ${c.level}</span>
-          ${isRedemption ? '<span class="shop-review-mark">Pekiştirme</span>' : '<span>Kelime kartı</span>'}
+          <span>${errataCards ? "Güç mührü" : `${c.type} · ${c.level}`}</span>
+          ${errataCards ? '<span>Errata</span>' : isRedemption ? '<span class="shop-review-mark">Pekiştirme</span>' : '<span>Kelime kartı</span>'}
         </div>
         <div class="word-effect-art" aria-hidden="true">${(() => { const emblem = window.GrimoireSprites?.src(`emblem_${{ max_hp: "health", heal: "health", armor: "armor", move_speed: "speed", speed: "speed", attack_speed: "attack_speed", crit_chance: "crit", pierce: "pierce", damage: "damage", pickup_radius: "ink_range", ink_mult: "luck", projectile_count: "damage" }[c.stat] || "shield"}`); return emblem ? `<img class="word-painted-emblem" src="${emblem}" alt="">` : `<img class="word-emblem" src="assets/ui/errata/shop-word-emblem.webp" alt=""><img class="word-effect-mark" src="assets/ui/icons/${effectArt}.svg" alt="">`; })()}</div>
-        <h3 class="shop-title">${c.word}</h3>
+        <h3 class="shop-title">${errataCards ? (c.buff_name || "Güç mührü") : c.word}</h3>
         <div class="shop-description">${c.description}</div>
-        <div class="shop-example">${quizExampleRevealsTranslation(c) ? "" : `“${c.example || ''}”`}</div>
+        <div class="shop-example">${errataCards ? "Mührü kır: altın bölgede vur, yarı fiyata +%50 güç." : quizExampleRevealsTranslation(c) ? "" : `“${c.example || ''}”`}</div>
         <div class="shop-buy-row">
           <span class="shop-price">${c.shop_cost} <img class="ui-icon" src="assets/ui/icons/ink.svg" alt=""> mürekkep</span>
-          <button class="btn shop-buy" id="card-buy-${idx}" ${state.ink_count < c.shop_cost ? "disabled" : ""}>${state.ink_count < c.shop_cost ? "Mürekkep yetersiz" : "Sınavı başlat"}</button>
+          <button class="btn shop-buy" id="card-buy-${idx}" ${state.ink_count < c.shop_cost ? "disabled" : ""}>${state.ink_count < c.shop_cost ? "Mürekkep yetersiz" : errataCards ? "Mührü kır" : "Sınavı başlat"}</button>
         </div>
       `;
       const buyBtn = card.querySelector(`#card-buy-${idx}`);
@@ -7786,6 +7811,7 @@ function openQuiz(card, cardIndex) {
 
       if (isCorrect) {
         grantCharacterXp(card.is_review_redemption ? 28 : 18, "quiz_correct");
+        forgetUnseenWord(card.word);
         btn.classList.add("is-correct");
         sounds.quizSuccess();
         triggerHaptic("success");
@@ -7828,6 +7854,7 @@ function openQuiz(card, cardIndex) {
         resText.textContent += `\nANLAM HAFIZASI: ${card.meaning_tr || card.options[card.correct_index]}`;
         applyCardUpgrade(card, false, 1.0);
 
+        forgetUnseenWord(card.word);
         // Record into persistent mistake notebook
         const existing = state.mistake_words.find(m => m.word === card.word);
         if (existing) {
@@ -9051,8 +9078,8 @@ function render(dt = 1 / 60) {
     }
 
     if (e.is_mistake_echo) {
-      const frame = images["upgrade_v1/word_echo/word_echo_title_frame.svg"];
-      const text = String(e.memory_word || e.label || "?");
+      const frame = window.GrimoireSprites?.image("word_enemy_banner") || images["upgrade_v1/word_echo/word_echo_title_frame.svg"];
+      const text = String(e.memory_word || e.label || "?") + (e.fail_count > 1 ? ` ${"✦".repeat(Math.min(5, e.fail_count - 1))}` : "");
       ctx.save();
       ctx.font = "600 12px 'IBM Plex Sans', sans-serif";
       const plateWidth = Math.max(140, Math.min(230, ctx.measureText(text).width + 38));
@@ -9070,7 +9097,7 @@ function render(dt = 1 / 60) {
       if (mark) ctx.drawImage(mark, e.x - 11, e.y + (e.size || 32) * 0.34, 22, 22);
       ctx.font = "600 12px 'IBM Plex Sans', sans-serif";
       ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.lineJoin = "round";
-      ctx.lineWidth = 3; ctx.strokeStyle = "#111714"; ctx.fillStyle = "#f2e7cf";
+      ctx.lineWidth = 3; ctx.strokeStyle = "#f4ead2"; ctx.fillStyle = "#3a120c";
       ctx.strokeText(text, e.x, plateY + plateHeight * 0.51, plateWidth - 28);
       ctx.fillText(text, e.x, plateY + plateHeight * 0.51, plateWidth - 28);
       ctx.restore();
