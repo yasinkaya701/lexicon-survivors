@@ -241,7 +241,8 @@
       if (run.heat >= 5) unlock("heat_5"); if (run.heat >= 10) unlock("heat_10");
     }
     if (run.mode === "endless") { if (wave >= 150) unlock("endless_50"); if (wave >= 200) unlock("endless_100"); }
-    if (run.node === "treasure") run.treasure = makeTreasure();
+    // Hazine nodes and every boss wave end with a chest.
+    if (run.node === "treasure" || wave % 5 === 0) run.treasure = makeTreasure();
     run.discount = run.node === "shop" ? 0.75 : 1;
     if (wave % 5 === 0) run.choice = { first: wave + 1, lanes: [makeLane(), makeLane()], picked: 0 };
     s.free_rerolls = s.free_rerolls_per_shop || 0;
@@ -761,6 +762,9 @@
     applyRunStart, onRunBegin, onWaveStart, onWaveEnd, onRunEnd, decorateSummary, onEnemySpawn, affixBoost, decorateElite, onEliteCheck,
     onKill, onPlayerHurt, tryRevive, update, drawEnemyMarks, inkFactor, priceFactor, xpFactor, arenaSilenced, onQuiz, onRedeem, buyCardDirect,
     commitChoice,
+    treasureOffers: () => (run.started && run.treasure) ? run.treasure : null,
+    takeTreasure: offer => takeTreasure(offer),
+    isErrata: () => errata(),
     // ui for the hub
     upgradesSheet, achievementsSheet, renderPreparation, toast,
     modes: () => MODES.map(m => ({ id: m.id, name: m.name, sub: m.sub, desc: m.desc, emblem: art(m.emblem), card: art(m.card), locked: !!(m.unlock && !m.unlock()), lockNote: m.lockNote || "" })),

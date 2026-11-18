@@ -686,7 +686,7 @@
         {
           title: 'Etkin yetenek', tut: 'tut_gadget',
           visual: '<div class="guide-visual"><img src="assets/sprites/gadgets/eraser_dash.png" alt="Silgi Sıçrayışı"><img src="assets/sprites/gadgets/lexicon_aegis.png" alt="Sözlük Kalkanı"><kbd class="key-wide">SPACE</kbd></div>',
-          copy: 'Etkin yeteneğini Space, Shift veya sağ tıkla kullan. Her karakterin yeteneği farklıdır. Mobilde YETENEK düğmesine dokun; arena nesneleri için R kullan.'
+          copy: 'Etkin yeteneğini Space, Shift veya sağ tıkla kullan. Her karakterin yeteneği farklıdır. Mobilde YETENEK düğmesine dokun; arena yapılarına yaklaşınca R ile etkileş (24 saniyede yenilenir).'
         },
         {
           title: 'Silah ve envanter', tut: 'tut_weapon_merge',
@@ -713,7 +713,7 @@
       const replayRow = document.createElement('div'); replayRow.className = 'guide-replay';
       const replay = document.createElement('button'); replay.type = 'button'; replay.className = 'btn primary'; replay.id = 'guide-replay-tutorial'; replay.textContent = 'Eğitimi tekrar oynat';
       replay.addEventListener('click', () => window.GrimoireTutorial?.open());
-      const replayNote = document.createElement('small'); replayNote.textContent = '30 adımlık tam rehber: kontroller, kelimeler, yol haritası, hazine, bosslar, modlar.';
+      const replayNote = document.createElement('small'); replayNote.textContent = '34 adımlık tam rehber: kontroller, kelimeler, yol haritası, hazine, bosslar, modlar.';
       replayRow.append(replay, replayNote);
       bookContent.replaceChildren(replayRow, steps);
     }

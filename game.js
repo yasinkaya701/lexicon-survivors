@@ -15,14 +15,15 @@ const PLAYER_CENTER_LIMIT_X = ARENA_LAYOUT.innerShelfX - ARENA_LAYOUT.playerVisu
 const PLAYER_CENTER_MIN_Y = -ARENA_LAYOUT.innerShelfY + ARENA_LAYOUT.playerVisualHalfHeight;
 const PLAYER_CENTER_MAX_Y = ARENA_LAYOUT.innerShelfY - ARENA_LAYOUT.playerVisualHalfHeight;
 const ARENA_INTERACTABLE_DEFS = Object.freeze([
-  { id: "ink_well", sprite: "upgrade_v1/interactables/ink_well.svg", name: "Mürekkep Kuyusu", hint: "Canını tazele", x: -420, y: -230 },
-  { id: "resonance_bell", sprite: "upgrade_v1/interactables/archive_bell.svg", name: "Arşiv Çanı", hint: "Yakındakileri savur", x: 420, y: -230 },
+  { id: "ink_well", sprite: "upgrade_v1/interactables/ink_well.svg", name: "Mürekkep Kuyusu", hint: "%30 can yenile", x: -420, y: -230 },
+  { id: "resonance_bell", sprite: "upgrade_v1/interactables/archive_bell.svg", name: "Arşiv Çanı", hint: "Yakındakileri sersemlet ve yarala", x: 420, y: -230 },
   { id: "astral_astrolabe", sprite: "upgrade_v1/interactables/astral_astrolabe.svg", name: "Yıldız Astrolabı", hint: "Gadget + kalkan", x: 0, y: 420 },
-  { id: "brazier", sprite: "", name: "Kor Mangalı", hint: "Çevreyi tutuştur", x: -820, y: 260 },
-  { id: "illuminated_lectern", sprite: "", name: "Işıklı Kürsü", hint: "10 sn atış hızı ve kritik", x: 820, y: 260 },
-  { id: "memory_clue", sprite: "", name: "Hafıza İzi", hint: "Mürekkep ve deneyim", x: -300, y: -560, roams: true }
+  { id: "brazier", sprite: "", name: "Kor Mangalı", hint: "Yakındakileri yak (güçlü hasar)", x: -820, y: 260 },
+  { id: "illuminated_lectern", sprite: "", name: "Işıklı Kürsü", hint: "14 sn: +%40 atış hızı, +%20 kritik", x: 820, y: 260 },
+  { id: "memory_clue", sprite: "", name: "Hafıza İzi", hint: "Bol mürekkep ve deneyim", x: -300, y: -560, roams: true }
 ]);
-const ARENA_INTERACT_RADIUS = 106;
+const ARENA_INTERACT_RADIUS = 150;
+const ARENA_OBJECT_COOLDOWN = 24; // seconds before a used structure is ready again (memory clue: once per wave)
 
 let WEAPON_VISUALS = {};
 let WEAPON_ARCHETYPES = {};
@@ -3219,7 +3220,7 @@ window.addEventListener("keydown", e => {
   if (e.key.toLowerCase() === "i") {
     if (state.is_wave_active || state.is_inventory_open) toggleInventoryModal();
   }
-  if (e.key.toLowerCase() === "r" && interactWithArenaObject()) e.preventDefault();
+  if (e.key.toLowerCase() === "r") { if (interactWithArenaObject()) e.preventDefault(); else if (!e.repeat) explainArenaInteractionFailure(); }
   if (e.key.toLowerCase() === "m") {
     toggleMistakesModal();
   }
@@ -3796,7 +3797,7 @@ function startWave() {
   wakeGameLoop();
   window.GrimoireSprites?.fx("fx_wave_sigil", state.player.x, state.player.y, { size: 320, under: true });
   state.arena_interactables.forEach(object => {
-    object.used = false;
+    object.used = false; object.cooldown = 0;
     // The memory clue turns up somewhere new each wave, away from the centre.
     if (object.roams) {
       const angle = Math.random() * Math.PI * 2, radius = 420 + Math.random() * 300;
@@ -3871,64 +3872,84 @@ function updateArenaInteractionPrompt() {
   if (label) label.textContent = `${object.name} · ${object.hint}`;
 }
 
+function explainArenaInteractionFailure() {
+  if (!state.is_wave_active) return;
+  const p = state.player;
+  if (window.GrimoireMeta?.arenaSilenced?.()) { addFloatingText(p.x, p.y - 48, "ARENA NESNELERİ SUSTU", "#b9a2fa", 13); return; }
+  let near = null, nearSq = ARENA_INTERACT_RADIUS * ARENA_INTERACT_RADIUS;
+  for (const object of state.arena_interactables) {
+    const d = (object.x - p.x) ** 2 + (object.y - p.y) ** 2;
+    if (d <= nearSq) { near = object; nearSq = d; }
+  }
+  if (!near) return;
+  let why = "";
+  if (near.used) why = near.id === "memory_clue" ? "BU DALGADA KULLANILDI" : `${Math.ceil(near.cooldown || 0)} SN SONRA HAZIR`;
+  else if (near.id === "ink_well") why = "CANIN ZATEN DOLU";
+  else if (near.id === "astral_astrolabe") why = "GEREÇ HAZIR · KALKAN DOLU";
+  if (why) addFloatingText(p.x, p.y - 48, `${near.name.toUpperCase()} · ${why}`, "#c2b59c", 12);
+}
+
 function interactWithArenaObject() {
   const object = getNearbyArenaInteractable();
   if (!object) return false;
   const p = state.player;
   if (object.id === "ink_well") {
-    const healed = Math.min(state.max_hp - state.hp, Math.max(1, Math.round(state.max_hp * 0.18)));
+    const healed = Math.min(state.max_hp - state.hp, Math.max(1, Math.round(state.max_hp * 0.30)));
     if (healed <= 0) return false;
     state.hp += healed;
     addFloatingText(p.x, p.y - 48, `+${healed} HP`, "#8ee0b5", 18);
     sounds.playTone(660, "sine", 0.22, 0.22);
   } else if (object.id === "resonance_bell") {
-    const targets = state.enemies.filter(enemy => !enemy.dead && Math.hypot(enemy.x - p.x, enemy.y - p.y) <= 360);
-    if (!targets.length) return false;
+    const targets = state.enemies.filter(enemy => !enemy.dead && Math.hypot(enemy.x - p.x, enemy.y - p.y) <= 440);
+    if (!targets.length) { addFloatingText(p.x, p.y - 48, "ÇAN · YAKINDA DÜŞMAN YOK", "#c2b59c", 12); return false; }
     targets.forEach(enemy => {
       const dx = enemy.x - p.x, dy = enemy.y - p.y;
       const distance = Math.hypot(dx, dy) || 1;
       const boss = !!enemy.is_boss;
-      enemy.stun_timer = Math.max(enemy.stun_timer || 0, boss ? 0.42 : 1.15);
-      applyHitFeedback(enemy, { x: dx / distance, y: dy / distance }, "rune", false, true, boss ? 100 : 300);
+      enemy.stun_timer = Math.max(enemy.stun_timer || 0, boss ? 0.9 : 2.0);
+      enemy.hp -= (30 + state.current_wave * 3) * state.damage_mult * (boss ? 0.5 : 1);
+      applyHitFeedback(enemy, { x: dx / distance, y: dy / distance }, "rune", false, true, boss ? 100 : 340);
     });
-    state.particles.push({ x: p.x, y: p.y, radius: 28, max_radius: 360, alpha: 0.8, color: "rgba(112, 203, 208, " });
+    state.particles.push({ x: p.x, y: p.y, radius: 28, max_radius: 440, alpha: 0.8, color: "rgba(112, 203, 208, " });
     triggerScreenShake(0.12, 2.2);
     if (!sounds.playAsset("resonance_bell", 0.68)) sounds.playTone(184, "triangle", 0.48, 0.28);
   } else if (object.id === "astral_astrolabe") {
     state.gadget_timer = 0;
     state.shield_charges = Math.min(3, state.shield_charges + 1);
     state.shield_timer = Math.max(state.shield_timer, 9);
-    addFloatingText(p.x, p.y - 48, "GADGET + KALKAN", "#c5adff", 15);
+    state.hp = Math.min(state.max_hp, state.hp + Math.round(state.max_hp * 0.08));
+    addFloatingText(p.x, p.y - 48, "GADGET + KALKAN + CAN", "#c5adff", 15);
     if (!sounds.playAsset("resonance_bell", 0.46)) sounds.playTone(520, "sine", 0.32, 0.22);
   } else if (object.id === "brazier") {
-    const targets = state.enemies.filter(enemy => !enemy.dead && Math.hypot(enemy.x - p.x, enemy.y - p.y) <= 320);
-    if (!targets.length) return false;
-    const damage = (60 + state.current_wave * 7) * state.damage_mult;
+    const targets = state.enemies.filter(enemy => !enemy.dead && Math.hypot(enemy.x - p.x, enemy.y - p.y) <= 400);
+    if (!targets.length) { addFloatingText(p.x, p.y - 48, "MANGAL · YAKINDA DÜŞMAN YOK", "#c2b59c", 12); return false; }
+    const damage = (110 + state.current_wave * 10) * state.damage_mult;
     targets.forEach(enemy => {
       const dx = enemy.x - p.x, dy = enemy.y - p.y, distance = Math.hypot(dx, dy) || 1;
       enemy.hp -= enemy.is_boss ? damage * 0.5 : damage;
       applyHitFeedback(enemy, { x: dx / distance, y: dy / distance }, "fire", false, true, enemy.is_boss ? 60 : 200);
     });
-    state.particles.push({ x: p.x, y: p.y, radius: 24, max_radius: 320, alpha: 0.9, color: "rgba(255, 140, 50, " });
+    state.particles.push({ x: p.x, y: p.y, radius: 24, max_radius: 400, alpha: 0.9, color: "rgba(255, 140, 50, " });
     window.GrimoireSprites?.fx("fx_crit_hit", p.x, p.y, { size: 300 });
     triggerScreenShake(0.16, 3.5);
     addFloatingText(p.x, p.y - 48, `KOR · ${targets.length} DÜŞMAN`, "#ffb26b", 15);
     sounds.playTone(140, "sawtooth", 0.35, 0.2);
   } else if (object.id === "illuminated_lectern") {
-    if (!state.lectern_timer) { state.attack_speed_mult *= 1.3; state.crit_chance = Math.min(1, state.crit_chance + 0.15); }
-    state.lectern_timer = 10;
+    if (!state.lectern_timer) { state.attack_speed_mult *= 1.4; state.crit_chance = Math.min(1, state.crit_chance + 0.2); }
+    state.lectern_timer = 14;
     window.GrimoireSprites?.fx("fx_level_up", p.x, p.y, { size: 200 });
-    addFloatingText(p.x, p.y - 48, "OKUMA · +%30 ATIŞ · +%15 KRİTİK", "#f3d390", 14);
+    addFloatingText(p.x, p.y - 48, "OKUMA · 14 SN · +%40 ATIŞ · +%20 KRİTİK", "#f3d390", 14);
     sounds.playTone(660, "triangle", 0.3, 0.2);
   } else if (object.id === "memory_clue") {
-    const ink = 10 + Math.round(state.current_wave * 0.8);
+    const ink = 22 + Math.round(state.current_wave * 1.5);
     state.ink_count += ink;
-    grantCharacterXp(20 + state.current_wave, "memory_clue");
+    grantCharacterXp(45 + state.current_wave * 2, "memory_clue");
     window.GrimoireSprites?.fx("fx_pickup_ink", p.x, p.y, { size: 140 });
     addFloatingText(p.x, p.y - 48, `HAFIZA İZİ · +${ink} MÜREKKEP`, "#9fd8e8", 15);
     sounds.playTone(880, "sine", 0.25, 0.18);
   }
   object.used = true;
+  object.cooldown = object.id === "memory_clue" ? 0 : ARENA_OBJECT_COOLDOWN;
   updateArenaInteractionPrompt();
   updateHUD();
   return true;
@@ -8673,6 +8694,18 @@ function render(dt = 1 / 60) {
     ctx.fillStyle = `${color}18`;
     ctx.lineWidth = 2;
     ctx.beginPath(); ctx.ellipse(0, 0, 43 * pulse, 14 * pulse, 0, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    if (!object.used) {
+      // Beacon: a light shaft over a ready structure so it is easy to spot.
+      const beam = ctx.createLinearGradient(0, -190, 0, -10);
+      beam.addColorStop(0, `${color}00`); beam.addColorStop(1, `${color}66`);
+      ctx.globalAlpha = reducedMotion ? 0.8 : 0.55 + Math.sin(now / 420 + object.y) * 0.2;
+      ctx.fillStyle = beam; ctx.fillRect(-14, -190, 28, 180);
+      ctx.globalAlpha = 0.9; ctx.fillStyle = "#f2e6c8"; ctx.font = "700 12px Alegreya, Georgia, serif"; ctx.textAlign = "center";
+      ctx.fillText(object.name, 0, -118);
+    } else if (object.cooldown > 0) {
+      ctx.globalAlpha = 0.85; ctx.fillStyle = "#c2b59c"; ctx.font = "700 12px Alegreya, Georgia, serif"; ctx.textAlign = "center";
+      ctx.fillText(`${Math.ceil(object.cooldown)} sn`, 0, -118);
+    }
     ctx.globalAlpha = 1;
     ctx.globalAlpha = alpha;
     ctx.shadowColor = color;
@@ -8822,8 +8855,22 @@ function render(dt = 1 / 60) {
     if (!isInRenderViewport(t.x, t.y, 28)) return;
     ctx.save();
     ctx.translate(t.x, t.y);
-    const spr = images["scroll_turret.png"];
-    if (spr) ctx.drawImage(spr, -22, -22, 44, 44);
+    // Painted bookshelf turret (evolved model once the weapon reaches the focus tier).
+    const painted = window.GrimoireSprites?.image(t.synchronized_focus ? "weapon_scroll_turret_evo_icon" : "weapon_scroll_turret_icon");
+    const spr = painted || (window.GrimoireSprites?.has("weapon_scroll_turret_icon") ? null : images["scroll_turret.png"]);
+    if (spr) {
+      const seconds = Math.max(0, t.lifetime);
+      ctx.save();
+      ctx.globalAlpha = 0.35; ctx.fillStyle = "#000";
+      ctx.beginPath(); ctx.ellipse(0, 22, 26, 8, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+      const fade = seconds < 2 ? 0.45 + 0.55 * Math.abs(Math.sin(now / 90)) : 1;
+      ctx.globalAlpha = fade;
+      if (painted) ctx.imageSmoothingEnabled = true;
+      const size = painted ? 64 : 44;
+      ctx.drawImage(spr, -size / 2, -size * 0.62, size, size);
+      ctx.globalAlpha = 1;
+    }
     ctx.restore();
   });
 
@@ -9709,9 +9756,15 @@ function updateGame(dt) {
       updateEnemies(dt);
       updateGadgetEffects(dt);
       window.GrimoireMeta?.update(dt);
+      for (const object of state.arena_interactables) {
+        if (object.used && object.cooldown > 0) {
+          object.cooldown -= dt;
+          if (object.cooldown <= 0) { object.cooldown = 0; object.used = false; updateArenaInteractionPrompt(); }
+        }
+      }
       if (state.lectern_timer > 0) {
         state.lectern_timer -= dt;
-        if (state.lectern_timer <= 0) { state.lectern_timer = 0; state.attack_speed_mult /= 1.3; state.crit_chance = Math.max(0, state.crit_chance - 0.15); }
+        if (state.lectern_timer <= 0) { state.lectern_timer = 0; state.attack_speed_mult /= 1.4; state.crit_chance = Math.max(0, state.crit_chance - 0.2); }
       }
     }
     // Keep canvas simulation at full frame rate while limiting repeated DOM
