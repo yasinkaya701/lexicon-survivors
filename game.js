@@ -1068,7 +1068,7 @@ function speakGameText(text, options = {}) {
   gameSpeechState.options = settings;
   if (window.ErrataVoice?.speak) {
     const role = settings.role === "word" ? "quiz" : settings.role === "narrator" ? "narrative" : settings.role;
-    return window.ErrataVoice.speak(content, { role, lang: settings.lang, interrupt: true });
+    return window.ErrataVoice.speak(content, { role, lang: settings.lang, interrupt: true, speaker: settings.speaker, character: settings.character });
   }
   try { synthesis.cancel(); } catch (error) { return false; }
   const utterance = new Utterance(content);
@@ -4089,7 +4089,7 @@ function renderStoryPanel() {
     : "ENTER · SONRAKİ KARE";
   const speechRole = isBossVoice || ["whisper", "blank_page", "shadow_double"].includes(speakerId)
     ? "boss" : ["narrator", "caption"].includes(speakerId) ? "narrator" : "character";
-  speakGameText(dialogueText, { lang: "tr-TR", role: speechRole });
+  speakGameText(dialogueText, { lang: "tr-TR", role: speechRole, speaker: speakerId, character: state.selected_char });
 }
 
 async function showStoryIntermission(wave) {
