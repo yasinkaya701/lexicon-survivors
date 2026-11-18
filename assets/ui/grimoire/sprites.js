@@ -26,7 +26,7 @@
   }
 
   if (window.GRIMOIRE_ATLAS?.assets) atlas = window.GRIMOIRE_ATLAS.assets;
-  const ready = atlas ? Promise.resolve(atlas) : fetch(ATLAS_URL)
+  const ready = atlas ? Promise.resolve(atlas) : fetch(ATLAS_URL, { cache: "no-store" })
     .then(r => { if (!r.ok) throw Error("atlas"); return r.json(); })
     .then(data => { atlas = data.assets || {}; repaint(); return atlas; })
     .catch(() => { atlas = {}; return atlas; });
